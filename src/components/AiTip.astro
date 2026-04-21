@@ -1,0 +1,41 @@
+---
+interface Props {
+  topic?: string;
+}
+const { topic = "이 글의 내용" } = Astro.props;
+---
+<div class="ai-tip">
+  <strong>AI 활용 팁</strong>
+  <p>
+    {topic}을 ChatGPT 또는 Claude에 붙여넣고
+    "내 상황에 맞게 분석해줘"라고 요청해보세요.
+    <a href="https://aikorea24.kr/tools/" target="_blank" rel="noopener">
+      AI 도구 추천 보기 →
+    </a>
+  </p>
+</div>
+
+<style>
+  .ai-tip {
+    margin: 2rem 0;
+    padding: 1rem 1.2rem;
+    border-left: 3px solid #4f8ef7;
+    background: #f0f6ff;
+    border-radius: 0 4px 4px 0;
+  }
+  .ai-tip strong {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: #2a5ccc;
+    font-size: 0.95rem;
+  }
+  .ai-tip p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #444;
+  }
+  .ai-tip a {
+    color: #2a5ccc;
+    font-weight: 600;
+  }
+</style>

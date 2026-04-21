@@ -4,15 +4,10 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 
+// https://astro.build/config
 export default defineConfig({
-	site: 'https://money.aikorea24.kr',
-	integrations: [
-		mdx(),
-		sitemap({
-			changefreq: 'weekly',
-			priority: 0.7,
-		}),
-	],
+	site: 'https://example.com',
+	integrations: [mdx(), sitemap()],
 	fonts: [
 		{
 			provider: fontProviders.local(),

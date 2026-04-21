@@ -6,7 +6,7 @@ const sharedSchema = z.object({
 	title: z.string(),
 	description: z.string(),
 	draft: z.boolean().default(true),
-	tags: z.array(z.string()).optional().default([]),
+	tags: z.array(z.string()),
 	pubDate: z.coerce.date().optional(),
 	updatedDate: z.coerce.date().optional(),
 	heroImage: z.string().optional(),

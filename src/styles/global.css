@@ -139,3 +139,36 @@ hr {
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+
+/* Legal pages */
+article.legal {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 4rem;
+}
+article.legal h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+article.legal h2 {
+  font-size: 1.1rem;
+  margin: 2rem 0 0.6rem;
+  color: #1a1a1a;
+}
+article.legal p, article.legal li {
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+article.legal ul {
+  padding-left: 1.4rem;
+}
+article.legal a {
+  color: #4f8ef7;
+}
+article.legal .effective-date {
+  margin-top: 2.5rem;
+  font-size: 0.85rem;
+  color: #999;
+}

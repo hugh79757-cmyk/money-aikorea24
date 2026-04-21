@@ -1,0 +1,31 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  url: string;
+  datePublished: string;
+  category: string;
+}
+const { title, description, url, datePublished, category } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "url": url,
+  "datePublished": datePublished,
+  "publisher": {
+    "@type": "Organization",
+    "name": "AI코리아24 머니",
+    "url": "https://money.aikorea24.kr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://money.aikorea24.kr/favicon.svg"
+    }
+  },
+  "articleSection": category,
+  "inLanguage": "ko-KR"
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

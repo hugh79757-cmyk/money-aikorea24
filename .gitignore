@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# 대용량 파일 제외
+public/cards/
+public/persona-bg/
+public/persona-stats.json

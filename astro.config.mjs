@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 
 export default defineConfig({
-	site: 'https://money.aikorea24.kr',
+	site: 'https://persona.aikorea24.kr',
 	integrations: [
 		mdx(),
 		sitemap({

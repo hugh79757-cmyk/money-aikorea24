@@ -1,0 +1,418 @@
+---
+// src/pages/my-persona.astro
+---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>나와 같은 한국인은 어떻게 살까? | AI코리아24 머니</title>
+  <meta property="og:title" content="나와 같은 한국인은 어떻게 살까?" />
+  <meta property="og:description" content="엔비디아 700만 한국인 데이터로 분석하는 나의 현실" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Pretendard', sans-serif; background: #f8fafc; color: #1e293b; }
+    .hero { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; padding: 3rem 1rem; text-align: center; }
+    .hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .hero p { font-size: 1.1rem; opacity: 0.9; }
+    .container { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+    .input-card { background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 2rem; }
+    .input-card h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; color: #1e40af; }
+    .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .input-group label { display: block; font-size: 0.85rem; color: #64748b; margin-bottom: 0.4rem; font-weight: 600; }
+    .input-group select, .input-group input { width: 100%; padding: 0.7rem 1rem; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 0.95rem; background: #f8fafc; }
+    .btn { width: 100%; padding: 1rem; background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 1.5rem; }
+    .btn:hover { opacity: 0.9; }
+    .result-section { display: none; }
+    .result-section.show { display: block; }
+    .stat-card { background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 1.5rem; }
+    .stat-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #1e40af; }
+    .summary-box { text-align: center; padding: 1rem; }
+    .summary-count { font-size: 2.8rem; font-weight: 800; color: #1e40af; }
+    .summary-label { font-size: 1rem; color: #64748b; margin-bottom: 1rem; }
+    .bar-list { list-style: none; }
+    .bar-item { margin-bottom: 1rem; }
+    .bar-header { display: flex; justify-content: space-between; margin-bottom: 0.3rem; }
+    .bar-name { font-size: 0.9rem; color: #334155; font-weight: 600; }
+    .bar-pct { font-size: 0.9rem; color: #1e40af; font-weight: 800; }
+    .bar-track { height: 10px; background: #e2e8f0; border-radius: 5px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 5px; transition: width 0.8s ease; }
+    .bar-fill.apt { background: #3b82f6; }
+    .bar-fill.edu { background: #10b981; }
+    .bar-fill.married { background: #f59e0b; }
+    .bar-fill.job { background: #ef4444; }
+    .bar-fill.single { background: #8b5cf6; }
+    .bar-fill.gen3 { background: #06b6d4; }
+    .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .persona-list { list-style: none; }
+    .persona-item { background: #f8fafc; border-left: 3px solid #3b82f6; border-radius: 0 8px 8px 0; padding: 0.8rem 1rem; margin-bottom: 0.75rem; font-size: 0.88rem; line-height: 1.6; color: #334155; }
+    .ai-analysis { background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-left: 4px solid #3b82f6; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .ai-analysis h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #1e40af; }
+    .ai-analysis p { font-size: 0.95rem; line-height: 1.7; color: #334155; }
+    .recommend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .recommend-card { background: white; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-decoration: none; color: #1e293b; border: 2px solid transparent; transition: all 0.2s; display: block; }
+    .recommend-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
+    .recommend-card .emoji { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .recommend-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .recommend-card p { font-size: 0.8rem; color: #64748b; }
+    .loading { text-align: center; padding: 2rem; color: #64748b; display: none; }
+    .spinner { width: 40px; height: 40px; border: 4px solid #e2e8f0; border-top-color: #3b82f6; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .share-section { background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 1.5rem; }
+    .share-section h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #1e40af; }
+    .card-preview-wrap { margin-bottom: 1rem; border-radius: 12px; overflow: hidden; background: #f0f9ff; min-height: 200px; display: flex; align-items: center; justify-content: center; }
+    .card-preview-wrap img { width: 100%; display: block; border-radius: 12px; }
+    .card-preview-wrap .no-card { color: #94a3b8; font-size: 0.9rem; padding: 2rem; }
+    .share-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .share-btn { padding: 0.8rem; border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 700; cursor: pointer; }
+    .share-btn.download { background: #1e40af; color: white; }
+    .share-btn.url { background: #10b981; color: white; }
+    .share-btn.twitter { background: #000; color: white; }
+    .share-btn.kakao { background: #FEE500; color: #191919; }
+    .share-btn:hover { opacity: 0.85; }
+    .url-box { display: flex; gap: 0.5rem; }
+    .url-box input { flex: 1; padding: 0.6rem 0.8rem; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.8rem; color: #64748b; background: #f8fafc; }
+    .url-box button { padding: 0.6rem 1rem; background: #64748b; color: white; border: none; border-radius: 8px; font-size: 0.8rem; cursor: pointer; white-space: nowrap; }
+    @media (max-width: 600px) {
+      .input-grid, .chart-grid, .recommend-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="hero">
+  <h1>🇰🇷 나와 같은 한국인은 어떻게 살까?</h1>
+  <p>엔비디아 700만 한국인 데이터로 분석하는 나의 현실</p>
+</div>
+<div class="container">
+  <div class="input-card">
+    <h2>📋 내 조건 입력</h2>
+    <div class="input-grid">
+      <div class="input-group">
+        <label>나이</label>
+        <input type="number" id="age" value="35" min="20" max="90" />
+      </div>
+      <div class="input-group">
+        <label>성별</label>
+        <select id="sex">
+          <option value="남자">남자</option>
+          <option value="여자">여자</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>거주 지역</label>
+        <select id="province">
+          <option value="서울">서울</option><option value="경기">경기</option>
+          <option value="부산">부산</option><option value="인천">인천</option>
+          <option value="대구">대구</option><option value="대전">대전</option>
+          <option value="광주">광주</option><option value="울산">울산</option>
+          <option value="경남">경남</option><option value="경북">경북</option>
+          <option value="전남">전남</option><option value="전북">전북</option>
+          <option value="충남">충남</option><option value="충북">충북</option>
+          <option value="강원">강원</option><option value="제주">제주</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>혼인상태</label>
+        <select id="marital">
+          <option value="미혼">미혼</option>
+          <option value="배우자있음">기혼</option>
+          <option value="이혼">이혼</option>
+          <option value="사별">사별</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" id="analyze-btn">🔍 나와 같은 한국인 분석하기</button>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <p>데이터 분석 중...</p>
+  </div>
+
+  <div class="result-section" id="result">
+    <div class="stat-card">
+      <div class="summary-box">
+        <div class="summary-count" id="summary-count">0</div>
+        <div class="summary-label" id="summary-label">명의 한국인이 나와 같은 조건</div>
+      </div>
+      <ul class="bar-list" id="bar-list"></ul>
+    </div>
+
+    <div class="stat-card" id="persona-section" style="display:none">
+      <h3>👥 나와 비슷한 한국인들의 이야기</h3>
+      <ul class="persona-list" id="persona-list"></ul>
+    </div>
+
+    <div class="chart-grid">
+      <div class="stat-card"><h3>🏠 주거형태</h3><canvas id="housing-chart"></canvas></div>
+      <div class="stat-card"><h3>🎓 학력</h3><canvas id="education-chart"></canvas></div>
+      <div class="stat-card"><h3>👨‍👩‍👧 가족구성</h3><canvas id="family-chart"></canvas></div>
+      <div class="stat-card"><h3>💼 직업군 TOP5</h3><canvas id="job-chart"></canvas></div>
+    </div>
+
+    <div class="ai-analysis">
+      <h3>💡 금융 인사이트</h3>
+      <p id="ai-text"></p>
+    </div>
+
+    <div class="share-section">
+      <h3>📤 결과 공유하기</h3>
+      <div class="card-preview-wrap" id="card-preview-wrap">
+        <span class="no-card">카드 로딩 중...</span>
+      </div>
+      <div class="share-btns">
+        <button class="share-btn download" onclick="downloadCard()">이미지 저장</button>
+        <button class="share-btn url" onclick="copyUrl()">링크 복사</button>
+        <button class="share-btn twitter" onclick="shareTwitter()">X 공유</button>
+        <button class="share-btn kakao" onclick="copyUrl()">카카오 공유</button>
+      </div>
+      <div class="url-box">
+        <input type="text" id="share-url" readonly />
+        <button onclick="copyUrl()">복사</button>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <h3>📚 나에게 맞는 금융 가이드</h3>
+      <div class="recommend-grid" id="recommend-grid"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+let statsData = null;
+let currentInput = null;
+let currentCardUrl = null;
+let charts = {};
+
+const RECS = {
+  "20대": [
+    { emoji: "💰", title: "사회초년생 IRP 시작법", desc: "세액공제 최대화 전략", url: "/invest/" },
+    { emoji: "🏠", title: "청약 당첨 전략", desc: "청약통장 만들기부터", url: "/loan/" },
+    { emoji: "🛡️", title: "첫 실손보험 가입", desc: "20대에 꼭 필요한 보험", url: "/insurance/" },
+    { emoji: "📱", title: "AI 부업 시작하기", desc: "월 50만원 부수입", url: "/nomad/" },
+  ],
+  "30대": [
+    { emoji: "🏠", title: "주담대 금리 비교", desc: "내집마련 완벽 가이드", url: "/loan/" },
+    { emoji: "💰", title: "IRP + ISA 동시 운용", desc: "절세 최대화 전략", url: "/invest/" },
+    { emoji: "🛡️", title: "실손보험 리모델링", desc: "불필요한 보험 정리", url: "/insurance/" },
+    { emoji: "📊", title: "연말정산 환급 극대화", desc: "놓치는 공제 항목 체크", url: "/invest/" },
+  ],
+  "40대": [
+    { emoji: "🏦", title: "노후 준비 IRP 전략", desc: "퇴직연금 최적화", url: "/invest/" },
+    { emoji: "🛡️", title: "보험 리모델링 가이드", desc: "40대 필수 보험 점검", url: "/insurance/" },
+    { emoji: "🏠", title: "1주택자 갈아타기", desc: "주담대 전략", url: "/loan/" },
+    { emoji: "📋", title: "종합소득세 절세", desc: "자영업자/프리랜서 필독", url: "/tax/" },
+  ],
+  "50대": [
+    { emoji: "🏦", title: "퇴직금 IRP 활용법", desc: "은퇴 준비 완벽 가이드", url: "/invest/" },
+    { emoji: "🏥", title: "건강보험료 절감", desc: "피부양자 자격 유지법", url: "/tax/" },
+    { emoji: "🏠", title: "역모기지 vs 전세", desc: "노후 주거 전략", url: "/loan/" },
+    { emoji: "🛡️", title: "암보험 점검", desc: "50대 필수 보장 확인", url: "/insurance/" },
+  ],
+};
+
+function getAgeGroup(age) {
+  return String(age);
+}
+
+function pct(obj, key) {
+  const total = Object.values(obj).reduce((s,v)=>s+v,0);
+  return total > 0 ? Math.round((obj[key]||0)/total*100) : 0;
+}
+
+function pctMulti(obj, keys) {
+  const total = Object.values(obj).reduce((s,v)=>s+v,0);
+  const val = keys.reduce((s,k)=>s+(obj[k]||0),0);
+  return total > 0 ? Math.round(val/total*100) : 0;
+}
+
+function destroyCharts() {
+  Object.values(charts).forEach(c => c.destroy());
+  charts = {};
+}
+
+function makeDonut(id, labels, data) {
+  const colors = ["#3b82f6","#10b981","#f59e0b","#ef4444","#8b5cf6","#06b6d4"];
+  const ctx = document.getElementById(id).getContext("2d");
+  charts[id] = new Chart(ctx, {
+    type: "doughnut",
+    data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 2 }] },
+    options: { responsive: true, plugins: { legend: { position: "bottom", labels: { font: { size: 10 } } } } },
+  });
+}
+
+function makeBar(id, labels, data) {
+  const ctx = document.getElementById(id).getContext("2d");
+  charts[id] = new Chart(ctx, {
+    type: "bar",
+    data: { labels, datasets: [{ data, backgroundColor: "#3b82f688", borderColor: "#3b82f6", borderWidth: 2, borderRadius: 6 }] },
+    options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } },
+  });
+}
+
+function renderBars(s) {
+  const aptPct    = pct(s.housing, "아파트");
+  const eduPct    = pctMulti(s.education, ["4년제 대학교","대학원"]);
+  const marriedPct = pct(s.marital, "배우자있음");
+  const unempPct  = pct(s.jobs, "무직");
+  const singlePct = pctMulti(s.family, ["1인가구","단독가구"]);
+  const gen3Pct   = pctMulti(s.family, ["기타3세대","3세대"]);
+
+  const bars = [
+    { name: "아파트 거주", val: aptPct, cls: "apt" },
+    { name: "대졸 이상",   val: eduPct, cls: "edu" },
+    { name: "기혼",        val: marriedPct, cls: "married" },
+    { name: "무직",        val: unempPct, cls: "job", warn: unempPct > 25 },
+    { name: "1인가구",     val: singlePct, cls: "single" },
+    { name: "3세대 동거",  val: gen3Pct, cls: "gen3" },
+  ];
+
+  document.getElementById("bar-list").innerHTML = bars.map(b => `
+    <li class="bar-item">
+      <div class="bar-header">
+        <span class="bar-name">${b.name}${b.warn ? ' <span style="color:#ef4444;font-size:0.8rem">⚠ 3명 중 1명</span>' : ''}</span>
+        <span class="bar-pct">${b.val}%</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill ${b.cls}" style="width:0%" data-target="${b.val}"></div>
+      </div>
+    </li>
+  `).join("");
+
+  setTimeout(() => {
+    document.querySelectorAll(".bar-fill").forEach(el => {
+      el.style.width = el.dataset.target + "%";
+    });
+  }, 100);
+}
+
+function showCard(inp) {
+  const ageGroup = getAgeGroup(inp.age);
+  const key = inp.province + "_" + inp.sex + "_" + ageGroup;
+  const url = "/cards/" + key + ".png";
+  currentCardUrl = url;
+  const wrap = document.getElementById("card-preview-wrap");
+  wrap.innerHTML = '<img src="' + url + '" alt="분석 카드" onerror="this.parentElement.innerHTML=\'<span class=no-card>카드 준비 중</span>\'" />';
+}
+
+function downloadCard() {
+  if (!currentCardUrl) return;
+  const link = document.createElement("a");
+  link.download = "한국인분석.png";
+  link.href = currentCardUrl;
+  link.click();
+}
+
+function copyUrl() {
+  const url = document.getElementById("share-url").value;
+  navigator.clipboard.writeText(url).then(() => alert("링크가 복사됐어요!"));
+}
+
+function shareTwitter() {
+  const url = document.getElementById("share-url").value;
+  const text = encodeURIComponent("나와 같은 한국인은 어떻게 살까? 엔비디아 700만 데이터 분석");
+  window.open("https://twitter.com/intent/tweet?text=" + text + "&url=" + encodeURIComponent(url));
+}
+
+async function loadStats() {
+  if (statsData) return statsData;
+  const resp = await fetch("/persona-stats.json");
+  statsData = await resp.json();
+  return statsData;
+}
+
+async function analyze() {
+  const age      = parseInt(document.getElementById("age").value);
+  const sex      = document.getElementById("sex").value;
+  const province = document.getElementById("province").value;
+  const marital  = document.getElementById("marital").value;
+  const maritalLabel = {"미혼":"미혼","배우자있음":"기혼","이혼":"이혼","사별":"사별"}[marital];
+  currentInput = { age, sex, province, marital, maritalLabel };
+
+  document.getElementById("loading").style.display = "block";
+  document.getElementById("result").classList.remove("show");
+  destroyCharts();
+
+  const data     = await loadStats();
+  const ageGroup = getAgeGroup(age);
+  const key      = province + "_" + sex + "_" + ageGroup;
+  const s        = data[key];
+
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("result").classList.add("show");
+
+  if (!s || s.total === 0) {
+    document.getElementById("bar-list").innerHTML = '<li style="color:#94a3b8;text-align:center;padding:1rem">해당 조건의 데이터가 부족합니다</li>';
+    return;
+  }
+
+  document.getElementById("summary-count").textContent = s.total.toLocaleString();
+  document.getElementById("summary-label").textContent = "명의 " + province + " " + ageGroup + " " + sex + "을 분석했어요";
+
+  renderBars(s);
+
+  const personas = s.personas || [];
+  const psec = document.getElementById("persona-section");
+  if (personas.length > 0) {
+    psec.style.display = "block";
+    document.getElementById("persona-list").innerHTML = personas.slice(0,4).map(p =>
+      "<li class='persona-item'>" + p + "</li>"
+    ).join("");
+  } else {
+    psec.style.display = "none";
+  }
+
+  const hw = Object.entries(s.housing).slice(0,5);
+  if (hw.length) makeDonut("housing-chart", hw.map(x=>x[0]), hw.map(x=>x[1]));
+  const ew = Object.entries(s.education).slice(0,5);
+  if (ew.length) makeDonut("education-chart", ew.map(x=>x[0]), ew.map(x=>x[1]));
+  const fw = Object.entries(s.family).slice(0,5);
+  if (fw.length) makeDonut("family-chart", fw.map(x=>x[0]), fw.map(x=>x[1]));
+  const jw = Object.entries(s.jobs).filter(j=>j[0]!=="무직").slice(0,5);
+  if (jw.length) makeBar("job-chart", jw.map(x=>x[0].length>8?x[0].slice(0,8)+"…":x[0]), jw.map(x=>x[1]));
+
+  const unp = pct(s.jobs, "무직");
+  const mp  = pct(s.marital, "배우자있음");
+  const th  = s.housing[0] ? Object.keys(s.housing)[0] : "아파트";
+  const insights = {
+    "20대": province + " " + ageGroup + " " + sex + " " + s.total + "명 분석. 무직 " + unp + "%. 지금 IRP와 청약통장을 시작하는 것이 10년 후 자산 격차의 핵심이에요.",
+    "30대": province + " " + ageGroup + " " + sex + " " + s.total + "명 분석. 무직 " + unp + "%, 기혼 " + mp + "%. 내집마련과 노후 준비를 동시에 시작해야 하는 골든타임이에요.",
+    "40대": province + " " + ageGroup + " " + sex + " " + s.total + "명 분석. 무직 " + unp + "%. 보험 리모델링과 IRP 납입 최대화가 지금 가장 중요해요.",
+    "50대": province + " " + ageGroup + " " + sex + " " + s.total + "명 분석. 무직 " + unp + "%. 퇴직금 IRP 이전과 건강보험료 절감이 핵심이에요.",
+    "60대": province + " " + ageGroup + " " + sex + " " + s.total + "명 분석. 무직 " + unp + "%. 연금 최적화와 의료비 대비가 가장 중요한 시기예요.",
+    "70대이상": province + " " + ageGroup + " " + sex + " " + s.total + "명 분석. 의료비와 상속 준비가 핵심이에요.",
+  };
+  document.getElementById("ai-text").textContent = insights[ageGroup] || insights["40대"];
+
+  showCard(currentInput);
+
+  const p = new URLSearchParams({ age, sex, province, marital });
+  document.getElementById("share-url").value = location.origin + "/my-persona?" + p.toString();
+
+  const recGroup = ["60대","70대이상"].includes(ageGroup) ? "50대" : ageGroup;
+  const items = RECS[recGroup] || RECS["30대"];
+  document.getElementById("recommend-grid").innerHTML = items.map(r =>
+    '<a href="' + r.url + '" class="recommend-card"><div class="emoji">' + r.emoji + '</div><h4>' + r.title + '</h4><p>' + r.desc + '</p></a>'
+  ).join("");
+
+  document.getElementById("result").scrollIntoView({ behavior: "smooth" });
+}
+
+function initFromUrl() {
+  const p = new URLSearchParams(location.search);
+  if (!p.get("age")) return;
+  if (p.get("age")) document.getElementById("age").value = p.get("age");
+  if (p.get("sex")) document.getElementById("sex").value = p.get("sex");
+  if (p.get("province")) document.getElementById("province").value = p.get("province");
+  if (p.get("marital")) document.getElementById("marital").value = p.get("marital");
+  analyze();
+}
+
+document.getElementById("analyze-btn").addEventListener("click", analyze);
+initFromUrl();
+</script>
+</body>
+</html>

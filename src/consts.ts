@@ -1,6 +1,6 @@
 export const SITE_TITLE = 'AI코리아24 머니';
 export const SITE_DESCRIPTION = 'AI 시대, 돈을 버는 방법과 관리하는 방법을 모두 알려주는 곳. 보험, 투자, 대출, 세금, 디지털노마드 부업까지.';
-export const SITE_URL = 'https://money.aikorea24.kr';
+export const SITE_URL = 'https://persona.aikorea24.kr';
 
 export const COLLECTIONS = [
   { id: 'insurance', label: '보험',        desc: '실손보험, 자동차보험, 생명보험 완벽 가이드' },

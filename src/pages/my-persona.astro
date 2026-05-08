@@ -400,7 +400,6 @@ async function loadStats() {
 }
 
 function toDecadeKey(age) {
-  if (age < 20) return '10대';
   if (age < 30) return '20대';
   if (age < 40) return '30대';
   if (age < 50) return '40대';
@@ -411,9 +410,10 @@ function toDecadeKey(age) {
 
 function getStats(data, province, sex, age) {
   const decade = toDecadeKey(age);
-  const key = province + '_' + sex + '_' + age;
-  const s = data[key];
-  if (s) { s._key = key; }
+  const statsKey = province + '_' + sex + '_' + decade;
+  const cardKey  = province + '_' + sex + '_' + age;
+  const s = data[statsKey];
+  if (s) { s._key = cardKey; }
   return s || null;
 }
 
@@ -678,7 +678,7 @@ const RECS = {
 function renderRecs(age) {
   const grid = document.getElementById('rec-grid');
   if (!grid) return;
-  const key = age<30?'20대':age<40?'30대':age<50?'40대':age<60?'50대':'60대이상';
+  const key = age<30?'20대':age<40?'30대':age<50?'40대':age<60?'50대':age<70?'60대':'70대이상';
   const items = RECS[key] || RECS['40대'];
   grid.innerHTML = items.map(r =>
     '<a class="rec-card" href="'+r.url+'">'
@@ -727,9 +727,9 @@ async function runAnalyze() {
     if (copyTextEl) copyTextEl.textContent = copy.emoji + ' ' + copy.name;
 
     /* 카드 배경 */
-    const key = province + '_' + sex + '_' + age;
+    const cardKey = province + '_' + sex + '_' + age;   /* 이미지용: 숫자 나이 */
     const bgEl = document.getElementById('copy-card-bg');
-    if (bgEl) bgEl.style.backgroundImage = "url('/cards/" + encodeURIComponent(key) + ".jpg')";
+    if (bgEl) bgEl.style.backgroundImage = "url('/cards/" + encodeURIComponent(cardKey) + ".jpg')";
 
     /* 태그 */
     const tagEl = document.getElementById('copy-tag');
@@ -791,13 +791,13 @@ async function runAnalyze() {
     const cardImg  = document.getElementById('card-img');
     const previewWrap = document.getElementById('card-preview-wrap');
     if (cardImg && previewWrap) {
-      cardImg.src = '/cards/' + encodeURIComponent(key) + '.jpg';
+      cardImg.src = '/cards/' + encodeURIComponent(cardKey) + '.jpg';
       cardImg.onload = () => { previewWrap.style.display = 'flex'; };
       cardImg.onerror = () => { previewWrap.style.display = 'none'; };
     }
 
     /* Canvas 생성 */
-    generateCanvas(key, copy.emoji + ' ' + copy.name);
+    generateCanvas(cardKey, copy.emoji + ' ' + copy.name);
 
     /* 공유 URL */
     const shareUrl = location.origin + '/my-persona?age=' + age

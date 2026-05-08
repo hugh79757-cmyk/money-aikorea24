@@ -20,7 +20,7 @@
     body { font-family: 'Pretendard', -apple-system, sans-serif; background: #FFF8EE; color: #3D3D3D; font-size: 17px; line-height: 1.8; }
     /* HERO */
     .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem 1rem 4rem; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background: url('/cards/서울_남자_35.jpg') center/cover no-repeat; opacity: .18; }
+    .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: .18; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,248,238,.85) 0%, rgba(255,248,238,.97) 100%); }
     .hero-content { position: relative; z-index: 2; max-width: 640px; width: 100%; }
     .hero-badge { display: inline-block; background: #E8A87C; color: #fff; font-size: .75rem; font-weight: 700; letter-spacing: .08em; padding: .3rem .9rem; border-radius: 99px; margin-bottom: 1rem; }
@@ -151,7 +151,8 @@
     </div>
     <p class="step-title">몇 살이세요?</p>
     <p class="step-sub">만 나이로 입력해주세요 (20~90)</p>
-    <input class="step-num-input" type="number" id="age" min="20" max="90" placeholder="예: 35" />
+    <input class="step-num-input" type="number" id="age" min="20" max="90" placeholder="예: 35"
+      oninput="this.value=this.value.replace(/[^0-9]/g,'');if(this.value&&parseInt(this.value)<20)this.value=20;if(parseInt(this.value)>90)this.value=90;" />
     <button class="step-next" onclick="goStep(2)">다음 →</button>
   </section>
 
@@ -667,7 +668,13 @@ const RECS = {
     { emoji:'🏠', title:'주택연금 검토', desc:'60세 이후 월 수령액 계산', url:'/loan/' },
     { emoji:'📋', title:'간병보험 가입', desc:'부모·본인 노후 리스크 대비', url:'/insurance/' },
   ],
-  '60대이상': [
+  '60대': [
+    { emoji:'🌅', title:'국민연금 수령 전략', desc:'수령 시기별 금액 비교', url:'/invest/' },
+    { emoji:'💰', title:'IRP 추가납입', desc:'퇴직 전 세액공제 극대화', url:'/invest/' },
+    { emoji:'🏠', title:'주택연금 검토', desc:'60세 이후 월 수령액 계산', url:'/loan/' },
+    { emoji:'📋', title:'간병보험 가입', desc:'부모·본인 노후 리스크 대비', url:'/insurance/' },
+  ],
+  '70대이상': [
     { emoji:'🌅', title:'연금 수령 최적화', desc:'국민+퇴직+개인연금 조합', url:'/invest/' },
     { emoji:'🏠', title:'주택연금 신청', desc:'집을 담보로 매달 받는 연금', url:'/loan/' },
     { emoji:'💊', title:'노인장기요양보험', desc:'등급 신청 및 혜택 안내', url:'/insurance/' },
@@ -970,6 +977,11 @@ document.addEventListener('DOMContentLoaded', () => {
   /* 카카오 SDK 초기화 */
   if (window.Kakao && !window.Kakao.isInitialized()) {
     window.Kakao.init('YOUR_KAKAO_KEY');
+  }
+  /* 히어로 배경 이미지 JS 설정 (한글 파일명 인코딩 처리) */
+  const heroBgEl = document.querySelector('.hero-bg');
+  if (heroBgEl) {
+    heroBgEl.style.backgroundImage = "url('/cards/" + encodeURIComponent('서울_남자_35') + ".jpg')";
   }
   /* 히어로 카피 로테이션 시작 */
   rotateHero();

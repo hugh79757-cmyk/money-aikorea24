@@ -12,8 +12,8 @@
   <meta property="og:description" content="700만 한국인 데이터로 분석하는 나의 현실" />
   <meta property="og:image" content="https://persona.aikorea24.kr/og-default.png" />
   <link rel="canonical" href="https://persona.aikorea24.kr/my-persona" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
-  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"><\/script>
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" crossorigin="anonymous"><\/script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Pretendard',-apple-system,sans-serif;background:#FFF8EE;color:#3D3D3D;font-size:17px;line-height:1.8}
@@ -170,7 +170,6 @@
       .rec-grid{grid-template-columns:1fr}
     }
   </style>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185" crossorigin="anonymous"><\/script>
 </head>
 <body>
 
@@ -332,18 +331,6 @@
         <button onclick="copyUrl()">복사</button>
       </div>
 
-      <!-- 광고 1 : 공유 버튼 아래 -->
-      <div style="margin:0 0 1.5rem;text-align:center;min-height:100px;background:#FFF8EE;border-radius:14px;overflow:hidden">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-5938862195544185"
-             data-ad-slot="8107272066"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
-
-
       <!-- 카드 이미지 (공유용) -->
       <div class="card-preview-wrap" id="card-preview-wrap" style="display:none">
         <img class="card-img-desktop" id="card-img-desk" src="" alt="내 페르소나 카드" />
@@ -356,18 +343,6 @@
         <div class="story-main" id="story-main"></div>
         <button class="story-more-btn" id="story-more-btn" onclick="toggleStory()">더보기 ▼</button>
         <div class="story-more" id="story-more"></div>
-      </div>
-
-
-      <!-- 광고 2 : 스토리 카드 아래 / vs카드 위 -->
-      <div style="margin:0 0 1.5rem;text-align:center;min-height:100px;background:#FFF8EE;border-radius:14px;overflow:hidden">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-5938862195544185"
-             data-ad-slot="8107272066"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
 
       <!-- 나 vs 평균 -->
@@ -393,18 +368,6 @@
           <div class="stat-card"><h3>👨‍👩‍👧 가족구성</h3><canvas id="family-chart"></canvas></div>
           <div class="stat-card"><h3>💼 직업군 TOP5</h3><canvas id="job-chart"></canvas></div>
         </div>
-      </div>
-
-
-      <!-- 광고 3 : 상세 통계 아래 / 금융 가이드 위 -->
-      <div style="margin:0 0 1.5rem;text-align:center;min-height:100px;background:#FFF8EE;border-radius:14px;overflow:hidden">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-5938862195544185"
-             data-ad-slot="8107272066"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
 
       <!-- 금융 가이드 -->
@@ -461,15 +424,8 @@ setInterval(rotateHeroCopy, 3500);
    스텝 네비게이션
 ══════════════════════════════════════════ */
 function startStep() {
-  /* 결과 숨기기 */
-  document.getElementById('result').classList.remove('show');
-  destroyCharts();
-  /* 스텝1 열기 + 해당 위치로 스크롤 */
-  goStep(1);
-  setTimeout(() => {
-    const s1 = document.getElementById('step1');
-    if (s1) s1.scrollIntoView({ behavior:'smooth', block:'start' });
-  }, 100);
+  document.querySelector('.hero').scrollIntoView({ behavior:'smooth' });
+  setTimeout(() => goStep(1), 300);
 }
 
 function goStep(n) {
@@ -508,8 +464,8 @@ function goStep(n) {
     if (el) el.classList.toggle('active', i === n);
   }
 
-  const wrap = document.getElementById('step' + n);
-  if (wrap) setTimeout(() => wrap.scrollIntoView({ behavior:'smooth', block:'nearest' }), 50);
+  const wrap = document.querySelector('.step-wrap.active') || document.getElementById('step' + n);
+  if (wrap) wrap.scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
 function selectChoice(btn, field) {
@@ -551,15 +507,11 @@ function resetForm() {
    유틸
 ══════════════════════════════════════════ */
 function pct(obj, keys) {
-  try {
-    if (!obj || typeof obj !== 'object') return 0;
-    const vals = Object.values(obj);
-    if (!vals.length) return 0;
-    const t = vals.reduce((s,v) => s+(Number(v)||0), 0);
-    if (!t) return 0;
-    if (typeof keys === 'string') keys = [keys];
-    return Math.round(keys.reduce((s,k) => s+(Number(obj[k])||0), 0) / t * 100);
-  } catch(e) { return 0; }
+  if (!obj) return 0;
+  const t = Object.values(obj).reduce((s,v) => s+v, 0);
+  if (!t) return 0;
+  if (typeof keys === 'string') keys = [keys];
+  return Math.round(keys.reduce((s,k) => s+(obj[k]||0), 0) / t * 100);
 }
 
 function toJsonKey(province, sex, age) {
@@ -644,22 +596,12 @@ const COPIES = [
 ];
 
 function determineType(s, age, marital) {
-  /* 누락된 키 기본값 보장 */
-  const safe = {
-    housing:   s.housing   || {},
-    education: s.education || {},
-    family:    s.family    || {},
-    jobs:      s.jobs      || {},
-    marital:   s.marital   || {},
-    total:     s.total     || 0,
-    personas:  s.personas  || [],
-  };
   for (const t of COPIES) {
-    try { if (t.cond(safe, age, marital)) return t; } catch(e) {}
+    try { if (t.cond(s, age, marital)) return t; } catch(e) {}
   }
   return COPIES[COPIES.length - 1];
 }
-</script>
+<\/script>
 
 <script is:inline>
 /* ══════════════════════════════════════════
@@ -755,17 +697,12 @@ function renderVs(results) {
 ══════════════════════════════════════════ */
 function getRelevantBars(s, age) {
   const bars        = [];
-  const h = s.housing   || {};
-  const j = s.jobs      || {};
-  const m = s.marital   || {};
-  const e = s.education || {};
-  const f = s.family    || {};
-  const aptPct      = pct(h, ['아파트']);
-  const unemployPct = pct(j, ['무직']);
-  const marriedPct  = pct(m, ['배우자있음']);
-  const eduHighPct  = pct(e, ['4년제 대학교','대학원']);
-  const alonePct    = pct(f, ['혼자 거주','혼자 거주 (배우자 별거)']);
-  const parentPct   = pct(f, ['부모와 동거','어머니와 동거','아버지와 동거']);
+  const aptPct      = pct(s.housing,   ['아파트']);
+  const unemployPct = pct(s.jobs,      ['무직']);
+  const marriedPct  = pct(s.marital,   ['배우자있음']);
+  const eduHighPct  = pct(s.education, ['4년제 대학교','대학원']);
+  const alonePct    = pct(s.family,    ['혼자 거주','혼자 거주 (배우자 별거)']);
+  const parentPct   = pct(s.family,    ['부모와 동거','어머니와 동거','아버지와 동거']);
 
   bars.push({ name:'아파트 거주', val:aptPct, color:'#E8A87C' });
 
@@ -875,7 +812,7 @@ function makeBarChart(id, obj, topN) {
     }
   });
 }
-</script>
+<\/script>
 
 <script is:inline>
 /* ══════════════════════════════════════════
@@ -1043,19 +980,17 @@ async function runAnalyze() {
     const el = document.getElementById('step' + i);
     if (el) el.classList.remove('active');
   }
-  const loadingEl = document.getElementById('loading');
-  const resultEl  = document.getElementById('result');
-  if (loadingEl) loadingEl.style.display = 'block';
-  if (resultEl)  resultEl.classList.remove('show');
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('result').classList.remove('show');
   destroyCharts();
-  if (loadingEl) window.scrollTo({ top: loadingEl.offsetTop - 80, behavior:'smooth' });
+  window.scrollTo({ top: document.getElementById('loading').offsetTop - 80, behavior:'smooth' });
 
   try {
     const data = await loadStats();
     const found = getStats(data, province, sex, age);
 
     if (!found) {
-      if (loadingEl) loadingEl.style.display = 'none';
+      document.getElementById('loading').style.display = 'none';
       alert(`${province} ${age}세 ${sex} 데이터가 없습니다. 다른 조건을 시도해보세요.`);
       goStep(1);
       return;
@@ -1070,11 +1005,9 @@ async function runAnalyze() {
 
     /* ── 카피 카드 업데이트 ── */
     const cardEl = document.getElementById('copy-card');
-    if (cardEl) cardEl.style.setProperty('--card-bg', `url('/cards/${encodeURIComponent(key)}.jpg')`);
-    const bgEl = document.querySelector('.copy-card-bg');
-    if (bgEl) bgEl.style.backgroundImage = `url('/cards/${encodeURIComponent(key)}.jpg')`;
-    const copyTextEl = document.getElementById('copy-text');
-    if (copyTextEl) copyTextEl.textContent = copyText;
+    cardEl.style.setProperty('--card-bg', `url('/cards/${encodeURIComponent(key)}.jpg')`);
+    document.querySelector('.copy-card-bg').style.backgroundImage = `url('/cards/${encodeURIComponent(key)}.jpg')`;
+    document.getElementById('copy-text').textContent = copyText;
 
     /* 태그 */
     const tags = [province, `${age}세`, sex];
@@ -1082,10 +1015,10 @@ async function runAnalyze() {
     else if (marital === '미혼')  tags.push('미혼');
     else if (marital === '이혼')  tags.push('이혼');
     else if (marital === '사별')  tags.push('사별');
-    const copyTagEl = document.getElementById('copy-tag');
-    if (copyTagEl) copyTagEl.innerHTML = tags.map(t => `<span>${t}</span>`).join('');
-    const copyStatEl = document.getElementById('copy-stat');
-    if (copyStatEl) copyStatEl.textContent = `${s.total.toLocaleString()}명 데이터 기반 분석`;
+    document.getElementById('copy-tag').innerHTML =
+      tags.map(t => `<span>${t}</span>`).join('');
+    document.getElementById('copy-stat').textContent =
+      `${s.total.toLocaleString()}명 데이터 기반 분석`;
 
     /* ── 카드 이미지 ── */
     const deskImg = document.getElementById('card-img-desk');
@@ -1099,7 +1032,7 @@ async function runAnalyze() {
 
     /* ── 페르소나 스토리 ── */
     const storyCard = document.getElementById('story-card');
-    if (storyCard && s.personas && s.personas.length > 0) {
+    if (s.personas && s.personas.length > 0) {
       storyCard.style.display = 'block';
       const first = s.personas[0];
       document.getElementById('story-main').textContent =
@@ -1112,17 +1045,16 @@ async function runAnalyze() {
       const moreBtn = document.getElementById('story-more-btn');
       if (moreBtn) moreBtn.style.display = rest.length > 0 ? 'block' : 'none';
     } else {
-      if (storyCard) storyCard.style.display = 'none';
+      storyCard.style.display = 'none';
     }
 
     /* ── 나 vs 평균 (스텝에서 추가 입력 없으므로 빈 배열) ── */
     renderVs([]);
 
     /* ── 상세 통계 ── */
-    const sumCount = document.getElementById('summary-count');
-    if (sumCount) sumCount.textContent = s.total.toLocaleString();
-    const sumLabel = document.getElementById('summary-label');
-    if (sumLabel) sumLabel.textContent = `${province} ${age}세 ${sex} 총 ${s.total.toLocaleString()}명 분석`;
+    document.getElementById('summary-count').textContent = s.total.toLocaleString();
+    document.getElementById('summary-label').textContent =
+      `${province} ${age}세 ${sex} 총 ${s.total.toLocaleString()}명 분석`;
 
     const bars = getRelevantBars(s, age);
     renderBars(bars);
@@ -1138,25 +1070,24 @@ async function runAnalyze() {
 
     /* ── 공유 URL ── */
     const shareUrl = `${location.origin}/my-persona?age=${age}&sex=${encodeURIComponent(sex)}&province=${encodeURIComponent(province)}&marital=${encodeURIComponent(marital)}`;
-    const shareUrlEl = document.getElementById('share-url');
-    if (shareUrlEl) shareUrlEl.value = shareUrl;
+    document.getElementById('share-url').value = shareUrl;
 
     /* ── 금융 추천 ── */
     renderRecs(age);
 
     /* ── 결과 표시 ── */
-    if (loadingEl) loadingEl.style.display = 'none';
-    if (resultEl)  resultEl.classList.add('show');
-    if (resultEl)  resultEl.scrollIntoView({ behavior:'smooth', block:'start' });
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('result').classList.add('show');
+    document.getElementById('result').scrollIntoView({ behavior:'smooth', block:'start' });
 
   } catch(err) {
     console.error(err);
-    if (loadingEl) loadingEl.style.display = 'none';
+    document.getElementById('loading').style.display = 'none';
     alert('데이터 로딩 중 오류가 발생했습니다. 새로고침 후 다시 시도해주세요.');
     goStep(1);
   }
 }
-</script>
+<\/script>
 
 <script is:inline>
 /* ══════════════════════════════════════════
@@ -1272,13 +1203,15 @@ function initFromUrl() {
    초기화
 ══════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
+  /* URL 파라미터 있으면 자동 분석 */
   const p = new URLSearchParams(location.search);
   if (p.get('age')) {
-    /* URL 파라미터 있으면 자동 분석 */
     initFromUrl();
+  } else {
+    /* 없으면 스텝1 표시 */
+    goStep(1);
   }
-  /* 파라미터 없으면 히어로만 보이고 스텝은 숨김 유지 */
 });
-</script>
+<\/script>
 </body>
 </html>

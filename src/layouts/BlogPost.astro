@@ -31,9 +31,7 @@ const {
 const FINANCE_COLLECTIONS = ['insurance', 'invest', 'loan', 'tax'];
 const isFinance = FINANCE_COLLECTIONS.includes(collection);
 
-const datePublished = pubDate
-  ? pubDate.toISOString()
-  : new Date().toISOString();
+const datePublished = pubDate ? pubDate.toISOString() : new Date().toISOString();
 
 const categoryLabel: Record<string, string> = {
   insurance: '보험',
@@ -75,10 +73,23 @@ const category = categoryLabel[collection] ?? collection;
         text-align: center;
         line-height: 1.3;
       }
-      .title h1 { margin: 0 0 0.5em 0; }
+      /* 모바일 폰트 크기 제한 */
+      .title h1 {
+        margin: 0 0 0.5em 0;
+        font-size: 1.4rem;
+        line-height: 1.4;
+        word-break: keep-all;
+      }
+      @media (min-width: 640px) {
+        .title h1 { font-size: 1.8rem; }
+      }
+      @media (min-width: 768px) {
+        .title h1 { font-size: 2.2rem; }
+      }
       .date {
         margin-bottom: 0.5em;
         color: rgb(var(--gray));
+        font-size: 0.9rem;
       }
       .last-updated-on { font-style: italic; }
       .tags {
@@ -106,18 +117,58 @@ const category = categoryLabel[collection] ?? collection;
         margin-bottom: 0.6rem;
       }
 
+      /* prose 본문 모바일 최적화 */
+      .prose :global(h2) {
+        font-size: 1.2rem;
+        margin-top: 1.8em;
+        margin-bottom: 0.6em;
+        word-break: keep-all;
+      }
+      .prose :global(h3) {
+        font-size: 1.05rem;
+        margin-top: 1.4em;
+        word-break: keep-all;
+      }
+      .prose :global(p) {
+        font-size: 0.95rem;
+        line-height: 1.75;
+        word-break: keep-all;
+      }
+      .prose :global(table) {
+        width: 100%;
+        font-size: 0.82rem;
+        border-collapse: collapse;
+        overflow-x: auto;
+        display: block;
+      }
+      .prose :global(th),
+      .prose :global(td) {
+        padding: 0.4rem 0.5rem;
+        border: 1px solid #e2e8f0;
+        white-space: nowrap;
+      }
+      .prose :global(th) {
+        background: #f1f5f9;
+        font-weight: 700;
+      }
+      @media (min-width: 640px) {
+        .prose :global(h2) { font-size: 1.4rem; }
+        .prose :global(h3) { font-size: 1.2rem; }
+        .prose :global(p)  { font-size: 1rem; }
+      }
+
       /* ── zodiac 링크 카드 ── */
       .zodiac-section {
         margin: 2.5rem 0 1.5rem;
-        padding: 1.5rem;
+        padding: 1.25rem;
         background: linear-gradient(135deg, #0f172a, #1e3a5f);
         border-radius: 16px;
       }
       .zodiac-section h3 {
         color: #fff;
-        font-size: 1rem;
+        font-size: 0.95rem;
         font-weight: 700;
-        margin-bottom: 1rem;
+        margin-bottom: 0.9rem;
         text-align: center;
       }
       .zodiac-cards {
@@ -130,7 +181,7 @@ const category = categoryLabel[collection] ?? collection;
         flex-direction: column;
         align-items: center;
         gap: 0.4rem;
-        padding: 1rem 0.75rem;
+        padding: 1rem 0.6rem;
         background: rgba(255,255,255,0.08);
         border: 1px solid rgba(255,255,255,0.15);
         border-radius: 12px;
@@ -138,16 +189,16 @@ const category = categoryLabel[collection] ?? collection;
         transition: background 0.2s;
       }
       .zodiac-card:hover { background: rgba(255,255,255,0.15); }
-      .zodiac-card .zc-icon { font-size: 2rem; }
+      .zodiac-card .zc-icon  { font-size: 1.8rem; }
       .zodiac-card .zc-title {
         color: #fff;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         font-weight: 700;
         text-align: center;
       }
       .zodiac-card .zc-desc {
         color: rgba(255,255,255,0.65);
-        font-size: 0.75rem;
+        font-size: 0.72rem;
         text-align: center;
         line-height: 1.4;
       }
@@ -165,9 +216,7 @@ const category = categoryLabel[collection] ?? collection;
         )}
         <div class="prose">
           <div class="title">
-            {category && (
-              <span class="category-badge">{category}</span>
-            )}
+            {category && <span class="category-badge">{category}</span>}
             <div class="date">
               {pubDate && <FormattedDate date={pubDate} />}
               {updatedDate && (
@@ -193,7 +242,7 @@ const category = categoryLabel[collection] ?? collection;
 
           {isFinance && <Disclaimer />}
 
-          <!-- ── 오늘의 운세 & 타로 ── -->
+          <!-- 오늘의 운세 & 타로 카드 -->
           <div class="zodiac-section">
             <h3>🔮 오늘의 운세도 확인해보세요</h3>
             <div class="zodiac-cards">

@@ -424,8 +424,15 @@ setInterval(rotateHeroCopy, 3500);
    스텝 네비게이션
 ══════════════════════════════════════════ */
 function startStep() {
-  document.querySelector('.hero').scrollIntoView({ behavior:'smooth' });
-  setTimeout(() => goStep(1), 300);
+  /* 결과 숨기기 */
+  document.getElementById('result').classList.remove('show');
+  destroyCharts();
+  /* 스텝1 열기 + 해당 위치로 스크롤 */
+  goStep(1);
+  setTimeout(() => {
+    const s1 = document.getElementById('step1');
+    if (s1) s1.scrollIntoView({ behavior:'smooth', block:'start' });
+  }, 100);
 }
 
 function goStep(n) {
@@ -464,8 +471,8 @@ function goStep(n) {
     if (el) el.classList.toggle('active', i === n);
   }
 
-  const wrap = document.querySelector('.step-wrap.active') || document.getElementById('step' + n);
-  if (wrap) wrap.scrollIntoView({ behavior:'smooth', block:'start' });
+  const wrap = document.getElementById('step' + n);
+  if (wrap) setTimeout(() => wrap.scrollIntoView({ behavior:'smooth', block:'nearest' }), 50);
 }
 
 function selectChoice(btn, field) {
@@ -1203,14 +1210,12 @@ function initFromUrl() {
    초기화
 ══════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
-  /* URL 파라미터 있으면 자동 분석 */
   const p = new URLSearchParams(location.search);
   if (p.get('age')) {
+    /* URL 파라미터 있으면 자동 분석 */
     initFromUrl();
-  } else {
-    /* 없으면 스텝1 표시 */
-    goStep(1);
   }
+  /* 파라미터 없으면 히어로만 보이고 스텝은 숨김 유지 */
 });
 </script>
 </body>

@@ -79,6 +79,7 @@
       .hero h1 { font-size: 1.5rem; }
     }
   </style>
+  <script src="https://t1.kakaocdn.net/kakaojs/2.7.4/kakao.min.js"></script>
 </head>
 <body>
 <div class="hero">
@@ -166,7 +167,7 @@
         <button class="share-btn download" onclick="downloadCard()">이미지 저장</button>
         <button class="share-btn url" onclick="copyUrl()">링크 복사</button>
         <button class="share-btn twitter" onclick="shareTwitter()">X 공유</button>
-        <button class="share-btn kakao" onclick="copyUrl()">카카오 공유</button>
+        <button class="share-btn kakao" onclick="shareKakao()">카카오 공유</button>
       </div>
       <div class="url-box">
         <input type="text" id="share-url" readonly />
@@ -312,10 +313,23 @@ function showCard(inp) {
 
 function downloadCard() {
   if (!currentCardUrl) return;
-  const link = document.createElement("a");
-  link.download = "한국인분석.png";
-  link.href = currentCardUrl;
-  link.click();
+  const img = new Image();
+  img.crossOrigin = "anonymous";
+  img.onload = function() {
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    const link = document.createElement("a");
+    link.download = "한국인분석카드.jpg";
+    link.href = canvas.toDataURL("image/jpeg", 0.95);
+    link.click();
+  };
+  img.onerror = function() {
+    window.open(currentCardUrl, "_blank");
+  };
+  img.src = currentCardUrl;
 }
 
 function copyUrl() {
@@ -327,6 +341,26 @@ function shareTwitter() {
   const url = document.getElementById("share-url").value;
   const text = encodeURIComponent("나와 같은 한국인은 어떻게 살까? 엔비디아 700만 데이터 분석");
   window.open("https://twitter.com/intent/tweet?text=" + text + "&url=" + encodeURIComponent(url));
+}
+
+function shareKakao() {
+  if (!window.Kakao) { alert("카카오 SDK 로딩 중입니다. 잠시 후 다시 시도해주세요."); return; }
+  if (!Kakao.isInitialized()) Kakao.init("8ee60344ebc6252b953d28de31bf5dac");
+  const url = document.getElementById("share-url").value || location.href;
+  const cardImg = currentCardUrl ? location.origin + currentCardUrl : "";
+  Kakao.Share.sendDefault({
+    objectType: "feed",
+    content: {
+      title: "나와 같은 한국인은 어떻게 살까?",
+      description: "엔비디아 700만 한국인 데이터로 분석한 나의 페르소나",
+      imageUrl: cardImg,
+      link: { mobileWebUrl: url, webUrl: url },
+    },
+    buttons: [{
+      title: "내 페르소나 보기",
+      link: { mobileWebUrl: url, webUrl: url },
+    }],
+  });
 }
 
 async function loadStats() {

@@ -1,0 +1,143 @@
+---
+import { SITE_URL } from '../../consts';
+
+export async function getStaticPaths() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataPath = path.join(process.cwd(), 'public', 'persona-stats.json');
+  const raw = fs.readFileSync(dataPath, 'utf-8');
+  const data = JSON.parse(raw);
+
+  return Object.entries(data).map(([key, stats]) => {
+    const parts = key.split('_');
+    const region = parts[0];
+    const sex = parts[1];
+    const age = parts[2];
+    const slug = key.replace(/_/g, '-');
+    return {
+      params: { slug },
+      props: { key, region, sex, age, stats },
+    };
+  });
+}
+
+const { key, region, sex, age, stats } = Astro.props;
+const slug = key.replace(/_/g, '-');
+
+const regionMap: Record<string, string> = {
+  '경상남': '경남', '경상북': '경북',
+  '전라남': '전남', '충청남': '충남', '충청북': '충북',
+};
+const displayRegion = regionMap[region] || region;
+
+const title = `${displayRegion} ${age} ${sex} ${stats.total}명 분석 | 한국인 페르소나`;
+const description = `엔비디아 700만 한국인 데이터로 분석한 ${displayRegion} ${age} ${sex}의 실제 생활. 아파트 거주, 학력, 혼인, 직업 통계.`;
+const cardUrl = `/cards/${encodeURIComponent(key)}.jpg`;
+const pageUrl = `${SITE_URL}/persona/${slug}/`;
+
+function topPct(obj: Record<string, number>, keys: string[]): number {
+  const total = Object.values(obj).reduce((s, v) => s + v, 0);
+  const val = keys.reduce((s, k) => s + (obj[k] || 0), 0);
+  return total > 0 ? Math.round(val / total * 100) : 0;
+}
+const aptPct = topPct(stats.housing, ['아파트']);
+const eduPct = topPct(stats.education, ['4년제 대학교', '대학원']);
+const marPct = topPct(stats.marital, ['배우자있음']);
+const unePct = topPct(stats.jobs, ['무직']);
+---
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={pageUrl} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`${SITE_URL}${cardUrl}`} />
+  <meta property="og:url" content={pageUrl} />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={`${SITE_URL}${cardUrl}`} />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Pretendard', sans-serif; background: #f8fafc; color: #1e293b; }
+    .hero { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; padding: 2.5rem 1rem; text-align: center; }
+    .hero h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .hero p { font-size: 1rem; opacity: 0.9; }
+    .container { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+    .card-wrap { border-radius: 16px; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+    .card-wrap img { width: 100%; display: block; }
+    .stat-card { background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 1.5rem; }
+    .stat-card h2 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #1e40af; }
+    .bar-list { list-style: none; }
+    .bar-item { margin-bottom: 1rem; }
+    .bar-header { display: flex; justify-content: space-between; margin-bottom: 0.3rem; }
+    .bar-name { font-size: 0.9rem; color: #334155; font-weight: 600; }
+    .bar-pct { font-size: 0.9rem; color: #1e40af; font-weight: 800; }
+    .bar-track { height: 10px; background: #e2e8f0; border-radius: 5px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 5px; }
+    .persona-list { list-style: none; }
+    .persona-item { background: #f8fafc; border-left: 3px solid #3b82f6; border-radius: 0 8px 8px 0; padding: 0.8rem 1rem; margin-bottom: 0.75rem; font-size: 0.88rem; line-height: 1.6; color: #334155; }
+    .cta { background: linear-gradient(135deg, #1e40af, #3b82f6); border-radius: 16px; padding: 1.5rem; text-align: center; margin-bottom: 1.5rem; }
+    .cta p { color: white; margin-bottom: 1rem; font-size: 0.95rem; }
+    .cta a { background: white; color: #1e40af; font-weight: 700; padding: 0.8rem 2rem; border-radius: 10px; text-decoration: none; display: inline-block; }
+    .back-link { text-align: center; margin-bottom: 2rem; }
+    .back-link a { color: #3b82f6; text-decoration: none; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>🇰🇷 {displayRegion} {age} {sex}</h1>
+    <p>엔비디아 700만 한국인 데이터 — {stats.total.toLocaleString()}명 분석</p>
+  </div>
+  <div class="container">
+    <div class="card-wrap">
+      <img src={cardUrl} alt={`${displayRegion} ${age} ${sex} 한국인 분석 카드`} />
+    </div>
+
+    <div class="stat-card">
+      <h2>📊 주요 통계</h2>
+      <ul class="bar-list">
+        <li class="bar-item">
+          <div class="bar-header"><span class="bar-name">아파트 거주</span><span class="bar-pct">{aptPct}%</span></div>
+          <div class="bar-track"><div class="bar-fill" style={`width:${aptPct}%;background:#3b82f6`}></div></div>
+        </li>
+        <li class="bar-item">
+          <div class="bar-header"><span class="bar-name">대졸 이상</span><span class="bar-pct">{eduPct}%</span></div>
+          <div class="bar-track"><div class="bar-fill" style={`width:${eduPct}%;background:#10b981`}></div></div>
+        </li>
+        <li class="bar-item">
+          <div class="bar-header"><span class="bar-name">기혼</span><span class="bar-pct">{marPct}%</span></div>
+          <div class="bar-track"><div class="bar-fill" style={`width:${marPct}%;background:#f59e0b`}></div></div>
+        </li>
+        <li class="bar-item">
+          <div class="bar-header"><span class="bar-name">무직</span><span class="bar-pct">{unePct}%</span></div>
+          <div class="bar-track"><div class="bar-fill" style={`width:${unePct}%;background:#ef4444`}></div></div>
+        </li>
+      </ul>
+    </div>
+
+    {stats.personas && stats.personas.length > 0 && (
+      <div class="stat-card">
+        <h2>👥 나와 비슷한 한국인들의 이야기</h2>
+        <ul class="persona-list">
+          {stats.personas.slice(0, 4).map((p: string) => (
+            <li class="persona-item">{p}</li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <div class="cta">
+      <p>내 조건으로 직접 분석해보세요</p>
+      <a href="/my-persona">🔍 나의 페르소나 분석하기</a>
+    </div>
+    <div class="back-link">
+      <a href="/my-persona">← 다른 조건으로 분석하기</a>
+    </div>
+  </div>
+</body>
+</html>

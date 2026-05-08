@@ -14,10 +14,7 @@ export async function getStaticPaths() {
     const sex = parts[1];
     const age = parts[2];
     const slug = key.replace(/_/g, '-');
-    return {
-      params: { slug },
-      props: { key, region, sex, age, stats },
-    };
+    return { params: { slug }, props: { key, region, sex, age, stats } };
   });
 }
 
@@ -30,20 +27,90 @@ const regionMap: Record<string, string> = {
 };
 const displayRegion = regionMap[region] || region;
 
-const title = `${displayRegion} ${age} ${sex} ${stats.total}명 분석 | 한국인 페르소나`;
-const description = `엔비디아 700만 한국인 데이터로 분석한 ${displayRegion} ${age} ${sex}의 실제 생활. 아파트 거주, 학력, 혼인, 직업 통계.`;
-const cardUrl = `/cards/${encodeURIComponent(key)}.jpg`;
-const pageUrl = `${SITE_URL}/persona/${slug}/`;
+const ageNum = parseInt(age);
+const ageGroup = ageNum < 30 ? '20대' : ageNum < 40 ? '30대' : ageNum < 50 ? '40대' : ageNum < 60 ? '50대' : ageNum < 70 ? '60대' : '70대 이상';
 
 function topPct(obj: Record<string, number>, keys: string[]): number {
   const total = Object.values(obj).reduce((s, v) => s + v, 0);
   const val = keys.reduce((s, k) => s + (obj[k] || 0), 0);
   return total > 0 ? Math.round(val / total * 100) : 0;
 }
+function topKey(obj: Record<string, number>): string {
+  return Object.entries(obj).sort((a,b)=>b[1]-a[1])[0]?.[0] || '';
+}
+
 const aptPct = topPct(stats.housing, ['아파트']);
 const eduPct = topPct(stats.education, ['4년제 대학교', '대학원']);
 const marPct = topPct(stats.marital, ['배우자있음']);
 const unePct = topPct(stats.jobs, ['무직']);
+const topJob = topKey(stats.jobs);
+const topHousing = topKey(stats.housing);
+const topEdu = topKey(stats.education);
+
+const cardUrl = `/cards/${encodeURIComponent(key)}.jpg`;
+const pageUrl = `${SITE_URL}/persona/${slug}/`;
+const ogImageUrl = `${SITE_URL}/cards/${encodeURIComponent(key)}.jpg`;
+
+// SEO 최적화 타이틀/디스크립션
+const title = `${displayRegion} ${ageGroup} ${sex} 통계 실제 삶은? ${stats.total}명 데이터 분석 | 한국인 페르소나`;
+const description = `${displayRegion} ${age}세 ${sex} ${stats.total}명의 실제 생활 통계. 아파트 거주 ${aptPct}%, 대졸 이상 ${eduPct}%, 기혼 ${marPct}%. 엔비디아 700만 한국인 데이터 기반 분석.`;
+
+// 관련 콘텐츠 매핑
+const relatedLinks: Record<string, {title: string, url: string, emoji: string}[]> = {
+  '20대': [
+    {title: 'IRP 세액공제 한도 직장인 절세', url: '/invest/irp-세액공제-한도-직장인-절세/', emoji: '💰'},
+    {title: 'AI 부업 시작하는 법 월 50만원', url: '/nomad/ai-부업-시작하는-법-월-50만원/', emoji: '💻'},
+    {title: '실손보험 4세대 5세대 차이', url: '/insurance/실손보험-4세대-5세대-차이-갈아타기/', emoji: '🏥'},
+  ],
+  '30대': [
+    {title: '주택담보대출 금리 비교 2026', url: '/loan/주택담보대출-금리-비교-2026/', emoji: '🏠'},
+    {title: 'ISA 계좌 종류별 비교', url: '/invest/isa-계좌-종류별-비교-중개형-서민형/', emoji: '📈'},
+    {title: '연말정산 환급 최대화 전략', url: '/invest/연말정산-환급-최대화-전략/', emoji: '💵'},
+  ],
+  '40대': [
+    {title: '디딤돌대출 자격조건 소득 한도', url: '/loan/디딤돌대출-자격조건-소득-한도-금리/', emoji: '🏡'},
+    {title: '건강보험 피부양자 자격 조건', url: '/tax/건강보험-피부양자-자격-조건/', emoji: '🏥'},
+    {title: '암보험 가입 나이 보장 범위', url: '/insurance/암보험-가입-나이-보장-범위/', emoji: '🛡️'},
+  ],
+  '50대': [
+    {title: '프리랜서 종합소득세 신고 방법', url: '/tax/프리랜서-종합소득세-신고-방법/', emoji: '📋'},
+    {title: '전세대출 조건 은행별 금리 비교', url: '/loan/전세대출-조건-은행별-금리-비교/', emoji: '🏦'},
+    {title: '운전자보험 필요성 가입 나이', url: '/insurance/운전자보험-필요성-가입-나이/', emoji: '🚗'},
+  ],
+  '60대': [
+    {title: '건강보험 피부양자 자격 조건', url: '/tax/건강보험-피부양자-자격-조건/', emoji: '🏥'},
+    {title: '유튜버 블로거 세금 신고 방법', url: '/tax/유튜버-블로거-세금-신고-방법/', emoji: '📱'},
+    {title: '전자책 만드는 법 크몽 판매', url: '/nomad/전자책-만드는-법-크몽-판매/', emoji: '📚'},
+  ],
+  '70대 이상': [
+    {title: '건강보험 피부양자 자격 조건', url: '/tax/건강보험-피부양자-자격-조건/', emoji: '🏥'},
+    {title: '치아보험 실손 청구 방법', url: '/insurance/치아보험-실손-청구-방법/', emoji: '🦷'},
+    {title: '암보험 가입 나이 보장 범위', url: '/insurance/암보험-가입-나이-보장-범위/', emoji: '🛡️'},
+  ],
+};
+const related = relatedLinks[ageGroup] || relatedLinks['30대'];
+
+// JSON-LD 구조화 데이터
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "image": ogImageUrl,
+  "url": pageUrl,
+  "publisher": {
+    "@type": "Organization",
+    "name": "AI코리아24 페르소나",
+    "url": SITE_URL
+  },
+  "mainEntity": {
+    "@type": "Dataset",
+    "name": `${displayRegion} ${age}세 ${sex} 한국인 통계`,
+    "description": description,
+    "creator": {"@type": "Organization", "name": "NVIDIA"},
+    "variableMeasured": ["주거형태", "학력", "혼인상태", "직업"]
+  }
+});
 ---
 
 <!DOCTYPE html>
@@ -53,32 +120,62 @@ const unePct = topPct(stats.jobs, ['무직']);
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <meta name="keywords" content={`${displayRegion} ${ageGroup} ${sex} 통계, 한국인 평균, ${displayRegion} ${age}세 생활, 한국인 페르소나, 엔비디아 한국인 데이터`} />
   <link rel="canonical" href={pageUrl} />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <meta property="og:type" content="article" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content={`${SITE_URL}${cardUrl}`} />
+  <meta property="og:image" content={ogImageUrl} />
   <meta property="og:url" content={pageUrl} />
-  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:site_name" content="AI코리아24 페르소나" />
+
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content={`${SITE_URL}${cardUrl}`} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
+
+  <script type="application/ld+json" set:html={jsonLd} />
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185" crossorigin="anonymous"></script>
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Pretendard', sans-serif; background: #f8fafc; color: #1e293b; }
+    body { font-family: 'Pretendard', -apple-system, sans-serif; background: #f8fafc; color: #1e293b; }
     .hero { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; padding: 2.5rem 1rem; text-align: center; }
     .hero h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.4rem; }
-    .hero p { font-size: 1rem; opacity: 0.9; }
+    .hero .sub { font-size: 1rem; opacity: 0.85; margin-bottom: 0.3rem; }
+    .hero .total { font-size: 0.9rem; opacity: 0.75; }
     .container { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
-    .card-wrap { border-radius: 16px; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+    .card-wrap { border-radius: 16px; overflow: hidden; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
     .card-wrap img { width: 100%; display: block; }
-    .stat-card { background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 1.5rem; }
+    .ad-wrap { margin-bottom: 1.5rem; background: white; border-radius: 12px; padding: 0.5rem; min-height: 100px; }
+    .stat-card { background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 1.5rem; }
     .stat-card h2 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #1e40af; }
+    .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+    .summary-item { background: #f1f5f9; border-radius: 10px; padding: 0.8rem; text-align: center; }
+    .summary-item .label { font-size: 0.75rem; color: #64748b; margin-bottom: 0.2rem; }
+    .summary-item .value { font-size: 1.2rem; font-weight: 800; color: #1e40af; }
     .bar-list { list-style: none; }
     .bar-item { margin-bottom: 1rem; }
     .bar-header { display: flex; justify-content: space-between; margin-bottom: 0.3rem; }
-    .bar-name { font-size: 0.9rem; color: #334155; font-weight: 600; }
-    .bar-pct { font-size: 0.9rem; color: #1e40af; font-weight: 800; }
+    .bar-name { font-size: 0.88rem; color: #334155; font-weight: 600; }
+    .bar-pct { font-size: 0.88rem; color: #1e40af; font-weight: 800; }
     .bar-track { height: 10px; background: #e2e8f0; border-radius: 5px; overflow: hidden; }
     .bar-fill { height: 100%; border-radius: 5px; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .detail-item { background: #f8fafc; border-radius: 8px; padding: 0.6rem 0.8rem; }
+    .detail-item .d-label { font-size: 0.75rem; color: #94a3b8; }
+    .detail-item .d-value { font-size: 0.9rem; font-weight: 700; color: #1e293b; }
+    .related-card { background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 1.5rem; }
+    .related-card h2 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #1e40af; }
+    .related-list { list-style: none; }
+    .related-list li { margin-bottom: 0.6rem; }
+    .related-list a { display: flex; align-items: center; gap: 0.6rem; padding: 0.7rem 1rem; background: #f8fafc; border-radius: 10px; text-decoration: none; color: #1e293b; font-size: 0.9rem; font-weight: 600; transition: background 0.2s; }
+    .related-list a:hover { background: #e0f2fe; }
     .persona-list { list-style: none; }
     .persona-item { background: #f8fafc; border-left: 3px solid #3b82f6; border-radius: 0 8px 8px 0; padding: 0.8rem 1rem; margin-bottom: 0.75rem; font-size: 0.88rem; line-height: 1.6; color: #334155; }
     .cta { background: linear-gradient(135deg, #1e40af, #3b82f6); border-radius: 16px; padding: 1.5rem; text-align: center; margin-bottom: 1.5rem; }
@@ -86,37 +183,143 @@ const unePct = topPct(stats.jobs, ['무직']);
     .cta a { background: white; color: #1e40af; font-weight: 700; padding: 0.8rem 2rem; border-radius: 10px; text-decoration: none; display: inline-block; }
     .back-link { text-align: center; margin-bottom: 2rem; }
     .back-link a { color: #3b82f6; text-decoration: none; font-size: 0.9rem; }
+    .breadcrumb { font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 0.5rem; }
+    .breadcrumb a { color: rgba(255,255,255,0.8); text-decoration: none; }
+    @media (max-width: 480px) {
+      .summary-grid { grid-template-columns: 1fr 1fr; }
+      .detail-grid { grid-template-columns: 1fr 1fr; }
+    }
   </style>
 </head>
 <body>
   <div class="hero">
-    <h1>🇰🇷 {displayRegion} {age} {sex}</h1>
-    <p>엔비디아 700만 한국인 데이터 — {stats.total.toLocaleString()}명 분석</p>
+    <div class="breadcrumb">
+      <a href="/">홈</a> &gt; <a href="/my-persona">페르소나 분석</a> &gt; {displayRegion} {age}세 {sex}
+    </div>
+    <h1>🇰🇷 {displayRegion} {ageGroup} {sex}</h1>
+    <p class="sub">{age}세 기준 · 엔비디아 700만 한국인 데이터</p>
+    <p class="total">총 {stats.total.toLocaleString()}명 분석</p>
   </div>
+
   <div class="container">
+
     <div class="card-wrap">
-      <img src={cardUrl} alt={`${displayRegion} ${age} ${sex} 한국인 분석 카드`} />
+      <img
+        src={cardUrl}
+        alt={`${displayRegion} ${age}세 ${sex} 한국인 실제 생활 통계 카드 - 아파트 ${aptPct}% 대졸 ${eduPct}% 기혼 ${marPct}%`}
+        width="600"
+        height="600"
+        loading="eager"
+      />
+    </div>
+
+    <!-- 애드센스 상단 -->
+    <div class="ad-wrap">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-5938862195544185"
+        data-ad-slot="8107272066"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <div class="stat-card">
-      <h2>📊 주요 통계</h2>
+      <h2>📊 핵심 통계 요약</h2>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <div class="label">아파트 거주</div>
+          <div class="value">{aptPct}%</div>
+        </div>
+        <div class="summary-item">
+          <div class="label">대졸 이상</div>
+          <div class="value">{eduPct}%</div>
+        </div>
+        <div class="summary-item">
+          <div class="label">기혼</div>
+          <div class="value">{marPct}%</div>
+        </div>
+        <div class="summary-item">
+          <div class="label">무직</div>
+          <div class="value">{unePct}%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <h2>🏠 주거 형태</h2>
       <ul class="bar-list">
-        <li class="bar-item">
-          <div class="bar-header"><span class="bar-name">아파트 거주</span><span class="bar-pct">{aptPct}%</span></div>
-          <div class="bar-track"><div class="bar-fill" style={`width:${aptPct}%;background:#3b82f6`}></div></div>
-        </li>
-        <li class="bar-item">
-          <div class="bar-header"><span class="bar-name">대졸 이상</span><span class="bar-pct">{eduPct}%</span></div>
-          <div class="bar-track"><div class="bar-fill" style={`width:${eduPct}%;background:#10b981`}></div></div>
-        </li>
-        <li class="bar-item">
-          <div class="bar-header"><span class="bar-name">기혼</span><span class="bar-pct">{marPct}%</span></div>
-          <div class="bar-track"><div class="bar-fill" style={`width:${marPct}%;background:#f59e0b`}></div></div>
-        </li>
-        <li class="bar-item">
-          <div class="bar-header"><span class="bar-name">무직</span><span class="bar-pct">{unePct}%</span></div>
-          <div class="bar-track"><div class="bar-fill" style={`width:${unePct}%;background:#ef4444`}></div></div>
-        </li>
+        {Object.entries(stats.housing).slice(0,5).map(([k,v]) => {
+          const hTotal = Object.values(stats.housing).reduce((s,x)=>s+x,0);
+          const pct = hTotal > 0 ? Math.round(v/hTotal*100) : 0;
+          const colors = {'아파트':'#3b82f6','단독주택':'#10b981','연립주택':'#f59e0b','다세대주택':'#8b5cf6','주택 이외의 거처':'#ef4444'};
+          return (
+            <li class="bar-item">
+              <div class="bar-header"><span class="bar-name">{k}</span><span class="bar-pct">{pct}%</span></div>
+              <div class="bar-track"><div class="bar-fill" style={`width:${pct}%;background:${colors[k]||'#94a3b8'}`}></div></div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+
+    <div class="stat-card">
+      <h2>🎓 학력 분포</h2>
+      <ul class="bar-list">
+        {Object.entries(stats.education).slice(0,5).map(([k,v]) => {
+          const eTotal = Object.values(stats.education).reduce((s,x)=>s+x,0);
+          const pct = eTotal > 0 ? Math.round(v/eTotal*100) : 0;
+          return (
+            <li class="bar-item">
+              <div class="bar-header"><span class="bar-name">{k}</span><span class="bar-pct">{pct}%</span></div>
+              <div class="bar-track"><div class="bar-fill" style={`width:${pct}%;background:#10b981`}></div></div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+
+    <div class="stat-card">
+      <h2>💼 직업 분포</h2>
+      <ul class="bar-list">
+        {Object.entries(stats.jobs).slice(0,5).map(([k,v]) => {
+          const jTotal = Object.values(stats.jobs).reduce((s,x)=>s+x,0);
+          const pct = jTotal > 0 ? Math.round(v/jTotal*100) : 0;
+          return (
+            <li class="bar-item">
+              <div class="bar-header"><span class="bar-name">{k}</span><span class="bar-pct">{pct}%</span></div>
+              <div class="bar-track"><div class="bar-fill" style={`width:${pct}%;background:#8b5cf6`}></div></div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+
+    <!-- 애드센스 중간 -->
+    <div class="ad-wrap">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-5938862195544185"
+        data-ad-slot="8107272066"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <div class="stat-card">
+      <h2>💑 혼인 상태</h2>
+      <ul class="bar-list">
+        {Object.entries(stats.marital).filter(([k]) => k !== '사별').slice(0,4).map(([k,v]) => {
+          const mTotal = Object.entries(stats.marital).filter(([k])=>k!=='사별').reduce((s,[,x])=>s+x,0);
+          const pct = mTotal > 0 ? Math.round(v/mTotal*100) : 0;
+          const colors = {'배우자있음':'#f59e0b','미혼':'#3b82f6','이혼':'#ef4444'};
+          return (
+            <li class="bar-item">
+              <div class="bar-header"><span class="bar-name">{k}</span><span class="bar-pct">{pct}%</span></div>
+              <div class="bar-track"><div class="bar-fill" style={`width:${pct}%;background:${colors[k]||'#94a3b8'}`}></div></div>
+            </li>
+          );
+        })}
       </ul>
     </div>
 
@@ -131,10 +334,31 @@ const unePct = topPct(stats.jobs, ['무직']);
       </div>
     )}
 
+    <div class="related-card">
+      <h2>📚 {displayRegion} {ageGroup} {sex}에게 맞는 금융 가이드</h2>
+      <ul class="related-list">
+        {related.map(r => (
+          <li><a href={r.url}><span>{r.emoji}</span>{r.title}</a></li>
+        ))}
+      </ul>
+    </div>
+
     <div class="cta">
-      <p>내 조건으로 직접 분석해보세요</p>
+      <p>나의 정확한 조건으로 직접 분석해보세요</p>
       <a href="/my-persona">🔍 나의 페르소나 분석하기</a>
     </div>
+
+    <!-- 애드센스 하단 -->
+    <div class="ad-wrap">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-5938862195544185"
+        data-ad-slot="8107272066"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
     <div class="back-link">
       <a href="/my-persona">← 다른 조건으로 분석하기</a>
     </div>

@@ -75,16 +75,12 @@ const category = categoryLabel[collection] ?? collection;
         text-align: center;
         line-height: 1.3;
       }
-      .title h1 {
-        margin: 0 0 0.5em 0;
-      }
+      .title h1 { margin: 0 0 0.5em 0; }
       .date {
         margin-bottom: 0.5em;
         color: rgb(var(--gray));
       }
-      .last-updated-on {
-        font-style: italic;
-      }
+      .last-updated-on { font-style: italic; }
       .tags {
         display: flex;
         flex-wrap: wrap;
@@ -108,6 +104,52 @@ const category = categoryLabel[collection] ?? collection;
         color: #fff;
         border-radius: 999px;
         margin-bottom: 0.6rem;
+      }
+
+      /* ── zodiac 링크 카드 ── */
+      .zodiac-section {
+        margin: 2.5rem 0 1.5rem;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #0f172a, #1e3a5f);
+        border-radius: 16px;
+      }
+      .zodiac-section h3 {
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      .zodiac-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+      .zodiac-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 1rem 0.75rem;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 12px;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      .zodiac-card:hover { background: rgba(255,255,255,0.15); }
+      .zodiac-card .zc-icon { font-size: 2rem; }
+      .zodiac-card .zc-title {
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-align: center;
+      }
+      .zodiac-card .zc-desc {
+        color: rgba(255,255,255,0.65);
+        font-size: 0.75rem;
+        text-align: center;
+        line-height: 1.4;
       }
     </style>
   </head>
@@ -150,6 +192,23 @@ const category = categoryLabel[collection] ?? collection;
           <AiTip topic={title} />
 
           {isFinance && <Disclaimer />}
+
+          <!-- ── 오늘의 운세 & 타로 ── -->
+          <div class="zodiac-section">
+            <h3>🔮 오늘의 운세도 확인해보세요</h3>
+            <div class="zodiac-cards">
+              <a href="https://zodiac.techpawz.com/daily/" target="_blank" rel="noopener">
+                <span class="zc-icon">🐉</span>
+                <span class="zc-title">오늘의 띠별 운세</span>
+                <span class="zc-desc">종합운·연애운·금전운<br/>매일 업데이트</span>
+              </a>
+              <a href="https://zodiac.techpawz.com/tarot/" target="_blank" rel="noopener">
+                <span class="zc-icon">🃏</span>
+                <span class="zc-title">오늘의 타로</span>
+                <span class="zc-desc">매일 한 장 뽑기<br/>78장 카드 해석</span>
+              </a>
+            </div>
+          </div>
 
         </div>
       </article>

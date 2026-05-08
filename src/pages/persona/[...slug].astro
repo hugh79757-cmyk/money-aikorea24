@@ -49,32 +49,38 @@ const relatedLinks: Record<string, {title:string; url:string; emoji:string}[]> =
   '20대': [
     {emoji:'💰',title:'청년 재테크 시작하기',        url:'/finance/청년-재테크-시작하기/'},
     {emoji:'📊',title:'ISA 계좌 절세 방법',          url:'/finance/isa-계좌-절세-방법/'},
-    {emoji:'✨',title:'오늘의 운세 보기',             url:'https://zodiac.techpawz.com'},
+    {emoji:'✨',title:'오늘의 운세',url:'https://zodiac.techpawz.com/daily/'},
+    {emoji:'🃏',title:'타로 카드 뽑기',url:'https://zodiac.techpawz.com/tarot/'},
   ],
   '30대': [
     {emoji:'🏠',title:'내집마련 완벽 가이드 2026',   url:'/finance/내집마련-완벽-가이드/'},
     {emoji:'💼',title:'IRP 세액공제 한도 직장인',    url:'/finance/irp-세액공제-한도-직장인/'},
-    {emoji:'✨',title:'오늘의 운세 보기',             url:'https://zodiac.techpawz.com'},
+    {emoji:'✨',title:'오늘의 운세',url:'https://zodiac.techpawz.com/daily/'},
+    {emoji:'🃏',title:'타로 카드 뽑기',url:'https://zodiac.techpawz.com/tarot/'},
   ],
   '40대': [
     {emoji:'🏥',title:'실손보험 리모델링 가이드',    url:'/finance/실손보험-리모델링/'},
     {emoji:'📈',title:'IRP 세액공제 한도 직장인',    url:'/finance/irp-세액공제-한도-직장인/'},
-    {emoji:'✨',title:'오늘의 운세 보기',             url:'https://zodiac.techpawz.com'},
+    {emoji:'✨',title:'오늘의 운세',url:'https://zodiac.techpawz.com/daily/'},
+    {emoji:'🃏',title:'타로 카드 뽑기',url:'https://zodiac.techpawz.com/tarot/'},
   ],
   '50대': [
     {emoji:'🎯',title:'IRP·연금 인출 전략',          url:'/finance/irp-세액공제-한도-직장인/'},
     {emoji:'📊',title:'한국인 재무 페르소나 가이드', url:'/about/한국인-재무-페르소나-가이드/'},
-    {emoji:'✨',title:'오늘의 운세 보기',             url:'https://zodiac.techpawz.com'},
+    {emoji:'✨',title:'오늘의 운세',url:'https://zodiac.techpawz.com/daily/'},
+    {emoji:'🃏',title:'타로 카드 뽑기',url:'https://zodiac.techpawz.com/tarot/'},
   ],
   '60대': [
     {emoji:'🏥',title:'건강·노후 재무 페르소나',     url:'/about/한국인-재무-페르소나-가이드/'},
     {emoji:'🛡️',title:'실손보험 리모델링 가이드',    url:'/finance/실손보험-리모델링/'},
-    {emoji:'✨',title:'오늘의 운세 보기',             url:'https://zodiac.techpawz.com'},
+    {emoji:'✨',title:'오늘의 운세',url:'https://zodiac.techpawz.com/daily/'},
+    {emoji:'🃏',title:'타로 카드 뽑기',url:'https://zodiac.techpawz.com/tarot/'},
   ],
   '70대 이상': [
     {emoji:'🏥',title:'실손보험 리모델링 가이드',    url:'/finance/실손보험-리모델링/'},
     {emoji:'📊',title:'한국인 재무 페르소나 가이드', url:'/about/한국인-재무-페르소나-가이드/'},
-    {emoji:'✨',title:'오늘의 운세 보기',             url:'https://zodiac.techpawz.com'},
+    {emoji:'✨',title:'오늘의 운세',url:'https://zodiac.techpawz.com/daily/'},
+    {emoji:'🃏',title:'타로 카드 뽑기',url:'https://zodiac.techpawz.com/tarot/'},
   ],
 };
 const related = relatedLinks[ageGroup] || relatedLinks['30대'];
@@ -135,7 +141,9 @@ const maritalColors: Record<string,string> = {
     body{font-family:Pretendard,-apple-system,sans-serif;background:#f8fafc;color:#1e293b}
 
     /* ── Hero ── */
-    .hero{background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;padding:2rem 1rem 1.5rem;text-align:center}
+    .hero{position:relative;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;padding:2rem 1rem 1.5rem;text-align:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background-image:var(--hero-bg);background-size:cover;background-position:center;opacity:0.13;z-index:0}
+    .hero-inner{position:relative;z-index:1}
     .breadcrumb{font-size:.78rem;color:rgba(255,255,255,.65);margin-bottom:.5rem}
     .breadcrumb a{color:rgba(255,255,255,.8);text-decoration:none}
     .hero h1{font-size:1.7rem;font-weight:800;margin-bottom:.3rem}
@@ -218,12 +226,12 @@ const maritalColors: Record<string,string> = {
     .persona-item{background:#f8fafc;border-left:3px solid #3b82f6;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin-bottom:.75rem;font-size:.85rem;line-height:1.65;color:#334155}
 
     /* 네트워크 링크 */
-    .network-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
-    .network-list a{display:flex;align-items:center;gap:.75rem;padding:.75rem .9rem;background:#f8fafc;border-radius:10px;text-decoration:none;color:#1e293b;transition:background .2s}
-    .network-list a:hover{background:#e0f2fe}
-    .nl-icon{font-size:1.2rem;flex-shrink:0;width:1.5rem;text-align:center}
+    .network-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+    .network-list a{display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:1rem .75rem;background:#fff;border-radius:14px;text-decoration:none;color:#1e293b;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.07);text-align:center}
+    .network-list a:hover{background:#eff6ff;transform:translateY(-2px);box-shadow:0 4px 16px rgba(59,130,246,.15)}
+    .nl-icon{font-size:1.8rem;margin-bottom:.2rem}
     .nl-text{display:flex;flex-direction:column}
-    .nl-title{font-size:.88rem;font-weight:700;color:#1e293b}
+    .nl-title{font-size:.82rem;font-weight:700;color:#1e293b;line-height:1.3}
     .nl-desc{font-size:.75rem;color:#64748b;margin-top:.1rem}
 
     /* CTA */
@@ -239,13 +247,13 @@ const maritalColors: Record<string,string> = {
 <body>
 
 <!-- Hero -->
-<div class="hero">
+<div class="hero" style={`--hero-bg:url(${cardUrl})`}><div class="hero-bg"></div><div class="hero-inner">
   <div class="breadcrumb">
     <a href="/">홈</a> &gt; <a href="/my-persona">페르소나 분석</a> &gt; {dr} {age}세 {sex}
   </div>
   <h1>🇰🇷 {dr} {ageGroup} {sex}</h1>
   <p class="sub">{age}세 기준 · 엔비디아 700만 한국인 데이터</p>
-  <p class="total">총 {stats.total.toLocaleString()}명 분석</p>
+  <p class="total">총 {stats.total.toLocaleString()}명 분석</p></div>
 </div>
 
 <div class="container">

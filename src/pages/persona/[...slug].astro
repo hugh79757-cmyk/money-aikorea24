@@ -32,7 +32,7 @@ const displayRegion = regionMap[region] || region;
 
 const title = `${displayRegion} ${age} ${sex} ${stats.total}명 분석 | 한국인 페르소나`;
 const description = `엔비디아 700만 한국인 데이터로 분석한 ${displayRegion} ${age} ${sex}의 실제 생활. 아파트 거주, 학력, 혼인, 직업 통계.`;
-const cardUrl = `/cards/${key}.jpg`;
+const cardUrl = `/cards/${encodeURIComponent(key)}.jpg`;
 const pageUrl = `${SITE_URL}/persona/${slug}/`;
 
 function topPct(obj: Record<string, number>, keys: string[]): number {

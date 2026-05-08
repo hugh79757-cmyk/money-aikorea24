@@ -304,7 +304,7 @@ function showCard(inp) {
   };
   const region = regionMap[inp.province] || inp.province;
   const key = region + "_" + inp.sex + "_" + inp.age;
-  const url = "/cards/" + key + ".jpg";
+  const url = "/cards/" + encodeURIComponent(key) + ".jpg";
   currentCardUrl = url;
   const wrap = document.getElementById("card-preview-wrap");
   wrap.innerHTML = '<img src="' + url + '" alt="분석 카드" onerror="this.parentElement.innerHTML=\'<span class=no-card>카드 준비 중</span>\'" />';

@@ -551,11 +551,15 @@ function resetForm() {
    유틸
 ══════════════════════════════════════════ */
 function pct(obj, keys) {
-  if (!obj) return 0;
-  const t = Object.values(obj).reduce((s,v) => s+v, 0);
-  if (!t) return 0;
-  if (typeof keys === 'string') keys = [keys];
-  return Math.round(keys.reduce((s,k) => s+(obj[k]||0), 0) / t * 100);
+  try {
+    if (!obj || typeof obj !== 'object') return 0;
+    const vals = Object.values(obj);
+    if (!vals.length) return 0;
+    const t = vals.reduce((s,v) => s+(Number(v)||0), 0);
+    if (!t) return 0;
+    if (typeof keys === 'string') keys = [keys];
+    return Math.round(keys.reduce((s,k) => s+(Number(obj[k])||0), 0) / t * 100);
+  } catch(e) { return 0; }
 }
 
 function toJsonKey(province, sex, age) {
@@ -640,8 +644,18 @@ const COPIES = [
 ];
 
 function determineType(s, age, marital) {
+  /* 누락된 키 기본값 보장 */
+  const safe = {
+    housing:   s.housing   || {},
+    education: s.education || {},
+    family:    s.family    || {},
+    jobs:      s.jobs      || {},
+    marital:   s.marital   || {},
+    total:     s.total     || 0,
+    personas:  s.personas  || [],
+  };
   for (const t of COPIES) {
-    try { if (t.cond(s, age, marital)) return t; } catch(e) {}
+    try { if (t.cond(safe, age, marital)) return t; } catch(e) {}
   }
   return COPIES[COPIES.length - 1];
 }
@@ -741,12 +755,17 @@ function renderVs(results) {
 ══════════════════════════════════════════ */
 function getRelevantBars(s, age) {
   const bars        = [];
-  const aptPct      = pct(s.housing,   ['아파트']);
-  const unemployPct = pct(s.jobs,      ['무직']);
-  const marriedPct  = pct(s.marital,   ['배우자있음']);
-  const eduHighPct  = pct(s.education, ['4년제 대학교','대학원']);
-  const alonePct    = pct(s.family,    ['혼자 거주','혼자 거주 (배우자 별거)']);
-  const parentPct   = pct(s.family,    ['부모와 동거','어머니와 동거','아버지와 동거']);
+  const h = s.housing   || {};
+  const j = s.jobs      || {};
+  const m = s.marital   || {};
+  const e = s.education || {};
+  const f = s.family    || {};
+  const aptPct      = pct(h, ['아파트']);
+  const unemployPct = pct(j, ['무직']);
+  const marriedPct  = pct(m, ['배우자있음']);
+  const eduHighPct  = pct(e, ['4년제 대학교','대학원']);
+  const alonePct    = pct(f, ['혼자 거주','혼자 거주 (배우자 별거)']);
+  const parentPct   = pct(f, ['부모와 동거','어머니와 동거','아버지와 동거']);
 
   bars.push({ name:'아파트 거주', val:aptPct, color:'#E8A87C' });
 
@@ -1076,7 +1095,7 @@ async function runAnalyze() {
 
     /* ── 페르소나 스토리 ── */
     const storyCard = document.getElementById('story-card');
-    if (s.personas && s.personas.length > 0) {
+    if (storyCard && s.personas && s.personas.length > 0) {
       storyCard.style.display = 'block';
       const first = s.personas[0];
       document.getElementById('story-main').textContent =
@@ -1089,7 +1108,7 @@ async function runAnalyze() {
       const moreBtn = document.getElementById('story-more-btn');
       if (moreBtn) moreBtn.style.display = rest.length > 0 ? 'block' : 'none';
     } else {
-      storyCard.style.display = 'none';
+      if (storyCard) storyCard.style.display = 'none';
     }
 
     /* ── 나 vs 평균 (스텝에서 추가 입력 없으므로 빈 배열) ── */

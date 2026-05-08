@@ -347,7 +347,9 @@ function shareKakao() {
   if (!window.Kakao) { alert("카카오 SDK 로딩 중입니다. 잠시 후 다시 시도해주세요."); return; }
   if (!Kakao.isInitialized()) Kakao.init("8ee60344ebc6252b953d28de31bf5dac");
   const url = document.getElementById("share-url").value || location.href;
-  const cardImg = currentCardUrl ? location.origin + currentCardUrl : "";
+  const cardImg = currentCardUrl
+    ? location.origin + currentCardUrl
+    : "https://persona.aikorea24.kr/og-default.png";
   Kakao.Share.sendDefault({
     objectType: "feed",
     content: {

@@ -150,8 +150,8 @@
       <div class="step-dot" id="dot4"></div>
     </div>
     <p class="step-title">몇 살이세요?</p>
-    <p class="step-sub">만 나이로 입력해주세요 (15~90)</p>
-    <input class="step-num-input" type="number" id="age" min="15" max="90" placeholder="예: 35" />
+    <p class="step-sub">만 나이로 입력해주세요 (20~90)</p>
+    <input class="step-num-input" type="number" id="age" min="20" max="90" placeholder="예: 35" />
     <button class="step-next" onclick="goStep(2)">다음 →</button>
   </section>
 
@@ -367,9 +367,9 @@ function startStep() {
 function goStep(n) {
   if (n === 2) {
     const age = parseInt(document.getElementById('age').value);
-    if (!age || age < 15 || age > 90) { alert('나이를 올바르게 입력해주세요 (15~90)'); return; }
+    if (!age || age < 20 || age > 90) { alert('나이를 올바르게 입력해주세요 (20~90)'); return; }
     INPUTS.age = age;
-    if (age < 20) { INPUTS.marital = '미혼'; }
+    
   }
   if (n === 3 && !INPUTS.sex) { alert('성별을 선택해주세요'); return; }
   if (n === 4 && !INPUTS.province) { alert('지역을 선택해주세요'); return; }
@@ -696,7 +696,7 @@ async function runAnalyze() {
   const sex      = INPUTS.sex;
   const province = INPUTS.province;
   const marital  = INPUTS.marital || '';
-  if (!age || age < 15 || age > 90) { alert('나이를 확인해주세요'); return; }
+  if (!age || age < 20 || age > 90) { alert('나이를 확인해주세요'); return; }
   if (!sex)      { alert('성별을 선택해주세요'); return; }
   if (!province) { alert('지역을 선택해주세요'); return; }
 

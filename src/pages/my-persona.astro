@@ -268,7 +268,7 @@
     <!-- 광고1 -->
     <div class="ad-wrap">
       <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8778354148615393" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <!-- 스토리 -->
@@ -288,7 +288,7 @@
     <!-- 광고2 -->
     <div class="ad-wrap">
       <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8778354148615393" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <!-- 상세 통계 토글 -->
@@ -313,7 +313,7 @@
     <!-- 광고3 -->
     <div class="ad-wrap">
       <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8778354148615393" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <!-- 금융 가이드 -->
@@ -411,7 +411,7 @@ function toDecadeKey(age) {
 
 function getStats(data, province, sex, age) {
   const decade = toDecadeKey(age);
-  const key = province + '_' + sex + '_' + decade;
+  const key = province + '_' + sex + '_' + age;
   const s = data[key];
   if (s) { s._key = key; }
   return s || null;
@@ -727,7 +727,7 @@ async function runAnalyze() {
     if (copyTextEl) copyTextEl.textContent = copy.emoji + ' ' + copy.name;
 
     /* 카드 배경 */
-    const key = s._key || (province + '_' + sex + '_' + toDecadeKey(age));
+    const key = province + '_' + sex + '_' + age;
     const bgEl = document.getElementById('copy-card-bg');
     if (bgEl) bgEl.style.backgroundImage = "url('/cards/" + encodeURIComponent(key) + ".jpg')";
 

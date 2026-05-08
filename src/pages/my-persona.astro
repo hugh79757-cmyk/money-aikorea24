@@ -88,6 +88,10 @@
     .card-preview-wrap{margin-bottom:1rem;border-radius:12px;overflow:hidden;background:#f0f9ff;min-height:180px;display:flex;align-items:center;justify-content:center}
     .card-preview-wrap canvas{width:100%;display:block;border-radius:12px}
     .card-preview-wrap .no-card{color:#94a3b8;font-size:.9rem;padding:2rem}
+    .card-preview-wrap img{width:100%;display:block;border-radius:12px}
+    .card-img-mobile{display:block}
+    .card-img-desktop{display:none}
+    @media(min-width:768px){.card-img-mobile{display:none}.card-img-desktop{display:block}}
     .share-btns{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
     .share-btn{padding:.8rem;border:none;border-radius:10px;font-size:.9rem;font-weight:700;cursor:pointer;transition:opacity .2s}
     .share-btn:hover{opacity:.85}
@@ -681,18 +685,19 @@ async function analyze() {
   if (jw.length) makeBarChart('job-chart',
     jw.map(x=>x[0].length>8?x[0].slice(0,8)+'…':x[0]), jw.map(x=>x[1]));
 
-  /* ⑥ Canvas 공유 카드 */
+  /* ⑥ 공유 카드 미리보기 — 데스크탑 1:1 / 모바일 가로형 분기 */
   const wrap = document.getElementById('card-preview-wrap');
-  wrap.innerHTML = '<span class="no-card">카드 생성 중...</span>';
-  try {
-    const canvas = await generateCanvas(currentInput, copyText, s);
-    currentCanvas = canvas;
-    canvas.style.borderRadius = '12px';
-    wrap.innerHTML = '';
-    wrap.appendChild(canvas);
-  } catch(e) {
-    wrap.innerHTML = '<span class="no-card">카드 준비 중</span>';
-  }
+  const cardKey = encodeURIComponent(result.key);
+  wrap.innerHTML =
+    '<img class="card-img-mobile" src="/cards-mobile/' + cardKey + '.jpg" ' +
+    'alt="분석카드" onerror="this.style.display='none'" />' +
+    '<img class="card-img-desktop" src="/cards/' + cardKey + '.jpg" ' +
+    'alt="분석카드" onerror="this.style.display='none'" />';
+
+  /* Canvas는 다운로드 전용으로 백그라운드 생성 */
+  generateCanvas(currentInput, copyText, s)
+    .then(canvas => { currentCanvas = canvas; })
+    .catch(() => {});
 
   /* ⑦ 공유 URL */
   const p = new URLSearchParams({ age, sex, province, marital });

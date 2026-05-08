@@ -1043,17 +1043,19 @@ async function runAnalyze() {
     const el = document.getElementById('step' + i);
     if (el) el.classList.remove('active');
   }
-  document.getElementById('loading').style.display = 'block';
-  document.getElementById('result').classList.remove('show');
+  const loadingEl = document.getElementById('loading');
+  const resultEl  = document.getElementById('result');
+  if (loadingEl) loadingEl.style.display = 'block';
+  if (resultEl)  resultEl.classList.remove('show');
   destroyCharts();
-  window.scrollTo({ top: document.getElementById('loading').offsetTop - 80, behavior:'smooth' });
+  if (loadingEl) window.scrollTo({ top: loadingEl.offsetTop - 80, behavior:'smooth' });
 
   try {
     const data = await loadStats();
     const found = getStats(data, province, sex, age);
 
     if (!found) {
-      document.getElementById('loading').style.display = 'none';
+      if (loadingEl) loadingEl.style.display = 'none';
       alert(`${province} ${age}세 ${sex} 데이터가 없습니다. 다른 조건을 시도해보세요.`);
       goStep(1);
       return;
@@ -1068,9 +1070,11 @@ async function runAnalyze() {
 
     /* ── 카피 카드 업데이트 ── */
     const cardEl = document.getElementById('copy-card');
-    cardEl.style.setProperty('--card-bg', `url('/cards/${encodeURIComponent(key)}.jpg')`);
-    document.querySelector('.copy-card-bg').style.backgroundImage = `url('/cards/${encodeURIComponent(key)}.jpg')`;
-    document.getElementById('copy-text').textContent = copyText;
+    if (cardEl) cardEl.style.setProperty('--card-bg', `url('/cards/${encodeURIComponent(key)}.jpg')`);
+    const bgEl = document.querySelector('.copy-card-bg');
+    if (bgEl) bgEl.style.backgroundImage = `url('/cards/${encodeURIComponent(key)}.jpg')`;
+    const copyTextEl = document.getElementById('copy-text');
+    if (copyTextEl) copyTextEl.textContent = copyText;
 
     /* 태그 */
     const tags = [province, `${age}세`, sex];
@@ -1078,10 +1082,10 @@ async function runAnalyze() {
     else if (marital === '미혼')  tags.push('미혼');
     else if (marital === '이혼')  tags.push('이혼');
     else if (marital === '사별')  tags.push('사별');
-    document.getElementById('copy-tag').innerHTML =
-      tags.map(t => `<span>${t}</span>`).join('');
-    document.getElementById('copy-stat').textContent =
-      `${s.total.toLocaleString()}명 데이터 기반 분석`;
+    const copyTagEl = document.getElementById('copy-tag');
+    if (copyTagEl) copyTagEl.innerHTML = tags.map(t => `<span>${t}</span>`).join('');
+    const copyStatEl = document.getElementById('copy-stat');
+    if (copyStatEl) copyStatEl.textContent = `${s.total.toLocaleString()}명 데이터 기반 분석`;
 
     /* ── 카드 이미지 ── */
     const deskImg = document.getElementById('card-img-desk');
@@ -1115,9 +1119,10 @@ async function runAnalyze() {
     renderVs([]);
 
     /* ── 상세 통계 ── */
-    document.getElementById('summary-count').textContent = s.total.toLocaleString();
-    document.getElementById('summary-label').textContent =
-      `${province} ${age}세 ${sex} 총 ${s.total.toLocaleString()}명 분석`;
+    const sumCount = document.getElementById('summary-count');
+    if (sumCount) sumCount.textContent = s.total.toLocaleString();
+    const sumLabel = document.getElementById('summary-label');
+    if (sumLabel) sumLabel.textContent = `${province} ${age}세 ${sex} 총 ${s.total.toLocaleString()}명 분석`;
 
     const bars = getRelevantBars(s, age);
     renderBars(bars);
@@ -1133,19 +1138,20 @@ async function runAnalyze() {
 
     /* ── 공유 URL ── */
     const shareUrl = `${location.origin}/my-persona?age=${age}&sex=${encodeURIComponent(sex)}&province=${encodeURIComponent(province)}&marital=${encodeURIComponent(marital)}`;
-    document.getElementById('share-url').value = shareUrl;
+    const shareUrlEl = document.getElementById('share-url');
+    if (shareUrlEl) shareUrlEl.value = shareUrl;
 
     /* ── 금융 추천 ── */
     renderRecs(age);
 
     /* ── 결과 표시 ── */
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('result').classList.add('show');
-    document.getElementById('result').scrollIntoView({ behavior:'smooth', block:'start' });
+    if (loadingEl) loadingEl.style.display = 'none';
+    if (resultEl)  resultEl.classList.add('show');
+    if (resultEl)  resultEl.scrollIntoView({ behavior:'smooth', block:'start' });
 
   } catch(err) {
     console.error(err);
-    document.getElementById('loading').style.display = 'none';
+    if (loadingEl) loadingEl.style.display = 'none';
     alert('데이터 로딩 중 오류가 발생했습니다. 새로고침 후 다시 시도해주세요.');
     goStep(1);
   }

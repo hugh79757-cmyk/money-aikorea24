@@ -152,7 +152,7 @@
     <p class="step-title">몇 살이세요?</p>
     <p class="step-sub">만 나이로 입력해주세요 (20~90)</p>
     <input class="step-num-input" type="number" id="age" min="20" max="90" placeholder="예: 35"
-      oninput="this.value=this.value.replace(/[^0-9]/g,'');if(this.value&&parseInt(this.value)<20)this.value=20;if(parseInt(this.value)>90)this.value=90;" />
+      onblur="const v=parseInt(this.value);if(v<20||isNaN(v))this.value=20;if(v>90)this.value=90;" />
     <button class="step-next" onclick="goStep(2)">다음 →</button>
   </section>
 
@@ -981,7 +981,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* 히어로 배경 이미지 JS 설정 (한글 파일명 인코딩 처리) */
   const heroBgEl = document.querySelector('.hero-bg');
   if (heroBgEl) {
-    heroBgEl.style.backgroundImage = "url('/cards/" + encodeURIComponent('서울_남자_35') + ".jpg')";
+    heroBgEl.style.backgroundImage = "url('/cards/서울_남자_35.jpg')";
   }
   /* 히어로 카피 로테이션 시작 */
   rotateHero();

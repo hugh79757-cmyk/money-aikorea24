@@ -83,8 +83,14 @@ const pType = detectType();
 
 const SITE_URL = 'https://persona.aikorea24.kr';
 const slug     = key.replace(/_/g, '-');
-const cardUrl  = `/cards/${encodeURIComponent(key)}.jpg`;
-const mobCard  = `/cards-mobile/${encodeURIComponent(key)}.jpg`;
+/* 카드 이미지: 10년 단위 키(30대)→대표 나이(35)로 변환 */
+const _ageForCard = isNaN(parseInt(ageRaw))
+  ? (ageRaw === '20대' ? 25 : ageRaw === '30대' ? 35 : ageRaw === '40대' ? 45
+   : ageRaw === '50대' ? 55 : ageRaw === '60대' ? 65 : 75)
+  : parseInt(ageRaw);
+const _cardKey = `${region}_${sex}_${_ageForCard}`;
+const cardUrl  = `/cards/${encodeURIComponent(_cardKey)}.jpg`;
+const mobCard  = `/cards-mobile/${encodeURIComponent(_cardKey)}.jpg`;
 const pageUrl  = `${SITE_URL}/persona/${slug}/`;
 const ogImg    = `${SITE_URL}${cardUrl}`;
 const title    = `${dr} ${ageGroup} ${sex} · ${pType.name} | 한국인 페르소나`;
@@ -254,15 +260,9 @@ const jsonLd = JSON.stringify({
 
     <!-- 공유 버튼 -->
     <p class="share-encourage">이 결과, 친구들도 맞는지 확인해보세요 👇</p>
-    <div class="share-primary">
-      <button class="share-kakao-big" onclick="shareKakao()">💬 카카오톡으로 공유하기</button>
-      <div id="kakao-toast" style="display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#FEE500;color:#1a1a1a;padding:14px 24px;border-radius:16px;font-size:15px;font-weight:600;align-items:center;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.25);text-align:center;max-width:300px;line-height:1.5;">
-        💬 링크가 복사됐어요!<br/><span style="font-weight:400;font-size:13px;">카카오톡 열고 붙여넣기 하세요</span>
-      </div>
-      <div class="share-secondary">
-        <button class="share-btn-sm" onclick="copyUrl()">🔗 링크 복사</button>
-        <button class="share-btn-sm" onclick="shareTwitter()">𝕏 공유</button>
-      </div>
+    <div class="share-secondary" style="margin-bottom:1rem">
+      <button class="share-btn-sm" onclick="copyUrl()">🔗 링크 복사</button>
+      <button class="share-btn-sm" onclick="shareTwitter()">𝕏 공유</button>
     </div>
 
     <!-- KPI 그리드 -->

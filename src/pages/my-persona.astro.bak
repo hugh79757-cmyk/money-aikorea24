@@ -931,24 +931,10 @@ function shareTwitter() {
 }
 
 function shareKakao() {
-  /* ── URL 재생성: input.value 가 비어있을 때 location.href 대신 파라미터를 직접 조합 ── */
-  const p = new URLSearchParams(location.search);
-  const age      = p.get('age')      || window._personaAge      || '';
-  const sex      = p.get('sex')      || window._personaSex      || '';
-  const province = p.get('province') || window._personaProvince || '';
-  const marital  = p.get('marital')  || window._personaMarital  || '';
-
-  const url = (age && sex && province && marital)
-    ? location.origin + '/my-persona'
-        + '?age='      + encodeURIComponent(age)
-        + '&sex='      + encodeURIComponent(sex)
-        + '&province=' + encodeURIComponent(province)
-        + '&marital='  + encodeURIComponent(marital)
-    : (document.getElementById('share-url')?.value || location.href);
-
+  const el = document.getElementById('share-url');
+  const url = el ? el.value : location.href;
   const copyEl = document.getElementById('copy-text');
-  const title  = copyEl?.textContent?.trim() || '나와 같은 한국인은 어떻게 살까?';
-
+  const title = copyEl ? copyEl.textContent : '나와 같은 한국인은 어떻게 살까?';
   if (window.Kakao && window.Kakao.isInitialized()) {
     window.Kakao.Share.sendDefault({
       objectType: 'feed',
@@ -966,7 +952,7 @@ function shareKakao() {
       ]
     });
   } else {
-    navigator.clipboard.writeText(url).then(() => alert('링크를 복사했습니다: ' + url));
+    navigator.clipboard.writeText(url).then(() => alert('카카오 SDK 미초기화. 링크를 복사했습니다.'));
   }
 }
 

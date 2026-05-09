@@ -764,8 +764,6 @@ async function runAnalyze() {
 
     /* 카드 배경 */
     const cardKey = province + '_' + sex + '_' + age;   /* 이미지용: 숫자 나이 */
-    const bgEl = document.getElementById('copy-card-bg');
-    if (bgEl) bgEl.style.backgroundImage = "url('/cards/" + encodeURIComponent(cardKey) + ".jpg')";
 
     /* 태그 */
     const tagEl = document.getElementById('copy-tag');

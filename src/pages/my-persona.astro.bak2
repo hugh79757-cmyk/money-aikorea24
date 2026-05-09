@@ -1,418 +1,1047 @@
 ---
-// src/pages/my-persona.astro
+// src/pages/my-persona.astro v2-report-style
+import Header from '../components/Header.astro';
 ---
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <meta name="naver-site-verification" content="b363a6a1af269ca3eeca7fe8c26a95f27055044d" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>나와 같은 한국인은 어떻게 살까? | AI코리아24 머니</title>
-  <meta property="og:title" content="나와 같은 한국인은 어떻게 살까?" />
-  <meta property="og:description" content="엔비디아 700만 한국인 데이터로 분석하는 나의 현실" />
+  <title>나와 같은 한국인은 어떻게 살까? | 한국인 페르소나</title>
+  <meta name="description" content="나이·성별·지역·혼인상태를 입력하면 700만 한국인 데이터로 나를 한 문장으로 설명해드립니다." />
+  <meta property="og:title" content="나와 같은 한국인은 어떻게 살까? | 한국인 페르소나" />
+  <meta property="og:description" content="700만 한국인 데이터로 분석하는 나의 현실" />
+  <meta property="og:image" content="https://persona.aikorea24.kr/og-default.png" />
+  <link rel="canonical" href="https://persona.aikorea24.kr/my-persona" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8778354148615393" crossorigin="anonymous"></script>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Pretendard', sans-serif; background: #f8fafc; color: #1e293b; }
-    .hero { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; padding: 3rem 1rem; text-align: center; }
-    .hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
-    .hero p { font-size: 1.1rem; opacity: 0.9; }
-    .container { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
-    .input-card { background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 2rem; }
-    .input-card h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; color: #1e40af; }
-    .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .input-group label { display: block; font-size: 0.85rem; color: #64748b; margin-bottom: 0.4rem; font-weight: 600; }
-    .input-group select, .input-group input { width: 100%; padding: 0.7rem 1rem; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 0.95rem; background: #f8fafc; }
-    .btn { width: 100%; padding: 1rem; background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 1.5rem; }
-    .btn:hover { opacity: 0.9; }
-    .result-section { display: none; }
-    .result-section.show { display: block; }
-    .stat-card { background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 1.5rem; }
-    .stat-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #1e40af; }
-    .summary-box { text-align: center; padding: 1rem; }
-    .summary-count { font-size: 2.8rem; font-weight: 800; color: #1e40af; }
-    .summary-label { font-size: 1rem; color: #64748b; margin-bottom: 1rem; }
-    .bar-list { list-style: none; }
-    .bar-item { margin-bottom: 1rem; }
-    .bar-header { display: flex; justify-content: space-between; margin-bottom: 0.3rem; }
-    .bar-name { font-size: 0.9rem; color: #334155; font-weight: 600; }
-    .bar-pct { font-size: 0.9rem; color: #1e40af; font-weight: 800; }
-    .bar-track { height: 10px; background: #e2e8f0; border-radius: 5px; overflow: hidden; }
-    .bar-fill { height: 100%; border-radius: 5px; transition: width 0.8s ease; }
-    .bar-fill.apt { background: #3b82f6; }
-    .bar-fill.edu { background: #10b981; }
-    .bar-fill.married { background: #f59e0b; }
-    .bar-fill.job { background: #ef4444; }
-    .bar-fill.single { background: #8b5cf6; }
-    .bar-fill.gen3 { background: #06b6d4; }
-    .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .persona-list { list-style: none; }
-    .persona-item { background: #f8fafc; border-left: 3px solid #3b82f6; border-radius: 0 8px 8px 0; padding: 0.8rem 1rem; margin-bottom: 0.75rem; font-size: 0.88rem; line-height: 1.6; color: #334155; }
-    .ai-analysis { background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-left: 4px solid #3b82f6; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
-    .ai-analysis h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #1e40af; }
-    .ai-analysis p { font-size: 0.95rem; line-height: 1.7; color: #334155; }
-    .recommend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .recommend-card { background: white; border-radius: 12px; padding: 1.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-decoration: none; color: #1e293b; border: 2px solid transparent; transition: all 0.2s; display: block; }
-    .recommend-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
-    .recommend-card .emoji { font-size: 1.5rem; margin-bottom: 0.5rem; }
-    .recommend-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .recommend-card p { font-size: 0.8rem; color: #64748b; }
-    .loading { text-align: center; padding: 2rem; color: #64748b; display: none; }
-    .spinner { width: 40px; height: 40px; border: 4px solid #e2e8f0; border-top-color: #3b82f6; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Pretendard', -apple-system, sans-serif; background: #F7F3EA; color: #3D3D3D; font-size: 17px; line-height: 1.8; }
+    /* HERO */
+    .hero { position: relative; min-height: calc(100vh - 56px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem 1rem 4rem; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; overflow: hidden; }
+    .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(247,243,234,.38) 0%, rgba(247,243,234,.55) 100%); }
+    .hero-content { position: relative; z-index: 3; max-width: 640px; width: 100%; }
+    .hero-badge { display: inline-block; background: #D97706; color: #fff; font-size: .75rem; font-weight: 700; letter-spacing: .08em; padding: .3rem .9rem; border-radius: 99px; margin-bottom: 1rem; }
+    .hero-copy-wrap { min-height: 5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+    .hero-copy { font-size: clamp(1.8rem, 5.5vw, 3rem); font-weight: 800; color: #1E3A5F; line-height: 1.35; opacity: 0; transition: opacity .6s; }
+    .hero-copy.visible { opacity: 1; }
+    .hero-sub { color: #4B5563; font-size: 1rem; margin-bottom: 2rem; }
+    .hero-cta { display: inline-block; background: #D97706; color: #fff; font-size: 1.1rem; font-weight: 700; padding: 1rem 2.5rem; border-radius: 14px; border: none; cursor: pointer; box-shadow: 0 4px 16px rgba(217,119,6,.45); transition: transform .15s; min-height: 56px; }
+    .hero-cta:hover { transform: translateY(-2px); }
+    .hero-trust { display: flex; gap: 1.2rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap; }
+    .hero-trust span { font-size: .8rem; color: #4B5563; background: rgba(30,58,95,.07); padding: .3rem .8rem; border-radius: 99px; font-weight: 600; }
+    /* PREVIEW */
+    .preview-section { max-width: 640px; margin: 0 auto; padding: 2rem 1rem 1rem; text-align: center; }
+    .preview-section.hidden { display: none; }
+    .preview-title { font-size: 1rem; font-weight: 700; color: #1E3A5F; margin-bottom: 1.2rem; }
+    .preview-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: .75rem; }
+    .preview-item { background: #fff; border: 1px solid #E5E0D8; border-radius: 16px; padding: 1rem .5rem; display: flex; flex-direction: column; align-items: center; gap: .3rem; font-size: 1.4rem; }
+    .preview-item span { font-size: .85rem; font-weight: 700; color: #1E3A5F; }
+    .preview-item small { font-size: .72rem; color: #6B7280; line-height: 1.4; }
+    @media(max-width:600px){ .preview-grid { grid-template-columns: repeat(2,1fr); } }
+    /* STEP */
+    .step-section { display: none; max-width: 540px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .step-section.active { display: block; }
+    .step-progress { display: flex; gap: .4rem; margin-bottom: 1.5rem; }
+    .step-dot { flex: 1; height: 4px; border-radius: 2px; background: #E5E0D8; transition: background .3s; }
+    .step-dot.done { background: #D97706; }
+    .step-title { font-size: 1.4rem; font-weight: 800; color: #1E3A5F; margin-bottom: .4rem; }
+    .step-sub { font-size: .95rem; color: #4B5563; margin-bottom: 1.5rem; }
+    .step-num-input { width: 100%; font-size: 2rem; font-weight: 800; text-align: center; border: 2px solid #D97706; border-radius: 16px; padding: 1rem; color: #1E3A5F; background: #FFFFFF; outline: none; }
+    .step-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .step-btn-option { background: #FFFFFF; border: 2px solid #E5E0D8; border-radius: 14px; padding: 1rem .75rem; font-size: 1rem; font-weight: 600; color: #3D3D3D; cursor: pointer; min-height: 56px; transition: all .15s; text-align: center; }
+    .step-btn-option:hover, .step-btn-option.selected { border-color: #D97706; background: #EEF2FF; color: #1E3A5F; }
+    .step-next { width: 100%; margin-top: 1.25rem; background: #D97706; color: #fff; font-size: 1.05rem; font-weight: 700; padding: 1rem; border: none; border-radius: 14px; cursor: pointer; min-height: 56px; }
+    .step-back { background: none; border: none; color: #4B5563; font-size: .9rem; cursor: pointer; margin-top: .5rem; display: block; text-align: center; width: 100%; padding: .5rem; }
+    /* LOADING */
+    #loading { display: none; text-align: center; padding: 4rem 1rem; }
+    .spinner { width: 48px; height: 48px; border: 4px solid #E5E0D8; border-top-color: #D97706; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .share-section { background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 1.5rem; }
-    .share-section h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #1e40af; }
-    .card-preview-wrap { margin-bottom: 1rem; border-radius: 12px; overflow: hidden; background: #f0f9ff; min-height: 200px; display: flex; align-items: center; justify-content: center; }
-    .card-preview-wrap img { width: 100%; display: block; border-radius: 12px; }
-    .card-preview-wrap .no-card { color: #94a3b8; font-size: 0.9rem; padding: 2rem; }
-    .share-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
-    .share-btn { padding: 0.8rem; border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 700; cursor: pointer; }
-    .share-btn.download { background: #1e40af; color: white; }
-    .share-btn.url { background: #10b981; color: white; }
-    .share-btn.twitter { background: #000; color: white; }
-    .share-btn.kakao { background: #FEE500; color: #191919; }
-    .share-btn:hover { opacity: 0.85; }
-    .url-box { display: flex; gap: 0.5rem; }
-    .url-box input { flex: 1; padding: 0.6rem 0.8rem; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.8rem; color: #64748b; background: #f8fafc; }
-    .url-box button { padding: 0.6rem 1rem; background: #64748b; color: white; border: none; border-radius: 8px; font-size: 0.8rem; cursor: pointer; white-space: nowrap; }
+    /* RESULT */
+    #result { display: none; max-width: 640px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+    .copy-card { position: relative; border-radius: 24px; overflow: hidden; margin-bottom: 1.5rem; box-shadow: 0 8px 32px rgba(30,58,95,.18); min-height: 320px; }
+    .copy-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+    .copy-card-footer { position: relative; z-index: 2; background: linear-gradient(0deg, rgba(40,20,10,.85) 0%, rgba(40,20,10,.3) 100%); padding: 2rem 1.5rem 1.5rem; margin-top: 160px; }
+    .copy-text { font-size: clamp(1.2rem, 4vw, 1.6rem); font-weight: 800; color: #fff; line-height: 1.4; margin-bottom: .75rem; }
+    .copy-tag { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .5rem; }
+    .copy-tag span { background: rgba(255,255,255,.2); color: #fff; font-size: .75rem; padding: .2rem .6rem; border-radius: 99px; }
+    .copy-stat { color: rgba(255,255,255,.8); font-size: .85rem; }
+    /* SHARE */
+    .share-encourage { text-align: center; color: #4B5563; font-size: .9rem; margin-bottom: .75rem; }
+    .share-primary { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1rem; }
+    .share-kakao-big { width: 100%; background: #FEE500; color: #3D3D3D; font-size: 1.1rem; font-weight: 700; padding: 1rem; border: none; border-radius: 14px; cursor: pointer; min-height: 56px; display: flex; align-items: center; justify-content: center; gap: .5rem; }
+    .share-secondary { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .5rem; }
+    .share-btn-sm { background: #FFFFFF; border: 1.5px solid #E8D5C0; border-radius: 12px; padding: .75rem .5rem; font-size: .88rem; font-weight: 600; cursor: pointer; min-height: 48px; }
+    .url-box { display: flex; gap: .5rem; margin-top: .75rem; }
+    .url-box input { flex: 1; padding: .6rem .9rem; border: 1px solid #E8D5C0; border-radius: 10px; font-size: .82rem; background: #FFFFFF; color: #3D3D3D; }
+    .url-box button { padding: .6rem 1rem; border: 1px solid #E8D5C0; border-radius: 10px; background: #E5E0D8; font-size: .82rem; cursor: pointer; white-space: nowrap; }
+    /* CARD PREVIEW */
+    .card-preview-wrap { display: flex; justify-content: center; margin: 1rem 0; }
+    .card-preview-wrap img { width: 100%; max-width: 580px; border-radius: 16px; box-shadow: 0 4px 20px rgba(30,58,95,.2); }
+    /* STORY */
+    .story-card { background: #FFFFFF; border-radius: 20px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(30,58,95,.08); margin-bottom: 1rem; }
+    .story-card h3 { font-size: 1rem; font-weight: 700; color: #1E3A5F; margin-bottom: 1rem; }
+    .story-main { background: #EEF2FF; border-left: 3px solid #D97706; padding: 1rem 1.2rem; border-radius: 0 12px 12px 0; font-size: .95rem; line-height: 1.7; color: #3D3D3D; font-style: italic; }
+    .story-more-btn { background: none; border: none; color: #D97706; font-size: .85rem; cursor: pointer; margin-top: .75rem; padding: .25rem 0; }
+    .story-more { display: none; margin-top: .75rem; }
+    .story-more.open { display: block; }
+    .story-more p { font-size: .88rem; color: #5a4a3a; line-height: 1.7; margin-bottom: .5rem; padding: .6rem .9rem; background: #F7F3EA; border-radius: 10px; }
+    /* VS CARD */
+    .vs-card { background: #FFFFFF; border-radius: 20px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(30,58,95,.08); margin-bottom: 1rem; }
+    .vs-card h3 { font-size: 1rem; font-weight: 700; color: #1E3A5F; margin-bottom: 1rem; }
+    .vs-item { margin-bottom: 1rem; }
+    .vs-label { font-size: .88rem; font-weight: 600; color: #3D3D3D; margin-bottom: .3rem; }
+    .vs-bar-wrap { height: 8px; background: #F0DFC8; border-radius: 4px; overflow: hidden; margin-bottom: .25rem; }
+    .vs-fill { height: 100%; border-radius: 4px; transition: width 1s ease; }
+    .vs-fill.hi { background: linear-gradient(90deg, #D97706, #D4875A); }
+    .vs-fill.mid { background: linear-gradient(90deg, #D97706, #F5C898); }
+    .vs-fill.lo { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .vs-sub { font-size: .78rem; color: #6B7280; margin-top: .3rem; }
+    /* DETAIL TOGGLE */
+    .detail-toggle { width: 100%; background: #E5E0D8; border: none; border-radius: 14px; padding: .9rem; font-size: .95rem; font-weight: 700; color: #1E3A5F; cursor: pointer; display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; min-height: 56px; }
+    .detail-toggle:hover { background: #EDD9BD; }
+    .detail-toggle .arr { transition: transform .3s; }
+    .detail-toggle.open .arr { transform: rotate(180deg); }
+    .detail-body { display: none; }
+    .detail-body.open { display: block; }
+    /* STAT CARD */
+    .stat-card { background: #FFFFFF; border-radius: 20px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(30,58,95,.08); margin-bottom: 1rem; }
+    .stat-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #1E3A5F; }
+    .summary-count { font-size: 3rem; font-weight: 800; color: #1E3A5F; text-align: center; }
+    .summary-label { font-size: 1rem; color: #6B7280; text-align: center; margin-bottom: 1rem; }
+    .bar-list { list-style: none; }
+    .bar-item { margin-bottom: 1.1rem; }
+    .bar-header { display: flex; justify-content: space-between; margin-bottom: .35rem; }
+    .bar-name { font-size: .9rem; font-weight: 600; color: #3D3D3D; }
+    .bar-pct { font-size: .9rem; font-weight: 700; color: #1E3A5F; }
+    .bar-track { height: 10px; background: #F0DFC8; border-radius: 5px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 5px; transition: width 1s ease; }
+    .bar-warn { font-size: .75rem; color: #e74c3c; margin-top: .2rem; }
+    .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    /* REC */
+    .rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: .75rem; }
+    .rec-card { background: #F7F3EA; border-radius: 14px; padding: 1rem; border: 1px solid #F0DFC8; text-decoration: none; color: #3D3D3D; display: block; transition: all .15s; }
+    .rec-card:hover { border-color: #D97706; transform: translateY(-2px); }
+    .rec-emoji { font-size: 1.5rem; margin-bottom: .4rem; }
+    .rec-title { font-size: .88rem; font-weight: 700; color: #3D3D3D; margin-bottom: .2rem; }
+    .rec-desc { font-size: .78rem; color: #6B7280; line-height: 1.55; }
+    /* AD */
+    .ad-wrap { margin: 1.5rem 0; text-align: center; min-height: 100px; }
+    /* RESPONSIVE */
     @media (max-width: 600px) {
-      .input-grid, .chart-grid, .recommend-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 1.5rem; }
+      .chart-grid { grid-template-columns: 1fr; }
+      .rec-grid { grid-template-columns: 1fr; }
+      .share-secondary { grid-template-columns: 1fr 1fr 1fr; }
     }
   </style>
 </head>
 <body>
-<div class="hero">
-  <h1>🇰🇷 나와 같은 한국인은 어떻게 살까?</h1>
-  <p>엔비디아 700만 한국인 데이터로 분석하는 나의 현실</p>
-</div>
-<div class="container">
-  <div class="input-card">
-    <h2>📋 내 조건 입력</h2>
-    <div class="input-grid">
-      <div class="input-group">
-        <label>나이</label>
-        <input type="number" id="age" value="35" min="20" max="90" />
+  <Header />
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"><img src="/cards/서울_남자_35.jpg" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;opacity:.18;display:block;position:relative;z-index:0;" /></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-badge">📊 700만 한국인 데이터 기반 분석</span>
+      <div class="hero-copy-wrap">
+        <p class="hero-copy" id="hero-copy"></p>
       </div>
-      <div class="input-group">
-        <label>성별</label>
-        <select id="sex">
-          <option value="남자">남자</option>
-          <option value="여자">여자</option>
-        </select>
-      </div>
-      <div class="input-group">
-        <label>거주 지역</label>
-        <select id="province">
-          <option value="서울">서울</option><option value="경기">경기</option>
-          <option value="부산">부산</option><option value="인천">인천</option>
-          <option value="대구">대구</option><option value="대전">대전</option>
-          <option value="광주">광주</option><option value="울산">울산</option>
-          <option value="경남">경남</option><option value="경북">경북</option>
-          <option value="전남">전남</option><option value="전북">전북</option>
-          <option value="충남">충남</option><option value="충북">충북</option>
-          <option value="강원">강원</option><option value="제주">제주</option>
-        </select>
-      </div>
-      <div class="input-group">
-        <label>혼인상태</label>
-        <select id="marital">
-          <option value="미혼">미혼</option>
-          <option value="배우자있음">기혼</option>
-          <option value="이혼">이혼</option>
-          <option value="사별">사별</option>
-        </select>
+      <p class="hero-sub">나이·성별·지역만 입력하면<br>주거·직업·가족구성·돈 고민을 통계로 보여드려요</p>
+      <button class="hero-cta" onclick="startStep()">1분 만에 내 페르소나 분석하기 →</button>
+      <div class="hero-trust">
+        <span>🔒 개인정보 미수집</span>
+        <span>📊 700만 데이터</span>
+        <span>⚡ 즉시 결과</span>
       </div>
     </div>
-    <button class="btn" id="analyze-btn">🔍 나와 같은 한국인 분석하기</button>
-  </div>
+  </section>
 
-  <div class="loading" id="loading">
+  <!-- PREVIEW SECTION -->
+  <section class="preview-section" id="preview-section">
+    <p class="preview-title">분석하면 이런 걸 알 수 있어요</p>
+    <div class="preview-grid">
+      <div class="preview-item">🏠<span>주거형태</span><small>아파트·전세·월세 비율</small></div>
+      <div class="preview-item">💼<span>직업군</span><small>TOP 5 직업 분포</small></div>
+      <div class="preview-item">👨‍👩‍👧<span>가족구성</span><small>1인·부부·자녀 현황</small></div>
+      <div class="preview-item">💰<span>돈 고민</span><small>나에게 맞는 금융 가이드</small></div>
+    </div>
+  </section>
+
+  <!-- STEP 1: 나이 -->
+  <section class="step-section" id="step1">
+    <div class="step-progress">
+      <div class="step-dot done" id="dot1"></div>
+      <div class="step-dot" id="dot2"></div>
+      <div class="step-dot" id="dot3"></div>
+      <div class="step-dot" id="dot4"></div>
+    </div>
+    <p class="step-title">몇 살이세요?</p>
+    <p class="step-sub">만 나이로 입력해주세요 (20~90)</p>
+    <input class="step-num-input" type="number" id="age" min="20" max="90" placeholder="예: 35"
+      onblur="const v=parseInt(this.value);if(v<20||isNaN(v))this.value=20;if(v>90)this.value=90;" />
+    <button class="step-next" onclick="goStep(2)">다음 →</button>
+  </section>
+
+  <!-- STEP 2: 성별 -->
+  <section class="step-section" id="step2">
+    <div class="step-progress">
+      <div class="step-dot done"></div>
+      <div class="step-dot done"></div>
+      <div class="step-dot"></div>
+      <div class="step-dot"></div>
+    </div>
+    <p class="step-title">성별을 선택하세요</p>
+    <p class="step-sub">통계 데이터 매칭에 사용됩니다</p>
+    <div class="step-grid">
+      <button class="step-btn-option" id="btn-남자" onclick="selectOption('sex','남자')">👨 남자</button>
+      <button class="step-btn-option" id="btn-여자" onclick="selectOption('sex','여자')">👩 여자</button>
+    </div>
+    <button class="step-next" onclick="goStep(3)">다음 →</button>
+    <button class="step-back" onclick="goStep(1)">← 이전</button>
+  </section>
+
+  <!-- STEP 3: 지역 -->
+  <section class="step-section" id="step3">
+    <div class="step-progress">
+      <div class="step-dot done"></div>
+      <div class="step-dot done"></div>
+      <div class="step-dot done"></div>
+      <div class="step-dot"></div>
+    </div>
+    <p class="step-title">거주 지역은?</p>
+    <p class="step-sub">현재 살고 계신 광역시·도를 선택하세요</p>
+    <div class="step-grid" id="province-grid">
+      <button class="step-btn-option" onclick="selectOption('province','서울')">서울</button>
+      <button class="step-btn-option" onclick="selectOption('province','경기')">경기</button>
+      <button class="step-btn-option" onclick="selectOption('province','인천')">인천</button>
+      <button class="step-btn-option" onclick="selectOption('province','부산')">부산</button>
+      <button class="step-btn-option" onclick="selectOption('province','대구')">대구</button>
+      <button class="step-btn-option" onclick="selectOption('province','광주')">광주</button>
+      <button class="step-btn-option" onclick="selectOption('province','대전')">대전</button>
+      <button class="step-btn-option" onclick="selectOption('province','울산')">울산</button>
+      <button class="step-btn-option" onclick="selectOption('province','세종')">세종</button>
+      <button class="step-btn-option" onclick="selectOption('province','강원')">강원</button>
+      <button class="step-btn-option" onclick="selectOption('province','충북')">충북</button>
+      <button class="step-btn-option" onclick="selectOption('province','충남')">충남</button>
+      <button class="step-btn-option" onclick="selectOption('province','전북')">전북</button>
+      <button class="step-btn-option" onclick="selectOption('province','전남')">전남</button>
+      <button class="step-btn-option" onclick="selectOption('province','경북')">경북</button>
+      <button class="step-btn-option" onclick="selectOption('province','경남')">경남</button>
+      <button class="step-btn-option" onclick="selectOption('province','제주')">제주</button>
+    </div>
+    <button class="step-next" onclick="goStep(4)">다음 →</button>
+    <button class="step-back" onclick="goStep(2)">← 이전</button>
+  </section>
+
+  <!-- STEP 4: 혼인 -->
+  <section class="step-section" id="step4">
+    <div class="step-progress">
+      <div class="step-dot done"></div>
+      <div class="step-dot done"></div>
+      <div class="step-dot done"></div>
+      <div class="step-dot done"></div>
+    </div>
+    <p class="step-title">혼인 상태는?</p>
+    <p class="step-sub">현재 상태를 선택하세요</p>
+    <div class="step-grid" id="marital-grid">
+      <button class="step-btn-option" onclick="selectOption('marital','배우자있음')">💑 기혼</button>
+      <button class="step-btn-option" onclick="selectOption('marital','미혼')">🙋 미혼</button>
+      <button class="step-btn-option" onclick="selectOption('marital','이혼')">📝 이혼</button>
+      <button class="step-btn-option" onclick="selectOption('marital','사별')">🕊️ 사별</button>
+    </div>
+    <button class="step-next" onclick="runAnalyze()">분석하기 🔍</button>
+    <button class="step-back" onclick="goStep(3)">← 이전</button>
+  </section>
+
+  <!-- LOADING -->
+  <div id="loading">
     <div class="spinner"></div>
-    <p>데이터 분석 중...</p>
+    <p>700만 한국인 데이터 분석 중...</p>
   </div>
 
-  <div class="result-section" id="result">
-    <div class="stat-card">
-      <div class="summary-box">
+  <!-- RESULT -->
+  <div id="result">
+
+    <!-- 카피 카드 -->
+    <div class="copy-card" id="copy-card">
+      <div class="copy-card-bg" id="copy-card-bg"></div>
+      <div class="copy-card-footer">
+        <div class="copy-text" id="copy-text"></div>
+        <div class="copy-tag" id="copy-tag"></div>
+        <div class="copy-stat" id="copy-stat"></div>
+      </div>
+    </div>
+
+    <!-- 공유 버튼 -->
+    <p class="share-encourage">이 결과, 친구들도 맞는지 확인해보세요 👇</p>
+    <div class="share-primary">
+      <button class="share-kakao-big" onclick="shareKakao()">💬 카카오톡으로 공유하기</button>
+      <div class="share-secondary">
+        <button class="share-btn-sm" onclick="downloadCard()">📥 이미지 저장</button>
+        <button class="share-btn-sm" onclick="copyUrl()">🔗 링크 복사</button>
+        <button class="share-btn-sm" onclick="shareTwitter()">𝕏 공유</button>
+      </div>
+    </div>
+    <div class="url-box" style="margin-bottom:1.5rem">
+      <input type="text" id="share-url" readonly />
+      <button onclick="copyUrl()">복사</button>
+    </div>
+
+    <!-- 카드 이미지 -->
+    <div class="card-preview-wrap" id="card-preview-wrap" style="display:none">
+      <img id="card-img" src="" alt="내 페르소나 카드" />
+    </div>
+
+    <!-- 스토리 -->
+    <div class="story-card" id="story-card" style="display:none">
+      <h3>👤 나와 비슷한 사람의 이야기</h3>
+      <div class="story-main" id="story-main"></div>
+      <button class="story-more-btn" id="story-more-btn" onclick="toggleStory()">더보기 ▼</button>
+      <div class="story-more" id="story-more"></div>
+    </div>
+
+    <!-- 광고1 -->
+    <div class="ad-wrap">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8778354148615393" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- 나 vs 평균 -->
+    <div class="vs-card" id="vs-card">
+      <h3>⚖️ 나 vs 같은 조건 한국인 평균</h3>
+      <div id="vs-items"></div>
+    </div>
+
+    <!-- 광고2 -->
+    <div class="ad-wrap">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8778354148615393" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- 상세 통계 토글 -->
+    <button class="detail-toggle" id="detail-toggle" onclick="toggleDetail()">
+      <span id="detail-label">📊 상세 통계 보기</span>
+      <span class="arr">▼</span>
+    </button>
+    <div class="detail-body" id="detail-body">
+      <div class="stat-card">
         <div class="summary-count" id="summary-count">0</div>
-        <div class="summary-label" id="summary-label">명의 한국인이 나와 같은 조건</div>
+        <div class="summary-label" id="summary-label"></div>
+        <ul class="bar-list" id="bar-list"></ul>
       </div>
-      <ul class="bar-list" id="bar-list"></ul>
-    </div>
-
-    <div class="stat-card" id="persona-section" style="display:none">
-      <h3>👥 나와 비슷한 한국인들의 이야기</h3>
-      <ul class="persona-list" id="persona-list"></ul>
-    </div>
-
-    <div class="chart-grid">
-      <div class="stat-card"><h3>🏠 주거형태</h3><canvas id="housing-chart"></canvas></div>
-      <div class="stat-card"><h3>🎓 학력</h3><canvas id="education-chart"></canvas></div>
-      <div class="stat-card"><h3>👨‍👩‍👧 가족구성</h3><canvas id="family-chart"></canvas></div>
-      <div class="stat-card"><h3>💼 직업군 TOP5</h3><canvas id="job-chart"></canvas></div>
-    </div>
-
-    <div class="ai-analysis">
-      <h3>💡 금융 인사이트</h3>
-      <p id="ai-text"></p>
-    </div>
-
-    <div class="share-section">
-      <h3>📤 결과 공유하기</h3>
-      <div class="card-preview-wrap" id="card-preview-wrap">
-        <span class="no-card">카드 로딩 중...</span>
-      </div>
-      <div class="share-btns">
-        <button class="share-btn download" onclick="downloadCard()">이미지 저장</button>
-        <button class="share-btn url" onclick="copyUrl()">링크 복사</button>
-        <button class="share-btn twitter" onclick="shareTwitter()">X 공유</button>
-        <button class="share-btn kakao" onclick="copyUrl()">카카오 공유</button>
-      </div>
-      <div class="url-box">
-        <input type="text" id="share-url" readonly />
-        <button onclick="copyUrl()">복사</button>
+      <div class="chart-grid">
+        <div class="stat-card"><h3>🏠 주거형태</h3><canvas id="housing-chart"></canvas></div>
+        <div class="stat-card"><h3>🎓 학력</h3><canvas id="education-chart"></canvas></div>
+        <div class="stat-card"><h3>👨‍👩‍👧 가족구성</h3><canvas id="family-chart"></canvas></div>
+        <div class="stat-card"><h3>💼 직업군 TOP5</h3><canvas id="job-chart"></canvas></div>
       </div>
     </div>
 
+    <!-- 광고3 -->
+    <div class="ad-wrap">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8778354148615393" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- 금융 가이드 -->
     <div class="stat-card">
       <h3>📚 나에게 맞는 금융 가이드</h3>
-      <div class="recommend-grid" id="recommend-grid"></div>
+      <div class="rec-grid" id="rec-grid"></div>
     </div>
-  </div>
-</div>
 
-<script>
+    <!-- 다시 분석 -->
+    <div style="text-align:center;margin:2rem 0">
+      <button onclick="resetForm()" style="background:none;border:2px solid #E8D5C0;border-radius:14px;padding:.9rem 2rem;color:#4B5563;font-size:1rem;cursor:pointer;">🔄 다시 분석하기</button>
+    </div>
+
+  </div><!-- /result -->
+
+<script is:inline>
+/* ══ 전역 상태 ══ */
 let statsData = null;
-let currentInput = null;
-let currentCardUrl = null;
 let charts = {};
+const INPUTS = { age:'', sex:'', province:'', marital:'' };
 
-const RECS = {
-  "20대": [
-    { emoji: "💰", title: "사회초년생 IRP 시작법", desc: "세액공제 최대화 전략", url: "/invest/" },
-    { emoji: "🏠", title: "청약 당첨 전략", desc: "청약통장 만들기부터", url: "/loan/" },
-    { emoji: "🛡️", title: "첫 실손보험 가입", desc: "20대에 꼭 필요한 보험", url: "/insurance/" },
-    { emoji: "📱", title: "AI 부업 시작하기", desc: "월 50만원 부수입", url: "/nomad/" },
-  ],
-  "30대": [
-    { emoji: "🏠", title: "주담대 금리 비교", desc: "내집마련 완벽 가이드", url: "/loan/" },
-    { emoji: "💰", title: "IRP + ISA 동시 운용", desc: "절세 최대화 전략", url: "/invest/" },
-    { emoji: "🛡️", title: "실손보험 리모델링", desc: "불필요한 보험 정리", url: "/insurance/" },
-    { emoji: "📊", title: "연말정산 환급 극대화", desc: "놓치는 공제 항목 체크", url: "/invest/" },
-  ],
-  "40대": [
-    { emoji: "🏦", title: "노후 준비 IRP 전략", desc: "퇴직연금 최적화", url: "/invest/" },
-    { emoji: "🛡️", title: "보험 리모델링 가이드", desc: "40대 필수 보험 점검", url: "/insurance/" },
-    { emoji: "🏠", title: "1주택자 갈아타기", desc: "주담대 전략", url: "/loan/" },
-    { emoji: "📋", title: "종합소득세 절세", desc: "자영업자/프리랜서 필독", url: "/tax/" },
-  ],
-  "50대": [
-    { emoji: "🏦", title: "퇴직금 IRP 활용법", desc: "은퇴 준비 완벽 가이드", url: "/invest/" },
-    { emoji: "🏥", title: "건강보험료 절감", desc: "피부양자 자격 유지법", url: "/tax/" },
-    { emoji: "🏠", title: "역모기지 vs 전세", desc: "노후 주거 전략", url: "/loan/" },
-    { emoji: "🛡️", title: "암보험 점검", desc: "50대 필수 보장 확인", url: "/insurance/" },
-  ],
-};
-
-function getAgeGroup(age) {
-  return String(age);
+/* ══ 히어로 카피 로테이션 ══ */
+const HERO_COPIES = [
+  '대출이 월급보다 먼저 나가는 사람',
+  '아직 엄마밥이 제일 맛있는 사람',
+  '퇴직금으로 치킨집 고민하는 사람',
+  '전세 계약서 들고 한숨 쉬는 사람',
+  '월급은 그대로인데 물가만 오른 사람',
+  '아이 학원비에 노후 준비 못 하는 사람',
+  '주말엔 쿠팡 박스 뜯는 게 낙인 사람',
+  '적금 깨고 또 적금 드는 사람',
+];
+let heroIdx = 0;
+function rotateHero() {
+  const el = document.getElementById('hero-copy');
+  if (!el) return;
+  el.classList.remove('visible');
+  setTimeout(() => {
+    el.textContent = HERO_COPIES[heroIdx % HERO_COPIES.length];
+    el.classList.add('visible');
+    heroIdx++;
+  }, 600);
 }
 
-function pct(obj, key) {
-  const total = Object.values(obj).reduce((s,v)=>s+v,0);
-  return total > 0 ? Math.round((obj[key]||0)/total*100) : 0;
+/* ══ 스텝 네비게이션 ══ */
+function startStep() {
+  const preview = document.getElementById('preview-section');
+  if (preview) preview.style.display = 'none';
+  const s1 = document.getElementById('step1');
+  if (s1) { s1.classList.add('active'); s1.scrollIntoView({ behavior:'smooth', block:'start' }); }
 }
 
-function pctMulti(obj, keys) {
-  const total = Object.values(obj).reduce((s,v)=>s+v,0);
-  const val = keys.reduce((s,k)=>s+(obj[k]||0),0);
-  return total > 0 ? Math.round(val/total*100) : 0;
+function goStep(n) {
+  if (n === 2) {
+    const age = parseInt(document.getElementById('age').value);
+    if (!age || age < 20 || age > 90) { alert('나이를 올바르게 입력해주세요 (20~90)'); return; }
+    INPUTS.age = age;
+    
+  }
+  if (n === 3 && !INPUTS.sex) { alert('성별을 선택해주세요'); return; }
+  if (n === 4 && !INPUTS.province) { alert('지역을 선택해주세요'); return; }
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById('step' + i);
+    if (el) el.classList.remove('active');
+  }
+  const hero = document.getElementById('hero');
+  if (hero) hero.style.display = 'none';
+  const target = document.getElementById('step' + n);
+  if (target) { target.classList.add('active'); target.scrollIntoView({ behavior:'smooth', block:'start' }); }
+}
+
+function selectOption(field, val) {
+  INPUTS[field] = val;
+  const grid = field === 'sex' ? document.querySelectorAll('#step2 .step-btn-option')
+             : field === 'province' ? document.querySelectorAll('#province-grid .step-btn-option')
+             : document.querySelectorAll('#marital-grid .step-btn-option');
+  grid.forEach(b => { b.classList.toggle('selected', b.textContent.includes(val)); });
+}
+
+/* ══ 데이터 로드 ══ */
+async function loadStats() {
+  if (statsData) return statsData;
+  const res = await fetch('/persona-stats.json');
+  statsData = await res.json();
+  return statsData;
+}
+
+function toDecadeKey(age) {
+  if (age < 30) return '20대';
+  if (age < 40) return '30대';
+  if (age < 50) return '40대';
+  if (age < 60) return '50대';
+  if (age < 70) return '60대';
+  return '70대이상';
+}
+
+function getStats(data, province, sex, age) {
+  const decade = toDecadeKey(age);
+  const statsKey = province + '_' + sex + '_' + decade;
+  const cardKey  = province + '_' + sex + '_' + age;
+  const s = data[statsKey];
+  if (s) { s._key = cardKey; }
+  return s || null;
+}
+
+function pct(obj, keys) {
+  try {
+    if (!obj || typeof obj !== 'object') return 0;
+    const arr = Array.isArray(keys) ? keys : [keys];
+    const total = Object.values(obj).reduce((a, b) => a + (Number(b) || 0), 0);
+    if (total === 0) return 0;
+    const val = arr.reduce((a, k) => a + (Number(obj[k]) || 0), 0);
+    return Math.round(val / total * 100);
+  } catch(e) { return 0; }
 }
 
 function destroyCharts() {
-  Object.values(charts).forEach(c => c.destroy());
+  Object.values(charts).forEach(ch => { try { ch.destroy(); } catch(e) {} });
   charts = {};
 }
 
-function makeDonut(id, labels, data) {
-  const colors = ["#3b82f6","#10b981","#f59e0b","#ef4444","#8b5cf6","#06b6d4"];
-  const ctx = document.getElementById(id).getContext("2d");
-  charts[id] = new Chart(ctx, {
-    type: "doughnut",
-    data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 2 }] },
-    options: { responsive: true, plugins: { legend: { position: "bottom", labels: { font: { size: 10 } } } } },
-  });
+/* ══ COPIES 32개 ══ */
+const COPIES = [
+  { name:'대출이 월급보다 먼저 나가는 사람', emoji:'😮‍💨',
+    cond:(s,age,m) => age>=30 && age<=50 && pct(s.housing,['아파트'])>=30 && m==='배우자있음' },
+  { name:'아직 엄마밥이 제일 맛있는 사람', emoji:'🍚',
+    cond:(s,age,m) => age<27 && (m==='미혼'||!m) },
+  { name:'퇴직금으로 치킨집 고민하는 사람', emoji:'🍗',
+    cond:(s,age,m) => age>=50 && age<60 && pct(s.jobs,['자영업자'])>=15 },
+  { name:'전세 계약서 들고 한숨 쉬는 사람', emoji:'📄',
+    cond:(s,age,m) => age>=28 && age<=40 && pct(s.housing,['전세'])>=20 },
+  { name:'월급은 그대로인데 물가만 오른 사람', emoji:'📈',
+    cond:(s,age,m) => age>=35 && age<=55 && pct(s.jobs,['임금근로자'])>=50 },
+  { name:'아이 학원비에 노후 준비 못 하는 사람', emoji:'📚',
+    cond:(s,age,m) => age>=38 && age<=52 && m==='배우자있음' && pct(s.family,['부부+자녀'])>=25 },
+  { name:'주말엔 쿠팡 박스 뜯는 게 낙인 사람', emoji:'📦',
+    cond:(s,age,m) => age>=30 && age<=45 && pct(s.housing,['아파트'])>=25 },
+  { name:'적금 깨고 또 적금 드는 사람', emoji:'🏦',
+    cond:(s,age,m) => age>=25 && age<=40 && m==='미혼' },
+  { name:'카드값 걱정에 잠 못 자는 사람', emoji:'💳',
+    cond:(s,age,m) => age>=28 && age<=45 && pct(s.jobs,['임금근로자'])>=40 },
+  { name:'부모님 용돈에 내 생활비도 빠듯한 사람', emoji:'👨‍👩‍👦',
+    cond:(s,age,m) => age>=30 && age<=45 && pct(s.family,['부부+부모'])>=10 },
+  { name:'명퇴 걱정에 투잡 알아보는 사람', emoji:'💼',
+    cond:(s,age,m) => age>=45 && age<=58 && pct(s.jobs,['임금근로자'])>=45 },
+  { name:'내 집 마련이 꿈인 사람', emoji:'🏠',
+    cond:(s,age,m) => age>=28 && age<=42 && pct(s.housing,['월세'])>=20 },
+  { name:'고향 부모님이 걱정되는 사람', emoji:'🚄',
+    cond:(s,age,m) => age>=30 && age<=50 && pct(s.family,['1인가구'])>=30 },
+  { name:'건강검진 결과지 보기 무서운 사람', emoji:'🏥',
+    cond:(s,age,m) => age>=45 && age<=65 },
+  { name:'노후 준비 시작도 못 한 사람', emoji:'😰',
+    cond:(s,age,m) => age>=45 && age<=60 && pct(s.jobs,['자영업자'])>=20 },
+  { name:'자녀 결혼 비용이 두려운 사람', emoji:'💒',
+    cond:(s,age,m) => age>=52 && m==='배우자있음' },
+  { name:'은퇴 후 뭘 할지 모르는 사람', emoji:'🌅',
+    cond:(s,age,m) => age>=60 },
+  { name:'연금만으로는 부족한 사람', emoji:'📉',
+    cond:(s,age,m) => age>=62 },
+  { name:'혼자가 편한데 외로운 사람', emoji:'🪟',
+    cond:(s,age,m) => m==='미혼' && age>=32 && pct(s.family,['1인가구'])>=35 },
+  { name:'이혼 후 다시 시작하는 사람', emoji:'🌱',
+    cond:(s,age,m) => m==='이혼' },
+  { name:'배우자 잃고 홀로 사는 사람', emoji:'🕊️',
+    cond:(s,age,m) => m==='사별' },
+  { name:'지방에서 서울 부동산 구경하는 사람', emoji:'🏙️',
+    cond:(s,age,m) => pct(s.housing,['아파트'])>=35 && age>=30 },
+  { name:'평생 월급쟁이로 살아온 사람', emoji:'👔',
+    cond:(s,age,m) => age>=50 && pct(s.jobs,['임금근로자'])>=55 },
+  { name:'스펙 쌓다 서른 된 사람', emoji:'🎓',
+    cond:(s,age,m) => age>=28 && age<=33 && pct(s.education,['대학교','대학원'])>=50 },
+  { name:'취업 준비 3년차인 사람', emoji:'📝',
+    cond:(s,age,m) => age>=24 && age<=30 && pct(s.jobs,['실업자'])>=15 },
+  { name:'부업으로 유튜브 시작한 사람', emoji:'🎬',
+    cond:(s,age,m) => age>=28 && age<=42 && m==='미혼' },
+  { name:'워라밸 찾아 지방 이직한 사람', emoji:'🌿',
+    cond:(s,age,m) => age>=28 && age<=40 },
+  { name:'첫 월급 받고 부모님께 용돈 드린 사람', emoji:'🧧',
+    cond:(s,age,m) => age>=22 && age<=27 },
+  { name:'내 월급이 평균인지 모르는 사람', emoji:'❓',
+    cond:(s,age,m) => age>=25 && age<=45 },
+  { name:'보험료만 30만원 내는 사람', emoji:'📋',
+    cond:(s,age,m) => age>=35 && m==='배우자있음' },
+  { name:'집도 차도 없는 자유로운 사람', emoji:'🎒',
+    cond:(s,age,m) => age>=22 && age<=32 && m==='미혼' },
+  { name:'그냥 평범하게 살아가는 한국인', emoji:'🇰🇷',
+    cond:() => true },
+];
+
+function determineType(s, age, marital) {
+  const safe = {
+    housing:   (s && s.housing)   || {},
+    education: (s && s.education) || {},
+    family:    (s && s.family)    || {},
+    jobs:      (s && s.jobs)      || {},
+    marital:   (s && s.marital)   || {},
+  };
+  for (const t of COPIES) {
+    try { if (t.cond(safe, age, marital)) return t; } catch(e) {}
+  }
+  return COPIES[COPIES.length - 1];
+}
+</script>
+<script is:inline>
+/* ══ 나 vs 평균 ══ */
+function compareWithData(s, age, marital) {
+  const results = [];
+  const h = (s && s.housing)   || {};
+  const e = (s && s.education) || {};
+  const f = (s && s.family)    || {};
+  const j = (s && s.jobs)      || {};
+  const m = (s && s.marital)   || {};
+
+  const aptPct  = pct(h, ['아파트']);
+  const eduPct  = pct(e, ['대학교','대학원']);
+  const marPct  = pct(m, ['배우자있음']);
+  const unePct  = pct(j, ['실업자','비경제활동인구']);
+  const sngPct  = pct(f, ['1인가구']);
+
+  results.push({ label:'아파트 거주', val:aptPct,
+    msg: aptPct>=50 ? '같은 조건 절반 이상이 아파트에 살아요' : aptPct>=30 ? '같은 조건 '+aptPct+'%가 아파트에 살아요' : '아파트 거주 비율이 낮은 편이에요 ('+aptPct+'%)' });
+  results.push({ label:'대졸 이상', val:eduPct,
+    msg: eduPct>=60 ? '같은 조건 '+eduPct+'%가 대졸 이상이에요' : '대졸 이상 비율은 '+eduPct+'%예요' });
+  results.push({ label:'기혼', val:marPct,
+    msg: marital==='배우자있음' ? '같은 조건 '+marPct+'%가 기혼이에요. 당신도 그 중 한 명!' : '같은 조건 '+marPct+'%가 기혼이에요' });
+  results.push({ label:'무직·비경활', val:unePct,
+    msg: unePct>=30 ? '⚠️ 같은 조건 '+unePct+'%가 무직·비경활 상태예요' : '같은 조건 '+unePct+'%가 무직·비경활이에요' });
+  results.push({ label:'1인 가구', val:sngPct,
+    msg: sngPct>=40 ? '같은 조건 '+sngPct+'%가 혼자 살아요' : '1인 가구 비율은 '+sngPct+'%예요' });
+  return results;
 }
 
-function makeBar(id, labels, data) {
-  const ctx = document.getElementById(id).getContext("2d");
-  charts[id] = new Chart(ctx, {
-    type: "bar",
-    data: { labels, datasets: [{ data, backgroundColor: "#3b82f688", borderColor: "#3b82f6", borderWidth: 2, borderRadius: 6 }] },
-    options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } },
-  });
-}
-
-function renderBars(s) {
-  const aptPct    = pct(s.housing, "아파트");
-  const eduPct    = pctMulti(s.education, ["4년제 대학교","대학원"]);
-  const marriedPct = pct(s.marital, "배우자있음");
-  const unempPct  = pct(s.jobs, "무직");
-  const singlePct = pctMulti(s.family, ["1인가구","단독가구"]);
-  const gen3Pct   = pctMulti(s.family, ["기타3세대","3세대"]);
-
-  const bars = [
-    { name: "아파트 거주", val: aptPct, cls: "apt" },
-    { name: "대졸 이상",   val: eduPct, cls: "edu" },
-    { name: "기혼",        val: marriedPct, cls: "married" },
-    { name: "무직",        val: unempPct, cls: "job", warn: unempPct > 25 },
-    { name: "1인가구",     val: singlePct, cls: "single" },
-    { name: "3세대 동거",  val: gen3Pct, cls: "gen3" },
-  ];
-
-  document.getElementById("bar-list").innerHTML = bars.map(b => `
-    <li class="bar-item">
-      <div class="bar-header">
-        <span class="bar-name">${b.name}${b.warn ? ' <span style="color:#ef4444;font-size:0.8rem">⚠ 3명 중 1명</span>' : ''}</span>
-        <span class="bar-pct">${b.val}%</span>
-      </div>
-      <div class="bar-track">
-        <div class="bar-fill ${b.cls}" style="width:0%" data-target="${b.val}"></div>
-      </div>
-    </li>
-  `).join("");
-
+function renderVs(results) {
+  const wrap = document.getElementById('vs-items');
+  if (!wrap) return;
+  wrap.innerHTML = results.map(r => {
+    const cls = r.val>=50?'hi':r.val>=25?'mid':'lo';
+    return '<div class="vs-item">'
+      + '<div class="vs-label">'+r.label+'</div>'
+      + '<div class="vs-bar-wrap"><div class="vs-fill '+cls+'" style="width:0%" data-target="'+r.val+'"></div></div>'
+      + '<div class="vs-sub">'+r.msg+'</div>'
+      + '</div>';
+  }).join('');
   setTimeout(() => {
-    document.querySelectorAll(".bar-fill").forEach(el => {
-      el.style.width = el.dataset.target + "%";
+    wrap.querySelectorAll('.vs-fill').forEach(el => {
+      el.style.width = el.dataset.target + '%';
     });
   }, 100);
 }
 
-function showCard(inp) {
-  const ageGroup = getAgeGroup(inp.age);
-  const key = inp.province + "_" + inp.sex + "_" + ageGroup;
-  const url = "/cards/" + key + ".png";
-  currentCardUrl = url;
-  const wrap = document.getElementById("card-preview-wrap");
-  wrap.innerHTML = '<img src="' + url + '" alt="분석 카드" onerror="this.parentElement.innerHTML=\'<span class=no-card>카드 준비 중</span>\'" />';
+/* ══ 바 차트 ══ */
+function getRelevantBars(s, age) {
+  const h = (s && s.housing)   || {};
+  const j = (s && s.jobs)      || {};
+  const m = (s && s.marital)   || {};
+  const e = (s && s.education) || {};
+  const f = (s && s.family)    || {};
+  const aptPct     = pct(h, ['아파트']);
+  const unemployPct= pct(j, ['실업자','비경제활동인구']);
+  const marriedPct = pct(m, ['배우자있음']);
+  const eduHighPct = pct(e, ['대학교','대학원']);
+  const alonePct   = pct(f, ['1인가구']);
+  const parentPct  = pct(f, ['부부+부모','1인+부모']);
+  const bars = [];
+  bars.push({ name:'아파트 거주', val:aptPct,     color:'#D97706' });
+  bars.push({ name:'대졸 이상',   val:eduHighPct, color:'#10b981' });
+  bars.push({ name:'기혼',        val:marriedPct, color:'#f59e0b' });
+  if (age < 40) {
+    bars.push({ name:'부모와 동거', val:parentPct, color:'#8b5cf6' });
+    bars.push({ name:'1인 가구',   val:alonePct,  color:'#06b6d4' });
+    if (unemployPct > 0)
+      bars.push({ name:'무직', val:unemployPct, color:'#ef4444', warn:unemployPct>25 });
+  } else {
+    bars.push({ name:'1인 가구',      val:alonePct,    color:'#06b6d4' });
+    bars.push({ name:'무직·비경활',   val:unemployPct, color:'#94a3b8', warn:unemployPct>30 });
+  }
+  return bars;
 }
 
+function renderBars(bars) {
+  const el = document.getElementById('bar-list');
+  if (!el) return;
+  el.innerHTML = bars.map(b => '<li class="bar-item">'
+    + '<div class="bar-header"><span class="bar-name">'+b.name+'</span><span class="bar-pct">'+b.val+'%</span></div>'
+    + '<div class="bar-track"><div class="bar-fill" style="width:0%;background:'+b.color+'" data-target="'+b.val+'"></div></div>'
+    + (b.warn ? '<div class="bar-warn">⚠️ 주의 구간입니다</div>' : '')
+    + '</li>').join('');
+  setTimeout(() => {
+    el.querySelectorAll('.bar-fill').forEach(f => { f.style.width = f.dataset.target + '%'; });
+  }, 200);
+}
+
+/* ══ Chart.js ══ */
+function makeDonut(id, labels, data) {
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (charts[id]) { charts[id].destroy(); }
+  charts[id] = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels,
+      datasets: [{ data,
+        backgroundColor: ['#D97706','#D4875A','#F5C898','#B8764A','#1E3A5F','#F0DFC8'],
+        borderWidth: 0 }]
+    },
+    options: { responsive:true, plugins:{ legend:{ position:'bottom', labels:{ font:{ size:11 } } } } }
+  });
+}
+
+function makeBarChart(id, labels, data) {
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (charts[id]) { charts[id].destroy(); }
+  charts[id] = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{ data,
+        backgroundColor: '#D97706',
+        borderRadius: 6 }]
+    },
+    options: { indexAxis:'y', responsive:true,
+      plugins:{ legend:{ display:false } },
+      scales:{ x:{ ticks:{ font:{ size:11 } } }, y:{ ticks:{ font:{ size:11 } } } } }
+  });
+}
+
+/* ══ 금융 추천 ══ */
+const RECS = {
+  '20대': [
+    { emoji:'💰', title:'청년도약계좌', desc:'정부 지원 월 최대 70만원 적립', url:'/invest/' },
+    { emoji:'📱', title:'ISA 계좌 개설', desc:'비과세 투자 시작하기', url:'/invest/' },
+    { emoji:'🏠', title:'청년 전세대출', desc:'저금리 전세자금 지원', url:'/loan/' },
+    { emoji:'📋', title:'실업급여 안내', desc:'고용보험 가입 필수 확인', url:'/insurance/' },
+  ],
+  '30대': [
+    { emoji:'🏠', title:'주택담보대출 비교', desc:'금리 0.1%도 수천만원 차이', url:'/loan/' },
+    { emoji:'💰', title:'IRP + ISA 운용', desc:'절세 최대화 전략', url:'/invest/' },
+    { emoji:'📋', title:'종신보험 점검', desc:'가족 보장 설계', url:'/insurance/' },
+    { emoji:'📈', title:'ETF 장기투자', desc:'S&P500 적립식 투자', url:'/invest/' },
+  ],
+  '40대': [
+    { emoji:'📉', title:'노후 자산 점검', desc:'60세 목표 역산 설계', url:'/invest/' },
+    { emoji:'🏠', title:'주택 리모델링 대출', desc:'저금리 개보수 자금', url:'/loan/' },
+    { emoji:'💊', title:'실손보험 리모델링', desc:'과잉 보험료 줄이기', url:'/insurance/' },
+    { emoji:'💰', title:'연금저축 추가납입', desc:'세액공제 최대 활용', url:'/invest/' },
+  ],
+  '50대': [
+    { emoji:'🌅', title:'국민연금 수령 전략', desc:'수령 시기별 금액 비교', url:'/invest/' },
+    { emoji:'💰', title:'IRP 추가납입', desc:'퇴직 전 세액공제 극대화', url:'/invest/' },
+    { emoji:'🏠', title:'주택연금 검토', desc:'60세 이후 월 수령액 계산', url:'/loan/' },
+    { emoji:'📋', title:'간병보험 가입', desc:'부모·본인 노후 리스크 대비', url:'/insurance/' },
+  ],
+  '60대': [
+    { emoji:'🌅', title:'국민연금 수령 전략', desc:'수령 시기별 금액 비교', url:'/invest/' },
+    { emoji:'💰', title:'IRP 추가납입', desc:'퇴직 전 세액공제 극대화', url:'/invest/' },
+    { emoji:'🏠', title:'주택연금 검토', desc:'60세 이후 월 수령액 계산', url:'/loan/' },
+    { emoji:'📋', title:'간병보험 가입', desc:'부모·본인 노후 리스크 대비', url:'/insurance/' },
+  ],
+  '70대이상': [
+    { emoji:'🌅', title:'연금 수령 최적화', desc:'국민+퇴직+개인연금 조합', url:'/invest/' },
+    { emoji:'🏠', title:'주택연금 신청', desc:'집을 담보로 매달 받는 연금', url:'/loan/' },
+    { emoji:'💊', title:'노인장기요양보험', desc:'등급 신청 및 혜택 안내', url:'/insurance/' },
+    { emoji:'📋', title:'상속·증여 절세', desc:'자녀에게 유리한 방법', url:'/invest/' },
+  ],
+};
+
+function renderRecs(age) {
+  const grid = document.getElementById('rec-grid');
+  if (!grid) return;
+  const key = age<30?'20대':age<40?'30대':age<50?'40대':age<60?'50대':age<70?'60대':'70대이상';
+  const items = RECS[key] || RECS['40대'];
+  grid.innerHTML = items.map(r =>
+    '<a class="rec-card" href="'+r.url+'">'
+    + '<div class="rec-emoji">'+r.emoji+'</div>'
+    + '<div class="rec-title">'+r.title+'</div>'
+    + '<div class="rec-desc">'+r.desc+'</div>'
+    + '</a>'
+  ).join('');
+}
+</script>
+<script is:inline>
+/* ══ runAnalyze ══ */
+async function runAnalyze() {
+  const age      = parseInt(INPUTS.age);
+  const sex      = INPUTS.sex;
+  const province = INPUTS.province;
+  const marital  = INPUTS.marital || '';
+  if (!age || age < 20 || age > 90) { alert('나이를 확인해주세요'); return; }
+  if (!sex)      { alert('성별을 선택해주세요'); return; }
+  if (!province) { alert('지역을 선택해주세요'); return; }
+
+  /* 스텝 숨기기 */
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById('step' + i);
+    if (el) el.classList.remove('active');
+  }
+  const loading = document.getElementById('loading');
+  const result  = document.getElementById('result');
+  if (loading) { loading.style.display = 'block'; loading.scrollIntoView({ behavior:'smooth', block:'center' }); }
+  if (result)  result.style.display = 'none';
+  destroyCharts();
+
+  try {
+    const data = await loadStats();
+    const s    = getStats(data, province, sex, age);
+    if (!s) {
+      alert('해당 조건의 데이터가 없습니다. 다시 시도해주세요.');
+      if (loading) loading.style.display = 'none';
+      goStep(1);
+      return;
+    }
+
+    /* 카피 결정 */
+    const copy = determineType(s, age, marital);
+    const copyTextEl = document.getElementById('copy-text');
+    if (copyTextEl) copyTextEl.textContent = copy.emoji + ' ' + copy.name;
+
+    /* 카드 배경 */
+    const cardKey = province + '_' + sex + '_' + age;   /* 이미지용: 숫자 나이 */
+    const bgEl = document.getElementById('copy-card-bg');
+    if (bgEl) bgEl.style.backgroundImage = "url('/cards/" + cardKey + ".jpg')";
+
+    /* 태그 */
+    const tagEl = document.getElementById('copy-tag');
+    if (tagEl) {
+      const tags = [province, age + '세', sex];
+      if (marital) tags.push(marital === '배우자있음' ? '기혼' : marital);
+      tagEl.innerHTML = tags.map(t => '<span>' + t + '</span>').join('');
+    }
+
+    /* 샘플 수 */
+    const statEl = document.getElementById('copy-stat');
+    if (statEl) statEl.textContent = '같은 조건 ' + (s.total || 0).toLocaleString() + '명 분석';
+
+    /* 스토리 */
+    const storyCard = document.getElementById('story-card');
+    const storyMain = document.getElementById('story-main');
+    const storyMore = document.getElementById('story-more');
+    if (s.personas && s.personas.length > 0 && storyCard && storyMain) {
+      storyMain.textContent = s.personas[0];
+      if (storyMore && s.personas.length > 1) {
+        storyMore.innerHTML = s.personas.slice(1, 6).map(p => '<p>' + p + '</p>').join('');
+      }
+      storyCard.style.display = 'block';
+    } else if (storyCard) {
+      storyCard.style.display = 'none';
+    }
+
+    /* 나 vs 평균 */
+    const vsResults = compareWithData(s, age, marital);
+    renderVs(vsResults);
+
+    /* 상세 통계 */
+    const cntEl = document.getElementById('summary-count');
+    const lblEl = document.getElementById('summary-label');
+    if (cntEl) cntEl.textContent = (s.total || 0).toLocaleString();
+    if (lblEl) lblEl.textContent = province + ' ' + toDecadeKey(age) + ' ' + sex + ' 기준';
+    const bars = getRelevantBars(s, age);
+    renderBars(bars);
+
+    /* 도넛 차트 */
+    if (s.housing) {
+      const hw = Object.entries(s.housing).sort((a,b)=>b[1]-a[1]).slice(0,6);
+      makeDonut('housing-chart', hw.map(x=>x[0]), hw.map(x=>x[1]));
+    }
+    if (s.education) {
+      const ew = Object.entries(s.education).sort((a,b)=>b[1]-a[1]).slice(0,6);
+      makeDonut('education-chart', ew.map(x=>x[0]), ew.map(x=>x[1]));
+    }
+    if (s.family) {
+      const fw = Object.entries(s.family).sort((a,b)=>b[1]-a[1]).slice(0,6);
+      makeDonut('family-chart', fw.map(x=>x[0]), fw.map(x=>x[1]));
+    }
+    if (s.jobs) {
+      const jw = Object.entries(s.jobs).sort((a,b)=>b[1]-a[1]).slice(0,5);
+      makeBarChart('job-chart', jw.map(x=>x[0]), jw.map(x=>x[1]));
+    }
+
+    /* 카드 이미지 */
+    const cardImg  = document.getElementById('card-img');
+    const previewWrap = document.getElementById('card-preview-wrap');
+    if (cardImg && previewWrap) {
+      cardImg.src = '/cards/' + encodeURIComponent(cardKey) + '.jpg';
+      cardImg.onload = () => { previewWrap.style.display = 'flex'; };
+      cardImg.onerror = () => { previewWrap.style.display = 'none'; };
+    }
+
+    /* Canvas 생성 */
+    generateCanvas(cardKey, copy.emoji + ' ' + copy.name);
+
+    /* 공유 URL */
+    const shareUrl = location.origin + '/my-persona?age=' + age
+      + '&sex=' + encodeURIComponent(sex)
+      + '&province=' + encodeURIComponent(province)
+      + '&marital=' + encodeURIComponent(marital);
+    const shareEl = document.getElementById('share-url');
+    if (shareEl) shareEl.value = shareUrl;
+
+    /* 금융 추천 */
+    renderRecs(age);
+
+    /* 결과 표시 */
+    if (loading) loading.style.display = 'none';
+    if (result)  { result.style.display = 'block'; result.scrollIntoView({ behavior:'smooth', block:'start' }); }
+
+  } catch(err) {
+    console.error(err);
+    const loading = document.getElementById('loading');
+    if (loading) loading.style.display = 'none';
+    alert('분석 중 오류가 발생했습니다. 다시 시도해주세요.');
+    goStep(1);
+  }
+}
+
+/* ══ generateCanvas ══ */
+function generateCanvas(key, copyText) {
+  const canvas = document.createElement('canvas');
+  canvas.width = 1080; canvas.height = 1080;
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = () => {
+    ctx.drawImage(img, 0, 0, 1080, 1080);
+    const grad = ctx.createLinearGradient(0, 400, 0, 1080);
+    grad.addColorStop(0,   'rgba(40,20,10,0)');
+    grad.addColorStop(0.5, 'rgba(40,20,10,0.75)');
+    grad.addColorStop(1,   'rgba(40,20,10,0.92)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 1080, 1080);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = 'bold 64px sans-serif';
+    ctx.textAlign = 'center';
+    const maxW = 920;
+    const chars = copyText.split('');
+    let line = '', lines = [];
+    for (const ch of chars) {
+      const test = line + ch;
+      if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = ch; }
+      else { line = test; }
+    }
+    if (line) lines.push(line);
+    const lineH = 80;
+    const startY = 820 - (lines.length - 1) * lineH / 2;
+    lines.forEach((l, i) => { ctx.fillText(l, 540, startY + i * lineH); });
+    ctx.font = '36px sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.fillText('한국인 페르소나 · persona.aikorea24.kr', 540, 980);
+    window._personaCanvas = canvas;
+  };
+  img.src = '/cards/' + encodeURIComponent(key) + '.jpg';
+}
+
+/* ══ 공유 함수 ══ */
 function downloadCard() {
-  if (!currentCardUrl) return;
-  const link = document.createElement("a");
-  link.download = "한국인분석.png";
-  link.href = currentCardUrl;
-  link.click();
+  const canvas = window._personaCanvas;
+  if (!canvas) {
+    const img = document.getElementById('card-img');
+    if (img && img.src) {
+      const a = document.createElement('a');
+      a.href = img.src; a.download = 'my-persona.jpg'; a.click();
+    } else { alert('카드 이미지를 먼저 생성해주세요'); }
+    return;
+  }
+  const a = document.createElement('a');
+  a.href = canvas.toDataURL('image/jpeg', 0.92);
+  a.download = 'my-persona.jpg';
+  a.click();
 }
 
 function copyUrl() {
-  const url = document.getElementById("share-url").value;
-  navigator.clipboard.writeText(url).then(() => alert("링크가 복사됐어요!"));
+  const el = document.getElementById('share-url');
+  if (!el) return;
+  navigator.clipboard.writeText(el.value).then(() => alert('링크가 복사됐습니다!'));
 }
 
 function shareTwitter() {
-  const url = document.getElementById("share-url").value;
-  const text = encodeURIComponent("나와 같은 한국인은 어떻게 살까? 엔비디아 700만 데이터 분석");
-  window.open("https://twitter.com/intent/tweet?text=" + text + "&url=" + encodeURIComponent(url));
+  const el = document.getElementById('share-url');
+  const url = el ? el.value : location.href;
+  const text = '나와 같은 한국인은 어떻게 살까? 700만 데이터로 분석한 나의 현실';
+  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url));
 }
 
-async function loadStats() {
-  if (statsData) return statsData;
-  const resp = await fetch("/persona-stats.json");
-  statsData = await resp.json();
-  return statsData;
-}
+function shareKakao() {
+  /* ── URL 재생성: input.value 가 비어있을 때 location.href 대신 파라미터를 직접 조합 ── */
+  const p = new URLSearchParams(location.search);
+  const age      = p.get('age')      || window._personaAge      || '';
+  const sex      = p.get('sex')      || window._personaSex      || '';
+  const province = p.get('province') || window._personaProvince || '';
+  const marital  = p.get('marital')  || window._personaMarital  || '';
 
-async function analyze() {
-  const age      = parseInt(document.getElementById("age").value);
-  const sex      = document.getElementById("sex").value;
-  const province = document.getElementById("province").value;
-  const marital  = document.getElementById("marital").value;
-  const maritalLabel = {"미혼":"미혼","배우자있음":"기혼","이혼":"이혼","사별":"사별"}[marital];
-  currentInput = { age, sex, province, marital, maritalLabel };
+  const url = (age && sex && province && marital)
+    ? location.origin + '/my-persona'
+        + '?age='      + encodeURIComponent(age)
+        + '&sex='      + encodeURIComponent(sex)
+        + '&province=' + encodeURIComponent(province)
+        + '&marital='  + encodeURIComponent(marital)
+    : (document.getElementById('share-url')?.value || location.href);
 
-  document.getElementById("loading").style.display = "block";
-  document.getElementById("result").classList.remove("show");
-  destroyCharts();
+  const copyEl = document.getElementById('copy-text');
+  const title  = copyEl?.textContent?.trim() || '나와 같은 한국인은 어떻게 살까?';
 
-  const data     = await loadStats();
-  const ageGroup = getAgeGroup(age);
-  const key      = province + "_" + sex + "_" + ageGroup;
-  const s        = data[key];
-
-  document.getElementById("loading").style.display = "none";
-  document.getElementById("result").classList.add("show");
-
-  if (!s || s.total === 0) {
-    document.getElementById("bar-list").innerHTML = '<li style="color:#94a3b8;text-align:center;padding:1rem">해당 조건의 데이터가 부족합니다</li>';
-    return;
-  }
-
-  document.getElementById("summary-count").textContent = s.total.toLocaleString();
-  document.getElementById("summary-label").textContent = "명의 " + province + " " + ageGroup + " " + sex + "을 분석했어요";
-
-  renderBars(s);
-
-  const personas = s.personas || [];
-  const psec = document.getElementById("persona-section");
-  if (personas.length > 0) {
-    psec.style.display = "block";
-    document.getElementById("persona-list").innerHTML = personas.slice(0,4).map(p =>
-      "<li class='persona-item'>" + p + "</li>"
-    ).join("");
+  if (window.Kakao && window.Kakao.isInitialized()) {
+    window.Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: title,
+        description: '700만 한국인 데이터로 분석한 나의 현실',
+        imageUrl: 'https://persona.aikorea24.kr/og-default.png',
+        link: { mobileWebUrl: url, webUrl: url }
+      },
+      buttons: [
+        {
+          title: '결과 보러가기',
+          link: { mobileWebUrl: url, webUrl: url }
+        }
+      ]
+    });
   } else {
-    psec.style.display = "none";
+    navigator.clipboard.writeText(url).then(() => alert('링크를 복사했습니다: ' + url));
   }
-
-  const hw = Object.entries(s.housing).slice(0,5);
-  if (hw.length) makeDonut("housing-chart", hw.map(x=>x[0]), hw.map(x=>x[1]));
-  const ew = Object.entries(s.education).slice(0,5);
-  if (ew.length) makeDonut("education-chart", ew.map(x=>x[0]), ew.map(x=>x[1]));
-  const fw = Object.entries(s.family).slice(0,5);
-  if (fw.length) makeDonut("family-chart", fw.map(x=>x[0]), fw.map(x=>x[1]));
-  const jw = Object.entries(s.jobs).filter(j=>j[0]!=="무직").slice(0,5);
-  if (jw.length) makeBar("job-chart", jw.map(x=>x[0].length>8?x[0].slice(0,8)+"…":x[0]), jw.map(x=>x[1]));
-
-  const unp = pct(s.jobs, "무직");
-  const mp  = pct(s.marital, "배우자있음");
-  const th  = s.housing[0] ? Object.keys(s.housing)[0] : "아파트";
-  const insights = {
-    "20대": province + " " + ageGroup + " " + sex + " " + s.total + "명 분석. 무직 " + unp + "%. 지금 IRP와 청약통장을 시작하는 것이 10년 후 자산 격차의 핵심이에요.",
-    "30대": province + " " + ageGroup + " " + sex + " " + s.total + "명 분석. 무직 " + unp + "%, 기혼 " + mp + "%. 내집마련과 노후 준비를 동시에 시작해야 하는 골든타임이에요.",
-    "40대": province + " " + ageGroup + " " + sex + " " + s.total + "명 분석. 무직 " + unp + "%. 보험 리모델링과 IRP 납입 최대화가 지금 가장 중요해요.",
-    "50대": province + " " + ageGroup + " " + sex + " " + s.total + "명 분석. 무직 " + unp + "%. 퇴직금 IRP 이전과 건강보험료 절감이 핵심이에요.",
-    "60대": province + " " + ageGroup + " " + sex + " " + s.total + "명 분석. 무직 " + unp + "%. 연금 최적화와 의료비 대비가 가장 중요한 시기예요.",
-    "70대이상": province + " " + ageGroup + " " + sex + " " + s.total + "명 분석. 의료비와 상속 준비가 핵심이에요.",
-  };
-  document.getElementById("ai-text").textContent = insights[ageGroup] || insights["40대"];
-
-  showCard(currentInput);
-
-  const p = new URLSearchParams({ age, sex, province, marital });
-  document.getElementById("share-url").value = location.origin + "/my-persona?" + p.toString();
-
-  const recGroup = ["60대","70대이상"].includes(ageGroup) ? "50대" : ageGroup;
-  const items = RECS[recGroup] || RECS["30대"];
-  document.getElementById("recommend-grid").innerHTML = items.map(r =>
-    '<a href="' + r.url + '" class="recommend-card"><div class="emoji">' + r.emoji + '</div><h4>' + r.title + '</h4><p>' + r.desc + '</p></a>'
-  ).join("");
-
-  document.getElementById("result").scrollIntoView({ behavior: "smooth" });
 }
 
+/* ══ 토글 ══ */
+function toggleDetail() {
+  const body = document.getElementById('detail-body');
+  const btn  = document.getElementById('detail-toggle');
+  const lbl  = document.getElementById('detail-label');
+  if (!body) return;
+  const open = body.classList.toggle('open');
+  if (btn) btn.classList.toggle('open', open);
+  if (lbl) lbl.textContent = open ? '📊 상세 통계 닫기' : '📊 상세 통계 보기';
+}
+
+function toggleStory() {
+  const more = document.getElementById('story-more');
+  const btn  = document.getElementById('story-more-btn');
+  if (!more) return;
+  const open = more.classList.toggle('open');
+  if (btn) btn.textContent = open ? '접기 ▲' : '더보기 ▼';
+}
+
+/* ══ resetForm ══ */
+function resetForm() {
+  INPUTS.age = ''; INPUTS.sex = ''; INPUTS.province = ''; INPUTS.marital = '';
+  const ageEl = document.getElementById('age');
+  if (ageEl) ageEl.value = '';
+  document.querySelectorAll('.step-btn-option').forEach(b => b.classList.remove('selected'));
+  destroyCharts();
+  const result  = document.getElementById('result');
+  const loading = document.getElementById('loading');
+  const hero    = document.getElementById('hero');
+  if (result)  result.style.display  = 'none';
+  if (loading) loading.style.display = 'none';
+  if (hero)    hero.style.display    = '';
+  const preview = document.getElementById('preview-section');
+  if (preview) preview.style.display = '';
+  goStep(1);
+}
+
+/* ══ URL 파라미터 자동 분석 ══ */
 function initFromUrl() {
   const p = new URLSearchParams(location.search);
-  if (!p.get("age")) return;
-  if (p.get("age")) document.getElementById("age").value = p.get("age");
-  if (p.get("sex")) document.getElementById("sex").value = p.get("sex");
-  if (p.get("province")) document.getElementById("province").value = p.get("province");
-  if (p.get("marital")) document.getElementById("marital").value = p.get("marital");
-  analyze();
+  const age = p.get('age'), sex = p.get('sex'),
+        province = p.get('province'), marital = p.get('marital');
+  if (!age || !sex || !province) return;
+  INPUTS.age = parseInt(age);
+  INPUTS.sex = sex;
+  INPUTS.province = province;
+  INPUTS.marital  = marital || '';
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById('step' + i);
+    if (el) el.classList.remove('active');
+  }
+  const hero = document.getElementById('hero');
+  if (hero) hero.style.display = 'none';
+  runAnalyze();
 }
 
-document.getElementById("analyze-btn").addEventListener("click", analyze);
-initFromUrl();
+/* ══ 초기화 ══ */
+document.addEventListener('DOMContentLoaded', () => {
+  /* 카카오 SDK 초기화 */
+  if (window.Kakao && !window.Kakao.isInitialized()) {
+    window.Kakao.init('8ee60344ebc6252b953d28de31bf5dac');
+  }
+  /* 히어로 배경: CSS에서 직접 처리 */
+  /* 히어로 카피 로테이션 시작 */
+  rotateHero();
+  setInterval(rotateHero, 3500);
+  /* URL 파라미터 있으면 자동 분석, 없으면 히어로만 표시 */
+  const p = new URLSearchParams(location.search);
+  if (p.get('age')) {
+    initFromUrl();
+  }
+});
 </script>
 </body>
 </html>

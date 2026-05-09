@@ -853,8 +853,8 @@ async function runAnalyze() {
     window._personaProvince = String(province);
     window._personaMarital  = String(marital);
     window._personaShareUrl = shareUrl;
-    /* URL을 /persona/{slug}/ 로 교체 → 카카오 OG 스크랩 정상 동작 */
-    history.replaceState(null, '', shareUrl);
+    /* /persona/{slug}/ 로 이동 → 풍부한 결과 페이지 */
+    window.location.href = shareUrl;
 
     /* 금융 추천 */
     renderRecs(age);

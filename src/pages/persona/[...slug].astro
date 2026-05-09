@@ -425,6 +425,28 @@ const jsonLd = JSON.stringify({
   </div>
 <script is:inline>
 const _shareUrl = window.location.href;
+
+/* 혼인상태 파라미터로 페르소나 타입 보정 */
+(function() {
+  const _marital = new URLSearchParams(location.search).get('marital') || '';
+  const _isDivorced = _marital.includes('이혼') || _marital.includes('사별');
+  const _isSingle   = _marital.includes('미혼');
+  const _pTypeEl    = document.querySelector('.ptype-name');
+  const _pDescEl    = document.querySelector('.ptype-desc');
+  const _pEmojiEl   = document.querySelector('.ptype-emoji');
+  if (!_pTypeEl) return;
+  const current = _pTypeEl.textContent || '';
+
+  if (_isDivorced && current === '패밀리 앵커') {
+    if (_pEmojiEl) _pEmojiEl.textContent = '🌿';
+    _pTypeEl.textContent = '새출발 탐색가';
+    if (_pDescEl) _pDescEl.textContent = '변화 속에서 새로운 삶을 설계 중인 사람';
+  } else if (_isSingle && current === '패밀리 앵커') {
+    if (_pEmojiEl) _pEmojiEl.textContent = '🎯';
+    _pTypeEl.textContent = '프리스타일 싱글';
+    if (_pDescEl) _pDescEl.textContent = '자유롭게 혼자만의 삶을 즐기는 사람';
+  }
+})();
 if (window.Kakao && !window.Kakao.isInitialized()) { window.Kakao.init('8ee60344ebc6252b953d28de31bf5dac'); }
 
 function shareKakao() {

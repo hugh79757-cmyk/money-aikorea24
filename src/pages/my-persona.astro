@@ -943,7 +943,13 @@ function shareKakao() {
         description: '700만 한국인 데이터로 분석한 나의 현실',
         imageUrl: 'https://persona.aikorea24.kr/og-default.png',
         link: { mobileWebUrl: url, webUrl: url }
-      }
+      },
+      buttons: [
+        {
+          title: '결과 보러가기',
+          link: { mobileWebUrl: url, webUrl: url }
+        }
+      ]
     });
   } else {
     navigator.clipboard.writeText(url).then(() => alert('카카오 SDK 미초기화. 링크를 복사했습니다.'));

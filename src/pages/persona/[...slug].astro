@@ -432,6 +432,15 @@ function shareKakao() {
       toast.style.display = 'flex';
       setTimeout(() => { toast.style.display = 'none'; }, 3000);
     }
+    /* 카카오톡 앱 열기 */
+    setTimeout(() => {
+      const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        window.location.href = 'kakaotalk://';
+      } else {
+        window.open('https://web.kakao.com', '_blank');
+      }
+    }, 500);
   }).catch(() => {
     prompt('링크를 복사해서 카카오톡에 붙여넣으세요', _shareUrl);
   });

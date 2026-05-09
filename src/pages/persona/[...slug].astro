@@ -176,9 +176,15 @@ const jsonLd = JSON.stringify({
     .ptype-desc{font-size:.92rem;opacity:.85}
     .card-wrap{display:flex;justify-content:center;margin-bottom:1.5rem}
     .card-img{border-radius:16px;box-shadow:0 4px 20px rgba(107,66,38,.2)}
-    .card-desk{width:100%;max-width:360px;aspect-ratio:1/2;object-fit:contain;display:none}
-    .card-mob{width:100%;max-width:400px;height:auto;display:block;object-fit:contain}
+    .card-desk{width:100%;max-width:600px;height:auto;object-fit:contain;display:none;border-radius:16px}
+    .card-mob{width:100%;height:auto;object-fit:contain;display:block;border-radius:16px}
     @media(min-width:768px){.card-desk{display:block}.card-mob{display:none}}
+    .share-encourage{text-align:center;color:#4B5563;font-size:.9rem;margin-bottom:.75rem}
+    .share-primary{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1rem}
+    .share-kakao-big{width:100%;background:#FEE500;color:#3D3D3D;font-size:1.1rem;font-weight:700;padding:1rem;border:none;border-radius:14px;cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:center;gap:.5rem}
+    .share-secondary{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+    .share-btn-sm{background:#FFFFFF;border:1.5px solid #E8D5C0;border-radius:12px;padding:.75rem .5rem;font-size:.88rem;font-weight:600;cursor:pointer;min-height:48px;color:#3D3D3D}
+    .share-btn-sm:hover{background:#FFF8EE}
     .stat-card{background:#FFFDF7;border-radius:20px;padding:1.5rem;box-shadow:0 4px 20px rgba(107,66,38,.08);margin-bottom:1.5rem;border:1px solid #F0DFC8}
     .stat-card h2{font-size:1rem;font-weight:700;margin-bottom:1.1rem;color:#6B4226}
     .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
@@ -241,8 +247,21 @@ const jsonLd = JSON.stringify({
 
     <!-- 카드 이미지 -->
     <div class="card-wrap">
-      <img class="card-img card-desk" src={cardUrl} alt={`${dr} ${ageGroup} ${sex} 페르소나 카드`} />
-      <img class="card-img card-mob"  src={mobCard} alt={`${dr} ${ageGroup} ${sex} 페르소나 카드`} />
+      <img class="card-img card-desk" src={cardUrl}  alt={`${dr} ${ageGroup} ${sex} 페르소나 카드`} />
+      <img class="card-img card-mob"  src={mobCard}  alt={`${dr} ${ageGroup} ${sex} 페르소나 카드`} />
+    </div>
+
+    <!-- 공유 버튼 -->
+    <p class="share-encourage">이 결과, 친구들도 맞는지 확인해보세요 👇</p>
+    <div class="share-primary">
+      <button class="share-kakao-big" onclick="shareKakao()">💬 카카오톡으로 공유하기</button>
+      <div id="kakao-toast" style="display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#FEE500;color:#1a1a1a;padding:14px 24px;border-radius:16px;font-size:15px;font-weight:600;align-items:center;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.25);text-align:center;max-width:300px;line-height:1.5;">
+        💬 링크가 복사됐어요!<br/><span style="font-weight:400;font-size:13px;">카카오톡 열고 붙여넣기 하세요</span>
+      </div>
+      <div class="share-secondary">
+        <button class="share-btn-sm" onclick="copyUrl()">🔗 링크 복사</button>
+        <button class="share-btn-sm" onclick="shareTwitter()">𝕏 공유</button>
+      </div>
     </div>
 
     <!-- KPI 그리드 -->
@@ -403,5 +422,31 @@ const jsonLd = JSON.stringify({
     </div>
 
   </div>
+<script is:inline>
+const _shareUrl = window.location.href;
+
+function shareKakao() {
+  navigator.clipboard.writeText(_shareUrl).then(() => {
+    const toast = document.getElementById('kakao-toast');
+    if (toast) {
+      toast.style.display = 'flex';
+      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+    }
+  }).catch(() => {
+    prompt('링크를 복사해서 카카오톡에 붙여넣으세요', _shareUrl);
+  });
+}
+
+function copyUrl() {
+  navigator.clipboard.writeText(_shareUrl).then(() => {
+    alert('링크가 복사됐습니다!');
+  });
+}
+
+function shareTwitter() {
+  const text = document.title;
+  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(_shareUrl));
+}
+</script>
 </body>
 </html>

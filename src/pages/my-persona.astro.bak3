@@ -839,12 +839,13 @@ async function runAnalyze() {
     generateCanvas(cardKey, copy.emoji + ' ' + copy.name);
 
     /* 공유 URL */
-    /* slug: 서울_남자_34 → 서울-남자-34 (persona 상세 페이지, OG 이미지 포함) */
-    const slug     = (province + '_' + sex + '_' + age).replace(/_/g, '-');
-    const shareUrl = location.origin + '/persona/' + encodeURIComponent(slug) + '/';
-    const shareEl  = document.getElementById('share-url');
+    const shareUrl = location.origin + '/my-persona?age=' + age
+      + '&sex=' + encodeURIComponent(sex)
+      + '&province=' + encodeURIComponent(province)
+      + '&marital=' + encodeURIComponent(marital);
+    const shareEl = document.getElementById('share-url');
     if (shareEl) shareEl.value = shareUrl;
-    /* 전역 보관 */
+    /* 전역 보관: shareKakao() 에서 URL 재조합용 */
     window._personaAge      = String(age);
     window._personaSex      = String(sex);
     window._personaProvince = String(province);

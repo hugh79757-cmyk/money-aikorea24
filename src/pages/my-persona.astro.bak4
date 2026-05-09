@@ -850,8 +850,6 @@ async function runAnalyze() {
     window._personaProvince = String(province);
     window._personaMarital  = String(marital);
     window._personaShareUrl = shareUrl;
-    /* URL을 /persona/{slug}/ 로 교체 → 카카오 OG 스크랩 정상 동작 */
-    history.replaceState(null, '', shareUrl);
 
     /* 금융 추천 */
     renderRecs(age);
@@ -955,10 +953,20 @@ function shareKakao() {
   const title  = copyEl?.textContent?.trim() || '나와 같은 한국인은 어떻게 살까?';
 
   if (window.Kakao && window.Kakao.isInitialized()) {
-    /* sendScrap: 카카오가 직접 URL 스크랩 → OG 이미지/제목 자동 반영, 링크 권한 문제 없음 */
-    window.Kakao.Share.sendScrap({
-      requestUrl: url,
-      templateArgs: {}
+    window.Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: title,
+        description: '700만 한국인 데이터로 분석한 나의 현실',
+        imageUrl: 'https://persona.aikorea24.kr/og-default.png',
+        link: { mobileWebUrl: url, webUrl: url }
+      },
+      buttons: [
+        {
+          title: '결과 보러가기',
+          link: { mobileWebUrl: url, webUrl: url }
+        }
+      ]
     });
   } else {
     navigator.clipboard.writeText(url).then(() => alert('링크를 복사했습니다: ' + url));

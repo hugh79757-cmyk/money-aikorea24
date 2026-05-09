@@ -20,7 +20,7 @@
     body { font-family: 'Pretendard', -apple-system, sans-serif; background: #F7F3EA; color: #3D3D3D; font-size: 17px; line-height: 1.8; }
     /* HERO */
     .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem 1rem 4rem; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: .18; }
+    .hero-bg { position: absolute; inset: 0; background: url('/cards/%EC%84%9C%EC%9A%B8_%EB%82%A8%EC%9E%90_35.jpg') center/cover no-repeat; opacity: .18; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,248,238,.85) 0%, rgba(255,248,238,.97) 100%); }
     .hero-content { position: relative; z-index: 2; max-width: 640px; width: 100%; }
     .hero-badge { display: inline-block; background: #D97706; color: #fff; font-size: .75rem; font-weight: 700; letter-spacing: .08em; padding: .3rem .9rem; border-radius: 99px; margin-bottom: 1rem; }
@@ -1009,11 +1009,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.Kakao && !window.Kakao.isInitialized()) {
     window.Kakao.init('YOUR_KAKAO_KEY');
   }
-  /* 히어로 배경 이미지 JS 설정 (한글 파일명 인코딩 처리) */
-  const heroBgEl = document.querySelector('.hero-bg');
-  if (heroBgEl) {
-    heroBgEl.style.backgroundImage = "url('/cards/서울_남자_35.jpg')";
-  }
+  /* 히어로 배경: CSS에서 직접 처리 */
   /* 히어로 카피 로테이션 시작 */
   rotateHero();
   setInterval(rotateHero, 3500);

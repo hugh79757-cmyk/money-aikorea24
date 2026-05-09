@@ -280,6 +280,9 @@ import Header from '../components/Header.astro';
     <p class="share-encourage">이 결과, 친구들도 맞는지 확인해보세요 👇</p>
     <div class="share-primary">
       <button class="share-kakao-big" onclick="shareKakao()">💬 카카오톡으로 공유하기</button>
+      <div id="kakao-toast" style="display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:12px 20px;border-radius:12px;font-size:14px;align-items:center;gap:8px;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+        🔗 링크 복사 완료! 카카오톡에 붙여넣으세요
+      </div>
       <div class="share-secondary">
         <button class="share-btn-sm" onclick="downloadCard()">📥 이미지 저장</button>
         <button class="share-btn-sm" onclick="copyUrl()">🔗 링크 복사</button>
@@ -938,31 +941,27 @@ function shareTwitter() {
 }
 
 function shareKakao() {
-  /* ── URL 재생성: input.value 가 비어있을 때 location.href 대신 파라미터를 직접 조합 ── */
-  const p = new URLSearchParams(location.search);
-  const age      = p.get('age')      || window._personaAge      || '';
-  const sex      = p.get('sex')      || window._personaSex      || '';
-  const province = p.get('province') || window._personaProvince || '';
-  const marital  = p.get('marital')  || window._personaMarital  || '';
-
-  /* 우선순위: 전역저장 URL > share-url input > location.href */
   const url = window._personaShareUrl
     || document.getElementById('share-url')?.value
     || location.href;
-  console.log('[shareKakao] 공유 URL:', url);
 
-  const copyEl = document.getElementById('copy-text');
-  const title  = copyEl?.textContent?.trim() || '나와 같은 한국인은 어떻게 살까?';
-
-  if (window.Kakao && window.Kakao.isInitialized()) {
-    /* sendScrap: 카카오가 직접 URL 스크랩 → OG 이미지/제목 자동 반영, 링크 권한 문제 없음 */
-    window.Kakao.Share.sendScrap({
-      requestUrl: url,
-      templateArgs: {}
-    });
-  } else {
-    navigator.clipboard.writeText(url).then(() => alert('링크를 복사했습니다: ' + url));
-  }
+  navigator.clipboard.writeText(url).then(() => {
+    const toast = document.getElementById('kakao-toast');
+    if (toast) {
+      toast.style.display = 'flex';
+      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+    }
+    setTimeout(() => {
+      const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        location.href = 'kakaotalk://';
+      } else {
+        window.open('https://web.kakao.com', '_blank');
+      }
+    }, 500);
+  }).catch(() => {
+    prompt('아래 링크를 복사해서 카카오톡에 붙여넣으세요', url);
+  });
 }
 
 /* ══ 토글 ══ */

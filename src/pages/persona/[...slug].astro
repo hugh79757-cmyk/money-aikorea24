@@ -219,6 +219,7 @@ const jsonLd = JSON.stringify({
     .persona-item{background:#FFF8EE;border-left:4px solid #E8A87C;border-radius:0 12px 12px 0;padding:.9rem 1.1rem;margin-bottom:.75rem;font-size:.88rem;line-height:1.75;color:#3D3D3D;font-style:italic}
     @media(max-width:600px){.grid4{grid-template-columns:repeat(2,1fr)}.rel-grid{grid-template-columns:1fr}.hero h1{font-size:1.35rem}}
   </style>
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -424,27 +425,33 @@ const jsonLd = JSON.stringify({
   </div>
 <script is:inline>
 const _shareUrl = window.location.href;
+if (window.Kakao && !window.Kakao.isInitialized()) { window.Kakao.init('8ee60344ebc6252b953d28de31bf5dac'); }
 
 function shareKakao() {
-  const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
-
-  /* 1. 클릭 직후 즉시 앱 열기 (사용자 제스처 컨텍스트 유지) */
-  if (isMobile) {
-    window.location.href = 'kakaotalk://';
+  if (window.Kakao && window.Kakao.isInitialized()) {
+    window.Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: document.title,
+        description: '700만 한국인 데이터로 분석한 나의 현실',
+        imageUrl: document.querySelector('meta[property="og:image"]')?.content || 'https://persona.aikorea24.kr/og-default.png',
+        link: { mobileWebUrl: _shareUrl, webUrl: _shareUrl }
+      },
+      buttons: [
+        { title: '결과 보러가기', link: { mobileWebUrl: _shareUrl, webUrl: _shareUrl } }
+      ]
+    });
   } else {
-    window.open('https://web.kakao.com', '_blank');
+    navigator.clipboard.writeText(_shareUrl).then(() => {
+      const toast = document.getElementById('kakao-toast');
+      if (toast) {
+        toast.style.display = 'flex';
+        setTimeout(() => { toast.style.display = 'none'; }, 3000);
+      }
+    }).catch(() => {
+      prompt('링크를 복사해서 카카오톡에 붙여넣으세요', _shareUrl);
+    });
   }
-
-  /* 2. 동시에 클립보드 복사 + 토스트 */
-  navigator.clipboard.writeText(_shareUrl).then(() => {
-    const toast = document.getElementById('kakao-toast');
-    if (toast) {
-      toast.style.display = 'flex';
-      setTimeout(() => { toast.style.display = 'none'; }, 3000);
-    }
-  }).catch(() => {
-    prompt('링크를 복사해서 카카오톡에 붙여넣으세요', _shareUrl);
-  });
 }
 
 function copyUrl() {

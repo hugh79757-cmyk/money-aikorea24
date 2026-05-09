@@ -6,9 +6,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>나와 같은 한국인은 어떻게 살까? | AI코리아24 머니</title>
+  <title>나와 같은 한국인은 어떻게 살까? | 한국인 페르소나</title>
   <meta name="description" content="나이·성별·지역·혼인상태를 입력하면 700만 한국인 데이터로 나를 한 문장으로 설명해드립니다." />
-  <meta property="og:title" content="나와 같은 한국인은 어떻게 살까?" />
+  <meta property="og:title" content="나와 같은 한국인은 어떻게 살까? | 한국인 페르소나" />
   <meta property="og:description" content="700만 한국인 데이터로 분석하는 나의 현실" />
   <meta property="og:image" content="https://persona.aikorea24.kr/og-default.png" />
   <link rel="canonical" href="https://persona.aikorea24.kr/my-persona" />
@@ -20,7 +20,7 @@
     body { font-family: 'Pretendard', -apple-system, sans-serif; background: #F7F3EA; color: #3D3D3D; font-size: 17px; line-height: 1.8; }
     /* HERO */
     .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem 1rem 4rem; overflow: hidden; }
-    .hero-bg { position: absolute; inset: 0; background: url('/cards/%EC%84%9C%EC%9A%B8_%EB%82%A8%EC%9E%90_35.jpg') center/cover no-repeat; opacity: .18; }
+    .hero-bg { position: absolute; inset: 0; background: url('/cards/서울_남자_35.jpg') center/cover no-repeat; opacity: .18; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,248,238,.85) 0%, rgba(255,248,238,.97) 100%); }
     .hero-content { position: relative; z-index: 2; max-width: 640px; width: 100%; }
     .hero-badge { display: inline-block; background: #D97706; color: #fff; font-size: .75rem; font-weight: 700; letter-spacing: .08em; padding: .3rem .9rem; border-radius: 99px; margin-bottom: 1rem; }
@@ -891,7 +891,7 @@ function generateCanvas(key, copyText) {
     lines.forEach((l, i) => { ctx.fillText(l, 540, startY + i * lineH); });
     ctx.font = '36px sans-serif';
     ctx.fillStyle = 'rgba(255,255,255,0.7)';
-    ctx.fillText('persona.aikorea24.kr', 540, 980);
+    ctx.fillText('한국인 페르소나 · persona.aikorea24.kr', 540, 980);
     window._personaCanvas = canvas;
   };
   img.src = '/cards/' + encodeURIComponent(key) + '.jpg';

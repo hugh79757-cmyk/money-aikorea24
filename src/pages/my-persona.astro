@@ -1,5 +1,6 @@
 ---
 // src/pages/my-persona.astro v2-report-style
+import Header from '../components/Header.astro';
 ---
 <!DOCTYPE html>
 <html lang="ko">
@@ -19,7 +20,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Pretendard', -apple-system, sans-serif; background: #F7F3EA; color: #3D3D3D; font-size: 17px; line-height: 1.8; }
     /* HERO */
-    .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem 1rem 4rem; overflow: hidden; }
+    .hero { position: relative; min-height: calc(100vh - 56px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem 1rem 4rem; overflow: hidden; }
     .hero-bg { position: absolute; inset: 0; overflow: hidden; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,248,238,.85) 0%, rgba(255,248,238,.97) 100%); }
     .hero-content { position: relative; z-index: 2; max-width: 640px; width: 100%; }
@@ -138,6 +139,7 @@
   </style>
 </head>
 <body>
+  <Header />
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-bg"><img src="/cards/서울_남자_35.jpg" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;opacity:.18;display:block;" /></div>

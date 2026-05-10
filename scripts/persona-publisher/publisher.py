@@ -77,7 +77,7 @@ def run():
             print(f"  [step5] 썸네일: {os.path.basename(thumb_path)}")
 
             # STEP 6: 엔티티 링크 삽입
-            transformed = entity_injector.inject(transformed, category)
+            transformed = entity_injector.inject(transformed, category, current_slug=slug)
             print(f"  [step6] 엔티티 주석 삽입")
 
             # STEP 7: blog/ 복사

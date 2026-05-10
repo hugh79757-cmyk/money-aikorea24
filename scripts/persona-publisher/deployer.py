@@ -45,7 +45,9 @@ def build_and_deploy(count: int) -> bool:
     # wrangler pages deploy
     result = subprocess.run(
         ["npx", "wrangler", "pages", "deploy", "dist/",
-         "--project-name", "money-aikorea24"],
+         "--project-name", "money-aikorea24",
+         "--commit-dirty=true",
+         "--commit-message=feat: auto publish new posts"],
         cwd=PROJECT_DIR,
         capture_output=True,
         text=True,

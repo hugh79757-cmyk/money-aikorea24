@@ -6,6 +6,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import JsonLd from '../components/JsonLd.astro';
 import AiTip from '../components/AiTip.astro';
+import type { CollectionEntry } from 'astro:content';
 import Disclaimer from '../components/Disclaimer.astro';
 
 interface Props {
@@ -17,6 +18,8 @@ interface Props {
   tags?: string[];
   collection?: string;
   category?: string;
+  relatedPosts?: CollectionEntry<'blog'>[];
+  tocHeadings?: { depth: number; slug: string; text: string }[];
 }
 
 const {
@@ -28,6 +31,8 @@ const {
   tags = [],
   collection = '',
   category: categoryProp = '',
+  relatedPosts = [],
+  tocHeadings = [],
 } = Astro.props;
 
 const FINANCE_COLLECTIONS = ['insurance', 'invest', 'loan', 'tax'];
@@ -192,6 +197,98 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
         font-weight: 600;
       }
 
+      /* ── 목차 (TOC) ── */
+      .toc-box {
+        margin: 1.5rem 0 2rem;
+        padding: 1.1rem 1.4rem;
+        background: #F0F9FF;
+        border: 1.5px solid #BAE6FD;
+        border-radius: 14px;
+      }
+      .toc-box summary {
+        font-size: .92rem;
+        font-weight: 700;
+        color: #1E3A5F;
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: .4rem;
+      }
+      .toc-box summary::-webkit-details-marker { display: none; }
+      .toc-list {
+        margin: .8rem 0 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: .3rem;
+      }
+      .toc-list li a {
+        font-size: .85rem;
+        color: #0369A1;
+        text-decoration: none;
+        line-height: 1.5;
+        display: block;
+        transition: color .15s;
+      }
+      .toc-list li a:hover { color: #1E3A5F; text-decoration: underline; }
+      .toc-list li.depth-3 { padding-left: 1rem; }
+      .toc-list li.depth-3 a { color: #4B83B5; font-size: .82rem; }
+
+      /* ── 관련 글 ── */
+      .related-section {
+        margin: 2rem 0 1.5rem;
+      }
+      .related-section h3 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #1E3A5F;
+        margin-bottom: 1rem;
+        padding-bottom: .5rem;
+        border-bottom: 2px solid #E5E0D8;
+      }
+      .related-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: .75rem;
+      }
+      .related-card {
+        display: block;
+        padding: 1rem 1.2rem;
+        background: #fff;
+        border: 1px solid #E5E0D8;
+        border-radius: 12px;
+        text-decoration: none;
+        color: inherit;
+        transition: transform .15s, box-shadow .15s;
+        box-shadow: 0 1px 4px rgba(0,0,0,.05);
+      }
+      .related-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(0,0,0,.10);
+      }
+      .related-card-title {
+        font-size: .95rem;
+        font-weight: 700;
+        color: #1E3A5F;
+        margin-bottom: .3rem;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .related-card-desc {
+        font-size: .82rem;
+        color: #6B7280;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
       /* ── zodiac 링크 카드 ── */
       .zodiac-section {
         margin: 2.5rem 0 1.5rem;
@@ -271,7 +368,36 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
             <hr />
           </div>
 
+          {tocHeadings.length > 2 && (
+            <details class="toc-box" open>
+              <summary>📋 목차 보기</summary>
+              <ul class="toc-list">
+                {tocHeadings.map((h) => (
+                  <li class={`depth-${h.depth}`}>
+                    <a href={`#${h.slug}`}>{h.text}</a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
+
           <slot />
+
+          {relatedPosts.length > 0 && (
+            <div class="related-section">
+              <h3>📌 관련 글 더 보기</h3>
+              <div class="related-grid">
+                {relatedPosts.map((p) => (
+                  <a class="related-card" href={`/blog/${p.id}/`}>
+                    <div class="related-card-title">{p.data.title}</div>
+                    {p.data.description && (
+                      <div class="related-card-desc">{p.data.description}</div>
+                    )}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
 
           <!-- 광고 -->
           <ins class="adsbygoogle"

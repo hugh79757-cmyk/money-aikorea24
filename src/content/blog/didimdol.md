@@ -8,3 +8,5 @@ pubDate: 2026-04-21
 ---
 
 샘플 글입니다.
+
+<!-- persona-entity: loan -->

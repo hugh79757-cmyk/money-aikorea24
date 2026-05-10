@@ -16,7 +16,7 @@ interface Props {
 }
 
 const { post, allPosts } = Astro.props;
-const { Content, headings } = await render(post);
+const { Content } = await render(post);
 
 const category = post.data.category ?? 'general';
 
@@ -29,11 +29,8 @@ const relatedPosts = allPosts
     return db - da;
   })
   .slice(0, 3);
-
-// h2, h3만 목차에 포함
-const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
 
-<BlogPost {...post.data} collection="blog" category={category} relatedPosts={relatedPosts} tocHeadings={tocHeadings}>
+<BlogPost {...post.data} collection="blog" category={category} relatedPosts={relatedPosts}>
   <Content />
 </BlogPost>

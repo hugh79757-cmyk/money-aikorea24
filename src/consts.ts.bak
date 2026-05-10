@@ -8,5 +8,3 @@ export const COLLECTIONS = [
   { id: 'loan',      label: '대출·부동산', desc: '주담대, 전세대출, 청약, 부동산 시세 분석' },
   { id: 'tax',       label: '세금·절약',   desc: '종합소득세, 건강보험, 정부지원금 가이드' },
 ] as const;
-
-export type CategoryId = typeof COLLECTIONS[number]['id'];

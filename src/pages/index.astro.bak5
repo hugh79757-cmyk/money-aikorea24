@@ -6,20 +6,22 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_TITLE, SITE_DESCRIPTION, COLLECTIONS } from '../consts';
 import { getCollection } from 'astro:content';
 
-// blog 컬렉션 단일 쿼리 후 category 필드로 분류
-const blogPosts = await getCollection('blog', ({ data }) => !data.draft);
-
-const allPosts = COLLECTIONS.flatMap((col) => {
-  return blogPosts
-    .filter((p) => p.data.category === col.id)
-    .sort((a, b) => {
-      const da = a.data.pubDate ? new Date(a.data.pubDate).valueOf() : 0;
-      const db = b.data.pubDate ? new Date(b.data.pubDate).valueOf() : 0;
-      return db - da;
+// 각 컬렉션에서 최신 3개씩 수집
+const allPosts = (
+  await Promise.all(
+    COLLECTIONS.map(async (col) => {
+      const posts = await getCollection(col.id, ({ data }) => !data.draft);
+      return posts
+        .sort((a, b) => {
+          const da = a.data.pubDate ? new Date(a.data.pubDate).valueOf() : 0;
+          const db = b.data.pubDate ? new Date(b.data.pubDate).valueOf() : 0;
+          return db - da;
+        })
+        .slice(0, 3)
+        .map((p) => ({ ...p, collectionId: col.id, collectionLabel: col.label }));
     })
-    .slice(0, 3)
-    .map((p) => ({ ...p, collectionId: col.id, collectionLabel: col.label }));
-});
+  )
+).flat();
 
 // pubDate 최신순 정렬
 allPosts.sort((a, b) => {

@@ -16,7 +16,6 @@ interface Props {
   heroImage?: string;
   tags?: string[];
   collection?: string;
-  category?: string;
 }
 
 const {
@@ -27,11 +26,10 @@ const {
   heroImage,
   tags = [],
   collection = '',
-  category: categoryProp = '',
 } = Astro.props;
 
 const FINANCE_COLLECTIONS = ['insurance', 'invest', 'loan', 'tax'];
-const isFinance = FINANCE_COLLECTIONS.includes(collection) || FINANCE_COLLECTIONS.includes(categoryProp);
+const isFinance = FINANCE_COLLECTIONS.includes(collection);
 
 const datePublished = pubDate ? pubDate.toISOString() : new Date().toISOString();
 
@@ -43,8 +41,7 @@ const categoryLabel: Record<string, string> = {
   nomad:     '디지털노마드',
   blog:      '블로그',
 };
-const resolvedCategory = categoryProp || collection;
-const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
+const category = categoryLabel[collection] ?? collection;
 ---
 
 <html lang="ko">
@@ -160,38 +157,6 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
         .prose :global(p)  { font-size: 1rem; }
       }
 
-      /* ── 엔티티 카드 ── */
-      .entity-card {
-        margin: 2rem 0 1.5rem;
-        padding: 1.25rem 1.4rem;
-        background: linear-gradient(135deg, #F0F9FF, #E0F2FE);
-        border: 1.5px solid #BAE6FD;
-        border-radius: 16px;
-        text-decoration: none;
-        display: block;
-        transition: transform .15s, box-shadow .15s;
-      }
-      .entity-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
-      .entity-card-label {
-        font-size: .72rem;
-        font-weight: 700;
-        color: #0369A1;
-        letter-spacing: .06em;
-        margin-bottom: .5rem;
-      }
-      .entity-card-stat {
-        font-size: 1rem;
-        font-weight: 700;
-        color: #1E3A5F;
-        margin-bottom: .4rem;
-        line-height: 1.4;
-      }
-      .entity-card-cta {
-        font-size: .82rem;
-        color: #0369A1;
-        font-weight: 600;
-      }
-
       /* ── zodiac 링크 카드 ── */
       .zodiac-section {
         margin: 2.5rem 0 1.5rem;
@@ -272,19 +237,6 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
           </div>
 
           <slot />
-
-          {isFinance && (
-            <a class="entity-card" href="/my-persona">
-              <div class="entity-card-label">📊 한국인 페르소나 데이터</div>
-              <div class="entity-card-stat">
-                {resolvedCategory === 'loan' && '서울 30대 남성 중 전세 거주 비율 62%'}
-                {resolvedCategory === 'insurance' && '40대 여성 실손보험 가입률 78%'}
-                {resolvedCategory === 'invest' && '30대 직장인 IRP·ISA 동시 가입률 41%'}
-                {resolvedCategory === 'tax' && '프리랜서 중 종합소득세 직접 신고 비율 63%'}
-              </div>
-              <div class="entity-card-cta">내 페르소나 확인하기 →</div>
-            </a>
-          )}
 
           <AiTip topic={title} />
 

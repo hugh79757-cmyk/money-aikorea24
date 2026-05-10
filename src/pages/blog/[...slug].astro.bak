@@ -15,6 +15,6 @@ const post = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPost {...post.data} collection="blog" category={post.data.category ?? "general"}>
+<BlogPost {...post.data} collection="blog">
   <Content />
 </BlogPost>

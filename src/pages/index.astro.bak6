@@ -62,7 +62,7 @@ const recentPosts = allPosts.slice(0, 6);
 
       <section class="categories">
         {COLLECTIONS.map((col) => (
-          <a href={"/blog/category/" + col.id + "/"} class="cat-card">
+          <a href={"/" + col.id + "/"} class="cat-card">
             <strong>{col.label}</strong>
             <span>{col.desc}</span>
           </a>
@@ -77,7 +77,7 @@ const recentPosts = allPosts.slice(0, 6);
         <ul>
           {recentPosts.map((post) => (
             <li>
-              <a href={"/blog/" + post.id + "/"}>
+              <a href={"/" + post.collectionId + "/" + post.id + "/"}>
                 <div class="card-top">
                   <span class="badge">{post.collectionLabel}</span>
                   {post.data.pubDate && (

@@ -98,14 +98,14 @@ const desc     = `${dr} ${ageGroup} ${sex} ${s.total}명 분석 — 아파트 ${
 
 /* 연령대별 관련 링크 */
 const relLinks = ageNum < 30 || ageRaw === '20대' ? [
-  { title:'청년 재테크 첫걸음', url:'/finance/청년-재테크-시작하기/', emoji:'💰' },
-  { title:'청년 전세 지원', url:'/loan/청년-전세대출/', emoji:'🏠' },
+  { title:'청년 재테크 첫걸음', url:'/blog/category/invest/', emoji:'💰' },
+  { title:'청년 전세 지원', url:'/blog/category/loan/', emoji:'🏠' },
 ] : ageNum < 50 || ageRaw === '30대' || ageRaw === '40대' ? [
-  { title:'내집마련 전략', url:'/loan/디딤돌-특례보금자리/', emoji:'🏡' },
-  { title:'IRP·연금저축 절세', url:'/tax/연말정산-환급-극대화-2026/', emoji:'📈' },
+  { title:'내집마련 전략', url:'/blog/디딤돌대출-자격조건-소득-한도-금리/', emoji:'🏡' },
+  { title:'IRP·연금저축 절세', url:'/blog/연말정산-환급-극대화-2026/', emoji:'📈' },
 ] : [
-  { title:'퇴직 준비 플랜', url:'/finance/퇴직금-연금-수령/', emoji:'🧓' },
-  { title:'건강보험 절약', url:'/tax/건강보험료-피부양자-조건-2026/', emoji:'🏥' },
+  { title:'퇴직 준비 플랜', url:'/blog/category/invest/', emoji:'🧓' },
+  { title:'건강보험 절약', url:'/blog/건강보험료-피부양자-조건-2026/', emoji:'🏥' },
 ];
 
 /* 인사이트 */

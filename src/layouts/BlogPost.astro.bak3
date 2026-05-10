@@ -273,15 +273,6 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
 
           <slot />
 
-          <!-- 광고 -->
-          <ins class="adsbygoogle"
-            style="display:block; margin: 1.5rem 0;"
-            data-ad-client="ca-pub-5938862195544185"
-            data-ad-slot="8107272066"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-          <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
           {isFinance && (
             <a class="entity-card" href="/my-persona">
               <div class="entity-card-label">📊 한국인 페르소나 데이터</div>

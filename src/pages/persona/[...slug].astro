@@ -4,13 +4,14 @@ export async function getStaticPaths() {
   const path = await import('path');
   const raw  = fs.readFileSync(path.join(process.cwd(), 'public', 'persona-stats.json'), 'utf-8');
   const data = JSON.parse(raw);
+  const blogMatchData = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'public', 'blog-match.json'), 'utf-8'));
   return Object.entries(data).map(([key, stats]) => ({
     params: { slug: key.replace(/_/g, '-') },
-    props:  { key, stats }
+    props:  { key, stats, blogMatch: blogMatchData }
   }));
 }
 
-const { key, stats: s } = Astro.props;
+const { key, stats: s, blogMatch } = Astro.props;
 const [region, sex, ageRaw] = key.split('_');
 
 const regionMap: Record<string,string> = {
@@ -36,11 +37,15 @@ function topN(obj: Record<string,number>, n = 5) {
   return Object.entries(obj || {}).sort((a,b) => b[1]-a[1]).slice(0, n);
 }
 
+
 const aptPct  = pctOf(s.housing,   ['아파트']);
 const eduPct  = pctOf(s.education, ['4년제 대학교','대학원']);
 const marPct  = pctOf(s.marital,   ['배우자있음']);
 const unePct  = pctOf(s.jobs,      ['무직']);
 const sngPct  = pctOf(s.family,    ['혼자 거주','혼자 거주 (배우자 별거)']);
+const incomeData = (s as any).income ?? null;
+const incomeVal  = incomeData ? incomeData.income_employed : null;  // 취업자 기준 월소득(만원)
+const incomeEst  = incomeData ? incomeData.income_estimate : null;  // 전체(무직포함) 평균
 const parPct  = pctOf(s.family,    ['부모와 동거','어머니와 동거','아버지와 동거']);
 
 /* 페르소나 유형 판정 */
@@ -96,18 +101,15 @@ const ogImg    = `${SITE_URL}${cardUrl}`;
 const title    = `${dr} ${ageGroup} ${sex} · ${pType.name} | 한국인 페르소나`;
 const desc     = `${dr} ${ageGroup} ${sex} ${s.total}명 분석 — 아파트 ${aptPct}%, 대졸 ${eduPct}%, 기혼 ${marPct}%. 당신의 유형은 "${pType.name}".`;
 
-/* 연령대별 관련 링크 */
-const relLinks = ageNum < 30 || ageRaw === '20대' ? [
-  { title:'청년 재테크 첫걸음', url:'/blog/category/invest/', emoji:'💰' },
-  { title:'청년 전세 지원', url:'/blog/category/loan/', emoji:'🏠' },
-] : ageNum < 50 || ageRaw === '30대' || ageRaw === '40대' ? [
-  { title:'내집마련 전략', url:'/blog/디딤돌대출-자격조건-소득-한도-금리/', emoji:'🏡' },
-  { title:'IRP·연금저축 절세', url:'/blog/연말정산-환급-극대화-2026/', emoji:'📈' },
-] : [
-  { title:'퇴직 준비 플랜', url:'/blog/category/invest/', emoji:'🧓' },
-  { title:'건강보험 절약', url:'/blog/건강보험료-피부양자-조건-2026/', emoji:'🏥' },
-];
-
+/* 동적 블로그 매칭 */
+const relLinks = (() => {
+  const matched = blogMatch[pType.name] ?? blogMatch['한국인 평균형'] ?? [];
+  if (matched.length >= 4) return matched;
+  // fallback: 부족하면 한국인 평균형으로 채우기
+  const fallback = blogMatch['한국인 평균형'] ?? [];
+  const extra = fallback.filter(f => !matched.find(m => m.url === f.url));
+  return [...matched, ...extra].slice(0, 4);
+})();
 /* 인사이트 */
 const insight = ageNum < 30 || ageRaw === '20대'
   ? `${dr} ${ageGroup} ${sex}는 사회 진입 시기입니다. 청년도약계좌·ISA로 종잣돈을 만들고, 무직 비율이 ${unePct}%로 취업 준비가 중요한 시점입니다.`
@@ -197,6 +199,9 @@ const jsonLd = JSON.stringify({
     .kpi{background:#FFFDF7;border-radius:16px;padding:1.25rem 1rem;text-align:center;box-shadow:0 4px 16px rgba(107,66,38,.08);border:1px solid #F0DFC8}
     .kpi-val{font-size:2rem;font-weight:800;color:#6B4226}
     .kpi-label{font-size:.78rem;color:#8B7355;margin-top:.2rem}
+    .kpi-income{border-color:#C8E6C9;background:#F1F8E9}
+    .kpi-income .kpi-val{color:#2E7D32}
+    .kpi-badge{display:inline-block;font-size:.65rem;background:#E8F5E9;color:#388E3C;border-radius:4px;padding:1px 5px;margin-left:3px;vertical-align:middle}
     .bar-list{list-style:none}
     .bar-item{margin-bottom:1rem}
     .bar-header{display:flex;justify-content:space-between;margin-bottom:.3rem}
@@ -271,6 +276,12 @@ const jsonLd = JSON.stringify({
       <div class="kpi"><div class="kpi-val">{eduPct}%</div><div class="kpi-label">대졸 이상</div></div>
       <div class="kpi"><div class="kpi-val">{marPct}%</div><div class="kpi-label">기혼</div></div>
       <div class="kpi"><div class="kpi-val">{unePct}%</div><div class="kpi-label">{(ageNum >= 60 || ageRaw === '70대이상' || ageRaw === '60대') ? '은퇴·비경활' : '무직'}</div></div>
+      {incomeVal !== null && (
+        <div class="kpi kpi-income">
+          <div class="kpi-val">{incomeVal}<span style="font-size:1rem;font-weight:500">만원</span></div>
+          <div class="kpi-label">추정 월소득 <span class="kpi-badge">취업자 기준</span></div>
+        </div>
+      )}
     </div>
 
     <!-- 광고 1 -->

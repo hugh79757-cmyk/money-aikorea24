@@ -2,39 +2,21 @@
 
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import { defineConfig, fontProviders } from 'astro/config';
+import { defineConfig } from 'astro/config';
+import remarkGfm from 'remark-gfm';
 
 export default defineConfig({
-	site: 'https://persona.aikorea24.kr',
-	integrations: [
-		mdx(),
-		sitemap({
-			changefreq: 'weekly',
-			priority: 0.7,
-		}),
-	],
-	fonts: [
-		{
-			provider: fontProviders.local(),
-			name: 'Atkinson',
-			cssVariable: '--font-atkinson',
-			fallbacks: ['sans-serif'],
-			options: {
-				variants: [
-					{
-						src: ['./src/assets/fonts/atkinson-regular.woff'],
-						weight: 400,
-						style: 'normal',
-						display: 'swap',
-					},
-					{
-						src: ['./src/assets/fonts/atkinson-bold.woff'],
-						weight: 700,
-						style: 'normal',
-						display: 'swap',
-					},
-				],
-			},
-		},
-	],
+  site: 'https://persona.aikorea24.kr',
+  integrations: [
+    mdx({
+      remarkPlugins: [[remarkGfm, { singleTilde: false }]],
+    }),
+    sitemap({
+      changefreq: 'weekly',
+      priority: 0.7,
+    }),
+  ],
+  markdown: {
+    remarkPlugins: [[remarkGfm, { singleTilde: false }]],
+  },
 });

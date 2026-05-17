@@ -171,92 +171,52 @@ import Header from '../components/Header.astro';
     </div>
   </section>
 
-  <!-- STEP 1: 나이 -->
+  <!-- STEP 1: 나이+성별 -->
   <section class="step-section" id="step1">
     <div class="step-progress">
-      <div class="step-dot done" id="dot1"></div>
-      <div class="step-dot" id="dot2"></div>
-      <div class="step-dot" id="dot3"></div>
-      <div class="step-dot" id="dot4"></div>
+      <div class="step-dot done"></div>
+      <div class="step-dot"></div>
     </div>
     <p class="step-title">몇 살이세요?</p>
     <p class="step-sub">만 나이로 입력해주세요 (20~90)</p>
     <input class="step-num-input" type="number" id="age" min="20" max="90" placeholder="예: 35"
       onblur="const v=parseInt(this.value);if(v<20||isNaN(v))this.value=20;if(v>90)this.value=90;" />
-    <button class="step-next" onclick="goStep(2)">다음 →</button>
-  </section>
-
-  <!-- STEP 2: 성별 -->
-  <section class="step-section" id="step2">
-    <div class="step-progress">
-      <div class="step-dot done"></div>
-      <div class="step-dot done"></div>
-      <div class="step-dot"></div>
-      <div class="step-dot"></div>
-    </div>
-    <p class="step-title">성별을 선택하세요</p>
-    <p class="step-sub">통계 데이터 매칭에 사용됩니다</p>
+    <p class="step-title" style="margin-top:1.5rem">성별을 선택하세요</p>
     <div class="step-grid">
       <button class="step-btn-option" id="btn-남자" onclick="selectOption('sex','남자')">👨 남자</button>
       <button class="step-btn-option" id="btn-여자" onclick="selectOption('sex','여자')">👩 여자</button>
     </div>
-    <button class="step-next" onclick="goStep(3)">다음 →</button>
-    <button class="step-back" onclick="goStep(1)">← 이전</button>
+    <button class="step-next" onclick="goStep(2)">다음 →</button>
   </section>
-
-  <!-- STEP 3: 지역 -->
-  <section class="step-section" id="step3">
+  <!-- STEP 2: 지역 -->
+  <section class="step-section" id="step2">
     <div class="step-progress">
       <div class="step-dot done"></div>
       <div class="step-dot done"></div>
-      <div class="step-dot done"></div>
-      <div class="step-dot"></div>
     </div>
     <p class="step-title">거주 지역은?</p>
-    <p class="step-sub">현재 살고 계신 광역시·도를 선택하세요</p>
-    <div class="step-grid" id="province-grid">
-      <button class="step-btn-option" onclick="selectOption('province','서울')">서울</button>
-      <button class="step-btn-option" onclick="selectOption('province','경기')">경기</button>
-      <button class="step-btn-option" onclick="selectOption('province','인천')">인천</button>
-      <button class="step-btn-option" onclick="selectOption('province','부산')">부산</button>
-      <button class="step-btn-option" onclick="selectOption('province','대구')">대구</button>
-      <button class="step-btn-option" onclick="selectOption('province','광주')">광주</button>
-      <button class="step-btn-option" onclick="selectOption('province','대전')">대전</button>
-      <button class="step-btn-option" onclick="selectOption('province','울산')">울산</button>
-      <button class="step-btn-option" onclick="selectOption('province','세종')">세종</button>
-      <button class="step-btn-option" onclick="selectOption('province','강원')">강원</button>
-      <button class="step-btn-option" onclick="selectOption('province','충북')">충북</button>
-      <button class="step-btn-option" onclick="selectOption('province','충남')">충남</button>
-      <button class="step-btn-option" onclick="selectOption('province','전북')">전북</button>
-      <button class="step-btn-option" onclick="selectOption('province','전남')">전남</button>
-      <button class="step-btn-option" onclick="selectOption('province','경북')">경북</button>
-      <button class="step-btn-option" onclick="selectOption('province','경남')">경남</button>
-      <button class="step-btn-option" onclick="selectOption('province','제주')">제주</button>
+    <p class="step-sub">지역을 선택하면 바로 결과를 보여드립니다</p>
+    <div class="step-grid" id="province-grid" style="grid-template-columns:1fr 1fr 1fr;">
+      <button class="step-btn-option" onclick="selectProvince('서울')">서울</button>
+      <button class="step-btn-option" onclick="selectProvince('경기')">경기</button>
+      <button class="step-btn-option" onclick="selectProvince('인천')">인천</button>
+      <button class="step-btn-option" onclick="selectProvince('부산')">부산</button>
+      <button class="step-btn-option" onclick="selectProvince('대구')">대구</button>
+      <button class="step-btn-option" onclick="selectProvince('광주')">광주</button>
+      <button class="step-btn-option" onclick="selectProvince('대전')">대전</button>
+      <button class="step-btn-option" onclick="selectProvince('울산')">울산</button>
+      <button class="step-btn-option" onclick="selectProvince('세종')">세종</button>
+      <button class="step-btn-option" onclick="selectProvince('강원')">강원</button>
+      <button class="step-btn-option" onclick="selectProvince('충북')">충북</button>
+      <button class="step-btn-option" onclick="selectProvince('충남')">충남</button>
+      <button class="step-btn-option" onclick="selectProvince('전북')">전북</button>
+      <button class="step-btn-option" onclick="selectProvince('전남')">전남</button>
+      <button class="step-btn-option" onclick="selectProvince('경북')">경북</button>
+      <button class="step-btn-option" onclick="selectProvince('경남')">경남</button>
+      <button class="step-btn-option" onclick="selectProvince('제주')">제주</button>
     </div>
-    <button class="step-next" onclick="goStep(4)">다음 →</button>
-    <button class="step-back" onclick="goStep(2)">← 이전</button>
+    <button class="step-back" onclick="goStep(1)">← 이전</button>
   </section>
-
-  <!-- STEP 4: 혼인 -->
-  <section class="step-section" id="step4">
-    <div class="step-progress">
-      <div class="step-dot done"></div>
-      <div class="step-dot done"></div>
-      <div class="step-dot done"></div>
-      <div class="step-dot done"></div>
-    </div>
-    <p class="step-title">혼인 상태는?</p>
-    <p class="step-sub">현재 상태를 선택하세요</p>
-    <div class="step-grid" id="marital-grid">
-      <button class="step-btn-option" onclick="selectOption('marital','배우자있음')">💑 기혼</button>
-      <button class="step-btn-option" onclick="selectOption('marital','미혼')">🙋 미혼</button>
-      <button class="step-btn-option" onclick="selectOption('marital','이혼')">📝 이혼</button>
-      <button class="step-btn-option" onclick="selectOption('marital','사별')">🕊️ 사별</button>
-    </div>
-    <button class="step-next" onclick="runAnalyze()">분석하기 🔍</button>
-    <button class="step-back" onclick="goStep(3)">← 이전</button>
-  </section>
-
   <!-- LOADING -->
   <div id="loading">
     <div class="spinner"></div>
@@ -405,11 +365,9 @@ function goStep(n) {
     const age = parseInt(document.getElementById('age').value);
     if (!age || age < 20 || age > 90) { alert('나이를 올바르게 입력해주세요 (20~90)'); return; }
     INPUTS.age = age;
-    
+    if (!INPUTS.sex) { alert('성별을 선택해주세요'); return; }
   }
-  if (n === 3 && !INPUTS.sex) { alert('성별을 선택해주세요'); return; }
-  if (n === 4 && !INPUTS.province) { alert('지역을 선택해주세요'); return; }
-  for (let i = 1; i <= 4; i++) {
+  for (let i = 1; i <= 2; i++) {
     const el = document.getElementById('step' + i);
     if (el) el.classList.remove('active');
   }
@@ -419,6 +377,13 @@ function goStep(n) {
   if (target) { target.classList.add('active'); target.scrollIntoView({ behavior:'smooth', block:'start' }); }
 }
 
+function selectProvince(val) {
+  INPUTS.province = val;
+  document.querySelectorAll('#province-grid .step-btn-option').forEach(b => {
+    b.classList.toggle('selected', b.textContent.trim() === val);
+  });
+  setTimeout(() => runAnalyze(), 150);
+}
 function selectOption(field, val) {
   INPUTS[field] = val;
   const grid = field === 'sex' ? document.querySelectorAll('#step2 .step-btn-option')
@@ -511,8 +476,6 @@ const COPIES = [
     cond:(s,age,m) => m==='미혼' && age>=32 && pct(s.family,['1인가구'])>=35 },
   { name:'이혼 후 다시 시작하는 사람', emoji:'🌱',
     cond:(s,age,m) => m==='이혼' },
-  { name:'배우자 잃고 홀로 사는 사람', emoji:'🕊️',
-    cond:(s,age,m) => m==='사별' },
   { name:'지방에서 서울 부동산 구경하는 사람', emoji:'🏙️',
     cond:(s,age,m) => pct(s.housing,['아파트'])>=35 && age>=30 },
   { name:'평생 월급쟁이로 살아온 사람', emoji:'👔',

@@ -1,4 +1,5 @@
 ---
+import Footer from '../../components/Footer.astro';
 export async function getStaticPaths() {
   const fs   = await import('fs');
   const path = await import('path');
@@ -49,21 +50,20 @@ const incomeEst  = incomeData ? incomeData.income_estimate : null;  // 전체(�
 const topPct     = incomeData ? incomeData.top_percentile : null;   // 상위 백분위
 
 // "당신은..." 카피 생성
-function youAreText(n: number, trueText: string, falseText?: string): string {
-  const useFalse = falseText && n < 50;
-  const t = useFalse ? falseText! : trueText;
-  const pct = useFalse ? 100 - n : n;
-  if (pct >= 85) return `거의 확실히 ${t}습니다 (${pct}%)`;
-  if (pct >= 60) return `${pct}% 확률로 ${t}습니다`;
-  if (pct >= 40) return `절반 정도 확률로 ${t}습니다 (${pct}%)`;
-  if (pct >= 20) return `10명 중 ${Math.round(pct/10)}명이 ${t}습니다`;
-  return `드물게 ${t}습니다 (${pct}%)`;
+function youAreSentence(n: number, hi: string, lo: string): string {
+  const pct = n >= 50 ? n : 100 - n;
+  const txt = n >= 50 ? hi : lo;
+  if (pct >= 85) return `10명 중 9명은 ${txt} (${pct}%)`;
+  if (pct >= 60) return `${pct}% 확률로 ${txt}`;
+  if (pct >= 40) return `${pct}%가 ${txt}`;
+  if (pct >= 20) return `10명 중 ${Math.round(pct/10)}명만 ${txt}`;
+  return `${pct}% 정도가 ${txt}`;
 }
 const youAreItems = [
-  { emoji:'🏠', text: youAreText(aptPct, '아파트에 삽니', '아파트 외 주거형태에 삽니') },
-  { emoji:'🎓', text: youAreText(eduPct, '대학을 졸업했습니', '고졸 이하 학력입니') },
-  { emoji:'💍', text: youAreText(marPct, '결혼한 상태입니', '아직 미혼입니') },
-  { emoji:'💼', text: youAreText(100-unePct, '현재 일하고 있습니', '지금 일을 쉬고 있습니') },
+  { emoji:'🏠', text: youAreSentence(aptPct, '아파트에 살고 있어요', '아파트 외 주거형태에 살고 있어요') },
+  { emoji:'🎓', text: youAreSentence(eduPct, '대학을 졸업했어요', '고졸 이하 학력이에요') },
+  { emoji:'💍', text: youAreSentence(marPct, '결혼한 상태예요', '미혼이에요') },
+  { emoji:'💼', text: youAreSentence(100-unePct, '현재 일하고 있어요', '지금 일을 쉬고 있어요') },
 ];
 
 // KOSIS 직종별 월임금 (대분류 기준, 만원)
@@ -97,48 +97,59 @@ function detectType(): PType {
   const bigCity = ['서울','경기','인천','부산','대구'].includes(region);
   const nonMetro = !bigCity;
   const housePct = pctOf(s.housing, ['단독주택','주택 이외의 거처']);
+  const is20s = ageNum < 30 || ageRaw === '20대';
+  const is30s = (ageNum >= 30 && ageNum < 40) || ageRaw === '30대';
+  const is40s = (ageNum >= 40 && ageNum < 50) || ageRaw === '40대';
+  const is50s = (ageNum >= 50 && ageNum < 60) || ageRaw === '50대';
+  const is60up = ageNum >= 60 || ageRaw === '70대이상' || ageRaw === '60대';
 
-  // 60대 이상 — 연금·건강 챙기는 시기
-  if (ageNum >= 60 || ageRaw === '70대이상' || ageRaw === '60대') {
-    if (isMar) return { name:'배우자와 노후를 준비하는 사람', emoji:'🥇', desc:'연금·건강·자녀 독립을 동시에 챙기는 시기' };
+  // 60대 이상
+  if (is60up) {
+    if (isMar) return { name:'배우자와 노후를 보내는 사람', emoji:'🥇', desc:'연금·건강·손자녀를 동시에 챙기는 시기' };
     return { name:'혼자서 노후를 설계하는 사람', emoji:'🥇', desc:'내 속도로 인생 후반전을 사는 사람' };
   }
 
-  // 기혼 + 자녀 + 취업 → 워킹맘/워킹대디
-  if (famPct > 35 && isMar && !isUne) {
-    if (sex === '여자') return { name:'퇴근하면 두 번째 직장 시작되는 사람', emoji:'💪', desc:'아이·남편·직장 세 가지를 동시에 돌리는 사람' };
-    return { name:'월급날만 기다리며 버티는 가장', emoji:'💪', desc:'가족을 위해 오늘도 출근하는 사람' };
+  // 50대
+  if (is50s) {
+    if (isMar && !isUne) {
+      if (sex === '여자') return { name:'자식 다 키우고 이제야 내 시간 생긴 사람', emoji:'🌿', desc:'정년까지 몇 년, 연금까지 몇 년 계산하는 시기' };
+      return { name:'정년까지 버티며 노후 준비하는 사람', emoji:'🌿', desc:'퇴직금·연금·건강보험 세 가지 동시에 챙기는 사람' };
+    }
+    if (isMar && isUne) return { name:'자식 결혼시키고 홀가분해진 사람', emoji:'🌿', desc:'이제 내 노후를 위한 시간' };
+    return { name:'혼자서 단단하게 사는 사람', emoji:'🎯', desc:'남의 시선 신경 안 쓰고 내 삶 사는 사람' };
   }
 
-  // 기혼 + 자녀 + 무직 → 전업/육아
-  if (famPct > 35 && isMar && isUne) {
-    return { name:'애 재우고 나만의 시간 30분인 사람', emoji:'🏠', desc:'경력단절과 육아 사이 어딘가에 있는 사람' };
+  // 40대
+  if (is40s) {
+    if (famPct > 35 && isMar && !isUne) {
+      if (sex === '여자') return { name:'점심시간에 어린이집에서 전화 오는 사람', emoji:'💪', desc:'아이·직장·대출 세 가지를 동시에 돌리는 사람' };
+      return { name:'대출 갚으며 아이 학원비 내는 사람', emoji:'💪', desc:'가족을 위해 오늘도 출근하는 사람' };
+    }
+    if (famPct > 35 && isMar && isUne) return { name:'아이 학교 보내고 재취업 고민하는 사람', emoji:'🏠', desc:'경력 공백을 어떻게 채울지 고민 중인 사람' };
+    if (bigCity && aptPct > 45) return { name:'내 집 마련하고 대출 상환 중인 사람', emoji:'🏙️', desc:'가계부 앱 두 개 쓰는 사람' };
+    return { name:'연말정산 꼼꼼히 챙기는 40대', emoji:'💼', desc:'IRP·연금저축 가입하고 노후 계산하는 사람' };
   }
 
-  // 대도시 + 아파트 + 미혼 → 자산 쌓는 싱글
-  if (bigCity && aptPct > 45 && ageNum >= 28 && ageNum < 50 && !isMar) {
-    return { name:'퇴근 후 청약통장 들여다보는 사람', emoji:'🏙️', desc:'내 집 마련 계산기 켜두고 자는 사람' };
+  // 30대
+  if (is30s) {
+    if (famPct > 35 && isMar && !isUne) {
+      if (sex === '여자') return { name:'퇴근하면 두 번째 직장 시작되는 사람', emoji:'💪', desc:'아이·남편·직장 세 가지를 동시에 돌리는 사람' };
+      return { name:'월급날만 기다리며 버티는 가장', emoji:'💪', desc:'가족을 위해 오늘도 출근하는 사람' };
+    }
+    if (famPct > 35 && isMar && isUne) return { name:'애 재우고 나만의 시간 30분인 사람', emoji:'🏠', desc:'육아와 나 사이 어딘가에 있는 사람' };
+    if (bigCity && aptPct > 45 && !isMar) return { name:'퇴근 후 청약통장 들여다보는 사람', emoji:'🏙️', desc:'내 집 마련 계산기 켜두고 자는 사람' };
+    if (bigCity && aptPct > 45 && isMar) return { name:'대출 상환하며 노후도 준비하는 사람', emoji:'🏙️', desc:'가계부 앱 세 개 쓰는 사람' };
+    if (sngPct > 25 && !isMar) return { name:'퇴근하면 아무도 기다리지 않아서 좋은 사람', emoji:'🎯', desc:'혼자 사는 게 불편하지 않은 사람' };
+    if (isUne) return { name:'오늘도 잡코리아 켜는 사람', emoji:'🚀', desc:'이직·취업 준비로 지쳐가는 사람' };
+    return { name:'내 집 마련 계산 중인 30대', emoji:'🏙️', desc:'청약통장 들여다보며 아파트 시세 검색하는 사람' };
   }
 
-  // 대도시 + 아파트 + 기혼 → 자산 관리
-  if (bigCity && aptPct > 45 && ageNum >= 28 && ageNum < 50 && isMar) {
-    return { name:'대출 상환하며 노후도 준비하는 사람', emoji:'🏙️', desc:'가계부 앱 세 개 쓰는 사람' };
-  }
-
-  // 혼자 살고 미혼
-  if (sngPct > 25 && marPct < 40) {
-    if (ageNum < 35) return { name:'월급 전부 내 맘대로 쓰는 사람', emoji:'🎯', desc:'결혼은 옵션, 자유는 필수인 사람' };
-    return { name:'퇴근하면 아무도 기다리지 않아서 좋은 사람', emoji:'🎯', desc:'혼자 사는 게 불편하지 않은 사람' };
-  }
-
-  // 무직률 높음 + 젊음 → 취업 준비
-  if (unePct > 20 && ageNum < 40) {
-    return { name:'오늘도 잡코리아 켜는 사람', emoji:'🚀', desc:'이직·취업 준비로 지쳐가는 사람' };
-  }
-
-  // 고학력
-  if (eduPct > 55) {
-    return { name:'자격증·대학원 알아보는 사람', emoji:'📚', desc:'공부로 상황을 바꾸려는 사람' };
+  // 20대
+  if (is20s) {
+    if (isUne) return { name:'스펙 쌓으며 미래 고민 중인 청년', emoji:'🌐', desc:'취업·이직·방향 중 하나를 고르는 시기' };
+    if (sngPct > 30) return { name:'월급 전부 내 맘대로 쓰는 사람', emoji:'🎯', desc:'결혼은 옵션, 자유는 필수인 사람' };
+    if (parPct > 30) return { name:'부모님과 살며 돈 모으는 사람', emoji:'🌐', desc:'독립 자금 모으는 중인 사람' };
+    return { name:'아직 뭘 할지 모르는 청년', emoji:'🌐', desc:'가능성을 탐색 중인 20대' };
   }
 
   // 비수도권 + 단독주택
@@ -146,12 +157,6 @@ function detectType(): PType {
     return { name:'서울 안 부럽고 동네가 좋은 사람', emoji:'🌱', desc:'고향 단골 가게가 있는 사람' };
   }
 
-  // 중장년 + 안정 취업
-  if (ageNum >= 40 && unePct < 15 && aptPct > 40) {
-    return { name:'연말정산 꼼꼼히 챙기는 직장인', emoji:'💼', desc:'퇴직금 계산해보고 IRP 가입한 사람' };
-  }
-
-  // 기본
   return { name:'대한민국 딱 평균인 사람', emoji:'🇰🇷', desc:'특별히 많지도 적지도 않은 보통 사람' };
 }
 const pType = detectType();
@@ -337,9 +342,14 @@ const jsonLd = JSON.stringify({
     .back-link{text-align:center;margin:1.5rem 0}
     .back-link a{color:#8B7355;font-size:.9rem;text-decoration:none}
     .back-link a:hover{color:#6B4226}
+    .compare-links{display:flex;flex-wrap:wrap;gap:.5rem}
+    .compare-chip{background:#EEF2FF;border:1px solid #C7D2FE;border-radius:20px;padding:.35rem .75rem;font-size:.78rem;font-weight:600;color:#3730A3;text-decoration:none}
+    .compare-chip:hover{background:#C7D2FE}
     .persona-list{list-style:none}
     .persona-item{background:#FFF8EE;border-left:4px solid #E8A87C;border-radius:0 12px 12px 0;padding:.9rem 1.1rem;margin-bottom:.75rem;font-size:.88rem;line-height:1.75;color:#3D3D3D;font-style:italic}
     @media(max-width:600px){.grid4{grid-template-columns:repeat(2,1fr)}.rel-grid{grid-template-columns:1fr}.hero h1{font-size:1.35rem}}
+    /* 앵커광고 여백 */
+    body{padding-bottom:70px}
   </style>
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" crossorigin="anonymous"></script>
 </head>
@@ -452,24 +462,7 @@ const jsonLd = JSON.stringify({
     <!-- 광고 1 -->
 
 
-    <!-- 핵심 지표 바 -->
-    <div class="stat-card">
-      <h2>📊 핵심 지표</h2>
-      <ul class="bar-list">
-        {barItems.map(b => (
-          <li class="bar-item">
-            <div class="bar-header">
-              <span class="bar-name">{b.label}</span>
-              <span class="bar-pct">{b.val}%</span>
-            </div>
-            <div class="bar-track">
-              <div class="bar-fill" style={`width:${b.val}%;background:${b.color}`}></div>
-            </div>
-            {b.warn && <div class="bar-warn">⚠️ 평균보다 높은 수치입니다</div>}
-          </li>
-        ))}
-      </ul>
-    </div>
+
 
     <!-- 인사이트 -->
     <div class="insight-box">
@@ -570,6 +563,19 @@ const jsonLd = JSON.stringify({
     <!-- 광고 3 -->
 
 
+    <!-- 다른 페르소나 보기 -->
+    <div class="stat-card">
+      <h2>🔍 같은 조건, 다른 지역은?</h2>
+      <div class="compare-links">
+        {['서울','경기','부산','대구','인천'].filter(r => r !== region).slice(0,4).map(r => (
+          <a class="compare-chip" href={`/persona/${r}-${sex}-${ageRaw.replace(/대이상/,'대')}/`}>{r} {ageGroup} {sex} →</a>
+        ))}
+        {ageNum > 0 && ageNum < 55 && (
+          <a class="compare-chip" href={`/persona/${region}-${sex}-${ageNum+5}/`}>{dr} {ageNum+5}세 {sex} →</a>
+        )}
+        <a class="compare-chip" href={`/persona/${region}-${sex === '남자' ? '여자' : '남자'}-${ageRaw}/`}>{dr} {ageGroup} {sex === '남자' ? '여자' : '남자'} →</a>
+      </div>
+    </div>
     <!-- 관련 콘텐츠 -->
     <div class="stat-card">
       <h2>📚 관련 금융 가이드</h2>
@@ -600,6 +606,7 @@ const jsonLd = JSON.stringify({
     </div>
 
   </div>
+<Footer />
 <script is:inline>
 const _shareUrl = window.location.href;
 

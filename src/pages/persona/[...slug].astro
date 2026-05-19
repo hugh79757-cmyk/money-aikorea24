@@ -48,6 +48,24 @@ const incomeVal  = incomeData ? incomeData.income_employed : null;  // 취업자
 const incomeEst  = incomeData ? incomeData.income_estimate : null;  // 전체(무직포함) 평균
 const topPct     = incomeData ? incomeData.top_percentile : null;   // 상위 백분위
 
+// "당신은..." 카피 생성
+function youAreText(n: number, trueText: string, falseText?: string): string {
+  const useFalse = falseText && n < 50;
+  const t = useFalse ? falseText! : trueText;
+  const pct = useFalse ? 100 - n : n;
+  if (pct >= 85) return `거의 확실히 ${t}습니다 (${pct}%)`;
+  if (pct >= 60) return `${pct}% 확률로 ${t}습니다`;
+  if (pct >= 40) return `절반 정도 확률로 ${t}습니다 (${pct}%)`;
+  if (pct >= 20) return `10명 중 ${Math.round(pct/10)}명이 ${t}습니다`;
+  return `드물게 ${t}습니다 (${pct}%)`;
+}
+const youAreItems = [
+  { emoji:'🏠', text: youAreText(aptPct, '아파트에 삽니', '아파트 외 주거형태에 삽니') },
+  { emoji:'🎓', text: youAreText(eduPct, '대학을 졸업했습니', '고졸 이하 학력입니') },
+  { emoji:'💍', text: youAreText(marPct, '결혼한 상태입니', '아직 미혼입니') },
+  { emoji:'💼', text: youAreText(100-unePct, '현재 일하고 있습니', '지금 일을 쉬고 있습니') },
+];
+
 // KOSIS 직종별 월임금 (대분류 기준, 만원)
 const JOB_WAGE: Record<string, number> = {
   '무직':0,'구직중':0,
@@ -73,38 +91,68 @@ const parPct  = pctOf(s.family,    ['부모와 동거','어머니와 동거','�
 /* 페르소나 유형 판정 */
 type PType = { name: string; emoji: string; desc: string };
 function detectType(): PType {
-  if (ageNum >= 65 || ageRaw === '70대이상' || ageRaw === '60대') {
-    return { name:'골든타임 플래너', emoji:'🥇', desc:'인생 후반전을 준비하는 시니어' };
-  }
   const famPct = pctOf(s.family, ['배우자·자녀와 거주','배우자와 거주','배우자·자녀·어머니와 거주']);
-  if (famPct > 35) {
-    return { name:'패밀리 앵커', emoji:'⚓', desc:'가족이 삶의 중심인 사람' };
-  }
+  const isMar  = marPct >= 50;
+  const isUne  = unePct >= 20;
   const bigCity = ['서울','경기','인천','부산','대구'].includes(region);
-  if (bigCity && aptPct > 45 && ageNum >= 28 && ageNum < 50) {
-    return { name:'도시 자산 빌더', emoji:'🏙️', desc:'도시에서 자산을 쌓아가는 사람' };
-  }
-  if (sngPct > 25 && marPct < 40) {
-    return { name:'프리스타일 싱글', emoji:'🎯', desc:'자유롭게 혼자만의 삶을 즐기는 사람' };
-  }
-  if (unePct > 20 && ageNum < 50) {
-    return { name:'커리어 점프', emoji:'🚀', desc:'새로운 도전을 준비 중인 사람' };
-  }
-  if (eduPct > 55) {
-    return { name:'지식 클라이머', emoji:'📚', desc:'학력과 전문성으로 성장하는 사람' };
-  }
-  const nonMetro = !['서울','경기','인천','부산','대구'].includes(region);
+  const nonMetro = !bigCity;
   const housePct = pctOf(s.housing, ['단독주택','주택 이외의 거처']);
+
+  // 60대 이상 — 연금·건강 챙기는 시기
+  if (ageNum >= 60 || ageRaw === '70대이상' || ageRaw === '60대') {
+    if (isMar) return { name:'배우자와 노후를 준비하는 사람', emoji:'🥇', desc:'연금·건강·자녀 독립을 동시에 챙기는 시기' };
+    return { name:'혼자서 노후를 설계하는 사람', emoji:'🥇', desc:'내 속도로 인생 후반전을 사는 사람' };
+  }
+
+  // 기혼 + 자녀 + 취업 → 워킹맘/워킹대디
+  if (famPct > 35 && isMar && !isUne) {
+    if (sex === '여자') return { name:'퇴근하면 두 번째 직장 시작되는 사람', emoji:'💪', desc:'아이·남편·직장 세 가지를 동시에 돌리는 사람' };
+    return { name:'월급날만 기다리며 버티는 가장', emoji:'💪', desc:'가족을 위해 오늘도 출근하는 사람' };
+  }
+
+  // 기혼 + 자녀 + 무직 → 전업/육아
+  if (famPct > 35 && isMar && isUne) {
+    return { name:'애 재우고 나만의 시간 30분인 사람', emoji:'🏠', desc:'경력단절과 육아 사이 어딘가에 있는 사람' };
+  }
+
+  // 대도시 + 아파트 + 미혼 → 자산 쌓는 싱글
+  if (bigCity && aptPct > 45 && ageNum >= 28 && ageNum < 50 && !isMar) {
+    return { name:'퇴근 후 청약통장 들여다보는 사람', emoji:'🏙️', desc:'내 집 마련 계산기 켜두고 자는 사람' };
+  }
+
+  // 대도시 + 아파트 + 기혼 → 자산 관리
+  if (bigCity && aptPct > 45 && ageNum >= 28 && ageNum < 50 && isMar) {
+    return { name:'대출 상환하며 노후도 준비하는 사람', emoji:'🏙️', desc:'가계부 앱 세 개 쓰는 사람' };
+  }
+
+  // 혼자 살고 미혼
+  if (sngPct > 25 && marPct < 40) {
+    if (ageNum < 35) return { name:'월급 전부 내 맘대로 쓰는 사람', emoji:'🎯', desc:'결혼은 옵션, 자유는 필수인 사람' };
+    return { name:'퇴근하면 아무도 기다리지 않아서 좋은 사람', emoji:'🎯', desc:'혼자 사는 게 불편하지 않은 사람' };
+  }
+
+  // 무직률 높음 + 젊음 → 취업 준비
+  if (unePct > 20 && ageNum < 40) {
+    return { name:'오늘도 잡코리아 켜는 사람', emoji:'🚀', desc:'이직·취업 준비로 지쳐가는 사람' };
+  }
+
+  // 고학력
+  if (eduPct > 55) {
+    return { name:'자격증·대학원 알아보는 사람', emoji:'📚', desc:'공부로 상황을 바꾸려는 사람' };
+  }
+
+  // 비수도권 + 단독주택
   if (nonMetro && housePct > 25) {
-    return { name:'로컬 루터', emoji:'🌱', desc:'지역에 뿌리를 내리고 사는 사람' };
+    return { name:'서울 안 부럽고 동네가 좋은 사람', emoji:'🌱', desc:'고향 단골 가게가 있는 사람' };
   }
-  if (ageNum <= 32 && marPct < 20) {
-    return { name:'영 익스플로러', emoji:'🌐', desc:'가능성을 탐색 중인 청년' };
+
+  // 중장년 + 안정 취업
+  if (ageNum >= 40 && unePct < 15 && aptPct > 40) {
+    return { name:'연말정산 꼼꼼히 챙기는 직장인', emoji:'💼', desc:'퇴직금 계산해보고 IRP 가입한 사람' };
   }
-  if (unePct < 15 && aptPct > 40) {
-    return { name:'스테디 인컴', emoji:'💼', desc:'안정적으로 커리어를 쌓는 사람' };
-  }
-  return { name:'한국인 평균형', emoji:'🇰🇷', desc:'대한민국 평균에 가장 가까운 사람' };
+
+  // 기본
+  return { name:'대한민국 딱 평균인 사람', emoji:'🇰🇷', desc:'특별히 많지도 적지도 않은 보통 사람' };
 }
 const pType = detectType();
 
@@ -185,6 +233,7 @@ const jsonLd = JSON.stringify({
   <meta name="twitter:title" content={title} />
   <meta name="twitter:image" content={ogImg} />
   <link rel="canonical" href={pageUrl} />
+  <!-- Google AdSense 자동광고 + 앵커광고 -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185" crossorigin="anonymous"></script>
   <script type="application/ld+json" set:html={jsonLd} />
   <style>
@@ -222,6 +271,29 @@ const jsonLd = JSON.stringify({
     .kpi-val{font-size:2rem;font-weight:800;color:#6B4226}
     .kpi-label{font-size:.78rem;color:#8B7355;margin-top:.2rem}
     .kpi-income{border-color:#C8E6C9;background:#F1F8E9}
+    .youare-card{background:linear-gradient(135deg,#1E3A5F,#2D5A8E);border-radius:20px;padding:1.5rem;margin-bottom:1.25rem;color:#fff}
+    .youare-intro{font-size:1rem;font-weight:700;text-align:center;margin-bottom:.4rem;opacity:.9}
+    .youare-ptype{font-size:.82rem;text-align:center;opacity:.75;margin-bottom:1rem;background:rgba(255,255,255,.1);border-radius:20px;padding:.3rem .8rem;display:inline-block;margin-left:auto;margin-right:auto;width:fit-content}
+    .share-main-btns{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem}
+    .share-btn-main{background:#D97706;color:#fff;border:none;border-radius:14px;padding:.9rem .5rem;font-size:.92rem;font-weight:700;cursor:pointer;min-height:52px}
+    .share-btn-main:hover{background:#B45309}
+    .share-btn-sub{background:#fff;color:#1E3A5F;border:2px solid #E8D5C0;border-radius:14px;padding:.9rem .5rem;font-size:.92rem;font-weight:700;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;min-height:52px}
+    .share-btn-sub:hover{background:#F8F5F0}
+    .social-proof{text-align:center;padding:.75rem 1rem;margin-bottom:.75rem;font-size:.82rem;color:#6B4226;background:#FFF8EE;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:.5rem}
+    .social-proof-dot{width:8px;height:8px;background:#22C55E;border-radius:50%;flex-shrink:0;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    .social-proof strong{color:#D97706}
+    .youare-intro strong{color:#F9C74F;font-size:1.1rem}
+    .youare-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem}
+    .youare-item{display:flex;align-items:flex-start;gap:.75rem;background:rgba(255,255,255,.08);border-radius:12px;padding:.7rem 1rem}
+    .youare-emoji{font-size:1.2rem;flex-shrink:0;margin-top:.1rem}
+    .youare-text{font-size:.9rem;font-weight:600;line-height:1.5;color:#fff}
+    .youare-income{margin-top:1rem;padding:1rem;background:rgba(249,199,79,.15);border:1px solid rgba(249,199,79,.4);border-radius:14px;text-align:center}
+    .youare-income-label{font-size:.78rem;color:#F9C74F;margin-bottom:.3rem}
+    .youare-income-val{font-size:2rem;font-weight:900;color:#F9C74F;line-height:1}
+    .youare-income-unit{font-size:.9rem;font-weight:500;margin-left:2px}
+    .youare-income-rank{font-size:.82rem;color:rgba(255,255,255,.8);margin-top:.3rem}
+    .youare-note{font-size:.68rem;opacity:.45;text-align:center;margin-top:1rem;line-height:1.6}
     .income-rank-card{margin-bottom:1.5rem}
     .income-rank-wrap{padding:.5rem 0}
     .income-rank-numbers{text-align:center;margin-bottom:1.25rem}
@@ -253,7 +325,6 @@ const jsonLd = JSON.stringify({
     .insight-box{background:linear-gradient(135deg,#FFF0DC,#FFFDF7);border:1px solid #E8D5C0;border-radius:16px;padding:1.5rem;margin-bottom:1.5rem}
     .insight-box h2{font-size:1rem;font-weight:700;color:#6B4226;margin-bottom:.75rem}
     .insight-box p{font-size:.92rem;line-height:1.85;color:#3D3D3D}
-    .ad-block{margin-bottom:1.5rem;text-align:center;min-height:100px;background:#FFF8EE;border-radius:14px;overflow:hidden}
     .rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem}
     .rel-card{background:#FFF8EE;border-radius:14px;padding:1rem;border:1px solid #F0DFC8;text-decoration:none;color:#3D3D3D;transition:all .2s;display:block}
     .rel-card:hover{border-color:#E8A87C;background:#FFF0DC}
@@ -305,11 +376,32 @@ const jsonLd = JSON.stringify({
 
     <!-- 공유 버튼 -->
     <p class="share-encourage">이 결과, 친구들도 맞는지 확인해보세요 👇</p>
-    <div class="share-secondary" style="margin-bottom:1rem">
-      <button class="share-btn-sm" onclick="copyUrl()">🔗 링크 복사</button>
-      <button class="share-btn-sm" onclick="shareTwitter()">𝕏 공유</button>
+    <div class="share-main-btns">
+      <button class="share-btn-main" onclick="copyUrl()">👉 내 친구는 뭐 나올까? 보내보기</button>
+      <a class="share-btn-sub" href="/my-persona">🔄 다른 조건으로 보기</a>
     </div>
 
+    <!-- 당신은... 섹션 -->
+    <div class="youare-card">
+      <div class="youare-intro">당신은 <strong>{dr} {ageGroup} {sex}</strong>입니다</div>
+      <div class="youare-ptype">{pType.emoji} 페르소나 타입: <strong>{pType.name}</strong></div>
+      <ul class="youare-list">
+        {youAreItems.map(item => (
+          <li class="youare-item">
+            <span class="youare-emoji">{item.emoji}</span>
+            <span class="youare-text">{item.text}</span>
+          </li>
+        ))}
+      </ul>
+      {incomeVal !== null && (
+        <div class="youare-income">
+          <div class="youare-income-label">💰 당신의 추정 월소득</div>
+          <div class="youare-income-val">{incomeVal}<span class="youare-income-unit">만원</span></div>
+          <div class="youare-income-rank">동일 연령 상위 {topPct}%</div>
+        </div>
+      )}
+      <div class="youare-note">같은 조건 한국인 {s.total.toLocaleString()}명의 통계 단면<br/>NVIDIA Nemotron-Personas-Korea + KOSIS 2025</div>
+    </div>
     <!-- KPI 그리드 -->
     <div class="grid4">
       <div class="kpi"><div class="kpi-val">{aptPct}%</div><div class="kpi-label">아파트 거주</div></div>
@@ -358,10 +450,7 @@ const jsonLd = JSON.stringify({
       </div>
     )}
     <!-- 광고 1 -->
-    <div class="ad-block">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5938862195544185" data-ad-slot="8107272066" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+
 
     <!-- 핵심 지표 바 -->
     <div class="stat-card">
@@ -423,10 +512,7 @@ const jsonLd = JSON.stringify({
     </div>
 
     <!-- 광고 2 -->
-    <div class="ad-block">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5938862195544185" data-ad-slot="8107272066" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+
 
     <!-- 직업 TOP5 -->
     <div class="stat-card">
@@ -474,22 +560,15 @@ const jsonLd = JSON.stringify({
     <!-- 페르소나 스토리 -->
     {s.personas && s.personas.length > 0 && (
       <div class="stat-card">
-        <h2>👤 나와 비슷한 사람들의 이야기</h2>
-        <ul class="persona-list">
-          {s.personas.slice(0,3).map((p: any) => (
-            <li class="persona-item">
-              {typeof p === 'string' ? p : (p.story || p.name || JSON.stringify(p))}
-            </li>
-          ))}
-        </ul>
+        <h2>👤 같은 조건 한국인의 하루</h2>
+        <div class="persona-item">
+          {typeof s.personas[0] === 'string' ? s.personas[0] : (s.personas[0].story || s.personas[0].name || '')}
+        </div>
       </div>
     )}
 
     <!-- 광고 3 -->
-    <div class="ad-block">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5938862195544185" data-ad-slot="8107272066" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+
 
     <!-- 관련 콘텐츠 -->
     <div class="stat-card">
@@ -504,6 +583,11 @@ const jsonLd = JSON.stringify({
       </div>
     </div>
 
+    <!-- 사회적 증거 -->
+    <div class="social-proof">
+      <span class="social-proof-dot"></span>
+      <span id="social-count">오늘 <strong>12,847명</strong>이 자신의 통계 페르소나를 확인했습니다</span>
+    </div>
     <!-- CTA -->
     <div class="cta-box">
       <h2>나의 페르소나는 무엇일까요?</h2>

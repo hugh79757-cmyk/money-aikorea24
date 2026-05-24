@@ -21,7 +21,7 @@ export async function onRequestGet({ request, env }) {
   const post_id = url.searchParams.get('post_id');
   if (!post_id) return new Response(JSON.stringify({ comments: [] }), { headers: H });
   const r = await env.DB.prepare(`
-    SELECT pc.*, u.name as author_name
+    SELECT pc.*, COALESCE(u.nickname, u.name, '익명') as author_name
     FROM persona_comments pc JOIN users u ON u.id = pc.user_id
     WHERE pc.post_id = ? ORDER BY pc.created_at ASC
   `).bind(parseInt(post_id)).all();

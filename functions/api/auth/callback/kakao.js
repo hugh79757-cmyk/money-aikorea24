@@ -1,3 +1,12 @@
+function generateNickname() {
+  const regions = ['서울','부산','대구','인천','광주','대전','울산','경기','강원','충북','충남','전북','전남','경북','경남','제주'];
+  const animals = ['냥이','멍이','토끼','사슴','여우','곰돌','판다','너구리','다람쥐','햄찌','펭귄'];
+  const r = regions[Math.floor(Math.random() * regions.length)];
+  const a = animals[Math.floor(Math.random() * animals.length)];
+  const n = Math.floor(1000 + Math.random() * 9000);
+  return `${r}${a}${n}`;
+}
+
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
@@ -32,31 +41,56 @@ export async function onRequestGet({ request, env }) {
   const kakaoUser = await userRes.json();
   const kakaoId = String(kakaoUser.id);
   const email   = kakaoUser.kakao_account?.email || `${kakaoId}@kakao.local`;
-  const name    = kakaoUser.kakao_account?.profile?.nickname || '카카오사용자';
+  const realName = kakaoUser.kakao_account?.profile?.nickname || '카카오사용자';
   const avatar  = kakaoUser.kakao_account?.profile?.profile_image_url || null;
 
   const db = env.DB;
   let dbUser = await db.prepare(
-    'SELECT id, name, email, avatar FROM users WHERE kakao_id = ?'
+    'SELECT id, name, nickname, email, avatar FROM users WHERE kakao_id = ?'
   ).bind(kakaoId).first();
 
   if (!dbUser) {
+    // 닉네임 중복 회피 (최대 5회 재시도)
+    let nickname = generateNickname();
+    for (let i = 0; i < 5; i++) {
+      const dup = await db.prepare('SELECT id FROM users WHERE nickname = ?').bind(nickname).first();
+      if (!dup) break;
+      nickname = generateNickname();
+    }
+
     await db.prepare(
-      'INSERT INTO users (kakao_id, email, name, avatar, provider) VALUES (?, ?, ?, ?, ?)'
-    ).bind(kakaoId, email, name, avatar, 'kakao').run();
+      'INSERT INTO users (kakao_id, email, name, nickname, avatar, provider) VALUES (?, ?, ?, ?, ?, ?)'
+    ).bind(kakaoId, email, realName, nickname, avatar, 'kakao').run();
 
     dbUser = await db.prepare(
-      'SELECT id, name, email, avatar FROM users WHERE kakao_id = ?'
+      'SELECT id, name, nickname, email, avatar FROM users WHERE kakao_id = ?'
     ).bind(kakaoId).first();
+  } else if (!dbUser.nickname) {
+    // 기존 사용자 중 닉네임 없는 경우 부여
+    let nickname = generateNickname();
+    for (let i = 0; i < 5; i++) {
+      const dup = await db.prepare('SELECT id FROM users WHERE nickname = ?').bind(nickname).first();
+      if (!dup) break;
+      nickname = generateNickname();
+    }
+    await db.prepare('UPDATE users SET nickname = ? WHERE id = ?').bind(nickname, dbUser.id).run();
+    dbUser.nickname = nickname;
   }
 
-  // 한글 포함 JSON을 안전하게 base64 인코딩
-  const json = JSON.stringify(dbUser);
+  // 세션에는 닉네임만 노출 (본명 제거)
+  const sessionUser = {
+    id: dbUser.id,
+    name: dbUser.nickname,
+    email: dbUser.email,
+    avatar: dbUser.avatar,
+  };
+
+  const json = JSON.stringify(sessionUser);
   const sessionData = btoa(encodeURIComponent(json).replace(/%([0-9A-F]{2})/g, (_, p1) => String.fromCharCode(parseInt(p1, 16))));
 
   const headers = new Headers({ Location: next });
   headers.append('Set-Cookie',
-    `session=${sessionData}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${60*60*24*7}`
+    `session=${sessionData}; Path=/; Secure; SameSite=Lax; Max-Age=${60*60*24*7}`
   );
   return new Response(null, { status: 302, headers });
 }

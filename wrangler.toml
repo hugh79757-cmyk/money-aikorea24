@@ -1,0 +1,8 @@
+name = "money-aikorea24"
+compatibility_date = "2024-12-01"
+pages_build_output_dir = "./dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "persona-db"
+database_id = "476a89e1-4e2b-4b45-a2f8-e195127e5d32"

@@ -1,0 +1,137 @@
+---
+export const prerender = false;
+const { id } = Astro.params;
+const runtime = (Astro.locals as any).runtime;
+const db = runtime?.env?.DB;
+
+let post: any = null;
+let comments: any[] = [];
+
+if (db) {
+  post = await db.prepare(`
+    SELECT pp.*, u.name as author_name
+    FROM persona_posts pp JOIN users u ON u.id = pp.user_id
+    WHERE pp.id = ?
+  `).bind(id).first();
+  if (post) {
+    await db.prepare(`UPDATE persona_posts SET views = views + 1 WHERE id = ?`).bind(id).run();
+    const r = await db.prepare(`
+      SELECT pc.*, u.name as author_name
+      FROM persona_comments pc JOIN users u ON u.id = pc.user_id
+      WHERE pc.post_id = ? ORDER BY pc.created_at ASC
+    `).bind(id).all();
+    comments = r.results || [];
+  }
+}
+if (!post) return new Response('Not found', { status: 404 });
+
+const session = Astro.cookies.get('session')?.value;
+let user: any = null;
+try { if (session) user = JSON.parse(atob(session)); } catch {}
+---
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>{post.title} | 페르소나 커뮤니티</title>
+  <link rel="stylesheet" crossorigin="anonymous"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Pretendard',-apple-system,sans-serif;background:#FFF8EE;color:#3D3D3D;padding-bottom:80px}
+    a{color:inherit;text-decoration:none}
+    header{background:#6B4226;padding:.9rem 1.25rem;display:flex;align-items:center;gap:.75rem;position:sticky;top:0;z-index:100}
+    header a{color:#fff;font-weight:700;font-size:.95rem}
+    .container{max-width:720px;margin:1.5rem auto;padding:0 1rem}
+    .card{background:#fff;border-radius:20px;padding:1.5rem;box-shadow:0 4px 20px rgba(107,66,38,.08);margin-bottom:1rem}
+    .pbadge{background:#E8D5C0;color:#6B4226;border-radius:20px;padding:.22rem .75rem;font-size:.75rem;font-weight:700;display:inline-block;margin-bottom:.75rem}
+    h1{font-size:1.2rem;font-weight:800;line-height:1.4;margin-bottom:.75rem}
+    .meta{font-size:.78rem;color:#8B7355;display:flex;gap:.6rem;flex-wrap:wrap;padding-bottom:.9rem;border-bottom:1px solid #F0DFC8;margin-bottom:1.1rem}
+    .content{font-size:.95rem;line-height:1.9;white-space:pre-wrap;word-break:break-word}
+    .like-row{margin-top:1.25rem;display:flex;gap:.75rem;align-items:center}
+    .like-btn{background:#FFF8EE;border:1.5px solid #E8D5C0;border-radius:10px;padding:.55rem 1.25rem;font-size:.9rem;font-weight:700;cursor:pointer;color:#6B4226;transition:all .2s}
+    .like-btn:hover,.like-btn.liked{background:#6B4226;color:#fff;border-color:#6B4226}
+    .persona-link{font-size:.82rem;color:#6B4226;font-weight:700}
+    .comments-hd{font-size:1rem;font-weight:800;color:#6B4226;margin-bottom:.85rem}
+    .comment{background:#FFF8EE;border-radius:12px;padding:.85rem 1rem;margin-bottom:.6rem}
+    .comment-author{font-size:.8rem;font-weight:700;margin-bottom:.3rem;color:#3D3D3D}
+    .comment-text{font-size:.88rem;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+    .comment-date{font-size:.72rem;color:#8B7355;margin-top:.3rem}
+    .comment-form{margin-top:1rem}
+    textarea{width:100%;border:1.5px solid #E8D5C0;border-radius:10px;padding:.75rem;font-size:.9rem;font-family:inherit;resize:vertical;min-height:90px;outline:none;background:#FFFDF7}
+    textarea:focus{border-color:#6B4226;background:#fff}
+    .comment-btn{background:#6B4226;color:#fff;border:none;border-radius:10px;padding:.65rem 1.5rem;font-size:.9rem;font-weight:700;cursor:pointer;margin-top:.5rem}
+    .login-notice{color:#8B7355;font-size:.85rem;padding:.75rem;background:#FFF0DC;border-radius:10px;text-align:center;margin-top:1rem}
+    .login-notice a{color:#6B4226;font-weight:700}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/community">← 커뮤니티</a>
+  </header>
+  <div class="container">
+    <div class="card">
+      <div class="pbadge">{post.region} {post.age} {post.sex} · {post.persona_type}</div>
+      <h1>{post.title}</h1>
+      <div class="meta">
+        <span>✍️ {post.author_name}</span>
+        <span>👁 {post.views + 1}</span>
+        <span>👍 <span id="like-count">{post.likes}</span></span>
+        <span>🕐 {post.created_at?.slice(0,10)}</span>
+      </div>
+      <div class="content">{post.content}</div>
+      <div class="like-row">
+        <button class="like-btn" id="like-btn" onclick="toggleLike()">👍 좋아요</button>
+        <a class="persona-link" href={`/persona/${post.persona_slug}/`}>
+          → {post.region} {post.age} {post.sex} 페르소나 보기
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="comments-hd">💬 댓글 {comments.length}개</div>
+      {comments.map((c: any) => (
+        <div class="comment">
+          <div class="comment-author">{c.author_name}</div>
+          <div class="comment-text">{c.content}</div>
+          <div class="comment-date">{c.created_at?.slice(0,16)}</div>
+        </div>
+      ))}
+      {user
+        ? <div class="comment-form">
+            <textarea id="comment-text" placeholder="댓글을 입력하세요..."></textarea>
+            <button class="comment-btn" onclick="postComment()">댓글 달기</button>
+          </div>
+        : <div class="login-notice">
+            댓글을 달려면 <a href="https://aikorea24.kr/auth/consent">로그인</a>이 필요해요
+          </div>
+      }
+    </div>
+  </div>
+
+  <script define:vars={{ postId: id }}>
+  async function postComment() {
+    const content = document.getElementById('comment-text').value.trim();
+    if (!content) return;
+    const res = await fetch('/api/community/comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ post_id: postId, content })
+    });
+    if ((await res.json()).ok) location.reload();
+  }
+  async function toggleLike() {
+    const res = await fetch('/api/community/like', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ post_id: postId })
+    });
+    const d = await res.json();
+    if (d.likes !== undefined) {
+      document.getElementById('like-count').textContent = d.likes;
+      document.getElementById('like-btn').classList.toggle('liked');
+    }
+  }
+  </script>
+</body>
+</html>

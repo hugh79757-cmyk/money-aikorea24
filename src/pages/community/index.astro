@@ -90,7 +90,7 @@
     if (slug) w.href = `/community/write?slug=${slug}`;
   }
 
-  function switchBoard(b) {
+  window.switchBoard = function switchBoard(b) {
     board = b;
     document.querySelectorAll('.board-tab').forEach(t => t.classList.remove('active'));
     document.getElementById('tab-' + b).classList.add('active');
@@ -140,7 +140,7 @@
     pag.innerHTML = html;
   }
 
-  function doSearch() {
+  window.doSearch = function doSearch() {
     q = document.getElementById('search-input').value.trim();
     loadPosts(1);
   }

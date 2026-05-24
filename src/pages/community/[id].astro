@@ -148,7 +148,7 @@ export function getStaticPaths() {
         </div>`).join('');
     }
 
-    async function toggleLike() {
+    window.toggleLike = async function toggleLike() {
       if (!currentUser) { location.href = '/auth/login'; return; }
       const res = await fetch('/api/community/like', {
         method: 'POST',
@@ -162,7 +162,7 @@ export function getStaticPaths() {
       }
     }
 
-    async function submitComment() {
+    window.submitComment = async function submitComment() {
       const content = document.getElementById('comment-input').value.trim();
       if (!content) return;
       const res = await fetch('/api/community/comments', {

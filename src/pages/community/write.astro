@@ -146,7 +146,7 @@
       }
     }
 
-    async function submitPost() {
+    window.submitPost = async function submitPost() {
       const title = document.getElementById('title').value.trim();
       const content = document.getElementById('content').value.trim();
       if (!title) { alert('제목을 입력하세요'); return; }

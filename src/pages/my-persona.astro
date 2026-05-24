@@ -824,6 +824,7 @@ async function runAnalyze() {
     window._personaMarital  = String(marital);
     window._personaShareUrl = shareUrl;
     /* /persona/{slug}/ 로 이동 → 풍부한 결과 페이지 */
+    if (loading) loading.style.display = 'none';
     window.location.href = shareUrl;
 
     /* 금융 추천 */
@@ -872,6 +873,19 @@ function generateCanvas(key, copyText) {
     const lineH = 80;
     const startY = 820 - (lines.length - 1) * lineH / 2;
     lines.forEach((l, i) => { ctx.fillText(l, 540, startY + i * lineH); });
+    ctx.font = '36px sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.fillText('한국인 페르소나 · persona.aikorea24.kr', 540, 980);
+    window._personaCanvas = canvas;
+  };
+  img.onerror = () => {
+    /* 카드 JPG 없을 때: 기본 배경으로 canvas 생성 */
+    ctx.fillStyle = '#1a1a2e';
+    ctx.fillRect(0, 0, 1080, 1080);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = 'bold 64px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(copyText, 540, 500);
     ctx.font = '36px sans-serif';
     ctx.fillStyle = 'rgba(255,255,255,0.7)';
     ctx.fillText('한국인 페르소나 · persona.aikorea24.kr', 540, 980);

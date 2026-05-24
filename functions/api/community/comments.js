@@ -27,3 +27,15 @@ export async function onRequestGet({ request, env }) {
   `).bind(parseInt(post_id)).all();
   return new Response(JSON.stringify({ comments: r.results || [] }), { headers: H });
 }
+
+export async function onRequestDelete({request, env}) {
+  const user = getSession(request);
+  if (!user) return new Response(JSON.stringify({error:'unauthorized'}), {status:401});
+  const id = new URL(request.url).searchParams.get('id');
+  if (!id) return new Response(JSON.stringify({error:'no_id'}), {status:400});
+  const row = await env.DB.prepare('SELECT user_id FROM persona_comments WHERE id = ?').bind(id).first();
+  if (!row) return new Response(JSON.stringify({error:'not_found'}), {status:404});
+  if (row.user_id !== user.id) return new Response(JSON.stringify({error:'forbidden'}), {status:403});
+  await env.DB.prepare('DELETE FROM persona_comments WHERE id = ?').bind(id).run();
+  return new Response(JSON.stringify({ok:true}));
+}

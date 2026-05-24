@@ -13,14 +13,17 @@ const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Pretendard',-apple-system,sans-serif;background:#FFF8EE;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem}
-    .card{background:#fff;border-radius:24px;padding:2.25rem 2rem;max-width:400px;width:100%;box-shadow:0 8px 32px rgba(107,66,38,.12);text-align:center}
+    .card{background:#fff;border-radius:24px;padding:2.25rem 2rem;max-width:420px;width:100%;box-shadow:0 8px 32px rgba(107,66,38,.12);text-align:center}
     .logo{font-size:2.5rem;margin-bottom:.5rem}
     h1{font-size:1.2rem;font-weight:800;color:#3D3D3D;margin-bottom:.4rem}
-    .sub{font-size:.88rem;color:#8B7355;margin-bottom:1.75rem;line-height:1.6}
-    .notice{background:#FFF8EE;border-radius:14px;padding:1rem;margin-bottom:1.5rem;font-size:.82rem;color:#6B4226;text-align:left;line-height:1.7}
-    .notice strong{display:block;margin-bottom:.3rem;font-size:.85rem}
-    .kakao-btn{display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;background:#FEE500;color:#3D3D3D;border-radius:14px;padding:1rem;font-size:1rem;font-weight:700;text-decoration:none;transition:background .2s;margin-bottom:.75rem}
-    .kakao-btn:hover{background:#F5D800}
+    .sub{font-size:.88rem;color:#8B7355;margin-bottom:1.5rem;line-height:1.6}
+    .consents{background:#FFF8EE;border-radius:14px;padding:1rem;margin-bottom:1.25rem;text-align:left}
+    .consent-row{display:flex;align-items:flex-start;gap:.5rem;padding:.4rem 0;font-size:.85rem;color:#3D3D3D;line-height:1.5}
+    .consent-row input{margin-top:.2rem;flex-shrink:0}
+    .consent-row.all{border-bottom:1px solid #E8D5B7;padding-bottom:.7rem;margin-bottom:.4rem;font-weight:700}
+    .consent-row a{color:#6B4226;text-decoration:underline;margin-left:.3rem}
+    .kakao-btn{display:flex;align-items:center;justify-content:center;gap:.6rem;width:100%;background:#FEE500;color:#3D3D3D;border-radius:14px;padding:1rem;font-size:1rem;font-weight:700;text-decoration:none;transition:opacity .2s;margin-bottom:.75rem;border:none;cursor:pointer}
+    .kakao-btn:disabled{opacity:.4;cursor:not-allowed}
     .skip{font-size:.82rem;color:#8B7355;margin-top:.5rem}
     .skip a{color:#6B4226;font-weight:600}
   </style>
@@ -30,18 +33,60 @@ const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_
     <div class="logo">🇰🇷</div>
     <h1>페르소나 커뮤니티 로그인</h1>
     <p class="sub">700만 한국인 데이터로 분석한<br/>내 페르소나를 함께 이야기해요</p>
-    <div class="notice">
-      <strong>📋 개인정보 수집 안내</strong>
-      카카오 계정의 닉네임, 프로필 사진, 이메일을 수집합니다.
-      커뮤니티 이용자 식별 목적으로만 사용하며, 탈퇴 시 즉시 삭제됩니다.
+
+    <div class="consents">
+      <label class="consent-row all">
+        <input type="checkbox" id="agree-all"/>
+        <span>전체 동의</span>
+      </label>
+      <label class="consent-row">
+        <input type="checkbox" class="req" id="agree-age"/>
+        <span>[필수] 만 14세 이상입니다</span>
+      </label>
+      <label class="consent-row">
+        <input type="checkbox" class="req" id="agree-terms"/>
+        <span>[필수] <a href="/terms" target="_blank">서비스 이용약관</a> 동의</span>
+      </label>
+      <label class="consent-row">
+        <input type="checkbox" class="req" id="agree-privacy"/>
+        <span>[필수] <a href="/privacy" target="_blank">개인정보 수집·이용</a> 동의</span>
+      </label>
+      <label class="consent-row">
+        <input type="checkbox" id="agree-marketing"/>
+        <span>[선택] 새 지원금·혜택 정보 수신 동의</span>
+      </label>
     </div>
-    <a class="kakao-btn" href={kakaoAuthUrl}>
+
+    <button class="kakao-btn" id="login-btn" disabled>
       <svg width="22" height="22" viewBox="0 0 40 40" fill="none">
         <path d="M20 4C11.163 4 4 9.82 4 17c0 4.747 3.027 8.91 7.627 11.367L9.8 35.08a.5.5 0 0 0 .717.543L17.64 31.2c.778.1 1.573.153 2.36.153 8.837 0 16-5.82 16-13S28.837 4 20 4z" fill="#3D3D3D"/>
       </svg>
       카카오로 로그인
-    </a>
+    </button>
     <div class="skip">로그인 없이 <a href="/community">게시글만 보기 →</a></div>
   </div>
+
+  <script define:vars={{kakaoAuthUrl}}>
+    const all = document.getElementById('agree-all');
+    const reqs = document.querySelectorAll('.req');
+    const mkt = document.getElementById('agree-marketing');
+    const btn = document.getElementById('login-btn');
+
+    function refresh() {
+      const ok = [...reqs].every(c => c.checked);
+      btn.disabled = !ok;
+      all.checked = ok && mkt.checked;
+    }
+    all.addEventListener('change', () => {
+      [...reqs, mkt].forEach(c => c.checked = all.checked);
+      refresh();
+    });
+    [...reqs, mkt].forEach(c => c.addEventListener('change', refresh));
+    btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+      document.cookie = `pending_marketing=${mkt.checked ? '1' : '0'}; Path=/; Max-Age=600; Secure; SameSite=Lax`;
+      location.href = kakaoAuthUrl;
+    });
+  </script>
 </body>
 </html>

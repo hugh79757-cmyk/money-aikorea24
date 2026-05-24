@@ -142,10 +142,16 @@ export function getStaticPaths() {
       if (!comments.length) { list.innerHTML = '<div class="empty">첫 댓글을 남겨보세요</div>'; return; }
       list.innerHTML = comments.map(c => `
         <div class="comment-item">
-          <div class="comment-author">${c.author_name || '익명'}</div>
+          <div class="comment-author">${c.author_name || '익명'}${currentUser && currentUser.id === c.user_id ? ` <button onclick="deleteComment(${c.id})" style="float:right;background:none;border:none;color:#c00;cursor:pointer;font-size:.85rem">🗑 삭제</button>` : ''}</div>
           <div class="comment-content">${c.content}</div>
           <div class="comment-date">${c.created_at?.slice(0,10) || ''}</div>
         </div>`).join('');
+
+    window.deleteComment = async function(id) {
+      if (!confirm('삭제하시겠어요?')) return;
+      const res = await fetch('/api/community/comments?id=' + id, { method: 'DELETE' });
+      if (res.ok) loadComments(); else alert('삭제 실패');
+    };
     }
 
     window.toggleLike = async function toggleLike() {

@@ -10,6 +10,9 @@ function generateNickname() {
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
+  const cookieHeader = request.headers.get('Cookie') || '';
+  const mktMatch = cookieHeader.match(/pending_marketing=([01])/);
+  const marketingConsent = mktMatch && mktMatch[1] === '1' ? 1 : 0;
   const next = url.searchParams.get('state') || '/community';
   if (!code) return Response.redirect(new URL('/?error=no_code', url.origin), 302);
 
@@ -59,8 +62,8 @@ export async function onRequestGet({ request, env }) {
     }
 
     await db.prepare(
-      'INSERT INTO users (kakao_id, email, name, nickname, avatar, provider) VALUES (?, ?, ?, ?, ?, ?)'
-    ).bind(kakaoId, email, realName, nickname, avatar, 'kakao').run();
+      'INSERT INTO users (kakao_id, email, name, nickname, avatar, provider, marketing_consent, agreed_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+    ).bind(kakaoId, email, realName, nickname, avatar, 'kakao', marketingConsent, new Date().toISOString()).run();
 
     dbUser = await db.prepare(
       'SELECT id, name, nickname, email, avatar FROM users WHERE kakao_id = ?'

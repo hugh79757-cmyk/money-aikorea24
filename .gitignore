@@ -27,3 +27,6 @@ pnpm-debug.log*
 public/cards/
 public/persona-bg/
 public/persona-stats.json
+
+# 대용량 raw 데이터 (정제본만 커밋)
+public/benefits.json

@@ -1,0 +1,554 @@
+[
+  {
+    "id": "curated_youth_leap",
+    "name": "청년도약계좌",
+    "purpose": "청년의 중장기 자산 형성을 위해 정부기여금과 비과세 혜택을 지원하는 금융상품",
+    "target": "만 19~34세 청년, 개인소득 7,500만원 이하",
+    "content": "월 70만원 한도 납입, 정부기여금 지급, 이자소득 비과세",
+    "type": "현금(감면)",
+    "method": "은행 앱 또는 영업점 신청",
+    "deadline": "상시신청(분기별 모집)",
+    "url": "https://www.kinfa.or.kr",
+    "org": "서민금융진흥원",
+    "updated": "2026-05-01",
+    "category": "youth",
+    "age_range": [
+      19,
+      34
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_youth_savings",
+    "name": "청년내일저축계좌",
+    "purpose": "저소득 청년의 자산 형성 지원",
+    "target": "만 19~34세, 근로·사업소득 월 50만원 이상, 기준 중위소득 100% 이하",
+    "content": "본인 월 10만원 저축 시 정부 지원금 월 10~30만원 추가 적립, 3년 만기",
+    "type": "현금",
+    "method": "복지로(bokjiro.go.kr) 온라인 또는 주민센터 방문",
+    "deadline": "연 1회 모집",
+    "url": "https://www.bokjiro.go.kr",
+    "org": "보건복지부",
+    "updated": "2026-05-01",
+    "category": "youth",
+    "age_range": [
+      19,
+      34
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_youth_monthly_rent",
+    "name": "청년월세 한시 특별지원",
+    "purpose": "청년의 주거비 부담 경감",
+    "target": "만 19~34세, 부모와 별도 거주, 월세 60만원 이하, 소득·재산 기준 충족",
+    "content": "월 최대 20만원, 최대 12개월 지원",
+    "type": "현금",
+    "method": "복지로 또는 주민센터",
+    "deadline": "상시신청",
+    "url": "https://www.bokjiro.go.kr",
+    "org": "국토교통부",
+    "updated": "2026-05-01",
+    "category": "youth",
+    "age_range": [
+      19,
+      34
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_kpass",
+    "name": "K-패스 (대중교통 환급)",
+    "purpose": "대중교통 이용 시 요금 일부 환급",
+    "target": "만 19세 이상 전 국민 (청년 할인 추가)",
+    "content": "월 15회 이상 이용 시 지출액의 20~53% 환급. 청년(만 19~34세) 30% 환급",
+    "type": "현금(감면)",
+    "method": "K-패스 앱 또는 카드사 신청",
+    "deadline": "상시신청",
+    "url": "https://www.kpass.go.kr",
+    "org": "국토교통부",
+    "updated": "2026-05-01",
+    "category": "general",
+    "age_range": [
+      19,
+      99
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_tomorrow_learning",
+    "name": "국민내일배움카드",
+    "purpose": "직업훈련비 지원으로 취업·재취업·역량 개발 지원",
+    "target": "만 15세 이상 국민 (일부 제외: 현직 공무원, 사립학교 교직원 등)",
+    "content": "5년간 최대 500만원(일부 최대 300만원) 훈련비 지원",
+    "type": "현금(감면)",
+    "method": "HRD-Net(hrd.go.kr) 온라인 신청",
+    "deadline": "상시신청",
+    "url": "https://www.hrd.go.kr",
+    "org": "고용노동부",
+    "updated": "2026-05-01",
+    "category": "general",
+    "age_range": [
+      15,
+      75
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_youth_employment",
+    "name": "국민취업지원제도",
+    "purpose": "취업 취약계층 구직활동 지원",
+    "target": "만 15~69세, 구직 의사와 능력이 있는 저소득·청년·경력단절 등",
+    "content": "1유형: 구직촉진수당 월 50만원 최대 6개월 + 취업지원서비스. 2유형: 취업지원서비스 제공",
+    "type": "현금",
+    "method": "고용24(work24.go.kr) 온라인 또는 고용센터 방문",
+    "deadline": "상시신청",
+    "url": "https://www.work24.go.kr",
+    "org": "고용노동부",
+    "updated": "2026-05-01",
+    "category": "youth",
+    "age_range": [
+      15,
+      69
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_eitc",
+    "name": "근로장려금",
+    "purpose": "저소득 근로·사업자 가구 소득 지원",
+    "target": "근로·사업·종교인 소득이 있는 가구, 소득·재산 기준 충족",
+    "content": "단독가구 최대 165만원, 홑벌이 최대 285만원, 맞벌이 최대 330만원",
+    "type": "현금",
+    "method": "홈택스(hometax.go.kr) 또는 ARS 1544-9944",
+    "deadline": "정기신청 5.1~5.31 / 반기신청 3월·9월",
+    "url": "https://www.hometax.go.kr",
+    "org": "국세청",
+    "updated": "2026-05-01",
+    "category": "general",
+    "age_range": [
+      18,
+      99
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_child_tax_credit",
+    "name": "자녀장려금",
+    "purpose": "자녀를 둔 저소득 가구 양육비 지원",
+    "target": "부양자녀(만 18세 미만)가 있는 가구, 소득·재산 기준 충족",
+    "content": "부양자녀 1인당 최대 100만원",
+    "type": "현금",
+    "method": "홈택스(hometax.go.kr) 또는 ARS 1544-9944",
+    "deadline": "정기신청 5.1~5.31",
+    "url": "https://www.hometax.go.kr",
+    "org": "국세청",
+    "updated": "2026-05-01",
+    "category": "child",
+    "age_range": [
+      18,
+      60
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_irp",
+    "name": "IRP 세액공제",
+    "purpose": "노후 대비 개인형 퇴직연금 세액공제",
+    "target": "근로소득 또는 종합소득이 있는 모든 근로자·자영업자",
+    "content": "연 900만원 한도, 납입액의 13.2~16.5% 세액공제",
+    "type": "현금(감면)",
+    "method": "은행·증권사 IRP 계좌 개설 후 납입",
+    "deadline": "연말정산 전까지 납입",
+    "url": "https://www.fss.or.kr",
+    "org": "금융감독원",
+    "updated": "2026-05-01",
+    "category": "general",
+    "age_range": [
+      19,
+      65
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_isa",
+    "name": "ISA (개인종합자산관리계좌)",
+    "purpose": "다양한 금융상품 통합 운용으로 세제 혜택 제공",
+    "target": "만 19세 이상 (근로·사업소득자는 만 15세 이상)",
+    "content": "이자·배당소득 200~400만원 비과세, 초과분 9.9% 분리과세",
+    "type": "현금(감면)",
+    "method": "은행·증권사 ISA 계좌 개설",
+    "deadline": "상시신청",
+    "url": "https://www.fss.or.kr",
+    "org": "금융위원회",
+    "updated": "2026-05-01",
+    "category": "general",
+    "age_range": [
+      15,
+      99
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_nolan_umbrella",
+    "name": "노란우산공제",
+    "purpose": "소기업·소상공인 폐업·노령 시 생활 안정 지원",
+    "target": "소기업·소상공인(연 매출 일정 기준 이하)",
+    "content": "납입부금 전액 소득공제(연 최대 500만원), 납입금 압류 금지",
+    "type": "현금(감면)",
+    "method": "중소기업중앙회(8899.or.kr) 또는 금융기관",
+    "deadline": "상시신청",
+    "url": "https://www.8899.or.kr",
+    "org": "중소벤처기업부",
+    "updated": "2026-05-01",
+    "category": "business",
+    "age_range": [
+      19,
+      75
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_parenting_pay",
+    "name": "부모급여",
+    "purpose": "영아 가정의 양육 부담 경감",
+    "target": "만 0~1세 아동을 둔 부모",
+    "content": "만 0세 월 100만원, 만 1세 월 50만원 지급",
+    "type": "현금",
+    "method": "복지로(bokjiro.go.kr) 또는 주민센터",
+    "deadline": "출생 후 60일 이내 신청 권장",
+    "url": "https://www.bokjiro.go.kr",
+    "org": "보건복지부",
+    "updated": "2026-05-01",
+    "category": "child",
+    "age_range": [
+      18,
+      45
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_child_allowance",
+    "name": "아동수당",
+    "purpose": "아동 양육 가정의 경제적 부담 경감",
+    "target": "만 8세 미만 아동을 둔 부모",
+    "content": "아동 1인당 월 10만원",
+    "type": "현금",
+    "method": "복지로(bokjiro.go.kr) 또는 주민센터",
+    "deadline": "상시신청",
+    "url": "https://www.bokjiro.go.kr",
+    "org": "보건복지부",
+    "updated": "2026-05-01",
+    "category": "child",
+    "age_range": [
+      18,
+      50
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_first_meeting",
+    "name": "첫만남이용권",
+    "purpose": "출산 가정 초기 양육비 지원",
+    "target": "2022년 1월 1일 이후 출생 아동을 둔 부모",
+    "content": "첫째 200만원, 둘째 이상 300만원 바우처 지급",
+    "type": "현금(바우처)",
+    "method": "복지로(bokjiro.go.kr) 또는 주민센터",
+    "deadline": "출생 후 신청",
+    "url": "https://www.bokjiro.go.kr",
+    "org": "보건복지부",
+    "updated": "2026-05-01",
+    "category": "child",
+    "age_range": [
+      18,
+      50
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_maternity_medical",
+    "name": "임신·출산 진료비 바우처 (국민행복카드)",
+    "purpose": "임신·출산 관련 의료비 지원",
+    "target": "임신 확인된 건강보험 가입자",
+    "content": "단태아 100만원, 다태아 140만원 바우처",
+    "type": "현금(바우처)",
+    "method": "국민행복카드 발급(은행·카드사)",
+    "deadline": "임신 확인 후 신청",
+    "url": "https://www.bokjiro.go.kr",
+    "org": "보건복지부",
+    "updated": "2026-05-01",
+    "category": "child",
+    "age_range": [
+      18,
+      45
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "female",
+    "_curated": true
+  },
+  {
+    "id": "curated_basic_pension",
+    "name": "기초연금",
+    "purpose": "노인의 생활 안정 및 복지 향상",
+    "target": "만 65세 이상, 소득인정액 기준 하위 70% 이하",
+    "content": "최대 월 334,810원 (2026년 기준, 단독가구)",
+    "type": "현금",
+    "method": "주민센터 방문 또는 복지로(bokjiro.go.kr)",
+    "deadline": "만 65세 생일 1개월 전부터 신청 가능",
+    "url": "https://www.bokjiro.go.kr",
+    "org": "보건복지부",
+    "updated": "2026-05-01",
+    "category": "senior",
+    "age_range": [
+      65,
+      99
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_elderly_job",
+    "name": "노인일자리 및 사회활동 지원",
+    "purpose": "노인의 사회 참여와 소득 보충",
+    "target": "만 60세 이상 (사업 유형에 따라 65세 이상)",
+    "content": "월 29만~71만원 활동비 지급 (유형별 상이)",
+    "type": "현금",
+    "method": "주민센터 또는 노인복지관 신청",
+    "deadline": "연초 모집 (사업별 상이)",
+    "url": "https://www.bokjiro.go.kr",
+    "org": "보건복지부",
+    "updated": "2026-05-01",
+    "category": "senior",
+    "age_range": [
+      60,
+      99
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_ltci",
+    "name": "노인장기요양보험",
+    "purpose": "노인의 일상생활 지원 및 가족 부담 경감",
+    "target": "만 65세 이상, 또는 노인성 질환 보유자",
+    "content": "등급 판정 후 재가·시설 급여 제공 (본인부담 15~20%)",
+    "type": "서비스",
+    "method": "국민건강보험공단(nhis.or.kr) 신청",
+    "deadline": "상시신청",
+    "url": "https://www.nhis.or.kr",
+    "org": "보건복지부",
+    "updated": "2026-05-01",
+    "category": "senior",
+    "age_range": [
+      55,
+      99
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_energy_voucher",
+    "name": "에너지바우처",
+    "purpose": "취약계층 에너지비 지원",
+    "target": "의료급여수급자 중 노인·영유아·장애인·임산부 등 포함 가구",
+    "content": "여름·겨울 전기·가스요금 바우처 (가구원수별 차등)",
+    "type": "현금(바우처)",
+    "method": "주민센터 방문 또는 복지로",
+    "deadline": "매년 신청 기간 내",
+    "url": "https://www.bokjiro.go.kr",
+    "org": "산업통상자원부",
+    "updated": "2026-05-01",
+    "category": "welfare",
+    "age_range": [
+      0,
+      99
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_culture_nuri",
+    "name": "문화누리카드",
+    "purpose": "기초생활수급자·차상위계층 문화 활동 지원",
+    "target": "기초생활수급자, 차상위계층 (만 6세 이상)",
+    "content": "연간 13만원 문화·여행·체육 활동비 지원",
+    "type": "현금(바우처)",
+    "method": "문화누리(www.mnuri.kr) 또는 주민센터",
+    "deadline": "연초 신청 (~예산 소진 시)",
+    "url": "https://www.mnuri.kr",
+    "org": "문화체육관광부",
+    "updated": "2026-05-01",
+    "category": "welfare",
+    "age_range": [
+      6,
+      99
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_dental_senior",
+    "name": "틀니·임플란트 건강보험",
+    "purpose": "노인 치과 치료비 부담 경감",
+    "target": "만 65세 이상 건강보험 가입자",
+    "content": "틀니 50% 급여, 임플란트 1인당 2개 30% 본인부담",
+    "type": "현금(감면)",
+    "method": "건강보험 적용 치과 방문",
+    "deadline": "상시",
+    "url": "https://www.nhis.or.kr",
+    "org": "보건복지부",
+    "updated": "2026-05-01",
+    "category": "senior",
+    "age_range": [
+      65,
+      99
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_single_parent",
+    "name": "한부모가족 아동양육비",
+    "purpose": "한부모 가족의 자녀 양육비 지원",
+    "target": "만 18세 미만 자녀를 양육하는 한부모가족, 소득 기준 중위소득 63% 이하",
+    "content": "자녀 1인당 월 21만원 이상 (추가 지원 별도)",
+    "type": "현금",
+    "method": "주민센터 방문",
+    "deadline": "상시신청",
+    "url": "https://www.bokjiro.go.kr",
+    "org": "여성가족부",
+    "updated": "2026-05-01",
+    "category": "welfare",
+    "age_range": [
+      18,
+      55
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_emergency_welfare",
+    "name": "긴급복지지원",
+    "purpose": "갑작스러운 위기 상황 가구 지원",
+    "target": "갑작스러운 실직·질병·사고 등으로 생계가 어려워진 가구",
+    "content": "생계·의료·주거·사회복지서비스 등 일시 지원",
+    "type": "현금+서비스",
+    "method": "주민센터 또는 긴급복지지원 콜센터 129",
+    "deadline": "상시신청",
+    "url": "https://www.bokjiro.go.kr",
+    "org": "보건복지부",
+    "updated": "2026-05-01",
+    "category": "welfare",
+    "age_range": [
+      0,
+      99
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  },
+  {
+    "id": "curated_lifelong_edu",
+    "name": "평생교육바우처",
+    "purpose": "성인의 자기개발 및 직무 역량 강화",
+    "target": "만 19세 이상 기초생활수급자, 차상위계층, 기준 중위소득 65% 이하",
+    "content": "연 35만원 평생교육비 바우처",
+    "type": "현금(바우처)",
+    "method": "국가평생교육진흥원(lledu.or.kr) 온라인 신청",
+    "deadline": "연 1회 신청",
+    "url": "https://www.lledu.or.kr",
+    "org": "교육부",
+    "updated": "2026-05-01",
+    "category": "welfare",
+    "age_range": [
+      19,
+      99
+    ],
+    "regions": [
+      "전국"
+    ],
+    "sex": "any",
+    "_curated": true
+  }
+]

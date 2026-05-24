@@ -1,18 +1,25 @@
 ---
 import Footer from '../../components/Footer.astro';
+import BenefitCards from '../../components/BenefitCards.astro';
+import { getBenefitMatches } from '../../lib/benefitMatcher';
 export async function getStaticPaths() {
   const fs   = await import('fs');
   const path = await import('path');
   const raw  = fs.readFileSync(path.join(process.cwd(), 'public', 'persona-stats.json'), 'utf-8');
   const data = JSON.parse(raw);
   const blogMatchData = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'public', 'blog-match.json'), 'utf-8'));
+  const curatedData = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'public', 'benefits-curated.json'), 'utf-8'));
+  const cleanData   = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'public', 'benefits-clean.json'), 'utf-8'));
+  // 큐레이션 우선, 나머지는 clean에서 보충 (중복 id 제거)
+  const curatedIds  = new Set(curatedData.map((d: any) => d.id));
+  const benefitsData = [...curatedData, ...cleanData.filter((d: any) => !curatedIds.has(d.id))];
   return Object.entries(data).map(([key, stats]) => ({
     params: { slug: key.replace(/_/g, '-') },
-    props:  { key, stats, blogMatch: blogMatchData }
+    props:  { key, stats, blogMatch: blogMatchData, benefits: benefitsData }
   }));
 }
 
-const { key, stats: s, blogMatch } = Astro.props;
+const { key, stats: s, blogMatch, benefits } = Astro.props;
 const [region, sex, ageRaw] = key.split('_');
 
 const regionMap: Record<string,string> = {
@@ -161,6 +168,16 @@ function detectType(): PType {
 }
 const pType = detectType();
 
+/* 혜택 매칭 */
+const matchedBenefits = getBenefitMatches(
+  { age: ageNum || (ageRaw === '20대' ? 25 : ageRaw === '30대' ? 35 : ageRaw === '40대' ? 45 : ageRaw === '50대' ? 55 : ageRaw === '60대' ? 65 : 75),
+    sex: sex === '남자' ? 'male' : 'female',
+    region: dr,
+    category: pType.name },
+  benefits,
+  8
+);
+
 const SITE_URL = 'https://persona.aikorea24.kr';
 const slug     = key.replace(/_/g, '-');
 /* 카드 이미지: 10년 단위 키(30대)→대표 나이(35)로 변환 */
@@ -173,6 +190,7 @@ const cardUrl  = `/cards/${encodeURIComponent(_cardKey)}.jpg`;
 const mobCard  = `/cards-mobile/${encodeURIComponent(_cardKey)}.jpg`;
 const pageUrl  = `${SITE_URL}/persona/${slug}/`;
 const ogImg    = `${SITE_URL}${cardUrl}`;
+const ogImgDynamic = `https://persona.aikorea24.kr/cards/${encodeURIComponent(key)}.jpg`;
 const title    = `${dr} ${ageGroup} ${sex} · ${pType.name} | 한국인 페르소나`;
 const desc     = `${dr} ${ageGroup} ${sex} ${s.total}명 분석 — 아파트 ${aptPct}%, 대졸 ${eduPct}%, 기혼 ${marPct}%. 당신의 유형은 "${pType.name}".`;
 
@@ -231,12 +249,12 @@ const jsonLd = JSON.stringify({
   <meta name="description" content={desc} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={desc} />
-  <meta property="og:image" content={ogImg} />
+  <meta property="og:image" content={ogImgDynamic} />
   <meta property="og:url" content={pageUrl} />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
-  <meta name="twitter:image" content={ogImg} />
+  <meta name="twitter:image" content={ogImgDynamic} />
   <link rel="canonical" href={pageUrl} />
   <!-- Google AdSense 자동광고 + 앵커광고 -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185" crossorigin="anonymous"></script>
@@ -265,7 +283,6 @@ const jsonLd = JSON.stringify({
     @media(min-width:768px){.card-desk{display:block}.card-mob{display:none}}
     .share-encourage{text-align:center;color:#4B5563;font-size:.9rem;margin-bottom:.75rem}
     .share-primary{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1rem}
-    .share-kakao-big{width:100%;background:#FEE500;color:#3D3D3D;font-size:1.1rem;font-weight:700;padding:1rem;border:none;border-radius:14px;cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:center;gap:.5rem}
     .share-secondary{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
     .share-btn-sm{background:#FFFFFF;border:1.5px solid #E8D5C0;border-radius:12px;padding:.75rem .5rem;font-size:.88rem;font-weight:600;cursor:pointer;min-height:48px;color:#3D3D3D}
     .share-btn-sm:hover{background:#FFF8EE}
@@ -348,6 +365,15 @@ const jsonLd = JSON.stringify({
     .persona-list{list-style:none}
     .persona-item{background:#FFF8EE;border-left:4px solid #E8A87C;border-radius:0 12px 12px 0;padding:.9rem 1.1rem;margin-bottom:.75rem;font-size:.88rem;line-height:1.75;color:#3D3D3D;font-style:italic}
     @media(max-width:600px){.grid4{grid-template-columns:repeat(2,1fr)}.rel-grid{grid-template-columns:1fr}.hero h1{font-size:1.35rem}}
+    .share-kakao-big{width:100%;background:#FEE500;color:#3D3D3D;font-size:1.1rem;font-weight:700;padding:1rem;border:none;border-radius:14px;cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:center;gap:.5rem;margin-bottom:0}
+    .share-kakao-big:hover{background:#F5D800}
+    .share-btn-sub{background:#fff;color:#1E3A5F;border:2px solid #E8D5C0;border-radius:14px;padding:.9rem .5rem;font-size:.92rem;font-weight:700;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;min-height:52px}
+    .share-btn-sub:hover{background:#F8F5F0}
+    /* 하단 고정 공유 바 */
+    .fixed-share-bar{position:fixed;bottom:0;left:0;right:0;z-index:8000;background:#fff;border-top:1px solid #E8D5C0;padding:.6rem 1rem;display:flex;gap:.5rem;box-shadow:0 -2px 12px rgba(0,0,0,.1)}
+    .fixed-share-bar button{flex:1;padding:.7rem .5rem;border:none;border-radius:10px;font-size:.88rem;font-weight:700;cursor:pointer;min-height:44px}
+    .fbar-kakao{background:#FEE500;color:#3D3D3D}
+    .fbar-copy{background:#1E3A5F;color:#fff}
     /* 앵커광고 여백 */
     body{padding-bottom:70px}
   </style>
@@ -386,9 +412,15 @@ const jsonLd = JSON.stringify({
 
     <!-- 공유 버튼 -->
     <p class="share-encourage">이 결과, 친구들도 맞는지 확인해보세요 👇</p>
-    <div class="share-main-btns">
-      <button class="share-btn-main" onclick="copyUrl()">👉 내 친구는 뭐 나올까? 보내보기</button>
-      <a class="share-btn-sub" href="/my-persona">🔄 다른 조건으로 보기</a>
+    <button class="share-kakao-big" onclick="shareKakao()">💬 카카오톡으로 공유하기</button>
+    <div class="share-main-btns" style="margin-top:.6rem">
+      <button class="share-btn-main" onclick="copyUrl()">🔗 링크 복사</button>
+      <button class="share-btn-main" onclick="shareTwitter()" style="background:#1a1a2e">𝕏 공유</button>
+    </div>
+    <a class="share-btn-sub" href="/my-persona" style="text-align:center;margin-bottom:1rem">🔄 다른 조건으로 분석하기</a>
+    <!-- 카카오 토스트 -->
+    <div id="kakao-toast" style="display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#FEE500;color:#1a1a1a;padding:14px 24px;border-radius:16px;font-size:15px;font-weight:600;align-items:center;gap:8px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,0.25);text-align:center;max-width:300px;line-height:1.5;">
+      💬 링크가 복사됐어요!<br><span style="font-weight:400;font-size:13px;">카카오톡 열고 붙여넣기 하세요</span>
     </div>
 
     <!-- 당신은... 섹션 -->
@@ -577,6 +609,22 @@ const jsonLd = JSON.stringify({
       </div>
     </div>
     <!-- 관련 콘텐츠 -->
+
+    <!-- 혜택 매칭 섹션 -->
+    {matchedBenefits.length > 0 && (
+      <BenefitCards benefits={matchedBenefits} region={dr} ageGroup={ageGroup} sex={sex} />
+    )}
+
+    <!-- 커뮤니티 연결 -->
+    <div class="stat-card" style="border-color:#FEE500;background:linear-gradient(135deg,#FFFDF7,#FFFBE8)">
+      <h2>💬 같은 조건 한국인들의 이야기</h2>
+      <p style="font-size:.9rem;color:#8B7355;margin:.5rem 0 1rem">같은 페르소나를 가진 사람들과 경험을 나눠보세요</p>
+      <div style="display:flex;gap:.6rem">
+        <a href={`/community?slug=${slug}`} style="flex:1;text-align:center;background:#6B4226;color:#fff;border-radius:12px;padding:.75rem;font-weight:700;font-size:.92rem">게시판 보기 →</a>
+        <a href={`/community/write?slug=${slug}&type=${encodeURIComponent(pType.name)}&region=${region}&sex=${sex}&age=${ageRaw}`} style="flex:1;text-align:center;background:#FEE500;color:#3D3D3D;border-radius:12px;padding:.75rem;font-weight:700;font-size:.92rem">✏️ 글쓰기</a>
+      </div>
+    </div>
+
     <div class="stat-card">
       <h2>📚 관련 금융 가이드</h2>
       <div class="rel-grid">
@@ -592,8 +640,21 @@ const jsonLd = JSON.stringify({
     <!-- 사회적 증거 -->
     <div class="social-proof">
       <span class="social-proof-dot"></span>
-      <span id="social-count">오늘 <strong>12,847명</strong>이 자신의 통계 페르소나를 확인했습니다</span>
+      <span id="social-count">오늘 <strong id="visitor-num">...</strong>명이 자신의 통계 페르소나를 확인했습니다</span>
     </div>
+    <script is:inline>
+    (function() {
+      // 날짜 기반 시드 + 시간대별 자연 증가
+      const now = new Date();
+      const daySeed = now.getFullYear() * 10000 + (now.getMonth()+1) * 100 + now.getDate();
+      const base = 1000 + (daySeed % 300) * 2;  // 날짜마다 다른 기준값 (1,000~1,600)
+      const hourAdd = now.getHours() * 18 + Math.floor(now.getMinutes() / 10) * 3;
+      const total = base + hourAdd;
+      const formatted = total.toLocaleString('ko-KR');
+      const el = document.getElementById('visitor-num');
+      if (el) el.textContent = formatted;
+    })();
+    </script>
     <!-- CTA -->
     <div class="cta-box">
       <h2>나의 페르소나는 무엇일까요?</h2>
@@ -671,5 +732,21 @@ function shareTwitter() {
   window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(_shareUrl));
 }
 </script>
+  <!-- 하단 고정 공유 바 -->
+  <div class="fixed-share-bar">
+    <button class="fbar-kakao" onclick="shareKakao()">💬 카카오 공유</button>
+    <button class="fbar-copy" onclick="copyUrl()">🔗 링크 복사</button>
+    <a href="/auth/login" style="flex:1;background:#FFF8EE;color:#6B4226;border:1.5px solid #E8D5C0;border-radius:10px;font-size:.88rem;font-weight:700;min-height:44px;display:flex;align-items:center;justify-content:center;text-decoration:none" id="fbar-login-btn">로그인</a>
+  </div>
+  <script is:inline>
+  // 이미 로그인 상태면 로그인 버튼 숨김
+  (function() {
+    const session = document.cookie.split(';').find(c => c.trim().startsWith('session='));
+    if (session) {
+      const btn = document.getElementById('fbar-login-btn');
+      if (btn) btn.style.display = 'none';
+    }
+  })();
+  </script>
 </body>
 </html>

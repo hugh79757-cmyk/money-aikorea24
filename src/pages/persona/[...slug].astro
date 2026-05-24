@@ -29,7 +29,7 @@ const regionMap: Record<string,string> = {
 const dr = regionMap[region] || region;
 
 const ageNum   = parseInt(ageRaw) || 0;
-const isDecade = isNaN(parseInt(ageRaw));
+const isDecade = ageRaw.includes('대') || ageRaw.includes('이상');
 const ageGroup = isDecade ? ageRaw :
   ageNum < 30 ? '20대' : ageNum < 40 ? '30대' : ageNum < 50 ? '40대' :
   ageNum < 60 ? '50대' : ageNum < 70 ? '60대' : '70대 이상';
@@ -189,6 +189,13 @@ const _cardKey = `${region}_${sex}_${_ageForCard}`;
 const cardUrl  = `/cards/${encodeURIComponent(_cardKey)}.jpg`;
 const mobCard  = `/cards-mobile/${encodeURIComponent(_cardKey)}.jpg`;
 const pageUrl  = `${SITE_URL}/persona/${slug}/`;
+/* SEO: 1년 페이지는 noindex + 10년 페이지로 canonical 통합 */
+const _decadeAgeStr = isDecade ? ageRaw :
+  ageNum < 30 ? '20대' : ageNum < 40 ? '30대' : ageNum < 50 ? '40대' :
+  ageNum < 60 ? '50대' : ageNum < 70 ? '60대' : '70대이상';
+const decadeSlug = `${region}-${sex}-${_decadeAgeStr}`;
+const canonicalUrl = isDecade ? pageUrl : `${SITE_URL}/persona/${decadeSlug}/`;
+const robotsContent = isDecade ? 'index,follow' : 'noindex,follow';
 const ogImg    = `${SITE_URL}${cardUrl}`;
 const ogImgDynamic = `https://persona.aikorea24.kr/cards/${encodeURIComponent(key)}.jpg`;
 const title    = `${dr} ${ageGroup} ${sex} · ${pType.name} | 한국인 페르소나`;
@@ -255,7 +262,8 @@ const jsonLd = JSON.stringify({
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:image" content={ogImgDynamic} />
-  <link rel="canonical" href={pageUrl} />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta name="robots" content={robotsContent} />
   <!-- Google AdSense 자동광고 + 앵커광고 -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185" crossorigin="anonymous"></script>
   <script type="application/ld+json" set:html={jsonLd} />

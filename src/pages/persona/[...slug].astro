@@ -268,6 +268,17 @@ const jsonLd = JSON.stringify({
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185" crossorigin="anonymous"></script>
   <script type="application/ld+json" set:html={jsonLd} />
   <style>
+  /* === 페르소나 20명 그리드 (C-1 추가) === */
+  .personas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.85rem; margin-top: 0.5rem; }
+  .persona-item-card { background: #FFFEF9; border: 1px solid #F0E8D6; border-left: 3px solid #C9A574; border-radius: 10px; padding: 0.9rem 1rem; transition: transform .15s, box-shadow .15s; }
+  .persona-item-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(107,66,38,0.08); }
+  .persona-item-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
+  .persona-num { font-family: 'SF Mono', monospace; font-size: 0.78rem; color: #B8956A; font-weight: 700; letter-spacing: 0.5px; }
+  .persona-name { font-weight: 700; color: #6B4226; font-size: 0.95rem; }
+  .persona-story { margin: 0; color: #4A3F2E; line-height: 1.65; font-size: 0.9rem; }
+  @media (max-width: 640px) { .personas-grid { grid-template-columns: 1fr; gap: 0.7rem; } .persona-item-card { padding: 0.8rem 0.9rem; } }
+  /* === C-1 끝 === */
+
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Pretendard',-apple-system,sans-serif;background:#FFF8EE;color:#3D3D3D;font-size:17px;line-height:1.8;overflow-x:hidden}
     .hero{position:relative;min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 1.5rem;overflow:hidden}
@@ -590,12 +601,28 @@ const jsonLd = JSON.stringify({
       </ul>
     </div>
 
-    <!-- 페르소나 스토리 -->
+    <!-- 페르소나 스토리 (10년 페이지: 20개 전체, 1년 페이지: 1개) -->
     {s.personas && s.personas.length > 0 && (
       <div class="stat-card">
-        <h2>👤 같은 조건 한국인의 하루</h2>
-        <div class="persona-item">
-          {typeof s.personas[0] === 'string' ? s.personas[0] : (s.personas[0].story || s.personas[0].name || '')}
+        <h2>👥 {dr} {ageGroup} {sex}, 20명의 이야기</h2>
+        <p style="font-size:.88rem;color:#8B7355;margin:.3rem 0 1.2rem">
+          {isDecade ? `NVIDIA Nemotron-Persona-Korea 데이터셋의 ${dr} ${ageGroup} ${sex} 합성 페르소나 ${s.personas.length}명. 통계 위에 사람의 얼굴을 입혀봅니다.` : `${dr} ${ageGroup} ${sex}의 대표 인물 한 명입니다.`}
+        </p>
+        <div class="personas-grid">
+          {(isDecade ? s.personas : s.personas.slice(0, 1)).map((p, i) => {
+            const story = typeof p === 'string' ? p : (p.story || p.name || '');
+            const nameMatch = story.match(/^([가-힣]{2,4})\s*씨/);
+            const name = nameMatch ? nameMatch[1] : `인물 ${i + 1}`;
+            return (
+              <article class="persona-item-card">
+                <header class="persona-item-head">
+                  <span class="persona-num">#{(i + 1).toString().padStart(2, '0')}</span>
+                  <span class="persona-name">{name}</span>
+                </header>
+                <p class="persona-story">{story}</p>
+              </article>
+            );
+          })}
         </div>
       </div>
     )}

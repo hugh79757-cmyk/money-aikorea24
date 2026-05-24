@@ -1,4 +1,8 @@
 ---
+export function getStaticPaths() {
+  // 빌드 시 셸만 생성, 실제 데이터는 클라이언트 JS로 로드
+  return [{ params: { id: '_' } }];
+}
 ---
 <html lang="ko">
 <head>

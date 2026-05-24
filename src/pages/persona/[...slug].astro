@@ -647,7 +647,7 @@ const jsonLd = JSON.stringify({
 
     <!-- 혜택 매칭 섹션 -->
     {matchedBenefits.length > 0 && (
-      <BenefitCards benefits={matchedBenefits} region={dr} ageGroup={ageGroup} sex={sex} />
+      <BenefitCards benefits={matchedBenefits} region={dr} ageGroup={ageGroup} sex={sex} total={s.total} />
     )}
 
     <!-- 커뮤니티 연결 -->

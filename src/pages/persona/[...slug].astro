@@ -395,7 +395,16 @@ const jsonLd = JSON.stringify({
     .fbar-copy{background:#1E3A5F;color:#fff}
     /* 앵커광고 여백 */
     body{padding-bottom:70px}
-  </style>
+  .zodiac-section{margin:1.5rem 0;padding:1.25rem 1.5rem;background:#FFFDF7;border-radius:20px;border:1px solid #F0DFC8}
+.zodiac-section h3{font-size:1rem;font-weight:800;color:#6B4226;margin-bottom:1rem;text-align:center}
+.zodiac-cards{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+@media(max-width:480px){.zodiac-cards{grid-template-columns:1fr}}
+.zodiac-card{display:flex;flex-direction:column;align-items:center;gap:.4rem;background:#fff;border-radius:14px;padding:1.25rem 1rem;border:1px solid #F0DFC8;box-shadow:0 2px 8px rgba(107,66,38,.06);text-decoration:none;transition:transform .15s,box-shadow .15s}
+.zodiac-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(107,66,38,.12)}
+.zc-icon{font-size:2rem}
+.zc-title{font-size:.92rem;font-weight:700;color:#3D3D3D}
+.zc-desc{font-size:.75rem;color:#8B7355;text-align:center;line-height:1.5}
+</style>
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -649,6 +658,23 @@ const jsonLd = JSON.stringify({
     {matchedBenefits.length > 0 && (
       <BenefitCards benefits={matchedBenefits} region={dr} ageGroup={ageGroup} sex={sex} total={s.total} />
     )}
+
+    <!-- 운세 & 타로 카드 -->
+    <div class="zodiac-section" data-astro-cid-persona>
+      <h3>🔮 오늘의 운세도 확인해보세요</h3>
+      <div class="zodiac-cards">
+        <a class="zodiac-card" href="https://zodiac.techpawz.com/daily/" target="_blank" rel="noopener">
+          <span class="zc-icon">🐉</span>
+          <span class="zc-title">오늘의 띠별 운세</span>
+          <span class="zc-desc">종합운·연애운·금전운<br/>매일 업데이트</span>
+        </a>
+        <a class="zodiac-card" href="https://zodiac.techpawz.com/tarot/" target="_blank" rel="noopener">
+          <span class="zc-icon">🃏</span>
+          <span class="zc-title">오늘의 타로</span>
+          <span class="zc-desc">매일 한 장 뽑기<br/>78장 카드 해석</span>
+        </a>
+      </div>
+    </div>
 
     <!-- 커뮤니티 연결 -->
     <div class="stat-card" style="border-color:#FEE500;background:linear-gradient(135deg,#FFFDF7,#FFFBE8)">

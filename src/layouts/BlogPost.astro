@@ -84,8 +84,8 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
       /* 모바일 폰트 크기 제한 */
       .title h1 {
         margin: 0 0 0.5em 0;
-        font-size: 1.4rem;
-        line-height: 1.4;
+        font-size: 1.55rem;
+        line-height: 1.35;
         word-break: keep-all;
       }
       @media (min-width: 640px) {
@@ -127,19 +127,19 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
 
       /* prose 본문 모바일 최적화 */
       .prose :global(h2) {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         margin-top: 1.8em;
         margin-bottom: 0.6em;
         word-break: keep-all;
       }
       .prose :global(h3) {
-        font-size: 1.05rem;
+        font-size: 1.08rem;
         margin-top: 1.4em;
         word-break: keep-all;
       }
       .prose :global(p) {
-        font-size: 0.95rem;
-        line-height: 1.75;
+        font-size: 1.08rem;
+        line-height: 1.9;
         word-break: keep-all;
       }
       .prose :global(table) {
@@ -408,18 +408,17 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
             data-full-width-responsive="true"></ins>
           <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-          {isFinance && (
-            <a class="entity-card" href="/my-persona">
-              <div class="entity-card-label">📊 한국인 페르소나 데이터</div>
-              <div class="entity-card-stat">
-                {resolvedCategory === 'loan' && '서울 30대 남성 중 전세 거주 비율 62%'}
-                {resolvedCategory === 'insurance' && '40대 여성 실손보험 가입률 78%'}
-                {resolvedCategory === 'invest' && '30대 직장인 IRP·ISA 동시 가입률 41%'}
-                {resolvedCategory === 'tax' && '프리랜서 중 종합소득세 직접 신고 비율 63%'}
-              </div>
-              <div class="entity-card-cta">내 페르소나 확인하기 →</div>
-            </a>
-          )}
+          <a class="entity-card" href="/my-persona" style="display:block;background:linear-gradient(135deg,#6B4226,#E8A87C);border-radius:16px;padding:1.25rem 1.5rem;margin:1.5rem 0;text-decoration:none;color:#fff;">
+            <div style="font-size:.85rem;font-weight:700;opacity:.85;margin-bottom:.4rem;">📊 700만 한국인 데이터 분석</div>
+            <div style="font-size:1.1rem;font-weight:800;line-height:1.4;margin-bottom:.6rem;">
+              {resolvedCategory === 'loan' && '나와 같은 조건 한국인 중 몇 %가 전세에 살까?'}
+              {resolvedCategory === 'insurance' && '내 나이·지역 한국인의 실제 생활 통계는?'}
+              {resolvedCategory === 'invest' && '같은 조건 한국인의 소득 백분위가 궁금하다면?'}
+              {resolvedCategory === 'tax' && '나와 같은 조건 한국인 중 자영업자 비율은?'}
+              {!isFinance && '나와 같은 조건의 한국인은 어떻게 살고 있을까?'}
+            </div>
+            <div style="font-size:.95rem;font-weight:700;background:rgba(255,255,255,0.2);border-radius:8px;padding:.4rem .9rem;display:inline-block;">내 페르소나 확인하기 →</div>
+          </a>
 
           <AiTip topic={title} />
 

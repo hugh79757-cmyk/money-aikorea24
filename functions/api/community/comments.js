@@ -2,7 +2,7 @@ function getSession(request) {
   const cookie = request.headers.get('Cookie') || '';
   const match = cookie.match(/session=([^;]+)/);
   if (!match) return null;
-  try { return JSON.parse(atob(match[1])); } catch { return null; }
+  try { return JSON.parse(decodeURIComponent(atob(match[1]).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''))); } catch { return null; }
 }
 
 export async function onRequestPost({ request, env }) {

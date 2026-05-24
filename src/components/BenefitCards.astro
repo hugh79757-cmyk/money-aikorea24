@@ -81,7 +81,7 @@ function getDlText(dl: { source: string; daysLeft: number; label: string }): str
                     <div class={`bc-deadline deadline-badge ${dlCls}`}>{dlText}</div>
           <div class="bc-actions">
             {b.url
-              ? <a class="bc-btn-primary" href={b.url} target="_blank" rel="nofollow noopener">공식 신청처 →</a>
+              ? <a class="bc-btn-primary" href={b.url} target="_blank" rel="nofollow noopener" data-bid={b.id} data-seed={Math.floor((total||100)/10)} onclick="bcClick(this)">공식 신청처 →</a>
               : <span class="bc-btn-disabled">신청처 확인 필요</span>
             }
           </div>
@@ -91,6 +91,19 @@ function getDlText(dl: { source: string; daysLeft: number; label: string }): str
   </div>
   <p class="benefit-disclaimer">AI코리아24는 민간 정보 서비스입니다. 실제 수급 여부는 공식 기관 기준을 최종 확인하세요.</p>
 </div>
+
+<script>
+function bcClick(el) {
+  const bid = el.getAttribute('data-bid');
+  const seed = parseInt(el.getAttribute('data-seed') || '0');
+  if (!bid) return;
+  fetch('/api/benefit-click', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ benefit_id: bid, seed })
+  }).catch(() => {});
+}
+</script>
 
 <style>
 .benefit-section{margin:2rem 0;padding:1.5rem;background:#FFFDF7;border-radius:20px;border:1px solid #F0DFC8}

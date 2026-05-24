@@ -1,0 +1,189 @@
+---
+---
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>글쓰기 | 페르소나 커뮤니티</title>
+  <link rel="stylesheet" crossorigin="anonymous"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Pretendard',-apple-system,sans-serif;background:#FFF8EE;color:#3D3D3D;padding-bottom:80px}
+    header{background:#6B4226;padding:.9rem 1.25rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    .logo{color:#fff;font-weight:800;font-size:1.05rem;text-decoration:none}
+    .back{color:#fff;font-size:.9rem;opacity:.8;text-decoration:none}
+    .container{max-width:680px;margin:0 auto;padding:1.5rem 1rem}
+    h1{font-size:1.3rem;font-weight:800;color:#6B4226;margin-bottom:1.25rem}
+
+    /* 게시판 선택 */
+    .board-select{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.5rem}
+    .board-btn{border:2px solid #E8D5C0;border-radius:12px;padding:1rem;background:#fff;cursor:pointer;text-align:center;transition:all .15s}
+    .board-btn.active{border-color:#6B4226;background:#6B4226;color:#fff}
+    .board-btn-icon{font-size:1.5rem;display:block;margin-bottom:.3rem}
+    .board-btn-title{font-size:.92rem;font-weight:700}
+    .board-btn-desc{font-size:.72rem;opacity:.7;margin-top:.2rem}
+
+    /* 폼 */
+    .form-group{margin-bottom:1rem}
+    label{display:block;font-size:.85rem;font-weight:700;color:#6B4226;margin-bottom:.4rem}
+    input,textarea,select{width:100%;border:1.5px solid #E8D5C0;border-radius:10px;padding:.75rem 1rem;font-size:.95rem;font-family:inherit;background:#fff;outline:none;color:#3D3D3D}
+    input:focus,textarea:focus{border-color:#6B4226}
+    textarea{resize:vertical;min-height:180px;line-height:1.6}
+    .char-count{font-size:.75rem;color:#8B7355;text-align:right;margin-top:.3rem}
+
+    /* 페르소나 태그 (페르소나 게시판용) */
+    .persona-tag{background:#F0DFC8;border-radius:8px;padding:.6rem 1rem;font-size:.85rem;color:#6B4226;margin-bottom:1rem;display:none}
+    .persona-tag span{font-weight:700}
+
+    .submit-btn{width:100%;background:#6B4226;color:#fff;border:none;border-radius:12px;padding:1rem;font-size:1rem;font-weight:800;cursor:pointer;margin-top:.5rem}
+    .submit-btn:disabled{background:#E8D5C0;color:#8B7355;cursor:not-allowed}
+
+    /* 비로그인 */
+    .login-wall{text-align:center;padding:3rem 1rem;background:#fff;border-radius:16px;border:1px solid #F0DFC8}
+    .login-wall p{color:#8B7355;margin-bottom:1rem}
+    .login-wall a{background:#FEE500;color:#3D3D3D;border-radius:10px;padding:.75rem 2rem;font-weight:800;text-decoration:none;display:inline-block}
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">🇰🇷 페르소나</a>
+    <a class="back" href="/community">← 게시판</a>
+  </header>
+
+  <div class="container">
+    <h1>✏️ 글쓰기</h1>
+
+    <!-- 비로그인 -->
+    <div class="login-wall" id="login-wall" style="display:none">
+      <p>글을 쓰려면 로그인이 필요해요</p>
+      <a href="/auth/login">💬 카카오 로그인</a>
+    </div>
+
+    <!-- 글쓰기 폼 -->
+    <div id="write-form">
+      <!-- 게시판 선택 -->
+      <div class="board-select">
+        <button class="board-btn active" id="btn-persona" onclick="selectBoard('persona')">
+          <span class="board-btn-icon">👤</span>
+          <div class="board-btn-title">페르소나 게시판</div>
+          <div class="board-btn-desc">같은 조건 한국인들의 이야기</div>
+        </button>
+        <button class="board-btn" id="btn-benefit" onclick="selectBoard('benefit')">
+          <span class="board-btn-icon">🎁</span>
+          <div class="board-btn-title">지원금·혜택 게시판</div>
+          <div class="board-btn-desc">신청 후기·팁·질문</div>
+        </button>
+      </div>
+
+      <!-- 페르소나 태그 표시 -->
+      <div class="persona-tag" id="persona-tag">
+        내 페르소나: <span id="persona-tag-text">-</span>
+      </div>
+
+      <div class="form-group">
+        <label>제목</label>
+        <input type="text" id="title" placeholder="제목을 입력하세요" maxlength="100"/>
+        <div class="char-count"><span id="title-count">0</span>/100</div>
+      </div>
+
+      <div class="form-group">
+        <label>내용</label>
+        <textarea id="content" placeholder="내용을 입력하세요" maxlength="2000"></textarea>
+        <div class="char-count"><span id="content-count">0</span>/2000</div>
+      </div>
+
+      <button class="submit-btn" id="submit-btn" onclick="submitPost()">게시글 올리기</button>
+    </div>
+  </div>
+
+  <script>
+    let currentBoard = 'persona';
+    let personaSlug = '';
+    let personaType = '';
+    let region = '';
+    let sex = '';
+    let age = '';
+
+    // URL 파라미터 파싱
+    const params = new URLSearchParams(location.search);
+    if (params.get('board') === 'benefit') selectBoard('benefit');
+    personaSlug = params.get('slug') || '';
+    personaType = params.get('type') || '';
+    region = params.get('region') || '';
+    sex = params.get('sex') || '';
+    age = params.get('age') || '';
+
+    // 로그인 체크
+    const session = document.cookie.split(';').find(c => c.trim().startsWith('session='));
+    if (!session) {
+      document.getElementById('login-wall').style.display = 'block';
+      document.getElementById('write-form').style.display = 'none';
+    } else if (personaSlug) {
+      document.getElementById('persona-tag').style.display = 'block';
+      document.getElementById('persona-tag-text').textContent =
+        personaType || `${region} ${age}세 ${sex}`;
+    }
+
+    // 글자수 카운트
+    document.getElementById('title').addEventListener('input', function() {
+      document.getElementById('title-count').textContent = this.value.length;
+    });
+    document.getElementById('content').addEventListener('input', function() {
+      document.getElementById('content-count').textContent = this.value.length;
+    });
+
+    function selectBoard(board) {
+      currentBoard = board;
+      document.getElementById('btn-persona').classList.toggle('active', board === 'persona');
+      document.getElementById('btn-benefit').classList.toggle('active', board === 'benefit');
+      // 페르소나 태그는 페르소나 게시판 + slug 있을 때만
+      if (board === 'benefit') {
+        document.getElementById('persona-tag').style.display = 'none';
+      } else if (personaSlug) {
+        document.getElementById('persona-tag').style.display = 'block';
+      }
+    }
+
+    async function submitPost() {
+      const title = document.getElementById('title').value.trim();
+      const content = document.getElementById('content').value.trim();
+      if (!title) { alert('제목을 입력하세요'); return; }
+      if (!content) { alert('내용을 입력하세요'); return; }
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = '올리는 중...';
+
+      try {
+        const res = await fetch('/api/community/posts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title,
+            content,
+            board_type: currentBoard,
+            persona_slug: currentBoard === 'persona' ? personaSlug : '',
+            persona_type: currentBoard === 'persona' ? personaType : '',
+            region: currentBoard === 'persona' ? region : '',
+            sex: currentBoard === 'persona' ? sex : '',
+            age: currentBoard === 'persona' ? age : '',
+          })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          location.href = '/community';
+        } else {
+          alert(data.error || '오류가 발생했어요');
+          btn.disabled = false;
+          btn.textContent = '게시글 올리기';
+        }
+      } catch(e) {
+        alert('네트워크 오류가 발생했어요');
+        btn.disabled = false;
+        btn.textContent = '게시글 올리기';
+      }
+    }
+  </script>
+</body>
+</html>

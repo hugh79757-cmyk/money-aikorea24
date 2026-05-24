@@ -8,14 +8,15 @@ function getSession(request) {
 export async function onRequestGet({ request, env }) {
   const db = env.DB;
   const url = new URL(request.url);
-  const slug = url.searchParams.get('slug') || '';
-  const q    = url.searchParams.get('q') || '';
+  const slug  = url.searchParams.get('slug') || '';
+  const q     = url.searchParams.get('q') || '';
+  const board = url.searchParams.get('board') || 'persona';
   const page = Math.max(1, parseInt(url.searchParams.get('page') || '1'));
   const limit = 20, offset = (page - 1) * limit;
   const H = { 'Content-Type': 'application/json' };
 
-  let where = 'WHERE 1=1';
-  const params = [];
+  let where = 'WHERE pp.board_type = ?';
+  const params = [board];
   if (slug) { where += ' AND pp.persona_slug = ?'; params.push(slug); }
   if (q)    { where += ' AND (pp.title LIKE ? OR pp.content LIKE ?)'; params.push(`%${q}%`, `%${q}%`); }
 
@@ -35,12 +36,12 @@ export async function onRequestPost({ request, env }) {
   const user = getSession(request);
   if (!user) return new Response(JSON.stringify({ error: 'unauthorized' }), { status: 401, headers: H });
 
-  const { persona_slug, persona_type, region, sex, age, title, content } = await request.json();
+  const { persona_slug, persona_type, region, sex, age, title, content, board_type } = await request.json();
   if (!title?.trim() || !content?.trim()) return new Response(JSON.stringify({ error: 'empty' }), { status: 400, headers: H });
 
   const r = await env.DB.prepare(`
-    INSERT INTO persona_posts (user_id, persona_slug, persona_type, region, sex, age, title, content)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO persona_posts (user_id, persona_slug, persona_type, region, sex, age, title, content, board_type)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).bind(user.id, persona_slug||'', persona_type||'', region||'', sex||'', age||'', title.trim(), content.trim()).run();
 
   return new Response(JSON.stringify({ ok: true, id: r.meta?.last_row_id }), { headers: H });

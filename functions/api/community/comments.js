@@ -35,7 +35,7 @@ export async function onRequestDelete({request, env}) {
   if (!id) return new Response(JSON.stringify({error:'no_id'}), {status:400});
   const row = await env.DB.prepare('SELECT user_id FROM persona_comments WHERE id = ?').bind(id).first();
   if (!row) return new Response(JSON.stringify({error:'not_found'}), {status:404});
-  if (row.user_id !== user.id) return new Response(JSON.stringify({error:'forbidden'}), {status:403});
+  if (row.user_id !== user.id && user.id !== 1) return new Response(JSON.stringify({error:'forbidden'}), {status:403});
   await env.DB.prepare('DELETE FROM persona_comments WHERE id = ?').bind(id).run();
   return new Response(JSON.stringify({ok:true}));
 }

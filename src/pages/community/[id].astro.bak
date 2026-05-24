@@ -162,7 +162,7 @@ export function getStaticPaths() {
     window.deletePost = async function() {
       if (!confirm('이 글을 삭제하시겠어요? (댓글·좋아요도 함께 삭제됩니다)')) return;
       const id = location.pathname.split('/').pop();
-      const res = await fetch('/api/community/posts/' + id, { method: 'DELETE' });
+      const res = await fetch('/api/community/posts?id=' + id, { method: 'DELETE' });
       if (res.ok) { alert('삭제 완료'); location.href = '/community'; }
       else alert('삭제 실패');
     };

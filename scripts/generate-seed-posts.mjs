@@ -33,6 +33,22 @@ function pickKey() {
   return m.length ? m[Math.floor(Math.random()*m.length)] : personaKeys[Math.floor(Math.random()*personaKeys.length)];
 }
 function rand(arr) { return arr[Math.floor(Math.random()*arr.length)]; }
+
+function getJob(ageRaw, dataJobs) {
+  const n = parseInt(ageRaw);
+  if (n <= 19) return rand(['학생','고등학생','중학생']);
+  if (n <= 29) return rand(['취준생','사회초년생','대학생','신입사원','프리랜서']);
+  if (n <= 39) return (dataJobs&&dataJobs[0]) || rand(['직장인','회사원','프리랜서','자영업자']);
+  if (n <= 49) return (dataJobs&&dataJobs[0]) || rand(['직장인','자영업자','워킹맘','전문직']);
+  if (n <= 59) return (dataJobs&&dataJobs[0]) || rand(['직장인','자영업자','주부','관리자']);
+  if (n <= 69) return rand(['은퇴자','자영업자','주부','시간제 근무자']);
+  return rand(['은퇴자','주부','어르신']);
+}
+const ENDINGS = ['요','네요','어요','습니다','죠','거든요'];
+function vary(s) {
+  return s.replace(/요\./g, () => '.'.replace('.', rand(['요.','네요.','어요.','거든요.']))).replace(/네요\./g, () => rand(['네요.','어요.','죠.']));
+}
+
 function cleanField(s) {
   return (s||'').replace(/[\r\n]+/g,' ').replace(/\s+/g,' ').replace(/○/g,'').trim().slice(0,80);
 }
@@ -54,7 +70,6 @@ function fmtAge(age) {
   const n = parseInt(age);
   if (n <= 9) return n + '살';
   const d = Math.floor(n / 10) * 10;
-  if (d >= 70) return '70대 이상';
   return d + '대';
 }
 function getInfo(key) {
@@ -62,7 +77,7 @@ function getInfo(key) {
   const base = parseKey(key);
   const interests = ['재테크','건강관리','맛집탐방','독서','운동','여행','요리'];
   return { ...base, age: fmtAge(base.age),
-    job: (base.age === '10대' ? '학생' : (data.jobs&&data.jobs[0]) || '직장인'),
+    job: getJob(base.age, data.jobs),
     housing: (data.housing&&data.housing[0]) || '아파트',
     interest: rand(interests),
   };
@@ -92,28 +107,47 @@ const B_CATS = [{s:'신청후기',r:.25},{s:'질문',r:.30},{s:'정보공유',r:
 
 const PT = {
   '자기소개': [
-    p=>`안녕하세요! ${p.region} 사는 ${p.age} ${p.sexLabel}입니다.\n${p.job} 일을 하고 있고요, 비슷한 분들이랑 정보 나누고 싶어서 가입했어요. 잘 부탁드립니다!`,
-    p=>`${p.region}에 거주 중인 ${p.age}이에요. 직업은 ${p.job}이고 평소에 ${p.interest}에 관심이 많습니다. 좋은 정보 많이 얻어가고 싶네요. 반갑습니다.`,
-    p=>`처음 글 올려봐요. ${p.region} ${p.age} ${p.sexLabel}입니다. ${p.job} 하면서 틈틈이 정부지원금 정보 찾아보고 있는데 쉽지 않더라고요. 잘 부탁드려요.`,
+    p=>`안녕하세요! ${p.region} 사는 ${p.age} ${p.sexLabel}입니다.\n${p.job}이고요, 비슷한 분들이랑 정보 나누고 싶어서 가입했어요. 잘 부탁드립니다!`,
+    p=>`${p.region}에 거주 중인 ${p.age}이에요. ${p.job}이고 평소 ${p.interest}에 관심이 많습니다. 좋은 정보 많이 얻어가고 싶네요. 반갑습니다.`,
+    p=>`처음 글 올려봐요. ${p.region} ${p.age} ${p.sexLabel}입니다. ${p.job}으로 지내면서 틈틈이 정부지원금 정보 찾아보는데 쉽지 않더라고요.`,
+    p=>`반갑습니다. ${p.age} ${p.sexLabel}이고 ${p.region}에서 ${p.housing} 살아요. 여기 분들 글 보면서 많이 배우고 있어요.`,
+    p=>`${p.region} ${p.age}예요. ${p.job}으로 살고 있고, ${p.interest} 좋아합니다. 잘 부탁드려요!`,
+    p=>`커뮤니티 처음 가입했어요. ${p.region} ${p.age} ${p.sexLabel}이에요. 친하게 지내요~`,
+    p=>`인사드려요. 저는 ${p.age} ${p.sexLabel}이고 ${p.region}에 살고 있습니다. ${p.job} 관련해서 정보 많이 얻어갈게요.`,
   ],
   '일상': [
-    p=>`${p.region}도 요즘 날씨가 많이 더워졌네요. ${p.job} 출퇴근하는데 진짜 힘드네요.\n다들 건강 챙기세요!`,
-    p=>`${p.age} ${p.sexLabel}으로 사는 게 요즘 팍팍하게 느껴져요. ${p.job} 수입으로 ${p.housing} 유지하면서 생활비 맞추려니 빠듯하네요. 같은 처지 분들 계신가요?`,
-    p=>`오늘 ${p.job} 일이 바빠서 정신없이 하루 보냈어요. 저녁에 가족들이랑 밥 먹으면서 지원금 얘기 나왔는데, 생각보다 모르는 게 많더라고요.`,
+    p=>`${p.region}도 요즘 날씨가 많이 변덕스럽네요. 다들 건강 챙기세요!`,
+    p=>`${p.age} ${p.sexLabel}으로 사는 게 요즘 팍팍하게 느껴져요. ${p.housing} 유지하면서 생활비 맞추려니 빠듯하네요.`,
+    p=>`오늘 하루 정신없이 보냈어요. 저녁에 가족들이랑 밥 먹으면서 지원금 얘기 나왔는데, 모르는 게 많더라고요.`,
+    p=>`주말인데도 할 일이 산더미네요. ${p.interest} 할 시간도 없고... ${p.age} 다 그런가요?`,
+    p=>`요즘 ${p.interest}에 빠져 있어요. ${p.region} 근처에 좋은 곳 추천 있으면 알려주세요.`,
+    p=>`${p.housing} 살면서 느끼는 건데, 관리비가 너무 부담스러워요. 다들 어떻게 절약하시나요?`,
+    p=>`오늘 ${p.region} 날씨 너무 좋아서 산책 다녀왔어요. 작은 행복 챙기는 게 최고인 것 같아요.`,
+    p=>`퇴근하고 집에 오면 아무것도 하기 싫어요. ${p.age} 되니까 체력이 예전 같지 않네요.`,
   ],
   '고민': [
-    p=>`${p.age} ${p.sexLabel}인데 요즘 ${p.job} 관련 고민이 생겨서요. 수입이 불안정해서 지원을 받을 수 있을지 찾아보는 중이에요. 비슷한 경험 있으신 분 조언 부탁드려요.`,
-    p=>`${p.housing}에 살고 있는데 생활비 부담이 커요. ${p.age}에 이런 고민 하는 게 맞는 건지... 주변에 물어보기도 애매하고 여기서 솔직하게 얘기해봐요.`,
-    p=>`솔직히 요즘 경제적으로 좀 어렵습니다. ${p.job} 하는데 수입이 들쭉날쭉해서 지원받을 수 있는 게 있는지 알아보고 있어요. ${p.region}에서 받을 수 있는 지원금 아시는 분?`,
+    p=>`${p.age} ${p.sexLabel}인데 요즘 고민이 많아요. 수입이 불안정해서 지원받을 수 있는 게 있는지 찾아보고 있어요.`,
+    p=>`${p.housing} 생활비 부담이 커요. ${p.age}에 이런 고민 하는 게 맞나 싶지만... 솔직하게 얘기해봐요.`,
+    p=>`솔직히 요즘 경제적으로 어렵습니다. ${p.region}에서 받을 수 있는 지원금 아시는 분?`,
+    p=>`가족 부양 부담이 점점 커지네요. ${p.age} ${p.sexLabel}으로 비슷한 처지인 분 계세요?`,
+    p=>`미래가 막막해요. ${p.age}인데 모아둔 돈도 별로 없고, 어떻게 준비해야 할지 모르겠어요.`,
+    p=>`건강이 예전 같지 않은데 검진비가 부담스러워요. 무료 검진 혜택 같은 거 받아보신 분?`,
+    p=>`${p.region}에서 ${p.housing} 옮기려고 하는데 비용 부담돼요. 주거 지원 받아보신 분 계신가요?`,
   ],
   '질문': [
-    p=>`${p.age} ${p.sexLabel}인데요, 혹시 ${p.job} 종사자들이 신청할 수 있는 지원금이 따로 있나요? ${p.region} 거주자인데 지역별로 다른 게 있는 것 같아서요.`,
-    p=>`국민내일배움카드 신청하려고 하는데요, ${p.age} ${p.job}도 대상이 되는지 모르겠어요. 신청해본 분 계시면 절차 좀 알려주세요.`,
-    p=>`${p.region}에서 ${p.age}에 신청 가능한 복지 혜택 총 정리된 거 어디서 볼 수 있나요? 복지로 들어가면 너무 많아서 헷갈려요.`,
+    p=>`${p.age} ${p.sexLabel}인데요, ${p.region} 거주자가 신청할 수 있는 지원금이 따로 있나요?`,
+    p=>`국민내일배움카드 신청하려는데, ${p.age}도 대상인가요? 신청해본 분 절차 알려주세요.`,
+    p=>`${p.region}에서 ${p.age}에 신청 가능한 복지 혜택 정리된 곳 어디서 볼 수 있나요? 복지로는 너무 복잡해요.`,
+    p=>`청년 월세 지원 같은 거 ${p.region}에도 있나요? ${p.housing}이라 도움이 절실해요.`,
+    p=>`${p.age}에 받을 수 있는 건강검진 무료로 되는 거 어떤 게 있나요?`,
+    p=>`소상공인 대출 ${p.region}에서 알아보고 있는데, 조건이 까다롭더라고요. 받아보신 분 후기 있나요?`,
   ],
   '후기': [
-    p=>`지난달에 ${p.region}에서 청년지원금 받았어요. ${p.age}라 아슬아슬하게 대상이었는데 통과됐네요. 서류 준비가 좀 까다로웠지만 담당자분이 친절해서 잘 됐어요.`,
-    p=>`${p.job} 하면서 직업훈련 신청했는데 생각보다 빨리 승인됐어요. ${p.region} 고용센터 빠르더라고요. ${p.age}도 충분히 받을 수 있으니 고민하지 말고 신청해보세요!`,
+    p=>`지난달에 ${p.region}에서 청년지원금 받았어요. 서류 준비가 까다로웠지만 담당자분이 친절해서 잘 됐어요.`,
+    p=>`직업훈련 신청했는데 빨리 승인됐어요. ${p.region} 고용센터 빠르더라고요. 고민 말고 신청해보세요!`,
+    p=>`${p.region} 주민센터에서 ${p.age} 대상 프로그램 신청했는데 만족스러웠어요. 다음에도 또 참여하려고요.`,
+    p=>`복지로 사이트로 신청 처음 해봤는데 의외로 쉬웠어요. ${p.age} ${p.sexLabel} 분들 도전해보세요.`,
+    p=>`지역 화폐 충전하면 인센티브 주는 거 알고 계세요? ${p.region}에서 쏠쏠하게 챙기고 있어요.`,
   ],
 };
 
@@ -197,8 +231,6 @@ const lines = [
 `-- Step E 시드 글 SQL (${COUNT}개)`,
 `-- 생성: ${new Date().toISOString()}`,
 `-- AI 페르소나 시드 전용 (user_id=0)`,
-`PRAGMA foreign_keys=OFF;`,
-`BEGIN TRANSACTION;`,
 `INSERT OR IGNORE INTO users (id, kakao_id, name, provider, created_at) VALUES (0, 'seed-0', 'AI페르소나', 'seed', datetime('now'));`,
 ];
 

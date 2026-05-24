@@ -397,6 +397,13 @@ function selectOption(field, val) {
              : field === 'province' ? document.querySelectorAll('#province-grid .step-btn-option')
              : document.querySelectorAll('#marital-grid .step-btn-option');
   grid.forEach(b => { b.classList.toggle('selected', b.textContent.includes(val)); });
+  /* 성별 선택 시 자동으로 다음 스텝 */
+  if (field === 'sex') {
+    const age = parseInt(document.getElementById('age').value);
+    if (!age || age < 20 || age > 90) { alert('나이를 먼저 입력해주세요 (20~90)'); return; }
+    INPUTS.age = age;
+    setTimeout(() => goStep(2), 200);
+  }
 }
 
 /* ══ 데이터 로드 ══ */

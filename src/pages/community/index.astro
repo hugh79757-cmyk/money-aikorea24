@@ -56,6 +56,10 @@
   <div class="container">
     <h1>💬 페르소나 커뮤니티</h1>
     <p class="sub" id="board-sub">같은 페르소나를 가진 사람들과 이야기를 나눠보세요</p>
+    <div class="board-tabs">
+      <button class="board-tab active" id="tab-persona" onclick="switchBoard('persona')">💬 페르소나</button>
+      <button class="board-tab" id="tab-benefit" onclick="switchBoard('benefit')">💰 지원금</button>
+    </div>
     <div class="search-bar">
       <input id="search-input" placeholder="게시글 검색..." />
       <button onclick="doSearch()">검색</button>
@@ -69,6 +73,11 @@
   let currentPage = 1;
   const params = new URLSearchParams(location.search);
   const slug = params.get('slug') || '';
+  let board = params.get('board') || 'persona';
+  if (board === 'benefit') {
+    document.getElementById('tab-persona')?.classList.remove('active');
+    document.getElementById('tab-benefit')?.classList.add('active');
+  }
   let q = params.get('q') || '';
   document.getElementById('search-input').value = q;
 
@@ -81,11 +90,19 @@
     if (slug) w.href = `/community/write?slug=${slug}`;
   }
 
+  function switchBoard(b) {
+    board = b;
+    document.querySelectorAll('.board-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + b).classList.add('active');
+    document.getElementById('board-sub').textContent = 
+      b === 'persona' ? '같은 페르소나를 가진 사람들과 이야기를 나눠보세요' : '지원금 신청 정보와 후기를 나눠보세요';
+    loadPosts(1);
+  }
   async function loadPosts(page = 1) {
     currentPage = page;
     const list = document.getElementById('post-list');
     list.innerHTML = '<div class="loading">불러오는 중...</div>';
-    let url = `/api/community/posts?page=${page}`;
+    let url = `/api/community/posts?page=${page}&board=${board}`;
     if (slug) url += `&slug=${encodeURIComponent(slug)}`;
     if (q)    url += `&q=${encodeURIComponent(q)}`;
     const res = await fetch(url);

@@ -2,6 +2,8 @@
 import Footer from '../../components/Footer.astro';
 import BenefitCards from '../../components/BenefitCards.astro';
 import { getBenefitMatches } from '../../lib/benefitMatcher';
+import wageTable from '../../data/wage-table.json';
+import jobMap from '../../data/job-category-map.json';
 export async function getStaticPaths() {
   const fs   = await import('fs');
   const path = await import('path');
@@ -73,25 +75,41 @@ const youAreItems = [
   { emoji:'💼', text: youAreSentence(100-unePct, '현재 일하고 있어요', '지금 일을 쉬고 있어요') },
 ];
 
-// KOSIS 직종별 월임금 (대분류 기준, 만원)
-const JOB_WAGE: Record<string, number> = {
-  '무직':0,'구직중':0,
-  '관리자':1260,'임원':1260,'대표이사':1260,
-  '의사':800,'변호사':950,'약사':520,'회계사':600,
-  '간호사':450,'교사':540,'교수':430,
-  '프로그래머':580,'개발자':580,'데이터':580,'시스템':560,
-  '사무원':490,'비서':290,'행정':490,'총무':490,'인사':490,
-  '영업원':410,'판매원':290,'마케팅':500,'상품 기획':500,
-  '조리사':250,'청소원':220,'경비원':380,'보육':250,
-  '운전원':350,'기관사':590,'지게차':420,
-  '용접':410,'배관':400,'금형':410,
-  '단순':260,'하역':260,'택배':290,
-};
-function getJobWage(jobName: string): number | null {
-  for (const [kw, wage] of Object.entries(JOB_WAGE)) {
-    if (jobName.includes(kw)) return wage;
+// 고용노동부 고용형태별근로실태조사 2025 기반 임금 추정
+function mapJobToCategory(jobName) {
+  for (const rule of jobMap.rules) {
+    for (const kw of rule.keywords) {
+      if (jobName.includes(kw)) return rule.category;
+    }
   }
-  return null;
+  return jobMap.fallback;
+}
+function ageToFactorKey(ageRaw, ageNum) {
+  let n = ageNum;
+  if (!n || isNaN(n)) {
+    const m = String(ageRaw).match(/(\d+)/);
+    if (m) n = parseInt(m[1]);
+  }
+  if (!n) return '30대초';
+  if (n < 20) return '10대';
+  if (n < 25) return '20대초';
+  if (n < 30) return '20대후';
+  if (n < 35) return '30대초';
+  if (n < 40) return '30대후';
+  if (n < 45) return '40대초';
+  if (n < 50) return '40대후';
+  if (n < 55) return '50대초';
+  if (n < 60) return '50대후';
+  return '60대이상';
+}
+function getJobWage(jobName, sex, ageRaw, ageNum) {
+  const cat = mapJobToCategory(jobName);
+  const base = wageTable.jobCategory[cat];
+  if (base === undefined || base === 0) return null;
+  const sexKey = sex === '여자' ? '여' : '남';
+  const ageKey = ageToFactorKey(ageRaw, ageNum);
+  const factor = (wageTable.ageSexFactor[sexKey] || {})[ageKey] ?? 1.0;
+  return Math.round(base * factor);
 }
 const parPct  = pctOf(s.family,    ['부모와 동거','어머니와 동거','아버지와 동거']);
 
@@ -574,7 +592,7 @@ const jsonLd = JSON.stringify({
         {topN(s.jobs, 5).map(([k, v]) => {
           const t = Object.values(s.jobs).reduce((a,b) => a+b, 0);
           const p = t ? Math.round(v/t*100) : 0;
-          const wage = getJobWage(k);
+          const wage = getJobWage(k, sex, ageRaw, ageNum);
           return (
             <li class="bar-item">
               <div class="bar-header">

@@ -29,6 +29,21 @@ allPosts.sort((a, b) => {
 });
 
 const recentPosts = allPosts.slice(0, 6);
+
+import benefitsData from '../../public/benefits-clean.json';
+const _today = new Date();
+function _daysLeft(d) {
+  if (!d) return null;
+  const m = String(d).match(/(\d{4})[-.](\d{1,2})[-.](\d{1,2})/);
+  if (!m) return null;
+  const dt = new Date(+m[1], +m[2]-1, +m[3]);
+  return Math.ceil((dt - _today) / 86400000);
+}
+const urgentBenefits = benefitsData
+  .map(b => ({...b, _d: _daysLeft(b.deadline)}))
+  .filter(b => b._d !== null && b._d > 0 && b._d <= 30)
+  .sort((a,b) => a._d - b._d)
+  .slice(0, 5);
 ---
 
 <html lang="ko">
@@ -52,6 +67,24 @@ const recentPosts = allPosts.slice(0, 6);
         </div>
         <div class="persona-hero-img">
           <img src="/cards/서울_남자_35.jpg" alt="한국인 페르소나 분석 카드 예시" loading="eager" />
+        </div>
+      </section>
+
+      <section class="urgent-benefits">
+        <div class="urgent-head">
+          <h2>⏰ 마감 임박 지원금</h2>
+          <a href="/benefits" class="urgent-more">전체보기 →</a>
+        </div>
+        <div class="urgent-list">
+          {urgentBenefits.map(b => (
+            <a href="/benefits" class="urgent-item">
+              <div class="urgent-info">
+                <div class="urgent-name">{b.name}</div>
+                <div class="urgent-org">{b.org}</div>
+              </div>
+              <div class={`urgent-dday ${b._d <= 7 ? 'red' : ''}`}>D-{b._d}</div>
+            </a>
+          ))}
         </div>
       </section>
 
@@ -306,4 +339,17 @@ const recentPosts = allPosts.slice(0, 6);
     margin-top: auto;
   }
   time { font-size: 0.75rem; color: #9CA3AF; white-space: nowrap; }
+
+  .urgent-benefits { max-width: 960px; margin: 1.5rem auto 2rem; padding: 0 1rem; }
+  .urgent-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:.8rem }
+  .urgent-head h2 { font-size: 1.2rem; font-weight: 800; color: #3D3D3D; margin: 0 }
+  .urgent-more { font-size: .85rem; color: #6B4226; font-weight: 600; text-decoration: none }
+  .urgent-list { display: grid; gap: .5rem }
+  .urgent-item { display:flex; justify-content:space-between; align-items:center; gap:1rem; background:#fff; border-radius:12px; padding:.8rem 1rem; text-decoration:none; color:inherit; box-shadow:0 1px 4px rgba(107,66,38,.05) }
+  .urgent-item:hover { box-shadow: 0 4px 12px rgba(107,66,38,.12) }
+  .urgent-info { flex:1; min-width:0 }
+  .urgent-name { font-weight:700; font-size:.95rem; color:#3D3D3D; line-height:1.4; margin-bottom:.2rem }
+  .urgent-org { font-size:.78rem; color:#8B7355 }
+  .urgent-dday { flex-shrink:0; background:#FFA552; color:#fff; border-radius:10px; padding:.4rem .7rem; font-weight:700; font-size:.85rem; min-width:50px; text-align:center }
+  .urgent-dday.red { background:#c00 }
 </style>

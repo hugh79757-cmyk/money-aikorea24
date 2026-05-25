@@ -1,0 +1,103 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import benefitsData from '../../../public/benefits-clean.json';
+
+const today = new Date();
+function daysLeft(d) {
+  if (!d) return null;
+  const m = String(d).match(/(\d{4})[-.](\d{1,2})[-.](\d{1,2})/);
+  if (!m) return null;
+  const dt = new Date(+m[1], +m[2]-1, +m[3]);
+  return Math.ceil((dt - today) / 86400000);
+}
+
+const all = benefitsData
+  .map(b => ({...b, _d: daysLeft(b.deadline)}))
+  .filter(b => b._d !== null && b._d > 0);
+
+const urgent = all.filter(b => b._d <= 30).sort((a,b)=>a._d-b._d);
+const upcoming = all.filter(b => b._d > 30).sort((a,b)=>a._d-b._d).slice(0, 100);
+---
+<html lang="ko">
+<head>
+  <BaseHead title="지원금 마감 임박 | 페르소나" description="이번 달 마감 임박 정부 지원금·혜택 모음" />
+  <style>
+    body{font-family:Pretendard,sans-serif;background:#FFF8EE;color:#3D3D3D;margin:0}
+    main{max-width:760px;margin:1.5rem auto;padding:1rem}
+    h1{font-size:1.5rem;margin-bottom:.5rem}
+    .sub{color:#8B7355;margin-bottom:1.5rem;font-size:.9rem}
+    .search{width:100%;padding:.8rem 1rem;border:2px solid #E8D5B7;border-radius:12px;font-size:1rem;margin-bottom:1.5rem;background:#fff}
+    .tab{display:inline-block;padding:.5rem 1rem;background:#fff;border-radius:20px;margin-right:.5rem;margin-bottom:1rem;cursor:pointer;border:1px solid #E8D5B7;font-size:.85rem}
+    .tab.active{background:#6B4226;color:#fff;border-color:#6B4226}
+    .item{background:#fff;border-radius:14px;padding:1rem;margin-bottom:.7rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;text-decoration:none;color:inherit}
+    .item:hover{box-shadow:0 4px 12px rgba(107,66,38,.1)}
+    .item-info{flex:1;min-width:0}
+    .item-name{font-weight:700;font-size:.95rem;margin-bottom:.3rem;line-height:1.4}
+    .item-org{font-size:.8rem;color:#8B7355}
+    .dday{flex-shrink:0;background:#FFA552;color:#fff;border-radius:10px;padding:.4rem .7rem;font-weight:700;font-size:.85rem;min-width:50px;text-align:center}
+    .dday.urgent{background:#c00}
+    .empty{text-align:center;color:#8B7355;padding:2rem}
+  </style>
+</head>
+<body>
+<Header />
+<main>
+  <h1>⏰ 지원금 마감 임박</h1>
+  <p class="sub">이번 달 마감되는 정부 지원금·혜택 모음 ({urgent.length}건)</p>
+
+  <input type="text" id="q" class="search" placeholder="지원금 이름·기관 검색..."/>
+
+  <div>
+    <span class="tab active" data-tab="urgent">⏰ 30일 이내 ({urgent.length})</span>
+    <span class="tab" data-tab="upcoming">📅 예정 ({upcoming.length})</span>
+  </div>
+
+  <div id="list-urgent">
+    {urgent.map(b => (
+      <a class="item" href={`https://www.bokjiro.go.kr`} target="_blank" rel="noopener" data-name={b.name} data-org={b.org}>
+        <div class="item-info">
+          <div class="item-name">{b.name}</div>
+          <div class="item-org">{b.org} · 마감 {b.deadline}</div>
+        </div>
+        <div class={`dday ${b._d <= 7 ? 'urgent' : ''}`}>D-{b._d}</div>
+      </a>
+    ))}
+  </div>
+
+  <div id="list-upcoming" style="display:none">
+    {upcoming.map(b => (
+      <a class="item" href={`https://www.bokjiro.go.kr`} target="_blank" rel="noopener" data-name={b.name} data-org={b.org}>
+        <div class="item-info">
+          <div class="item-name">{b.name}</div>
+          <div class="item-org">{b.org} · 마감 {b.deadline}</div>
+        </div>
+        <div class="dday">D-{b._d}</div>
+      </a>
+    ))}
+  </div>
+</main>
+<Footer />
+
+<script>
+  document.querySelectorAll('.tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      const tab = t.dataset.tab;
+      document.getElementById('list-urgent').style.display = tab === 'urgent' ? 'block' : 'none';
+      document.getElementById('list-upcoming').style.display = tab === 'upcoming' ? 'block' : 'none';
+    });
+  });
+  document.getElementById('q').addEventListener('input', (e) => {
+    const q = e.target.value.toLowerCase();
+    document.querySelectorAll('.item').forEach(it => {
+      const name = (it.dataset.name||'').toLowerCase();
+      const org = (it.dataset.org||'').toLowerCase();
+      it.style.display = (name.includes(q) || org.includes(q)) ? 'flex' : 'none';
+    });
+  });
+</script>
+</body>
+</html>

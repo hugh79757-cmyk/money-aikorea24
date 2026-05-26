@@ -2,102 +2,208 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import benefitsData from '../../../public/benefits-clean.json';
+import rawBenefits from '../../../public/benefits-clean.json';
 
 const today = new Date();
-function daysLeft(d) {
-  if (!d) return null;
-  const m = String(d).match(/(\d{4})[-.](\d{1,2})[-.](\d{1,2})/);
+today.setHours(0,0,0,0);
+
+function daysLeft(d: string): number | null {
+  const m = String(d||'').match(/(\d{4})[-./](\d{1,2})[-./](\d{1,2})/);
   if (!m) return null;
-  const dt = new Date(+m[1], +m[2]-1, +m[3]);
-  return Math.ceil((dt - today) / 86400000);
+  try {
+    const dt = new Date(+m[1], +m[2]-1, +m[3]);
+    return Math.ceil((dt.getTime() - today.getTime()) / 86400000);
+  } catch { return null; }
 }
 
-const all = benefitsData
-  .map(b => ({...b, _d: daysLeft(b.deadline)}))
-  .filter(b => b._d !== null && b._d > 0);
+function getStatus(b: any): string {
+  const raw = String(b.deadline || '');
+  if (/상시|연중|수시/.test(raw)) return 'always';
+  if (/신청불필요|불필요/.test(raw)) return 'auto';
+  const d = daysLeft(raw);
+  if (d === null) return 'unknown';
+  if (d < 0) return 'expired';
+  if (d <= 7) return 'urgent';
+  if (d <= 30) return 'soon';
+  return 'upcoming';
+}
 
-const urgent = all.filter(b => b._d <= 30).sort((a,b)=>a._d-b._d);
-const upcoming = all.filter(b => b._d > 30).sort((a,b)=>a._d-b._d).slice(0, 100);
+const enriched = (rawBenefits as any[]).map(b => ({
+  ...b,
+  _status: getStatus(b),
+  _d: daysLeft(b.deadline),
+}));
+
+// 만료 제외
+const active = enriched.filter(b => b._status !== 'expired');
+
+// 탭별 데이터
+const tabUrgent   = active.filter(b => b._status === 'urgent' || b._status === 'soon')
+                          .sort((a,b) => (a._d??9999)-(b._d??9999));
+const tabUpcoming = active.filter(b => b._status === 'upcoming')
+                          .sort((a,b) => (a._d??9999)-(b._d??9999));
+const tabAlways   = active.filter(b => b._status === 'always' || b._status === 'auto');
+const tabUnknown  = active.filter(b => b._status === 'unknown');
+const tabAll      = [...tabUrgent, ...tabUpcoming, ...tabAlways, ...tabUnknown];
+
+function badgeLabel(b: any): string {
+  if (b._status === 'urgent' || b._status === 'soon') return `D-${b._d}`;
+  if (b._status === 'upcoming') return `D-${b._d}`;
+  if (b._status === 'always' || b._status === 'auto') return '상시';
+  return '별도공고';
+}
+function badgeClass(b: any): string {
+  if (b._status === 'urgent') return 'badge-urgent';
+  if (b._status === 'soon')   return 'badge-soon';
+  if (b._status === 'upcoming') return 'badge-upcoming';
+  if (b._status === 'always' || b._status === 'auto') return 'badge-always';
+  return 'badge-unknown';
+}
 ---
 <html lang="ko">
 <head>
-  <BaseHead title="지원금 마감 임박 | 페르소나" description="이번 달 마감 임박 정부 지원금·혜택 모음" />
+  <BaseHead title="정부 지원금·혜택 찾기 | 페르소나" description="정부 지원금·복지 혜택 전체 목록. 상시신청·마감임박·예정 모두 확인하세요." />
   <style>
     body{font-family:Pretendard,sans-serif;background:#FFF8EE;color:#3D3D3D;margin:0}
-    main{max-width:760px;margin:1.5rem auto;padding:1rem}
-    h1{font-size:1.5rem;margin-bottom:.5rem}
-    .sub{color:#8B7355;margin-bottom:1.5rem;font-size:.9rem}
-    .search{width:100%;padding:.8rem 1rem;border:2px solid #E8D5B7;border-radius:12px;font-size:1rem;margin-bottom:1.5rem;background:#fff}
-    .tab{display:inline-block;padding:.5rem 1rem;background:#fff;border-radius:20px;margin-right:.5rem;margin-bottom:1rem;cursor:pointer;border:1px solid #E8D5B7;font-size:.85rem}
+    main{max-width:800px;margin:1.5rem auto;padding:1rem}
+    h1{font-size:1.5rem;margin-bottom:.3rem}
+    .sub{color:#8B7355;margin-bottom:1.2rem;font-size:.88rem}
+    .search-wrap{position:relative;margin-bottom:1.2rem}
+    .search{width:100%;padding:.8rem 1rem .8rem 2.6rem;border:2px solid #E8D5B7;border-radius:12px;font-size:1rem;background:#fff;box-sizing:border-box}
+    .search-icon{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);color:#aaa;font-size:1rem;pointer-events:none}
+    .tabs{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
+    .tab{padding:.45rem .9rem;background:#fff;border-radius:20px;cursor:pointer;border:1px solid #E8D5B7;font-size:.83rem;white-space:nowrap;user-select:none}
     .tab.active{background:#6B4226;color:#fff;border-color:#6B4226}
-    .item{background:#fff;border-radius:14px;padding:1rem;margin-bottom:.7rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;text-decoration:none;color:inherit}
-    .item:hover{box-shadow:0 4px 12px rgba(107,66,38,.1)}
+    .count-info{font-size:.82rem;color:#8B7355;margin-bottom:.8rem}
+    .list{display:flex;flex-direction:column;gap:.6rem}
+    .item{background:#fff;border-radius:14px;padding:.9rem 1rem;display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;text-decoration:none;color:inherit;transition:box-shadow .15s}
+    .item:hover{box-shadow:0 4px 12px rgba(107,66,38,.12)}
     .item-info{flex:1;min-width:0}
-    .item-name{font-weight:700;font-size:.95rem;margin-bottom:.3rem;line-height:1.4}
-    .item-org{font-size:.8rem;color:#8B7355}
-    .dday{flex-shrink:0;background:#FFA552;color:#fff;border-radius:10px;padding:.4rem .7rem;font-weight:700;font-size:.85rem;min-width:50px;text-align:center}
-    .dday.urgent{background:#c00}
-    .empty{text-align:center;color:#8B7355;padding:2rem}
+    .item-name{font-weight:700;font-size:.92rem;margin-bottom:.25rem;line-height:1.4}
+    .item-org{font-size:.78rem;color:#8B7355}
+    .badge{flex-shrink:0;border-radius:8px;padding:.35rem .65rem;font-weight:700;font-size:.8rem;min-width:46px;text-align:center;line-height:1.2}
+    .badge-urgent{background:#c00;color:#fff}
+    .badge-soon{background:#E85D04;color:#fff}
+    .badge-upcoming{background:#F48C06;color:#fff}
+    .badge-always{background:#2D6A4F;color:#fff}
+    .badge-unknown{background:#9E9E9E;color:#fff}
+    .empty{text-align:center;color:#8B7355;padding:2.5rem}
+    .load-more{display:block;width:100%;padding:.8rem;margin-top:1rem;background:#fff;border:2px solid #E8D5B7;border-radius:12px;font-size:.9rem;color:#6B4226;font-weight:700;cursor:pointer;text-align:center}
+    .load-more:hover{background:#FFF0DC}
+    .legend{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem;font-size:.78rem}
+    .legend-item{display:flex;align-items:center;gap:.3rem}
+    .legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
   </style>
 </head>
 <body>
 <Header />
 <main>
-  <h1>⏰ 지원금 마감 임박</h1>
-  <p class="sub">이번 달 마감되는 정부 지원금·혜택 모음 ({urgent.length}건)</p>
+  <h1>💰 정부 지원금·혜택 찾기</h1>
+  <p class="sub">총 {active.length.toLocaleString()}건의 지원금·복지 혜택 (만료 제외)</p>
 
-  <input type="text" id="q" class="search" placeholder="지원금 이름·기관 검색..."/>
-
-  <div>
-    <span class="tab active" data-tab="urgent">⏰ 30일 이내 ({urgent.length})</span>
-    <span class="tab" data-tab="upcoming">📅 예정 ({upcoming.length})</span>
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="q" class="search" placeholder="지원금 이름·기관 검색..."/>
   </div>
 
-  <div id="list-urgent">
-    {urgent.map(b => (
-      <a class="item" href={`https://www.bokjiro.go.kr`} target="_blank" rel="noopener" data-name={b.name} data-org={b.org}>
-        <div class="item-info">
-          <div class="item-name">{b.name}</div>
-          <div class="item-org">{b.org} · 마감 {b.deadline}</div>
-        </div>
-        <div class={`dday ${b._d <= 7 ? 'urgent' : ''}`}>D-{b._d}</div>
-      </a>
-    ))}
+  <div class="tabs">
+    <span class="tab active" data-tab="all">📋 전체 ({active.length})</span>
+    <span class="tab" data-tab="urgent">⏰ 마감임박 ({tabUrgent.length})</span>
+    <span class="tab" data-tab="upcoming">📅 예정 ({tabUpcoming.length})</span>
+    <span class="tab" data-tab="always">✅ 상시신청 ({tabAlways.length})</span>
+    <span class="tab" data-tab="unknown">📌 별도공고 ({tabUnknown.length})</span>
   </div>
 
-  <div id="list-upcoming" style="display:none">
-    {upcoming.map(b => (
-      <a class="item" href={`https://www.bokjiro.go.kr`} target="_blank" rel="noopener" data-name={b.name} data-org={b.org}>
-        <div class="item-info">
-          <div class="item-name">{b.name}</div>
-          <div class="item-org">{b.org} · 마감 {b.deadline}</div>
-        </div>
-        <div class="dday">D-{b._d}</div>
-      </a>
-    ))}
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot" style="background:#c00"></span>D-7 이내</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#E85D04"></span>30일 이내</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#F48C06"></span>예정</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#2D6A4F"></span>상시신청</span>
+    <span class="legend-item"><span class="legend-dot" style="background:#9E9E9E"></span>별도공고</span>
   </div>
+
+  <div class="count-info" id="count-info">{active.length}건 표시 중</div>
+  <div class="list" id="list"></div>
+  <button class="load-more" id="load-more" style="display:none">더 보기 (+50건)</button>
 </main>
 <Footer />
 
-<script>
-  document.querySelectorAll('.tab').forEach(t => {
-    t.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
-      t.classList.add('active');
-      const tab = t.dataset.tab;
-      document.getElementById('list-urgent').style.display = tab === 'urgent' ? 'block' : 'none';
-      document.getElementById('list-upcoming').style.display = tab === 'upcoming' ? 'block' : 'none';
-    });
+<script define:vars={{
+  dataAll:      tabAll.map(b=>({name:b.name,org:b.org,deadline:b.deadline,_status:b._status,_d:b._d,url:b.url||''})),
+  dataUrgent:   tabUrgent.map(b=>({name:b.name,org:b.org,deadline:b.deadline,_status:b._status,_d:b._d,url:b.url||''})),
+  dataUpcoming: tabUpcoming.map(b=>({name:b.name,org:b.org,deadline:b.deadline,_status:b._status,_d:b._d,url:b.url||''})),
+  dataAlways:   tabAlways.map(b=>({name:b.name,org:b.org,deadline:b.deadline,_status:b._status,_d:b._d,url:b.url||''})),
+  dataUnknown:  tabUnknown.map(b=>({name:b.name,org:b.org,deadline:b.deadline,_status:b._status,_d:b._d,url:b.url||''})),
+}}>
+const DATASETS = { all: dataAll, urgent: dataUrgent, upcoming: dataUpcoming, always: dataAlways, unknown: dataUnknown };
+const BADGE_LABEL = { urgent:'D-?', soon:'D-?', upcoming:'D-?', always:'상시', auto:'상시', unknown:'별도공고' };
+const BADGE_CLASS = { urgent:'badge-urgent', soon:'badge-soon', upcoming:'badge-upcoming', always:'badge-always', auto:'badge-always', unknown:'badge-unknown' };
+const PAGE = 50;
+
+let currentTab = 'all';
+let currentQ   = '';
+let page       = 1;
+
+function filtered() {
+  const src = DATASETS[currentTab] || [];
+  if (!currentQ) return src;
+  const q = currentQ.toLowerCase();
+  return src.filter(b => (b.name||'').toLowerCase().includes(q) || (b.org||'').toLowerCase().includes(q));
+}
+
+function badgeLabel(b) {
+  if ((b._status==='urgent'||b._status==='soon'||b._status==='upcoming') && b._d!=null) return 'D-'+b._d;
+  return BADGE_LABEL[b._status] || '별도공고';
+}
+
+function renderItem(b) {
+  const cls  = BADGE_CLASS[b._status] || 'badge-unknown';
+  const lbl  = badgeLabel(b);
+  const href = b.url || 'https://www.bokjiro.go.kr';
+  const org  = [b.org, b.deadline].filter(Boolean).join(' · 마감 ');
+  return `<a class="item" href="${href}" target="_blank" rel="noopener" data-name="${(b.name||'').replace(/"/g,'')}" data-org="${(b.org||'').replace(/"/g,'')}">
+    <div class="item-info">
+      <div class="item-name">${b.name||''}</div>
+      <div class="item-org">${org}</div>
+    </div>
+    <span class="badge ${cls}">${lbl}</span>
+  </a>`;
+}
+
+function render() {
+  const items = filtered();
+  const shown = items.slice(0, page * PAGE);
+  document.getElementById('list').innerHTML = shown.length
+    ? shown.map(renderItem).join('')
+    : '<div class="empty">해당하는 지원금이 없습니다</div>';
+  document.getElementById('count-info').textContent = `${items.length.toLocaleString()}건 표시 중`;
+  const btn = document.getElementById('load-more');
+  btn.style.display = shown.length < items.length ? 'block' : 'none';
+}
+
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    currentTab = t.dataset.tab;
+    page = 1;
+    render();
+    window.scrollTo({top:0,behavior:'smooth'});
   });
-  document.getElementById('q').addEventListener('input', (e) => {
-    const q = e.target.value.toLowerCase();
-    document.querySelectorAll('.item').forEach(it => {
-      const name = (it.dataset.name||'').toLowerCase();
-      const org = (it.dataset.org||'').toLowerCase();
-      it.style.display = (name.includes(q) || org.includes(q)) ? 'flex' : 'none';
-    });
-  });
+});
+
+document.getElementById('q').addEventListener('input', e => {
+  currentQ = e.target.value;
+  page = 1;
+  render();
+});
+
+document.getElementById('load-more').addEventListener('click', () => {
+  page++;
+  render();
+});
+
+render();
 </script>
 </body>
 </html>

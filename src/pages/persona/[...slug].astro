@@ -107,14 +107,24 @@ function ageToFactorKey(ageRaw, ageNum) {
   if (n < 60) return '50대후';
   return '60대이상';
 }
-function getJobWage(jobName, sex, ageRaw, ageNum) {
+function getRegionFactor(regionKey: string): number {
+  const rf = (wageTable as any).regionFactor ?? {};
+  // 지역명 접두어로 매칭 (경상남 → 경남 등 단축형 처리)
+  if (rf[regionKey] !== undefined) return rf[regionKey];
+  for (const [k, v] of Object.entries(rf)) {
+    if (regionKey.startsWith(k) || k.startsWith(regionKey)) return v as number;
+  }
+  return 1.0;
+}
+function getJobWage(jobName, sex, ageRaw, ageNum, regionKey = '') {
   const cat = mapJobToCategory(jobName);
   const base = wageTable.jobCategory[cat];
   if (base === undefined || base === 0) return null;
   const sexKey = sex === '여자' ? '여' : '남';
   const ageKey = ageToFactorKey(ageRaw, ageNum);
-  const factor = (wageTable.ageSexFactor[sexKey] || {})[ageKey] ?? 1.0;
-  return Math.round(base * factor);
+  const ageFactor = (wageTable.ageSexFactor[sexKey] || {})[ageKey] ?? 1.0;
+  const regionFactor = getRegionFactor(regionKey);
+  return Math.round(base * ageFactor * regionFactor);
 }
 const parPct  = pctOf(s.family,    ['부모와 동거','어머니와 동거','아버지와 동거']);
 
@@ -498,7 +508,7 @@ const jsonLd = JSON.stringify({
         <div class="youare-income">
           <div class="youare-income-label">💰 당신의 추정 월소득</div>
           <div class="youare-income-val">{incomeVal}<span class="youare-income-unit">만원</span></div>
-          <div class="youare-income-rank">동일 연령 상위 {topPct}%</div>
+          <div class="youare-income-rank">전체 취업자 상위 {topPct}%</div>
         </div>
       )}
       <div class="youare-note">같은 조건 한국인 {s.total.toLocaleString()}명의 통계 단면<br/>NVIDIA Nemotron-Personas-Korea + KOSIS 2025</div>
@@ -509,18 +519,12 @@ const jsonLd = JSON.stringify({
       <div class="kpi"><div class="kpi-val">{eduPct}%</div><div class="kpi-label">대졸 이상</div></div>
       <div class="kpi"><div class="kpi-val">{marPct}%</div><div class="kpi-label">기혼</div></div>
       <div class="kpi"><div class="kpi-val">{unePct}%</div><div class="kpi-label">{(ageNum >= 60 || ageRaw === '70대이상' || ageRaw === '60대') ? '은퇴·비경활' : '무직'}</div></div>
-      {incomeVal !== null && (
-        <div class="kpi kpi-income">
-          <div class="kpi-val">{incomeVal}<span style="font-size:1rem;font-weight:500">만원</span></div>
-          <div class="kpi-label">추정 월소득 <span class="kpi-badge">취업자 기준</span></div>
-        </div>
-      )}
     </div>
 
     <!-- 소득 백분위 섹션 -->
     {incomeVal !== null && topPct !== null && (
       <div class="stat-card income-rank-card">
-        <h2>💰 동일 연령 취업자 중 소득 위치</h2>
+        <h2>💰 전체 취업자 중 소득 위치</h2>
         <div class="income-rank-wrap">
           <div class="income-rank-numbers">
             <div class="income-big">{incomeVal}<span class="income-unit">만원</span></div>
@@ -541,9 +545,9 @@ const jsonLd = JSON.stringify({
           </div>
           <div class="rank-result">
             <span class="rank-highlight">상위 {topPct}%</span>
-            <span class="rank-desc"> — {ageGroup} 취업자 중</span>
+            <span class="rank-desc"> — 전국 취업자 중</span>
           </div>
-          <div class="rank-note">KOSIS 고용형태별근로실태조사 2025 기반 추정. 직종 대분류 평균으로 개인 차이가 클 수 있습니다.</div>
+          <div class="rank-note">통계청·국세청 근로소득 분포 2024 중위값 기반 추정. 지역·성별·연령 보정치이며 개인 소득과 차이가 있을 수 있습니다.</div>
           {s.total < 200 && (
             <div class="rank-note" style="color:#D97706;margin-top:.3rem">⚠️ 이 조건의 페르소나 데이터가 {s.total}명으로 적습니다. 직업·주거 분포는 참고용으로만 활용하세요. 소득 추정은 KOSIS 통계청 자료 기반입니다.</div>
           )}
@@ -605,7 +609,7 @@ const jsonLd = JSON.stringify({
         {topN(s.jobs, 5).map(([k, v]) => {
           const t = Object.values(s.jobs).reduce((a,b) => a+b, 0);
           const p = t ? Math.round(v/t*100) : 0;
-          const wage = getJobWage(k, sex, ageRaw, ageNum);
+          const wage = getJobWage(k, sex, ageRaw, ageNum, region);
           return (
             <li class="bar-item">
               <div class="bar-header">

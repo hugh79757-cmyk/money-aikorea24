@@ -1,3 +1,5 @@
+import { createSessionToken } from '../../_shared/session.js';
+
 function generateNickname() {
   const regions = ['서울','부산','대구','인천','광주','대전','울산','경기','강원','충북','충남','전북','전남','경북','경남','제주'];
   const animals = ['냥이','멍이','토끼','사슴','여우','곰돌','판다','너구리','다람쥐','햄찌','펭귄'];
@@ -8,18 +10,37 @@ function generateNickname() {
 }
 
 export async function onRequestGet({ request, env }) {
-  const url = new URL(request.url);
+  const url  = new URL(request.url);
   const code = url.searchParams.get('code');
-  const cookieHeader = request.headers.get('Cookie') || '';
-  const mktMatch = cookieHeader.match(/pending_marketing=([01])/);
+
+  /* ── CSRF: OAuth state 검증 ───────────────────────────── */
+  const receivedState = url.searchParams.get('state') || '';
+  const cookieHeader  = request.headers.get('Cookie') || '';
+  const stateMatch    = cookieHeader.match(/oauth_state=([^;]+)/);
+  const storedState   = stateMatch ? decodeURIComponent(stateMatch[1]) : '';
+
+  if (!storedState || receivedState !== storedState) {
+    return Response.redirect(new URL('/?error=csrf_failed', url.origin), 302);
+  }
+
+  /* ── 리다이렉트 대상 (Open Redirect 방어) ──────────────── */
+  const nextMatch = cookieHeader.match(/oauth_next=([^;]+)/);
+  const rawNext   = nextMatch ? decodeURIComponent(nextMatch[1]) : '/community';
+  // 상대 경로만 허용, 프로토콜 상대 경로(//) 차단
+  const safeNext  = (rawNext.startsWith('/') && !rawNext.startsWith('//')) ? rawNext : '/community';
+
+  const mktMatch        = cookieHeader.match(/pending_marketing=([01])/);
   const marketingConsent = mktMatch && mktMatch[1] === '1' ? 1 : 0;
-  const next = url.searchParams.get('state') || '/community';
+
   if (!code) return Response.redirect(new URL('/?error=no_code', url.origin), 302);
 
-  const KAKAO_REST_KEY = 'fac8da4c0dd8911f025dce7bf2f76f0d';
+  /* ── 환경 변수 ──────────────────────────────────────────── */
+  const KAKAO_REST_KEY = env.KAKAO_REST_KEY   || 'fac8da4c0dd8911f025dce7bf2f76f0d';
   const KAKAO_SECRET   = env.KAKAO_CLIENT_SECRET || '';
+  const SESSION_SECRET = env.SESSION_SECRET   || 'dev-secret-CHANGE-IN-PRODUCTION';
   const REDIRECT_URI   = 'https://persona.aikorea24.kr/api/auth/callback/kakao';
 
+  /* ── 카카오 토큰 교환 ───────────────────────────────────── */
   const tokenBody = new URLSearchParams({
     grant_type:   'authorization_code',
     client_id:    KAKAO_REST_KEY,
@@ -28,7 +49,7 @@ export async function onRequestGet({ request, env }) {
   });
   if (KAKAO_SECRET) tokenBody.set('client_secret', KAKAO_SECRET);
 
-  const tokenRes = await fetch('https://kauth.kakao.com/oauth/token', {
+  const tokenRes  = await fetch('https://kauth.kakao.com/oauth/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: tokenBody,
@@ -38,38 +59,36 @@ export async function onRequestGet({ request, env }) {
     return Response.redirect(new URL('/?error=token_failed', url.origin), 302);
   }
 
-  const userRes = await fetch('https://kapi.kakao.com/v2/user/me', {
+  /* ── 카카오 사용자 정보 ─────────────────────────────────── */
+  const userRes   = await fetch('https://kapi.kakao.com/v2/user/me', {
     headers: { Authorization: `Bearer ${tokenData.access_token}` },
   });
   const kakaoUser = await userRes.json();
-  const kakaoId = String(kakaoUser.id);
-  const email   = kakaoUser.kakao_account?.email || `${kakaoId}@kakao.local`;
-  const realName = kakaoUser.kakao_account?.profile?.nickname || '카카오사용자';
-  const avatar  = kakaoUser.kakao_account?.profile?.profile_image_url || null;
+  const kakaoId   = String(kakaoUser.id);
+  const email     = kakaoUser.kakao_account?.email || `${kakaoId}@kakao.local`;
+  const realName  = kakaoUser.kakao_account?.profile?.nickname || '카카오사용자';
+  const avatar    = kakaoUser.kakao_account?.profile?.profile_image_url || null;
 
+  /* ── DB 사용자 조회 / 생성 ──────────────────────────────── */
   const db = env.DB;
   let dbUser = await db.prepare(
     'SELECT id, name, nickname, email, avatar FROM users WHERE kakao_id = ?'
   ).bind(kakaoId).first();
 
   if (!dbUser) {
-    // 닉네임 중복 회피 (최대 5회 재시도)
     let nickname = generateNickname();
     for (let i = 0; i < 5; i++) {
       const dup = await db.prepare('SELECT id FROM users WHERE nickname = ?').bind(nickname).first();
       if (!dup) break;
       nickname = generateNickname();
     }
-
     await db.prepare(
       'INSERT INTO users (kakao_id, email, name, nickname, avatar, provider, marketing_consent, agreed_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
     ).bind(kakaoId, email, realName, nickname, avatar, 'kakao', marketingConsent, new Date().toISOString()).run();
-
     dbUser = await db.prepare(
       'SELECT id, name, nickname, email, avatar FROM users WHERE kakao_id = ?'
     ).bind(kakaoId).first();
   } else if (!dbUser.nickname) {
-    // 기존 사용자 중 닉네임 없는 경우 부여
     let nickname = generateNickname();
     for (let i = 0; i < 5; i++) {
       const dup = await db.prepare('SELECT id FROM users WHERE nickname = ?').bind(nickname).first();
@@ -80,20 +99,22 @@ export async function onRequestGet({ request, env }) {
     dbUser.nickname = nickname;
   }
 
-  // 세션에는 닉네임만 노출 (본명 제거)
-  const sessionUser = {
-    id: dbUser.id,
-    name: dbUser.nickname,
-    email: dbUser.email,
+  /* ── HMAC-SHA256 서명 세션 토큰 생성 ───────────────────── */
+  const sessionPayload = {
+    id:     dbUser.id,
+    name:   dbUser.nickname,
+    email:  dbUser.email,
     avatar: dbUser.avatar,
   };
+  const sessionToken = await createSessionToken(sessionPayload, SESSION_SECRET);
 
-  const json = JSON.stringify(sessionUser);
-  const sessionData = btoa(encodeURIComponent(json).replace(/%([0-9A-F]{2})/g, (_, p1) => String.fromCharCode(parseInt(p1, 16))));
-
-  const headers = new Headers({ Location: next });
+  /* ── 응답: 임시 쿠키 클리어 + HttpOnly 세션 쿠키 설정 ──── */
+  const headers = new Headers({ Location: safeNext });
+  headers.append('Set-Cookie', 'oauth_state=; Path=/; Max-Age=0; Secure; SameSite=Lax');
+  headers.append('Set-Cookie', 'oauth_next=; Path=/; Max-Age=0; Secure; SameSite=Lax');
+  headers.append('Set-Cookie', 'pending_marketing=; Path=/; Max-Age=0; Secure; SameSite=Lax');
   headers.append('Set-Cookie',
-    `session=${sessionData}; Path=/; Secure; SameSite=Lax; Max-Age=${60*60*24*7}`
+    `session=${sessionToken}; Path=/; Secure; HttpOnly; SameSite=Lax; Max-Age=${60 * 60 * 24 * 7}`
   );
   return new Response(null, { status: 302, headers });
 }

@@ -70,6 +70,10 @@
   </div>
 
   <script>
+  function escapeHtml(s) {
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
   let currentPage = 1;
   const params = new URLSearchParams(location.search);
   const slug = params.get('slug') || '';
@@ -114,15 +118,15 @@
       list.innerHTML = `<div class="empty"><p>아직 글이 없어요</p>${session ? '<a href="/community/write" style="color:#6B4226;font-weight:700;margin-top:.5rem;display:inline-block">첫 글 써보기 →</a>' : ''}</div>`;
     } else {
       list.innerHTML = posts.map(p => `
-        <a class="post-item" href="/community/${p.id}">
+        <a class="post-item" href="/community/${parseInt(p.id)||0}">
           <div class="post-meta">
-            <span class="pbadge">${p.region||''} ${p.age||''} ${p.sex||''}</span>
-            <span class="ptype">${p.persona_type||''}</span>
+            <span class="pbadge">${escapeHtml(p.region)} ${escapeHtml(p.age)} ${escapeHtml(p.sex)}</span>
+            <span class="ptype">${escapeHtml(p.persona_type)}</span>
           </div>
-          <div class="post-title">${p.title}${p.comment_count > 0 ? `<span class="ccnt">[${p.comment_count}]</span>` : ''}</div>
+          <div class="post-title">${escapeHtml(p.title)}${p.comment_count > 0 ? `<span class="ccnt">[${parseInt(p.comment_count)||0}]</span>` : ''}</div>
           <div class="post-info">
-            <span>${p.author_name}</span><span>조회 ${p.views}</span>
-            <span>👍 ${p.likes}</span><span>${(p.created_at||'').slice(0,10)}</span>
+            <span>${escapeHtml(p.author_name)}</span><span>조회 ${parseInt(p.views)||0}</span>
+            <span>👍 ${parseInt(p.likes)||0}</span><span>${escapeHtml((p.created_at||'').slice(0,10))}</span>
           </div>
         </a>`).join('');
     }

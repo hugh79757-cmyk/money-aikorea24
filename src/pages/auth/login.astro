@@ -1,7 +1,10 @@
 ---
-const KAKAO_REST_KEY = 'fac8da4c0dd8911f025dce7bf2f76f0d';
-const REDIRECT_URI = 'https://persona.aikorea24.kr/api/auth/callback/kakao';
-const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_KEY}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=profile_nickname,profile_image,account_email`;
+// Kakao REST Key는 공개 클라이언트 ID (front-channel에 노출 허용)
+// 단, 환경변수 PUBLIC_KAKAO_REST_KEY 설정 시 우선 사용
+const KAKAO_REST_KEY = import.meta.env.PUBLIC_KAKAO_REST_KEY || 'fac8da4c0dd8911f025dce7bf2f76f0d';
+const REDIRECT_URI   = 'https://persona.aikorea24.kr/api/auth/callback/kakao';
+// state는 클라이언트에서 생성 (crypto.getRandomValues) — 아래 <script> 참조
+const kakaoAuthBase  = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_KEY}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=profile_nickname,profile_image,account_email`;
 ---
 <html lang="ko">
 <head>
@@ -66,26 +69,42 @@ const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_
     <div class="skip">로그인 없이 <a href="/community">게시글만 보기 →</a></div>
   </div>
 
-  <script define:vars={{kakaoAuthUrl}}>
-    const all = document.getElementById('agree-all');
+  <script define:vars={{kakaoAuthBase}}>
+    const all  = document.getElementById('agree-all');
     const reqs = document.querySelectorAll('.req');
-    const mkt = document.getElementById('agree-marketing');
-    const btn = document.getElementById('login-btn');
+    const mkt  = document.getElementById('agree-marketing');
+    const btn  = document.getElementById('login-btn');
 
     function refresh() {
       const ok = [...reqs].every(c => c.checked);
       btn.disabled = !ok;
-      all.checked = ok && mkt.checked;
+      all.checked  = ok && mkt.checked;
     }
     all.addEventListener('change', () => {
       [...reqs, mkt].forEach(c => c.checked = all.checked);
       refresh();
     });
     [...reqs, mkt].forEach(c => c.addEventListener('change', refresh));
+
     btn.addEventListener('click', () => {
       if (btn.disabled) return;
-      document.cookie = `pending_marketing=${mkt.checked ? '1' : '0'}; Path=/; Max-Age=600; Secure; SameSite=Lax`;
-      location.href = kakaoAuthUrl;
+
+      /* ── CSRF 방지: 랜덤 state 생성 ─────────────────────── */
+      const state = Array.from(crypto.getRandomValues(new Uint8Array(16)))
+        .map(b => b.toString(16).padStart(2, '0')).join('');
+
+      /* ── 로그인 후 돌아갈 URL (상대경로만 허용) ─────────── */
+      const params  = new URLSearchParams(location.search);
+      const rawNext = params.get('next') || '/community';
+      const safeNext = (rawNext.startsWith('/') && !rawNext.startsWith('//')) ? rawNext : '/community';
+
+      /* ── 임시 쿠키 설정 (Max-Age 10분) ─────────────────── */
+      const cookieOpts = 'Path=/; Max-Age=600; Secure; SameSite=Lax';
+      document.cookie = `oauth_state=${state}; ${cookieOpts}`;
+      document.cookie = `oauth_next=${encodeURIComponent(safeNext)}; ${cookieOpts}`;
+      document.cookie = `pending_marketing=${mkt.checked ? '1' : '0'}; ${cookieOpts}`;
+
+      location.href = `${kakaoAuthBase}&state=${encodeURIComponent(state)}`;
     });
   </script>
 </body>

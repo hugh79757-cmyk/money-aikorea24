@@ -1,13 +1,8 @@
-function getSession(request) {
-  const cookie = request.headers.get('Cookie') || '';
-  const match = cookie.match(/session=([^;]+)/);
-  if (!match) return null;
-  try { return JSON.parse(decodeURIComponent(atob(decodeURIComponent(match[1])).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''))); } catch { return null; }
-}
+import { getSession } from '../_shared/session.js';
 
 export async function onRequestPost({ request, env }) {
   const H = { 'Content-Type': 'application/json' };
-  const user = getSession(request);
+  const user = await getSession(request, env);
   if (!user) return new Response(JSON.stringify({ error: 'unauthorized' }), { status: 401, headers: H });
   const { post_id } = await request.json();
   const existing = await env.DB.prepare('SELECT id FROM persona_likes WHERE post_id = ? AND user_id = ?').bind(post_id, user.id).first();

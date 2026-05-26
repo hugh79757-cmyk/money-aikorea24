@@ -96,11 +96,20 @@ export function getStaticPaths() {
   </div>
 
   <script>
+    function escapeHtml(s) {
+      return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+
     const postId = location.pathname.split('/').pop();
     const session = document.cookie.split(';').find(c => c.trim().startsWith('session='));
     let currentUser = null;
     if (session) {
-      try { currentUser = JSON.parse(atob(session.split('=').slice(1).join('='))); } catch {}
+      try {
+        // 새 토큰 형식: base64url(payload).base64url(sig)
+        const token = decodeURIComponent(session.trim().slice('session='.length));
+        const payload = token.split('.')[0].replace(/-/g, '+').replace(/_/g, '/');
+        currentUser = JSON.parse(atob(payload));
+      } catch {}
     }
 
     // 뒤로가기 board 파라미터 유지
@@ -147,9 +156,9 @@ export function getStaticPaths() {
       if (!comments.length) { list.innerHTML = '<div class="empty">첫 댓글을 남겨보세요</div>'; return; }
       list.innerHTML = comments.map(c => `
         <div class="comment-item">
-          <div class="comment-author">${c.author_name || '익명'}${currentUser && (currentUser.id === c.user_id || currentUser.id === 1) ? ` <button onclick="deleteComment(${c.id})" style="float:right;background:none;border:none;color:#c00;cursor:pointer;font-size:.85rem">🗑 삭제</button>` : ''}</div>
-          <div class="comment-content">${c.content}</div>
-          <div class="comment-date">${c.created_at?.slice(0,10) || ''}</div>
+          <div class="comment-author">${escapeHtml(c.author_name || '익명')}${currentUser && (currentUser.id === c.user_id || currentUser.id === 1) ? ` <button onclick="deleteComment(${parseInt(c.id)||0})" style="float:right;background:none;border:none;color:#c00;cursor:pointer;font-size:.85rem">🗑 삭제</button>` : ''}</div>
+          <div class="comment-content">${escapeHtml(c.content)}</div>
+          <div class="comment-date">${escapeHtml((c.created_at||'').slice(0,10))}</div>
         </div>`).join('');
 
     window.deleteComment = async function(id) {

@@ -1,3 +1,4 @@
+import { getSession } from '../_shared/session.js';
 
 // 단건 조회: GET /api/community/posts/123
 export async function onRequestGet({ request, env }) {
@@ -41,20 +42,17 @@ export async function onRequestGet({ request, env }) {
   return new Response(JSON.stringify({ posts: r.results || [], total: cnt?.n || 0 }), { headers: H });
 }
 
-function getSession(request) {
-  const cookie = request.headers.get('Cookie') || '';
-  const match = cookie.match(/session=([^;]+)/);
-  if (!match) return null;
-  try { return JSON.parse(decodeURIComponent(atob(decodeURIComponent(match[1])).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''))); } catch { return null; }
-}
-
 export async function onRequestPost({ request, env }) {
   const H = { 'Content-Type': 'application/json' };
-  const user = getSession(request);
+  const user = await getSession(request, env);
   if (!user) return new Response(JSON.stringify({ error: 'unauthorized' }), { status: 401, headers: H });
 
   const { persona_slug, persona_type, region, sex, age, title, content, board_type } = await request.json();
   if (!title?.trim() || !content?.trim()) return new Response(JSON.stringify({ error: 'empty' }), { status: 400, headers: H });
+
+  /* 입력 길이 제한 */
+  if (title.trim().length > 100)    return new Response(JSON.stringify({ error: 'title_too_long' }),   { status: 400, headers: H });
+  if (content.trim().length > 5000) return new Response(JSON.stringify({ error: 'content_too_long' }), { status: 400, headers: H });
 
   const r = await env.DB.prepare(`
     INSERT INTO persona_posts (user_id, persona_slug, persona_type, region, sex, age, title, content, board_type)
@@ -64,16 +62,21 @@ export async function onRequestPost({ request, env }) {
   return new Response(JSON.stringify({ ok: true, id: r.meta?.last_row_id }), { headers: H });
 }
 
-export async function onRequestDelete({request, env}) {
-  const user = getSession(request);
-  if (!user) return new Response(JSON.stringify({error:'unauthorized'}), {status:401});
+export async function onRequestDelete({ request, env }) {
+  const H = { 'Content-Type': 'application/json' };
+  const user = await getSession(request, env);
+  if (!user) return new Response(JSON.stringify({ error: 'unauthorized' }), { status: 401, headers: H });
   const id = new URL(request.url).searchParams.get('id');
-  if (!id) return new Response(JSON.stringify({error:'no_id'}), {status:400});
+  if (!id) return new Response(JSON.stringify({ error: 'no_id' }), { status: 400, headers: H });
   const row = await env.DB.prepare('SELECT user_id FROM persona_posts WHERE id = ?').bind(id).first();
-  if (!row) return new Response(JSON.stringify({error:'not_found'}), {status:404});
-  if (row.user_id !== user.id && user.id !== 1) return new Response(JSON.stringify({error:'forbidden'}), {status:403});
+  if (!row) return new Response(JSON.stringify({ error: 'not_found' }), { status: 404, headers: H });
+  /* 본인 or 관리자(env.ADMIN_USER_IDS) */
+  const admins = (env.ADMIN_USER_IDS || '1').split(',').map(s => parseInt(s.trim(), 10));
+  if (row.user_id !== user.id && !admins.includes(user.id)) {
+    return new Response(JSON.stringify({ error: 'forbidden' }), { status: 403, headers: H });
+  }
   await env.DB.prepare('DELETE FROM persona_likes WHERE post_id = ?').bind(id).run();
   await env.DB.prepare('DELETE FROM persona_comments WHERE post_id = ?').bind(id).run();
   await env.DB.prepare('DELETE FROM persona_posts WHERE id = ?').bind(id).run();
-  return new Response(JSON.stringify({ok:true}));
+  return new Response(JSON.stringify({ ok: true }), { headers: H });
 }

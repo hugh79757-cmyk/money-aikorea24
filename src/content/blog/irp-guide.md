@@ -1,4 +1,5 @@
 ---
+heroImage: /blog-thumbnails/irp-guide.jpg
 title: "IRP 세액공제 한도 2026년 직장인 절세 완벽 가이드"
 description: "IRP 연간 900만원 세액공제 한도와 환급액 계산법을 2026년 기준으로 정리한다 연말정산 절세 극대화 전략까지 포함"
 draft: false

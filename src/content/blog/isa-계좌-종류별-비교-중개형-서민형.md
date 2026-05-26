@@ -1,4 +1,5 @@
 ---
+heroImage: /blog-thumbnails/isa-계좌-종류별-비교-중개형-서민형.jpg
 title: "ISA 계좌 종류별 비교 중개형 서민형 2026년 완벽 가이드"
 description: "ISA 계좌 종류별 비교 중개형 서민형에 대해 2026년 최신 기준으로 정리합니다. 조건별 분석과 AI 활용 팁까지 포함합니다."
 draft: false

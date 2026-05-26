@@ -1,4 +1,5 @@
 ---
+heroImage: /blog-thumbnails/silson-5gen.jpg
 title: "실손보험 4세대 5세대 차이 2026년 갈아타기 손해인지 완벽 분석"
 description: "실손보험 4세대에서 5세대로 갈아타면 보험료가 최대 30% 줄어든다 세대별 보장 차이와 2026년 갈아타기 손해 여부를 조건별로 분석한다"
 draft: false

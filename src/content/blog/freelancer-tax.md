@@ -1,4 +1,5 @@
 ---
+heroImage: /blog-thumbnails/freelancer-tax.jpg
 title: "프리랜서 종합소득세 신고 방법 2026년 초보자 완벽 가이드"
 description: "프리랜서 종합소득세 신고 기간과 경비 처리 방법을 2026년 기준으로 정리한다 홈택스 신고 절차와 절세 팁까지 포함"
 draft: false

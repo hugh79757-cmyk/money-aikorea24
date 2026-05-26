@@ -1,4 +1,5 @@
 ---
+heroImage: /blog-thumbnails/etf-입문-월급쟁이-포트폴리오.jpg
 title: "ETF 입문 월급쟁이 포트폴리오 2026년 완벽 가이드"
 description: "ETF 입문 월급쟁이 포트폴리오에 대해 2026년 최신 기준으로 정리합니다. 조건별 분석과 AI 활용 팁까지 포함합니다."
 draft: false

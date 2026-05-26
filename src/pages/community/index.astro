@@ -69,86 +69,112 @@
     <div class="total" id="total"></div>
   </div>
 
-  <script>
+  <!-- is:inline → Astro가 ES Module로 번들링하지 않음 → 모든 함수가 전역 스코프 -->
+  <script is:inline>
   function escapeHtml(s) {
     return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   }
 
-  let currentPage = 1;
-  const params = new URLSearchParams(location.search);
-  const slug = params.get('slug') || '';
-  let board = params.get('board') || 'persona';
-  if (board === 'benefit') {
-    document.getElementById('tab-persona')?.classList.remove('active');
-    document.getElementById('tab-benefit')?.classList.add('active');
+  var _qs     = new URLSearchParams(location.search);
+  var _slug   = _qs.get('slug') || '';
+  var _board  = _qs.get('board') || 'persona';
+  var _q      = _qs.get('q') || '';
+
+  if (_board === 'benefit') {
+    document.getElementById('tab-persona').classList.remove('active');
+    document.getElementById('tab-benefit').classList.add('active');
   }
-  let q = params.get('q') || '';
-  document.getElementById('search-input').value = q;
+  document.getElementById('search-input').value = _q;
 
   // 로그인 상태 체크
-  const session = document.cookie.split(';').find(c => c.trim().startsWith('session='));
-  if (session) {
+  var _session = document.cookie.split(';').find(function(c) { return c.trim().startsWith('session='); });
+  if (_session) {
     document.getElementById('btn-login').style.display = 'none';
-    const w = document.getElementById('btn-write');
-    w.style.display = 'inline-block';
-    if (slug) w.href = `/community/write?slug=${slug}`;
+    var _wBtn = document.getElementById('btn-write');
+    _wBtn.style.display = 'inline-block';
+    if (_slug) _wBtn.href = '/community/write?slug=' + _slug;
   }
 
-  window.switchBoard = function switchBoard(b) {
-    board = b;
-    document.querySelectorAll('.board-tab').forEach(t => t.classList.remove('active'));
+  function switchBoard(b) {
+    _board = b;
+    document.querySelectorAll('.board-tab').forEach(function(t) { t.classList.remove('active'); });
     document.getElementById('tab-' + b).classList.add('active');
-    document.getElementById('board-sub').textContent = 
+    document.getElementById('board-sub').textContent =
       b === 'persona' ? '같은 페르소나를 가진 사람들과 이야기를 나눠보세요' : '지원금 신청 정보와 후기를 나눠보세요';
     loadPosts(1);
   }
-  window.loadPosts = async function loadPosts(page = 1) {
-    currentPage = page;
-    const list = document.getElementById('post-list');
-    list.innerHTML = '<div class="loading">불러오는 중...</div>';
-    let url = `/api/community/posts?page=${page}&board=${board}`;
-    if (slug) url += `&slug=${encodeURIComponent(slug)}`;
-    if (q)    url += `&q=${encodeURIComponent(q)}`;
-    const res = await fetch(url);
-    const { posts, total } = await res.json();
 
-    document.getElementById('total').textContent = `총 ${total}개의 게시글`;
-
-    if (posts.length === 0) {
-      list.innerHTML = `<div class="empty"><p>아직 글이 없어요</p>${session ? '<a href="/community/write" style="color:#6B4226;font-weight:700;margin-top:.5rem;display:inline-block">첫 글 써보기 →</a>' : ''}</div>`;
-    } else {
-      list.innerHTML = posts.map(p => `
-        <a class="post-item" href="/community/${parseInt(p.id)||0}">
-          <div class="post-meta">
-            <span class="pbadge">${escapeHtml(p.region)} ${escapeHtml(p.age)} ${escapeHtml(p.sex)}</span>
-            <span class="ptype">${escapeHtml(p.persona_type)}</span>
-          </div>
-          <div class="post-title">${escapeHtml(p.title)}${p.comment_count > 0 ? `<span class="ccnt">[${parseInt(p.comment_count)||0}]</span>` : ''}</div>
-          <div class="post-info">
-            <span>${escapeHtml(p.author_name)}</span><span>조회 ${parseInt(p.views)||0}</span>
-            <span>👍 ${parseInt(p.likes)||0}</span><span>${escapeHtml((p.created_at||'').slice(0,10))}</span>
-          </div>
-        </a>`).join('');
-    }
-
-    // 페이지네이션
-    const totalPages = Math.ceil(total / 20);
-    const pag = document.getElementById('pagination');
-    if (totalPages <= 1) { pag.innerHTML = ''; return; }
-    let html = '';
-    if (page > 1) html += `<button onclick="loadPosts(${page-1})">← 이전</button>`;
-    for (let p = Math.max(1,page-2); p <= Math.min(totalPages,page+2); p++) {
-      html += `<button class="${p===page?'active':''}" onclick="loadPosts(${p})">${p}</button>`;
-    }
-    if (page < totalPages) html += `<button onclick="loadPosts(${page+1})">다음 →</button>`;
-    pag.innerHTML = html;
-  }
-
-  window.doSearch = function doSearch() {
-    q = document.getElementById('search-input').value.trim();
+  function doSearch() {
+    _q = document.getElementById('search-input').value.trim();
     loadPosts(1);
   }
-  document.getElementById('search-input').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+
+  async function loadPosts(page) {
+    page = page || 1;
+    var list = document.getElementById('post-list');
+    list.innerHTML = '<div class="loading">불러오는 중...</div>';
+
+    var url = '/api/community/posts?page=' + page + '&board=' + encodeURIComponent(_board);
+    if (_slug) url += '&slug=' + encodeURIComponent(_slug);
+    if (_q)    url += '&q='    + encodeURIComponent(_q);
+
+    try {
+      var res   = await fetch(url);
+      var data  = await res.json();
+      var posts = data.posts || [];
+      var total = data.total || 0;
+
+      document.getElementById('total').textContent = '총 ' + total + '개의 게시글';
+
+      if (posts.length === 0) {
+        list.innerHTML = '<div class="empty"><p>아직 글이 없어요</p>' +
+          (_session ? '<a href="/community/write" style="color:#6B4226;font-weight:700;margin-top:.5rem;display:inline-block">첫 글 써보기 →</a>' : '') +
+          '</div>';
+      } else {
+        list.innerHTML = posts.map(function(p) {
+          var cmtBadge = p.comment_count > 0 ? '<span class="ccnt">[' + parseInt(p.comment_count) + ']</span>' : '';
+          return '<a class="post-item" href="/community/' + (parseInt(p.id)||0) + '">' +
+            '<div class="post-meta">' +
+              '<span class="pbadge">' + escapeHtml(p.region) + ' ' + escapeHtml(p.age) + ' ' + escapeHtml(p.sex) + '</span>' +
+              '<span class="ptype">' + escapeHtml(p.persona_type) + '</span>' +
+            '</div>' +
+            '<div class="post-title">' + escapeHtml(p.title) + cmtBadge + '</div>' +
+            '<div class="post-info">' +
+              '<span>' + escapeHtml(p.author_name) + '</span>' +
+              '<span>조회 ' + (parseInt(p.views)||0) + '</span>' +
+              '<span>👍 ' + (parseInt(p.likes)||0) + '</span>' +
+              '<span>' + escapeHtml((p.created_at||'').slice(0,10)) + '</span>' +
+            '</div>' +
+          '</a>';
+        }).join('');
+      }
+
+      /* ── 페이지네이션: data-page 속성 + 이벤트 위임 ── */
+      var totalPages = Math.ceil(total / 20);
+      var pag = document.getElementById('pagination');
+      if (totalPages <= 1) { pag.innerHTML = ''; return; }
+      var html = '';
+      if (page > 1) html += '<button data-page="' + (page-1) + '">← 이전</button>';
+      for (var i = Math.max(1, page-2); i <= Math.min(totalPages, page+2); i++) {
+        html += '<button class="' + (i === page ? 'active' : '') + '" data-page="' + i + '">' + i + '</button>';
+      }
+      if (page < totalPages) html += '<button data-page="' + (page+1) + '">다음 →</button>';
+      pag.innerHTML = html;
+
+    } catch(err) {
+      list.innerHTML = '<div class="empty">불러오기 실패. 새로고침 해주세요.</div>';
+    }
+  }
+
+  /* 페이지네이션 이벤트 위임 — 버튼이 동적으로 바뀌어도 항상 동작 */
+  document.getElementById('pagination').addEventListener('click', function(e) {
+    var btn = e.target.closest('button[data-page]');
+    if (btn) loadPosts(parseInt(btn.getAttribute('data-page'), 10));
+  });
+
+  document.getElementById('search-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doSearch();
+  });
 
   loadPosts(1);
   </script>

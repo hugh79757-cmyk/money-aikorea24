@@ -1,10 +1,14 @@
 // @ts-check
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
 import remarkGfm from 'remark-gfm';
 
 export default defineConfig({
+  vite: {
+    plugins: [tailwindcss()],
+  },
   site: 'https://persona.aikorea24.kr',
   output: 'static',
   integrations: [

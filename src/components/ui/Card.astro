@@ -1,0 +1,108 @@
+---
+/**
+ * Card - 재사용 가능한 카드 컴포넌트
+ *
+ * @prop variant - 카드 스타일 변형 (default | elevated | outline | interactive)
+ * @prop padding - 내부 패딩 크기 (none | sm | md | lg)
+ * @prop href - 링크 카드일 경우 URL
+ * @prop radius - 모서리 둥글기 (sm | md | lg | xl)
+ */
+export interface Props {
+  variant?: 'default' | 'elevated' | 'outline' | 'interactive';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  href?: string;
+  radius?: 'sm' | 'md' | 'lg' | 'xl';
+  class?: string;
+}
+
+const {
+  variant = 'default',
+  padding = 'md',
+  href,
+  radius = 'lg',
+  class: className = '',
+} = Astro.props;
+
+const Tag = href ? 'a' : 'div';
+const classes = `card card-${variant} card-p-${padding} card-r-${radius} ${className}`.trim();
+---
+
+<Tag href={href} class={classes}>
+  <slot />
+</Tag>
+
+<style>
+  .card {
+    display: block;
+    background: var(--color-surface);
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition-base);
+  }
+
+  /* Variants */
+  .card-default {
+    border: 1px solid var(--color-border);
+  }
+
+  .card-elevated {
+    border: none;
+    box-shadow: var(--shadow-md);
+  }
+
+  .card-outline {
+    border: 1px solid var(--color-border);
+    background: transparent;
+  }
+
+  .card-interactive {
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-interactive:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+  }
+
+  /* Padding */
+  .card-p-none {
+    padding: 0;
+  }
+
+  .card-p-sm {
+    padding: var(--space-3);
+  }
+
+  .card-p-md {
+    padding: var(--space-5);
+  }
+
+  .card-p-lg {
+    padding: var(--space-8);
+  }
+
+  /* Border Radius */
+  .card-r-sm {
+    border-radius: var(--radius-sm);
+  }
+
+  .card-r-md {
+    border-radius: var(--radius-md);
+  }
+
+  .card-r-lg {
+    border-radius: var(--radius-xl);
+  }
+
+  .card-r-xl {
+    border-radius: var(--radius-2xl);
+  }
+
+  /* Focus state for accessibility (링크 카드일 때) */
+  a.card:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+</style>

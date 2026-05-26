@@ -1,0 +1,147 @@
+---
+/**
+ * Button - 재사용 가능한 버튼 컴포넌트
+ *
+ * @prop variant - 버튼 스타일 변형 (primary | secondary | outline | ghost | kakao)
+ * @prop size - 버튼 크기 (sm | md | lg)
+ * @prop href - 링크 버튼일 경우 URL
+ * @prop fullWidth - 전체 너비 사용 여부
+ * @prop disabled - 비활성화 상태
+ * @prop type - 버튼 타입 (button | submit | reset)
+ */
+export interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'kakao';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  fullWidth?: boolean;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  fullWidth = false,
+  disabled = false,
+  type = 'button',
+  class: className = '',
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+const baseProps = href
+  ? { href, class: `btn btn-${variant} btn-${size} ${fullWidth ? 'btn-full' : ''} ${className}`.trim() }
+  : { type, disabled, class: `btn btn-${variant} btn-${size} ${fullWidth ? 'btn-full' : ''} ${disabled ? 'btn-disabled' : ''} ${className}`.trim() };
+---
+
+<Tag {...baseProps}>
+  <slot />
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--font-sans);
+    font-weight: var(--font-bold);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Sizes */
+  .btn-sm {
+    font-size: var(--text-xs);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+  }
+
+  .btn-md {
+    font-size: var(--text-sm);
+    padding: var(--space-3) var(--space-5);
+  }
+
+  .btn-lg {
+    font-size: var(--text-base);
+    padding: var(--space-4) var(--space-8);
+    border-radius: var(--radius-xl);
+  }
+
+  /* Variants */
+  .btn-primary {
+    background: var(--color-accent);
+    color: var(--color-surface);
+    box-shadow: var(--shadow-accent);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-accent-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-accent-lg);
+  }
+
+  .btn-secondary {
+    background: var(--color-primary);
+    color: var(--color-surface);
+    box-shadow: var(--shadow-primary);
+  }
+
+  .btn-secondary:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+  }
+
+  .btn-outline:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .btn-ghost {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-kakao {
+    background: var(--color-kakao);
+    color: var(--color-kakao-text);
+  }
+
+  .btn-kakao:hover {
+    background: #F5D800;
+  }
+
+  /* States */
+  .btn-full {
+    width: 100%;
+  }
+
+  .btn-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Focus state for accessibility */
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring-accent);
+  }
+</style>

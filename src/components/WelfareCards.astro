@@ -1,0 +1,51 @@
+---
+import type { WelfareMatch } from '../lib/welfareMatcher';
+export interface Props {
+  welfares: WelfareMatch[];
+  region: string;
+  ageGroup: string;
+  sex: string;
+}
+const { welfares, region, ageGroup, sex } = Astro.props;
+---
+{welfares.length > 0 && (
+  <section class="welfare-section">
+    <h3>🏛️ {region} {ageGroup} {sex} 맞춤 복지 서비스</h3>
+    <p class="welfare-sub">복지로 공식 데이터 · 지역·연령 자동 매칭</p>
+    <div class="welfare-grid">
+      {welfares.map(w => (
+        <a class="welfare-card" href={w.servDtlLink || '#'} target="_blank" rel="noopener">
+          <div class="welfare-tags">
+            {w.ctpvNm && w.ctpvNm !== '-' && (
+              <span class="welfare-tag region">{w.ctpvNm}{w.sggNm && w.sggNm !== '-' ? ' ' + w.sggNm : ''}</span>
+            )}
+            <span class="welfare-tag life">{w.lifeStage}</span>
+          </div>
+          <h4 class="welfare-name">{w.servNm}</h4>
+          <p class="welfare-desc">{(w.servDgst || '').replace(/❍|■|□/g,'').trim().slice(0, 120)}{(w.servDgst || '').length > 120 ? '…' : ''}</p>
+          <div class="welfare-foot">
+            <span class="welfare-org">{w.bizChrDeptNm || w.jurMnofNm || ''}</span>
+            <span class="welfare-cta">자세히 보기 →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+)}
+<style>
+  .welfare-section { margin: 32px 0; }
+  .welfare-section h3 { font-size: 1.25rem; color: var(--primary, #1E3A5F); margin: 0 0 4px; }
+  .welfare-sub { color: #888; font-size: 0.85rem; margin: 0 0 16px; }
+  .welfare-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .welfare-card { display: block; padding: 16px; background: #fff; border: 1px solid #E5DCC8; border-radius: 12px; text-decoration: none; color: inherit; transition: all .15s; }
+  .welfare-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.08); border-color: #D97706; }
+  .welfare-tags { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+  .welfare-tag { font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+  .welfare-tag.region { background: #E3EEF8; color: #1E3A5F; }
+  .welfare-tag.life { background: #FFF4E6; color: #B5621A; }
+  .welfare-name { font-size: 0.98rem; margin: 0 0 8px; line-height: 1.35; color: #222; font-weight: 700; }
+  .welfare-desc { font-size: 0.85rem; color: #555; line-height: 1.5; margin: 0 0 12px; min-height: 2.5em; }
+  .welfare-foot { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; }
+  .welfare-org { color: #888; }
+  .welfare-cta { color: #D97706; font-weight: 600; }
+</style>

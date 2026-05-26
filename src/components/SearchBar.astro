@@ -1,0 +1,429 @@
+---
+// SearchBar.astro — 헤더 검색 기능 (클라이언트 사이드)
+// define:vars 미사용 → 일반 ES module 번들 (defer, DOM ready 보장)
+---
+
+<!-- 검색 버튼 -->
+<button class="search-btn" id="search-open-btn" aria-label="검색 열기" type="button">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="8"/>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </svg>
+  <span class="search-btn-label">검색</span>
+  <kbd class="search-kbd">⌘K</kbd>
+</button>
+
+<!-- 검색 오버레이 — body 바깥이 아닌 여기에 렌더링, position:fixed로 전체화면 -->
+<div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="사이트 검색">
+  <div class="search-panel">
+    <div class="search-input-wrap">
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input
+        type="search"
+        id="search-input"
+        class="search-input"
+        placeholder="보험, 청년, 절세, 대출 등 검색…"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button class="search-close-btn" id="search-close-btn" type="button" aria-label="검색 닫기">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="search-shortcuts" id="search-shortcuts">
+      <span class="shortcut-label">빠른 검색</span>
+      <div class="shortcut-list">
+        <button class="shortcut-tag" data-query="보험">🛡️ 보험</button>
+        <button class="shortcut-tag" data-query="청년">🧑 청년</button>
+        <button class="shortcut-tag" data-query="절세">💰 절세</button>
+        <button class="shortcut-tag" data-query="대출">🏠 대출</button>
+        <button class="shortcut-tag" data-query="연말정산">📋 연말정산</button>
+        <button class="shortcut-tag" data-query="지원금">🎁 지원금</button>
+      </div>
+    </div>
+
+    <div class="search-results" id="search-results" role="listbox"></div>
+
+    <div class="search-footer">
+      <span>↑↓ 이동</span>
+      <span>↵ 선택</span>
+      <span>ESC 닫기</span>
+    </div>
+  </div>
+</div>
+
+<!-- 일반 스크립트 (define:vars 없음 → ES module로 번들, DOM ready 후 실행) -->
+<script>
+const CATEGORY_LABELS: Record<string, string> = {
+  insurance: '보험',
+  invest:    '투자·절세',
+  loan:      '대출·부동산',
+  tax:       '세금·절약',
+  nomad:     '디지털노마드',
+  general:   '기타',
+};
+
+function initSearch() {
+  const openBtn   = document.getElementById('search-open-btn');
+  const closeBtn  = document.getElementById('search-close-btn');
+  const overlay   = document.getElementById('search-overlay');
+  const input     = document.getElementById('search-input') as HTMLInputElement | null;
+  const resultsEl = document.getElementById('search-results');
+  const shortcuts = document.getElementById('search-shortcuts');
+
+  if (!openBtn || !closeBtn || !overlay || !input || !resultsEl || !shortcuts) return;
+
+  let posts: any[] | null = null;
+  let loading = false;
+  let activeIdx = -1;
+
+  // ── 열기/닫기 ──────────────────────────────────────────────
+  function openSearch() {
+    overlay!.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => input!.focus(), 60);
+    if (!posts && !loading) loadPosts();
+  }
+  function closeSearch() {
+    overlay!.classList.remove('open');
+    document.body.style.overflow = '';
+    input!.value = '';
+    renderResults([]);
+    shortcuts!.style.display = '';
+    activeIdx = -1;
+  }
+
+  openBtn.addEventListener('click', openSearch);
+  closeBtn.addEventListener('click', closeSearch);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSearch(); });
+
+  // ── 단축키 ─────────────────────────────────────────────────
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { closeSearch(); return; }
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+      e.preventDefault();
+      overlay!.classList.contains('open') ? closeSearch() : openSearch();
+    }
+  });
+
+  // ── 검색 인덱스 로드 ────────────────────────────────────
+  async function loadPosts() {
+    loading = true;
+    try {
+      const res = await fetch('/search.json');
+      posts = await res.json();
+    } catch {
+      posts = [];
+    }
+    loading = false;
+    if (input!.value.trim()) doSearch(input!.value.trim());
+  }
+
+  // ── 검색 로직 ──────────────────────────────────────────
+  function doSearch(query: string) {
+    if (!query) { renderResults([]); shortcuts!.style.display = ''; return; }
+    shortcuts!.style.display = 'none';
+    if (!posts) {
+      resultsEl!.innerHTML = '<div class="search-msg">로딩 중…</div>';
+      return;
+    }
+    const q = query.toLowerCase();
+    const terms = q.split(/\s+/).filter(Boolean);
+    const scored = posts
+      .map((post: any) => {
+        const title = post.title.toLowerCase();
+        const desc  = post.description.toLowerCase();
+        let score = 0;
+        for (const t of terms) {
+          if (title.includes(t))  score += title.startsWith(t) ? 3 : 2;
+          if (desc.includes(t))   score += 1;
+        }
+        return { ...post, score };
+      })
+      .filter((p: any) => p.score > 0)
+      .sort((a: any, b: any) => b.score - a.score)
+      .slice(0, 8);
+    renderResults(scored);
+  }
+
+  // ── 결과 렌더링 ──────────────────────────────────────────
+  function renderResults(results: any[]) {
+    activeIdx = -1;
+    if (!results.length && input!.value.trim()) {
+      resultsEl!.innerHTML = '<div class="search-msg search-empty">😕 검색 결과가 없습니다.</div>';
+      return;
+    }
+    if (!results.length) { resultsEl!.innerHTML = ''; return; }
+
+    resultsEl!.innerHTML = results.map((p: any, i: number) => {
+      const catLabel = CATEGORY_LABELS[p.category] || p.category;
+      const dateStr  = p.pubDate ? String(p.pubDate).slice(0, 10) : '';
+      return `
+        <a class="result-item" href="/blog/${escHtml(p.slug)}/" role="option" data-idx="${i}">
+          <span class="result-cat">${escHtml(catLabel)}</span>
+          <span class="result-title">${escHtml(p.title)}</span>
+          <span class="result-desc">${escHtml(p.description)}</span>
+          ${dateStr ? `<span class="result-date">${dateStr}</span>` : ''}
+        </a>`;
+    }).join('');
+  }
+
+  function escHtml(s: string) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // ── 키보드 네비게이션 ──────────────────────────────────
+  input.addEventListener('keydown', (e) => {
+    const items = resultsEl!.querySelectorAll<HTMLElement>('.result-item');
+    if (!items.length) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      activeIdx = Math.min(activeIdx + 1, items.length - 1);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      activeIdx = Math.max(activeIdx - 1, -1);
+    } else if (e.key === 'Enter' && activeIdx >= 0) {
+      e.preventDefault();
+      items[activeIdx].click();
+      return;
+    } else { return; }
+    items.forEach((el, i) => el.classList.toggle('active', i === activeIdx));
+    if (activeIdx >= 0) items[activeIdx].scrollIntoView({ block: 'nearest' });
+  });
+
+  // ── 입력 이벤트 ──────────────────────────────────────
+  let debounceTimer: ReturnType<typeof setTimeout>;
+  input.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    const q = input!.value.trim();
+    if (!q) { renderResults([]); shortcuts!.style.display = ''; return; }
+    debounceTimer = setTimeout(() => doSearch(q), 120);
+  });
+
+  // ── 빠른 검색 단축키 ──────────────────────────────────
+  document.querySelectorAll<HTMLButtonElement>('.shortcut-tag').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const q = btn.dataset.query || '';
+      input!.value = q;
+      doSearch(q);
+    });
+  });
+}
+
+// Astro ES module → DOM 파싱 완료 후 실행
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSearch);
+} else {
+  initSearch();
+}
+</script>
+
+<style>
+  /* ── 검색 버튼 ── */
+  .search-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: rgba(255,255,255,0.92);
+    border-radius: 999px;
+    padding: 6px 14px 6px 10px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: inherit;
+    transition: background 0.15s, border-color 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .search-btn:hover {
+    background: rgba(255,255,255,0.22);
+    border-color: rgba(255,255,255,0.4);
+  }
+  .search-btn svg { flex-shrink: 0; }
+  .search-kbd {
+    font-size: 0.68rem;
+    font-family: inherit;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 4px;
+    padding: 1px 5px;
+    color: rgba(255,255,255,0.7);
+  }
+  @media (max-width: 900px) { .search-kbd { display: none; } }
+  @media (max-width: 640px) {
+    .search-btn-label { display: none; }
+    .search-btn { padding: 8px; border-radius: 50%; }
+  }
+
+  /* ── 오버레이 ── */
+  .search-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 72px 16px 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+  }
+  .search-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* ── 패널 ── */
+  .search-panel {
+    background: var(--color-surface, #fff);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 640px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.28);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 120px);
+    transform: translateY(-12px);
+    transition: transform 0.18s ease;
+  }
+  .search-overlay.open .search-panel { transform: translateY(0); }
+
+  /* ── 입력창 ── */
+  .search-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--color-border, #e5e7eb);
+  }
+  .search-icon { color: var(--color-muted, #9ca3af); flex-shrink: 0; }
+  .search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1.05rem;
+    font-family: inherit;
+    background: transparent;
+    color: var(--color-text, #111);
+    min-width: 0;
+  }
+  .search-input::placeholder { color: var(--color-placeholder, #b0b7c3); }
+  .search-input::-webkit-search-cancel-button { display: none; }
+  .search-close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-muted, #9ca3af);
+    padding: 4px;
+    display: flex;
+    border-radius: 8px;
+    flex-shrink: 0;
+    transition: color 0.12s, background 0.12s;
+  }
+  .search-close-btn:hover { color: var(--color-text, #111); background: var(--color-border, #e5e7eb); }
+
+  /* ── 빠른 검색 ── */
+  .search-shortcuts {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-border, #e5e7eb);
+  }
+  .shortcut-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-muted, #9ca3af);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .shortcut-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .shortcut-tag {
+    background: var(--color-bg, #f8fafc);
+    border: 1px solid var(--color-border, #e5e7eb);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    font-family: inherit;
+    cursor: pointer;
+    color: var(--color-text, #111);
+    font-weight: 600;
+    transition: background 0.12s, border-color 0.12s;
+    min-height: unset;
+    min-width: unset;
+  }
+  .shortcut-tag:hover { background: var(--color-header-bg, #1E3A5F); color: #fff; border-color: transparent; }
+
+  /* ── 결과 ── */
+  .search-results { overflow-y: auto; max-height: 420px; }
+  .search-msg { padding: 24px 20px; text-align: center; color: var(--color-muted, #9ca3af); font-size: 0.9rem; }
+  .result-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 2px 10px;
+    padding: 13px 18px;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid var(--color-border, #e5e7eb);
+    transition: background 0.1s;
+    cursor: pointer;
+  }
+  .result-item:last-child { border-bottom: none; }
+  .result-item:hover, .result-item.active { background: var(--color-bg, #f8fafc); }
+  .result-cat {
+    grid-column: 1; grid-row: 1;
+    font-size: 0.7rem; font-weight: 700;
+    background: var(--color-header-bg, #1E3A5F); color: #fff;
+    border-radius: 999px; padding: 2px 8px;
+    align-self: center; white-space: nowrap;
+  }
+  .result-title {
+    grid-column: 2; grid-row: 1;
+    font-size: 0.93rem; font-weight: 700;
+    color: var(--color-primary, #1e3a5f);
+    line-height: 1.35; align-self: center;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .result-date {
+    grid-column: 3; grid-row: 1;
+    font-size: 0.7rem; color: var(--color-placeholder, #b0b7c3);
+    align-self: center; white-space: nowrap;
+  }
+  .result-desc {
+    grid-column: 2 / 4; grid-row: 2;
+    font-size: 0.78rem; color: var(--color-muted, #6b7280);
+    line-height: 1.4; overflow: hidden; text-overflow: ellipsis;
+    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;
+  }
+
+  /* ── 푸터 힌트 ── */
+  .search-footer {
+    display: flex; gap: 16px;
+    padding: 8px 18px;
+    font-size: 0.72rem; color: var(--color-placeholder, #b0b7c3);
+    border-top: 1px solid var(--color-border, #e5e7eb);
+    background: var(--color-bg, #f8fafc);
+  }
+
+  @media (max-width: 480px) {
+    .search-overlay { padding: 56px 8px 12px; }
+    .search-panel { border-radius: 12px; }
+    .result-desc { display: none; }
+  }
+</style>

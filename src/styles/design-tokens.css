@@ -51,6 +51,9 @@
   --color-benefit: #6B4226;
   --color-benefit-light: #9B6B46;
 
+  /* Header - 헤더 배경색 (라이트/다크 공통 네이비) */
+  --color-header-bg: #1E3A5F;
+
   /* Code - 코드 색상 */
   --color-code-bg: #f1f5f9;
   --color-code-text: #db2777;
@@ -206,8 +209,17 @@
     /* Semantic - 다크모드용 */
     --color-success-bg: #064e3b;
     --color-warning-bg: #78350f;
+    --color-error: #f87171;        /* 다크모드: 밝은 빨강 (가독성) */
     --color-error-bg: #7f1d1d;
     --color-info-bg: #1e3a8a;
+
+    /* Brand - 다크모드용 */
+    --color-kakao-text: #f3f4f6;         /* 밝은 텍스트 (다크 배경 위) */
+    --color-benefit: #e8a87c;            /* 밝은 웜톤 */
+    --color-benefit-light: #f0c4a0;      /* 더 밝은 웜톤 */
+
+    /* Header - 헤더 배경색 고정 (다크모드에서도 네이비 유지) */
+    --color-header-bg: #1E3A5F;
 
     /* Shadows - 다크모드용 */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -251,8 +263,17 @@
   /* Semantic - 다크모드용 */
   --color-success-bg: #064e3b;
   --color-warning-bg: #78350f;
+  --color-error: #f87171;          /* 다크모드: 밝은 빨강 (가독성) */
   --color-error-bg: #7f1d1d;
   --color-info-bg: #1e3a8a;
+
+  /* Brand - 다크모드용 */
+  --color-kakao-text: #f3f4f6;           /* 밝은 텍스트 (다크 배경 위) */
+  --color-benefit: #e8a87c;              /* 밝은 웜톤 */
+  --color-benefit-light: #f0c4a0;        /* 더 밝은 웜톤 */
+
+  /* Header - 헤더 배경색 고정 (다크모드에서도 네이비 유지) */
+  --color-header-bg: #1E3A5F;
 
   /* Shadows - 다크모드용 */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);

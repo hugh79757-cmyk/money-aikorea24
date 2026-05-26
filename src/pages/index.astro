@@ -141,7 +141,7 @@ const urgentBenefits = benefitsData
     grid-template-columns: 1fr 1fr;
     gap: var(--space-10);
     align-items: center;
-    background: var(--color-primary);
+    background: var(--color-header-bg);
     border-radius: var(--radius-3xl);
     padding: var(--space-12) var(--space-10);
     margin: var(--space-8) 0;
@@ -336,11 +336,11 @@ const urgentBenefits = benefitsData
   .urgent-head h2 { font-size: var(--text-lg); font-weight: var(--font-extrabold); color: var(--color-kakao-text); margin: 0 }
   .urgent-more { font-size: var(--text-sm); color: var(--color-benefit); font-weight: var(--font-semibold); text-decoration: none }
   .urgent-list { display: grid; gap: var(--space-2) }
-  .urgent-item { display:flex; justify-content:space-between; align-items:center; gap: var(--space-4); background: var(--color-surface); border-radius: var(--radius-lg); padding: var(--space-3) var(--space-4); text-decoration:none; color:inherit; box-shadow: var(--shadow-sm) }
-  .urgent-item:hover { box-shadow: var(--shadow-md) }
+  .urgent-item { display:flex; justify-content:space-between; align-items:center; gap: var(--space-4); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-3) var(--space-4); text-decoration:none; color:inherit; box-shadow: var(--shadow-sm) }
+  .urgent-item:hover { box-shadow: var(--shadow-md); border-color: var(--color-border-dark); }
   .urgent-info { flex:1; min-width:0 }
   .urgent-name { font-weight: var(--font-bold); font-size: 0.95rem; color: var(--color-kakao-text); line-height: 1.4; margin-bottom: var(--space-1) }
   .urgent-org { font-size: var(--text-xs); color: var(--color-benefit-light) }
-  .urgent-dday { flex-shrink:0; background: var(--color-accent-light); color: var(--color-surface); border-radius: var(--radius-md); padding: var(--space-2) var(--space-3); font-weight: var(--font-bold); font-size: var(--text-sm); min-width:50px; text-align:center }
-  .urgent-dday.red { background: var(--color-error) }
+  .urgent-dday { flex-shrink:0; background: var(--color-accent-light); color: #1a1a1a; border-radius: var(--radius-md); padding: var(--space-2) var(--space-3); font-weight: var(--font-bold); font-size: var(--text-sm); min-width:50px; text-align:center }
+  .urgent-dday.red { background: var(--color-error); color: #fff; }
 </style>

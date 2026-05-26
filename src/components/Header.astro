@@ -1,6 +1,7 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import SearchBar from './SearchBar.astro';
 import { SITE_TITLE } from '../consts';
 ---
 <header>
@@ -19,6 +20,7 @@ import { SITE_TITLE } from '../consts';
       </div>
       <a href="/benefits" class="nav-benefits">⏰ 지원금</a>
       <a href="/community" class="nav-community">💬 커뮤니티</a>
+      <SearchBar />
       <a href="/auth/login" class="nav-kakao" id="btn-login">
         <svg width="16" height="16" viewBox="0 0 40 40" fill="none" style="flex-shrink:0">
           <path d="M20 4C11.163 4 4 9.82 4 17c0 4.747 3.027 8.91 7.627 11.367L9.8 35.08a.5.5 0 0 0 .717.543L17.64 31.2c.778.1 1.573.153 2.36.153 8.837 0 16-5.82 16-13S28.837 4 20 4z" fill="#3D3D3D"/>
@@ -58,7 +60,7 @@ import { SITE_TITLE } from '../consts';
   header {
     margin: 0;
     padding: 0;
-    background: var(--color-primary);
+    background: var(--color-header-bg);
     position: sticky;
     top: 0;
     z-index: var(--z-sticky);

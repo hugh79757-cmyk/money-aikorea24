@@ -102,7 +102,7 @@
       b === 'persona' ? '같은 페르소나를 가진 사람들과 이야기를 나눠보세요' : '지원금 신청 정보와 후기를 나눠보세요';
     loadPosts(1);
   }
-  async function loadPosts(page = 1) {
+  window.loadPosts = async function loadPosts(page = 1) {
     currentPage = page;
     const list = document.getElementById('post-list');
     list.innerHTML = '<div class="loading">불러오는 중...</div>';

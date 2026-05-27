@@ -1,5 +1,7 @@
 ---
+import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import '../../styles/tailwind.css';
 import BenefitCards from '../../components/BenefitCards.astro';
 import { getBenefitMatches } from "../../lib/benefitMatcher";
 import WelfareCards from "../../components/WelfareCards.astro";
@@ -453,6 +455,8 @@ const jsonLd = JSON.stringify({
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+  <Header />
 
   <!-- 히어로 -->
   <div class="hero">

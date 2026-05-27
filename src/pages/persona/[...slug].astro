@@ -311,146 +311,194 @@ const jsonLd = JSON.stringify({
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185" crossorigin="anonymous"></script>
   <script type="application/ld+json" set:html={jsonLd} />
   <style>
-  /* === 페르소나 20명 그리드 (C-1 추가) === */
-  .personas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.85rem; margin-top: 0.5rem; }
-  .persona-item-card { background: #FFFEF9; border: 1px solid #F0E8D6; border-left: 3px solid #C9A574; border-radius: 10px; padding: 0.9rem 1rem; transition: transform .15s, box-shadow .15s; }
-  .persona-item-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(107,66,38,0.08); }
-  .persona-item-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; }
-  .persona-num { font-family: 'SF Mono', monospace; font-size: 0.78rem; color: #B8956A; font-weight: 700; letter-spacing: 0.5px; }
-  .persona-name { font-weight: 700; color: #6B4226; font-size: 0.95rem; }
-  .persona-story { margin: 0; color: #4A3F2E; line-height: 1.65; font-size: 0.9rem; }
-  @media (max-width: 640px) { .personas-grid { grid-template-columns: 1fr; gap: 0.7rem; } .persona-item-card { padding: 0.8rem 0.9rem; } }
-  /* === C-1 끝 === */
+  /* =============================================
+     페르소나 결과 페이지 — CSS 변수 기반 (다크모드 대응)
+     ============================================= */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{overflow-x:hidden;max-width:100%;width:100%}
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{overflow-x:hidden;max-width:100%;width:100%}
-    body{font-family:'Pretendard',-apple-system,sans-serif;background:#FFF8EE;color:#3D3D3D;font-size:17px;line-height:1.8;overflow-x:hidden;width:100%;max-width:100%}
-    .hero{position:relative;min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 1.5rem;overflow:hidden}
-    .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;image-rendering:pixelated}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,240,220,.82) 0%,rgba(230,180,130,.75) 100%)}
-    .hero-content{position:relative;z-index:2}
-    .breadcrumb{font-size:.82rem;color:#8B7355;margin-bottom:.75rem}
-    .breadcrumb a{color:#6B4226;text-decoration:none}
-    .hero h1{font-size:1.75rem;font-weight:800;color:#3D3D3D;line-height:1.3;margin-bottom:.5rem}
-    .hero-sub{font-size:1rem;color:#6B4226;font-weight:600}
-    .hero-count{font-size:.88rem;color:#8B7355;margin-top:.5rem}
-    .container{max-width:720px;margin:0 auto;padding:2rem 1rem;width:100%;box-sizing:border-box;overflow-x:hidden}
-    .ptype-card{background:linear-gradient(135deg,#6B4226,#E8A87C);border-radius:20px;padding:1.75rem;margin-bottom:1.5rem;text-align:center;color:#fff;box-shadow:0 8px 24px rgba(107,66,38,.25)}
-    .ptype-emoji{font-size:3rem;margin-bottom:.5rem}
-    .ptype-name{font-size:1.5rem;font-weight:800;margin-bottom:.4rem}
-    .ptype-desc{font-size:.92rem;opacity:.85}
-    .card-wrap{display:flex;justify-content:center;margin-bottom:1.5rem}
-    .card-img{border-radius:16px;box-shadow:0 4px 20px rgba(107,66,38,.2)}
-    .card-desk{width:100%;max-width:600px;height:auto;object-fit:contain;display:none;border-radius:16px}
-    .card-mob{width:100%;height:auto;object-fit:contain;display:block;border-radius:16px}
-    @media(min-width:768px){.card-desk{display:block}.card-mob{display:none}}
-    .share-encourage{text-align:center;color:#4B5563;font-size:.9rem;margin-bottom:.75rem}
-    .share-primary{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1rem}
-    .share-secondary{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
-    .share-btn-sm{background:#FFFFFF;border:1.5px solid #E8D5C0;border-radius:12px;padding:.75rem .5rem;font-size:.88rem;font-weight:600;cursor:pointer;min-height:48px;color:#3D3D3D}
-    .share-btn-sm:hover{background:#FFF8EE}
-    .stat-card{background:#FFFDF7;border-radius:20px;padding:1.5rem;box-shadow:0 4px 20px rgba(107,66,38,.08);margin-bottom:1.5rem;border:1px solid #F0DFC8}
-    .stat-card h2{font-size:1rem;font-weight:700;margin-bottom:1.1rem;color:#6B4226}
-    .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
-    .kpi{background:#FFFDF7;border-radius:16px;padding:1.25rem 1rem;text-align:center;box-shadow:0 4px 16px rgba(107,66,38,.08);border:1px solid #F0DFC8}
-    .kpi-val{font-size:2rem;font-weight:800;color:#6B4226}
-    .kpi-label{font-size:.78rem;color:#8B7355;margin-top:.2rem}
-    .kpi-income{border-color:#C8E6C9;background:#F1F8E9}
-    .youare-card{background:linear-gradient(135deg,#1E3A5F,#2D5A8E);border-radius:20px;padding:1.5rem;margin-bottom:1.25rem;color:#fff}
-    .youare-intro{font-size:1rem;font-weight:700;text-align:center;margin-bottom:.4rem;opacity:.9}
-    .youare-ptype{font-size:.82rem;text-align:center;opacity:.75;margin-bottom:1rem;background:rgba(255,255,255,.1);border-radius:20px;padding:.3rem .8rem;display:inline-block;margin-left:auto;margin-right:auto;width:fit-content}
-    .share-main-btns{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem}
-    .share-btn-main{background:#D97706;color:#fff;border:none;border-radius:14px;padding:.9rem .5rem;font-size:.92rem;font-weight:700;cursor:pointer;min-height:52px}
-    .share-btn-main:hover{background:#B45309}
-    .share-btn-sub{background:#fff;color:#1E3A5F;border:2px solid #E8D5C0;border-radius:14px;padding:.9rem .5rem;font-size:.92rem;font-weight:700;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;min-height:52px}
-    .share-btn-sub:hover{background:#F8F5F0}
-    .social-proof{text-align:center;padding:.75rem 1rem;margin-bottom:.75rem;font-size:.82rem;color:#6B4226;background:#FFF8EE;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:.5rem}
-    .social-proof-dot{width:8px;height:8px;background:#22C55E;border-radius:50%;flex-shrink:0;animation:pulse 2s infinite}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-    .social-proof strong{color:#D97706}
-    .youare-intro strong{color:#F9C74F;font-size:1.1rem}
-    .youare-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem}
-    .youare-item{display:flex;align-items:flex-start;gap:.75rem;background:rgba(255,255,255,.08);border-radius:12px;padding:.7rem 1rem}
-    .youare-emoji{font-size:1.2rem;flex-shrink:0;margin-top:.1rem}
-    .youare-text{font-size:.9rem;font-weight:600;line-height:1.5;color:#fff}
-    .youare-income{margin-top:1rem;padding:1rem;background:rgba(249,199,79,.15);border:1px solid rgba(249,199,79,.4);border-radius:14px;text-align:center}
-    .youare-income-label{font-size:.78rem;color:#F9C74F;margin-bottom:.3rem}
-    .youare-income-val{font-size:2rem;font-weight:900;color:#F9C74F;line-height:1}
-    .youare-income-unit{font-size:.9rem;font-weight:500;margin-left:2px}
-    .youare-income-rank{font-size:.82rem;color:rgba(255,255,255,.8);margin-top:.3rem}
-    .youare-note{font-size:.68rem;opacity:.45;text-align:center;margin-top:1rem;line-height:1.6}
-    .income-rank-card{margin-bottom:1.5rem}
-    .income-rank-wrap{padding:.5rem 0}
-    .income-rank-numbers{text-align:center;margin-bottom:1.25rem}
-    .income-big{font-size:2.5rem;font-weight:900;color:#2E7D32;line-height:1}
-    .income-unit{font-size:1.1rem;font-weight:500;color:#4CAF50;margin-left:2px}
-    .income-sub{font-size:.8rem;color:#888;margin-top:.3rem}
-    .rank-gauge-wrap{margin:0 .5rem 1rem}
-    .rank-gauge-bar{position:relative;height:12px;background:#E8F5E9;border-radius:6px;overflow:visible;margin-bottom:6px}
-    .rank-gauge-fill{height:100%;background:linear-gradient(90deg,#81C784,#2E7D32);border-radius:6px;transition:width .5s}
-    .rank-gauge-marker{position:absolute;top:-4px;transform:translateX(-50%)}
-    .rank-marker-dot{width:20px;height:20px;background:#D97706;border:3px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.2)}
-    .rank-marker-label{font-size:.7rem;font-weight:700;color:#D97706;text-align:center;margin-top:2px;white-space:nowrap}
-    .rank-gauge-labels{display:flex;justify-content:space-between;font-size:.75rem;color:#888}
-    .rank-result{text-align:center;margin:.75rem 0 .5rem;font-size:1.05rem}
-    .rank-highlight{font-size:1.4rem;font-weight:900;color:#D97706}
-    .rank-desc{color:#555;font-size:.95rem}
-    .rank-note{font-size:.72rem;color:#aaa;text-align:center;line-height:1.5;margin-top:.5rem}
-    .job-wage-badge{font-size:.72rem;font-weight:600;color:#2E7D32;background:#E8F5E9;border-radius:6px;padding:2px 6px;white-space:nowrap}
-    .kpi-income .kpi-val{color:#2E7D32}
-    .kpi-badge{display:inline-block;font-size:.65rem;background:#E8F5E9;color:#388E3C;border-radius:4px;padding:1px 5px;margin-left:3px;vertical-align:middle}
-    .bar-list{list-style:none}
-    .bar-item{margin-bottom:1rem}
-    .bar-header{display:flex;justify-content:space-between;margin-bottom:.3rem}
-    .bar-name{font-size:.9rem;font-weight:600;color:#3D3D3D}
-    .bar-pct{font-size:.9rem;font-weight:700;color:#6B4226}
-    .bar-track{height:10px;background:#F0DFC8;border-radius:5px;overflow:hidden}
-    .bar-fill{height:100%;border-radius:5px}
-    .bar-warn{font-size:.75rem;color:#e74c3c;margin-top:.2rem}
-    .insight-box{background:linear-gradient(135deg,#FFF0DC,#FFFDF7);border:1px solid #E8D5C0;border-radius:16px;padding:1.5rem;margin-bottom:1.5rem}
-    .insight-box h2{font-size:1rem;font-weight:700;color:#6B4226;margin-bottom:.75rem}
-    .insight-box p{font-size:.92rem;line-height:1.85;color:#3D3D3D}
-    .rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem}
-    .rel-card{background:#FFF8EE;border-radius:14px;padding:1rem;border:1px solid #F0DFC8;text-decoration:none;color:#3D3D3D;transition:all .2s;display:block}
-    .rel-card:hover{border-color:#E8A87C;background:#FFF0DC}
-    .rel-emoji{font-size:1.4rem;margin-bottom:.3rem}
-    .rel-title{font-size:.88rem;font-weight:700}
-    .cta-box{background:linear-gradient(135deg,#6B4226,#E8A87C);border-radius:20px;padding:2rem;text-align:center;color:#fff;margin-bottom:1.5rem}
-    .cta-box h2{font-size:1.2rem;font-weight:800;margin-bottom:.75rem}
-    .cta-btn{display:inline-block;background:#fff;color:#6B4226;border-radius:12px;padding:.85rem 2rem;font-size:1rem;font-weight:700;text-decoration:none;transition:opacity .2s}
-    .cta-btn:hover{opacity:.9}
-    .back-link{text-align:center;margin:1.5rem 0}
-    .back-link a{color:#8B7355;font-size:.9rem;text-decoration:none}
-    .back-link a:hover{color:#6B4226}
-    .compare-links{display:flex;flex-wrap:wrap;gap:.5rem}
-    .compare-chip{background:#EEF2FF;border:1px solid #C7D2FE;border-radius:20px;padding:.35rem .75rem;font-size:.78rem;font-weight:600;color:#3730A3;text-decoration:none}
-    .compare-chip:hover{background:#C7D2FE}
-    .persona-list{list-style:none}
-    .persona-item{background:#FFF8EE;border-left:4px solid #E8A87C;border-radius:0 12px 12px 0;padding:.9rem 1.1rem;margin-bottom:.75rem;font-size:.88rem;line-height:1.75;color:#3D3D3D;font-style:italic}
-    @media(max-width:600px){.grid4{grid-template-columns:repeat(2,1fr)}.rel-grid{grid-template-columns:1fr}.hero h1{font-size:1.35rem}}
-    .share-kakao-big{width:100%;background:#FEE500;color:#3D3D3D;font-size:1.1rem;font-weight:700;padding:1rem;border:none;border-radius:14px;cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:center;gap:.5rem;margin-bottom:0}
-    .share-kakao-big:hover{background:#F5D800}
-    .share-btn-sub{background:#fff;color:#1E3A5F;border:2px solid #E8D5C0;border-radius:14px;padding:.9rem .5rem;font-size:.92rem;font-weight:700;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;min-height:52px}
-    .share-btn-sub:hover{background:#F8F5F0}
-    /* 하단 고정 공유 바 */
-    .fixed-share-bar{position:fixed;bottom:0;left:0;right:0;z-index:8000;background:#fff;border-top:1px solid #E8D5C0;padding:.6rem 1rem;display:flex;gap:.5rem;box-shadow:0 -2px 12px rgba(0,0,0,.1)}
-    .fixed-share-bar button{flex:1;padding:.7rem .5rem;border:none;border-radius:10px;font-size:.88rem;font-weight:700;cursor:pointer;min-height:44px}
-    .fbar-kakao{background:#FEE500;color:#3D3D3D}
-    .fbar-copy{background:#1E3A5F;color:#fff}
-    /* 앵커광고 여백 */
-    body{padding-bottom:70px}
-  .zodiac-section{margin:1.5rem 0;padding:1.25rem 1.5rem;background:#FFFDF7;border-radius:20px;border:1px solid #F0DFC8}
-.zodiac-section h3{font-size:1rem;font-weight:800;color:#6B4226;margin-bottom:1rem;text-align:center}
-.zodiac-cards{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-@media(max-width:480px){.zodiac-cards{grid-template-columns:1fr}}
-.zodiac-card{display:flex;flex-direction:column;align-items:center;gap:.4rem;background:#fff;border-radius:14px;padding:1.25rem 1rem;border:1px solid #F0DFC8;box-shadow:0 2px 8px rgba(107,66,38,.06);text-decoration:none;transition:transform .15s,box-shadow .15s}
-.zodiac-card:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(107,66,38,.12)}
-.zc-icon{font-size:2rem}
-.zc-title{font-size:.92rem;font-weight:700;color:#3D3D3D}
-.zc-desc{font-size:.75rem;color:#8B7355;text-align:center;line-height:1.5}
-/* 다크모드 버튼 in fixed bar */
-.fbar-theme{flex:0 0 30px;width:30px;height:30px;border:none;border-radius:8px;background:#F0F0F0;color:#3D3D3D;font-size:.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;align-self:center}
-.fbar-theme:hover{background:#E0E0E0}
+  body{
+    font-family:'Pretendard',-apple-system,sans-serif;
+    background:var(--color-bg);
+    color:var(--color-text);
+    font-size:17px;line-height:1.8;overflow-x:hidden;width:100%;max-width:100%;
+    padding-bottom:70px;
+  }
+
+  /* ── 히어로 ── */
+  .hero{position:relative;min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 1.5rem;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;image-rendering:pixelated}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,240,220,.82) 0%,rgba(230,180,130,.75) 100%)}
+  .hero-content{position:relative;z-index:2}
+  .breadcrumb{font-size:.82rem;color:#8B7355;margin-bottom:.75rem}
+  .breadcrumb a{color:var(--color-benefit);text-decoration:none}
+  .hero h1{font-size:1.75rem;font-weight:800;color:#3D3D3D;line-height:1.3;margin-bottom:.5rem}
+  .hero-sub{font-size:1rem;color:var(--color-benefit);font-weight:600}
+  .hero-count{font-size:.88rem;color:#8B7355;margin-top:.5rem}
+
+  /* ── 레이아웃 ── */
+  .container{max-width:720px;margin:0 auto;padding:2rem 1rem;width:100%;box-sizing:border-box;overflow-x:hidden}
+
+  /* ── 페르소나 유형 카드 (그라디언트 — 라이트/다크 동일) ── */
+  .ptype-card{background:linear-gradient(135deg,#6B4226,#E8A87C);border-radius:20px;padding:1.75rem;margin-bottom:1.5rem;text-align:center;color:#fff;box-shadow:0 8px 24px rgba(107,66,38,.25)}
+  .ptype-emoji{font-size:3rem;margin-bottom:.5rem}
+  .ptype-name{font-size:1.5rem;font-weight:800;margin-bottom:.4rem}
+  .ptype-desc{font-size:.92rem;opacity:.85}
+
+  /* ── 카드 이미지 ── */
+  .card-wrap{display:flex;justify-content:center;margin-bottom:1.5rem}
+  .card-img{border-radius:16px;box-shadow:0 4px 20px rgba(107,66,38,.2)}
+  .card-desk{width:100%;max-width:600px;height:auto;object-fit:contain;display:none;border-radius:16px}
+  .card-mob{width:100%;height:auto;object-fit:contain;display:block;border-radius:16px}
+  @media(min-width:768px){.card-desk{display:block}.card-mob{display:none}}
+
+  /* ── 공유 버튼 ── */
+  .share-encourage{text-align:center;color:var(--color-muted);font-size:.9rem;margin-bottom:.75rem}
+  .share-btn-main{background:#D97706;color:#fff;border:none;border-radius:14px;padding:.9rem .5rem;font-size:.92rem;font-weight:700;cursor:pointer;min-height:52px}
+  .share-btn-main:hover{background:#B45309}
+  .share-btn-sub{background:var(--color-surface);color:var(--color-primary);border:2px solid var(--color-border);border-radius:14px;padding:.9rem .5rem;font-size:.92rem;font-weight:700;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;min-height:52px}
+  .share-btn-sub:hover{background:var(--color-surface-hover)}
+  .share-kakao-big{width:100%;background:#FEE500;color:#3D3D3D;font-size:1.1rem;font-weight:700;padding:1rem;border:none;border-radius:14px;cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:center;gap:.5rem;margin-bottom:0}
+  .share-kakao-big:hover{background:#F5D800}
+
+  /* ── 통계 카드 공통 ── */
+  .stat-card{background:var(--color-surface);border-radius:20px;padding:1.5rem;box-shadow:var(--shadow-md);margin-bottom:1.5rem;border:1px solid var(--color-border)}
+  .stat-card h2{font-size:1rem;font-weight:700;margin-bottom:1.1rem;color:var(--color-benefit)}
+
+  /* ── KPI 그리드 ── */
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+  .kpi{background:var(--color-surface);border-radius:16px;padding:1.25rem 1rem;text-align:center;box-shadow:var(--shadow-md);border:1px solid var(--color-border)}
+  .kpi-val{font-size:2rem;font-weight:800;color:var(--color-benefit)}
+  .kpi-label{font-size:.78rem;color:var(--color-muted);margin-top:.2rem}
+  .kpi-income{border-color:#C8E6C9;background:var(--color-surface)}
+  .kpi-income .kpi-val{color:#2E7D32}
+  .kpi-badge{display:inline-block;font-size:.65rem;background:#E8F5E9;color:#388E3C;border-radius:4px;padding:1px 5px;margin-left:3px;vertical-align:middle}
+
+  /* ── 당신은... 카드 (그라디언트 — 다크 무관) ── */
+  .youare-card{background:linear-gradient(135deg,#1E3A5F,#2D5A8E);border-radius:20px;padding:1.5rem;margin-bottom:1.25rem;color:#fff}
+  .youare-intro{font-size:1rem;font-weight:700;text-align:center;margin-bottom:.4rem;opacity:.9}
+  .youare-intro strong{color:#F9C74F;font-size:1.1rem}
+  .youare-ptype{font-size:.82rem;text-align:center;opacity:.75;margin-bottom:1rem;background:rgba(255,255,255,.1);border-radius:20px;padding:.3rem .8rem;display:inline-block;margin-left:auto;margin-right:auto;width:fit-content}
+  .youare-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem}
+  .youare-item{display:flex;align-items:flex-start;gap:.75rem;background:rgba(255,255,255,.08);border-radius:12px;padding:.7rem 1rem}
+  .youare-emoji{font-size:1.2rem;flex-shrink:0;margin-top:.1rem}
+  .youare-text{font-size:.9rem;font-weight:600;line-height:1.5;color:#fff}
+  .youare-income{margin-top:1rem;padding:1rem;background:rgba(249,199,79,.15);border:1px solid rgba(249,199,79,.4);border-radius:14px;text-align:center}
+  .youare-income-label{font-size:.78rem;color:#F9C74F;margin-bottom:.3rem}
+  .youare-income-val{font-size:2rem;font-weight:900;color:#F9C74F;line-height:1}
+  .youare-income-unit{font-size:.9rem;font-weight:500;margin-left:2px}
+  .youare-income-rank{font-size:.82rem;color:rgba(255,255,255,.8);margin-top:.3rem}
+  .youare-note{font-size:.68rem;opacity:.45;text-align:center;margin-top:1rem;line-height:1.6}
+
+  /* ── 소득 백분위 게이지 ── */
+  .income-rank-card{margin-bottom:1.5rem}
+  .income-rank-wrap{padding:.5rem 0}
+  .income-rank-numbers{text-align:center;margin-bottom:1.25rem}
+  .income-big{font-size:2.5rem;font-weight:900;color:#2E7D32;line-height:1}
+  .income-unit{font-size:1.1rem;font-weight:500;color:#4CAF50;margin-left:2px}
+  .income-sub{font-size:.8rem;color:var(--color-muted);margin-top:.3rem}
+  .rank-gauge-wrap{margin:0 .5rem 1rem}
+  .rank-gauge-bar{position:relative;height:12px;background:var(--color-border);border-radius:6px;overflow:visible;margin-bottom:6px}
+  .rank-gauge-fill{height:100%;background:linear-gradient(90deg,#81C784,#2E7D32);border-radius:6px;transition:width .5s}
+  .rank-gauge-marker{position:absolute;top:-4px;transform:translateX(-50%)}
+  .rank-marker-dot{width:20px;height:20px;background:#D97706;border:3px solid var(--color-surface);border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+  .rank-marker-label{font-size:.7rem;font-weight:700;color:#D97706;text-align:center;margin-top:2px;white-space:nowrap}
+  .rank-gauge-labels{display:flex;justify-content:space-between;font-size:.75rem;color:var(--color-muted)}
+  .rank-result{text-align:center;margin:.75rem 0 .5rem;font-size:1.05rem}
+  .rank-highlight{font-size:1.4rem;font-weight:900;color:#D97706}
+  .rank-desc{color:var(--color-text-secondary);font-size:.95rem}
+  .rank-note{font-size:.72rem;color:var(--color-muted);text-align:center;line-height:1.5;margin-top:.5rem}
+  .job-wage-badge{font-size:.72rem;font-weight:600;color:#2E7D32;background:#E8F5E9;border-radius:6px;padding:2px 6px;white-space:nowrap}
+
+  /* ── 바 차트 ── */
+  .bar-list{list-style:none}
+  .bar-item{margin-bottom:1rem}
+  .bar-header{display:flex;justify-content:space-between;margin-bottom:.3rem}
+  .bar-name{font-size:.9rem;font-weight:600;color:var(--color-text)}
+  .bar-pct{font-size:.9rem;font-weight:700;color:var(--color-benefit)}
+  .bar-track{height:10px;background:var(--color-border);border-radius:5px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:5px}
+  .bar-warn{font-size:.75rem;color:#e74c3c;margin-top:.2rem}
+
+  /* ── 인사이트 박스 ── */
+  .insight-box{background:var(--color-surface);border:1px solid var(--color-border);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem}
+  .insight-box h2{font-size:1rem;font-weight:700;color:var(--color-benefit);margin-bottom:.75rem}
+  .insight-box p{font-size:.92rem;line-height:1.85;color:var(--color-text)}
+
+  /* ── 관련 카드 ── */
+  .rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem}
+  .rel-card{background:var(--color-surface);border-radius:14px;padding:1rem;border:1px solid var(--color-border);text-decoration:none;color:var(--color-text);transition:all .2s;display:block}
+  .rel-card:hover{border-color:var(--color-benefit);background:var(--color-surface-hover)}
+  .rel-emoji{font-size:1.4rem;margin-bottom:.3rem}
+  .rel-title{font-size:.88rem;font-weight:700}
+
+  /* ── CTA ── */
+  .cta-box{background:linear-gradient(135deg,#6B4226,#E8A87C);border-radius:20px;padding:2rem;text-align:center;color:#fff;margin-bottom:1.5rem}
+  .cta-box h2{font-size:1.2rem;font-weight:800;margin-bottom:.75rem}
+  .cta-btn{display:inline-block;background:#fff;color:#6B4226;border-radius:12px;padding:.85rem 2rem;font-size:1rem;font-weight:700;text-decoration:none;transition:opacity .2s}
+  .cta-btn:hover{opacity:.9}
+
+  /* ── 뒤로 / 비교 ── */
+  .back-link{text-align:center;margin:1.5rem 0}
+  .back-link a{color:var(--color-muted);font-size:.9rem;text-decoration:none}
+  .back-link a:hover{color:var(--color-benefit)}
+  .compare-links{display:flex;flex-wrap:wrap;gap:.5rem}
+  .compare-chip{background:var(--color-surface);border:1px solid var(--color-border);border-radius:20px;padding:.35rem .75rem;font-size:.78rem;font-weight:600;color:var(--color-primary);text-decoration:none}
+  .compare-chip:hover{background:var(--color-surface-hover)}
+
+  /* ── 사회적 증거 ── */
+  .social-proof{text-align:center;padding:.75rem 1rem;margin-bottom:.75rem;font-size:.82rem;color:var(--color-benefit);background:var(--color-surface);border-radius:12px;display:flex;align-items:center;justify-content:center;gap:.5rem;border:1px solid var(--color-border)}
+  .social-proof-dot{width:8px;height:8px;background:#22C55E;border-radius:50%;flex-shrink:0;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .social-proof strong{color:#D97706}
+
+  /* ── 페르소나 20명 그리드 ── */
+  .personas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.85rem;margin-top:.5rem}
+  .persona-item-card{background:var(--color-surface);border:1px solid var(--color-border);border-left:3px solid var(--color-benefit);border-radius:10px;padding:.9rem 1rem;transition:transform .15s,box-shadow .15s}
+  .persona-item-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .persona-item-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem}
+  .persona-num{font-family:'SF Mono',monospace;font-size:.78rem;color:var(--color-benefit-light);font-weight:700;letter-spacing:.5px}
+  .persona-name{font-weight:700;color:var(--color-benefit);font-size:.95rem}
+  .persona-story{margin:0;color:var(--color-text-secondary);line-height:1.65;font-size:.9rem}
+  @media(max-width:640px){.personas-grid{grid-template-columns:1fr;gap:.7rem}.persona-item-card{padding:.8rem .9rem}}
+
+  /* ── 운세 섹션 ── */
+  .zodiac-section{margin:1.5rem 0;padding:1.25rem 1.5rem;background:var(--color-surface);border-radius:20px;border:1px solid var(--color-border)}
+  .zodiac-section h3{font-size:1rem;font-weight:800;color:var(--color-benefit);margin-bottom:1rem;text-align:center}
+  .zodiac-cards{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+  @media(max-width:480px){.zodiac-cards{grid-template-columns:1fr}}
+  .zodiac-card{display:flex;flex-direction:column;align-items:center;gap:.4rem;background:var(--color-surface-hover);border-radius:14px;padding:1.25rem 1rem;border:1px solid var(--color-border);box-shadow:var(--shadow-sm);text-decoration:none;transition:transform .15s,box-shadow .15s}
+  .zodiac-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .zc-icon{font-size:2rem}
+  .zc-title{font-size:.92rem;font-weight:700;color:var(--color-text)}
+  .zc-desc{font-size:.75rem;color:var(--color-muted);text-align:center;line-height:1.5}
+
+  /* ── 하단 고정 공유 바 ── */
+  .fixed-share-bar{position:fixed;bottom:0;left:0;right:0;z-index:8000;background:var(--color-surface);border-top:1px solid var(--color-border);padding:.6rem 1rem;display:flex;gap:.5rem;box-shadow:0 -2px 12px rgba(0,0,0,.15)}
+  .fixed-share-bar button{flex:1;padding:.7rem .5rem;border:none;border-radius:10px;font-size:.88rem;font-weight:700;cursor:pointer;min-height:44px}
+  .fbar-kakao{background:#FEE500;color:#3D3D3D}
+  .fbar-copy{background:#1E3A5F;color:#fff}
+  .fbar-theme{flex:0 0 30px;width:30px;height:30px;border:none;border-radius:8px;background:var(--color-border);color:var(--color-text);font-size:.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;align-self:center}
+  .fbar-theme:hover{background:var(--color-border-dark)}
+
+  /* ── 반응형 ── */
+  @media(max-width:600px){.grid4{grid-template-columns:repeat(2,1fr)}.rel-grid{grid-template-columns:1fr}.hero h1{font-size:1.35rem}}
+
+  /* ── 다크모드: 초록 income 계열 조정 ── */
+  [data-theme="dark"] .job-wage-badge { color:#4ade80; background:rgba(74,222,128,.12); }
+  [data-theme="dark"] .kpi-income { background:rgba(74,222,128,.08); border-color:rgba(74,222,128,.3); }
+  [data-theme="dark"] .kpi-badge { background:rgba(74,222,128,.12); color:#4ade80; }
+  [data-theme="dark"] .rank-gauge-bar { background:#374151; }
+  [data-theme="dark"] .income-big { color:#4ade80; }
+  [data-theme="dark"] .income-unit { color:#4ade80; }
+  @media(prefers-color-scheme:dark) {
+    :root:not([data-theme="light"]) .job-wage-badge { color:#4ade80; background:rgba(74,222,128,.12); }
+    :root:not([data-theme="light"]) .kpi-income { background:rgba(74,222,128,.08); border-color:rgba(74,222,128,.3); }
+    :root:not([data-theme="light"]) .kpi-badge { background:rgba(74,222,128,.12); color:#4ade80; }
+    :root:not([data-theme="light"]) .rank-gauge-bar { background:#374151; }
+    :root:not([data-theme="light"]) .income-big { color:#4ade80; }
+    :root:not([data-theme="light"]) .income-unit { color:#4ade80; }
+  }
 </style>
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" crossorigin="anonymous"></script>
 </head>

@@ -100,6 +100,11 @@ export function getStaticPaths() {
   var _pathParts = location.pathname.split('/').filter(function(p){ return p.length > 0; });
   var _postId    = _pathParts[_pathParts.length - 1];
 
+  /* ── 잘못된 URL 진입 방어: 숫자 ID가 아니면 목록으로 이동 ── */
+  if (_postId !== '_' && !/^\d+$/.test(_postId)) {
+    location.replace('/community');
+  }
+
   /* ── 세션에서 사용자 추출 (클라이언트 UI 전용) ── */
   var _session  = document.cookie.split(';').find(function(c){ return c.trim().startsWith('session='); });
   var _me = null;

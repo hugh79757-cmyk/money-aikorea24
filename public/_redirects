@@ -1,3 +1,4 @@
 # 커뮤니티 개별 게시글 URL → 셸 페이지로 rewrite (200 = URL 유지)
-# 정적 파일이 있는 경우(/, /write, /_) Cloudflare Pages가 파일 우선 제공
-/community/*  /community/_/  200
+# :id 플레이스홀더 사용 → /community/ 자체(빈값)는 매칭 안됨
+# /community/write 등 정적 파일은 CF Pages가 파일 우선 제공
+/community/:id  /community/_/  200

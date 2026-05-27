@@ -11,60 +11,67 @@ posts.sort((a, b) => {
   const db = b.data.pubDate ? new Date(b.data.pubDate).valueOf() : 0;
   return db - da;
 });
+
+const POSTS_PER_PAGE = 10;
 ---
 
 <html lang="ko">
   <head>
     <BaseHead title="전체 블로그 | 한국인 페르소나" description="전체 블로그 관련 최신 가이드 모음" />
     <style>
-      @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
       *, *::before, *::after { box-sizing: border-box; }
+
       body {
-        background: #F7F3EA;
-        color: #1F2937;
-        font-family: 'Pretendard', -apple-system, sans-serif;
+        background: var(--color-bg);
+        color: var(--color-text);
+        font-family: var(--font-sans);
         margin: 0;
       }
+
       .page-wrap {
         max-width: 800px;
         margin: 0 auto;
         padding: 2rem 1rem 4rem;
       }
+
       .page-header {
         margin-bottom: 2rem;
         padding-bottom: 1.25rem;
-        border-bottom: 2px solid #E5E0D8;
+        border-bottom: 2px solid var(--color-border);
       }
       .page-header h1 {
         font-size: clamp(1.6rem, 4vw, 2.2rem);
         font-weight: 800;
-        color: #1E3A5F;
+        color: var(--color-primary);
         margin: 0 0 .4rem;
       }
       .page-header p {
-        color: #6B7280;
+        color: var(--color-muted);
         font-size: .95rem;
         margin: 0;
       }
+
+      /* ── 포스트 그리드 ── */
       .post-grid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 1.1rem;
       }
+
       .post-card {
-        background: #fff;
-        border: 1px solid #E5E0D8;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
         border-radius: 16px;
         padding: 1.4rem 1.6rem;
         text-decoration: none;
         color: inherit;
         display: block;
         transition: transform .15s, box-shadow .15s;
-        box-shadow: 0 1px 4px rgba(0,0,0,.06);
+        box-shadow: var(--shadow-sm);
       }
       .post-card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(0,0,0,.10);
+        box-shadow: var(--shadow-lg);
       }
       .post-card-top {
         display: flex;
@@ -74,7 +81,7 @@ posts.sort((a, b) => {
       }
       .post-badge {
         display: inline-block;
-        background: #6366F118;
+        background: rgba(99, 102, 241, 0.1);
         color: #6366F1;
         font-size: .72rem;
         font-weight: 700;
@@ -85,19 +92,19 @@ posts.sort((a, b) => {
       }
       .post-date {
         font-size: .78rem;
-        color: #9CA3AF;
+        color: var(--color-placeholder);
         margin-left: auto;
       }
       .post-card h2 {
         font-size: 1.05rem;
         font-weight: 700;
-        color: #1E3A5F;
+        color: var(--color-primary);
         margin: 0 0 .5rem;
         line-height: 1.45;
       }
       .post-card p {
         font-size: .88rem;
-        color: #6B7280;
+        color: var(--color-muted);
         margin: 0;
         line-height: 1.6;
         display: -webkit-box;
@@ -105,10 +112,58 @@ posts.sort((a, b) => {
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
+
+      /* ── 페이지네이션 ── */
+      .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .4rem;
+        margin-top: 2.5rem;
+        flex-wrap: wrap;
+      }
+      .page-btn {
+        min-width: 38px;
+        height: 38px;
+        padding: 0 .6rem;
+        border: 1.5px solid var(--color-border);
+        border-radius: 10px;
+        background: var(--color-surface);
+        color: var(--color-text);
+        font-size: .88rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all .15s;
+        font-family: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .page-btn:hover:not(:disabled) {
+        background: var(--color-primary);
+        color: #fff;
+        border-color: var(--color-primary);
+      }
+      .page-btn.active {
+        background: var(--color-primary);
+        color: #fff;
+        border-color: var(--color-primary);
+      }
+      .page-btn:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+      }
+      .page-info {
+        font-size: .82rem;
+        color: var(--color-muted);
+        margin-left: .5rem;
+      }
+
+      /* ── 빈 상태 ── */
       .empty-state {
         text-align: center;
         padding: 4rem 1rem;
-        color: #9CA3AF;
+        color: var(--color-muted);
       }
       .empty-state .icon { font-size: 3rem; margin-bottom: 1rem; }
     </style>
@@ -119,31 +174,120 @@ posts.sort((a, b) => {
       <div class="page-wrap">
         <div class="page-header">
           <h1>📝 전체 블로그</h1>
-          <p>총 {posts.length}개의 가이드</p>
+          <p>총 <span id="total-count">{posts.length}</span>개의 가이드 · <span id="page-info-top"></span></p>
         </div>
+
         {posts.length === 0 ? (
           <div class="empty-state">
             <div class="icon">📭</div>
             <p>아직 게시된 글이 없습니다.</p>
           </div>
         ) : (
-          <div class="post-grid">
-            {posts.map((post) => (
-              <a class="post-card" href={`/blog/${post.id}/`}>
-                <div class="post-card-top">
-                  <span class="post-badge">📝 전체 블로그</span>
-                  {post.data.pubDate && (
-                    <span class="post-date"><FormattedDate date={post.data.pubDate} /></span>
-                  )}
-                </div>
-                <h2>{post.data.title}</h2>
-                {post.data.description && <p>{post.data.description}</p>}
-              </a>
-            ))}
-          </div>
+          <>
+            <div class="post-grid" id="post-grid">
+              {posts.map((post, i) => (
+                <a
+                  class="post-card"
+                  href={`/blog/${post.id}/`}
+                  data-index={i}
+                  style={i >= POSTS_PER_PAGE ? 'display:none' : ''}
+                >
+                  <div class="post-card-top">
+                    <span class="post-badge">📝 전체 블로그</span>
+                    {post.data.pubDate && (
+                      <span class="post-date"><FormattedDate date={post.data.pubDate} /></span>
+                    )}
+                  </div>
+                  <h2>{post.data.title}</h2>
+                  {post.data.description && <p>{post.data.description}</p>}
+                </a>
+              ))}
+            </div>
+
+            <!-- 페이지네이션 -->
+            <div class="pagination" id="pagination"></div>
+          </>
         )}
       </div>
     </main>
     <Footer />
+
+    <script define:vars={{ totalPosts: posts.length, postsPerPage: POSTS_PER_PAGE }}>
+    (function() {
+      var currentPage = 1;
+      var totalPages  = Math.ceil(totalPosts / postsPerPage);
+      var cards       = Array.from(document.querySelectorAll('#post-grid .post-card'));
+      var paginationEl = document.getElementById('pagination');
+      var pageInfoEl   = document.getElementById('page-info-top');
+
+      function showPage(page) {
+        currentPage = page;
+        var start = (page - 1) * postsPerPage;
+        var end   = start + postsPerPage;
+
+        cards.forEach(function(card, i) {
+          card.style.display = (i >= start && i < end) ? '' : 'none';
+        });
+
+        // 상단 정보 업데이트
+        if (pageInfoEl) {
+          pageInfoEl.textContent = page + ' / ' + totalPages + ' 페이지';
+        }
+
+        renderPagination();
+
+        // 페이지 이동 시 스크롤 상단 이동
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function renderPagination() {
+        if (!paginationEl || totalPages <= 1) return;
+
+        var btns = '';
+
+        // 이전 버튼
+        btns += '<button class="page-btn" id="pg-prev" ' +
+          (currentPage === 1 ? 'disabled' : '') + '>‹</button>';
+
+        // 페이지 번호 (최대 7개 표시)
+        var start = Math.max(1, currentPage - 3);
+        var end   = Math.min(totalPages, start + 6);
+        if (end - start < 6) start = Math.max(1, end - 6);
+
+        if (start > 1) {
+          btns += '<button class="page-btn" data-pg="1">1</button>';
+          if (start > 2) btns += '<span style="padding:0 .25rem;color:var(--color-muted)">…</span>';
+        }
+        for (var p = start; p <= end; p++) {
+          btns += '<button class="page-btn' + (p === currentPage ? ' active' : '') +
+            '" data-pg="' + p + '">' + p + '</button>';
+        }
+        if (end < totalPages) {
+          if (end < totalPages - 1) btns += '<span style="padding:0 .25rem;color:var(--color-muted)">…</span>';
+          btns += '<button class="page-btn" data-pg="' + totalPages + '">' + totalPages + '</button>';
+        }
+
+        // 다음 버튼
+        btns += '<button class="page-btn" id="pg-next" ' +
+          (currentPage === totalPages ? 'disabled' : '') + '>›</button>';
+
+        paginationEl.innerHTML = btns;
+
+        // 이벤트 바인딩
+        paginationEl.querySelectorAll('[data-pg]').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            showPage(parseInt(this.getAttribute('data-pg')));
+          });
+        });
+        var prevBtn = document.getElementById('pg-prev');
+        var nextBtn = document.getElementById('pg-next');
+        if (prevBtn) prevBtn.addEventListener('click', function() { if (currentPage > 1) showPage(currentPage - 1); });
+        if (nextBtn) nextBtn.addEventListener('click', function() { if (currentPage < totalPages) showPage(currentPage + 1); });
+      }
+
+      // 초기화
+      showPage(1);
+    })();
+    </script>
   </body>
 </html>

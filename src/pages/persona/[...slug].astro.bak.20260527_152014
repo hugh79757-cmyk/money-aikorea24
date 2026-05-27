@@ -446,12 +446,6 @@ const jsonLd = JSON.stringify({
 .zc-icon{font-size:2rem}
 .zc-title{font-size:.92rem;font-weight:700;color:#3D3D3D}
 .zc-desc{font-size:.75rem;color:#8B7355;text-align:center;line-height:1.5}
-/* 다크모드 버튼 in fixed bar */
-.fbar-theme{flex:0 0 44px;width:44px;height:44px;border:none;border-radius:10px;background:#F0F0F0;color:#3D3D3D;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
-.fbar-theme:hover{background:#E0E0E0}
-/* X 공유 플로팅 버튼 */
-.persona-fab-x{position:fixed;right:16px;bottom:82px;z-index:8500;width:46px;height:46px;border-radius:50%;background:#1a1a2e;color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.25);transition:transform .15s}
-.persona-fab-x:hover{transform:scale(1.08)}
 </style>
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" crossorigin="anonymous"></script>
 </head>
@@ -844,46 +838,16 @@ function shareTwitter() {
     <button class="fbar-kakao" onclick="shareKakao()">💬 카카오 공유</button>
     <button class="fbar-copy" onclick="copyUrl()">🔗 링크 복사</button>
     <a href="/auth/login" style="flex:1;background:#FFF8EE;color:#6B4226;border:1.5px solid #E8D5C0;border-radius:10px;font-size:.88rem;font-weight:700;min-height:44px;display:flex;align-items:center;justify-content:center;text-decoration:none" id="fbar-login-btn">로그인</a>
-    <!-- 다크모드 토글 -->
-    <button class="fbar-theme" id="fbar-theme-btn" type="button" aria-label="테마 전환" onclick="fbarToggleTheme()">🌙</button>
   </div>
-
-  <!-- 오른쪽 플로팅 X 공유 버튼 -->
-  <button class="persona-fab-x" id="persona-fab-x" onclick="shareTwitter()" aria-label="X 공유">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.738-8.835L2.063 2.25H8.08l4.26 5.636zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-    </svg>
-  </button>
   <script is:inline>
   // 이미 로그인 상태면 로그인 버튼 숨김
   (function() {
-    var session = document.cookie.split(';').find(function(c){ return c.trim().startsWith('session_ui='); });
+    const session = document.cookie.split(';').find(c => c.trim().startsWith('session_ui='));
     if (session) {
-      var btn = document.getElementById('fbar-login-btn');
+      const btn = document.getElementById('fbar-login-btn');
       if (btn) btn.style.display = 'none';
     }
   })();
-
-  // 다크모드 토글 (fbar)
-  function fbarToggleTheme() {
-    var navBtn = document.getElementById('theme-toggle');
-    if (navBtn) { navBtn.click(); syncFbarTheme(); return; }
-    var stored = localStorage.getItem('theme');
-    var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    var next   = (stored || system) === 'dark' ? 'light' : 'dark';
-    localStorage.setItem('theme', next);
-    document.documentElement.setAttribute('data-theme', next);
-    syncFbarTheme();
-  }
-  function syncFbarTheme() {
-    var btn = document.getElementById('fbar-theme-btn');
-    if (!btn) return;
-    var theme = document.documentElement.getAttribute('data-theme');
-    if (!theme) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    btn.textContent = theme === 'dark' ? '☀️' : '🌙';
-  }
-  syncFbarTheme();
-  new MutationObserver(syncFbarTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   </script>
 </body>
 </html>

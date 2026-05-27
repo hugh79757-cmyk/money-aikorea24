@@ -7,7 +7,6 @@ import Header from '../components/Header.astro';
 import JsonLd from '../components/JsonLd.astro';
 import AiTip from '../components/AiTip.astro';
 import Disclaimer from '../components/Disclaimer.astro';
-import FloatingFab from '../components/FloatingFab.astro';
 
 interface Props {
   title: string;
@@ -352,7 +351,6 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
 
   <body>
     <Header />
-    <FloatingFab bottomOffset="24px" />
     <main>
       <article>
         {heroImage && (

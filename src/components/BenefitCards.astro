@@ -106,28 +106,43 @@ function bcClick(el) {
 </script>
 
 <style>
-.benefit-section{margin:2rem 0;padding:1.5rem;background:#FFFDF7;border-radius:20px;border:1px solid #F0DFC8}
-.benefit-header h2{font-size:1.15rem;font-weight:800;color:#6B4226;margin-bottom:.3rem}
-.benefit-desc{font-size:.82rem;color:#8B7355;margin-bottom:1.25rem}
+/* ── 혜택 섹션 래퍼 ── */
+.benefit-section{margin:2rem 0;padding:1.5rem;background:var(--color-surface);border-radius:20px;border:1px solid var(--color-border)}
+.benefit-header h2{font-size:1.15rem;font-weight:800;color:var(--color-benefit);margin-bottom:.3rem}
+.benefit-desc{font-size:.82rem;color:var(--color-muted);margin-bottom:1.25rem}
+
+/* ── 카드 그리드 ── */
 .benefit-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
 @media(max-width:600px){.benefit-grid{grid-template-columns:1fr}}
-.benefit-card{background:#fff;border-radius:14px;padding:1rem;border:1px solid #F0DFC8;box-shadow:0 2px 8px rgba(107,66,38,.06)}
+
+.benefit-card{
+  background:var(--color-surface-hover);
+  border-radius:14px;padding:1rem;
+  border:1px solid var(--color-border);
+  box-shadow:var(--shadow-sm);
+}
+
+/* ── 카드 내부 ── */
 .bc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;flex-wrap:wrap;gap:.3rem}
 .bc-badge{font-size:.8rem;font-weight:700;border-radius:99px;padding:.2rem .6rem}
+
+/* 배지 — 라이트 */
 .b-green{background:#dcfce7;color:#166534}
 .b-yellow{background:#fef9c3;color:#854d0e}
-.b-gray{background:#f3f4f6;color:#374151}
-.bc-org{font-size:.78rem;color:#8B7355}
-.bc-name{font-size:1.05rem;font-weight:700;color:#3D3D3D;margin-bottom:.35rem;line-height:1.4}
-.bc-purpose{font-size:.88rem;color:#555;line-height:1.5;margin-bottom:.5rem}
+.b-gray{background:var(--color-border);color:var(--color-text-secondary)}
+
+.bc-org{font-size:.78rem;color:var(--color-muted)}
+.bc-name{font-size:1.05rem;font-weight:700;color:var(--color-text);margin-bottom:.35rem;line-height:1.4}
+.bc-purpose{font-size:.88rem;color:var(--color-muted);line-height:1.5;margin-bottom:.5rem}
 .bc-reasons{list-style:none;padding:0;margin:.35rem 0;font-size:.82rem;color:#166534}
-.bc-warnings{list-style:none;padding:0;margin:.35rem 0;font-size:.82rem;color:#854d0e}
-.bc-deadline{font-size:.72rem;color:#8B7355;margin-bottom:.6rem}
+.bc-warnings{list-style:none;padding:0;margin:.35rem 0;font-size:.82rem;color:#b45309}
+.bc-deadline{font-size:.72rem;color:var(--color-muted);margin-bottom:.6rem}
 .bc-actions{display:flex;gap:.4rem}
-.bc-btn-primary{background:#6B4226;color:#fff;border-radius:8px;padding:.5rem 1rem;font-size:.88rem;font-weight:700;text-decoration:none;white-space:nowrap}
-.bc-btn-disabled{background:#F0DFC8;color:#8B7355;border-radius:8px;padding:.4rem .8rem;font-size:.78rem}
-.benefit-disclaimer{font-size:.7rem;color:#8B7355;margin-top:1rem;text-align:center;line-height:1.6}
-/* 영웅 위젯 */
+.bc-btn-primary{background:var(--color-benefit);color:#fff;border-radius:8px;padding:.5rem 1rem;font-size:.88rem;font-weight:700;text-decoration:none;white-space:nowrap}
+.bc-btn-disabled{background:var(--color-border);color:var(--color-muted);border-radius:8px;padding:.4rem .8rem;font-size:.78rem}
+.benefit-disclaimer{font-size:.7rem;color:var(--color-muted);margin-top:1rem;text-align:center;line-height:1.6}
+
+/* ── 영웅 위젯 (그라디언트 고정) ── */
 .hero-widget{background:linear-gradient(135deg,#6B4226,#9B6B46);border-radius:16px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;text-align:center;color:#fff}
 .hw-title{font-size:.9rem;font-weight:700;margin-bottom:1rem;opacity:.95}
 .hw-stats{display:flex;justify-content:center;gap:2rem;margin-bottom:1rem;flex-wrap:wrap}
@@ -137,10 +152,28 @@ function bcClick(el) {
 .hw-urgent .hw-num{color:#FEE500}
 .hw-urgent .hw-lbl{color:#FEE500}
 .hw-cta{display:inline-block;background:#FEE500;color:#3D3D3D;border-radius:99px;padding:.45rem 1.4rem;font-size:.82rem;font-weight:800;text-decoration:none;margin-top:.25rem}
-/* 카운트다운 배지 */
+
+/* ── 마감 배지 — 라이트 ── */
 .deadline-badge{font-size:.82rem;font-weight:600;padding:.25rem .55rem;border-radius:6px;display:inline-block;margin-bottom:.6rem}
 .deadline-urgent{background:#fee2e2;color:#991b1b;animation:pulse 1.5s infinite}
 .deadline-soon{background:#fef3c7;color:#92400e}
-.deadline-normal{background:#f3f4f6;color:#6b7280}
+.deadline-normal{background:var(--color-border);color:var(--color-muted)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+/* ── 다크모드 오버라이드 ── */
+[data-theme="dark"] .b-green,
+[data-theme="dark"] .bc-reasons { background:rgba(74,222,128,.12); color:#4ade80; }
+[data-theme="dark"] .b-yellow   { background:rgba(251,191,36,.12);  color:#fbbf24; }
+[data-theme="dark"] .bc-warnings{ color:#fbbf24; }
+[data-theme="dark"] .deadline-urgent { background:rgba(248,113,113,.15); color:#f87171; }
+[data-theme="dark"] .deadline-soon   { background:rgba(251,191,36,.15);  color:#fbbf24; }
+
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .b-green,
+  :root:not([data-theme="light"]) .bc-reasons { background:rgba(74,222,128,.12); color:#4ade80; }
+  :root:not([data-theme="light"]) .b-yellow   { background:rgba(251,191,36,.12);  color:#fbbf24; }
+  :root:not([data-theme="light"]) .bc-warnings{ color:#fbbf24; }
+  :root:not([data-theme="light"]) .deadline-urgent { background:rgba(248,113,113,.15); color:#f87171; }
+  :root:not([data-theme="light"]) .deadline-soon   { background:rgba(251,191,36,.15);  color:#fbbf24; }
+}
 </style>

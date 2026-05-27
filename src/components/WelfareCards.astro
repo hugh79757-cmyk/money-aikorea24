@@ -34,18 +34,37 @@ const { welfares, region, ageGroup, sex } = Astro.props;
 )}
 <style>
   .welfare-section { margin: 32px 0; }
-  .welfare-section h3 { font-size: 1.25rem; color: var(--primary, #1E3A5F); margin: 0 0 4px; }
-  .welfare-sub { color: #888; font-size: 0.85rem; margin: 0 0 16px; }
+  .welfare-section h3 { font-size: 1.25rem; color: var(--color-primary); margin: 0 0 4px; }
+  .welfare-sub { color: var(--color-muted); font-size: 0.85rem; margin: 0 0 16px; }
   .welfare-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-  .welfare-card { display: block; padding: 16px; background: #fff; border: 1px solid #E5DCC8; border-radius: 12px; text-decoration: none; color: inherit; transition: all .15s; }
-  .welfare-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.08); border-color: #D97706; }
+
+  .welfare-card {
+    display: block; padding: 16px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px; text-decoration: none; color: inherit; transition: all .15s;
+  }
+  .welfare-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--color-accent); }
+
   .welfare-tags { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
   .welfare-tag { font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+
+  /* 태그 — 라이트 */
   .welfare-tag.region { background: #E3EEF8; color: #1E3A5F; }
-  .welfare-tag.life { background: #FFF4E6; color: #B5621A; }
-  .welfare-name { font-size: 0.98rem; margin: 0 0 8px; line-height: 1.35; color: #222; font-weight: 700; }
-  .welfare-desc { font-size: 0.85rem; color: #555; line-height: 1.5; margin: 0 0 12px; min-height: 2.5em; }
+  .welfare-tag.life   { background: #FFF4E6; color: #B5621A; }
+
+  .welfare-name { font-size: 0.98rem; margin: 0 0 8px; line-height: 1.35; color: var(--color-text); font-weight: 700; }
+  .welfare-desc { font-size: 0.85rem; color: var(--color-muted); line-height: 1.5; margin: 0 0 12px; min-height: 2.5em; }
   .welfare-foot { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; }
-  .welfare-org { color: #888; }
-  .welfare-cta { color: #D97706; font-weight: 600; }
+  .welfare-org { color: var(--color-muted); }
+  .welfare-cta { color: var(--color-accent); font-weight: 600; }
+
+  /* ── 다크모드: 태그 색 반전 ── */
+  [data-theme="dark"] .welfare-tag.region { background: rgba(96,165,250,.15); color: #93c5fd; }
+  [data-theme="dark"] .welfare-tag.life   { background: rgba(251,191,36,.12); color: #fbbf24; }
+
+  @media(prefers-color-scheme:dark){
+    :root:not([data-theme="light"]) .welfare-tag.region { background: rgba(96,165,250,.15); color: #93c5fd; }
+    :root:not([data-theme="light"]) .welfare-tag.life   { background: rgba(251,191,36,.12); color: #fbbf24; }
+  }
 </style>

@@ -1,4 +1,5 @@
 ---
+categories: ["투자·절세"]
 heroImage: /blog-thumbnails/irp-세액공제-한도-직장인.jpg
 title: "IRP 세액공제 한도 직장인 완벽 정리 2026 – 얼마나 돌려받나?"
 description: "직장인 IRP 세액공제 한도와 환급액을 2026년 기준으로 계산합니다. 연봉별 세액공제율과 퇴직연금·개인연금 합산 전략까지 한눈에 확인하세요."

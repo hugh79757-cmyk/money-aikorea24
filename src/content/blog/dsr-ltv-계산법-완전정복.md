@@ -1,4 +1,5 @@
 ---
+categories: ["대출·부동산"]
 heroImage: /blog-thumbnails/dsr-ltv-계산법-완전정복.jpg
 title: "DSR·LTV 계산법 완전정복 2026 – 내 대출 한도 직접 계산하기"
 description: "DSR과 LTV 계산법을 2026년 기준으로 쉽게 설명합니다. 주택담보대출 한도를 직접 계산하는 방법과 규제 지역별 LTV 기준까지 확인하세요."

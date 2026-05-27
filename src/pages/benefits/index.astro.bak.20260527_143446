@@ -267,29 +267,6 @@ function getSummary(b: any): string {
       padding: 0 .25rem; color: var(--color-placeholder); font-weight: 600;
     }
 
-    /* ── 인라인 광고 슬롯 ── */
-    .inline-ad {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      background: var(--color-surface);
-      border: 1px dashed var(--color-border);
-      min-height: 100px;
-    }
-    .inline-ad::before {
-      content: '광고';
-      position: absolute;
-      top: 6px; right: 10px;
-      font-size: .65rem;
-      color: var(--color-placeholder);
-      letter-spacing: .04em;
-      z-index: 1;
-      pointer-events: none;
-    }
-    .inline-ad ins {
-      display: block !important;
-    }
-
     @media (max-width: 600px) {
       .card { padding: 1.15rem 1.25rem; }
       .card h2 { font-size: 1rem; }
@@ -376,30 +353,6 @@ function getSummary(b: any): string {
       let currentQ   = '';
       let page       = 1;
 
-      /* ── 인라인 광고 삽입 헬퍼 ──────────────────────────────
-         카드 el 바로 뒤에 AdSense <ins>를 생성하고 push() 호출.
-         페이지 전환마다 이전 광고를 제거 후 새로 삽입한다.
-         실제 운영 시 data-ad-slot 값을 AdSense 콘솔의 광고 단위 ID로 교체할 것.
-      ─────────────────────────────────────────────────────── */
-      function insertAdAfter(card) {
-        var wrap = document.createElement('div');
-        wrap.className = 'inline-ad';
-        var ins = document.createElement('ins');
-        ins.className                         = 'adsbygoogle';
-        ins.style.display                     = 'block';
-        ins.dataset.adClient                  = 'ca-pub-5938862195544185';
-        ins.dataset.adSlot                    = ''; /* TODO: AdSense 콘솔에서 발급받은 광고 단위 ID */
-        ins.dataset.adFormat                  = 'auto';
-        ins.dataset.fullWidthResponsive       = 'true';
-        wrap.appendChild(ins);
-        card.insertAdjacentElement('afterend', wrap);
-        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
-      }
-
-      function removeInlineAds() {
-        gridEl.querySelectorAll('.inline-ad').forEach(function(el) { el.remove(); });
-      }
-
       function getMatching() {
         return allCards.filter(function(card) {
           var s = card.dataset.status;
@@ -423,24 +376,11 @@ function getSummary(b: any): string {
         if (page > totalPages) page = totalPages;
         if (page < 1) page = 1;
 
-        /* 1. 이전 광고 제거 */
-        removeInlineAds();
-
-        /* 2. 모든 카드 숨김 */
         allCards.forEach(function(c) { c.style.display = 'none'; });
 
-        /* 3. 현재 페이지 카드 표시 */
-        var start   = (page - 1) * PER_PAGE;
-        var end     = start + PER_PAGE;
-        var visible = matches.slice(start, end);
-        visible.forEach(function(c) { c.style.display = ''; });
-
-        /* 4. 인라인 광고 삽입
-              - 3번째 카드(index 2) 뒤: 10개 중 앞쪽
-              - 7번째 카드(index 6) 뒤: 10개 중 뒤쪽
-              카드가 충분할 때만 삽입 */
-        if (visible.length > 3)  insertAdAfter(visible[2]);
-        if (visible.length > 7)  insertAdAfter(visible[6]);
+        var start = (page - 1) * PER_PAGE;
+        var end   = start + PER_PAGE;
+        matches.slice(start, end).forEach(function(c) { c.style.display = ''; });
 
         if (total === 0) {
           countEl.textContent     = '0건';

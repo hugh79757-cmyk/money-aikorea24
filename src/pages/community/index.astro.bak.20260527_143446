@@ -208,25 +208,6 @@ import Footer from '../../components/Footer.astro';
       font-size: .8rem;
       color: var(--color-muted);
     }
-
-    /* ── 포스트 목록 인라인 광고 (동적 생성 → :global) ── */
-    :global(.post-inline-ad) {
-      position: relative;
-      padding: .75rem 1.25rem 1rem;
-      border-bottom: 1px solid var(--color-border);
-      background: var(--color-surface);
-      min-height: 90px;
-    }
-    :global(.post-ad-label) {
-      position: absolute;
-      top: 6px; right: 10px;
-      font-size: .62rem;
-      color: var(--color-placeholder);
-      letter-spacing: .04em;
-    }
-    :global(.post-ad-ins) {
-      display: block !important;
-    }
   </style>
 </head>
 <body>
@@ -312,30 +293,15 @@ import Footer from '../../components/Footer.astro';
 
       document.getElementById('total').textContent = '총 ' + total + '개의 게시글';
 
-      /* ── 인라인 광고 HTML
-         실제 운영 시 data-ad-slot 값을 AdSense 콘솔의 광고 단위 ID로 교체할 것 */
-      var AD_HTML =
-        '<div class="post-inline-ad">' +
-          '<span class="post-ad-label">광고</span>' +
-          '<ins class="adsbygoogle post-ad-ins"' +
-            ' style="display:block"' +
-            ' data-ad-client="ca-pub-5938862195544185"' +
-            ' data-ad-slot=""' + /* TODO: AdSense 콘솔에서 발급받은 광고 단위 ID */
-            ' data-ad-format="auto"' +
-            ' data-full-width-responsive="true">' +
-          '</ins>' +
-        '</div>';
-
       if (posts.length === 0) {
         list.innerHTML = '<div class="empty"><p>아직 글이 없어요</p>' +
           (_session ? '<a href="/community/write" style="color:#6B4226;font-weight:700;margin-top:.5rem;display:inline-block">첫 글 써보기 →</a>' : '') +
           '</div>';
       } else {
-        /* 5번째 포스트마다 인라인 광고 삽입 */
-        list.innerHTML = posts.map(function(p, i) {
+        list.innerHTML = posts.map(function(p) {
           var cmtBadge = p.comment_count > 0
             ? '<span class="ccnt">[' + parseInt(p.comment_count) + ']</span>' : '';
-          var postHtml = '<a class="post-item" href="/community/' + (parseInt(p.id)||0) + '">' +
+          return '<a class="post-item" href="/community/' + (parseInt(p.id)||0) + '">' +
             '<div class="post-meta">' +
               '<span class="pbadge">' + escapeHtml(p.region) + ' ' + escapeHtml(p.age) + ' ' + escapeHtml(p.sex) + '</span>' +
               '<span class="ptype">' + escapeHtml(p.persona_type) + '</span>' +
@@ -348,17 +314,7 @@ import Footer from '../../components/Footer.astro';
               '<span>' + escapeHtml((p.created_at||'').slice(0,10)) + '</span>' +
             '</div>' +
           '</a>';
-          /* 5번째, 10번째, ... 포스트 뒤에 광고 삽입 (0-index 기준: 4, 9, ...) */
-          if ((i + 1) % 5 === 0 && i < posts.length - 1) {
-            postHtml += AD_HTML;
-          }
-          return postHtml;
         }).join('');
-
-        /* innerHTML 완료 후 각 <ins>마다 push() 호출 */
-        list.querySelectorAll('.post-ad-ins').forEach(function() {
-          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
-        });
       }
 
       /* 페이지네이션: 이벤트 위임 방식 */

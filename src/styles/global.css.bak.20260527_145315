@@ -19,12 +19,6 @@ html, body {
   overflow-x: hidden;
 }
 
-/* AdSense 자동광고가 가로 스크롤 유발하는 것 방지 */
-ins.adsbygoogle {
-  max-width: 100% !important;
-  overflow: hidden;
-}
-
 body {
   font-family: var(--font-sans);
   margin: 0;

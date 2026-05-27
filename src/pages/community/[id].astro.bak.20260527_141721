@@ -1,215 +1,59 @@
 ---
+
 export function getStaticPaths() {
   // 빌드 시 셸만 생성, 실제 데이터는 클라이언트 JS로 로드
   return [{ params: { id: '_' } }];
 }
-import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 ---
 <html lang="ko">
 <head>
-  <BaseHead
-    title="게시글 | 페르소나 커뮤니티"
-    description="페르소나 커뮤니티 게시글"
-  />
-  <meta name="robots" content="noindex,follow" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title id="page-title">게시글 | 페르소나 커뮤니티</title>
+  <meta name="robots" content="noindex,follow"/>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185" crossorigin="anonymous"></script>
+  <link rel="stylesheet" crossorigin="anonymous"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"/>
   <style>
-    /* ── 레이아웃 ── */
-    .post-toolbar {
-      max-width: 800px;
-      margin: 1.5rem auto 0;
-      padding: 0 1rem;
-    }
-    .back {
-      color: var(--color-benefit);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: .92rem;
-    }
-    .back:hover { text-decoration: underline; }
-
-    .container {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 1.5rem 1rem;
-    }
-
-    /* ── 게시글 카드 ── */
-    .post-card {
-      background: var(--color-surface);
-      border-radius: 16px;
-      padding: 1.5rem;
-      border: 1px solid var(--color-border);
-      box-shadow: 0 2px 12px rgba(107,66,38,.08);
-      margin-bottom: 1.25rem;
-    }
-    .post-badge {
-      display: inline-block;
-      background: var(--color-bg);
-      color: var(--color-benefit);
-      border: 1px solid var(--color-border);
-      border-radius: 20px;
-      padding: .2rem .7rem;
-      font-size: .75rem;
-      font-weight: 700;
-      margin-bottom: .75rem;
-    }
-    .post-title {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--color-text);
-      margin-bottom: .75rem;
-      line-height: 1.4;
-    }
-    .post-meta {
-      font-size: .78rem;
-      color: var(--color-muted);
-      display: flex;
-      gap: .75rem;
-      margin-bottom: 1.25rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--color-border);
-    }
-    .post-content {
-      font-size: .95rem;
-      line-height: 1.8;
-      color: var(--color-text);
-      white-space: pre-wrap;
-      margin-bottom: 1rem;
-      word-break: break-word;
-      overflow-wrap: anywhere;
-    }
-    .post-actions {
-      display: flex;
-      gap: .5rem;
-      justify-content: flex-end;
-    }
-    .like-btn {
-      background: var(--color-bg);
-      border: 1.5px solid var(--color-border);
-      border-radius: 8px;
-      padding: .4rem .9rem;
-      font-size: .85rem;
-      color: var(--color-benefit);
-      cursor: pointer;
-      font-weight: 700;
-      font-family: inherit;
-    }
-    .like-btn.liked {
-      background: var(--color-benefit);
-      color: #fff;
-      border-color: var(--color-benefit);
-    }
-
-    /* ── 댓글 섹션 (정적 컨테이너) ── */
-    .comments-section {
-      background: var(--color-surface);
-      border-radius: 16px;
-      padding: 1.25rem;
-      border: 1px solid var(--color-border);
-      min-width: 0;
-      overflow: hidden;
-    }
-    .comments-title {
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--color-benefit);
-      margin-bottom: 1rem;
-    }
-
-    /* ── 댓글 폼 (정적 요소) ── */
-    .comment-form {
-      margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: .5rem;
-    }
-    .comment-form textarea {
-      border: 1.5px solid var(--color-border);
-      border-radius: 10px;
-      padding: .75rem;
-      font-size: .9rem;
-      font-family: inherit;
-      resize: none;
-      height: 80px;
-      outline: none;
-      background: var(--color-surface);
-      color: var(--color-text);
-    }
-    .comment-form textarea:focus { border-color: var(--color-benefit); }
-    .comment-form textarea::placeholder { color: var(--color-placeholder); }
-    .comment-submit {
-      background: var(--color-benefit);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: .6rem 1.25rem;
-      font-size: .88rem;
-      font-weight: 700;
-      cursor: pointer;
-      align-self: flex-end;
-      font-family: inherit;
-    }
-
-    /* ── 로딩/에러 ── */
-    .loading { text-align: center; padding: 3rem; color: var(--color-muted); }
-
-    /* ── 동적 생성 요소 (loadComments innerHTML) ── */
-    :global(.comment-item) {
-      padding: .75rem 0;
-      border-bottom: 1px solid var(--color-border);
-      min-width: 0;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-    :global(.comment-item:last-child) { border-bottom: none; }
-    :global(.comment-author) {
-      font-size: .78rem;
-      font-weight: 700;
-      color: var(--color-benefit);
-      margin-bottom: .3rem;
-    }
-    :global(.comment-content) {
-      font-size: .88rem;
-      color: var(--color-text);
-      line-height: 1.6;
-      word-break: break-word;
-      overflow-wrap: anywhere;
-      white-space: pre-wrap;
-    }
-    :global(.comment-date) {
-      font-size: .72rem;
-      color: var(--color-muted);
-      margin-top: .2rem;
-    }
-
-    /* .empty: 댓글 없음 / 에러 상태 (innerHTML로 생성) */
-    :global(.empty) {
-      color: var(--color-muted);
-      font-size: .88rem;
-      text-align: center;
-      padding: 1.5rem 0;
-    }
-
-    /* 로그인 유도 (comment-form innerHTML 교체 시) */
-    :global(.login-prompt) {
-      font-size: .85rem;
-      color: var(--color-muted);
-      text-align: center;
-      padding: .75rem;
-    }
-    :global(.login-prompt a) {
-      color: var(--color-benefit);
-      font-weight: 700;
-    }
-
-    .err-msg { color: var(--color-error); font-size: .82rem; margin-top: .4rem; text-align: right; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Pretendard',-apple-system,sans-serif;background:#FFF8EE;color:#3D3D3D;padding-bottom:80px}
+    .logo{color:#fff;font-weight:800;font-size:1.05rem;text-decoration:none}
+    .back{color:#fff;font-size:.9rem;opacity:.8;text-decoration:none}
+    .container{max-width:680px;margin:0 auto;padding:1.5rem 1rem}
+    .post-card{background:#fff;border-radius:16px;padding:1.5rem;border:1px solid #F0DFC8;box-shadow:0 2px 12px rgba(107,66,38,.08);margin-bottom:1.25rem}
+    .post-badge{display:inline-block;background:#E8D5C0;color:#6B4226;border-radius:20px;padding:.2rem .7rem;font-size:.75rem;font-weight:700;margin-bottom:.75rem}
+    .post-title{font-size:1.25rem;font-weight:800;color:#3D3D3D;margin-bottom:.75rem;line-height:1.4}
+    .post-meta{font-size:.78rem;color:#8B7355;display:flex;gap:.75rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid #F0DFC8}
+    .post-content{font-size:.95rem;line-height:1.8;color:#3D3D3D;white-space:pre-wrap;margin-bottom:1rem}
+    .post-actions{display:flex;gap:.5rem;justify-content:flex-end}
+    .like-btn{background:#FFF8EE;border:1.5px solid #E8D5C0;border-radius:8px;padding:.4rem .9rem;font-size:.85rem;color:#6B4226;cursor:pointer;font-weight:700}
+    .like-btn.liked{background:#6B4226;color:#fff;border-color:#6B4226}
+    .comments-section{background:#fff;border-radius:16px;padding:1.25rem;border:1px solid #F0DFC8;min-width:0;overflow:hidden}
+    .comments-title{font-size:1rem;font-weight:800;color:#6B4226;margin-bottom:1rem}
+    .comment-item{padding:.75rem 0;border-bottom:1px solid #F0DFC8;min-width:0;overflow-wrap:anywhere;word-break:break-word}
+    .comment-item:last-child{border-bottom:none}
+    .comment-author{font-size:.78rem;font-weight:700;color:#6B4226;margin-bottom:.3rem}
+    .comment-content{font-size:.88rem;color:#3D3D3D;line-height:1.6;word-break:break-word;overflow-wrap:anywhere;white-space:pre-wrap}
+    .comment-date{font-size:.72rem;color:#8B7355;margin-top:.2rem}
+    .comment-form{margin-top:1rem;display:flex;flex-direction:column;gap:.5rem}
+    .comment-form textarea{border:1.5px solid #E8D5C0;border-radius:10px;padding:.75rem;font-size:.9rem;font-family:inherit;resize:none;height:80px;outline:none}
+    .comment-form textarea:focus{border-color:#6B4226}
+    .comment-submit{background:#6B4226;color:#fff;border:none;border-radius:8px;padding:.6rem 1.25rem;font-size:.88rem;font-weight:700;cursor:pointer;align-self:flex-end}
+    .login-prompt{font-size:.85rem;color:#8B7355;text-align:center;padding:.75rem}
+    .login-prompt a{color:#6B4226;font-weight:700}
+    .empty{color:#8B7355;font-size:.88rem;text-align:center;padding:1.5rem 0}
+    .loading{text-align:center;padding:3rem;color:#8B7355}
+    .err-msg{color:#c00;font-size:.82rem;margin-top:.4rem;text-align:right}
+  
+    .post-toolbar{max-width:800px;margin:1.5rem auto 0;padding:0 1rem}
+    .post-toolbar .back{color:#6B4226;text-decoration:none;font-weight:700;font-size:.92rem}
+    .post-toolbar .back:hover{text-decoration:underline}
   </style>
 </head>
 <body>
   <Header />
-
   <div class="post-toolbar">
     <a class="back" href="/community" id="back-link">← 게시판</a>
   </div>
@@ -229,11 +73,7 @@ import Footer from '../../components/Footer.astro';
         <div class="post-content" id="post-content"></div>
         <div class="post-actions">
           <button class="like-btn" id="like-btn" onclick="toggleLike()">❤️ <span id="like-count">0</span></button>
-          <button
-            id="delete-post-btn"
-            onclick="deletePost()"
-            style="display:none;background:none;border:1px solid var(--color-error);color:var(--color-error);border-radius:8px;padding:.4rem .8rem;cursor:pointer;font-size:.85rem;margin-left:.5rem;font-family:inherit"
-          >🗑 삭제</button>
+          <button id="delete-post-btn" onclick="deletePost()" style="display:none;background:none;border:1px solid #c00;color:#c00;border-radius:8px;padding:.4rem .8rem;cursor:pointer;font-size:.85rem;margin-left:.5rem">🗑 삭제</button>
         </div>
       </div>
 
@@ -262,16 +102,17 @@ import Footer from '../../components/Footer.astro';
     return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   }
 
-  /* ── 현재 포스트 ID ── */
+  /* ── 현재 포스트 ID: 트레일링 슬래시 안전 처리 ── */
   var _pathParts = location.pathname.split('/').filter(function(p){ return p.length > 0; });
   var _postId    = _pathParts[_pathParts.length - 1];
 
-  /* 숫자 ID가 아니면 목록으로 이동 */
+  /* ── 잘못된 URL 진입 방어: 숫자 ID가 아니면 목록으로 이동 ── */
   if (_postId !== '_' && !/^\d+$/.test(_postId)) {
     location.replace('/community');
   }
 
-  /* ── 세션 파싱 ── */
+  /* ── 세션에서 사용자 추출 (클라이언트 UI 전용) ── */
+  // session_ui: non-HttpOnly 쿠키, {id, name} 포함
   var _session = document.cookie.split(';').find(function(c){ return c.trim().startsWith('session_ui='); });
   var _me = null;
   if (_session) {
@@ -301,9 +142,9 @@ import Footer from '../../components/Footer.astro';
   /* ── 댓글 목록 로드 ── */
   async function loadComments() {
     try {
-      var res      = await fetch('/api/community/comments?post_id=' + _postId);
-      var data     = await res.json();
-      var list     = document.getElementById('comment-list');
+      var res  = await fetch('/api/community/comments?post_id=' + _postId);
+      var data = await res.json();
+      var list = document.getElementById('comment-list');
       var comments = data.comments || [];
       document.getElementById('comment-count').textContent = comments.length;
       if (!comments.length) {
@@ -327,7 +168,7 @@ import Footer from '../../components/Footer.astro';
   }
 
   /* ── 댓글 삭제: 이벤트 위임 ── */
-  document.addEventListener('click', async function(e) {
+  document.getElementById('comment-list') && document.addEventListener('click', async function(e) {
     var btn = e.target.closest('[data-del-comment]');
     if (!btn) return;
     if (!confirm('삭제하시겠어요?')) return;
@@ -349,18 +190,18 @@ import Footer from '../../components/Footer.astro';
       document.title = data.title + ' | 페르소나 커뮤니티';
       document.getElementById('post-board').textContent =
         data.board_type === 'benefit' ? '🎁 지원금·혜택' : '👤 페르소나';
-      document.getElementById('post-title').textContent   = data.title;
-      document.getElementById('post-author').textContent  = '✍️ ' + (data.author_name || '익명');
-      document.getElementById('post-date').textContent    = (data.created_at || '').slice(0, 10);
-      document.getElementById('post-views').textContent   = '👁 ' + (data.views || 0);
+      document.getElementById('post-title').textContent = data.title;
+      document.getElementById('post-author').textContent = '✍️ ' + (data.author_name || '익명');
+      document.getElementById('post-date').textContent   = (data.created_at || '').slice(0,10);
+      document.getElementById('post-views').textContent  = '👁 ' + (data.views || 0);
       document.getElementById('post-content').textContent = data.content;
-      document.getElementById('like-count').textContent   = data.likes || 0;
+      document.getElementById('like-count').textContent  = data.likes || 0;
 
       if (_me && (_me.id === data.user_id || _me.id === 1)) {
         document.getElementById('delete-post-btn').style.display = 'inline-block';
       }
 
-      document.getElementById('loading').style.display   = 'none';
+      document.getElementById('loading').style.display = 'none';
       document.getElementById('post-area').style.display = 'block';
 
       loadComments();
@@ -391,7 +232,7 @@ import Footer from '../../components/Footer.astro';
     if (!_me) { location.href = '/auth/login?next=' + encodeURIComponent(location.pathname); return; }
     fetch('/api/community/like', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ post_id: parseInt(_postId) })
     }).then(function(r) {
       if (r.status === 401) { handleAuthError(401); return; }
@@ -413,7 +254,7 @@ import Footer from '../../components/Footer.astro';
 
     fetch('/api/community/comments', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ post_id: parseInt(_postId), content: content })
     }).then(function(r) {
       if (r.status === 401) { handleAuthError(401); return null; }
@@ -425,7 +266,7 @@ import Footer from '../../components/Footer.astro';
       } else if (data && data.error) {
         alert('오류: ' + data.error);
       }
-    }).catch(function() {
+    }).catch(function(e) {
       alert('댓글 전송 실패. 다시 시도해주세요.');
     }).finally(function() {
       if (btn) btn.disabled = false;
@@ -433,13 +274,12 @@ import Footer from '../../components/Footer.astro';
   }
 
   function showError() {
-    document.getElementById('loading').style.display    = 'none';
+    document.getElementById('loading').style.display = 'none';
     document.getElementById('error-area').style.display = 'block';
   }
 
   loadPost();
   </script>
-
   <Footer />
 </body>
 </html>

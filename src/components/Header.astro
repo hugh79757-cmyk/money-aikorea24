@@ -38,13 +38,14 @@ import { SITE_TITLE } from '../consts';
 
 <script>
 (function() {
-  const raw = document.cookie.split(';').find(c => c.trim().startsWith('session='));
+  // session_ui: non-HttpOnly 쿠키 (UI 표시 전용, 이름/ID만 포함)
+  const raw = document.cookie.split(';').find(c => c.trim().startsWith('session_ui='));
   const btnLogin = document.getElementById('btn-login');
   const btnUser  = document.getElementById('btn-user');
   const userName = document.getElementById('user-name');
   if (raw) {
     try {
-      const encoded = raw.trim().replace('session=','');
+      const encoded = raw.trim().replace('session_ui=', '');
       const user = JSON.parse(decodeURIComponent(atob(encoded).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')));
       if (btnLogin) btnLogin.style.display = 'none';
       if (btnUser)  btnUser.style.display  = 'flex';

@@ -108,13 +108,28 @@ export async function onRequestGet({ request, env }) {
   };
   const sessionToken = await createSessionToken(sessionPayload, SESSION_SECRET);
 
-  /* ── 응답: 임시 쿠키 클리어 + HttpOnly 세션 쿠키 설정 ──── */
+  /* ── 클라이언트 UI용 non-HttpOnly 쿠키 (이름 표시용) ──── */
+  // HttpOnly 쿠키는 JS가 읽을 수 없으므로 UI 상태용 별도 쿠키 발급
+  function base64Encode(str) {
+    const bytes = new TextEncoder().encode(str);
+    let binary = '';
+    bytes.forEach(b => binary += String.fromCharCode(b));
+    return btoa(binary);
+  }
+  const uiPayload = base64Encode(JSON.stringify({ id: dbUser.id, name: dbUser.nickname }));
+
+  /* ── 응답: 임시 쿠키 클리어 + 세션 쿠키 설정 ──────────── */
   const headers = new Headers({ Location: safeNext });
   headers.append('Set-Cookie', 'oauth_state=; Path=/; Max-Age=0; Secure; SameSite=Lax');
   headers.append('Set-Cookie', 'oauth_next=; Path=/; Max-Age=0; Secure; SameSite=Lax');
   headers.append('Set-Cookie', 'pending_marketing=; Path=/; Max-Age=0; Secure; SameSite=Lax');
+  // 서버 인증용 (HttpOnly — JS 접근 불가, 보안 강화)
   headers.append('Set-Cookie',
     `session=${sessionToken}; Path=/; Secure; HttpOnly; SameSite=Lax; Max-Age=${60 * 60 * 24 * 7}`
+  );
+  // 클라이언트 UI용 (non-HttpOnly — 이름 표시 등 UI 한정 사용)
+  headers.append('Set-Cookie',
+    `session_ui=${uiPayload}; Path=/; Secure; SameSite=Lax; Max-Age=${60 * 60 * 24 * 7}`
   );
   return new Response(null, { status: 302, headers });
 }

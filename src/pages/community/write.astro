@@ -116,7 +116,7 @@
     age = params.get('age') || '';
 
     // 로그인 체크
-    const session = document.cookie.split(';').find(c => c.trim().startsWith('session='));
+    const session = document.cookie.split(';').find(c => c.trim().startsWith('session_ui='));
     if (!session) {
       document.getElementById('login-wall').style.display = 'block';
       document.getElementById('write-form').style.display = 'none';

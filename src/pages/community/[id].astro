@@ -106,16 +106,15 @@ export function getStaticPaths() {
   }
 
   /* ── 세션에서 사용자 추출 (클라이언트 UI 전용) ── */
-  var _session  = document.cookie.split(';').find(function(c){ return c.trim().startsWith('session='); });
+  // session_ui: non-HttpOnly 쿠키, {id, name} 포함
+  var _session = document.cookie.split(';').find(function(c){ return c.trim().startsWith('session_ui='); });
   var _me = null;
   if (_session) {
     try {
-      // 토큰 형식: base64url(payload).base64url(sig)  또는  plain base64(JSON)
-      var _tok = decodeURIComponent(_session.trim().slice('session='.length));
-      var _pay = _tok.split('.')[0].replace(/-/g,'+').replace(/_/g,'/');
-      // 패딩 보정
-      while (_pay.length % 4) _pay += '=';
-      _me = JSON.parse(atob(_pay));
+      var _tok = _session.trim().slice('session_ui='.length);
+      _me = JSON.parse(decodeURIComponent(atob(_tok).split('').map(function(c){
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join('')));
     } catch(e) {}
   }
 

@@ -841,7 +841,7 @@ function shareTwitter() {
   <script is:inline>
   // 이미 로그인 상태면 로그인 버튼 숨김
   (function() {
-    const session = document.cookie.split(';').find(c => c.trim().startsWith('session='));
+    const session = document.cookie.split(';').find(c => c.trim().startsWith('session_ui='));
     if (session) {
       const btn = document.getElementById('fbar-login-btn');
       if (btn) btn.style.display = 'none';

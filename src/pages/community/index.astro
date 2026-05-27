@@ -87,7 +87,7 @@
   document.getElementById('search-input').value = _q;
 
   // 로그인 상태 체크
-  var _session = document.cookie.split(';').find(function(c) { return c.trim().startsWith('session='); });
+  var _session = document.cookie.split(';').find(function(c) { return c.trim().startsWith('session_ui='); });
   if (_session) {
     document.getElementById('btn-login').style.display = 'none';
     var _wBtn = document.getElementById('btn-write');

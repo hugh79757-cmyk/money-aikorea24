@@ -55,7 +55,10 @@ const urgentBenefits = benefitsData
     <main>
       <section class="persona-hero">
         <div class="persona-hero-text">
-          <div class="persona-badge">📊 엔비디아 700만 한국인 데이터</div>
+          <a href="/data/nemotron-korea" class="persona-badge nvidia-data-btn">
+            <span>🟢 Nvidia 700만 한국인 데이터</span>
+            <span class="nvidia-sub">엔비디아 Nemotron-Personas-Korea 데이터셋이란? →</span>
+          </a>
           <h2>나와 비슷한 한국인은<br/>어떻게 살고 있을까?</h2>
           <p>나이·성별·지역·혼인상태만 입력하면<br/>주거·직업·가족구성·돈 고민을 통계로 보여드려요</p>
           <div class="hero-trust-row">
@@ -158,15 +161,32 @@ const urgentBenefits = benefitsData
   }
   .persona-hero-text { position: relative; z-index: 1; }
   .persona-badge {
-    display: inline-block;
-    background: var(--color-accent);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
     color: var(--color-surface);
-    border-radius: var(--radius-full);
-    padding: var(--space-1) var(--space-4);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2) var(--space-4);
     font-size: var(--text-xs);
     font-weight: var(--font-bold);
     letter-spacing: var(--tracking-wider);
     margin-bottom: var(--space-5);
+    text-decoration: none;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+    gap: 2px;
+  }
+  .nvidia-data-btn:hover {
+    background: rgba(118,185,0,0.25);
+    border-color: #76b900;
+  }
+  .nvidia-sub {
+    font-size: 0.72rem;
+    font-weight: var(--font-semibold);
+    opacity: 0.85;
+    letter-spacing: 0;
+    color: #b8e06a;
   }
   .persona-hero h2 {
     font-size: clamp(1.5rem, 3vw, 2.2rem);

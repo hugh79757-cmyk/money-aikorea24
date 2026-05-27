@@ -118,7 +118,7 @@ function getRegionFactor(regionKey: string): number {
 }
 function getJobWage(jobName, sex, ageRaw, ageNum, regionKey = '') {
   const cat = mapJobToCategory(jobName);
-  const base = wageTable.jobCategory[cat];
+  const base = (wageTable.jobCategory as Record<string, number>)[cat];
   if (base === undefined || base === 0) return null;
   const sexKey = sex === '여자' ? '여' : '남';
   const ageKey = ageToFactorKey(ageRaw, ageNum);
@@ -447,11 +447,8 @@ const jsonLd = JSON.stringify({
 .zc-title{font-size:.92rem;font-weight:700;color:#3D3D3D}
 .zc-desc{font-size:.75rem;color:#8B7355;text-align:center;line-height:1.5}
 /* 다크모드 버튼 in fixed bar */
-.fbar-theme{flex:0 0 44px;width:44px;height:44px;border:none;border-radius:10px;background:#F0F0F0;color:#3D3D3D;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.fbar-theme{flex:0 0 30px;width:30px;height:30px;border:none;border-radius:8px;background:#F0F0F0;color:#3D3D3D;font-size:.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;align-self:center}
 .fbar-theme:hover{background:#E0E0E0}
-/* X 공유 플로팅 버튼 */
-.persona-fab-x{position:fixed;right:16px;bottom:82px;z-index:8500;width:46px;height:46px;border-radius:50%;background:#1a1a2e;color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.25);transition:transform .15s}
-.persona-fab-x:hover{transform:scale(1.08)}
 </style>
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js" crossorigin="anonymous"></script>
 </head>
@@ -489,9 +486,8 @@ const jsonLd = JSON.stringify({
     <!-- 공유 버튼 -->
     <p class="share-encourage">이 결과, 친구들도 맞는지 확인해보세요 👇</p>
     <button class="share-kakao-big" onclick="shareKakao()">💬 카카오톡으로 공유하기</button>
-    <div class="share-main-btns" style="margin-top:.6rem">
-      <button class="share-btn-main" onclick="copyUrl()">🔗 링크 복사</button>
-      <button class="share-btn-main" onclick="shareTwitter()" style="background:#1a1a2e">𝕏 공유</button>
+    <div style="margin-top:.6rem">
+      <button class="share-btn-main" onclick="copyUrl()" style="width:100%">🔗 링크 복사</button>
     </div>
     <a class="share-btn-sub" href="/my-persona" style="text-align:center;margin-bottom:1rem">🔄 다른 조건으로 분석하기</a>
     <!-- 카카오 토스트 -->
@@ -834,10 +830,7 @@ function copyUrl() {
   });
 }
 
-function shareTwitter() {
-  const text = document.title;
-  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(_shareUrl));
-}
+
 </script>
   <!-- 하단 고정 공유 바 -->
   <div class="fixed-share-bar">
@@ -848,12 +841,6 @@ function shareTwitter() {
     <button class="fbar-theme" id="fbar-theme-btn" type="button" aria-label="테마 전환" onclick="fbarToggleTheme()">🌙</button>
   </div>
 
-  <!-- 오른쪽 플로팅 X 공유 버튼 -->
-  <button class="persona-fab-x" id="persona-fab-x" onclick="shareTwitter()" aria-label="X 공유">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.738-8.835L2.063 2.25H8.08l4.26 5.636zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-    </svg>
-  </button>
   <script is:inline>
   // 이미 로그인 상태면 로그인 버튼 숨김
   (function() {

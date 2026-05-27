@@ -1,0 +1,739 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<html lang="ko">
+<head>
+  <BaseHead
+    title="엔비디아 Nemotron-Personas-Korea란? | 700만 한국인 AI 데이터셋 완전 해설"
+    description="NVIDIA가 공개한 700만 가상 한국인 페르소나 데이터셋 Nemotron-Personas-Korea. 실제 통계 기반 생성 방법, 26개 필드 구조, 활용법, HuggingFace 링크까지 완전 해설합니다."
+  />
+  <style>
+    :root {
+      --nv-green: #76b900;
+      --nv-green-dark: #5c9000;
+      --nv-green-light: #eaf5d3;
+      --nv-dark: #1a1a1a;
+      --nv-gray: #f5f5f5;
+    }
+    body { font-family: 'Pretendard', -apple-system, sans-serif; color: #1a1a1a; background: #fff; }
+
+    /* ── 히어로 ── */
+    .hero {
+      background: linear-gradient(135deg, #0d1117 0%, #1a2332 50%, #0d1117 100%);
+      color: #fff;
+      padding: 5rem 1.5rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(118,185,0,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 50%, rgba(118,185,0,0.08) 0%, transparent 60%);
+    }
+    .hero-inner { position: relative; max-width: 820px; margin: 0 auto; }
+    .nvidia-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(118,185,0,.18);
+      border: 1px solid rgba(118,185,0,.4);
+      color: #a8e063;
+      border-radius: 999px;
+      padding: .35rem 1.1rem;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      margin-bottom: 1.5rem;
+    }
+    .nvidia-dot { width: 8px; height: 8px; background: var(--nv-green); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{ opacity:1; } 50%{ opacity:.4; } }
+    .hero h1 { font-size: clamp(1.7rem, 4vw, 2.8rem); font-weight: 900; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -.02em; }
+    .hero h1 span { color: var(--nv-green); }
+    .hero p { font-size: 1.05rem; color: rgba(255,255,255,.72); line-height: 1.75; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    /* 통계 카드 */
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      padding: 1.2rem 1.8rem;
+      min-width: 130px;
+      backdrop-filter: blur(8px);
+    }
+    .stat-card .num { font-size: 2rem; font-weight: 900; color: var(--nv-green); line-height: 1; }
+    .stat-card .lbl { font-size: .75rem; color: rgba(255,255,255,.6); margin-top: .35rem; }
+
+    /* CTA 버튼 */
+    .cta-row { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 1.8rem; border-radius: 12px;
+      font-weight: 700; font-size: .95rem; text-decoration: none;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); }
+    .cta-primary {
+      background: var(--nv-green); color: #0d1117;
+      box-shadow: 0 4px 20px rgba(118,185,0,.4);
+    }
+    .cta-primary:hover { box-shadow: 0 8px 28px rgba(118,185,0,.55); }
+    .cta-secondary {
+      background: rgba(255,255,255,.08); color: #fff;
+      border: 1px solid rgba(255,255,255,.2);
+    }
+    .cta-secondary:hover { background: rgba(255,255,255,.14); }
+
+    /* ── 메인 컨텐츠 ── */
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 1.25rem; }
+
+    /* 섹션 공통 */
+    .section { padding: 4rem 0; border-bottom: 1px solid #eee; }
+    .section:last-child { border-bottom: none; }
+    .section-tag {
+      display: inline-block;
+      background: var(--nv-green-light);
+      color: var(--nv-green-dark);
+      border-radius: 6px;
+      padding: .2rem .65rem;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      margin-bottom: .75rem;
+    }
+    .section h2 { font-size: 1.55rem; font-weight: 900; color: #0d1117; margin-bottom: .75rem; letter-spacing: -.02em; }
+    .section .lead { font-size: 1rem; color: #555; line-height: 1.8; margin-bottom: 1.5rem; }
+
+    /* 개요 카드 */
+    .overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .ov-card {
+      background: #f8f9fa;
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      border-left: 4px solid var(--nv-green);
+    }
+    .ov-card .ov-title { font-size: .75rem; font-weight: 700; color: var(--nv-green-dark); letter-spacing: .04em; margin-bottom: .4rem; }
+    .ov-card .ov-val { font-size: 1rem; font-weight: 700; color: #1a1a1a; }
+
+    /* 타임라인 */
+    .timeline { list-style: none; padding: 0; margin: 1.5rem 0; }
+    .timeline li { display: flex; gap: 1.2rem; padding: .9rem 0; border-bottom: 1px dashed #eee; }
+    .timeline li:last-child { border-bottom: none; }
+    .tl-icon { font-size: 1.3rem; flex-shrink: 0; width: 36px; text-align: center; margin-top: .1rem; }
+    .tl-body .tl-title { font-weight: 700; font-size: .95rem; color: #1a1a1a; margin-bottom: .2rem; }
+    .tl-body .tl-desc { font-size: .87rem; color: #666; line-height: 1.6; }
+
+    /* 필드 구조 */
+    .field-group { margin-bottom: 1.75rem; }
+    .field-group-title {
+      font-size: .85rem; font-weight: 800; color: #fff;
+      background: var(--nv-dark); border-radius: 8px;
+      padding: .45rem .9rem; display: inline-block; margin-bottom: .75rem;
+    }
+    .field-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .5rem; }
+    .field-item {
+      background: #f5f7f9;
+      border: 1px solid #e8edf2;
+      border-radius: 8px;
+      padding: .55rem .85rem;
+      font-size: .83rem;
+    }
+    .field-item code { background: var(--nv-green-light); color: var(--nv-green-dark); border-radius: 4px; padding: .1em .35em; font-size: .78rem; font-family: monospace; display: block; margin-bottom: .2rem; }
+    .field-item span { color: #555; }
+
+    /* 생성 플로우 */
+    .flow-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .flow-step {
+      background: var(--nv-gray);
+      border-radius: 14px;
+      padding: 1.4rem 1.25rem;
+      text-align: center;
+      position: relative;
+    }
+    .flow-step .step-num {
+      width: 32px; height: 32px;
+      background: var(--nv-green); color: #fff;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; font-weight: 800; margin: 0 auto .75rem;
+    }
+    .flow-step .step-title { font-size: .9rem; font-weight: 700; color: #1a1a1a; margin-bottom: .3rem; }
+    .flow-step .step-desc { font-size: .78rem; color: #666; line-height: 1.5; }
+
+    /* 데이터 소스 */
+    .source-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .75rem; margin-top: 1.25rem; }
+    .source-item {
+      display: flex; gap: .85rem; align-items: flex-start;
+      background: #fff; border: 1px solid #e8edf2; border-radius: 12px; padding: 1rem 1.1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    }
+    .source-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .source-name { font-weight: 700; font-size: .88rem; color: #1a1a1a; margin-bottom: .2rem; }
+    .source-desc { font-size: .78rem; color: #666; line-height: 1.5; }
+
+    /* 분포 차트 */
+    .dist-section { margin-top: 1.5rem; }
+    .dist-title { font-weight: 700; font-size: .9rem; color: #1a1a1a; margin-bottom: .75rem; }
+    .bar-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+    .bar-item { display: flex; align-items: center; gap: .85rem; }
+    .bar-label { min-width: 80px; font-size: .8rem; color: #444; text-align: right; }
+    .bar-track { flex: 1; background: #f0f0f0; border-radius: 999px; height: 10px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--nv-green); border-radius: 999px; }
+    .bar-val { min-width: 38px; font-size: .78rem; font-weight: 700; color: var(--nv-green-dark); }
+
+    /* 활용 카드 */
+    .usecase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .uc-card {
+      border: 1px solid #e8edf2;
+      border-radius: 14px;
+      padding: 1.4rem;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .uc-card:hover { border-color: var(--nv-green); box-shadow: 0 4px 16px rgba(118,185,0,.12); }
+    .uc-icon { font-size: 2rem; margin-bottom: .75rem; }
+    .uc-title { font-size: .95rem; font-weight: 800; color: #1a1a1a; margin-bottom: .4rem; }
+    .uc-desc { font-size: .83rem; color: #666; line-height: 1.6; }
+
+    /* 코드 블록 */
+    .code-block {
+      background: #0d1117; border-radius: 12px;
+      padding: 1.4rem 1.5rem; margin: 1.25rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre { margin: 0; }
+    .code-block code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: .82rem; line-height: 1.7;
+      color: #e2e8f0;
+      white-space: pre;
+    }
+    .code-label {
+      font-size: .75rem; font-weight: 700; color: #888;
+      letter-spacing: .06em; margin-bottom: .5rem;
+    }
+    .kw { color: #79c0ff; }    /* keyword */
+    .fn { color: #d2a8ff; }    /* function */
+    .st { color: #a5d6ff; }    /* string */
+    .cm { color: #8b949e; }    /* comment */
+    .nv { color: #76b900; }    /* nvidia green */
+
+    /* 라이선스 */
+    .license-box {
+      background: linear-gradient(135deg, var(--nv-green-light), #f0f7e0);
+      border: 1px solid rgba(118,185,0,.3);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      margin-top: 1.5rem;
+    }
+    .license-icon { font-size: 2.5rem; flex-shrink: 0; }
+    .license-title { font-size: 1.1rem; font-weight: 800; color: #1a1a1a; margin-bottom: .5rem; }
+    .license-items { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .75rem; }
+    .license-tag {
+      background: var(--nv-green); color: #fff;
+      border-radius: 6px; padding: .25rem .7rem;
+      font-size: .78rem; font-weight: 700;
+    }
+    .license-tag.muted { background: #e0e0e0; color: #555; }
+
+    /* 최하단 CTA */
+    .bottom-cta {
+      background: linear-gradient(135deg, #0d1117, #1a2332);
+      border-radius: 24px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      margin: 4rem 0;
+      color: #fff;
+    }
+    .bottom-cta h2 { font-size: 1.6rem; font-weight: 900; margin-bottom: 1rem; }
+    .bottom-cta p { color: rgba(255,255,255,.7); margin-bottom: 2rem; }
+    .bottom-btns { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+    .bottom-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 1.6rem; border-radius: 10px;
+      font-weight: 700; font-size: .9rem; text-decoration: none;
+      transition: transform .15s;
+    }
+    .bottom-btn:hover { transform: translateY(-2px); }
+    .hf-btn { background: #ff9d00; color: #1a1a1a; }
+    .blog-btn { background: var(--nv-green); color: #0d1117; }
+    .nvidia-btn-link { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.2); }
+
+    /* 반응형 */
+    @media (max-width: 640px) {
+      .hero { padding: 3.5rem 1rem 3rem; }
+      .stat-card { padding: .9rem 1.2rem; min-width: 100px; }
+      .stat-card .num { font-size: 1.6rem; }
+      .license-box { flex-direction: column; gap: .75rem; }
+    }
+  </style>
+</head>
+<body>
+  <Header />
+
+  <!-- ── 히어로 ── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="nvidia-badge">
+        <span class="nvidia-dot"></span>
+        NVIDIA OPEN DATASET · CC BY 4.0
+      </div>
+      <h1>
+        엔비디아가 만든<br/>
+        <span>700만 가상 한국인</span> 데이터셋
+      </h1>
+      <p>
+        실제 통계청·대법원·건강보험공단 데이터를 기반으로<br/>
+        AI가 생성한 세계 최초 대규모 한국어 페르소나 데이터셋
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="num">700만</div>
+          <div class="lbl">총 페르소나 수</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">26개</div>
+          <div class="lbl">데이터 필드</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">252개</div>
+          <div class="lbl">시군구 커버리지</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">17억</div>
+          <div class="lbl">총 토큰</div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a href="https://huggingface.co/datasets/nvidia/Nemotron-Personas-Korea"
+           target="_blank" rel="noopener" class="cta-btn cta-primary">
+          🤗 HuggingFace에서 보기
+        </a>
+        <a href="https://huggingface.co/blog/nvidia/build-korean-agents-with-nemotron-personas"
+           target="_blank" rel="noopener" class="cta-btn cta-secondary">
+          📖 NVIDIA 공식 블로그
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+
+    <!-- ── 섹션 1: 개요 ── -->
+    <section class="section">
+      <span class="section-tag">OVERVIEW</span>
+      <h2>Nemotron-Personas-Korea란?</h2>
+      <p class="lead">
+        NVIDIA가 2026년 4월 공개한 <strong>세계 최초 대규모 한국어 합성 페르소나 데이터셋</strong>입니다.
+        실제 한국 인구 통계를 반영해 AI가 생성한 700만 명의 가상 한국인으로 구성되어 있습니다.
+        공개 직후 HuggingFace 데이터셋 카테고리 <strong>1위</strong>를 기록했습니다.
+      </p>
+      <p class="lead">
+        개인식별정보(PII)가 전혀 없는 완전한 합성 데이터로, 한국 개인정보보호법(PIPA)을 완벽히 준수합니다.
+        AI 에이전트 훈련, 언어모델 학습, 소버린 AI 개발에 자유롭게 활용할 수 있습니다.
+      </p>
+
+      <div class="overview-grid">
+        <div class="ov-card">
+          <div class="ov-title">공개일</div>
+          <div class="ov-val">2026년 4월 20일</div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-title">라이선스</div>
+          <div class="ov-val">CC BY 4.0 (상업적 무료)</div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-title">언어</div>
+          <div class="ov-val">한국어</div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-title">기반 LLM</div>
+          <div class="ov-val">Google Gemma-4 31B</div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-title">총 토큰</div>
+          <div class="ov-val">17억 토큰 (페르소나 10억)</div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-title">파일 포맷</div>
+          <div class="ov-val">Parquet (최적화)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 섹션 2: 이 서비스와의 관계 ── -->
+    <section class="section">
+      <span class="section-tag">페르소나 서비스</span>
+      <h2>이 서비스가 이 데이터로 만든 것</h2>
+      <p class="lead">
+        <strong>persona.aikorea24.kr</strong>은 Nemotron-Personas-Korea 데이터셋을 기반으로
+        실제 한국 인구통계와 결합해 만든 페르소나 분석 서비스입니다.
+        나이·성별·지역을 입력하면 같은 조건의 실제 통계 분포를 보여줍니다.
+      </p>
+
+      <ul class="timeline">
+        <li>
+          <div class="tl-icon">📊</div>
+          <div class="tl-body">
+            <div class="tl-title">700만 페르소나 → 인구통계 매핑</div>
+            <div class="tl-desc">엔비디아 데이터셋의 직업·가구·교육 분포를 통계청 인구총조사와 교차 검증하여 지역-성별-연령별 통계를 추출했습니다.</div>
+          </div>
+        </li>
+        <li>
+          <div class="tl-icon">💰</div>
+          <div class="tl-body">
+            <div class="tl-title">소득 추정 보정</div>
+            <div class="tl-desc">성별·연령별 취업자 중위 월소득(medianBase) × 지역보정계수(regionFactor)로 실제에 가까운 소득 추정값을 제공합니다.</div>
+          </div>
+        </li>
+        <li>
+          <div class="tl-icon">🤖</div>
+          <div class="tl-body">
+            <div class="tl-title">AI 페르소나 서사 생성</div>
+            <div class="tl-desc">각 조합(지역-성별-나이)에 대해 데이터셋의 페르소나 텍스트를 활용한 현실적인 인물 서사 20개를 제공합니다.</div>
+          </div>
+        </li>
+        <li>
+          <div class="tl-icon">🗺️</div>
+          <div class="tl-body">
+            <div class="tl-title">2,891개 조합 생성</div>
+            <div class="tl-desc">16개 지역 × 2개 성별 × 90개 연령 조합으로 총 2,891개 페르소나 페이지를 자동 생성했습니다.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ── 섹션 3: 데이터 구조 ── -->
+    <section class="section">
+      <span class="section-tag">DATA SCHEMA</span>
+      <h2>26개 필드 구조</h2>
+      <p class="lead">
+        각 레코드는 인구통계 정보 + 7종 페르소나 서사 + 속성 필드로 구성됩니다.
+        총 100만 개 레코드에 7개 페르소나 유형을 곱해 700만 개가 됩니다.
+      </p>
+
+      <div class="field-group">
+        <div class="field-group-title">🧬 7가지 페르소나 유형</div>
+        <div class="field-list">
+          <div class="field-item"><code>professional_persona</code><span>직업·커리어 관련 페르소나</span></div>
+          <div class="field-item"><code>sports_persona</code><span>스포츠·운동 관련 페르소나</span></div>
+          <div class="field-item"><code>arts_persona</code><span>예술·문화 관련 페르소나</span></div>
+          <div class="field-item"><code>travel_persona</code><span>여행·탐험 관련 페르소나</span></div>
+          <div class="field-item"><code>culinary_persona</code><span>음식·요리 관련 페르소나</span></div>
+          <div class="field-item"><code>family_persona</code><span>가족·관계 관련 페르소나</span></div>
+          <div class="field-item"><code>persona</code><span>종합 요약 페르소나</span></div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">🎯 페르소나 속성 필드</div>
+        <div class="field-list">
+          <div class="field-item"><code>cultural_background</code><span>문화적 배경</span></div>
+          <div class="field-item"><code>skills_and_expertise</code><span>기술 및 전문성</span></div>
+          <div class="field-item"><code>skills_and_expertise_list</code><span>기술 목록 (구조화)</span></div>
+          <div class="field-item"><code>hobbies_and_interests</code><span>취미 및 관심사</span></div>
+          <div class="field-item"><code>hobbies_and_interests_list</code><span>취미 목록 (구조화)</span></div>
+          <div class="field-item"><code>career_goals_and_ambitions</code><span>경력 목표 및 포부</span></div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">📍 인구통계·지리 컨텍스트</div>
+        <div class="field-list">
+          <div class="field-item"><code>uuid</code><span>고유 식별자</span></div>
+          <div class="field-item"><code>sex</code><span>성별 (남자/여자)</span></div>
+          <div class="field-item"><code>age</code><span>나이 (19~99세)</span></div>
+          <div class="field-item"><code>marital_status</code><span>혼인상태 (4종)</span></div>
+          <div class="field-item"><code>military_status</code><span>군복무 상태</span></div>
+          <div class="field-item"><code>family_type</code><span>가구 유형 (39종)</span></div>
+          <div class="field-item"><code>housing_type</code><span>주택 유형 (6종)</span></div>
+          <div class="field-item"><code>education_level</code><span>교육 수준 (7종)</span></div>
+          <div class="field-item"><code>bachelors_field</code><span>학사 전공 (11종)</span></div>
+          <div class="field-item"><code>occupation</code><span>직업 (2,000+ 종)</span></div>
+          <div class="field-item"><code>district</code><span>시군구 (252개)</span></div>
+          <div class="field-item"><code>province</code><span>시도 (17개)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 섹션 4: 생성 방법 ── -->
+    <section class="section">
+      <span class="section-tag">HOW IT WAS BUILT</span>
+      <h2>어떻게 만들었나?</h2>
+      <p class="lead">
+        NVIDIA의 오픈소스 합성 데이터 생성 시스템 <strong>NeMo Data Designer</strong>를 사용했습니다.
+        통계 모델로 인구분포를 그대로 재현하고, 대형 언어 모델로 자연스러운 한국어 서사를 생성했습니다.
+      </p>
+
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="step-num">1</div>
+          <div class="step-title">공공 통계 수집</div>
+          <div class="step-desc">KOSIS, 대법원, 건강보험공단, 농촌경제연구원 등 5개 공식 데이터 소스에서 한국 인구 분포 데이터 수집</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">2</div>
+          <div class="step-title">PGM 모델링</div>
+          <div class="step-desc">확률적 그래프 모델(PGM)로 연령·성별·지역·직업 등 변수 간 상관관계를 통계적으로 모델링</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">3</div>
+          <div class="step-title">100만 프로필 생성</div>
+          <div class="step-desc">PGM 샘플링으로 실제 인구분포를 반영한 100만 개의 인구통계 프로필 생성</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">4</div>
+          <div class="step-title">LLM 서사 생성</div>
+          <div class="step-desc">Gemma-4-31B가 각 프로필에 대해 7가지 유형의 자연스러운 한국어 페르소나 서사 생성</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">5</div>
+          <div class="step-title">700만 페르소나</div>
+          <div class="step-desc">100만 × 7종 = 700만 개의 페르소나. PII 없음 확인 후 CC BY 4.0으로 공개</div>
+        </div>
+      </div>
+
+      <p style="margin-top:1.75rem;font-size:.88rem;color:#888;line-height:1.7;">
+        ⚠️ <strong>주의사항</strong>: 직업 배정 시 성별·소득·학력 간 독립성 가정이 적용됩니다. 변수 간 교호작용(예: 성별×전공 결합 효과)은 현재 버전에서 미반영이며, 젠더(Gender) 통계는 국내 공공데이터 부재로 포함되지 않았습니다.
+      </p>
+    </section>
+
+    <!-- ── 섹션 5: 데이터 소스 ── -->
+    <section class="section">
+      <span class="section-tag">DATA SOURCES</span>
+      <h2>5개 공식 통계 출처</h2>
+      <p class="lead">민간 데이터 없이 100% 공공 통계만을 기반으로 생성되었습니다.</p>
+
+      <div class="source-list">
+        <div class="source-item">
+          <div class="source-icon">🏛️</div>
+          <div>
+            <div class="source-name">KOSIS (한국통계정보서비스)</div>
+            <div class="source-desc">2020~2026 인구조사. 성별·지역·산업·직업 분포. 통계청 운영.</div>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-icon">⚖️</div>
+          <div>
+            <div class="source-name">대법원</div>
+            <div class="source-desc">출생연도·성별별 이름 분포. 118개 성씨, 21,400개 고유 이름 추출.</div>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-icon">🏥</div>
+          <div>
+            <div class="source-name">국민건강보험공단</div>
+            <div class="source-desc">건강검진정보 (2024.12.31 기준). 공공누리 제0유형 제공.</div>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-icon">🌾</div>
+          <div>
+            <div class="source-name">농촌경제연구원</div>
+            <div class="source-desc">2024 식품소비행태조사. 지역별 생활 패턴 반영.</div>
+          </div>
+        </div>
+        <div class="source-item">
+          <div class="source-icon">🌐</div>
+          <div>
+            <div class="source-name">NAVER Cloud</div>
+            <div class="source-desc">설계 단계 초기 데이터 및 한국어 도메인 전문성 검증.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 섹션 6: 인구 분포 ── -->
+    <section class="section">
+      <span class="section-tag">DEMOGRAPHICS</span>
+      <h2>실제 한국 인구분포를 얼마나 반영했나?</h2>
+      <p class="lead">데이터셋은 한국의 저출산·고령화 구조를 그대로 반영합니다.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:1.25rem;">
+        <div class="dist-section">
+          <div class="dist-title">📊 연령대별 비중 (주요 구간)</div>
+          <ul class="bar-list">
+            <li class="bar-item"><span class="bar-label">50~64세</span><div class="bar-track"><div class="bar-fill" style="width:42%"></div></div><span class="bar-val">~9%</span></li>
+            <li class="bar-item"><span class="bar-label">40~49세</span><div class="bar-track"><div class="bar-fill" style="width:36%"></div></div><span class="bar-val">~8%</span></li>
+            <li class="bar-item"><span class="bar-label">30~39세</span><div class="bar-track"><div class="bar-fill" style="width:32%"></div></div><span class="bar-val">~7%</span></li>
+            <li class="bar-item"><span class="bar-label">20~29세</span><div class="bar-track"><div class="bar-fill" style="width:28%"></div></div><span class="bar-val">~6%</span></li>
+            <li class="bar-item"><span class="bar-label">65세이상</span><div class="bar-track"><div class="bar-fill" style="width:38%"></div></div><span class="bar-val">~18%</span></li>
+          </ul>
+        </div>
+
+        <div class="dist-section">
+          <div class="dist-title">📊 성씨 분포 (상위 5위)</div>
+          <ul class="bar-list">
+            <li class="bar-item"><span class="bar-label">김</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div><span class="bar-val">21.5%</span></li>
+            <li class="bar-item"><span class="bar-label">이</span><div class="bar-track"><div class="bar-fill" style="width:62%"></div></div><span class="bar-val">14.7%</span></li>
+            <li class="bar-item"><span class="bar-label">박</span><div class="bar-track"><div class="bar-fill" style="width:36%"></div></div><span class="bar-val">8.5%</span></li>
+            <li class="bar-item"><span class="bar-label">정</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="bar-val">4.8%</span></li>
+            <li class="bar-item"><span class="bar-label">최</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="bar-val">4.7%</span></li>
+          </ul>
+          <p style="font-size:.75rem;color:#888;margin-top:.75rem;">상위 5개 성씨가 전체의 54% 차지 (실제 한국과 동일)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 섹션 7: 활용 사례 ── -->
+    <section class="section">
+      <span class="section-tag">USE CASES</span>
+      <h2>무엇에 쓸 수 있나?</h2>
+      <div class="usecase-grid">
+        <div class="uc-card">
+          <div class="uc-icon">🤖</div>
+          <div class="uc-title">한국형 AI 에이전트 훈련</div>
+          <div class="uc-desc">페르소나를 시스템 프롬프트에 삽입해 지역·직업·연령에 맞는 자연스러운 한국어 응답을 생성하는 AI 에이전트 구축</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-icon">🏛️</div>
+          <div class="uc-title">소버린 AI 개발</div>
+          <div class="uc-desc">국내 개인정보보호법(PIPA) 완벽 준수. 한국 공공기관·기업이 자체 AI 모델을 학습시키는 데 최적화</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-icon">📚</div>
+          <div class="uc-title">LLM 훈련 데이터</div>
+          <div class="uc-desc">17억 토큰의 다양한 한국어 텍스트로 언어모델의 한국어 이해 능력 향상. 편향 완화에도 활용 가능</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-icon">🏥</div>
+          <div class="uc-title">공공서비스 시뮬레이션</div>
+          <div class="uc-desc">보건·복지·교육·금융 등 공공 AI 서비스의 실제 사용자 시뮬레이션. 사용자 테스트 비용 절감</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-icon">🔬</div>
+          <div class="uc-title">사회과학 연구</div>
+          <div class="uc-desc">한국 사회의 인구통계 변화, 직업 구조, 가구 형태 등 사회현상 연구 및 시뮬레이션에 활용</div>
+        </div>
+        <div class="uc-card">
+          <div class="uc-icon">🎮</div>
+          <div class="uc-title">NPC·캐릭터 생성</div>
+          <div class="uc-desc">게임·가상현실·메타버스의 한국인 NPC 배경 설정 자동화. 직업·가족·취미가 모두 현실적으로 설정됨</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 섹션 8: 코드 예제 ── -->
+    <section class="section">
+      <span class="section-tag">CODE</span>
+      <h2>직접 써보기 — 5분 시작 가이드</h2>
+      <p class="lead">HuggingFace Datasets 라이브러리로 바로 로드할 수 있습니다.</p>
+
+      <div class="code-label">▶ Python — 데이터셋 로드</div>
+      <div class="code-block"><pre><code><span class="kw">from</span> datasets <span class="kw">import</span> <span class="fn">load_dataset</span>
+
+<span class="cm"># 데이터셋 로드 (자동 캐시)</span>
+dataset = <span class="fn">load_dataset</span>(<span class="st">"nvidia/Nemotron-Personas-Korea"</span>)
+
+<span class="cm"># 기본 정보 확인</span>
+<span class="fn">print</span>(dataset[<span class="st">"train"</span>].column_names)   <span class="cm"># 26개 필드 출력</span>
+<span class="fn">print</span>(dataset[<span class="st">"train"</span>][<span class="nv">0</span>])            <span class="cm"># 첫 번째 레코드 출력</span></code></pre></div>
+
+      <div class="code-label">▶ Python — 서울 30대 직업인 필터링 예시</div>
+      <div class="code-block"><pre><code><span class="cm"># 서울 30대 취업자만 필터링</span>
+seoul_30s = dataset[<span class="st">"train"</span>].<span class="fn">filter</span>(
+    <span class="kw">lambda</span> x: x[<span class="st">"province"</span>] == <span class="st">"서울특별시"</span>
+           <span class="kw">and</span> <span class="nv">30</span> &lt;= x[<span class="st">"age"</span>] &lt;= <span class="nv">39</span>
+           <span class="kw">and</span> x[<span class="st">"occupation"</span>] != <span class="st">"무직"</span>
+)
+
+persona = seoul_30s[<span class="nv">0</span>]
+<span class="fn">print</span>(f<span class="st">"이름: &#123;persona['name']&#125;"</span>)
+<span class="fn">print</span>(f<span class="st">"직업: &#123;persona['occupation']&#125;"</span>)
+<span class="fn">print</span>(f<span class="st">"페르소나: &#123;persona['professional_persona']&#125;"</span>)</code></pre></div>
+
+      <div class="code-label">▶ Python — AI 에이전트 시스템 프롬프트 삽입 예시</div>
+      <div class="code-block"><pre><code><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+
+client = <span class="fn">OpenAI</span>(
+    base_url=<span class="st">"https://integrate.api.nvidia.com/v1"</span>,
+    api_key=<span class="st">"nvapi-YOUR_API_KEY"</span>
+)
+
+system_prompt = f<span class="st">"""당신은 한국의 금융 상담 AI입니다.
+
+[사용자 페르소나]
+이름: &#123;persona['name']&#125;  |  나이: &#123;persona['age']&#125;세
+직업: &#123;persona['occupation']&#125;  |  거주지: &#123;persona['province']&#125; &#123;persona['district']&#125;
+학력: &#123;persona['education_level']&#125;
+
+[페르소나 요약]
+&#123;persona['persona']&#125;
+
+[지침] 위 사용자 맥락을 이해하고 한국어 존댓말로 상담하세요."""</span>
+
+response = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="st">"nvidia/nemotron-nano-8b-v1"</span>,
+    messages=[
+        &#123;<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: system_prompt&#125;,
+        &#123;<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"청년도약계좌 가입 조건이 어떻게 되나요?"</span>&#125;
+    ]
+)
+<span class="fn">print</span>(response.choices[<span class="nv">0</span>].message.content)</code></pre></div>
+    </section>
+
+    <!-- ── 섹션 9: 라이선스 ── -->
+    <section class="section">
+      <span class="section-tag">LICENSE</span>
+      <h2>라이선스 및 이용 조건</h2>
+
+      <div class="license-box">
+        <div class="license-icon">⚖️</div>
+        <div>
+          <div class="license-title">CC BY 4.0 — 크리에이티브 커먼즈 저작자표시 4.0</div>
+          <p style="font-size:.9rem;color:#444;line-height:1.7;margin:.5rem 0;">
+            NVIDIA 저작자 표시만 하면 <strong>상업적·비상업적 사용, 수정, 배포 모두 자유</strong>롭게 가능합니다.
+            개인식별정보(PII) 없이 한국 개인정보보호법(PIPA)을 완벽 준수합니다.
+          </p>
+          <div class="license-items">
+            <span class="license-tag">✅ 상업적 사용</span>
+            <span class="license-tag">✅ 수정 가능</span>
+            <span class="license-tag">✅ 재배포 가능</span>
+            <span class="license-tag muted">📌 저작자 표시 필수</span>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:1.5rem;font-size:.85rem;color:#666;line-height:1.7;">
+        인용 방법 (학술 논문): <code style="background:#f5f5f5;padding:.2em .5em;border-radius:4px;font-size:.82rem;">nvidia/Nemotron-Personas-Korea, NVIDIA Corporation, 2026, CC BY 4.0, https://huggingface.co/datasets/nvidia/Nemotron-Personas-Korea</code>
+      </p>
+    </section>
+
+    <!-- ── 최하단 CTA ── -->
+    <div class="bottom-cta">
+      <h2>지금 바로 다운로드</h2>
+      <p>HuggingFace에서 무료로 다운로드하거나 NVIDIA 공식 블로그에서 더 자세히 알아보세요.</p>
+      <div class="bottom-btns">
+        <a href="https://huggingface.co/datasets/nvidia/Nemotron-Personas-Korea"
+           target="_blank" rel="noopener" class="bottom-btn hf-btn">
+          🤗 HuggingFace 데이터셋 열기
+        </a>
+        <a href="https://huggingface.co/blog/nvidia/build-korean-agents-with-nemotron-personas"
+           target="_blank" rel="noopener" class="bottom-btn blog-btn">
+          📖 NVIDIA 활용 가이드
+        </a>
+        <a href="https://blogs.nvidia.co.kr/blog/nemotron-personas-korea/"
+           target="_blank" rel="noopener" class="bottom-btn nvidia-btn-link">
+          🇰🇷 NVIDIA 한국 공식 블로그
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /wrap -->
+  <Footer />
+</body>
+</html>

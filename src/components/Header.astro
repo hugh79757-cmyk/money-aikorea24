@@ -66,8 +66,7 @@ import { SITE_TITLE } from '../consts';
   const blogBtn  = document.getElementById('nav-blog-btn');
   if (blogWrap && blogBtn) {
     blogBtn.addEventListener('click', (e) => {
-      // 데스크탑(hover 작동)에서는 클릭 무시
-      if (window.innerWidth > 640) return;
+      // 데스크탑·모바일 모두 클릭 토글 허용
       e.stopPropagation();
       const isOpen = blogWrap.classList.toggle('open');
       blogBtn.setAttribute('aria-expanded', String(isOpen));
@@ -219,7 +218,7 @@ import { SITE_TITLE } from '../consts';
   .blog-submenu {
     display: none;
     position: absolute;
-    top: calc(100% + 8px);
+    top: calc(100% + 6px);
     left: 50%;
     transform: translateX(-50%);
     background: var(--color-surface);
@@ -232,10 +231,19 @@ import { SITE_TITLE } from '../consts';
     flex-direction: column;
     gap: 2px;
   }
-  /* 데스크탑: hover로 열기 */
-  .nav-blog-wrap:hover .blog-submenu { display: flex; }
-  /* JS로 open 클래스 추가 시에도 열기 (모바일) */
+  /* 투명 브릿지: 버튼↔메뉴 사이 gap을 hover 영역으로 덮음 */
+  .blog-submenu::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -8px;
+    right: -8px;
+    height: 10px;
+  }
+  /* 클릭으로 open 클래스 토글 (데스크탑·모바일 통일) */
   .nav-blog-wrap.open .blog-submenu { display: flex; }
+  /* 화살표 회전 */
+  .nav-blog-wrap.open .blog-arrow { display: inline-block; transform: rotate(180deg); }
   .blog-submenu a {
     display: block;
     padding: 8px 12px;
@@ -283,8 +291,7 @@ import { SITE_TITLE } from '../consts';
       padding: var(--space-2) var(--space-3);
     }
     .nav-kakao svg { display: none; }
-    /* 모바일에서 드롭다운은 hover 없이 클릭으로만 */
-    .nav-blog-wrap:hover .blog-submenu { display: none; }
+    /* 모바일: open 클래스로만 열기 */
     .nav-blog-wrap.open .blog-submenu { display: flex; }
     /* 모바일 드롭다운 위치: 뷰포트 넘치지 않도록 */
     .blog-submenu {

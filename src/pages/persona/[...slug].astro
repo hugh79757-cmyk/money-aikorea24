@@ -12,6 +12,8 @@ import welfareCentral from "../../../public/welfare-central.json";
 const welfarePool = [...welfareLocal.map((x:any)=>({...x,_source:"local"})), ...welfareCentral.map((x:any)=>({...x,_source:"central"}))];
 import wageTable from '../../data/wage-table.json';
 import jobMap from '../../data/job-category-map.json';
+import decisionCardsData from '../../data/decision-cards.json';
+import DecisionCards from '../../components/DecisionCards.astro';
 export async function getStaticPaths() {
   const fs   = await import('fs');
   const path = await import('path');
@@ -25,11 +27,11 @@ export async function getStaticPaths() {
   const benefitsData = [...curatedData, ...cleanData.filter((d: any) => !curatedIds.has(d.id))];
   return Object.entries(data).map(([key, stats]) => ({
     params: { slug: key.replace(/_/g, '-') },
-    props:  { key, stats, blogMatch: blogMatchData, benefits: benefitsData }
+    props:  { key, stats, blogMatch: blogMatchData, benefits: benefitsData, decisionCardData: (decisionCardsData as any)[key] || null }
   }));
 }
 
-const { key, stats: s, blogMatch, benefits } = Astro.props;
+const { key, stats: s, blogMatch, benefits, decisionCardData } = Astro.props;
 const [region, sex, ageRaw] = key.split('_');
 
 const regionMap: Record<string,string> = {
@@ -243,7 +245,10 @@ const robotsContent = isDecade ? 'index,follow' : 'noindex,follow';
 const ogImg    = `${SITE_URL}${cardUrl}`;
 const ogImgDynamic = `https://persona.aikorea24.kr/cards/${encodeURIComponent(key)}.jpg`;
 const title    = `${dr} ${ageGroup} ${sex} · ${pType.name} | 한국인 페르소나`;
-const desc     = `${dr} ${ageGroup} ${sex} ${s.total}명 분석 — 아파트 ${aptPct}%, 대졸 ${eduPct}%, 기혼 ${marPct}%. 당신의 유형은 "${pType.name}".`;
+const dcDesc = decisionCardData
+  ? ` 복지로 가입 없이 ${dr} ${ageGroup}가 받을 수 있는 정부 지원금 ${decisionCardData.totalMatchedCount}건을 한눈에 확인하세요. 클릭 1번으로 탐색, 자세한 신청은 복지로에서.`
+  : '';
+const desc     = `${dr} ${ageGroup} ${sex} ${s.total}명 분석 — 아파트 ${aptPct}%, 대졸 ${eduPct}%, 기혼 ${marPct}%. 당신의 유형은 "${pType.name}".${dcDesc}`;
 
 /* 동적 블로그 매칭 */
 const relLinks = (() => {
@@ -759,6 +764,16 @@ const jsonLd = JSON.stringify({
 
     {matchedWelfares.length > 0 && (
       <WelfareCards welfares={matchedWelfares} region={dr} ageGroup={ageGroup} sex={sex} />
+    )}
+
+    {(ageRaw.includes('대') || ageRaw.includes('이상')) && decisionCardData && (
+      <DecisionCards
+        personaKey={key}
+        data={decisionCardData}
+        region={dr}
+        ageGroup={ageRaw}
+        sex={sex}
+      />
     )}
 
     <!-- 운세 & 타로 카드 -->

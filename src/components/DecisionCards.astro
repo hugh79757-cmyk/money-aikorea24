@@ -1,0 +1,160 @@
+---
+export interface Props {
+  personaKey: string;
+  data: any;
+  region: string;
+  ageGroup: string;
+  sex: string;
+}
+const { data: decisionData, region, ageGroup, sex } = Astro.props;
+const hasData = decisionData && decisionData.topThree && decisionData.topThree.length > 0;
+
+const topThree = hasData ? decisionData.topThree : [];
+const localHighlights = hasData && decisionData.localHighlights ? decisionData.localHighlights : [];
+const totalEligibleAnnual = hasData ? (decisionData.totalEligibleAnnual || 0) : 0;
+
+const cleanAge = ageGroup.replace('대', '').replace('이상', '');
+const showAge = cleanAge + '대';
+const visible = localHighlights.slice(0, 10);
+const hidden = localHighlights.slice(10, 20);
+const hasHidden = hidden.length > 0;
+const showSummary = totalEligibleAnnual > 0;
+const annualMan = showSummary ? Math.floor(totalEligibleAnnual / 10000) : 0;
+const annualStr = annualMan ? annualMan.toLocaleString() : '';
+
+const jsonLdItems = hasData ? [
+  ...topThree.map((card, idx) => ({
+    position: idx + 1,
+    name: card.welfare_name,
+    description: [card.agency, card.amount_display, card.eligibility_summary].filter(Boolean).join(' · ')
+  })),
+  ...visible.map((h, idx) => ({
+    position: idx + 4,
+    name: h.name,
+    description: [h.sgg, h.summary ? h.summary.slice(0, 80) : ''].filter(Boolean).join(' · ')
+  }))
+] : [];
+const jsonLd = { '@context': 'https://schema.org', '@type': 'ItemList', name: '맞춤 정부 지원금', itemListElement: jsonLdItems };
+const jsonLdStr = JSON.stringify(jsonLd);
+---
+
+{hasData && (
+<>
+<style>
+  .dd { background:#fef3c7; border:1px solid #f59e0b; border-radius:12px; padding:1rem; margin:1.5rem 0; font-size:.85rem; line-height:1.55; color:#92400e; }
+  .dd a { color:#b45309; font-weight:600; }
+  .ds { margin:2rem 0; }
+  .ds h2 { font-size:1.15rem; font-weight:800; color:#1e3a5f; margin:0 0 .35rem; }
+  .ds-sub { font-size:.9rem; color:#6b7280; margin:0 0 1rem; }
+  .dg { display:grid; gap:1rem; }
+  @media(min-width:768px){ .dg { grid-template-columns:repeat(3,1fr); } }
+  .dc { background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:1.1rem; display:flex; flex-direction:column; gap:.6rem; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  .dh { display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
+  .dr { background:linear-gradient(135deg,#d97706,#f59e0b); color:#fff; border-radius:50%; width:2rem; height:2rem; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.85rem; flex-shrink:0; }
+  .dc h3 { font-size:.92rem; font-weight:700; color:#1e3a5f; margin:0; }
+  .da { font-size:.75rem; color:#9ca3af; display:block; }
+  .dl { font-size:.65rem; background:#dbeafe; color:#1e40af; padding:.15rem .5rem; border-radius:99px; font-weight:600; margin-left:auto; }
+  .dam { background:#f0fdf4; border:1px solid #bbf7d0; border-radius:8px; padding:.5rem .75rem; font-size:.85rem; font-weight:600; color:#166534; }
+  .de { font-size:.82rem; color:#4b5563; line-height:1.5; }
+  .dap { font-size:.82rem; color:#6b7280; }
+  .dcta { display:flex; flex-direction:column; gap:.35rem; margin-top:auto; }
+  .dcp,.dcs { display:block; text-align:center; padding:.5rem .75rem; border-radius:8px; font-size:.8rem; font-weight:600; text-decoration:none; transition:background .12s; }
+  .dcp { background:#1e3a5f; color:#fff; }
+  .dcp:hover { background:#152a45; }
+  .dcs { background:#f3f4f6; color:#6b7280; }
+  .dcs:hover { background:#e5e7eb; }
+  .dcps { display:inline-block; }
+  .dlg { display:flex; flex-direction:column; gap:.65rem; }
+  .dli { display:flex; gap:.8rem; background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:.85rem 1rem; }
+  .dr2 { flex-shrink:0; width:1.6rem; font-size:.75rem; font-weight:700; color:#9ca3af; text-align:center; padding-top:.1rem; }
+  .dlb { flex:1; min-width:0; }
+  .dlh { display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; margin-bottom:.35rem; }
+  .dlh h3 { font-size:.88rem; font-weight:700; color:#1e3a5f; margin:0; }
+  .dsg { font-size:.65rem; background:#eff6ff; color:#2563eb; padding:.1rem .45rem; border-radius:99px; font-weight:600; white-space:nowrap; }
+  .dsum { font-size:.8rem; color:#6b7280; margin:0 0 .4rem; line-height:1.45; }
+  .dmeta { display:flex; flex-wrap:wrap; gap:.5rem 1rem; font-size:.75rem; color:#9ca3af; margin-bottom:.5rem; }
+  .dmore { margin-top:.25rem; }
+  .dmore summary { cursor:pointer; font-size:.85rem; font-weight:600; color:#1e3a5f; padding:.6rem; text-align:center; background:#f9fafb; border:1px dashed #d1d5db; border-radius:8px; transition:background .12s; }
+  .dmore summary:hover { background:#f3f4f6; }
+  .dmore[open] summary { background:#e5e7eb; }
+</style>
+<div class="dd">
+  <p>이 페이지는 <strong>{region} {showAge} {sex}</strong>의 통계 평균 기반 <strong>탐색 도구</strong>입니다. 실제 자격 조건은 <a href="https://www.bokjiro.go.kr" target="_blank" rel="noopener nofollow">복지로</a>에서 확인하세요.</p>
+</div>
+
+<section class="ds">
+  <h2>💰 받을 수 있는 정부 지원금 TOP 3 (금액 확정)</h2>
+  {showSummary && <p>맞춤 매칭 연 최대 <strong>{annualStr}만원</strong></p>}
+
+  <div class="dg">
+    {topThree.map((card, idx) => (
+      <article class="dc">
+        <div class="dh">
+          <span class="dr">#{idx + 1}</span>
+          <h3>{card.welfare_name}</h3>
+          <span class="da">{card.agency}</span>
+          {card.type === 'local' && <span class="dl">지역 특화</span>}
+        </div>
+        {card.amount_display && <div class="dam">📊 {card.amount_display}</div>}
+        {card.eligibility_summary && <div class="de"><strong>이런 분께 추천:</strong> {card.eligibility_summary}</div>}
+        {card.application_method && <div class="dap"><strong>신청:</strong> {card.application_method}</div>}
+        <div class="dcta">
+          {card.source_url && <a href={card.source_url} target="_blank" rel="noopener" class="dcp">이 복지 자세히 보기 → 복지로 공식 페이지</a>}
+          <a href="https://www.bokjiro.go.kr" target="_blank" rel="noopener nofollow" class="dcs">본인 정확한 자격 확인 →</a>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="ds">
+  <h2>🏛️ {region}에서 받을 수 있는 지역 특화 복지 {Math.min(localHighlights.length, 20)}건</h2>
+  <p class="ds-sub">{region} {showAge} {sex}가 신청할 수 있는 지자체 맞춤 복지를 한눈에 탐색하세요</p>
+
+  <div class="dlg">
+    {visible.map((h, idx) => (
+      <div class="dli">
+        <div class="dr2">{idx + 1}</div>
+        <div class="dlb">
+          <div class="dlh">
+            <h3>{h.name}</h3>
+            {h.sgg && <span class="dsg">{h.sgg}</span>}
+          </div>
+          {h.summary && <p class="dsum">{h.summary}</p>}
+          <div class="dmeta">
+            <span>📋 신청: {h.apply_method}</span>
+            <span>📅 주기: {h.support_cycle}</span>
+            {h.dept && <span>🏢 {h.dept}</span>}
+          </div>
+          {h.url && <a href={h.url} target="_blank" rel="noopener" class="dcp dcps">신청하기 →</a>}
+        </div>
+      </div>
+    ))}
+    {hasHidden && (
+      <details class="dmore">
+        <summary>더보기 ({hidden.length}개 펼치기) ↓</summary>
+        {hidden.map((h, idx) => (
+          <div class="dli">
+            <div class="dr2">{idx + 11}</div>
+            <div class="dlb">
+              <div class="dlh">
+                <h3>{h.name}</h3>
+                {h.sgg && <span class="dsg">{h.sgg}</span>}
+              </div>
+              {h.summary && <p class="dsum">{h.summary}</p>}
+              <div class="dmeta">
+                <span>📋 신청: {h.apply_method}</span>
+                <span>📅 주기: {h.support_cycle}</span>
+              </div>
+              {h.url && <a href={h.url} target="_blank" rel="noopener" class="dcp dcps">신청하기 →</a>}
+            </div>
+          </div>
+        ))}
+      </details>
+    )}
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={jsonLdStr}></script>
+</>
+)}

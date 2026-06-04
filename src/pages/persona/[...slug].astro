@@ -5,6 +5,7 @@ import '../../styles/tailwind.css';
 import BenefitCards from '../../components/BenefitCards.astro';
 import { getBenefitMatches } from "../../lib/benefitMatcher";
 import WelfareCards from "../../components/WelfareCards.astro";
+import PersonaBlogRecommend from '../../components/PersonaBlogRecommend.astro';
 import { matchWelfare } from "../../lib/welfareMatcher";
 import welfareLocal from "../../../public/welfare-local.json";
 import welfareCentral from "../../../public/welfare-central.json";
@@ -60,6 +61,8 @@ const eduPct  = pctOf(s.education, ['4년제 대학교','대학원']);
 const marPct  = pctOf(s.marital,   ['배우자있음']);
 const unePct  = pctOf(s.jobs,      ['무직']);
 const sngPct  = pctOf(s.family,    ['혼자 거주','혼자 거주 (배우자 별거)']);
+const isMar   = marPct >= 50;
+const isUne   = unePct >= 20;
 const incomeData = (s as any).income ?? null;
 const incomeVal  = incomeData ? incomeData.income_employed : null;  // 취업자 기준 월소득(만원)
 const incomeEst  = incomeData ? incomeData.income_estimate : null;  // 전체(무직포함) 평균
@@ -134,8 +137,6 @@ const parPct  = pctOf(s.family,    ['부모와 동거','어머니와 동거','�
 type PType = { name: string; emoji: string; desc: string };
 function detectType(): PType {
   const famPct = pctOf(s.family, ['배우자·자녀와 거주','배우자와 거주','배우자·자녀·어머니와 거주']);
-  const isMar  = marPct >= 50;
-  const isUne  = unePct >= 20;
   const bigCity = ['서울','경기','인천','부산','대구'].includes(region);
   const nonMetro = !bigCity;
   const housePct = pctOf(s.housing, ['단독주택','주택 이외의 거처']);
@@ -619,6 +620,13 @@ const jsonLd = JSON.stringify({
       <h2>💡 금융 인사이트</h2>
       <p>{insight}</p>
     </div>
+
+    <PersonaBlogRecommend
+      age={ageNum}
+      sex={sex}
+      married={isMar}
+      province={dr}
+    />
 
     <!-- 주거형태 TOP5 -->
     <div class="stat-card">

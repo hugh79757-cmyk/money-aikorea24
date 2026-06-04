@@ -31,6 +31,23 @@ allPosts.sort((a, b) => {
 const recentPosts = allPosts.slice(0, 6);
 
 import benefitsData from '../../public/benefits-clean.json';
+
+// ── 페르소나 인덱스 허브 데이터 ──
+const REGIONS = [
+  '서울', '경기', '인천', '부산', '대구', '대전', '광주', '울산', '세종',
+  '강원', '충청북', '충청남', '전북', '전라남', '경상북', '경상남', '제주'
+]; // 17개 (persona-stats.json 키와 일치: 전북⚠️, 전라남✅, 경상남✅)
+
+const GENDERS = ['남자', '여자']; // 2개
+
+const AGE_GROUPS = [
+  { label: '20대', slug: '20대' },
+  { label: '30대', slug: '30대' },
+  { label: '40대', slug: '40대' },
+  { label: '50대', slug: '50대' },
+  { label: '60대', slug: '60대' },
+  { label: '70대 이상', slug: '70대이상' },
+]; // 6개 → 총 17 × 2 × 6 = 204개
 const _today = new Date();
 function _daysLeft(d) {
   if (!d) return null;
@@ -129,6 +146,35 @@ const urgentBenefits = benefitsData
         </ul>
       </section>
     </main>
+
+    <!-- 페르소나 인덱스 허브 (SEO: 메인 → 204개 페르소나 페이지 내부 링크) -->
+    <section class="persona-index-hub" aria-label="지역별 페르소나 인덱스">
+      <div class="container">
+        <header class="hub-header">
+          <h2>지역별 한국인 페르소나 둘러보기</h2>
+          <p>17개 광역지자체 × 성별 × 연령대 — 204개 페르소나 분석</p>
+        </header>
+
+        {REGIONS.map(region => (
+          <article class="region-block">
+            <h3>{region}</h3>
+            <div class="links-grid">
+              {GENDERS.map(gender =>
+                AGE_GROUPS.map(age => (
+                  <a
+                    href={`/persona/${region}-${gender}-${age.slug}/`}
+                    class="persona-link"
+                  >
+                    {region} {gender} {age.label}
+                  </a>
+                ))
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
     <Footer />
   </body>
 </html>
@@ -363,4 +409,77 @@ const urgentBenefits = benefitsData
   .urgent-org { font-size: var(--text-xs); color: var(--color-benefit-light) }
   .urgent-dday { flex-shrink:0; background: var(--color-accent-light); color: #1a1a1a; border-radius: var(--radius-md); padding: var(--space-2) var(--space-3); font-weight: var(--font-bold); font-size: var(--text-sm); min-width:50px; text-align:center }
   .urgent-dday.red { background: var(--color-error); color: #fff; }
+
+  /* ── 페르소나 인덱스 허브 ── */
+  .persona-index-hub {
+    background: var(--color-bg-alt, #f8fafc);
+    padding: var(--space-16, 4rem) var(--space-4, 1rem);
+    margin-top: var(--space-10, 2.5rem);
+    border-top: 1px solid var(--color-border, #e5e7eb);
+  }
+  .persona-index-hub .container {
+    max-width: var(--container-xl, 1200px);
+    margin: 0 auto;
+  }
+  .hub-header {
+    margin-bottom: var(--space-10, 2.5rem);
+  }
+  .hub-header h2 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: var(--font-extrabold, 800);
+    text-align: center;
+    color: var(--color-primary, #1E3A5F);
+    margin: 0 0 var(--space-2, 0.5rem);
+    letter-spacing: var(--tracking-tight, -0.02em);
+  }
+  .hub-header p {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--color-muted, #4B5563);
+    text-align: center;
+    margin: 0;
+  }
+  .region-block {
+    margin-bottom: var(--space-8, 2rem);
+  }
+  .region-block h3 {
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: var(--font-semibold, 600);
+    color: var(--color-text-secondary, #374151);
+    margin: 0 0 var(--space-3, 0.75rem);
+    padding-left: var(--space-3, 0.75rem);
+    border-left: 4px solid var(--color-accent, #D97706);
+  }
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2, 0.5rem);
+  }
+  @media (min-width: 640px) {
+    .links-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 768px) {
+    .links-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .links-grid { grid-template-columns: repeat(6, 1fr); }
+  }
+  .persona-link {
+    display: block;
+    text-align: center;
+    font-size: var(--text-sm, 0.875rem);
+    padding: var(--space-2, 0.5rem) var(--space-3, 0.75rem);
+    border-radius: var(--radius-md, 8px);
+    background: var(--color-surface, #fff);
+    border: 1px solid var(--color-border, #e5e7eb);
+    color: var(--color-muted, #4B5563);
+    text-decoration: none;
+    transition: background var(--transition-fast, 0.15s),
+                border-color var(--transition-fast, 0.15s),
+                color var(--transition-fast, 0.15s);
+  }
+  .persona-link:hover {
+    background: rgba(217, 119, 6, 0.05);
+    border-color: var(--color-accent-light, #F59E0B);
+    color: var(--color-accent-dark, #B45309);
+  }
 </style>

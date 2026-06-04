@@ -302,51 +302,6 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
         overflow: hidden;
       }
 
-      /* ── zodiac 링크 카드 ── */
-      .zodiac-section {
-        margin: 2.5rem 0 1.5rem;
-        padding: 1.25rem;
-        background: linear-gradient(135deg, #1E3A5F, #2d5a9e);
-        border-radius: 16px;
-      }
-      .zodiac-section h3 {
-        color: #fff;
-        font-size: 0.95rem;
-        font-weight: 700;
-        margin-bottom: 0.9rem;
-        text-align: center;
-      }
-      .zodiac-cards {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-      }
-      .zodiac-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 1rem 0.6rem;
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(255,255,255,0.15);
-        border-radius: 12px;
-        text-decoration: none;
-        transition: background 0.2s;
-      }
-      .zodiac-card:hover { background: rgba(255,255,255,0.15); }
-      .zodiac-card .zc-icon  { font-size: 1.8rem; }
-      .zodiac-card .zc-title {
-        color: #fff;
-        font-size: 0.85rem;
-        font-weight: 700;
-        text-align: center;
-      }
-      .zodiac-card .zc-desc {
-        color: rgba(255,255,255,0.90);
-        font-size: 0.72rem;
-        text-align: center;
-        line-height: 1.4;
-      }
     </style>
   </head>
 
@@ -456,22 +411,7 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
 
           {isFinance && <Disclaimer />}
 
-          <!-- 오늘의 운세 & 타로 카드 -->
-          <div class="zodiac-section">
-            <h3>🔮 오늘의 운세도 확인해보세요</h3>
-            <div class="zodiac-cards">
-              <a class="zodiac-card" href="https://zodiac.techpawz.com/daily/" target="_blank" rel="noopener">
-                <span class="zc-icon">🐉</span>
-                <span class="zc-title">오늘의 띠별 운세</span>
-                <span class="zc-desc">종합운·연애운·금전운<br/>매일 업데이트</span>
-              </a>
-              <a class="zodiac-card" href="https://zodiac.techpawz.com/tarot/" target="_blank" rel="noopener">
-                <span class="zc-icon">🃏</span>
-                <span class="zc-title">오늘의 타로</span>
-                <span class="zc-desc">매일 한 장 뽑기<br/>78장 카드 해석</span>
-              </a>
-            </div>
-          </div>
+
 
         </div>
       </article>

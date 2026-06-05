@@ -70,9 +70,25 @@ def run():
             slug = slug_from_filepath(filepath)
             print(f"  [step4] 변환 완료 (slug={slug})")
 
-            # STEP 5: 썸네일 생성
+            # STEP 4.5: title 기반 중복 체크
             fm, _ = transformer.extract_frontmatter(transformed)
             title = fm.get("title", slug)
+            _dup = False
+            for _ef in os.listdir(BLOG_DIR):
+                if not _ef.endswith('.md'): continue
+                try:
+                    _ec = open(os.path.join(BLOG_DIR, _ef), encoding='utf-8').read()
+                    _efm, _ = transformer.extract_frontmatter(_ec)
+                    if _efm.get("title", "").strip() == title.strip():
+                        print(f"  [step4.5] 중복 발견: {title[:40]}... → 기존 slug 유지, 스킵")
+                        watcher.mark_done(fname, "duplicate_skip", category=category, existing_slug=_ef.replace('.md',''))
+                        _dup = True
+                        break
+                except: continue
+            if _dup:
+                continue
+
+            # STEP 5: 썸네일 생성
             thumb_path = thumbnail.generate(slug, title, category)
             print(f"  [step5] 썸네일: {os.path.basename(thumb_path)}")
 

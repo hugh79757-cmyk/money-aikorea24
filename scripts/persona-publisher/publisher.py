@@ -102,6 +102,19 @@ def run():
                 f.write(transformed)
             print(f"  [step7] 복사: {os.path.basename(dst_path)}")
 
+            # 발행 완료 파일을 inbox/YYYYMMDD/ 로 이동
+            try:
+                src_path = filepath
+                date_folder = os.path.join(os.path.dirname(src_path), datetime.now().strftime("%Y%m%d"))
+                os.makedirs(date_folder, exist_ok=True)
+                dst_path = os.path.join(date_folder, fname)
+                if os.path.exists(dst_path):
+                    os.unlink(dst_path)
+                shutil.move(src_path, dst_path)
+                print(f"  [move] {fname} → {os.path.basename(date_folder)}/")
+            except Exception as _me:
+                print(f"  [move 실패] {fname}: {_me}")
+
             published.append(fname)
             watcher.mark_done(
                 fname, "published",

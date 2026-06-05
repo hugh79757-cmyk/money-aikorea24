@@ -2,7 +2,7 @@ import os
 import json
 from datetime import datetime
 
-BLOGSMITH_OUTPUT = "/Users/twinssn/Projects/blogsmith/output/persona.aikorea24"
+BLOGSMITH_OUTPUT = "/Users/twinssn/projects/money-aikorea24/inbox"
 DONE_JSON = os.path.join(os.path.dirname(__file__), "done.json")
 
 def load_done():

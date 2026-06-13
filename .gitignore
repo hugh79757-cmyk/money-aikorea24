@@ -26,7 +26,8 @@ pnpm-debug.log*
 # 대용량 파일 제외
 public/cards/
 public/persona-bg/
-public/persona-stats.json
+# public/persona-stats.json — git 추적 중 (손상 복구 목적)
 
 # 대용량 raw 데이터 (정제본만 커밋)
 public/benefits.json
+.vercel

@@ -35,7 +35,8 @@ from shared.reviewer       import review_article
 from writer     import generate_article
 from validator  import (validate_and_fix, fill_related_posts,
                         make_slug, make_frontmatter,
-                        make_persona_cta_block)
+                        make_persona_cta_block,
+                        clean_prompt_leaks)
 from fetcher    import fetch_all as fetch_gov24
 from fetcher_loan_fin import fetch_all as fetch_finlife
 from fetcher_invest    import fetch_all as fetch_invest
@@ -99,16 +100,16 @@ def insert_inline_ctas(body: str, service: dict) -> str:
     cat = service.get("category", "general")
 
     cta2 = (
-        f"\n\n> 💰 **내가 받을 수 있는 금액은?**\n"
-        f"> 나이·소득만 입력하면 예상 금액을 계산해 드려요.\n"
+        f"\n\n> 📊 **나와 같은 조건의 사람들은 어떻게 살고 있을까?**\n"
+        f"> 나이·성별·지역만 입력하면 또래 소득·주거·직업 통계를 확인할 수 있어요.\n"
         f">\n"
-        f"> **[→ 예상 금액 계산하기](/my-persona?src=inline-amt-{cat})**\n"
+        f"> **[→ 내 페르소나 통계 보기](/my-persona?src=inline-stats-{cat})**\n"
     )
     cta1 = (
         f"\n\n> 🔥 **{label}이라면? 지금 확인하세요**\n"
-        f"> 조건에 해당하는지 30초만에 확인해 보세요.\n"
+        f"> 나와 비슷한 사람들의 평균 소득과 생활 패턴이 궁금하다면?\n"
         f">\n"
-        f"> **[→ 내 조건 확인하기](/my-persona?src=inline-cond-{cat})**\n"
+        f"> **[→ 또래 정보 확인하기](/my-persona?src=inline-peer-{cat})**\n"
     )
 
     # bottom-up 삽입 (position shift 방지)

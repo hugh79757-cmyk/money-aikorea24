@@ -34,16 +34,36 @@ FAKE_LINK_PATTERNS = [
     r'\[.*?\]\(javascript:[^\)]*\)',
 ]
 
+_PROMPT_LEAK_PATTERNS = [
+    (r'–\s*\d+~?\d*문단.*', ''),       # "– 1~2문단, 핵심 혜택" → 제거
+    (r'–\s*표\(Table\)\s*필수[^,]*', ''),  # "– 표(Table) 필수. 조건 불충분" → 제거
+]
+
 def remove_fake_links(body: str) -> str:
     for pattern in FAKE_LINK_PATTERNS:
         body = re.sub(pattern, lambda m: re.search(r'\[([^\]]+)\]', m.group()).group(1), body)
     return body
 
+def clean_prompt_leaks(body: str) -> str:
+    """SYSTEM_PROMPT 지시문이 H2 제목에 누출된 경우 제거"""
+    lines = body.split('\n')
+    cleaned = []
+    for line in lines:
+        if line.startswith('## '):
+            for pattern, repl in _PROMPT_LEAK_PATTERNS:
+                line = re.sub(pattern, repl, line)
+            line = line.strip()
+            if line == '##' or line == '## -':
+                continue
+        cleaned.append(line)
+    return '\n'.join(cleaned)
+
 def validate_and_fix(body: str, cta_url: str = None, cta_block: str = None) -> tuple[str, list]:
     issues = []
 
-    # 0. 가짜 링크 제거
+    # 0. 가짜 링크 제거 + 프롬프트 누출 제거
     body = remove_fake_links(body)
+    body = clean_prompt_leaks(body)
 
     # 1. CTA 블록 강제 삽입 (없으면 ## 마무리 직전에 삽입)
     default_block = cta_block or make_persona_cta_block(cta_url or "https://persona.aikorea24.kr/my-persona")

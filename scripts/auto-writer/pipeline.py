@@ -7,7 +7,7 @@ load_dotenv("/Users/twinssn/Projects/money-aikorea24/.env")
 load_dotenv(os.path.expanduser("~/.env.common"))
 
 BLOG_DIR     = "/Users/twinssn/Projects/money-aikorea24/src/content/blog"
-DAILY_QUOTA  = int(os.getenv("DAILY_QUOTA", "5"))
+DAILY_QUOTA  = int(os.getenv("DAILY_QUOTA", "999"))
 
 # ── 로컬 로그 설정 ──────────────────────────────────────────
 LOG_DIR  = os.path.join(os.path.dirname(__file__), "logs")
@@ -58,21 +58,21 @@ def extract_title_from_draft(body: str) -> str | None:
 _MARKER_IN_H2 = re.compile(r'\[(RELATED_POSTS|PERSONA_CTA|__MARKER_[^\]]+)\]')
 
 def build_summary_box(body: str) -> str:
-    """본문 H2 제목 추출 → '빠르게 살펴보기' 요약 박스 생성"""
+    """본문 H2 제목 추출 → 목차 박스 생성 (이모지 없음)"""
     h2s = re.findall(r'^##\s+(.+)$', body, re.MULTILINE)
     if not h2s:
         return ""
 
-    emojis = ["📌", "💰", "📋", "📞", "❓", "🔗"]
     items = []
     for i, h2 in enumerate(h2s[:6]):
         if _MARKER_IN_H2.search(h2):
             continue
-        anchor = h2.strip().replace(" ", "-").replace("?", "").lower()
-        emoji = emojis[i] if i < len(emojis) else "•"
-        items.append(f"{emoji} [{h2}](#{anchor})")
+        anchor = re.sub(r'[^\w\s가-힣]', '', h2.strip()).replace(' ', '-').lower()
+        items.append(f"- [{h2}](#{anchor})")
 
-    box = "💡 **빠르게 살펴보기**\n\n"
+    if not items:
+        return ""
+    box = "**목차**\n\n"
     for item in items:
         box += f"{item}\n"
     box += "---\n\n"
@@ -100,16 +100,16 @@ def insert_inline_ctas(body: str, service: dict) -> str:
     cat = service.get("category", "general")
 
     cta2 = (
-        f"\n\n> 📊 **나와 같은 조건의 사람들은 어떻게 살고 있을까?**\n"
-        f"> 나이·성별·지역만 입력하면 또래 소득·주거·직업 통계를 확인할 수 있어요.\n"
+        f"\n\n> **나와 같은 조건의 사람들은 어떻게 살고 있을까?**\n"
+        f"> 나이·성별·지역만 입력하면 또래 소득·주거·직업 통계를 확인할 수 있습니다.\n"
         f">\n"
-        f"> **[→ 내 페르소나 통계 보기](/my-persona?src=inline-stats-{cat})**\n"
+        f"> [내 페르소나 통계 보기 →](/my-persona?src=inline-stats-{cat})\n"
     )
     cta1 = (
-        f"\n\n> 🔥 **{label}이라면? 지금 확인하세요**\n"
+        f"\n\n> **{label}이라면? 지금 확인하세요**\n"
         f"> 나와 비슷한 사람들의 평균 소득과 생활 패턴이 궁금하다면?\n"
         f">\n"
-        f"> **[→ 또래 정보 확인하기](/my-persona?src=inline-peer-{cat})**\n"
+        f"> [또래 정보 확인하기 →](/my-persona?src=inline-peer-{cat})\n"
     )
 
     # bottom-up 삽입 (position shift 방지)

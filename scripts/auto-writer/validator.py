@@ -20,10 +20,10 @@ PERSONA_CTA_TEXTS = {
 def make_persona_cta_block(cta_url: str, persona: str = "default") -> str:
     text = PERSONA_CTA_TEXTS.get(persona, "내 또래는 어떤 혜택을 받고 있을까?")
     return (
-        f"\n\n> 💡 **{text}**\n"
+        f"\n\n> **{text}**\n"
         f"> 나이·성별·지역만 입력하면 주거·직업·소득 통계를 바로 확인할 수 있습니다.\n"
         f">\n"
-        f"> **[👉 내 페르소나 분석하기 →]({cta_url})**\n"
+        f"> [내 페르소나 분석하기 →]({cta_url})\n"
     )
 
 FAKE_LINK_PATTERNS = [

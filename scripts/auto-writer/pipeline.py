@@ -32,7 +32,7 @@ from shared.thumbnail_gen import generate as gen_thumbnail
 from shared.build_deploy   import run as deploy
 from shared.notifier       import send as notify
 from shared.reviewer       import review_article
-from writer     import generate_article
+from writer     import generate_article, proofread
 from validator  import (validate_and_fix, fill_related_posts,
                         make_slug, make_frontmatter,
                         make_persona_cta_block,
@@ -98,18 +98,19 @@ def insert_inline_ctas(body: str, service: dict) -> str:
 
     label = _inline_cta_label(service)
     cat = service.get("category", "general")
+    persona = service.get("persona", "general")
 
     cta2 = (
         f"\n\n> **나와 같은 조건의 사람들은 어떻게 살고 있을까?**\n"
         f"> 나이·성별·지역만 입력하면 또래 소득·주거·직업 통계를 확인할 수 있습니다.\n"
         f">\n"
-        f"> [내 페르소나 통계 보기 →](/my-persona?src=inline-stats-{cat})\n"
+        f"> [내 페르소나 통계 보기 →](/my-persona?src=inline-stats-{cat}-{persona})\n"
     )
     cta1 = (
         f"\n\n> **{label}이라면? 지금 확인하세요**\n"
         f"> 나와 비슷한 사람들의 평균 소득과 생활 패턴이 궁금하다면?\n"
         f">\n"
-        f"> [또래 정보 확인하기 →](/my-persona?src=inline-peer-{cat})\n"
+        f"> [또래 정보 확인하기 →](/my-persona?src=inline-peer-{cat}-{persona})\n"
     )
 
     # bottom-up 삽입 (position shift 방지)
@@ -178,6 +179,9 @@ def run(dry_run=False):
         body = result["body"]
         model_used = result.get("model", "unknown")
 
+        # 4a. 출력 후 교정기 (맞춤법·문법)
+        body = proofread(body)
+
         # 4b. LLM output → 제목 추출 (Q3)
         extracted_title = extract_title_from_draft(body)
         if extracted_title:
@@ -193,7 +197,12 @@ def run(dry_run=False):
         # 4d. 인라인 CTA 삽입 (조건 섹션 뒤 + 금리 섹션 뒤)
         body = insert_inline_ctas(body, service)
 
-        # 5. validator (CTA 강제 삽입 + 헤딩 검증)
+        # 5. reviewer (Mimo v2.5 검수 + 마커 보호/복원)
+        body, review_issues, needs_review = review_article(body, model_used)
+        if review_issues:
+            logger.info(f"[reviewer] {review_issues}")
+
+        # 5b. validator (CTA 강제 삽입 + 헤딩 검증)
         persona = service.get("persona", "default")
         cta_url = PERSONA_CTA.get(persona, PERSONA_CTA.get("default", "https://persona.aikorea24.kr/my-persona"))
         cta_block = make_persona_cta_block(cta_url, persona=persona)
@@ -203,11 +212,6 @@ def run(dry_run=False):
             continue
         if issues:
             logger.info(f"[validator] 수정됨: {issues}")
-
-        # 5b. reviewer (Mimo v2.5 검수 + 마커 보호/복원)
-        body, review_issues, needs_review = review_article(body, model_used)
-        if review_issues:
-            logger.info(f"[reviewer] {review_issues}")
 
         # 6. slug 생성
         slug = make_slug(final_title, service["service_id"])
@@ -224,7 +228,9 @@ def run(dry_run=False):
             hero_image = f"https://pub-2f5c7af1c303419a933069212bc25874.r2.dev/blog-thumbnails/default.jpg"
 
         # 9. 프론트매터 + 본문 조합
-        tags = [service["category"], service.get("persona",""), "지원금", "혜택"]
+        cat = service["category"]
+        tag_suffix = {"invest": ["투자", "ETF"], "tax": ["세금", "절세"]}.get(cat, ["지원금", "혜택"])
+        tags = [cat, service.get("persona","")] + tag_suffix
         tags = [t for t in tags if t]
         description = service.get("summary","")[:120]
         frontmatter = make_frontmatter(

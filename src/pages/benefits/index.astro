@@ -288,6 +288,8 @@ function getSummary(b: any): string {
     }
     .inline-ad ins {
       display: block !important;
+      width: 100% !important;
+      text-align: center !important;
     }
 
     @media (max-width: 600px) {
@@ -387,6 +389,8 @@ function getSummary(b: any): string {
         var ins = document.createElement('ins');
         ins.className                         = 'adsbygoogle';
         ins.style.display                     = 'block';
+        ins.style.width                       = '100%';
+        ins.style.textAlign                   = 'center';
         ins.dataset.adClient                  = 'ca-pub-5938862195544185';
         ins.dataset.adSlot                    = ''; /* TODO: AdSense 콘솔에서 발급받은 광고 단위 ID */
         ins.dataset.adFormat                  = 'auto';

@@ -216,6 +216,8 @@ import Footer from '../../components/Footer.astro';
       border-bottom: 1px solid var(--color-border);
       background: var(--color-surface);
       min-height: 90px;
+      width: 100%;
+      text-align: center;
     }
     :global(.post-ad-label) {
       position: absolute;
@@ -318,7 +320,7 @@ import Footer from '../../components/Footer.astro';
         '<div class="post-inline-ad">' +
           '<span class="post-ad-label">광고</span>' +
           '<ins class="adsbygoogle post-ad-ins"' +
-            ' style="display:block"' +
+            ' style="display:block; width:100%; text-align:center"' +
             ' data-ad-client="ca-pub-5938862195544185"' +
             ' data-ad-slot=""' + /* TODO: AdSense 콘솔에서 발급받은 광고 단위 ID */
             ' data-ad-format="auto"' +

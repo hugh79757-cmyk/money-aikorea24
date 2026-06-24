@@ -132,7 +132,7 @@ function makeSvgOverlay(key, data) {
     <rect x="${bX-4}" y="328" width="${typeLabel.length * 18 + 24}" height="32" rx="16" fill="rgba(255,255,255,0.18)"/>
     <text x="${bX + 8}" y="350" fill="#fff" font-size="17" font-weight="700" font-family="sans-serif">${typeLabel}</text>
     ${barsSvg}
-    <text x="${W/2}" y="${H-12}" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="12" font-family="sans-serif">money.aikorea24.kr/my-persona</text>
+    <text x="${W/2}" y="${H-12}" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="12" font-family="sans-serif">persona.aikorea24.kr/my-persona</text>
   </svg>`;
 }
 

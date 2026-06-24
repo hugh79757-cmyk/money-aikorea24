@@ -35,9 +35,11 @@ export async function onRequestGet({ request, env }) {
   if (!code) return Response.redirect(new URL('/?error=no_code', url.origin), 302);
 
   /* ── 환경 변수 ──────────────────────────────────────────── */
-  const KAKAO_REST_KEY = env.KAKAO_REST_KEY   || 'fac8da4c0dd8911f025dce7bf2f76f0d';
+  if (!env.KAKAO_REST_KEY) throw new Error('KAKAO_REST_KEY env var is required');
+  const KAKAO_REST_KEY = env.KAKAO_REST_KEY;
   const KAKAO_SECRET   = env.KAKAO_CLIENT_SECRET || '';
-  const SESSION_SECRET = env.SESSION_SECRET   || 'dev-secret-CHANGE-IN-PRODUCTION';
+  if (!env.SESSION_SECRET) throw new Error('SESSION_SECRET env var is required');
+  const SESSION_SECRET = env.SESSION_SECRET;
   const REDIRECT_URI   = 'https://persona.aikorea24.kr/api/auth/callback/kakao';
 
   /* ── 카카오 토큰 교환 ───────────────────────────────────── */
@@ -109,7 +111,6 @@ export async function onRequestGet({ request, env }) {
   const sessionToken = await createSessionToken(sessionPayload, SESSION_SECRET);
 
   /* ── 클라이언트 UI용 non-HttpOnly 쿠키 (이름 표시용) ──── */
-  // HttpOnly 쿠키는 JS가 읽을 수 없으므로 UI 상태용 별도 쿠키 발급
   function base64Encode(str) {
     const bytes = new TextEncoder().encode(str);
     let binary = '';
@@ -118,28 +119,18 @@ export async function onRequestGet({ request, env }) {
   }
   const uiPayload = base64Encode(JSON.stringify({ id: dbUser.id, name: dbUser.nickname }));
 
-  /* ── 응답: 임시 쿠키 클리어 + 세션 쿠키 설정 ──────────── */
-  const cookieMaxAge = 60 * 60 * 24 * 7;
-  const setCookies = [
-    'oauth_state=; Path=/; Max-Age=0; Secure; SameSite=Lax',
-    'oauth_next=; Path=/; Max-Age=0; Secure; SameSite=Lax',
-    'pending_marketing=; Path=/; Max-Age=0; Secure; SameSite=Lax',
-    // 구식 Domain=.aikorea24.kr 쿠키 무력화 (마이그레이션)
-    'session=; Path=/; Domain=.aikorea24.kr; Max-Age=0; Secure; SameSite=Lax',
-    'session_ui=; Path=/; Domain=.aikorea24.kr; Max-Age=0; Secure; SameSite=Lax',
-    `session=${sessionToken}; Path=/; Secure; HttpOnly; SameSite=Lax; Max-Age=${cookieMaxAge}`,
-    `session_ui=${uiPayload}; Path=/; Secure; SameSite=Lax; Max-Age=${cookieMaxAge}`,
-  ];
-  // 302 대신 200 + meta refresh: Cloudflare Pages의 302 Set-Cookie 드롭 우회
-  const html = `<!DOCTYPE html><html><head>
-<meta http-equiv="refresh" content="0;url=${safeNext}">
-<script>
-  document.cookie = 'session=${sessionToken}; Path=/; Secure; SameSite=Lax; Max-Age=${cookieMaxAge}';
-  document.cookie = 'session_ui=${uiPayload}; Path=/; Secure; SameSite=Lax; Max-Age=${cookieMaxAge}';
-  location.replace('${safeNext}');
-</script>
-</head><body>로그인 중...</body></html>`;
-  const headers = new Headers({ 'Content-Type': 'text/html; charset=utf-8' });
-  setCookies.forEach(c => headers.append('Set-Cookie', c));
-  return new Response(html, { status: 200, headers });
+  /* ── 응답: 302 리다이렉트 + Set-Cookie ─────────────────── */
+  const cookieMaxAge = 60 * 60 * 24;
+  const headers = new Headers({
+    'Location': safeNext,
+  });
+  headers.append('Set-Cookie', 'oauth_state=; Path=/; Max-Age=0; Secure; SameSite=Lax');
+  headers.append('Set-Cookie', 'oauth_next=; Path=/; Max-Age=0; Secure; SameSite=Lax');
+  headers.append('Set-Cookie', 'pending_marketing=; Path=/; Max-Age=0; Secure; SameSite=Lax');
+  // 구식 Domain=.aikorea24.kr 쿠키 무력화 (마이그레이션)
+  headers.append('Set-Cookie', 'session=; Path=/; Domain=.aikorea24.kr; Max-Age=0; Secure; SameSite=Lax');
+  headers.append('Set-Cookie', 'session_ui=; Path=/; Domain=.aikorea24.kr; Max-Age=0; Secure; SameSite=Lax');
+  headers.append('Set-Cookie', `session=${sessionToken}; Path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=${cookieMaxAge}`);
+  headers.append('Set-Cookie', `session_ui=${uiPayload}; Path=/; Secure; SameSite=Strict; Max-Age=${cookieMaxAge}`);
+  return new Response(null, { status: 302, headers });
 }

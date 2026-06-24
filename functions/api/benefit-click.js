@@ -1,5 +1,12 @@
+const ALLOWED_ORIGIN = 'https://persona.aikorea24.kr';
+const corsHeaders = { 'Access-Control-Allow-Origin': ALLOWED_ORIGIN, 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS' };
+
+export async function onRequestOptions() {
+  return new Response(null, { status: 204, headers: corsHeaders });
+}
+
 export async function onRequestPost({ request, env }) {
-  const H = { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' };
+  const H = { 'Content-Type': 'application/json', ...corsHeaders };
   try {
     const { benefit_id, seed } = await request.json();
     if (!benefit_id) return new Response(JSON.stringify({ error: 'benefit_id required' }), { status: 400, headers: H });
@@ -26,7 +33,7 @@ export async function onRequestPost({ request, env }) {
 }
 
 export async function onRequestGet({ request, env }) {
-  const H = { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' };
+  const H = { 'Content-Type': 'application/json', ...corsHeaders };
   const url = new URL(request.url);
   const benefit_id = url.searchParams.get('benefit_id');
   if (!benefit_id) return new Response(JSON.stringify({ error: 'benefit_id required' }), { status: 400, headers: H });

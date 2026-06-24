@@ -37,6 +37,7 @@ export async function getSession(request, env) {
   const cookie = request.headers.get('Cookie') || '';
   const match  = cookie.match(/(?:^|;\s*)session=([^;]+)/);
   if (!match) return null;
-  const secret = env.SESSION_SECRET || 'dev-secret-CHANGE-IN-PRODUCTION';
+  if (!env.SESSION_SECRET) throw new Error('SESSION_SECRET env var is required');
+  const secret = env.SESSION_SECRET;
   return verifySessionToken(decodeURIComponent(match[1]), secret);
 }

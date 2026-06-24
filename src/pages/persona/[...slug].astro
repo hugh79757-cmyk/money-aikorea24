@@ -232,8 +232,8 @@ const _ageForCard = isNaN(parseInt(ageRaw))
    : ageRaw === '50대' ? 55 : ageRaw === '60대' ? 65 : 75)
   : parseInt(ageRaw);
 const _cardKey = `${region}_${sex}_${_ageForCard}`;
-const cardUrl  = `/cards/${encodeURIComponent(_cardKey)}.jpg`;
-const mobCard  = `/cards-mobile/${encodeURIComponent(_cardKey)}.jpg`;
+const cardUrl  = `https://cards.persona.aikorea24.kr/${encodeURIComponent(_cardKey)}.jpg`;
+const mobCard  = `https://cards.persona.aikorea24.kr/cards-mobile/${encodeURIComponent(_cardKey)}.jpg`;
 const pageUrl  = `${SITE_URL}/persona/${slug}/`;
 /* SEO: 1년 페이지는 noindex + 10년 페이지로 canonical 통합 */
 const _decadeAgeStr = isDecade ? ageRaw :
@@ -243,7 +243,7 @@ const decadeSlug = `${region}-${sex}-${_decadeAgeStr}`;
 const canonicalUrl = isDecade ? pageUrl : `${SITE_URL}/persona/${decadeSlug}/`;
 const robotsContent = isDecade ? 'index,follow' : 'noindex,follow';
 const ogImg    = `${SITE_URL}${cardUrl}`;
-const ogImgDynamic = `https://persona.aikorea24.kr/cards/${encodeURIComponent(key)}.jpg`;
+const ogImgDynamic = `https://cards.persona.aikorea24.kr/${encodeURIComponent(key)}.jpg`;
 const title    = `${dr} ${ageGroup} ${sex} · ${pType.name} | 한국인 페르소나`;
 const dcDesc = decisionCardData
   ? ` 복지로 가입 없이 ${dr} ${ageGroup}가 받을 수 있는 정부 지원금 ${decisionCardData.totalMatchedCount}건을 한눈에 확인하세요. 클릭 1번으로 탐색, 자세한 신청은 복지로에서.`

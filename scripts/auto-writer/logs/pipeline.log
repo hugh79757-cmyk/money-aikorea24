@@ -1,0 +1,43 @@
+2026-06-24 01:25:29,159 [INFO] 파이프라인 시작 2026-06-24 01:25:29
+2026-06-24 01:25:29,161 [INFO] 오늘 0건 발행됨, 999건 남음
+2026-06-24 01:25:29,180 [INFO] 처리 중: 노인 무릎인공관절 수술 지원
+2026-06-24 01:25:30,300 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 01:26:39,417 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 01:26:39,436 [INFO] 제목 추출: 60세 이상 부모님 무릎 인공절 수술비 120만원 지원받는 법 총정리
+2026-06-24 01:26:39,789 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 01:26:39,790 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 01:26:40,350 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/60세-이상-부모님-무릎-인공절-수술비-120만원-지원받는-법-총정리-000113.md
+2026-06-24 01:26:40,353 [INFO] 발행 성공: 60세 이상 부모님 무릎 인공절 수술비 120만원 지원받는 법 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 01:26:40,402 [INFO] 처리 중: 저소득층 주거급여 지원
+2026-06-24 01:26:40,719 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 01:28:02,523 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 01:28:02,540 [INFO] 제목 추출: 무주택 직장인, 월세 부담 덜어주는 주거급여 자격과 혜택 완벽정리
+2026-06-24 01:28:02,572 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 01:28:02,572 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 01:28:03,005 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-월세-부담-덜어주는-주거급여-자격과-혜택-완벽정리-000140.md
+2026-06-24 01:28:03,007 [INFO] 발행 성공: 무주택 직장인, 월세 부담 덜어주는 주거급여 자격과 혜택 완벽정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 01:28:03,032 [INFO] 처리 중: 고위험 임산부 의료비 지원
+2026-06-24 01:28:03,306 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 01:29:27,343 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 01:29:27,352 [INFO] 제목 추출: 맞벌이 신혼부부를 위한 고위험 임산부 의료비 지원 혜택 및 신청법 총정리
+2026-06-24 01:29:27,361 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 01:29:27,775 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부를-위한-고위험-임산부-의료비-지원-혜택-및-신청법-총정리-000114.md
+2026-06-24 01:29:27,777 [INFO] 발행 성공: 맞벌이 신혼부부를 위한 고위험 임산부 의료비 지원 혜택 및 신청법 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 01:29:27,796 [INFO] 처리 중: 동대문구 전세피해임차인 지원(소송비용)
+2026-06-24 01:29:28,101 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 01:30:28,286 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 01:30:28,290 [INFO] 제목 추출: 동대문구 거주 직장인, 전세보증금 회수 소송비 100만원 지원받는 법 총
+2026-06-24 01:30:28,644 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 01:30:29,139 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/동대문구-거주-직장인-전세보증금-회수-소송비-100만원-지원받는-법-총정리-000275.md
+2026-06-24 01:30:29,141 [INFO] 발행 성공: 동대문구 거주 직장인, 전세보증금 회수 소송비 100만원 지원받는 법 총 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 01:30:29,158 [INFO] 처리 중: 동대문구 전세피해임차인 지원(주거안정자금)
+2026-06-24 01:30:29,444 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 01:31:30,409 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 01:31:30,413 [INFO] 제목 추출: 동대문구 거주 직장인, 전세사기 주거안정금 100만 원 받는 법 총정리
+2026-06-24 01:31:30,420 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 01:31:30,912 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/동대문구-거주-직장인-전세사기-주거안정금-100만-원-받는-법-총정리-000276.md
+2026-06-24 01:31:30,913 [INFO] 발행 성공: 동대문구 거주 직장인, 전세사기 주거안정금 100만 원 받는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 01:31:30,937 [INFO] 처리 중: 인플루엔자 국가예방접종 지원
+2026-06-24 01:31:31,221 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 01:33:06,094 [INFO] Retrying request to /chat/completions in 0.458909 seconds
+2026-06-24 01:34:36,780 [INFO] Retrying request to /chat/completions in 0.775051 seconds

@@ -211,6 +211,7 @@
     --color-warning-bg: #78350f;
     --color-error: #f87171;        /* 다크모드: 밝은 빨강 (가독성) */
     --color-error-bg: #7f1d1d;
+    --color-info: #93c5fd;
     --color-info-bg: #1e3a8a;
 
     /* Brand - 다크모드용 */
@@ -265,6 +266,7 @@
   --color-warning-bg: #78350f;
   --color-error: #f87171;          /* 다크모드: 밝은 빨강 (가독성) */
   --color-error-bg: #7f1d1d;
+  --color-info: #93c5fd;
   --color-info-bg: #1e3a8a;
 
   /* Brand - 다크모드용 */

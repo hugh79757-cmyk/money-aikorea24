@@ -232,9 +232,11 @@ def build_and_deploy(count: int) -> bool:
 
 def _deploy(count: int) -> bool:
     """wrangler pages deploy"""
-    # money-aikorea24/.env의 CLOUDFLARE 토큰 주입 (oauth_token 만료 대응)
-    from dotenv import load_dotenv as _ldenv
-    _ldenv(os.path.join(PROJECT_DIR, ".env"), override=True)
+    # .env → .env.common 폴백 로드 (Cloudflare 토큰 등)
+    import sys
+    from pathlib import Path as _Path
+    sys.path.insert(0, str(_Path(__file__).resolve().parent.parent))
+    from load_env import env as _env
     _deploy_env = os.environ.copy()
     _cf_token = os.getenv("CLOUDFLARE_API_TOKEN", "")
     _cf_account = os.getenv("CLOUDFLARE_ACCOUNT_ID", "")

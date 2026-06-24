@@ -2,6 +2,8 @@ import re
 import os
 from datetime import date
 
+import r2_upload
+
 
 def extract_frontmatter(text: str) -> tuple[dict, str]:
     if not text.startswith("---"):
@@ -82,7 +84,7 @@ def transform(filepath: str, category: str, needs_review: bool) -> str:
     if "date" in fm:
         fm["pubDate"] = fm.pop("date")
     elif "pubDate" not in fm:
-        fm["pubDate"] = date_from_filename(filepath)
+        fm["pubDate"] = str(date.today())
 
     fm["draft"] = False
     fm.pop("source_file", None)
@@ -91,7 +93,7 @@ def transform(filepath: str, category: str, needs_review: bool) -> str:
     if needs_review:
         fm["needs_review"] = True
     fm["updatedDate"] = str(date.today())
-    fm["heroImage"] = f"/blog-thumbnails/{slug}.jpg"
+    fm["heroImage"] = r2_upload.get_public_url(slug)
     if "tags" not in fm:
         fm["tags"] = []
 

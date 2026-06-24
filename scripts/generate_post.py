@@ -13,6 +13,11 @@ import json
 import os
 import re
 import sys
+from pathlib import Path
+
+# .env → .env.common 폴백 로드
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from load_env import env  # noqa: F401
 import urllib.request
 import urllib.parse
 from datetime import datetime, timezone, timedelta

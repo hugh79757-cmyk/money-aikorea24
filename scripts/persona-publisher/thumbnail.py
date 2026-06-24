@@ -1,16 +1,19 @@
 import os
+import random
 import textwrap
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance
+
+import r2_upload
 
 THUMBNAIL_DIR = "/Users/twinssn/projects/money-aikorea24/public/blog-thumbnails"
 BG_DIR = "/Users/twinssn/Projects/money-aikorea24/public/bg_img"
 
-CATEGORY_BG = {
-    "insurance": "bg_seoul_30.jpeg",
-    "invest":    "bg_gyeonggi_40.jpeg",
-    "loan":      "bg_seoul_20.jpeg",
-    "tax":       "bg_seoul_60.jpeg",
-    "general":   "bg_gangwon_all.jpeg",
+CATEGORY_BG_POOL = {
+    "insurance": ["bg_seoul_30.jpeg", "bg_single_50.jpeg"],
+    "invest":    ["bg_gyeonggi_40.jpeg", "bg_general_01.jpeg", "bg_general_02.jpeg"],
+    "loan":      ["bg_seoul_20.jpeg", "bg_busan_all.jpeg", "bg_rural_50.jpeg"],
+    "tax":       ["bg_seoul_60.jpeg", "bg_single_20.jpeg", "bg_general_03.jpeg"],
+    "general":   ["bg_gangwon_all.jpeg", "bg_jeju_all.jpeg", "bg_general_04.jpeg", "bg_general_05.jpeg"],
 }
 
 CATEGORY_LABELS = {
@@ -54,8 +57,9 @@ def generate(slug: str, title: str, category: str) -> str:
     if os.path.exists(out_path):
         return out_path
 
-    # 배경 이미지 로드
-    bg_file = CATEGORY_BG.get(category, "bg_gangwon_all.jpeg")
+    # 배경 이미지 로드 (풀에서 랜덤 선택)
+    pool = CATEGORY_BG_POOL.get(category, ["bg_gangwon_all.jpeg"])
+    bg_file = random.choice(pool)
     bg_path = os.path.join(BG_DIR, bg_file)
     if os.path.exists(bg_path):
         img = Image.open(bg_path).convert("RGB").resize((SIZE, SIZE))
@@ -120,4 +124,8 @@ def generate(slug: str, title: str, category: str) -> str:
     )
 
     img.save(out_path, "JPEG", quality=90)
+
+    # R2 업로드
+    r2_upload.upload_file(out_path, slug)
+
     return out_path

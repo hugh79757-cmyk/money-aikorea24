@@ -19,10 +19,11 @@ html, body {
   overflow-x: hidden;
 }
 
-/* AdSense 자동광고가 가로 스크롤 유발하는 것 방지 */
+/* AdSense 수동 광고 공통 정렬 */
 ins.adsbygoogle {
-  max-width: 100% !important;
-  overflow: hidden;
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
 }
 
 body {

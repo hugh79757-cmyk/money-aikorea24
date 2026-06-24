@@ -4,11 +4,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { XMLParser } from 'fast-xml-parser';
 
+// .env → .env.common 폴백 로드
+import '../lib/env-loader.ts';
+
 const ROOT = path.resolve(import.meta.dirname, '..');
-const ENV_PATH = path.join(ROOT, '.env');
-const envText = fs.readFileSync(ENV_PATH, 'utf8');
-const KEY = envText.match(/^DATA_GO_KR_API_KEY\s*=\s*(.+)$/m)?.[1]?.trim().replace(/^["']|["']$/g, '');
-if (!KEY) { console.error('DATA_GO_KR_API_KEY not found in .env'); process.exit(1); }
+const KEY = process.env.DATA_GO_KR_API_KEY || '';
+if (!KEY) { console.error('DATA_GO_KR_API_KEY not found'); process.exit(1); }
 
 const parser = new XMLParser({ ignoreAttributes: true, parseTagValue: false });
 const PAGE_SIZE = 500;

@@ -12,6 +12,10 @@ from datetime import datetime
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, SCRIPT_DIR)
 
+# .env → .env.common 폴백 로드 (모든 하위 모듈이 사용)
+sys.path.insert(0, os.path.join(SCRIPT_DIR, ".."))
+from load_env import env  # noqa: F401
+
 BLOG_DIR = "/Users/twinssn/projects/money-aikorea24/src/content/blog"
 
 import watcher
@@ -20,6 +24,7 @@ import classifier
 import transformer
 import thumbnail
 import entity_injector
+import validator
 import deployer
 
 
@@ -69,6 +74,20 @@ def run():
             transformed = transformer.transform(filepath, category, needs_review)
             slug = slug_from_filepath(filepath)
             print(f"  [step4] 변환 완료 (slug={slug})")
+
+            # STEP 4.1: slug 정규화 (NFD → NFC, 공백 → 하이픈)
+            normalized_slug = validator.normalize_slug(slug)
+            if normalized_slug != slug:
+                print(f"  [step4.1] slug 정규화: '{slug}' → '{normalized_slug}'")
+                slug = normalized_slug
+
+            # STEP 4.2: frontmatter 타입 검증 + auto-fix
+            validated_content, fixes = validator.validate_and_fix_content(transformed)
+            if fixes:
+                print(f"  [step4.2] auto-fix 적용 ({len(fixes)}건):")
+                for f in fixes:
+                    print(f"    - {f}")
+                transformed = validated_content
 
             # STEP 4.5: title 기반 중복 체크
             fm, _ = transformer.extract_frontmatter(transformed)

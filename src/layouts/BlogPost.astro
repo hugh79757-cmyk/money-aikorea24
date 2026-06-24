@@ -165,12 +165,14 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
       .prose :global(th),
       .prose :global(td) {
         padding: 0.4rem 0.5rem;
-        border: 1px solid #e2e8f0;
+        border: 1px solid var(--color-border-light);
         white-space: nowrap;
+        color: var(--color-text);
       }
       .prose :global(th) {
-        background: #f1f5f9;
+        background: var(--color-code-bg);
         font-weight: 700;
+        color: var(--color-text);
       }
       @media (min-width: 640px) {
         .prose :global(h2) { font-size: 1.5rem; }
@@ -339,7 +341,7 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
 
           {/* ── 상단 광고 (목차 위) ── */}
           <ins class="adsbygoogle"
-            style="display:block; margin: 0.5rem 0 1.25rem;"
+            style="display:block; width:100%; text-align:center; margin: 0.5rem 0 1.25rem;"
             data-ad-client="ca-pub-5938862195544185"
             data-ad-slot="8107272066"
             data-ad-format="auto"
@@ -363,7 +365,7 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
 
           {/* ── 중간 광고 (본문 끝, 관련 글 위) ── */}
           <ins class="adsbygoogle"
-            style="display:block; margin: 1.5rem 0;"
+            style="display:block; width:100%; text-align:center; margin: 1.5rem 0;"
             data-ad-client="ca-pub-5938862195544185"
             data-ad-slot="8107272066"
             data-ad-format="auto"
@@ -388,14 +390,14 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
 
           <!-- 광고 -->
           <ins class="adsbygoogle"
-            style="display:block; margin: 1.5rem 0;"
+            style="display:block; width:100%; text-align:center; margin: 1.5rem 0;"
             data-ad-client="ca-pub-5938862195544185"
             data-ad-slot="8107272066"
             data-ad-format="auto"
             data-full-width-responsive="true"></ins>
           <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-          <a class="entity-card" href="/my-persona" style="display:block;background:linear-gradient(135deg,#6B4226,#E8A87C);border-radius:16px;padding:1.25rem 1.5rem;margin:1.5rem 0;text-decoration:none;color:#fff;">
+          <a class="entity-card" href={`/my-persona?src=blog-card-${resolvedCategory}`} style="display:block;background:linear-gradient(135deg,#6B4226,#E8A87C);border-radius:16px;padding:1.25rem 1.5rem;margin:1.5rem 0;text-decoration:none;color:#fff;">
             <div style="font-size:.85rem;font-weight:700;opacity:.85;margin-bottom:.4rem;">📊 700만 한국인 데이터 분석</div>
             <div style="font-size:1.1rem;font-weight:800;line-height:1.4;margin-bottom:.6rem;">
               {resolvedCategory === 'loan' && '나와 같은 조건 한국인 중 몇 %가 전세에 살까?'}

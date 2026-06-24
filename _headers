@@ -1,0 +1,10 @@
+/*
+  X-Frame-Options: DENY
+  Content-Security-Policy: frame-ancestors 'none'; default-src 'self'; script-src 'self' 'unsafe-inline' https://developers.kakao.com; connect-src 'self' https://kapi.kakao.com https://kauth.kakao.com; img-src 'self' data: https:;
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+/api/*
+  Access-Control-Allow-Origin: https://persona.aikorea24.kr
+  Access-Control-Allow-Methods: GET, POST, OPTIONS

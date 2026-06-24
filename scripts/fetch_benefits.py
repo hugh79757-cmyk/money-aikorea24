@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 import json, os, re, time, urllib.request, urllib.parse
 from collections import Counter
+from pathlib import Path
 
-API_KEY = os.environ.get('DATA_GO_KR_API_KEY', '')
+# .env → .env.common 폴백 로드
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from load_env import env
+
+API_KEY = env('DATA_GO_KR_API_KEY', '')
 BASE_URL = 'https://api.odcloud.kr/api/gov24/v3/serviceDetail'
 OUT_FILE = 'public/benefits.json'
 PER_PAGE = 100

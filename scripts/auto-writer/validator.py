@@ -78,6 +78,9 @@ def validate_and_fix(body: str, cta_url: str = None, cta_block: str = None) -> t
     if "[PERSONA_CTA]" in body:
         body = body.replace("[PERSONA_CTA]", default_block)
 
+    # LLM이 마커 옆에 붙여 쓴 bare persona URL 제거 (?src= 포함)
+    body = re.sub(r'^https?://persona\.aikorea24\.kr/my-persona(?:\?[^\s]*)?\s*$', '', body, flags=re.MULTILINE)
+
     # 2. 헤딩 구조 검증
     for heading in REQUIRED_HEADINGS:
         if heading not in body:

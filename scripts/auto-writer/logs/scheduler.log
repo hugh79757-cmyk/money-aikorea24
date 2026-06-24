@@ -1,0 +1,1025 @@
+2026-06-23 12:11:24,021 [INFO] [DRY-RUN] 스케줄러 시작
+2026-06-23 12:11:24,685 [INFO] 파이프라인 시작 2026-06-23 12:11:24
+2026-06-23 12:11:24,686 [INFO] 오늘 1건 발행됨, 4건 남음
+2026-06-23 12:11:24,705 [INFO] 처리 중: 수산동물질병 예방백신 공급 지원
+2026-06-23 12:11:24,705 [INFO] [DRY] 글쓰기 스킵 | category=insurance | persona=general
+2026-06-23 12:11:24,716 [INFO] 처리 중: 수산동물질병 예방백신 공급 지원
+2026-06-23 12:11:24,716 [INFO] [DRY] 글쓰기 스킵 | category=insurance | persona=general
+2026-06-23 12:11:24,724 [INFO] 처리 중: 수산동물질병 예방백신 공급 지원
+2026-06-23 12:11:24,724 [INFO] [DRY] 글쓰기 스킵 | category=insurance | persona=general
+2026-06-23 12:11:24,731 [INFO] 처리 중: 수산동물질병 예방백신 공급 지원
+2026-06-23 12:11:24,731 [INFO] [DRY] 글쓰기 스킵 | category=insurance | persona=general
+2026-06-23 12:11:24,731 [INFO] 발행 없음
+2026-06-23 12:11:24,731 [INFO] 파이프라인 종료 2026-06-23 12:11:24
+2026-06-23 12:11:24,731 [INFO] 스케줄러 정상 종료
+2026-06-23 12:21:18,399 [INFO] [DRY-RUN] 스케줄러 시작
+2026-06-23 12:21:19,010 [INFO] 파이프라인 시작 2026-06-23 12:21:19
+2026-06-23 12:21:19,011 [INFO] 오늘 1건 발행됨, 4건 남음
+2026-06-23 12:21:19,028 [INFO] 처리 중: 수산동물질병 예방백신 공급 지원
+2026-06-23 12:21:19,028 [INFO] [DRY] 글쓰기 스킵 | category=insurance | persona=general
+2026-06-23 12:21:19,031 [INFO] 처리 중: 수산동물질병 예방백신 공급 지원
+2026-06-23 12:21:19,031 [INFO] [DRY] 글쓰기 스킵 | category=insurance | persona=general
+2026-06-23 12:21:19,034 [INFO] 처리 중: 수산동물질병 예방백신 공급 지원
+2026-06-23 12:21:19,034 [INFO] [DRY] 글쓰기 스킵 | category=insurance | persona=general
+2026-06-23 12:21:19,037 [INFO] 처리 중: 수산동물질병 예방백신 공급 지원
+2026-06-23 12:21:19,037 [INFO] [DRY] 글쓰기 스킵 | category=insurance | persona=general
+2026-06-23 12:21:19,037 [INFO] 발행 없음
+2026-06-23 12:21:19,037 [INFO] 파이프라인 종료 2026-06-23 12:21:19
+2026-06-23 12:21:19,037 [INFO] 스케줄러 정상 종료
+2026-06-24 09:00:05,440 [INFO] 스케줄러 시작
+2026-06-24 09:00:06,168 [INFO] 파이프라인 시작 2026-06-24 09:00:06
+2026-06-24 09:00:06,170 [INFO] 오늘 5건 발행됨, 994건 남음
+2026-06-24 09:00:06,192 [INFO] 처리 중: 인플루엔자 국가예방접종 지원
+2026-06-24 09:00:07,277 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:01:41,091 [INFO] Retrying request to /chat/completions in 0.379249 seconds
+2026-06-24 09:03:07,397 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:03:07,422 [INFO] 제목 추출: 맞벌이 신혼부부를 위한 인플루엔자 국가예방접종 대상 및 시기 총정리
+2026-06-24 09:03:07,864 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))', '마커 fallback 삽입']
+2026-06-24 09:03:07,866 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 09:03:08,786 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부를-위한-인플루엔자-국가예방접종-대상-및-시기-총정리-000115.md
+2026-06-24 09:03:08,790 [INFO] 발행 성공: 맞벌이 신혼부부를 위한 인플루엔자 국가예방접종 대상 및 시기 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:03:08,821 [INFO] 처리 중: 코스피 소형주 지수 시세 (20260622)
+2026-06-24 09:03:09,109 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:04:35,420 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:04:35,429 [INFO] 제목 추출: 2040 직장인, 코스피 소형주 지수 하락에 대응하는 투자 전략 총정리
+2026-06-24 09:04:35,439 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:04:35,440 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 09:04:35,963 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/2040-직장인-코스피-소형주-지수-하락에-대응하는-투자-전략-총정리-260622.md
+2026-06-24 09:04:35,967 [INFO] 발행 성공: 2040 직장인, 코스피 소형주 지수 하락에 대응하는 투자 전략 총정리 | invest | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:04:36,000 [INFO] 처리 중: 무더위 안전숙소 운영
+2026-06-24 09:04:36,305 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:05:39,929 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:05:39,936 [INFO] 제목 추출: 40대 무주택 직장인, 여름철 폭염 대비 무더위 안전숙소 혜택 총정리
+2026-06-24 09:05:39,945 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:05:39,946 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:05:40,443 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/40대-무주택-직장인-여름철-폭염-대비-무더위-안전숙소-혜택-총정리-000127.md
+2026-06-24 09:05:40,446 [INFO] 발행 성공: 40대 무주택 직장인, 여름철 폭염 대비 무더위 안전숙소 혜택 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:05:40,478 [INFO] 처리 중: 원산지검증 대응 지원
+2026-06-24 09:05:40,848 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:06:47,008 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:06:47,017 [INFO] 제목 추출: 3040 수출 직장인을 위한 2025 원산지검증 대응 컨설팅 지원사업 총
+2026-06-24 09:06:47,033 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:06:47,033 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:06:47,634 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/3040-수출-직장인을-위한-2025-원산지검증-대응-컨설팅-지원사업-총정리-000003.md
+2026-06-24 09:06:47,637 [INFO] 발행 성공: 3040 수출 직장인을 위한 2025 원산지검증 대응 컨설팅 지원사업 총 | general | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:06:47,666 [INFO] 처리 중: 학교 흡연예방 사업
+2026-06-24 09:06:47,972 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:08:03,855 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:08:03,871 [INFO] 제목 추출: 맞벌이 신혼부부 자녀를 위한 학교 흡연예방 교육 및 혜택 총정리
+2026-06-24 09:08:03,885 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:08:04,432 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-자녀를-위한-학교-흡연예방-교육-및-혜택-총정리-000116.md
+2026-06-24 09:08:04,436 [INFO] 발행 성공: 맞벌이 신혼부부 자녀를 위한 학교 흡연예방 교육 및 혜택 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:08:04,469 [INFO] 처리 중: 도전숙 입주자 모집
+2026-06-24 09:08:04,765 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:09:24,079 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:09:24,090 [INFO] 제목 추출: 무주택 직장인, 월세 아끼고 창업 공간까지 얻는 '성북구 도전숙' 총정리
+2026-06-24 09:09:24,105 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:09:24,107 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 09:09:24,639 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-월세-아끼고-창업-공간까지-얻는-성북구-도전숙-총정리-000167.md
+2026-06-24 09:09:24,643 [INFO] 발행 성공: 무주택 직장인, 월세 아끼고 창업 공간까지 얻는 '성북구 도전숙' 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:09:24,678 [INFO] 처리 중: 성북구 전세사기피해자 지원
+2026-06-24 09:09:25,056 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:10:52,410 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:10:52,420 [INFO] 제목 추출: 성북구 직장인, 전세사기 피해 이사비와 소송비 지원 혜택 총정리
+2026-06-24 09:10:52,429 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:10:52,429 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:10:52,902 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/성북구-직장인-전세사기-피해-이사비와-소송비-지원-혜택-총정리-000220.md
+2026-06-24 09:10:52,949 [INFO] 발행 성공: 성북구 직장인, 전세사기 피해 이사비와 소송비 지원 혜택 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:10:52,984 [INFO] 처리 중: 치매 상담콜센터 운영
+2026-06-24 09:10:53,393 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:12:10,241 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:12:10,248 [INFO] 제목 추출: 맞벌이 신혼부부, 부모님 치매 걱정 덜어주는 국가 상담 서비스 활용법 총
+2026-06-24 09:12:10,257 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:12:10,257 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:12:10,735 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-부모님-치매-걱정-덜어주는-국가-상담-서비스-활용법-총정리-000124.md
+2026-06-24 09:12:10,737 [INFO] 발행 성공: 맞벌이 신혼부부, 부모님 치매 걱정 덜어주는 국가 상담 서비스 활용법 총 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:12:10,770 [INFO] 처리 중: 코스피 중형주 지수 시세 (20260622)
+2026-06-24 09:12:11,060 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:13:40,820 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:13:40,830 [INFO] 제목 추출: 3040 직장인, 코스피 중형주 하락장에서 내 포트폴리오 지키는 법 총정
+2026-06-24 09:13:40,838 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:13:40,838 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 09:13:41,359 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/3040-직장인-코스피-중형주-하락장에서-내-포트폴리오-지키는-법-총정리-260622.md
+2026-06-24 09:13:41,362 [INFO] 발행 성공: 3040 직장인, 코스피 중형주 하락장에서 내 포트폴리오 지키는 법 총정 | invest | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:13:41,393 [INFO] 처리 중: 찾아가는 맞춤형 주거환경 개선 지원
+2026-06-24 09:13:41,685 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:14:51,327 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:14:51,337 [INFO] 제목 추출: 무주택 직장인, 강북구 맞춤형 주거환경 개선 혜택 챙기는 법 총정리
+2026-06-24 09:14:51,345 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:14:51,346 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:14:51,832 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-강북구-맞춤형-주거환경-개선-혜택-챙기는-법-총정리-000125.md
+2026-06-24 09:14:51,835 [INFO] 발행 성공: 무주택 직장인, 강북구 맞춤형 주거환경 개선 혜택 챙기는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:14:51,875 [INFO] 처리 중: 치매 치료관리비 지원
+2026-06-24 09:14:52,187 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:16:07,452 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:16:07,462 [INFO] 제목 추출: 맞벌이 신혼부부 부모님 치매 치료비 월 3만 원 지원 혜택 받는 법 총정
+2026-06-24 09:16:07,472 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:16:07,473 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:16:07,933 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-부모님-치매-치료비-월-3만-원-지원-혜택-받는-법-총정리-000125.md
+2026-06-24 09:16:07,936 [INFO] 발행 성공: 맞벌이 신혼부부 부모님 치매 치료비 월 3만 원 지원 혜택 받는 법 총정 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:16:07,970 [INFO] 처리 중: 아동복지시설 만기퇴소 청소년 자립정착금 지원
+2026-06-24 09:16:08,406 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:17:27,237 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:17:27,244 [INFO] 제목 추출: 3040 직장인 자녀를 둔 부모라면, 자립정착금 200만원 챙기는 법 총
+2026-06-24 09:17:27,253 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))', '마커 fallback 삽입']
+2026-06-24 09:17:27,254 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:17:27,732 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/3040-직장인-자녀를-둔-부모라면-자립정착금-200만원-챙기는-법-총정리-000101.md
+2026-06-24 09:17:27,735 [INFO] 발행 성공: 3040 직장인 자녀를 둔 부모라면, 자립정착금 200만원 챙기는 법 총 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:17:27,768 [INFO] 처리 중: 취약계층 무료 법률서비스 제공(법률홈닥터 변호사)
+2026-06-24 09:17:28,143 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:17:33,040 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:19:05,930 [INFO] Retrying request to /chat/completions in 0.478216 seconds
+2026-06-24 09:19:06,565 [INFO] Retrying request to /chat/completions in 0.823128 seconds
+2026-06-24 09:19:07,536 [INFO] 제목 추출: 30대 직장인, 법적 분쟁 시 변호사 비용 걱정 없는 법률홈닥터 총정리
+2026-06-24 09:19:07,545 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:19:07,546 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 09:19:17,156 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-법적-분쟁-시-변호사-비용-걱정-없는-법률홈닥터-총정리-000002.md
+2026-06-24 09:19:17,160 [INFO] 발행 성공: 30대 직장인, 법적 분쟁 시 변호사 비용 걱정 없는 법률홈닥터 총정리 | general | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:19:17,191 [INFO] 처리 중: 저장장애가구 주거환경개선 지원
+2026-06-24 09:19:17,208 [INFO] Retrying request to /chat/completions in 0.384807 seconds
+2026-06-24 09:19:17,737 [INFO] Retrying request to /chat/completions in 0.896318 seconds
+2026-06-24 09:19:19,934 [INFO] Retrying request to /chat/completions in 0.394532 seconds
+2026-06-24 09:19:20,476 [INFO] Retrying request to /chat/completions in 0.898422 seconds
+2026-06-24 09:19:21,534 [INFO] Retrying request to /chat/completions in 0.402205 seconds
+2026-06-24 09:19:22,070 [INFO] Retrying request to /chat/completions in 0.905176 seconds
+2026-06-24 09:19:23,144 [INFO] Retrying request to /chat/completions in 0.475538 seconds
+2026-06-24 09:19:23,766 [INFO] Retrying request to /chat/completions in 0.930739 seconds
+2026-06-24 09:19:24,853 [WARNING] [WARN] GPT 실패: 저장장애가구 주거환경개선 지원
+2026-06-24 09:19:24,858 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:19:24,874 [INFO] 처리 중: 중증장애인 자립생활 지원(장애인 활동지원 구비추가)
+2026-06-24 09:19:24,885 [INFO] Retrying request to /chat/completions in 0.417801 seconds
+2026-06-24 09:19:25,310 [INFO] Retrying request to /chat/completions in 0.847645 seconds
+2026-06-24 09:19:27,465 [INFO] Retrying request to /chat/completions in 0.376163 seconds
+2026-06-24 09:19:27,953 [INFO] Retrying request to /chat/completions in 0.798844 seconds
+2026-06-24 09:19:28,883 [INFO] Retrying request to /chat/completions in 0.423961 seconds
+2026-06-24 09:19:29,451 [INFO] Retrying request to /chat/completions in 0.869662 seconds
+2026-06-24 09:19:30,480 [INFO] Retrying request to /chat/completions in 0.398306 seconds
+2026-06-24 09:19:31,023 [INFO] Retrying request to /chat/completions in 0.985441 seconds
+2026-06-24 09:19:32,155 [WARNING] [WARN] GPT 실패: 중증장애인 자립생활 지원(장애인 활동지원 구비추가)
+2026-06-24 09:19:32,159 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:19:32,178 [INFO] 처리 중: 전문멘토 - 언제든 기댈 수 있는 어른
+2026-06-24 09:19:32,189 [INFO] Retrying request to /chat/completions in 0.483224 seconds
+2026-06-24 09:19:32,819 [INFO] Retrying request to /chat/completions in 0.987511 seconds
+2026-06-24 09:19:35,116 [INFO] Retrying request to /chat/completions in 0.396476 seconds
+2026-06-24 09:19:35,660 [INFO] Retrying request to /chat/completions in 0.999601 seconds
+2026-06-24 09:19:36,827 [INFO] Retrying request to /chat/completions in 0.482896 seconds
+2026-06-24 09:19:37,464 [INFO] Retrying request to /chat/completions in 0.804800 seconds
+2026-06-24 09:19:38,436 [INFO] Retrying request to /chat/completions in 0.405188 seconds
+2026-06-24 09:19:38,917 [INFO] Retrying request to /chat/completions in 0.939305 seconds
+2026-06-24 09:19:39,955 [WARNING] [WARN] GPT 실패: 전문멘토 - 언제든 기댈 수 있는 어른
+2026-06-24 09:19:39,958 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:19:39,975 [INFO] 처리 중: 찾아가는 「감정평가사 상담제」 운영
+2026-06-24 09:19:39,986 [INFO] Retrying request to /chat/completions in 0.405364 seconds
+2026-06-24 09:19:40,541 [INFO] Retrying request to /chat/completions in 0.991190 seconds
+2026-06-24 09:19:42,835 [INFO] Retrying request to /chat/completions in 0.384699 seconds
+2026-06-24 09:19:43,343 [INFO] Retrying request to /chat/completions in 0.886251 seconds
+2026-06-24 09:19:44,395 [INFO] Retrying request to /chat/completions in 0.436037 seconds
+2026-06-24 09:19:44,972 [INFO] Retrying request to /chat/completions in 0.815428 seconds
+2026-06-24 09:19:45,953 [INFO] Retrying request to /chat/completions in 0.383751 seconds
+2026-06-24 09:19:46,420 [INFO] Retrying request to /chat/completions in 0.775830 seconds
+2026-06-24 09:19:47,339 [WARNING] [WARN] GPT 실패: 찾아가는 「감정평가사 상담제」 운영
+2026-06-24 09:19:47,342 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:19:47,358 [INFO] 처리 중: 장애인 동료 상담 지원
+2026-06-24 09:19:47,369 [INFO] Retrying request to /chat/completions in 0.470242 seconds
+2026-06-24 09:19:47,985 [INFO] Retrying request to /chat/completions in 0.868815 seconds
+2026-06-24 09:19:50,150 [INFO] Retrying request to /chat/completions in 0.431416 seconds
+2026-06-24 09:19:50,733 [INFO] Retrying request to /chat/completions in 0.806620 seconds
+2026-06-24 09:19:51,707 [INFO] Retrying request to /chat/completions in 0.488572 seconds
+2026-06-24 09:19:52,349 [INFO] Retrying request to /chat/completions in 0.892768 seconds
+2026-06-24 09:19:53,402 [INFO] Retrying request to /chat/completions in 0.447426 seconds
+2026-06-24 09:19:54,001 [INFO] Retrying request to /chat/completions in 0.807832 seconds
+2026-06-24 09:19:54,940 [WARNING] [WARN] GPT 실패: 장애인 동료 상담 지원
+2026-06-24 09:19:54,943 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:19:54,961 [INFO] 처리 중: 주거안정자금 융자(입주보증금 지원)
+2026-06-24 09:19:54,972 [INFO] Retrying request to /chat/completions in 0.432351 seconds
+2026-06-24 09:19:55,552 [INFO] Retrying request to /chat/completions in 0.863010 seconds
+2026-06-24 09:19:57,716 [INFO] Retrying request to /chat/completions in 0.435264 seconds
+2026-06-24 09:19:58,302 [INFO] Retrying request to /chat/completions in 0.972002 seconds
+2026-06-24 09:19:59,435 [INFO] Retrying request to /chat/completions in 0.413616 seconds
+2026-06-24 09:19:59,999 [INFO] Retrying request to /chat/completions in 0.840761 seconds
+2026-06-24 09:20:01,007 [INFO] Retrying request to /chat/completions in 0.495287 seconds
+2026-06-24 09:20:01,656 [INFO] Retrying request to /chat/completions in 0.866882 seconds
+2026-06-24 09:20:02,640 [WARNING] [WARN] GPT 실패: 주거안정자금 융자(입주보증금 지원)
+2026-06-24 09:20:02,644 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:20:02,664 [INFO] 처리 중: 서울시 전세보증금 반환보증 보증료 지원
+2026-06-24 09:20:02,675 [INFO] Retrying request to /chat/completions in 0.448442 seconds
+2026-06-24 09:20:03,269 [INFO] Retrying request to /chat/completions in 0.841198 seconds
+2026-06-24 09:20:05,410 [INFO] Retrying request to /chat/completions in 0.403941 seconds
+2026-06-24 09:20:05,954 [INFO] Retrying request to /chat/completions in 0.853207 seconds
+2026-06-24 09:20:06,952 [INFO] Retrying request to /chat/completions in 0.435452 seconds
+2026-06-24 09:20:07,539 [INFO] Retrying request to /chat/completions in 0.972377 seconds
+2026-06-24 09:20:08,673 [INFO] Retrying request to /chat/completions in 0.454716 seconds
+2026-06-24 09:20:09,266 [INFO] Retrying request to /chat/completions in 0.771983 seconds
+2026-06-24 09:20:10,190 [WARNING] [WARN] GPT 실패: 서울시 전세보증금 반환보증 보증료 지원
+2026-06-24 09:20:10,193 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:20:10,208 [INFO] 처리 중: 장애인 주거환경 개선 지원
+2026-06-24 09:20:10,220 [INFO] Retrying request to /chat/completions in 0.434594 seconds
+2026-06-24 09:20:10,804 [INFO] Retrying request to /chat/completions in 0.911228 seconds
+2026-06-24 09:20:13,022 [INFO] Retrying request to /chat/completions in 0.473087 seconds
+2026-06-24 09:20:13,644 [INFO] Retrying request to /chat/completions in 0.763992 seconds
+2026-06-24 09:20:14,576 [INFO] Retrying request to /chat/completions in 0.418484 seconds
+2026-06-24 09:20:15,128 [INFO] Retrying request to /chat/completions in 0.822114 seconds
+2026-06-24 09:20:16,111 [INFO] Retrying request to /chat/completions in 0.491298 seconds
+2026-06-24 09:20:16,753 [INFO] Retrying request to /chat/completions in 0.876194 seconds
+2026-06-24 09:20:17,771 [WARNING] [WARN] GPT 실패: 장애인 주거환경 개선 지원
+2026-06-24 09:20:17,776 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:20:17,794 [INFO] 처리 중: 저소득주민 무료중개서비스 대상자 지원
+2026-06-24 09:20:17,805 [INFO] Retrying request to /chat/completions in 0.375002 seconds
+2026-06-24 09:20:18,295 [INFO] Retrying request to /chat/completions in 0.800864 seconds
+2026-06-24 09:20:20,364 [INFO] Retrying request to /chat/completions in 0.449811 seconds
+2026-06-24 09:20:20,908 [INFO] Retrying request to /chat/completions in 0.931697 seconds
+2026-06-24 09:20:21,998 [INFO] Retrying request to /chat/completions in 0.384748 seconds
+2026-06-24 09:20:22,527 [INFO] Retrying request to /chat/completions in 0.981527 seconds
+2026-06-24 09:20:23,679 [INFO] Retrying request to /chat/completions in 0.451760 seconds
+2026-06-24 09:20:24,284 [INFO] Retrying request to /chat/completions in 0.885829 seconds
+2026-06-24 09:20:25,327 [WARNING] [WARN] GPT 실패: 저소득주민 무료중개서비스 대상자 지원
+2026-06-24 09:20:25,331 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:20:25,346 [INFO] 처리 중: 강서 생활민원기동대 서비스
+2026-06-24 09:20:25,357 [INFO] Retrying request to /chat/completions in 0.403817 seconds
+2026-06-24 09:20:25,887 [INFO] Retrying request to /chat/completions in 0.779911 seconds
+2026-06-24 09:20:27,955 [INFO] Retrying request to /chat/completions in 0.450760 seconds
+2026-06-24 09:20:28,559 [INFO] Retrying request to /chat/completions in 0.911868 seconds
+2026-06-24 09:20:29,635 [INFO] Retrying request to /chat/completions in 0.472292 seconds
+2026-06-24 09:20:30,174 [INFO] Retrying request to /chat/completions in 0.821864 seconds
+2026-06-24 09:20:31,161 [INFO] Retrying request to /chat/completions in 0.472166 seconds
+2026-06-24 09:20:31,773 [INFO] Retrying request to /chat/completions in 0.992356 seconds
+2026-06-24 09:20:32,922 [WARNING] [WARN] GPT 실패: 강서 생활민원기동대 서비스
+2026-06-24 09:20:32,926 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:20:32,942 [INFO] 처리 중: 구로형 자립정착금
+2026-06-24 09:20:32,952 [INFO] Retrying request to /chat/completions in 0.478410 seconds
+2026-06-24 09:20:33,581 [INFO] Retrying request to /chat/completions in 0.800995 seconds
+2026-06-24 09:20:35,664 [INFO] Retrying request to /chat/completions in 0.452630 seconds
+2026-06-24 09:20:36,213 [INFO] Retrying request to /chat/completions in 0.762583 seconds
+2026-06-24 09:20:37,138 [INFO] Retrying request to /chat/completions in 0.464566 seconds
+2026-06-24 09:20:37,752 [INFO] Retrying request to /chat/completions in 0.807943 seconds
+2026-06-24 09:20:38,720 [INFO] Retrying request to /chat/completions in 0.439297 seconds
+2026-06-24 09:20:39,308 [INFO] Retrying request to /chat/completions in 0.834565 seconds
+2026-06-24 09:20:40,296 [WARNING] [WARN] GPT 실패: 구로형 자립정착금
+2026-06-24 09:20:40,299 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:20:40,316 [INFO] 처리 중: 구로구 전세사기피해지원금(보증료) 지원
+2026-06-24 09:20:40,327 [INFO] Retrying request to /chat/completions in 0.470414 seconds
+2026-06-24 09:20:40,936 [INFO] Retrying request to /chat/completions in 0.942051 seconds
+2026-06-24 09:20:43,114 [INFO] Retrying request to /chat/completions in 0.439949 seconds
+2026-06-24 09:20:43,706 [INFO] Retrying request to /chat/completions in 0.973845 seconds
+2026-06-24 09:20:44,849 [INFO] Retrying request to /chat/completions in 0.442894 seconds
+2026-06-24 09:20:45,439 [INFO] Retrying request to /chat/completions in 0.801711 seconds
+2026-06-24 09:20:46,392 [INFO] Retrying request to /chat/completions in 0.415127 seconds
+2026-06-24 09:20:46,912 [INFO] Retrying request to /chat/completions in 0.805489 seconds
+2026-06-24 09:20:47,872 [WARNING] [WARN] GPT 실패: 구로구 전세사기피해지원금(보증료) 지원
+2026-06-24 09:20:47,877 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:20:47,891 [INFO] 처리 중: 구로구 전세사기피해지원금(이사비) 지원
+2026-06-24 09:20:47,903 [INFO] Retrying request to /chat/completions in 0.387355 seconds
+2026-06-24 09:20:48,414 [INFO] Retrying request to /chat/completions in 0.894455 seconds
+2026-06-24 09:20:50,550 [INFO] Retrying request to /chat/completions in 0.483995 seconds
+2026-06-24 09:20:51,171 [INFO] Retrying request to /chat/completions in 0.980776 seconds
+2026-06-24 09:20:52,309 [INFO] Retrying request to /chat/completions in 0.486956 seconds
+2026-06-24 09:20:52,936 [INFO] Retrying request to /chat/completions in 0.894002 seconds
+2026-06-24 09:20:53,989 [INFO] Retrying request to /chat/completions in 0.429624 seconds
+2026-06-24 09:20:54,569 [INFO] Retrying request to /chat/completions in 0.788237 seconds
+2026-06-24 09:20:55,515 [WARNING] [WARN] GPT 실패: 구로구 전세사기피해지원금(이사비) 지원
+2026-06-24 09:20:55,520 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:20:55,537 [INFO] 처리 중: 구로구 전세사기피해지원금(월세) 지원
+2026-06-24 09:20:55,548 [INFO] Retrying request to /chat/completions in 0.444097 seconds
+2026-06-24 09:20:56,142 [INFO] Retrying request to /chat/completions in 0.959940 seconds
+2026-06-24 09:20:58,415 [INFO] Retrying request to /chat/completions in 0.464675 seconds
+2026-06-24 09:20:59,016 [INFO] Retrying request to /chat/completions in 0.832371 seconds
+2026-06-24 09:20:59,916 [INFO] Retrying request to /chat/completions in 0.414171 seconds
+2026-06-24 09:21:00,469 [INFO] Retrying request to /chat/completions in 0.911059 seconds
+2026-06-24 09:21:01,547 [INFO] Retrying request to /chat/completions in 0.436113 seconds
+2026-06-24 09:21:02,136 [INFO] Retrying request to /chat/completions in 0.811968 seconds
+2026-06-24 09:21:03,102 [WARNING] [WARN] GPT 실패: 구로구 전세사기피해지원금(월세) 지원
+2026-06-24 09:21:03,106 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:21:03,123 [INFO] 처리 중: 학교 밖 청소년 검정고시 합격축하금 지원
+2026-06-24 09:21:03,133 [INFO] Retrying request to /chat/completions in 0.464196 seconds
+2026-06-24 09:21:03,752 [INFO] Retrying request to /chat/completions in 0.785254 seconds
+2026-06-24 09:21:05,855 [INFO] Retrying request to /chat/completions in 0.393178 seconds
+2026-06-24 09:21:06,388 [INFO] Retrying request to /chat/completions in 0.926573 seconds
+2026-06-24 09:21:07,475 [INFO] Retrying request to /chat/completions in 0.441118 seconds
+2026-06-24 09:21:08,069 [INFO] Retrying request to /chat/completions in 0.890545 seconds
+2026-06-24 09:21:09,126 [INFO] Retrying request to /chat/completions in 0.376607 seconds
+2026-06-24 09:21:09,653 [INFO] Retrying request to /chat/completions in 0.965035 seconds
+2026-06-24 09:21:10,772 [WARNING] [WARN] GPT 실패: 학교 밖 청소년 검정고시 합격축하금 지원
+2026-06-24 09:21:10,776 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:21:10,792 [INFO] 처리 중: 금천구 전세피해 지원사업(소송수행경비)
+2026-06-24 09:21:10,803 [INFO] Retrying request to /chat/completions in 0.465692 seconds
+2026-06-24 09:21:11,422 [INFO] Retrying request to /chat/completions in 0.868436 seconds
+2026-06-24 09:21:13,595 [INFO] Retrying request to /chat/completions in 0.493632 seconds
+2026-06-24 09:21:14,236 [INFO] Retrying request to /chat/completions in 0.944218 seconds
+2026-06-24 09:21:15,345 [INFO] Retrying request to /chat/completions in 0.425143 seconds
+2026-06-24 09:21:15,918 [INFO] Retrying request to /chat/completions in 0.986860 seconds
+2026-06-24 09:21:17,063 [INFO] Retrying request to /chat/completions in 0.443362 seconds
+2026-06-24 09:21:17,654 [INFO] Retrying request to /chat/completions in 0.972244 seconds
+2026-06-24 09:21:18,783 [WARNING] [WARN] GPT 실패: 금천구 전세피해 지원사업(소송수행경비)
+2026-06-24 09:21:18,787 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:21:18,801 [INFO] 처리 중: 금천구 전세피해 지원사업(주거안정비)
+2026-06-24 09:21:18,812 [INFO] Retrying request to /chat/completions in 0.411735 seconds
+2026-06-24 09:21:19,368 [INFO] Retrying request to /chat/completions in 0.834457 seconds
+2026-06-24 09:21:21,512 [INFO] Retrying request to /chat/completions in 0.400286 seconds
+2026-06-24 09:21:22,062 [INFO] Retrying request to /chat/completions in 0.969943 seconds
+2026-06-24 09:21:23,186 [INFO] Retrying request to /chat/completions in 0.486817 seconds
+2026-06-24 09:21:23,825 [INFO] Retrying request to /chat/completions in 0.894470 seconds
+2026-06-24 09:21:24,888 [INFO] Retrying request to /chat/completions in 0.445477 seconds
+2026-06-24 09:21:25,468 [INFO] Retrying request to /chat/completions in 0.806700 seconds
+2026-06-24 09:21:26,412 [WARNING] [WARN] GPT 실패: 금천구 전세피해 지원사업(주거안정비)
+2026-06-24 09:21:26,416 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:21:26,435 [INFO] 처리 중: 청년 중개보수 감면 사업
+2026-06-24 09:21:26,447 [INFO] Retrying request to /chat/completions in 0.449412 seconds
+2026-06-24 09:21:27,040 [INFO] Retrying request to /chat/completions in 0.823546 seconds
+2026-06-24 09:21:29,179 [INFO] Retrying request to /chat/completions in 0.477449 seconds
+2026-06-24 09:21:29,801 [INFO] Retrying request to /chat/completions in 0.857414 seconds
+2026-06-24 09:21:30,787 [INFO] Retrying request to /chat/completions in 0.395298 seconds
+2026-06-24 09:21:31,335 [INFO] Retrying request to /chat/completions in 0.979179 seconds
+2026-06-24 09:21:32,469 [INFO] Retrying request to /chat/completions in 0.450213 seconds
+2026-06-24 09:21:33,069 [INFO] Retrying request to /chat/completions in 0.858334 seconds
+2026-06-24 09:21:34,080 [WARNING] [WARN] GPT 실패: 청년 중개보수 감면 사업
+2026-06-24 09:21:34,084 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:21:34,102 [INFO] 처리 중: 동작구 미혼모부 자립지원비
+2026-06-24 09:21:34,113 [INFO] Retrying request to /chat/completions in 0.493667 seconds
+2026-06-24 09:21:34,759 [INFO] Retrying request to /chat/completions in 0.783405 seconds
+2026-06-24 09:21:36,844 [INFO] Retrying request to /chat/completions in 0.477911 seconds
+2026-06-24 09:21:37,463 [INFO] Retrying request to /chat/completions in 0.923205 seconds
+2026-06-24 09:21:38,545 [INFO] Retrying request to /chat/completions in 0.419395 seconds
+2026-06-24 09:21:39,117 [INFO] Retrying request to /chat/completions in 0.899222 seconds
+2026-06-24 09:21:40,184 [INFO] Retrying request to /chat/completions in 0.415640 seconds
+2026-06-24 09:21:40,753 [INFO] Retrying request to /chat/completions in 0.954100 seconds
+2026-06-24 09:21:41,860 [WARNING] [WARN] GPT 실패: 동작구 미혼모부 자립지원비
+2026-06-24 09:21:41,864 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:21:41,884 [INFO] 처리 중: 서리풀 희망사다리 프로젝트 자립준비청년(보호종료아동) 자립정착금 지원
+2026-06-24 09:21:41,896 [INFO] Retrying request to /chat/completions in 0.493690 seconds
+2026-06-24 09:21:42,536 [INFO] Retrying request to /chat/completions in 0.911323 seconds
+2026-06-24 09:21:44,754 [INFO] Retrying request to /chat/completions in 0.477409 seconds
+2026-06-24 09:21:45,384 [INFO] Retrying request to /chat/completions in 0.891691 seconds
+2026-06-24 09:21:46,437 [INFO] Retrying request to /chat/completions in 0.444521 seconds
+2026-06-24 09:21:47,033 [INFO] Retrying request to /chat/completions in 0.837722 seconds
+2026-06-24 09:21:48,040 [INFO] Retrying request to /chat/completions in 0.433674 seconds
+2026-06-24 09:21:48,621 [INFO] Retrying request to /chat/completions in 0.782283 seconds
+2026-06-24 09:21:49,527 [WARNING] [WARN] GPT 실패: 서리풀 희망사다리 프로젝트 자립준비청년(보호종료아동) 
+2026-06-24 09:21:49,530 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:21:49,545 [INFO] 처리 중: 서리풀 희망사다리 프로젝트 자립준비청년(보호종료아동) 자립컨설팅 지원
+2026-06-24 09:21:49,554 [INFO] Retrying request to /chat/completions in 0.446239 seconds
+2026-06-24 09:21:50,142 [INFO] Retrying request to /chat/completions in 0.776138 seconds
+2026-06-24 09:21:52,248 [INFO] Retrying request to /chat/completions in 0.416274 seconds
+2026-06-24 09:21:52,769 [INFO] Retrying request to /chat/completions in 0.842562 seconds
+2026-06-24 09:21:53,746 [INFO] Retrying request to /chat/completions in 0.377345 seconds
+2026-06-24 09:21:54,275 [INFO] Retrying request to /chat/completions in 0.841886 seconds
+2026-06-24 09:21:55,293 [INFO] Retrying request to /chat/completions in 0.420244 seconds
+2026-06-24 09:21:55,859 [INFO] Retrying request to /chat/completions in 0.767084 seconds
+2026-06-24 09:21:56,782 [WARNING] [WARN] GPT 실패: 서리풀 희망사다리 프로젝트 자립준비청년(보호종료아동) 
+2026-06-24 09:21:56,798 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:21:56,828 [INFO] 처리 중: 송파구 전세사기피해자등 지원사업
+2026-06-24 09:21:56,842 [INFO] Retrying request to /chat/completions in 0.436820 seconds
+2026-06-24 09:21:57,321 [INFO] Retrying request to /chat/completions in 0.809376 seconds
+2026-06-24 09:21:59,440 [INFO] Retrying request to /chat/completions in 0.418715 seconds
+2026-06-24 09:22:00,006 [INFO] Retrying request to /chat/completions in 0.960600 seconds
+2026-06-24 09:22:01,120 [INFO] Retrying request to /chat/completions in 0.406588 seconds
+2026-06-24 09:22:01,670 [INFO] Retrying request to /chat/completions in 0.877382 seconds
+2026-06-24 09:22:02,713 [INFO] Retrying request to /chat/completions in 0.390364 seconds
+2026-06-24 09:22:03,253 [INFO] Retrying request to /chat/completions in 0.979264 seconds
+2026-06-24 09:22:04,394 [WARNING] [WARN] GPT 실패: 송파구 전세사기피해자등 지원사업
+2026-06-24 09:22:04,402 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:22:04,425 [INFO] 처리 중: 거주시설 퇴소장애인 자립정착금 지원
+2026-06-24 09:22:04,436 [INFO] Retrying request to /chat/completions in 0.389440 seconds
+2026-06-24 09:22:04,895 [INFO] Retrying request to /chat/completions in 0.878250 seconds
+2026-06-24 09:22:07,055 [INFO] Retrying request to /chat/completions in 0.458827 seconds
+2026-06-24 09:22:07,659 [INFO] Retrying request to /chat/completions in 0.891358 seconds
+2026-06-24 09:22:08,711 [INFO] Retrying request to /chat/completions in 0.390007 seconds
+2026-06-24 09:22:09,235 [INFO] Retrying request to /chat/completions in 0.924705 seconds
+2026-06-24 09:22:10,330 [INFO] Retrying request to /chat/completions in 0.382821 seconds
+2026-06-24 09:22:10,861 [INFO] Retrying request to /chat/completions in 0.915693 seconds
+2026-06-24 09:22:11,932 [WARNING] [WARN] GPT 실패: 거주시설 퇴소장애인 자립정착금 지원
+2026-06-24 09:22:11,941 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:22:11,964 [INFO] 처리 중: 동구 학교 밖 청소년 검정고시 합격축하금 지원
+2026-06-24 09:22:11,970 [INFO] Retrying request to /chat/completions in 0.495830 seconds
+2026-06-24 09:22:12,613 [INFO] Retrying request to /chat/completions in 0.794128 seconds
+2026-06-24 09:22:14,709 [INFO] Retrying request to /chat/completions in 0.491744 seconds
+2026-06-24 09:22:15,353 [INFO] Retrying request to /chat/completions in 0.915645 seconds
+2026-06-24 09:22:16,403 [INFO] Retrying request to /chat/completions in 0.429173 seconds
+2026-06-24 09:22:16,987 [INFO] Retrying request to /chat/completions in 0.847519 seconds
+2026-06-24 09:22:17,978 [INFO] Retrying request to /chat/completions in 0.499028 seconds
+2026-06-24 09:22:18,625 [INFO] Retrying request to /chat/completions in 0.847878 seconds
+2026-06-24 09:22:19,631 [WARNING] [WARN] GPT 실패: 동구 학교 밖 청소년 검정고시 합격축하금 지원
+2026-06-24 09:22:19,639 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:22:19,661 [INFO] 처리 중: 주거급여 (맞춤형 급여)
+2026-06-24 09:22:19,673 [INFO] Retrying request to /chat/completions in 0.482413 seconds
+2026-06-24 09:22:20,166 [INFO] Retrying request to /chat/completions in 0.983223 seconds
+2026-06-24 09:22:22,453 [INFO] Retrying request to /chat/completions in 0.423272 seconds
+2026-06-24 09:22:23,020 [INFO] Retrying request to /chat/completions in 0.794225 seconds
+2026-06-24 09:22:23,976 [INFO] Retrying request to /chat/completions in 0.491824 seconds
+2026-06-24 09:22:24,617 [INFO] Retrying request to /chat/completions in 0.861201 seconds
+2026-06-24 09:22:25,640 [INFO] Retrying request to /chat/completions in 0.416356 seconds
+2026-06-24 09:22:26,202 [INFO] Retrying request to /chat/completions in 0.901728 seconds
+2026-06-24 09:22:27,261 [WARNING] [WARN] GPT 실패: 주거급여 (맞춤형 급여)
+2026-06-24 09:22:27,265 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:22:27,284 [INFO] 처리 중: 참전유공자 사망위로금 지급
+2026-06-24 09:22:27,294 [INFO] Retrying request to /chat/completions in 0.447524 seconds
+2026-06-24 09:22:27,892 [INFO] Retrying request to /chat/completions in 0.879610 seconds
+2026-06-24 09:22:30,082 [INFO] Retrying request to /chat/completions in 0.398114 seconds
+2026-06-24 09:22:30,633 [INFO] Retrying request to /chat/completions in 0.884572 seconds
+2026-06-24 09:22:31,684 [INFO] Retrying request to /chat/completions in 0.383443 seconds
+2026-06-24 09:22:32,219 [INFO] Retrying request to /chat/completions in 0.964582 seconds
+2026-06-24 09:22:33,349 [INFO] Retrying request to /chat/completions in 0.460455 seconds
+2026-06-24 09:22:33,956 [INFO] Retrying request to /chat/completions in 0.799583 seconds
+2026-06-24 09:22:34,911 [WARNING] [WARN] GPT 실패: 참전유공자 사망위로금 지급
+2026-06-24 09:22:34,915 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:22:34,934 [INFO] 처리 중: 무주택 다자녀가구 전세자금 대출이자 지원
+2026-06-24 09:22:34,947 [INFO] Retrying request to /chat/completions in 0.380330 seconds
+2026-06-24 09:22:35,480 [INFO] Retrying request to /chat/completions in 0.801647 seconds
+2026-06-24 09:22:37,460 [INFO] Retrying request to /chat/completions in 0.424477 seconds
+2026-06-24 09:22:38,036 [INFO] Retrying request to /chat/completions in 0.831608 seconds
+2026-06-24 09:22:39,035 [INFO] Retrying request to /chat/completions in 0.379343 seconds
+2026-06-24 09:22:39,534 [INFO] Retrying request to /chat/completions in 0.924719 seconds
+2026-06-24 09:22:40,624 [INFO] Retrying request to /chat/completions in 0.385433 seconds
+2026-06-24 09:22:41,160 [INFO] Retrying request to /chat/completions in 0.852155 seconds
+2026-06-24 09:22:42,161 [WARNING] [WARN] GPT 실패: 무주택 다자녀가구 전세자금 대출이자 지원
+2026-06-24 09:22:42,164 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:22:42,182 [INFO] 처리 중: 청년 신혼부부 주거자금 대출이자 지원
+2026-06-24 09:22:42,193 [INFO] Retrying request to /chat/completions in 0.397581 seconds
+2026-06-24 09:22:42,730 [INFO] Retrying request to /chat/completions in 0.785459 seconds
+2026-06-24 09:22:44,830 [INFO] Retrying request to /chat/completions in 0.485467 seconds
+2026-06-24 09:22:45,452 [INFO] Retrying request to /chat/completions in 0.829010 seconds
+2026-06-24 09:22:46,447 [INFO] Retrying request to /chat/completions in 0.468087 seconds
+2026-06-24 09:22:47,062 [INFO] Retrying request to /chat/completions in 0.855798 seconds
+2026-06-24 09:22:48,081 [INFO] Retrying request to /chat/completions in 0.479803 seconds
+2026-06-24 09:22:48,706 [INFO] Retrying request to /chat/completions in 0.753802 seconds
+2026-06-24 09:22:49,616 [WARNING] [WARN] GPT 실패: 청년 신혼부부 주거자금 대출이자 지원
+2026-06-24 09:22:49,620 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:22:49,640 [INFO] 처리 중: 기초생활수급세대 대형폐기물 처리 수수료 지원
+2026-06-24 09:22:49,654 [INFO] Retrying request to /chat/completions in 0.414696 seconds
+2026-06-24 09:22:50,217 [INFO] Retrying request to /chat/completions in 0.960114 seconds
+2026-06-24 09:22:52,486 [INFO] Retrying request to /chat/completions in 0.473204 seconds
+2026-06-24 09:22:52,984 [INFO] Retrying request to /chat/completions in 0.898552 seconds
+2026-06-24 09:22:54,043 [INFO] Retrying request to /chat/completions in 0.468565 seconds
+2026-06-24 09:22:54,655 [INFO] Retrying request to /chat/completions in 0.875253 seconds
+2026-06-24 09:22:55,688 [INFO] Retrying request to /chat/completions in 0.392194 seconds
+2026-06-24 09:22:56,233 [INFO] Retrying request to /chat/completions in 0.928571 seconds
+2026-06-24 09:22:57,307 [WARNING] [WARN] GPT 실패: 기초생활수급세대 대형폐기물 처리 수수료 지원
+2026-06-24 09:22:57,311 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:22:57,326 [INFO] 처리 중: 저소득 중증장애인 교통비 지원
+2026-06-24 09:22:57,337 [INFO] Retrying request to /chat/completions in 0.437662 seconds
+2026-06-24 09:22:57,928 [INFO] Retrying request to /chat/completions in 0.817359 seconds
+2026-06-24 09:23:00,037 [INFO] Retrying request to /chat/completions in 0.467490 seconds
+2026-06-24 09:23:00,633 [INFO] Retrying request to /chat/completions in 0.859391 seconds
+2026-06-24 09:23:01,660 [INFO] Retrying request to /chat/completions in 0.397532 seconds
+2026-06-24 09:23:02,202 [INFO] Retrying request to /chat/completions in 0.893068 seconds
+2026-06-24 09:23:03,265 [INFO] Retrying request to /chat/completions in 0.439632 seconds
+2026-06-24 09:23:03,852 [INFO] Retrying request to /chat/completions in 0.825040 seconds
+2026-06-24 09:23:04,808 [WARNING] [WARN] GPT 실패: 저소득 중증장애인 교통비 지원
+2026-06-24 09:23:04,813 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:23:04,829 [INFO] 처리 중: 청년 부동산중개보수 및 이사비 지원사업
+2026-06-24 09:23:04,840 [INFO] Retrying request to /chat/completions in 0.393582 seconds
+2026-06-24 09:23:05,361 [INFO] Retrying request to /chat/completions in 0.933359 seconds
+2026-06-24 09:23:07,610 [INFO] Retrying request to /chat/completions in 0.386352 seconds
+2026-06-24 09:23:08,148 [INFO] Retrying request to /chat/completions in 0.792634 seconds
+2026-06-24 09:23:09,111 [INFO] Retrying request to /chat/completions in 0.458326 seconds
+2026-06-24 09:23:09,719 [INFO] Retrying request to /chat/completions in 0.874030 seconds
+2026-06-24 09:23:10,749 [INFO] Retrying request to /chat/completions in 0.420922 seconds
+2026-06-24 09:23:11,321 [INFO] Retrying request to /chat/completions in 0.750133 seconds
+2026-06-24 09:23:12,222 [WARNING] [WARN] GPT 실패: 청년 부동산중개보수 및 이사비 지원사업
+2026-06-24 09:23:12,226 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:23:12,243 [INFO] 처리 중: 모자보호시설 퇴소자 자립정착금 지원
+2026-06-24 09:23:12,254 [INFO] Retrying request to /chat/completions in 0.392845 seconds
+2026-06-24 09:23:12,800 [INFO] Retrying request to /chat/completions in 0.914210 seconds
+2026-06-24 09:23:15,006 [INFO] Retrying request to /chat/completions in 0.388162 seconds
+2026-06-24 09:23:15,547 [INFO] Retrying request to /chat/completions in 0.790583 seconds
+2026-06-24 09:23:16,497 [INFO] Retrying request to /chat/completions in 0.417351 seconds
+2026-06-24 09:23:17,066 [INFO] Retrying request to /chat/completions in 0.940416 seconds
+2026-06-24 09:23:18,175 [INFO] Retrying request to /chat/completions in 0.438244 seconds
+2026-06-24 09:23:18,766 [INFO] Retrying request to /chat/completions in 0.765804 seconds
+2026-06-24 09:23:19,689 [WARNING] [WARN] GPT 실패: 모자보호시설 퇴소자 자립정착금 지원
+2026-06-24 09:23:19,694 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:23:19,711 [INFO] 처리 중: 지역사회서비스투자사업
+2026-06-24 09:23:19,722 [INFO] Retrying request to /chat/completions in 0.461600 seconds
+2026-06-24 09:23:20,337 [INFO] Retrying request to /chat/completions in 0.978125 seconds
+2026-06-24 09:23:22,598 [INFO] Retrying request to /chat/completions in 0.435331 seconds
+2026-06-24 09:23:23,176 [INFO] Retrying request to /chat/completions in 0.774420 seconds
+2026-06-24 09:23:24,117 [INFO] Retrying request to /chat/completions in 0.494042 seconds
+2026-06-24 09:23:24,762 [INFO] Retrying request to /chat/completions in 0.908686 seconds
+2026-06-24 09:23:25,827 [INFO] Retrying request to /chat/completions in 0.391123 seconds
+2026-06-24 09:23:26,360 [INFO] Retrying request to /chat/completions in 0.919731 seconds
+2026-06-24 09:23:27,433 [WARNING] [WARN] GPT 실패: 지역사회서비스투자사업
+2026-06-24 09:23:27,437 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:23:27,451 [INFO] 처리 중: 국가유공자 및 유족 의료비 지원
+2026-06-24 09:23:27,461 [INFO] Retrying request to /chat/completions in 0.384680 seconds
+2026-06-24 09:23:27,999 [INFO] Retrying request to /chat/completions in 0.874249 seconds
+2026-06-24 09:23:30,170 [INFO] Retrying request to /chat/completions in 0.426434 seconds
+2026-06-24 09:23:30,748 [INFO] Retrying request to /chat/completions in 0.815226 seconds
+2026-06-24 09:23:31,689 [INFO] Retrying request to /chat/completions in 0.472134 seconds
+2026-06-24 09:23:32,286 [INFO] Retrying request to /chat/completions in 0.881681 seconds
+2026-06-24 09:23:33,332 [INFO] Retrying request to /chat/completions in 0.466378 seconds
+2026-06-24 09:23:33,947 [INFO] Retrying request to /chat/completions in 0.968852 seconds
+2026-06-24 09:23:35,072 [WARNING] [WARN] GPT 실패: 국가유공자 및 유족 의료비 지원
+2026-06-24 09:23:35,076 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:23:35,092 [INFO] 처리 중: 중증장애인 자립생활가정(주택) 지원
+2026-06-24 09:23:35,102 [INFO] Retrying request to /chat/completions in 0.471354 seconds
+2026-06-24 09:23:35,727 [INFO] Retrying request to /chat/completions in 0.974170 seconds
+2026-06-24 09:23:37,988 [INFO] Retrying request to /chat/completions in 0.494668 seconds
+2026-06-24 09:23:38,636 [INFO] Retrying request to /chat/completions in 0.888984 seconds
+2026-06-24 09:23:39,687 [INFO] Retrying request to /chat/completions in 0.498569 seconds
+2026-06-24 09:23:40,337 [INFO] Retrying request to /chat/completions in 0.877881 seconds
+2026-06-24 09:23:41,367 [INFO] Retrying request to /chat/completions in 0.437817 seconds
+2026-06-24 09:23:41,948 [INFO] Retrying request to /chat/completions in 0.848102 seconds
+2026-06-24 09:23:42,944 [WARNING] [WARN] GPT 실패: 중증장애인 자립생활가정(주택) 지원
+2026-06-24 09:23:42,947 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:23:42,960 [INFO] 처리 중: 자립준비청년 자립정착금
+2026-06-24 09:23:42,970 [INFO] Retrying request to /chat/completions in 0.464950 seconds
+2026-06-24 09:23:43,577 [INFO] Retrying request to /chat/completions in 0.935016 seconds
+2026-06-24 09:23:45,725 [INFO] Retrying request to /chat/completions in 0.449673 seconds
+2026-06-24 09:23:46,327 [INFO] Retrying request to /chat/completions in 0.826022 seconds
+2026-06-24 09:23:47,289 [INFO] Retrying request to /chat/completions in 0.380034 seconds
+2026-06-24 09:23:47,818 [INFO] Retrying request to /chat/completions in 0.763246 seconds
+2026-06-24 09:23:48,700 [INFO] Retrying request to /chat/completions in 0.452450 seconds
+2026-06-24 09:23:49,302 [INFO] Retrying request to /chat/completions in 0.810187 seconds
+2026-06-24 09:23:50,266 [WARNING] [WARN] GPT 실패: 자립준비청년 자립정착금
+2026-06-24 09:23:50,269 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:23:50,283 [INFO] 처리 중: 중소 제조기업 근로자 기숙사 임차비 지원
+2026-06-24 09:23:50,294 [INFO] Retrying request to /chat/completions in 0.414598 seconds
+2026-06-24 09:23:50,862 [INFO] Retrying request to /chat/completions in 0.829991 seconds
+2026-06-24 09:23:52,963 [INFO] Retrying request to /chat/completions in 0.420924 seconds
+2026-06-24 09:23:53,536 [INFO] Retrying request to /chat/completions in 0.848604 seconds
+2026-06-24 09:23:54,548 [INFO] Retrying request to /chat/completions in 0.407965 seconds
+2026-06-24 09:23:55,109 [INFO] Retrying request to /chat/completions in 0.951331 seconds
+2026-06-24 09:23:56,215 [INFO] Retrying request to /chat/completions in 0.484335 seconds
+2026-06-24 09:23:56,852 [INFO] Retrying request to /chat/completions in 0.844498 seconds
+2026-06-24 09:23:57,852 [WARNING] [WARN] GPT 실패: 중소 제조기업 근로자 기숙사 임차비 지원
+2026-06-24 09:23:57,856 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:23:57,869 [INFO] 처리 중: 사회복지 증진 지원
+2026-06-24 09:23:57,880 [INFO] Retrying request to /chat/completions in 0.463663 seconds
+2026-06-24 09:23:58,459 [INFO] Retrying request to /chat/completions in 0.839144 seconds
+2026-06-24 09:24:00,601 [INFO] Retrying request to /chat/completions in 0.439092 seconds
+2026-06-24 09:24:01,190 [INFO] Retrying request to /chat/completions in 0.820068 seconds
+2026-06-24 09:24:02,173 [INFO] Retrying request to /chat/completions in 0.414982 seconds
+2026-06-24 09:24:02,672 [INFO] Retrying request to /chat/completions in 0.771954 seconds
+2026-06-24 09:24:03,609 [INFO] Retrying request to /chat/completions in 0.466338 seconds
+2026-06-24 09:24:04,226 [INFO] Retrying request to /chat/completions in 0.792072 seconds
+2026-06-24 09:24:05,175 [WARNING] [WARN] GPT 실패: 사회복지 증진 지원
+2026-06-24 09:24:05,179 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:24:05,193 [INFO] 처리 중: 인천 미추홀구 청년 커뮤니티 활성화 지원
+2026-06-24 09:24:05,203 [INFO] Retrying request to /chat/completions in 0.465051 seconds
+2026-06-24 09:24:05,822 [INFO] Retrying request to /chat/completions in 0.866919 seconds
+2026-06-24 09:24:07,995 [INFO] Retrying request to /chat/completions in 0.481350 seconds
+2026-06-24 09:24:08,619 [INFO] Retrying request to /chat/completions in 0.923710 seconds
+2026-06-24 09:24:09,712 [INFO] Retrying request to /chat/completions in 0.482594 seconds
+2026-06-24 09:24:10,347 [INFO] Retrying request to /chat/completions in 0.991329 seconds
+2026-06-24 09:24:11,423 [INFO] Retrying request to /chat/completions in 0.396439 seconds
+2026-06-24 09:24:11,968 [INFO] Retrying request to /chat/completions in 0.932054 seconds
+2026-06-24 09:24:13,054 [WARNING] [WARN] GPT 실패: 인천 미추홀구 청년 커뮤니티 활성화 지원
+2026-06-24 09:24:13,058 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:24:13,072 [INFO] 처리 중: 자립준비청년(보호종료아동) 자립정착금 지원
+2026-06-24 09:24:13,084 [INFO] Retrying request to /chat/completions in 0.421741 seconds
+2026-06-24 09:24:13,646 [INFO] Retrying request to /chat/completions in 0.826484 seconds
+2026-06-24 09:24:15,781 [INFO] Retrying request to /chat/completions in 0.474972 seconds
+2026-06-24 09:24:16,395 [INFO] Retrying request to /chat/completions in 0.897688 seconds
+2026-06-24 09:24:17,448 [INFO] Retrying request to /chat/completions in 0.444860 seconds
+2026-06-24 09:24:18,045 [INFO] Retrying request to /chat/completions in 0.903119 seconds
+2026-06-24 09:24:19,112 [INFO] Retrying request to /chat/completions in 0.391118 seconds
+2026-06-24 09:24:19,652 [INFO] Retrying request to /chat/completions in 0.942892 seconds
+2026-06-24 09:24:20,749 [WARNING] [WARN] GPT 실패: 자립준비청년(보호종료아동) 자립정착금 지원
+2026-06-24 09:24:20,753 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:24:20,768 [INFO] 처리 중: 강화군 섬 주민 정주생활지원금 지원
+2026-06-24 09:24:20,778 [INFO] Retrying request to /chat/completions in 0.380390 seconds
+2026-06-24 09:24:21,312 [INFO] Retrying request to /chat/completions in 0.802798 seconds
+2026-06-24 09:24:23,429 [INFO] Retrying request to /chat/completions in 0.444720 seconds
+2026-06-24 09:24:24,025 [INFO] Retrying request to /chat/completions in 0.949354 seconds
+2026-06-24 09:24:25,134 [INFO] Retrying request to /chat/completions in 0.413896 seconds
+2026-06-24 09:24:25,699 [INFO] Retrying request to /chat/completions in 0.887115 seconds
+2026-06-24 09:24:26,732 [INFO] Retrying request to /chat/completions in 0.446991 seconds
+2026-06-24 09:24:27,330 [INFO] Retrying request to /chat/completions in 0.955685 seconds
+2026-06-24 09:24:28,441 [WARNING] [WARN] GPT 실패: 강화군 섬 주민 정주생활지원금 지원
+2026-06-24 09:24:28,444 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:24:28,461 [INFO] 처리 중: 귀농인 지원
+2026-06-24 09:24:28,473 [INFO] Retrying request to /chat/completions in 0.456686 seconds
+2026-06-24 09:24:29,069 [INFO] Retrying request to /chat/completions in 0.916747 seconds
+2026-06-24 09:24:31,296 [INFO] Retrying request to /chat/completions in 0.491053 seconds
+2026-06-24 09:24:31,941 [INFO] Retrying request to /chat/completions in 0.833108 seconds
+2026-06-24 09:24:32,944 [INFO] Retrying request to /chat/completions in 0.492278 seconds
+2026-06-24 09:24:33,587 [INFO] Retrying request to /chat/completions in 0.905706 seconds
+2026-06-24 09:24:34,657 [INFO] Retrying request to /chat/completions in 0.458573 seconds
+2026-06-24 09:24:35,268 [INFO] Retrying request to /chat/completions in 0.978605 seconds
+2026-06-24 09:24:36,401 [WARNING] [WARN] GPT 실패: 귀농인 지원
+2026-06-24 09:24:36,405 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:24:36,419 [INFO] 처리 중: 가정위탁아동 자립준비금 지원
+2026-06-24 09:24:36,429 [INFO] Retrying request to /chat/completions in 0.428318 seconds
+2026-06-24 09:24:37,002 [INFO] Retrying request to /chat/completions in 0.896387 seconds
+2026-06-24 09:24:39,218 [INFO] Retrying request to /chat/completions in 0.393529 seconds
+2026-06-24 09:24:39,719 [INFO] Retrying request to /chat/completions in 0.934448 seconds
+2026-06-24 09:24:40,819 [INFO] Retrying request to /chat/completions in 0.406154 seconds
+2026-06-24 09:24:41,375 [INFO] Retrying request to /chat/completions in 0.966330 seconds
+2026-06-24 09:24:42,406 [INFO] Retrying request to /chat/completions in 0.427580 seconds
+2026-06-24 09:24:42,986 [INFO] Retrying request to /chat/completions in 0.966360 seconds
+2026-06-24 09:24:44,106 [WARNING] [WARN] GPT 실패: 가정위탁아동 자립준비금 지원
+2026-06-24 09:24:44,110 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:24:44,126 [INFO] 처리 중: 가정위탁아동 자립적립금 지원
+2026-06-24 09:24:44,136 [INFO] Retrying request to /chat/completions in 0.384539 seconds
+2026-06-24 09:24:44,567 [INFO] Retrying request to /chat/completions in 0.827696 seconds
+2026-06-24 09:24:46,703 [INFO] Retrying request to /chat/completions in 0.391617 seconds
+2026-06-24 09:24:47,244 [INFO] Retrying request to /chat/completions in 0.795373 seconds
+2026-06-24 09:24:48,192 [INFO] Retrying request to /chat/completions in 0.417207 seconds
+2026-06-24 09:24:48,747 [INFO] Retrying request to /chat/completions in 0.827332 seconds
+2026-06-24 09:24:49,734 [INFO] Retrying request to /chat/completions in 0.378782 seconds
+2026-06-24 09:24:50,263 [INFO] Retrying request to /chat/completions in 0.772659 seconds
+2026-06-24 09:24:51,191 [WARNING] [WARN] GPT 실패: 가정위탁아동 자립적립금 지원
+2026-06-24 09:24:51,194 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:24:51,208 [INFO] 처리 중: 행복둥지 사랑의 집수리 지원
+2026-06-24 09:24:51,219 [INFO] Retrying request to /chat/completions in 0.447572 seconds
+2026-06-24 09:24:51,791 [INFO] Retrying request to /chat/completions in 0.999589 seconds
+2026-06-24 09:24:54,108 [INFO] Retrying request to /chat/completions in 0.466761 seconds
+2026-06-24 09:24:54,725 [INFO] Retrying request to /chat/completions in 0.963520 seconds
+2026-06-24 09:24:55,855 [INFO] Retrying request to /chat/completions in 0.438808 seconds
+2026-06-24 09:24:56,436 [INFO] Retrying request to /chat/completions in 0.766952 seconds
+2026-06-24 09:24:57,369 [INFO] Retrying request to /chat/completions in 0.446413 seconds
+2026-06-24 09:24:57,961 [INFO] Retrying request to /chat/completions in 0.853842 seconds
+2026-06-24 09:24:58,922 [WARNING] [WARN] GPT 실패: 행복둥지 사랑의 집수리 지원
+2026-06-24 09:24:58,926 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:24:58,940 [INFO] 처리 중: 어르신주거튼튼서비스
+2026-06-24 09:24:58,949 [INFO] Retrying request to /chat/completions in 0.477659 seconds
+2026-06-24 09:24:59,437 [INFO] Retrying request to /chat/completions in 0.825766 seconds
+2026-06-24 09:25:01,574 [INFO] Retrying request to /chat/completions in 0.461191 seconds
+2026-06-24 09:25:02,186 [INFO] Retrying request to /chat/completions in 0.993901 seconds
+2026-06-24 09:25:03,338 [INFO] Retrying request to /chat/completions in 0.492072 seconds
+2026-06-24 09:25:03,980 [INFO] Retrying request to /chat/completions in 0.789083 seconds
+2026-06-24 09:25:04,936 [INFO] Retrying request to /chat/completions in 0.489256 seconds
+2026-06-24 09:25:05,569 [INFO] Retrying request to /chat/completions in 0.803672 seconds
+2026-06-24 09:25:06,524 [WARNING] [WARN] GPT 실패: 어르신주거튼튼서비스
+2026-06-24 09:25:06,527 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:25:06,543 [INFO] 처리 중: 자활참여자 자활 지원
+2026-06-24 09:25:06,555 [INFO] Retrying request to /chat/completions in 0.442563 seconds
+2026-06-24 09:25:07,150 [INFO] Retrying request to /chat/completions in 0.783866 seconds
+2026-06-24 09:25:09,241 [INFO] Retrying request to /chat/completions in 0.494378 seconds
+2026-06-24 09:25:09,879 [INFO] Retrying request to /chat/completions in 0.913887 seconds
+2026-06-24 09:25:10,953 [INFO] Retrying request to /chat/completions in 0.428590 seconds
+2026-06-24 09:25:11,529 [INFO] Retrying request to /chat/completions in 0.773511 seconds
+2026-06-24 09:25:12,465 [INFO] Retrying request to /chat/completions in 0.381211 seconds
+2026-06-24 09:25:12,985 [INFO] Retrying request to /chat/completions in 0.953786 seconds
+2026-06-24 09:25:14,095 [WARNING] [WARN] GPT 실패: 자활참여자 자활 지원
+2026-06-24 09:25:14,099 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:25:14,115 [INFO] 처리 중: 울주군 신혼부부 주거비용 지원
+2026-06-24 09:25:14,126 [INFO] Retrying request to /chat/completions in 0.388556 seconds
+2026-06-24 09:25:14,619 [INFO] Retrying request to /chat/completions in 0.785735 seconds
+2026-06-24 09:25:16,718 [INFO] Retrying request to /chat/completions in 0.495733 seconds
+2026-06-24 09:25:17,348 [INFO] Retrying request to /chat/completions in 0.943106 seconds
+2026-06-24 09:25:18,447 [INFO] Retrying request to /chat/completions in 0.449152 seconds
+2026-06-24 09:25:18,919 [INFO] Retrying request to /chat/completions in 0.955736 seconds
+2026-06-24 09:25:20,033 [INFO] Retrying request to /chat/completions in 0.387255 seconds
+2026-06-24 09:25:20,536 [INFO] Retrying request to /chat/completions in 0.837517 seconds
+2026-06-24 09:25:21,529 [WARNING] [WARN] GPT 실패: 울주군 신혼부부 주거비용 지원
+2026-06-24 09:25:21,533 [WARNING] Telegram 전송 실패: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot8511728557:AAG_ptk12qLweRTVRusZqif8JpZAhbZd9n8/sendMessage (Caused by NameResolutionError("HTTPSConnection(host='api.telegram.org', port=443): Failed to resolve 'api.telegram.org' ([Errno 8] nodename nor servname provided, or not known)"))
+2026-06-24 09:25:21,549 [INFO] 처리 중: 울주군 신혼부부 주택 매입/전세자금 대출이자 지원
+2026-06-24 09:25:21,560 [INFO] Retrying request to /chat/completions in 0.408798 seconds
+2026-06-24 09:25:22,122 [INFO] Retrying request to /chat/completions in 0.838758 seconds
+2026-06-24 09:25:24,264 [INFO] Retrying request to /chat/completions in 0.399592 seconds
+2026-06-24 09:25:24,810 [INFO] Retrying request to /chat/completions in 0.981788 seconds
+2026-06-24 09:25:25,959 [INFO] Retrying request to /chat/completions in 0.388552 seconds
+2026-06-24 09:27:26,733 [INFO] Retrying request to /chat/completions in 0.835513 seconds
+2026-06-24 09:29:28,467 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:32:43,338 [INFO] Retrying request to /chat/completions in 0.476070 seconds
+2026-06-24 09:34:14,126 [INFO] Retrying request to /chat/completions in 0.934007 seconds
+2026-06-24 09:35:45,408 [INFO] 제목 추출: 울산 무주택 신혼부부, 주택담보대출 이자 최대 2% 지원! 완벽 정리
+2026-06-24 09:35:45,634 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:35:46,810 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/울산-무주택-신혼부부-주택담보대출-이자-최대-2-지원-완벽-정리-000128.md
+2026-06-24 09:35:46,813 [INFO] 발행 성공: 울산 무주택 신혼부부, 주택담보대출 이자 최대 2% 지원! 완벽 정리 | loan | google/gemma-3n-e4b-it
+2026-06-24 09:35:46,837 [INFO] 처리 중: 발달장애인 주간활동서비스
+2026-06-24 09:35:47,354 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:37:02,149 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:37:02,162 [INFO] 제목 추출: 맞벌이 신혼부부, 발달장애 자녀 주간서비스로 돌봄 부담 줄이는 법 총정리
+2026-06-24 09:37:02,170 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:37:02,171 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 09:37:02,632 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-발달장애-자녀-주간서비스로-돌봄-부담-줄이는-법-총정리-000130.md
+2026-06-24 09:37:02,636 [INFO] 발행 성공: 맞벌이 신혼부부, 발달장애 자녀 주간서비스로 돌봄 부담 줄이는 법 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:37:02,665 [INFO] 처리 중: [2026] 서울 20대 직장인 평균 월급 293만원… 나는 어디쯤?
+2026-06-24 09:37:02,952 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:38:24,774 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:38:24,782 [INFO] 제목 추출: 서울 25세 직장인, 내 월급은 평균 이상일까? 소득 통계 총정리
+2026-06-24 09:38:24,793 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:38:24,794 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:38:26,202 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/서울-25세-직장인-내-월급은-평균-이상일까-소득-통계-총정리-26-06-.md
+2026-06-24 09:38:26,204 [INFO] 발행 성공: 서울 25세 직장인, 내 월급은 평균 이상일까? 소득 통계 총정리 | invest | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:38:26,237 [INFO] 처리 중: 미혼모가족복지시설 퇴소자 자립 지원
+2026-06-24 09:38:26,533 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:39:34,286 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:39:34,295 [INFO] 제목 추출: 무주택 직장인, 수원시 미혼모 자립지원금 1,500만 원 받는 법 총정리
+2026-06-24 09:39:34,511 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:39:34,512 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:39:34,962 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-수원시-미혼모-자립지원금-1500만-원-받는-법-총정리-000115.md
+2026-06-24 09:39:34,968 [INFO] 발행 성공: 무주택 직장인, 수원시 미혼모 자립지원금 1,500만 원 받는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:39:35,003 [INFO] 처리 중: 청소년 발달장애인 방과후활동서비스
+2026-06-24 09:39:35,290 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:40:39,605 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:40:39,615 [INFO] 제목 추출: 맞벌이 신혼부부, 우리 아이 방과후 돌봄 걱정 덜어줄 방과활동서비스 완벽
+2026-06-24 09:40:39,624 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:40:39,625 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 09:40:40,122 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-우리-아이-방과후-돌봄-걱정-덜어줄-방과활동서비스-완벽정리-000132.md
+2026-06-24 09:40:40,124 [INFO] 발행 성공: 맞벌이 신혼부부, 우리 아이 방과후 돌봄 걱정 덜어줄 방과활동서비스 완벽 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:40:40,154 [INFO] 처리 중: 저소득장애인 이사비 지원
+2026-06-24 09:40:40,445 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:41:44,953 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:41:44,968 [INFO] 제목 추출: 무주택 직장인, 수원시 이사 시 이사비 최대 20만 원 받는 법 총정리
+2026-06-24 09:41:44,974 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:41:44,974 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:41:45,445 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-수원시-이사-시-이사비-최대-20만-원-받는-법-총정리-000125.md
+2026-06-24 09:41:45,448 [INFO] 발행 성공: 무주택 직장인, 수원시 이사 시 이사비 최대 20만 원 받는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:41:45,483 [INFO] 처리 중: (수원시) 가사홈서비스
+2026-06-24 09:41:45,773 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:43:00,406 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:43:00,416 [INFO] 제목 추출: 3040 직장인, 수원시 소규모집수리 지원으로 수리비 아끼는 법 총정리
+2026-06-24 09:43:00,432 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:43:02,026 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/3040-직장인-수원시-소규모집수리-지원으로-수리비-아끼는-법-총정리-000563.md
+2026-06-24 09:43:02,030 [INFO] 발행 성공: 3040 직장인, 수원시 소규모집수리 지원으로 수리비 아끼는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:43:02,058 [INFO] 처리 중: 시설급여
+2026-06-24 09:43:02,340 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:44:20,572 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:44:20,580 [INFO] 제목 추출: 맞벌이 신혼부부 부모님 부양 고민, 장기요양 시설급여 혜택 총정리
+2026-06-24 09:44:20,703 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:44:20,704 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 09:44:21,317 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-부모님-부양-고민-장기요양-시설급여-혜택-총정리-005006.md
+2026-06-24 09:44:21,321 [INFO] 발행 성공: 맞벌이 신혼부부 부모님 부양 고민, 장기요양 시설급여 혜택 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:44:21,362 [INFO] 처리 중: [2026] 서울 20대 여성 평균 월급 251만원… 나는 어디쯤?
+2026-06-24 09:44:21,640 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:45:39,719 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:45:39,797 [INFO] 제목 추출: 서울 25세 직장인 평균 월급, 내 또래와 비교하면 어느 정도 수준?
+2026-06-24 09:45:39,807 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))', '마커 fallback 삽입']
+2026-06-24 09:45:39,808 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 09:45:41,227 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/서울-25세-직장인-평균-월급-내-또래와-비교하면-어느-정도-수준-26-06-.md
+2026-06-24 09:45:41,277 [INFO] 발행 성공: 서울 25세 직장인 평균 월급, 내 또래와 비교하면 어느 정도 수준? | invest | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:45:41,368 [INFO] 처리 중: (수원시) 어학·자격시험 응시료 지원
+2026-06-24 09:45:41,688 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:46:48,008 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:46:48,016 [INFO] 제목 추출: 2024년 수원시 직장인, 청년 응시료 최대 30만원 환급받는 법 총정리
+2026-06-24 09:46:48,025 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:46:48,499 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/2024년-수원시-직장인-청년-응시료-최대-30만원-환급받는-법-총정리-000595.md
+2026-06-24 09:46:48,502 [INFO] 발행 성공: 2024년 수원시 직장인, 청년 응시료 최대 30만원 환급받는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:46:48,529 [INFO] 처리 중: 특별공로자 및 우수인재 특별귀화 허가 신청 수수료 면제 안내
+2026-06-24 09:46:48,963 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:48:10,379 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:48:10,388 [INFO] 제목 추출: 특별공로자 및 우수인재 특별귀화 허가 신청 수수료 면제 혜택 정리
+2026-06-24 09:48:10,508 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:48:10,509 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:48:11,938 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/특별공로자-및-우수인재-특별귀화-허가-신청-수수료-면제-혜택-정리-000022.md
+2026-06-24 09:48:11,943 [INFO] 발행 성공: 특별공로자 및 우수인재 특별귀화 허가 신청 수수료 면제 혜택 정리 | general | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:48:11,982 [INFO] 처리 중: 입양축하금
+2026-06-24 09:48:12,262 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:49:31,332 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:49:31,343 [INFO] 제목 추출: 맞벌이 신혼부부, 200만 원 입양축하금 놓치지 않고 신청하는 법 총정리
+2026-06-24 09:49:31,351 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:49:31,351 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 09:49:31,783 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-200만-원-입양축하금-놓치지-않고-신청하는-법-총정리-005011.md
+2026-06-24 09:49:31,787 [INFO] 발행 성공: 맞벌이 신혼부부, 200만 원 입양축하금 놓치지 않고 신청하는 법 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:49:31,817 [INFO] 처리 중: 성남시 다자녀가구 전세자금 대출이자 지원
+2026-06-24 09:49:32,095 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:50:38,770 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:50:38,779 [INFO] 제목 추출: 자녀 3명 둔 성남시 직장인, 전세 이자 연 100만원 절약받는 법 총정
+2026-06-24 09:50:38,786 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:50:39,235 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/자녀-3명-둔-성남시-직장인-전세-이자-연-100만원-절약받는-법-총정리-000135.md
+2026-06-24 09:50:39,240 [INFO] 발행 성공: 자녀 3명 둔 성남시 직장인, 전세 이자 연 100만원 절약받는 법 총정 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:50:39,275 [INFO] 처리 중: 전세보증금반환보증 보증료 지원
+2026-06-24 09:50:39,592 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:52:05,027 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:52:05,037 [INFO] 제목 추출: 무주택 직장인, 전세보증금반환 보증료 40만원 환급받는 법 총정리
+2026-06-24 09:52:05,255 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:52:05,256 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:52:05,849 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-전세보증금반환-보증료-40만원-환급받는-법-총정리-000174.md
+2026-06-24 09:52:05,853 [INFO] 발행 성공: 무주택 직장인, 전세보증금반환 보증료 40만원 환급받는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:52:05,884 [INFO] 처리 중: 첫만남이용권 지원
+2026-06-24 09:52:06,182 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:53:18,435 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:53:18,442 [INFO] 제목 추출: 2024 맞벌이 부부, 첫만남이용권 300만 원 혜택 챙기는 법 총정리
+2026-06-24 09:53:18,449 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:53:18,449 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:53:18,940 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/2024-맞벌이-부부-첫만남이용권-300만-원-혜택-챙기는-법-총정리-005015.md
+2026-06-24 09:53:18,944 [INFO] 발행 성공: 2024 맞벌이 부부, 첫만남이용권 300만 원 혜택 챙기는 법 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:53:18,987 [INFO] 처리 중: [2026] 서울 30대 직장인 평균 월급 404만원… 나는 어디쯤?
+2026-06-24 09:53:19,270 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:54:38,473 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:54:38,491 [INFO] 제목 추출: 서울 35세 직장인, 내 월급은 평균 수준일까? 소득 통계 총정리
+2026-06-24 09:54:38,507 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:54:38,507 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 09:54:39,039 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/서울-35세-직장인-내-월급은-평균-수준일까-소득-통계-총정리-26-06-.md
+2026-06-24 09:54:39,043 [INFO] 발행 성공: 서울 35세 직장인, 내 월급은 평균 수준일까? 소득 통계 총정리 | invest | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:54:39,076 [INFO] 처리 중: 장애인 주택개조 지원
+2026-06-24 09:54:39,438 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:55:53,632 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:55:53,644 [INFO] 제목 추출: 무주택 직장인, 의정부시 장애인 주택개조 지원으로 주거 환경 개선하는 법
+2026-06-24 09:55:53,773 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:55:53,774 [INFO] [validator] 수정됨: ['HEADING_MISSING:방법']
+2026-06-24 09:55:54,300 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-의정부시-장애인-주택개조-지원으로-주거-환경-개선하는-법-총정리-000175.md
+2026-06-24 09:55:54,304 [INFO] 발행 성공: 무주택 직장인, 의정부시 장애인 주택개조 지원으로 주거 환경 개선하는 법 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:55:54,334 [INFO] 처리 중: 전문아동보호비 지원
+2026-06-24 09:55:54,698 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:57:08,239 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:57:08,247 [INFO] 제목 추출: 2040 직장인 부모를 위한 위기아동 가보호 및 전문가위탁 지원혜택 총정
+2026-06-24 09:57:08,255 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:57:08,255 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 09:57:08,824 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/2040-직장인-부모를-위한-위기아동-가보호-및-전문가위탁-지원혜택-총정리-005016.md
+2026-06-24 09:57:08,827 [INFO] 발행 성공: 2040 직장인 부모를 위한 위기아동 가보호 및 전문가위탁 지원혜택 총정 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:57:08,862 [INFO] 처리 중: 신혼부부 주택매입 및 전세자금 대출이자 지원
+2026-06-24 09:57:09,163 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:58:25,329 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:58:25,340 [INFO] 제목 추출: 30대 신혼부부, 안양시 대출이자 연 100만원 지원받는 법 총정리
+2026-06-24 09:58:25,352 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:58:25,352 [INFO] [validator] 수정됨: ['HEADING_MISSING:방법']
+2026-06-24 09:58:25,897 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-신혼부부-안양시-대출이자-연-100만원-지원받는-법-총정리-000112.md
+2026-06-24 09:58:25,901 [INFO] 발행 성공: 30대 신혼부부, 안양시 대출이자 연 100만원 지원받는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:58:25,937 [INFO] 처리 중: 귀화허가, 국적회복허가 신청 및 국적업무 증명서 발급 수수료 면제 안내
+2026-06-24 09:58:26,228 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:59:43,969 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 09:59:43,977 [INFO] 제목 추출: 3040 직장인을 위한 귀화 및 국적회복 신청 자격과 혜택 완벽정리
+2026-06-24 09:59:44,093 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 09:59:44,094 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 09:59:44,612 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/3040-직장인을-위한-귀화-및-국적회복-신청-자격과-혜택-완벽정리-000023.md
+2026-06-24 09:59:44,615 [INFO] 발행 성공: 3040 직장인을 위한 귀화 및 국적회복 신청 자격과 혜택 완벽정리 | general | google/diffusiongemma-26b-a4b-it
+2026-06-24 09:59:44,642 [INFO] 처리 중: 안양 청년 월세 지원
+2026-06-24 09:59:44,924 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:00:48,647 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:00:48,656 [INFO] 제목 추출: 3040 안양 직장인, 월 20만 원 아끼는 청년 월세 지원 총정리
+2026-06-24 10:00:48,669 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:00:48,669 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 10:00:49,352 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/3040-안양-직장인-월-20만-원-아끼는-청년-월세-지원-총정리-000113.md
+2026-06-24 10:00:49,356 [INFO] 발행 성공: 3040 안양 직장인, 월 20만 원 아끼는 청년 월세 지원 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:00:49,390 [INFO] 처리 중: 금연캠프사업
+2026-06-24 10:00:49,689 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:02:06,817 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:02:06,826 [INFO] 제목 추출: 3040 직장인, 의지력 탓 아닌 '금연캠프'로 확실하게 성공하는 법 총
+2026-06-24 10:02:06,836 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:02:06,837 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 10:02:07,292 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/3040-직장인-의지력-탓-아닌-금연캠프로-확실하게-성공하는-법-총정리-005024.md
+2026-06-24 10:02:07,295 [INFO] 발행 성공: 3040 직장인, 의지력 탓 아닌 '금연캠프'로 확실하게 성공하는 법 총 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:02:07,337 [INFO] 처리 중: [2026] 서울 30대 여성 평균 월급 267만원… 나는 어디쯤?
+2026-06-24 10:02:07,843 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:03:14,968 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:03:14,977 [INFO] 제목 추출: 35세 서울 직장인, 내 또래 평균 월급은 얼마일까? 완벽정리
+2026-06-24 10:03:14,984 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:03:14,984 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 10:03:15,403 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/35세-서울-직장인-내-또래-평균-월급은-얼마일까-완벽정리-26-06-.md
+2026-06-24 10:03:15,406 [INFO] 발행 성공: 35세 서울 직장인, 내 또래 평균 월급은 얼마일까? 완벽정리 | invest | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:03:15,434 [INFO] 처리 중: 주택 태양광시설 설치지원
+2026-06-24 10:03:15,718 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:04:33,047 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:04:33,053 [INFO] 제목 추출: 3040 직장인, 안양시 주택 태양광 지원으로 전기료 5만원 아끼는 법 
+2026-06-24 10:04:33,179 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:04:33,179 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 10:04:33,613 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/3040-직장인-안양시-주택-태양광-지원으로-전기료-5만원-아끼는-법-총정리-000162.md
+2026-06-24 10:04:33,617 [INFO] 발행 성공: 3040 직장인, 안양시 주택 태양광 지원으로 전기료 5만원 아끼는 법  | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:04:33,648 [INFO] 처리 중: 장기요양급여비용 본인부담금 감경
+2026-06-24 10:04:33,938 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:06:08,850 [INFO] Retrying request to /chat/completions in 0.383267 seconds
+2026-06-24 10:07:39,512 [INFO] Retrying request to /chat/completions in 0.948420 seconds
+2026-06-24 10:09:10,765 [INFO] 제목 추출: 맞벌이 신혼부부 부모님 부양 부담 줄여주는 장기요양급여 본인부담금 감경 
+2026-06-24 10:09:10,888 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:09:11,324 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-부모님-부양-부담-줄여주는-장기요양급여-본인부담금-감경-총정리-005031.md
+2026-06-24 10:09:11,326 [INFO] 발행 성공: 맞벌이 신혼부부 부모님 부양 부담 줄여주는 장기요양급여 본인부담금 감경  | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:09:11,358 [INFO] 처리 중: 미니태양광 보급지원
+2026-06-24 10:09:11,883 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:10:36,120 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:10:36,127 [INFO] 제목 추출: 무주택 직장인, 전기료 9만원 아끼는 미니태양광 보조금 신청 가이드 총정
+2026-06-24 10:10:36,135 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:10:36,135 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 10:10:36,818 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-전기료-9만원-아끼는-미니태양광-보조금-신청-가이드-총정리-000172.md
+2026-06-24 10:10:36,822 [INFO] 발행 성공: 무주택 직장인, 전기료 9만원 아끼는 미니태양광 보조금 신청 가이드 총정 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:10:36,852 [INFO] 처리 중: 소규모 공동주택 공용시설물 보조금 지원
+2026-06-24 10:10:37,138 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:11:46,997 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:11:47,007 [INFO] 제목 추출: 3040 무주택 직장인, 노후 아파트 수리비 지원 혜택 받는 법 총정리
+2026-06-24 10:11:47,020 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:11:47,430 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/3040-무주택-직장인-노후-아파트-수리비-지원-혜택-받는-법-총정리-000188.md
+2026-06-24 10:11:47,432 [INFO] 발행 성공: 3040 무주택 직장인, 노후 아파트 수리비 지원 혜택 받는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:11:47,463 [INFO] 처리 중: 노인 안검진 및 개안수술
+2026-06-24 10:11:47,896 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:13:09,818 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:13:09,827 [INFO] 제목 추출: 60세 이상 부모님 눈 건강, 노인 안검진 및 개안술비 지원 혜택 총정리
+2026-06-24 10:13:09,944 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:13:09,944 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 10:13:10,441 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/60세-이상-부모님-눈-건강-노인-안검진-및-개안술비-지원-혜택-총정리-005034.md
+2026-06-24 10:13:10,444 [INFO] 발행 성공: 60세 이상 부모님 눈 건강, 노인 안검진 및 개안술비 지원 혜택 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:13:10,476 [INFO] 처리 중: [2026] 서울 40대 가장 평균 월급 443만원… 나는 어디쯤?
+2026-06-24 10:13:10,773 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:14:19,573 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:14:19,583 [INFO] 제목 추출: 서울 45세 직장인, 내 월급은 평균 이상일까? 소득 통계 총정리
+2026-06-24 10:14:19,594 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:14:19,595 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 10:14:20,157 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/서울-45세-직장인-내-월급은-평균-이상일까-소득-통계-총정리-26-06-.md
+2026-06-24 10:14:20,161 [INFO] 발행 성공: 서울 45세 직장인, 내 월급은 평균 이상일까? 소득 통계 총정리 | invest | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:14:20,192 [INFO] 처리 중: 소규모 건축물 침수방지시설 보조금 지원
+2026-06-24 10:14:20,478 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:15:25,806 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:15:25,815 [INFO] 제목 추출: 3040 직장인, 우리 집 침수 걱정 덜어줄 차수판 설치 지원 완벽정리
+2026-06-24 10:15:25,830 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:15:25,830 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 10:15:26,245 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/3040-직장인-우리-집-침수-걱정-덜어줄-차수판-설치-지원-완벽정리-000210.md
+2026-06-24 10:15:26,250 [INFO] 발행 성공: 3040 직장인, 우리 집 침수 걱정 덜어줄 차수판 설치 지원 완벽정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:15:26,283 [INFO] 처리 중: 성폭력, 아동학대, 인신매매등범죄의 피해 아동과 범죄 피해자인 장애인을 
+2026-06-24 10:15:26,572 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:16:32,281 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:16:32,290 [INFO] 제목 추출: 2040 직장인 자녀 및 본인 피해를 위한 '진술조력인' 제도 완벽정리
+2026-06-24 10:16:32,299 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:16:32,299 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 10:16:32,920 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/2040-직장인-자녀-및-본인-피해를-위한-진술조력인-제도-완벽정리-000025.md
+2026-06-24 10:16:32,924 [INFO] 발행 성공: 2040 직장인 자녀 및 본인 피해를 위한 '진술조력인' 제도 완벽정리 | general | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:16:32,960 [INFO] 처리 중: 발달장애인 긴급돌봄 시범사업
+2026-06-24 10:16:33,350 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:17:41,322 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:17:41,330 [INFO] 제목 추출: 갑작스러운 가족일로 막막한 직장인을 위한 '발달장애인 긴급돌봄' 완벽정리
+2026-06-24 10:17:41,453 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:17:41,454 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 10:17:41,960 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/갑작스러운-가족일로-막막한-직장인을-위한-발달장애인-긴급돌봄-완벽정리-005037.md
+2026-06-24 10:17:41,963 [INFO] 발행 성공: 갑작스러운 가족일로 막막한 직장인을 위한 '발달장애인 긴급돌봄' 완벽정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:17:41,994 [INFO] 처리 중: 녹물 없는 우리 집 수도관 개량 지원 사업
+2026-06-24 10:17:42,268 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:18:55,953 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:18:55,963 [INFO] 제목 추출: 2026년 부천시 노후주택 녹물 배관 교체 지원 혜택 총정리
+2026-06-24 10:18:55,971 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:18:56,418 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/2026년-부천시-노후주택-녹물-배관-교체-지원-혜택-총정리-000135.md
+2026-06-24 10:18:56,421 [INFO] 발행 성공: 2026년 부천시 노후주택 녹물 배관 교체 지원 혜택 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:18:56,450 [INFO] 처리 중: 시설퇴소 및 가정위탁종결아동 자립정착금 지급
+2026-06-24 10:18:56,735 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:20:05,742 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:20:05,749 [INFO] 제목 추출: 무주택 직장인, 시설 퇴소 후 1,500만 원 자립정착금 챙기는 법 총정
+2026-06-24 10:20:05,759 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:20:05,760 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 10:20:06,247 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-시설-퇴소-후-1500만-원-자립정착금-챙기는-법-총정리-000108.md
+2026-06-24 10:20:06,252 [INFO] 발행 성공: 무주택 직장인, 시설 퇴소 후 1,500만 원 자립정착금 챙기는 법 총정 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:20:06,286 [INFO] 처리 중: 아동 입원진료비 지원
+2026-06-24 10:20:06,591 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:21:24,315 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:21:24,394 [INFO] 제목 추출: 맞벌이 신혼부부, 우리 아이 입원비 부담 0원 만드는 혜택 총정리
+2026-06-24 10:21:24,408 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:21:24,409 [INFO] [validator] 수정됨: ['HEADING_MISSING:방법']
+2026-06-24 10:21:25,872 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-우리-아이-입원비-부담-0원-만드는-혜택-총정리-005038.md
+2026-06-24 10:21:25,951 [INFO] 발행 성공: 맞벌이 신혼부부, 우리 아이 입원비 부담 0원 만드는 혜택 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:21:26,455 [INFO] 처리 중: [2026] 서울 40대 직장인 평균 월급 228만원… 나는 어디쯤?
+2026-06-24 10:21:26,781 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:22:33,655 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:22:33,664 [INFO] 제목 추출: 서울 45세 직장인, 내 월급은 평균보다 어느 정도일까? 완벽정리
+2026-06-24 10:22:33,698 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:22:33,699 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 10:22:35,454 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/서울-45세-직장인-내-월급은-평균보다-어느-정도일까-완벽정리-26-06-.md
+2026-06-24 10:22:35,460 [INFO] 발행 성공: 서울 45세 직장인, 내 월급은 평균보다 어느 정도일까? 완벽정리 | invest | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:22:36,262 [INFO] 처리 중: 퇴소 및 보호종결아동 자립정착금 지원
+2026-06-24 10:22:36,641 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:23:46,116 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:23:46,187 [INFO] 제목 추출: 무주택 직장인, 경기도 자립정착금 1,500만 원 받는 법 총정리
+2026-06-24 10:23:46,373 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:23:46,375 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 10:23:48,393 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-경기도-자립정착금-1500만-원-받는-법-총정리-000103.md
+2026-06-24 10:23:48,425 [INFO] 발행 성공: 무주택 직장인, 경기도 자립정착금 1,500만 원 받는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:23:49,291 [INFO] 처리 중: 치매검진 지원
+2026-06-24 10:23:50,410 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:25:09,336 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:25:09,450 [INFO] 제목 추출: 60세 이상 부모님을 위한 치매 조기검진 지원 혜택 및 신청 방법 총정리
+2026-06-24 10:25:09,457 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:25:09,457 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 10:25:10,949 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/60세-이상-부모님을-위한-치매-조기검진-지원-혜택-및-신청-방법-총정리-005043.md
+2026-06-24 10:25:11,002 [INFO] 발행 성공: 60세 이상 부모님을 위한 치매 조기검진 지원 혜택 및 신청 방법 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:25:12,185 [INFO] 처리 중: 장애인 자립생활 정착금 지원
+2026-06-24 10:25:12,622 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:26:23,146 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:26:23,155 [INFO] 제목 추출: 무주택 직장인, 장애인 자립정착금 최대 200만 원 챙기는 법 총정리
+2026-06-24 10:26:23,172 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:26:23,173 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-06-24 10:26:23,719 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-장애인-자립정착금-최대-200만-원-챙기는-법-총정리-000109.md
+2026-06-24 10:26:23,724 [INFO] 발행 성공: 무주택 직장인, 장애인 자립정착금 최대 200만 원 챙기는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:26:23,772 [INFO] 처리 중: 성폭력, 아동학대, 장애인학대,인신매매 및 스토킹범죄 피해자 국선변호사 
+2026-06-24 10:26:24,068 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:27:28,203 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:27:28,220 [INFO] 제목 추출: 30대 직장인, 범죄 피해 시 법률 비용 걱정 없는 국선변호사 지원제도 
+2026-06-24 10:27:28,234 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:27:28,235 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 10:27:28,916 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-범죄-피해-시-법률-비용-걱정-없는-국선변호사-지원제도-총정리-000026.md
+2026-06-24 10:27:28,920 [INFO] 발행 성공: 30대 직장인, 범죄 피해 시 법률 비용 걱정 없는 국선변호사 지원제도  | general | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:27:28,957 [INFO] 처리 중: 보호종료아동 자립수당
+2026-06-24 10:27:29,259 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:28:42,577 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:28:42,590 [INFO] 제목 추출: 무주택 직장인, 보호종료아동 자립수당으로 월 50만원 챙기는 법 총정리
+2026-06-24 10:28:42,602 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:28:42,989 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-보호종료아동-자립수당으로-월-50만원-챙기는-법-총정리-000113.md
+2026-06-24 10:28:42,993 [INFO] 발행 성공: 무주택 직장인, 보호종료아동 자립수당으로 월 50만원 챙기는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:28:43,032 [INFO] 처리 중: 임산부 외래진료비 본인부담률 경감
+2026-06-24 10:28:43,320 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:29:56,599 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:29:56,611 [INFO] 제목 추출: 맞벌이 신혼부부, 임산부 외래진료비 본인부담률 경감 혜택 총정리
+2026-06-24 10:29:56,626 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:29:57,722 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-임산부-외래진료비-본인부담률-경감-혜택-총정리-005046.md
+2026-06-24 10:29:57,726 [INFO] 발행 성공: 맞벌이 신혼부부, 임산부 외래진료비 본인부담률 경감 혜택 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:29:57,763 [INFO] 처리 중: [2026] 부산 30대 직장인 평균 월급 351만원… 나는 어디쯤?
+2026-06-24 10:29:58,099 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:31:11,505 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:31:11,516 [INFO] 제목 추출: 35세 부산 직장인, 내 월급은 평균 이상일까? 소득 현황 완벽정리
+2026-06-24 10:31:11,634 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:31:11,644 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 10:31:12,418 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/35세-부산-직장인-내-월급은-평균-이상일까-소득-현황-완벽정리-26-06-.md
+2026-06-24 10:31:12,420 [INFO] 발행 성공: 35세 부산 직장인, 내 월급은 평균 이상일까? 소득 현황 완벽정리 | invest | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:31:12,579 [INFO] 처리 중: 위기가정 주거안정 지원
+2026-06-24 10:31:12,913 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:32:24,478 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:32:24,500 [INFO] 제목 추출: 무주택 직장인, 평택시 위기가정 주거안정 지원금 300만원 받는 법 총정
+2026-06-24 10:32:24,511 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:32:24,511 [INFO] [validator] 수정됨: ['HEADING_MISSING:방법']
+2026-06-24 10:32:24,971 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-평택시-위기가정-주거안정-지원금-300만원-받는-법-총정리-000131.md
+2026-06-24 10:32:24,974 [INFO] 발행 성공: 무주택 직장인, 평택시 위기가정 주거안정 지원금 300만원 받는 법 총정 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:32:25,004 [INFO] 처리 중: 위기임신 및 보호출산 지원
+2026-06-24 10:32:25,389 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:33:45,060 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:33:45,115 [INFO] 제목 추출: 맞벌이 신혼부부를 위한 위기임신 및 보호출산 지원 혜택 총정리
+2026-06-24 10:33:45,270 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:33:45,989 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부를-위한-위기임신-및-보호출산-지원-혜택-총정리-005048.md
+2026-06-24 10:33:45,994 [INFO] 발행 성공: 맞벌이 신혼부부를 위한 위기임신 및 보호출산 지원 혜택 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:33:46,209 [INFO] 처리 중: 주거취약계층 이사비 지원
+2026-06-24 10:33:46,575 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"

@@ -54,14 +54,14 @@ persona_keywords:
 
 # ── 페르소나 → 딥링크 CTA URL ──────────────────────────────
 persona_cta:
-  youth:     "https://persona.aikorea24.kr/my-persona"
-  worker:    "https://persona.aikorea24.kr/my-persona"
-  newlywed:  "https://persona.aikorea24.kr/my-persona"
-  unhoused:  "https://persona.aikorea24.kr/my-persona"
-  lowincome: "https://persona.aikorea24.kr/my-persona"
-  midlife:   "https://persona.aikorea24.kr/my-persona"
-  general:   "https://persona.aikorea24.kr/my-persona"
-  default:   "https://persona.aikorea24.kr/my-persona"
+  youth:     "https://persona.aikorea24.kr/my-persona?src=cta-youth"
+  worker:    "https://persona.aikorea24.kr/my-persona?src=cta-worker"
+  newlywed:  "https://persona.aikorea24.kr/my-persona?src=cta-newlywed"
+  unhoused:  "https://persona.aikorea24.kr/my-persona?src=cta-unhoused"
+  lowincome: "https://persona.aikorea24.kr/my-persona?src=cta-lowincome"
+  midlife:   "https://persona.aikorea24.kr/my-persona?src=cta-midlife"
+  general:   "https://persona.aikorea24.kr/my-persona?src=cta-general"
+  default:   "https://persona.aikorea24.kr/my-persona?src=cta-default"
 
 # ── 카테고리별 FOMO 훅 템플릿 (도입부 첫문단) ──────────────
 fomo_hooks:

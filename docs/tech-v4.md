@@ -49,8 +49,7 @@
 | 파일 | 크기 | 레코드 | 출처 |
 |---|---|---|---|
 | public/persona-stats.json | 19MB | **2,891 키** | Nemotron + KOSIS |
-| public/benefits.json | 11MB | **10,945건** | 공공데이터포털 보조금24 v3 |
-| public/benefits-clean.json | 3.4MB | 2,739건 | 정제 |
+| public/benefits-clean.json | 3.4MB | — | 정제 |
 | public/benefits-curated.json | 16KB | **24건** | 큐레이션 |
 | public/blog-match.json | 10KB | 107건 매핑 | TF-IDF |
 | public/cards/*.jpg | 평균 100KB | **1,342개 (1,549개 누락)** | 5/9 일괄 생성 |
@@ -100,7 +99,7 @@
 | 모듈 | 파일 |
 |---|---|
 | 카카오 OAuth | functions/api/auth/callback/kakao.js |
-| 세션 | functions/api/auth/kakao-session.js |
+| 세션 | functions/api/_shared/session.js (HMAC-SHA256) |
 | 로그아웃 | functions/api/auth/logout.js |
 | 게시글 | functions/api/community/posts.js |
 | 댓글 | functions/api/community/comments.js |

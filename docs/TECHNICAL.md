@@ -1,7 +1,7 @@
 # money-aikorea24 기술 문서
 
 > **한국인 페르소나** — 나이·성별·지역 기반 한국인 통계·지원금 매칭·금융 가이드 플랫폼  
-> 최종 갱신: 2026-05-25 (2차 스캔 — 임금 추정·D1·OAuth·운영 보강)
+> 최종 갱신: 2026-06-23 (전체 코드 대조 검증 + 보안·엔드포인트·컴포넌트 갱신)
 
 ---
 
@@ -178,11 +178,12 @@ money-aikorea24/
 
 ### 4.2 지원금 JSON
 
-| 파일 | 용도 | 규모(대략) |
-|------|------|------------|
-| `benefits.json` | API 원본 (`fetch_benefits.py`) | 대량 |
-| `benefits-clean.json` | 정제·마감일 파싱 | **2,739**건 |
+| 파일 | 용도 | 비고 |
+|------|------|------|
+| `benefits-clean.json` | 정제·마감일 파싱 | `fetch_benefits.py` 출력물 |
 | `benefits-curated.json` | 수동 검증 우선 노출 | **24**건 |
+| `welfare-central.json` | 중앙부처 복지 데이터 | |
+| `welfare-local.json` | 지방 복지 데이터 | |
 
 페르소나 페이지에서는 **curated 우선 + clean 보충**(id 중복 제거)으로 병합합니다.
 
@@ -241,13 +242,13 @@ money-aikorea24/
 | 엔드포인트 | 메서드 | 설명 |
 |------------|--------|------|
 | `/api/auth/callback/kakao` | GET | OAuth 코드 → 토큰 → D1 users → session 쿠키 |
-| `/api/auth/kakao-session` | GET | 세션 조회 |
 | `/api/auth/logout` | GET | 쿠키 삭제 |
 | `/api/community/posts` | GET/POST/DELETE | 목록·작성·삭제 |
 | `/api/community/posts/[id]` | GET | 상세 + 조회수 |
 | `/api/community/comments` | GET/POST/DELETE | 댓글 |
 | `/api/community/like` | POST | 좋아요 토글 |
 | `/api/benefit-click` | POST/GET | 혜택 클릭 로깅 |
+| `/community/[id]` | GET | 커뮤니티 라우트 패스스루 핸들러 |
 | `/og` | GET | 쿼리 `region,sex,age` → `/cards/{key}.jpg` 302 |
 
 **D1 바인딩** (`wrangler.toml`):
@@ -270,12 +271,14 @@ sequenceDiagram
   participant D as D1 users
 
   U->>L: 필수 약관 체크 후 로그인
-  L->>L: pending_marketing 쿠키 (10분)
-  L->>K: authorize (client_id, redirect_uri)
-  K->>C: ?code=...
+  L->>L: state 생성 (crypto.getRandomValues)
+  L->>L: oauth_state + oauth_next + pending_marketing 쿠키 (10분)
+  L->>K: authorize (client_id, redirect_uri, state)
+  K->>C: ?code=...&state=...
+  C->>C: state ↔ oauth_state 쿠키 검증 (CSRF)
   C->>K: POST /oauth/token
   C->>D: SELECT/INSERT users (kakao_id)
-  C->>U: Set-Cookie session + 302 state/next
+  C->>U: Set-Cookie session (HttpOnly) + session_ui + 200 (meta refresh)
 ```
 
 | 항목 | 값 |
@@ -290,20 +293,26 @@ sequenceDiagram
 
 | 속성 | 콜백 설정 | 로그아웃 (`/api/auth/logout`) |
 |------|-----------|-------------------------------|
-| **HttpOnly** | ❌ 없음 (JS에서 `Header.astro`가 `document.cookie` 파싱) | ✅ `HttpOnly` |
-| **Secure** | ✅ | (삭제 시 Path=/) |
-| **SameSite** | `Lax` | — |
+| **HttpOnly** | ✅ `HttpOnly` | ✅ `HttpOnly` |
+| **Secure** | ✅ | ✅ |
+| **SameSite** | `Lax` | `Lax` |
 | **Max-Age** | `604800` (7일) | `0` |
-| **Payload** | Base64(JSON): `{ id, name, email, avatar }` — `name`은 **닉네임**만 노출 |
+| **Payload** | HMAC-SHA256 서명 토큰: `base64url(payload).base64url(HMAC)` — JS에서 읽을 수 없는 구조 | — |
 
-**보조 쿠키:** `pending_marketing=0|1` (로그인 직전 10분, 마케팅 동의 → DB `marketing_consent`)
+**UI 전용 보조 쿠키 `session_ui`:**
+- `HttpOnly` **아님** — `Header.astro`에서 `document.cookie`로 읽어 사용자 이름·아바타 표시
+- `Payload`: base64(JSON): `{ id, name }` — 닉네임만 노출
+
+**임시 쿠키:** `oauth_state`, `oauth_next`, `pending_marketing` — 로그인 직전 10분, 콜백 후 즉시 삭제
 
 **CSRF / state:**
 
-- OAuth `state` 파라미터를 **로그인 URL에 넣지 않음** → 카카오 콜백의 `state`는 사실상 미사용.
-- 로그인 후 이동 경로는 콜백에서 `state` 쿼리 또는 기본 `/community` — **고정 redirect URI 검증에 의존** (표준 OAuth CSRF 토큰 패턴 미적용 → 기술 부채).
+- OAuth `state` 파라미터를 **로그인 URL에 포함** (login.astro:107 — `crypto.getRandomValues`로 16 bytes 생성)
+- `oauth_state` 쿠키에 저장 (Max-Age=600, Secure, SameSite=Lax)
+- 콜백에서 **쿠키↔파라미터 state 일치 검증** (kakao.js:22-24) — 불일치 시 `/?error=csrf_failed` 리다이렉트
+- **Open Redirect 방어**: next URL은 상대경로 (`/`로 시작, `//`로 미시작)만 허용 (kakao.js:30)
 
-**시크릿:** `env.KAKAO_CLIENT_SECRET` (선택). REST API Key는 **소스 하드코딩** (`login.astro`, `callback/kakao.js`) — Pages **Secrets** 로 이전 권장.
+**시크릿:** `env.KAKAO_CLIENT_SECRET` (선택). REST API Key는 `import.meta.env.PUBLIC_KAKAO_REST_KEY` 또는 소스 fallback (`login.astro`, `callback/kakao.js`) — Pages **Secrets** 로 이전 권장.
 
 ### 5.5 D1 스키마 (`persona-db`)
 
@@ -496,6 +505,19 @@ npm run preview
 | **Secrets** | Pages → Settings → **Encrypted** 또는 `wrangler secret put` | API로만 주입, 로그 마스킹 | `KAKAO_CLIENT_SECRET` (권장) |
 | **D1 바인딩** | `wrangler.toml` `[[d1_databases]]` | `env.DB` | `persona-db` |
 
+**로컬 개발 환경변수 폴백 시스템:**
+
+```
+.env (프로젝트 고유) → ~/.env.common (전역 공통)
+```
+
+| 환경 | 로더 파일 | 사용법 |
+|------|-----------|--------|
+| Python | `scripts/load_env.py` | `from load_env import env; env("KEY")` |
+| Node.js | `lib/env-loader.ts` | `import './lib/env-loader.js'` |
+
+`.env`에 값이 있으면 `.env.common`보다 우선 적용됩니다.
+
 ```bash
 # Functions 시크릿 (Pages 프로젝트 연동 시 동일 이름)
 npx wrangler pages secret put KAKAO_CLIENT_SECRET --project-name money-aikorea24
@@ -506,10 +528,12 @@ echo 'KAKAO_CLIENT_SECRET=...' >> .dev.vars
 
 | 변수 | 용도 | 권장 저장 |
 |------|------|-----------|
-| `DATA_GO_KR_API_KEY` | `fetch_benefits.py` (로컬/CI) | 로컬 `.env`, CI Secret |
-| `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` | `deploy.sh`, wrangler | 로컬 `.env` only |
+| `DATA_GO_KR_API_KEY` | `fetch_benefits.py`, `fetch_welfare.mjs` (로컬/CI) | `~/.env.common` (전역) |
+| `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` | `deploy.sh`, wrangler | `~/.env.common` (전역) |
 | `KAKAO_CLIENT_SECRET` | 카카오 토큰 교환 | **Pages Secret** |
-| Kakao REST API Key | OAuth client_id | **Secret으로 이전** (현재 소스 하드코딩) |
+| `PUBLIC_KAKAO_REST_KEY` | OAuth client_id (프론트엔드) | `.env` (프로젝트 고유) |
+| `AI_BACKEND`, `KOSIS_API_KEY`, `GEMINI_API_KEY` | AI/API 설정 | `.env` (프로젝트 고유) |
+| `CF_DNS_TOKEN` | DNS 관리 | `.env` (프로젝트 고유) |
 
 **Preview vs Production:** Pages에서 Preview 배포에도 동일 Secrets를 복제하지 않으면 스테이징 OAuth/D1이 실패할 수 있음.
 
@@ -517,7 +541,7 @@ echo 'KAKAO_CLIENT_SECRET=...' >> .dev.vars
 
 | 항목 | 상태 |
 |------|------|
-| `public/_headers` | **없음** |
+| `_headers` | **프로젝트 루트에 존재** — `X-Frame-Options: ALLOWALL`, `Content-Security-Policy: frame-ancestors *` |
 | `public/_redirects` | **없음** |
 | `Cache-Control` | Cloudflare Pages **기본 정책** (커스텀 헤더 미정의) |
 | `cards/*.jpg` | 배포 시 `dist/cards/` 전체 업로드 — **rsync 없음**, git에 포함 시 clone 부담 |
@@ -553,11 +577,22 @@ echo 'KAKAO_CLIENT_SECRET=...' >> .dev.vars
 | 컴포넌트 | 역할 |
 |----------|------|
 | `BaseHead.astro` | canonical, OG, 메타 |
-| `Header.astro` | 네비, 카카오 로그인, session 쿠키 파싱 |
+| `Header.astro` | 네비, 카카오 로그인, session_ui 쿠키 파싱 |
 | `Footer.astro` | 푸터 링크 |
 | `BenefitCards.astro` | 매칭 혜택 그리드, D-day 배지 |
+| `WelfareCards.astro` | 복지 카드 컴포넌트 |
+| `DecisionCards.astro` | 페르소나별 적합 지원금 TOP 3 결정 카드 |
+| `PersonaBlogRecommend.astro` | 페르소나별 블로그 추천 |
 | `BlogPost.astro` | TOC, 관련 글, 카테고리 배지 |
 | `FormattedDate.astro` | 날짜 포맷 |
+| `FloatingFab.astro` | 플로팅 액션 버튼 |
+| `SearchBar.astro` | 검색 바 |
+| `ThemeToggle.astro` | 다크모드 토글 |
+| `AiTip.astro` | AI 팁 컴포넌트 |
+| `JsonLd.astro` | JSON-LD 구조화 데이터 |
+| `Disclaimer.astro` | 면책 조항 |
+| `HeaderLink.astro` | 헤더 링크 |
+| `ui/Badge.astro`, `ui/Card.astro`, `ui/Button.astro` | 공용 UI 컴포넌트 |
 
 ### 9.3 수익화·분석·검색
 
@@ -580,13 +615,21 @@ echo 'KAKAO_CLIENT_SECRET=...' >> .dev.vars
 | 스크립트 | 용도 |
 |----------|------|
 | `fetch_benefits.py` | gov24 API 페이징 → `public/benefits.json` |
+| `fetch_welfare.mjs` | 복지 데이터 수집 |
 | `card-prompts.mjs` | 마감 임박 지원금 Instagram 카드 AI 프롬프트 출력 |
 | `curate-card-prompts.mjs` | 큐레이션 대상 프롬프트 |
 | `vs-card-prompts.mjs` | VS 비교 카드 프롬프트 |
+| `vs-compare.mjs` | VS 비교 스크립트 |
 | `patch-income.mjs` | persona-stats `income_*` 필드 패치 |
 | `generate-seed-posts.mjs` | 커뮤니티 시드 SQL 생성 |
 | `generate-missing-cards.mjs` | 누락 OG 카드 SVG/이미지 생성 |
 | `generate-mobile-cards.js` | `cards-mobile/` 생성 |
+| `build_persona_stats.py` | 페르소나 통계 빌드 |
+| `stage0a_add_amounts.py` | 결정 카드 Stage 0A (금액 데이터 추가) |
+| `stage1_build_cards.py` | 결정 카드 Stage 1 (빌드 데이터 생성) |
+| `gen_thumbnails.py` | 썸네일 생성 |
+| `generate_post.py` | 포스트 생성 |
+| `topics.json` | 토픽 데이터 |
 | `persona-publisher/publisher.py` | 블로그 자동 발행 |
 
 **실행 예:**
@@ -661,12 +704,12 @@ python3 scripts/fetch_benefits.py
 | `.bak` 파일 다수 | `src/pages`, `components`, `functions` 백업본 혼재 |
 | `@astrojs/cloudflare` 미사용 | `output: static` + Pages Functions |
 | 배포 M1 제한 | CI/CD 없음, `deploy.sh` 로컬 의존 |
-| 카카오 REST Key 하드코딩 | Pages Secrets 미이전 |
-| OAuth `state`/CSRF | 로그인 플로우에 state 토큰 없음 |
-| `session` 쿠키 | HttpOnly 아님 → XSS 시 탈췅 위험 |
+| 카카오 REST Key 하드코딩 | Pages Secrets 미이전 (env fallback 존재) |
+| OAuth `state`/CSRF | ✅ **해결** — state 토큰 + 쿠키 검증 구현 완료 |
+| `session` 쿠키 | ✅ **해결** — HttpOnly 적용, UI용 `session_ui` 별도 분리 |
 | `deploy.sh` | 자동 `git commit` + push, `.env` 절대경로 |
 | D1 마이그레이션 없음 | [d1-inferred.sql](schema/d1-inferred.sql) 수동 동기화 |
-| `public/cards` | 대용량·`_headers` 없음 |
+| `_headers` | 프로젝트 루트에 존재 (X-Frame-Options, CSP) |
 | 혜택 링크 | `/benefits` 일부 `bokjiro.go.kr` 고정 |
 | UI vs 데이터 출처 | 직업 임금(MOEL) / footnote(KOSIS) 문구 혼재 |
 | Nemotron 집계 스크립트 | repo 외부 — 재현성 문서화 필요 |
@@ -792,4 +835,4 @@ Real User Monitoring(Clarity, CF Browser Insights)은 **코드 미연동**.
 
 ---
 
-*문서: 2차 전체 스캔 + 빌드 실측. D1 프로덕션 DDL은 Cloudflare 계정으로 `wrangler d1 execute --remote` 확인 필요.*
+*문서: 전체 코드 대조 검증. OAuth state/CSRF 해소, 세션 HttpOnly 적용, 엔드포인트·컴포넌트·스크립트 전면 갱신.*

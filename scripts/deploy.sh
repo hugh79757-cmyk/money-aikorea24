@@ -18,6 +18,8 @@ git diff --cached --quiet || git commit -m "content: update $(date '+%Y-%m-%d')"
 git push origin main
 
 echo "=== [3/3] Cloudflare Pages 배포 ==="
+# persona-stats.json(25MiB)은 파일 크기 제한 초과로 제외
+rm -f dist/persona-stats.json
 npx wrangler pages deploy dist \
   --project-name money-aikorea24 \
   --branch main \

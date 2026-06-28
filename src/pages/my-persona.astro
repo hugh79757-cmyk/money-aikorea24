@@ -408,7 +408,7 @@ function selectOption(field, val) {
 /* ══ 데이터 로드 ══ */
 async function loadStats() {
   if (statsData) return statsData;
-  const res = await fetch('/persona-stats.json');
+  const res = await fetch('/persona-stats-decade.json');
   statsData = await res.json();
   return statsData;
 }

@@ -1,11 +1,21 @@
 /**
- * patch-income.mjs  (v3 — 중위값 기반 + 로그정규 백분위)
+ * patch-income.mjs  (v4 — 중위소득 기반 통일 체계)
  *
- * income_employed = medianBase[성별][연령] × regionFactor
- *   medianBase: 성별×연령별 전국 취업자 중위월소득(만원)
- *               (통계청·국세청 근로소득 분포 2022-2024 추정)
+ * 모든 소득 추정을 하나의 중위소득 기반 체계로 통일:
+ *   estimatedIncome = categoryBase × ageSexFactor(median) × regionFactor
  *
- * top_percentile: 로그정규분포로 "동일 성별·연령 취업자 중 상위 몇 %" 추정
+ * income_employed = nationalMedianIncome × ageSexFactor × regionFactor
+ *   - 히어로 카드 "추정 월소득"에 사용
+ *   - 중위소득(350) × 성별·연령 보정계수 × 지역 보정계수
+ *   - 통계청 2023 전체 임금근로자 중위월소득 350만원 기준
+ *
+ * income_region_avg = medianBase × regionFactor
+ *   - "지역 중위 소득" 참고값으로 유지
+ *   - 성별·연령별 전국 취업자 중위월소득 × 지역 보정
+ *
+ * income_estimate = income_employed (동일 체계, 추후 직업 반영 시 분리)
+ *
+ * top_percentile: 로그정규분포로 "전체 취업자 중 상위 몇 %" 추정
  *   - 소득 분포는 로그정규에 가까움 (우편향 분포)
  *   - MU  = ln(medianBase)   ← 해당 그룹 중위값이 분포 중심
  *   - SIG = 0.72              ← 한국 임금 로그정규 표준편차 실증 추정
@@ -22,7 +32,6 @@ const WAGE_PATH  = resolve(__dirname, '../src/data/wage-table.json');
 const wageTable = JSON.parse(readFileSync(WAGE_PATH, 'utf8'));
 
 // ── 로그정규 누적분포함수(CDF) 근사 ──────────────────────────────
-// Abramowitz & Stegun erf 근사 (JS에 Math.erf 없으므로 직접 구현)
 function erf(x) {
   const t = 1 / (1 + 0.3275911 * Math.abs(x));
   const poly = t * (0.254829592 + t * (-0.284496736 + t * (1.421413741 + t * (-1.453152027 + t * 1.061405429))));
@@ -31,14 +40,9 @@ function erf(x) {
 }
 function normCDF(z) { return 0.5 * (1 + erf(z / Math.SQRT2)); }
 
-const SIG         = 0.72;  // 한국 임금 로그정규 표준편차 추정
-const GLOBAL_MED  = 288;   // 전체 임금근로자 중위월소득 (2024 국세청, 만원)
+const SIG         = 0.72;
+const GLOBAL_MED  = 288;
 
-/**
- * 전체 취업자 소득 분포에서 상위 몇 % 인지 반환.
- * 기준: 전국 취업자 중위 GLOBAL_MED, 로그정규 SIG
- * → 지역·성별·연령이 달라도 소득에 따라 각기 다른 값이 나옴
- */
 function calcTopPct(income) {
   if (!income || income <= 0) return null;
   const z      = (Math.log(income) - Math.log(GLOBAL_MED)) / SIG;
@@ -46,14 +50,8 @@ function calcTopPct(income) {
   return Math.round(topPct * 10) / 10;
 }
 
-// ── 지역 보정계수 ────────────────────────────────────────────────
-const REGION_MULT = {
-  '서울':1.15,'경기':1.05,'인천':1.02,'부산':1.00,'대구':0.97,
-  '광주':0.95,'대전':0.98,'울산':1.08,'세종':1.02,'강원':0.92,
-  '충북':0.93,'충청북':0.93,'충남':0.95,'충청남':0.95,
-  '전북':0.90,'전라북':0.90,'전남':0.88,'전라남':0.88,
-  '경북':0.92,'경상북':0.92,'경남':0.95,'경상남':0.95,'제주':0.88,
-};
+// ── wage-table.json에서 regionFactor 읽기 ────────────────────────
+const REGION_MULT = wageTable.regionFactor;
 
 function getRegionMult(key) {
   for (const [r, m] of Object.entries(REGION_MULT)) {
@@ -62,7 +60,7 @@ function getRegionMult(key) {
   return 1.0;
 }
 
-/** ageNum 또는 ageBracket → wage-table ageKey */
+/** ageNum → wage-table ageKey (5세 단위) */
 function resolveAgeKey(ageNum, ageBracket) {
   if (ageNum !== null && !isNaN(ageNum)) {
     if (ageNum < 20) return '10대';
@@ -87,6 +85,9 @@ function resolveAgeKey(ageNum, ageBracket) {
 
 // ── 메인 ────────────────────────────────────────────────────────
 const data = JSON.parse(readFileSync(STATS_PATH, 'utf8'));
+const ageSexFactor = wageTable.ageSexFactor;
+const nationalMedianIncome = wageTable.nationalMedianIncome ?? 350;
+
 let fixed = 0, skipped = 0;
 
 for (const [key, val] of Object.entries(data)) {
@@ -98,7 +99,6 @@ for (const [key, val] of Object.entries(data)) {
 
   const parts    = key.split('_');
   const lastPart = parts[parts.length - 1];
-  const isDecade = lastPart.includes('대') || lastPart.includes('이상');
   const ageNum   = parseInt(lastPart, 10);
 
   const ageKey = resolveAgeKey(ageNum, ageBracket);
@@ -109,15 +109,21 @@ for (const [key, val] of Object.entries(data)) {
   if (!medianBase) { skipped++; continue; }
 
   const regionMult = getRegionMult(key);
-  const employed   = Math.round(medianBase * regionMult);
-  const nationalMed = medianBase; // 전국 동일그룹 중위 (지역 보정 전)
+
+  // 통일 공식: nationalMedianIncome × ageSexFactor(median) × regionFactor
+  const asfKey = `${sexKey}_${ageKey}`;
+  const asfVal = ageSexFactor[asfKey] ?? (medianBase / nationalMedianIncome);
+  const employed = Math.round(nationalMedianIncome * asfVal * regionMult);
+
+  // income_region_avg: 기존 medianBase × regionFactor 유지 (지역 중위 참고값)
+  const regionAvg = Math.round(medianBase * regionMult);
 
   val.income.income_employed     = employed;
-  val.income.income_national_avg = nationalMed; // 실제론 중위값이지만 필드명 유지
-  val.income.income_region_avg   = employed;
+  val.income.income_national_avg = medianBase;
+  val.income.income_region_avg   = regionAvg;
   val.income.top_percentile      = calcTopPct(employed);
   val.income.income_estimate     = employed;
-  val.income.income_source       = '통계청·국세청 근로소득 분포 2024 성별×연령 중위값 × 지역보정';
+  val.income.income_source       = '통계청·국세청 근로소득 분포 2024 중위값 기반 통일 추정 (nationalMedianIncome × ageSexFactor × regionFactor)';
   val.income.income_year         = 2024;
   fixed++;
 }
@@ -130,14 +136,21 @@ const samples = [
   '서울_남자_32', '서울_남자_37', '서울_남자_30대',
   '서울_남자_40대', '서울_남자_50대',
   '경기_남자_30대', '강원_남자_30대', '서울_여자_30대',
+  '광주_여자_33', '광주_여자_30대',
 ];
 console.log('\n--- 검증 샘플 ---');
-console.log('페르소나               | 소득   | 전국중위 | 상위%');
-console.log('-----------------------|--------|---------|-----');
+console.log('페르소나               | 소득   | 지중위 | 전국중위 | 상위% | asfKey');
+console.log('-----------------------|--------|-------|---------|-----|-------');
 for (const k of samples) {
   const inc = data[k]?.income;
   if (inc) {
-    const {income_employed: e, income_national_avg: n, top_percentile: t} = inc;
-    console.log(k.padEnd(23)+'| '+String(e).padStart(4)+'만원 | '+String(n).padStart(5)+'만원 | '+t+'%');
+    const {income_employed: e, income_region_avg: r, income_national_avg: n, top_percentile: t} = inc;
+    const p = k.split('_');
+    const last = p[p.length-1];
+    const ageNum = parseInt(last);
+    const aKey = resolveAgeKey(ageNum, '');
+    const sKey = inc.income_sex === '여' ? '여' : '남';
+    const asfKey = `${sKey}_${aKey}`;
+    console.log(k.padEnd(23)+'| '+String(e).padStart(4)+'만원 | '+String(r).padStart(4)+'만원 | '+String(n).padStart(5)+'만원 | '+String(t).padStart(4)+'% | '+asfKey);
   }
 }

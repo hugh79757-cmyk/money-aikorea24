@@ -12,6 +12,8 @@ import welfareCentral from "../../../public/welfare-central.json";
 const welfarePool = [...welfareLocal.map((x:any)=>({...x,_source:"local"})), ...welfareCentral.map((x:any)=>({...x,_source:"central"}))];
 import wageTable from '../../data/wage-table.json';
 import jobMap from '../../data/job-category-map.json';
+const wt = wageTable as any;
+const nationalMedianIncome = wt.nationalMedianIncome ?? 350;
 import decisionCardsData from '../../data/decision-cards.json';
 import DecisionCards from '../../components/DecisionCards.astro';
 export async function getStaticPaths() {
@@ -115,21 +117,24 @@ function ageToFactorKey(ageRaw, ageNum) {
   return '60대이상';
 }
 function getRegionFactor(regionKey: string): number {
-  const rf = (wageTable as any).regionFactor ?? {};
-  // 지역명 접두어로 매칭 (경상남 → 경남 등 단축형 처리)
+  const rf = wt.regionFactor ?? {};
   if (rf[regionKey] !== undefined) return rf[regionKey];
   for (const [k, v] of Object.entries(rf)) {
     if (regionKey.startsWith(k) || k.startsWith(regionKey)) return v as number;
   }
   return 1.0;
 }
-function getJobWage(jobName, sex, ageRaw, ageNum, regionKey = '') {
-  const cat = mapJobToCategory(jobName);
-  const base = (wageTable.jobCategory as Record<string, number>)[cat];
-  if (base === undefined || base === 0) return null;
+function getMedianAgeFactor(sex, ageRaw, ageNum): number {
   const sexKey = sex === '여자' ? '여' : '남';
   const ageKey = ageToFactorKey(ageRaw, ageNum);
-  const ageFactor = (wageTable.ageSexFactor[sexKey] || {})[ageKey] ?? 1.0;
+  const key = `${sexKey}_${ageKey}`;
+  return (wt.ageSexFactor as Record<string, number>)[key] ?? 1.0;
+}
+function getJobWage(jobName, sex, ageRaw, ageNum, regionKey = '') {
+  const cat = mapJobToCategory(jobName);
+  const base = (wt.jobCategory as Record<string, number>)[cat];
+  if (base === undefined || base === 0) return null;
+  const ageFactor = getMedianAgeFactor(sex, ageRaw, ageNum);
   const regionFactor = getRegionFactor(regionKey);
   return Math.round(base * ageFactor * regionFactor);
 }
@@ -438,6 +443,15 @@ const jsonLd = JSON.stringify({
   .rel-emoji{font-size:1.4rem;margin-bottom:.3rem}
   .rel-title{font-size:.88rem;font-weight:700}
 
+  /* ── 더 알아보기 카드 ── */
+  .explore-card{display:flex;align-items:center;gap:0.75rem;padding:0.85rem 0.9rem;background:#f9f7f4;border-radius:12px;text-decoration:none;color:inherit;transition:background 0.2s}
+  .explore-card:hover{background:#f0ece6}
+  .explore-icon{font-size:1.3rem;flex-shrink:0}
+  .explore-text{flex:1;display:flex;flex-direction:column;gap:0.15rem}
+  .explore-title{font-weight:700;font-size:0.92rem;color:#3D3D3D}
+  .explore-sub{font-size:0.8rem;color:#8B7355}
+  .explore-arrow{font-size:1rem;color:#C4A882;flex-shrink:0}
+
   /* ── CTA ── */
   .cta-box{background:linear-gradient(135deg,#6B4226,#E8A87C);border-radius:20px;padding:2rem;text-align:center;color:#fff;margin-bottom:1.5rem}
   .cta-box h2{font-size:1.2rem;font-weight:800;margin-bottom:.75rem}
@@ -741,6 +755,36 @@ const jsonLd = JSON.stringify({
 
     <!-- 광고 3 -->
 
+    <!-- 더 알아보기 -->
+    <div class="stat-card">
+      <h2>📖 더 알아보기</h2>
+      <div style="display:flex;flex-direction:column;gap:0.6rem">
+        <a class="explore-card" href={`/persona/${region}-${sex}-${Math.min(ageNum+5, 79)}/`}>
+          <span class="explore-icon">📈</span>
+          <div class="explore-text">
+            <span class="explore-title">{Math.min(ageNum+5, 79)}세의 나는?</span>
+            <span class="explore-sub">{Math.min(ageNum+5, 79)}세 소득 변화 예측</span>
+          </div>
+          <span class="explore-arrow">→</span>
+        </a>
+        <a class="explore-card" href={`/persona/부산-${sex}-${ageRaw}/`}>
+          <span class="explore-icon">🏠</span>
+          <div class="explore-text">
+            <span class="explore-title">{region} != 부산으로 이사하면?</span>
+            <span class="explore-sub">지역별 소득·통계 비교</span>
+          </div>
+          <span class="explore-arrow">→</span>
+        </a>
+        <a class="explore-card" href={`/persona/${region}-${sex === '남자' ? '여자' : '남자'}-${ageRaw}/`}>
+          <span class="explore-icon">👥</span>
+          <div class="explore-text">
+            <span class="explore-title">내 또래 {sex === '남자' ? '여자' : '남자'}은?</span>
+            <span class="explore-sub">{sex}와 {sex === '남자' ? '여자' : '남자'} 조건 비교</span>
+          </div>
+          <span class="explore-arrow">→</span>
+        </a>
+      </div>
+    </div>
 
     <!-- 다른 페르소나 보기 -->
     <div class="stat-card">

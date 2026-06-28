@@ -10,7 +10,12 @@ load_dotenv(os.path.expanduser("~/.env.common"))
 NIM_API_KEY  = os.getenv("NVIDIA_API_KEY")
 NIM_BASE_URL = "https://integrate.api.nvidia.com/v1"
 
-# diffusiongemma 메인, gemma-4-31b-it 폴백
+# ── DeepSeek V4 Flash (OpenAI 호환 API) ────────────────────
+DEEPSEEK_API_KEY  = os.getenv("DEEPSEEK_API_TOKEN") or os.getenv("DEEPSEEK_API_KEY")
+DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1"
+DEEPSEEK_MODEL    = "deepseek-chat"
+
+# diffusiongemma 메인, gemma-4-31b-it 폴백, deepseek-chat 최후 폴백
 FALLBACK_MODELS = [
     {
         "model":       "google/diffusiongemma-26b-a4b-it",
@@ -28,15 +33,28 @@ FALLBACK_MODELS = [
         "model":       "google/gemma-3n-e4b-it",
         "timeout":     90,
         "max_retries": 1,
-        "note":        "gemma-3n 최후 폴백"
+        "note":        "gemma-3n 폴백"
+    },
+    {
+        "model":       "deepseek-chat",
+        "timeout":     180,
+        "max_retries": 2,
+        "note":        "deepseek v4 flash 최후 폴백",
+        "deepseek":    True,
     },
 ]
 
 client = OpenAI(
     api_key=NIM_API_KEY,
     base_url=NIM_BASE_URL,
-    # blogsmith: max_retries 미설정 → SDK 기본(2)
 )
+
+deepseek_client = None
+if DEEPSEEK_API_KEY:
+    deepseek_client = OpenAI(
+        api_key=DEEPSEEK_API_KEY,
+        base_url=DEEPSEEK_BASE_URL,
+    )
 
 # ── 페르소나 통계 로더 ─────────────────────────────────────
 from shared.persona_stats import resolve_keys as _resolve_stat_keys, get_stats as _get_stats, format_for_prompt as _fmt_stats, make_fomo_hook as _make_hook
@@ -454,7 +472,17 @@ def _postprocess_proofread(text: str) -> str:
 
 
 def proofread(text: str, timeout: int = 90) -> str:
-    """NVIDIA NIM gemma-3n으로 맞춤법·문법 교정 + regex 후처리"""
+    """gemma-3n → deepseek-chat 폴백 체인으로 맞춤법·문법 교정 + regex 후처리"""
+    for attempt in _proofread_chain(text, timeout):
+        if attempt is not None:
+            return attempt
+    return text
+
+
+def _proofread_chain(text: str, timeout: int = 90):
+    """proofread 폴백 제너레이터 — 각 시도 결과를 yield"""
+    # 1차: NVIDIA gemma-3n
+    print("  [proofread] 시도 1/2 | google/gemma-3n-e4b-it")
     try:
         resp = client.chat.completions.create(
             model="google/gemma-3n-e4b-it",
@@ -470,15 +498,40 @@ def proofread(text: str, timeout: int = 90) -> str:
         corrected = resp.choices[0].message.content.strip()
         corrected = _postprocess_proofread(corrected)
         print(f"  [proofread] ✅ 교정 완료 ({len(text)}→{len(corrected)}자)")
-        return corrected
+        yield corrected
+        return
     except Exception as e:
-        print(f"  [proofread] ⚠️ 교정 실패, 원문 유지: {e}")
-        return text
+        print(f"  [proofread] ⚠️ gemma-3n 교정 실패: {e}")
+
+    # 2차: DeepSeek 폴백
+    if DEEPSEEK_API_KEY:
+        print("  [proofread] 시도 2/2 | deepseek-chat")
+        try:
+            resp = deepseek_client.chat.completions.create(
+                model=DEEPSEEK_MODEL,
+                messages=[
+                    {"role": "system", "content": PROOFREADER_PROMPT},
+                    {"role": "user",   "content": text}
+                ],
+                temperature=0.0,
+                max_tokens=len(text) + 500,
+                timeout=timeout,
+                stream=False,
+            )
+            corrected = resp.choices[0].message.content.strip()
+            corrected = _postprocess_proofread(corrected)
+            print(f"  [proofread] ✅ deepseek 교정 완료 ({len(text)}→{len(corrected)}자)")
+            yield corrected
+            return
+        except Exception as e:
+            print(f"  [proofread] ⚠️ deepseek 교정 실패: {e}")
+
+    yield None
 
 
 def generate_article(service: dict) -> dict | None:
-    if not NIM_API_KEY:
-        print("  [writer] ❌ NVIDIA_API_KEY 없음")
+    if not NIM_API_KEY and not DEEPSEEK_API_KEY:
+        print("  [writer] ❌ 모든 API 키 없음 (NVIDIA + DeepSeek)")
         return None
 
     for cfg in FALLBACK_MODELS:
@@ -486,11 +539,18 @@ def generate_article(service: dict) -> dict | None:
         timeout    = cfg["timeout"]
         max_retries = cfg["max_retries"]
         note       = cfg["note"]
+        is_deepseek = cfg.get("deepseek", False)
+
+        if is_deepseek and not DEEPSEEK_API_KEY:
+            print(f"  [writer] ⚠️  {note} | DEEPSEEK_API_KEY 없음, 스킵")
+            continue
+
+        selected_client = deepseek_client if is_deepseek else client
 
         for attempt in range(max_retries):
             try:
                 print(f"  [writer] {note} | {model} (시도 {attempt+1}/{max_retries})")
-                stream = client.chat.completions.create(
+                stream = selected_client.chat.completions.create(
                     model=model,
                     messages=[
                         {"role": "system", "content": SYSTEM_PROMPT},

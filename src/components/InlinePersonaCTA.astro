@@ -1,0 +1,65 @@
+---
+import { CATEGORY_PERSONA_MAP } from '../lib/personaMatcher';
+
+const category = Astro.props.category || 'general';
+const target = CATEGORY_PERSONA_MAP[category] || CATEGORY_PERSONA_MAP.general;
+---
+
+<aside class="inline-persona-cta">
+  <div class="inline-cta-box">
+    <p class="inline-cta-text">
+      <strong>내 페르소나와 비교해보세요</strong><br />
+      {target.ctaText}
+    </p>
+    <a href={target.targetUrl} class="inline-cta-btn">
+      1분 만에 확인하기 →
+    </a>
+  </div>
+</aside>
+
+<style>
+  .inline-persona-cta {
+    margin: 1.5rem 0;
+  }
+  .inline-cta-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.4rem;
+    background: linear-gradient(135deg, #F0F9FF, #E0F2FE);
+    border: 1.5px solid #BAE6FD;
+    border-radius: 16px;
+  }
+  .inline-cta-text {
+    flex: 1;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #1E3A5F;
+    margin: 0;
+  }
+  .inline-cta-text strong {
+    font-size: 1rem;
+  }
+  .inline-cta-btn {
+    flex-shrink: 0;
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: #D97706;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+  }
+  .inline-cta-btn:hover {
+    opacity: 0.9;
+  }
+  @media (max-width: 480px) {
+    .inline-cta-box {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

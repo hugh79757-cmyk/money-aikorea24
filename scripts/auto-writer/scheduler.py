@@ -40,7 +40,6 @@ def print_status():
     today        = datetime.now().strftime("%Y-%m-%d")
     today_count  = get_today_published_count()
     pending      = get_pending_count()
-    daily_quota  = int(os.getenv("DAILY_QUOTA", "5"))
 
     conn = get_conn()
     recent = conn.execute(
@@ -55,7 +54,7 @@ def print_status():
     print(f"\n{'='*55}")
     print(f" auto-writer 현황 — {today}")
     print(f"{'='*55}")
-    print(f" 오늘 발행: {today_count}/{daily_quota}건")
+    print(f" 오늘 발행: {today_count}건")
     print(f" 대기 중:   {pending:,}건")
     print(f"{'─'*55}")
     if recent:

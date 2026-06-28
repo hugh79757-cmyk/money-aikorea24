@@ -7,7 +7,7 @@ load_dotenv("/Users/twinssn/Projects/money-aikorea24/.env")
 load_dotenv(os.path.expanduser("~/.env.common"))
 
 BLOG_DIR     = "/Users/twinssn/Projects/money-aikorea24/src/content/blog"
-DAILY_QUOTA  = int(os.getenv("DAILY_QUOTA", "999"))
+DAILY_QUOTA  = int(os.getenv("DAILY_QUOTA", "5"))
 
 # ── 로컬 로그 설정 ──────────────────────────────────────────
 LOG_DIR  = os.path.join(os.path.dirname(__file__), "logs")
@@ -152,14 +152,29 @@ def run(dry_run=False):
 
         logger.info(f"처리 중: {service['title'][:40]}")
 
-        # 3b. 블로그 부적합 키워드 필터링
-        _EXCLUDE_KW = ["농업", "어업", "축산", "수산", "임업", "농림",
-                       "천일염", "포장재", "동물", "백신", "가축",
-                       "양식", "어가", "영농", "농기계", "비료",
-                       "종자", "사료", "축사", "수산물"]
+        # 3b. 블로그 부적합 키워드 필터링 (자세한 목록은 AGENTS.md 참조)
+        _EXCLUDE_KW = [
+            "농업", "어업", "축산", "수산", "임업", "농림",
+            "천일염", "포장재", "동물", "백신", "가축",
+            "양식", "어가", "영농", "농기계", "비료",
+            "종자", "사료", "축사", "수산물",
+            "한센", "수술비", "치매", "백내장", "임플란트",
+            "발달장애", "학대피해", "보호종료", "가정폭력",
+            "북한이탈", "귀화",
+            "선원", "어업인", "항로표지", "해양사고",
+            "초지", "원산지검증", "유휴간호사",
+            "금연", "마약", "결핵",
+            "진술조력인", "국선변호사", "법률홈닥터",
+            "고위험임산부", "희귀질환", "감염병격리",
+            "영양플러스", "방문건강",
+            "응시료", "노인안검진", "개안술", "인공관절",
+            "장기요양", "낙상방지", "보조기기",
+        ]
         title = service.get("title", "")
         field = service.get("field", "")
-        combined_text = f"{title} {field}"
+        target = service.get("target", "")
+        summary = service.get("summary", "")
+        combined_text = f"{title} {field} {target} {summary}"
         if any(kw in combined_text for kw in _EXCLUDE_KW):
             logger.info(f"[SKIP] 부적합 키워드: {title[:40]}")
             mark_error(service["service_id"], "부적합 키워드")

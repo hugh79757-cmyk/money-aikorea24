@@ -99,7 +99,7 @@ for (const [key, val] of Object.entries(data)) {
   const parts    = key.split('_');
   const lastPart = parts[parts.length - 1];
   const isDecade = lastPart.includes('대') || lastPart.includes('이상');
-  const ageNum   = isDecade ? null : parseInt(lastPart, 10);
+  const ageNum   = parseInt(lastPart, 10);
 
   const ageKey = resolveAgeKey(ageNum, ageBracket);
   if (!ageKey) { skipped++; continue; }

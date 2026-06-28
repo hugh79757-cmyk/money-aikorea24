@@ -66,9 +66,9 @@ const sngPct  = pctOf(s.family,    ['혼자 거주','혼자 거주 (배우자 �
 const isMar   = marPct >= 50;
 const isUne   = unePct >= 20;
 const incomeData = (s as any).income ?? null;
-const incomeVal  = incomeData ? incomeData.income_employed : null;  // 취업자 기준 월소득(만원)
-const incomeEst  = incomeData ? incomeData.income_estimate : null;  // 전체(무직포함) 평균
-const topPct     = incomeData ? incomeData.top_percentile : null;   // 상위 백분위
+const incomeVal  = incomeData && incomeData.income_employed > 0 ? incomeData.income_employed : null;
+const incomeEst  = incomeData && incomeData.income_estimate > 0 ? incomeData.income_estimate : null;
+const topPct     = incomeData && incomeData.top_percentile > 0 ? incomeData.top_percentile : null;
 
 // "당신은..." 카피 생성
 function youAreSentence(n: number, hi: string, lo: string): string {
@@ -744,15 +744,33 @@ const jsonLd = JSON.stringify({
 
     <!-- 다른 페르소나 보기 -->
     <div class="stat-card">
-      <h2>🔍 같은 조건, 다른 지역은?</h2>
-      <div class="compare-links">
-        {['서울','경기','부산','대구','인천'].filter(r => r !== region).slice(0,4).map(r => (
-          <a class="compare-chip" href={`/persona/${r}-${sex}-${ageRaw.replace(/대이상/,'대')}/`}>{r} {ageGroup} {sex} →</a>
-        ))}
-        {ageNum > 0 && ageNum < 55 && (
-          <a class="compare-chip" href={`/persona/${region}-${sex}-${ageNum+5}/`}>{dr} {ageNum+5}세 {sex} →</a>
-        )}
-        <a class="compare-chip" href={`/persona/${region}-${sex === '남자' ? '여자' : '남자'}-${ageRaw}/`}>{dr} {ageGroup} {sex === '남자' ? '여자' : '남자'} →</a>
+      <h2>🔍 다른 조건 비교해보기</h2>
+      <div style="margin-bottom:.75rem">
+        <div style="font-size:.82rem;font-weight:600;color:#8B7355;margin-bottom:.4rem">📍 다른 지역</div>
+        <div class="compare-links">
+          {['서울','경기','부산','대구','인천','대전','광주'].filter(r => r !== region).slice(0,5).map(r => (
+            <a class="compare-chip" href={`/persona/${r}-${sex}-${ageRaw.replace(/대이상/,'대')}/`}>{r} {ageGroup} {sex} →</a>
+          ))}
+        </div>
+      </div>
+      <div style="margin-bottom:.75rem">
+        <div style="font-size:.82rem;font-weight:600;color:#8B7355;margin-bottom:.4rem">🎂 다른 나이</div>
+        <div class="compare-links">
+          {[-10, -5, -3, 3, 5, 10].map(d => {
+            const n = ageNum + d;
+            if (n < 19 || n > 99) return null;
+            return (
+              <a class="compare-chip" href={`/persona/${region}-${sex}-${n}/`}>{dr} {n}세 {sex} →</a>
+            );
+          })}
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.82rem;font-weight:600;color:#8B7355;margin-bottom:.4rem">👤 다른 성별·조건</div>
+        <div class="compare-links">
+          <a class="compare-chip" href={`/persona/${region}-${sex === '남자' ? '여자' : '남자'}-${ageRaw}/`}>{dr} {ageGroup} {sex === '남자' ? '여자' : '남자'} →</a>
+          <a class="compare-chip" href="/my-persona">🔄 새로 분석하기</a>
+        </div>
       </div>
     </div>
     <!-- 관련 콘텐츠 -->
@@ -780,7 +798,7 @@ const jsonLd = JSON.stringify({
       <h2>📚 관련 금융 가이드</h2>
       <div class="rel-grid">
         {relLinks.map(l => (
-          <a class="rel-card" href={l.url}>
+          <a class="rel-card" href={l.url} data-rotation-card="true">
             <div class="rel-emoji">{l.emoji}</div>
             <div class="rel-title">{l.title}</div>
           </a>
@@ -919,6 +937,38 @@ function copyUrl() {
   }
   syncFbarTheme();
   new MutationObserver(syncFbarTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  </script>
+
+  <script is:inline>
+  (function() {
+    var SESSION_KEY = 'persona_session_id';
+    var VIEW_KEY = 'persona_card_views';
+
+    var sessionId = sessionStorage.getItem(SESSION_KEY);
+    if (!sessionId) {
+      sessionId = 's' + Date.now() + Math.random().toString(36).substr(2, 5);
+      sessionStorage.setItem(SESSION_KEY, sessionId);
+    }
+
+    var viewedCards = JSON.parse(localStorage.getItem(VIEW_KEY) || '[]');
+
+    document.querySelectorAll('[data-rotation-card="true"]').forEach(function(card) {
+      var cardUrl = card.getAttribute('href');
+      if (viewedCards.includes(cardUrl)) {
+        card.style.opacity = '0.45';
+        card.style.position = 'relative';
+        var badge = document.createElement('span');
+        badge.textContent = '✓ 본 글';
+        badge.style.cssText = 'position:absolute;top:4px;right:6px;font-size:.6rem;background:#D97706;color:#fff;border-radius:4px;padding:1px 5px;font-weight:700';
+        card.appendChild(badge);
+      }
+    });
+
+    var currentCards = Array.from(document.querySelectorAll('[data-rotation-card="true"]'))
+      .map(function(c) { return c.getAttribute('href'); });
+    viewedCards = Array.from(new Set([].concat(viewedCards, currentCards))).slice(-30);
+    localStorage.setItem(VIEW_KEY, JSON.stringify(viewedCards));
+  })();
   </script>
 </body>
 </html>

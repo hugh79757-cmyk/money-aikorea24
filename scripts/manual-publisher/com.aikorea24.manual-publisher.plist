@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>kr.aikorea24.manual-publisher</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/twinssn/Projects/money-aikorea24/scripts/manual-publisher/.venv/bin/python3</string>
+        <string>/Users/twinssn/Projects/money-aikorea24/scripts/manual-publisher/publisher.py</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/twinssn/Projects/money-aikorea24</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+        <key>TELEGRAM_BOT_TOKEN</key>
+        <string>8511728557:AAHbhwBVV55g38IrMVkJA22rst0SE9yJqfg</string>
+        <key>TELEGRAM_CHAT_ID</key>
+        <string>8539779870</string>
+    </dict>
+
+    <key>StartInterval</key>
+    <integer>1800</integer>
+
+    <key>StandardOutPath</key>
+    <string>/Users/twinssn/Projects/money-aikorea24/logs/manual-publisher.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/twinssn/Projects/money-aikorea24/logs/manual-publisher.log</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <false/>
+</dict>
+</plist>

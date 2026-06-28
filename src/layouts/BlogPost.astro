@@ -8,6 +8,8 @@ import JsonLd from '../components/JsonLd.astro';
 import AiTip from '../components/AiTip.astro';
 import Disclaimer from '../components/Disclaimer.astro';
 import FloatingFab from '../components/FloatingFab.astro';
+import InlinePersonaCTA from '../components/InlinePersonaCTA.astro';
+import { CATEGORY_PERSONA_MAP } from '../lib/personaMatcher';
 
 interface Props {
   title: string;
@@ -20,6 +22,12 @@ interface Props {
   category?: string;
   relatedPosts?: CollectionEntry<'blog'>[];
   tocHeadings?: { depth: number; slug: string; text: string }[];
+  personaCardTarget?: {
+    ctaText: string;
+    ctaSubtext?: string;
+    targetUrl: string;
+    focusSection?: string;
+  };
 }
 
 const {
@@ -33,6 +41,7 @@ const {
   category: categoryProp = '',
   relatedPosts = [],
   tocHeadings = [],
+  personaCardTarget,
 } = Astro.props;
 
 const FINANCE_COLLECTIONS = ['insurance', 'invest', 'loan', 'tax'];
@@ -50,6 +59,9 @@ const categoryLabel: Record<string, string> = {
 };
 const resolvedCategory = categoryProp || collection;
 const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
+
+const targetMap = CATEGORY_PERSONA_MAP[resolvedCategory] || CATEGORY_PERSONA_MAP.general;
+const personaTarget = personaCardTarget || targetMap;
 ---
 
 <html lang="ko">
@@ -361,6 +373,8 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
             </details>
           )}
 
+          <InlinePersonaCTA category={resolvedCategory} />
+
           <slot />
 
           {/* ── 중간 광고 (본문 끝, 관련 글 위) ── */}
@@ -397,16 +411,12 @@ const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
             data-full-width-responsive="true"></ins>
           <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-          <a class="entity-card" href={`/my-persona?src=blog-card-${resolvedCategory}`} style="display:block;background:linear-gradient(135deg,#6B4226,#E8A87C);border-radius:16px;padding:1.25rem 1.5rem;margin:1.5rem 0;text-decoration:none;color:#fff;">
+          <a class="entity-card" href={personaTarget.targetUrl} style="display:block;background:linear-gradient(135deg,#6B4226,#E8A87C);border-radius:16px;padding:1.25rem 1.5rem;margin:1.5rem 0;text-decoration:none;color:#fff;">
             <div style="font-size:.85rem;font-weight:700;opacity:.85;margin-bottom:.4rem;">📊 700만 한국인 데이터 분석</div>
             <div style="font-size:1.1rem;font-weight:800;line-height:1.4;margin-bottom:.6rem;">
-              {resolvedCategory === 'loan' && '나와 같은 조건 한국인 중 몇 %가 전세에 살까?'}
-              {resolvedCategory === 'insurance' && '내 나이·지역 한국인의 실제 생활 통계는?'}
-              {resolvedCategory === 'invest' && '같은 조건 한국인의 소득 백분위가 궁금하다면?'}
-              {resolvedCategory === 'tax' && '나와 같은 조건 한국인 중 자영업자 비율은?'}
-              {!isFinance && '나와 같은 조건의 한국인은 어떻게 살고 있을까?'}
+              {personaTarget.ctaText}
             </div>
-            <div style="font-size:.95rem;font-weight:700;background:rgba(255,255,255,0.2);border-radius:8px;padding:.4rem .9rem;display:inline-block;">내 페르소나 확인하기 →</div>
+            <div style="font-size:.95rem;font-weight:700;background:rgba(255,255,255,0.2);border-radius:8px;padding:.4rem .9rem;display:inline-block;">{personaTarget.ctaSubtext || "내 페르소나 확인하기"} →</div>
           </a>
 
           <AiTip topic={title} />

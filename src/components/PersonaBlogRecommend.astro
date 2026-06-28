@@ -137,7 +137,7 @@ const displayAge = Math.floor(age / 10) * 10;
 
     <div class="rec-grid">
       {selectedPosts.map((post) => (
-        <a href={`/blog/${post.slug}/`} class="rec-card">
+        <a href={`/blog/${post.slug}/`} class="rec-card" data-rotation-card="true">
           <div class="rec-card-top">
             <span class={`rec-badge rec-badge-${post.category}`}>
               {categoryLabel[post.category] || '📋 금융'}

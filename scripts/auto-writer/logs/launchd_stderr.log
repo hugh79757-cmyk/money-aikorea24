@@ -995,3 +995,77 @@
 2026-06-24 10:33:45,994 [INFO] 발행 성공: 맞벌이 신혼부부를 위한 위기임신 및 보호출산 지원 혜택 총정리 | insurance | google/diffusiongemma-26b-a4b-it
 2026-06-24 10:33:46,209 [INFO] 처리 중: 주거취약계층 이사비 지원
 2026-06-24 10:33:46,575 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:34:51,557 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:34:51,562 [INFO] 제목 추출: 무주택 직장인, 평택시 이사비 지원으로 최대 혜택 챙기는 법 총정리
+2026-06-24 10:34:51,567 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:34:51,568 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 10:34:52,143 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-평택시-이사비-지원으로-최대-혜택-챙기는-법-총정리-000156.md
+2026-06-24 10:34:52,145 [INFO] 발행 성공: 무주택 직장인, 평택시 이사비 지원으로 최대 혜택 챙기는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:34:52,157 [INFO] 처리 중: 평택시 생활민원 SOS 서비스
+2026-06-24 10:34:52,529 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:35:51,943 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-24 10:35:51,947 [INFO] 제목 추출: 평택시 거주 1인 가구 및 어르신, 집안 수리비 무료 지원 받는 법 총정
+2026-06-24 10:35:51,953 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-24 10:35:51,954 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-24 10:35:52,520 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/평택시-거주-1인-가구-및-어르신-집안-수리비-무료-지원-받는-법-총정리-000548.md
+2026-06-24 10:35:52,522 [INFO] 발행 성공: 평택시 거주 1인 가구 및 어르신, 집안 수리비 무료 지원 받는 법 총정 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-24 10:35:52,536 [INFO] 처리 중: 2세미만 영유아 입원진료비 본인부담금 면제
+2026-06-24 10:35:52,818 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+/Users/twinssn/.env.common: line 41: yTO5: command not found
+2026-06-28 09:00:05,392 [INFO] 스케줄러 시작
+2026-06-28 09:00:06,180 [INFO] 파이프라인 시작 2026-06-28 09:00:06
+2026-06-28 09:00:06,182 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-06-28 09:00:06,203 [INFO] 처리 중: 2세미만 영유아 입원진료비 본인부담금 면제
+2026-06-28 09:00:07,266 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-28 09:01:39,950 [INFO] Retrying request to /chat/completions in 0.396772 seconds
+2026-06-28 09:03:10,633 [INFO] Retrying request to /chat/completions in 0.859284 seconds
+2026-06-28 09:04:42,032 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-28 09:04:51,497 [INFO] 제목 추출: 맞벌이 신혼부부, 2세 미만 아이 입원비 본인부담금 면제 혜택 총정리
+2026-06-28 09:04:51,728 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-28 09:04:51,729 [INFO] [validator] 수정됨: ['HEADING_MISSING:방법']
+2026-06-28 09:04:52,437 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-2세-미만-아이-입원비-본인부담금-면제-혜택-총정리-005050.md
+2026-06-28 09:04:52,440 [INFO] 발행 성공: 맞벌이 신혼부부, 2세 미만 아이 입원비 본인부담금 면제 혜택 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-28 09:04:52,470 [INFO] 처리 중: [2026] 부산 30대 여성 평균 월급 232만원… 나는 어디쯤?
+2026-06-28 09:04:52,969 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-28 09:06:25,965 [INFO] Retrying request to /chat/completions in 0.380472 seconds
+2026-06-28 09:07:56,682 [INFO] Retrying request to /chat/completions in 0.949174 seconds
+2026-06-28 09:09:28,222 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-28 09:09:37,806 [INFO] 제목 추출: 부산 35세 직장인, 내 월급은 평균일까? 소득 데이터 완벽정리
+2026-06-28 09:09:37,932 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-28 09:09:37,932 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-28 09:09:38,416 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/부산-35세-직장인-내-월급은-평균일까-소득-데이터-완벽정리-26-06-.md
+2026-06-28 09:09:38,419 [INFO] 발행 성공: 부산 35세 직장인, 내 월급은 평균일까? 소득 데이터 완벽정리 | invest | google/diffusiongemma-26b-a4b-it
+2026-06-28 09:09:38,444 [INFO] 처리 중: 신혼부부· 청년 전·월세 보증금 대출이자 지원
+2026-06-28 09:09:38,951 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-28 09:11:12,110 [INFO] Retrying request to /chat/completions in 0.490266 seconds
+2026-06-28 09:12:42,915 [INFO] Retrying request to /chat/completions in 0.754122 seconds
+2026-06-28 09:14:14,248 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-28 09:14:23,407 [INFO] 제목 추출: 2040 직장인·신혼부부, 전세대출이자 최대 100만원 지원받는 법 총정
+2026-06-28 09:14:23,688 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-28 09:14:23,689 [INFO] [validator] 수정됨: ['HEADING_MISSING:방법']
+2026-06-28 09:14:24,114 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/2040-직장인신혼부부-전세대출이자-최대-100만원-지원받는-법-총정리-000162.md
+2026-06-28 09:14:24,118 [INFO] 발행 성공: 2040 직장인·신혼부부, 전세대출이자 최대 100만원 지원받는 법 총정 | loan | google/diffusiongemma-26b-a4b-it
+2026-06-28 09:14:24,153 [INFO] 처리 중: 소년원 출원생 등 소외계층 청소년을 위한 청소년자립생활관 운영 지원
+2026-06-28 09:14:24,656 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-28 09:15:57,932 [INFO] Retrying request to /chat/completions in 0.462895 seconds
+2026-06-28 09:17:28,690 [INFO] Retrying request to /chat/completions in 0.819158 seconds
+2026-06-28 09:19:00,089 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-28 09:19:09,333 [INFO] 제목 추출: 30대 직장인, 소년원 퇴소 청소년 자립지원 혜택 및 신청 방법 총정리
+2026-06-28 09:19:09,568 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-28 09:19:09,568 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-28 09:19:10,144 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-소년원-퇴소-청소년-자립지원-혜택-및-신청-방법-총정리-000037.md
+2026-06-28 09:19:10,146 [INFO] 발행 성공: 30대 직장인, 소년원 퇴소 청소년 자립지원 혜택 및 신청 방법 총정리 | general | google/diffusiongemma-26b-a4b-it
+2026-06-28 09:19:10,171 [INFO] 처리 중: 어린이 불소 도포
+2026-06-28 09:19:10,693 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-28 09:20:44,881 [INFO] Retrying request to /chat/completions in 0.382913 seconds
+2026-06-28 09:22:15,500 [INFO] Retrying request to /chat/completions in 0.908144 seconds
+2026-06-28 09:23:46,941 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-28 09:23:57,425 [INFO] 제목 추출: 맞벌이 신혼부부, 우리 아이 충치 걱정 끝! 어린이 불소 도포 지원 대상
+2026-06-28 09:23:57,571 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-06-28 09:23:57,572 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-06-28 09:23:58,063 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-우리-아이-충치-걱정-끝-어린이-불소-도포-지원-대상-및-혜택-총정리-005051.md
+2026-06-28 09:23:58,066 [INFO] 발행 성공: 맞벌이 신혼부부, 우리 아이 충치 걱정 끝! 어린이 불소 도포 지원 대상 | insurance | google/diffusiongemma-26b-a4b-it
+2026-06-28 09:23:58,066 [INFO] 5건 발행 → 빌드/배포 시작
+2026-06-28 09:25:31,665 [INFO] 배포 완료 (5건)
+2026-06-28 09:25:31,666 [INFO] 파이프라인 종료 2026-06-28 09:25:31
+2026-06-28 09:25:31,666 [INFO] 스케줄러 정상 종료

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>kr.aikorea24.auto-writer</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-c</string>
+        <string>source /Users/twinssn/.env.common &amp;&amp; /Users/twinssn/Projects/money-aikorea24/scripts/manual-publisher/.venv/bin/python3 /Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/scheduler.py</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+    </dict>
+
+    <!-- 매일 09:00 실행 -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>9</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <!-- 표준 출력/에러 로그 -->
+    <key>StandardOutPath</key>
+    <string>/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/logs/launchd_stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/logs/launchd_stderr.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>LaunchOnlyOnce</key>
+    <false/>
+</dict>
+</plist>

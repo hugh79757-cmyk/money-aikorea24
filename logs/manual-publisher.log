@@ -1241,3 +1241,9 @@
 [publisher] 시작: 2026-06-28 23:07:29
 [step1] 신규 파일: 0개
 [publisher] 새 파일 없음 — 종료 (빌드 스킵)
+/Users/twinssn/.env.common: line 41: yTO5: command not found
+
+==================================================
+[publisher] 시작: 2026-06-28 23:37:30
+[step1] 신규 파일: 0개
+[publisher] 새 파일 없음 — 종료 (빌드 스킵)

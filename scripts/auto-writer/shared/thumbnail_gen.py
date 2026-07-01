@@ -13,7 +13,7 @@ R2_BUCKET   = os.getenv("R2_BUCKET_NAME")
 R2_ENDPOINT = os.getenv("R2_ENDPOINT")
 R2_ACCESS   = os.getenv("R2_ACCESS_KEY_ID")
 R2_SECRET   = os.getenv("R2_SECRET_ACCESS_KEY")
-R2_BASE_URL = "https://pub-2f5c7af1c303419a933069212bc25874.r2.dev/blog-thumbnails"
+R2_BASE_URL = os.getenv("R2_PUBLIC_URL", "https://pub-2f5c7af1c303419a933069212bc25874.r2.dev") + "/blog-thumbnails"
 
 SIZE = 800
 

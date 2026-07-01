@@ -245,7 +245,8 @@ scripts/
 | 9 | `make_frontmatter()` — tags, description, frontmatter 조합 | `pipeline.py:245-256` |
 | 10 | `{slug}.md` 저장 → `src/content/blog/` | `pipeline.py:258-262` |
 | 11 | DB 기록: `services.status='published'` + `publish_ledger` INSERT | `pipeline.py:264-270` |
-| 12 | 발행 건수 > 0 → `deploy()` (npm build + wrangler deploy) | `pipeline.py:272-283` |
+| 12 | 발행 건수 > 0 → `deploy()` (npm build + wrangler deploy) | `pipeline.py:272-283` → `shared/build_deploy.py` |
+| 12b | **dist/persona-stats.json 제거** (25MiB Cloudflare 제한) 후 wrangler deploy | `shared/build_deploy.py:22-23` |
 
 **데이터 소스**:
 | 소스 | 파일 | 설명 |
@@ -421,6 +422,12 @@ category_quota:
 | 복지 | `public/welfare-central.json`, `welfare-local.json` | 보건복지부 등 |
 
 ---
+
+## 버그 수정 기록
+
+| 날짜 | 커밋 | 증상 | 원인 | 수정 |
+|------|------|------|------|------|
+| 2026-07-01 | `f174eab` | auto-writer deploy 실패 (7/1 5건, 6/30 3건 미배포) | `build_deploy.py`가 `dist/persona-stats.json`(25MiB)을 제거하지 않아 Cloudflare 25MiB 제한 초과 | `build_deploy.py:22`에 `os.remove()` 추가 (`deploy.sh`와 동일) |
 
 ## 주의사항
 

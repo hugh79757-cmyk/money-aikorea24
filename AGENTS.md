@@ -1,7 +1,7 @@
 # AGENTS.md — 프로젝트 에이전트 가이드
 
 > persona.aikorea24.kr · 한국인 페르소나 통계·지원금·금융 가이드 플랫폼
-> 마지막 갱신: 2026-06-28
+> 마지막 갱신: 2026-06-29
 
 ---
 
@@ -83,7 +83,8 @@ functions/
   community/[id].js                # 커뮤니티 라우트 패스스루
   og/index.js                      # OG → /cards/ 리다이렉트
 public/
-  persona-stats.json               # 페르소나 통계 (2,244키)
+  persona-stats.json               # 페르소나 통계 (2,244키, 25MiB, 빌드 타임 전용)
+  persona-stats-decade.json        # 10년 단위 서브셋 (204키, 4MiB, my-persona 런타임용)
   benefits-clean.json              # 지원금 정제 데이터
   benefits-curated.json            # 큐레이션 혜택 (25건)
   welfare-central.json             # 중앙부처 복지
@@ -106,6 +107,7 @@ public/
 - **라우트 파일**: `src/pages/persona/[...slug].astro`
 - **getStaticPaths()**: persona-stats.json의 모든 키(2,244개)에 대해 HTML 생성
 - **주의**: `persona-stats.json`의 지역명은 **짧은 이름**(경남, 충북, 전남 등) 사용. 인덱스 페이지 REGIONS 배열과 일치해야 함.
+- **my-persona.astro 런타임**: `persona-stats-decade.json`(204키, 4MiB)을 fetch. 풀 데이터(25MiB)는 Cloudflare 25MiB 파일 제한 초과로 배포 제외.
 
 ---
 
@@ -128,9 +130,11 @@ npm run deploy       # scripts/deploy.sh (3-step: build → git push → wrangle
 
 **deploy.sh** 수행 순서:
 1. `.env`에서 Cloudflare 인증 정보 로드
-2. `npm run build` (Astro SSG)
-3. `git add -A && git commit && git push origin main`
-4. `npx wrangler pages deploy dist --project-name money-aikorea24 --branch main --commit-dirty=true`
+2. **Pre-check**: Cloudflare Pages에 `KAKAO_REST_KEY`, `KAKAO_CLIENT_SECRET`, `SESSION_SECRET` 3개 Secrets 존재 여부 검증
+3. `npm run build` (prebuild → generate-decade-stats.mjs → Astro SSG)
+4. `rm -f dist/persona-stats.json` (25MiB, Cloudflare 25MiB 파일 제한 초과)
+5. `git add -A && git commit && git push origin main`
+6. `npx wrangler pages deploy dist --project-name money-aikorea24 --branch main --commit-dirty=true`
 
 **직접 Cloudflare Pages 배포**:
 ```bash
@@ -164,6 +168,10 @@ npx wrangler pages deploy dist --project-name money-aikorea24
   const key = process.env.DATA_GO_KR_API_KEY;
   ```
 - **Cloudflare Pages Functions**: 대시보드 Secrets에서 관리 (`.env` 무시)
+  - **주의**: `functions/`의 Cloudflare Pages Functions가 참조하는 환경변수는 **Cloudflare Pages Secrets**에 등록되어야 함
+  - `env.KAKAO_REST_KEY` — `login.astro`의 `import.meta.env.PUBLIC_KAKAO_REST_KEY`와 별개의 이름. 값은 같지만 `PUBLIC_` prefix가 없음
+  - 필수 Pages Secrets: `KAKAO_REST_KEY`, `KAKAO_CLIENT_SECRET`, `SESSION_SECRET`
+  - **Secret이 없으면 배포가 차단됨** (deploy.sh pre-check)
 
 `.env`에 값이 있으면 `.env.common`보다 **우선 적용**됩니다.
 
@@ -186,6 +194,7 @@ npx wrangler pages deploy dist --project-name money-aikorea24
 scripts/
   auto-writer/        ← AI 자동 생성 (NVIDIA NIM LLM, 완전 자동)
   manual-publisher/  ← 수동 인박스 발행 (사용자가 inbox/에 파일을 넣으면 발행)
+  generate-decade-stats.mjs  ← 빌드 시 persona-stats-decade.json 생성 (prebuild)
 ```
 
 **핵심 차이점**:
@@ -422,3 +431,6 @@ category_quota:
 - **`.bak` 파일**: `src/pages`, `functions` 등에 백업본 다수 존재.
 - **경로 대소문자**: `scripts/manual-publisher/` 코드 일부에 `/Users/twinssn/projects/` (소문자) 경로 하드코딩 존재. macOS는 대소문자 미구분이므로 정상 동작하나, cross-platform 시 문제될 수 있음.
 - **데이터 파일**: `benefits-clean.json`, `persona-stats.json` 등은 git에 없을 수 있음 (용량 문제).
+- **Persona stat 키**: `functions/api/auth/callback/kakao.js`의 `env.KAKAO_REST_KEY`와 `login.astro`의 `import.meta.env.PUBLIC_KAKAO_REST_KEY`는 별개의 변수명. 값은 같지만 `PUBLIC_` prefix 유무 차이 있음.
+- **provinceMap 없음**: `my-persona.astro` `selectProvince()`에 과거 `충북`→`충청북` 식의 매핑이 있었으나 제거됨. UI 버튼값 = 데이터 키값 = 짧은 이름.
+- **하드코딩 Kakao Key 이력**: 초기 `callback/kakao.js`는 실제 Kakao REST Key가 하드코딩되어 있었음. 보안 강화 커밋(`4223f0a`)에서 `env.KAKAO_REST_KEY || '...'` fallback으로 변경, `04cc55e`에서 fallback 제거 → Cloudflare Pages Secret 필수화.

@@ -19,6 +19,9 @@ def run(count: int = 0) -> bool:
             print(f"[deploy] 빌드 실패:\n{result.stderr[-500:]}")
             return False
 
+        print("[deploy] dist/persona-stats.json 제거 (25MiB 파일 제한)")
+        os.remove(os.path.join(PROJECT_DIR, "dist", "persona-stats.json"))
+
         print("[deploy] Wrangler 배포 시작...")
         result = subprocess.run(
             ["npx", "wrangler", "pages", "deploy", "dist/",

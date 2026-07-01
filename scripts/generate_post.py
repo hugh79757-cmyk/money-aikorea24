@@ -148,23 +148,15 @@ def make_body(category, topic):
 
 {topic}을 처음 접하는 분도 이해할 수 있도록 핵심 개념부터 설명합니다.
 
-**TODO: 기본 개념 내용 작성**
-
 2026년 기준으로 적용되는 주요 변경 사항도 함께 확인합니다.
 
 ## 조건별 상세 분석
 
 ### 조건 1: 일반적인 경우
 
-**TODO: 일반 조건 분석 내용 작성**
-
 ### 조건 2: 특수한 경우
 
-**TODO: 특수 조건 분석 내용 작성**
-
 ## {topic} 신청 방법 및 절차
-
-**TODO: 신청 절차 단계별 작성**
 
 공식 사이트에서 직접 확인하는 것을 권장합니다.
 
@@ -180,10 +172,6 @@ ChatGPT 또는 Claude에 아래와 같이 요청하면 내 상황에 맞는 분�
 
 ## 결론
 
-**TODO: 핵심 요약 및 독자가 지금 당장 취할 행동 1가지 작성**
-
-오늘 할 수 있는 첫 번째 행동은 TODO 입니다.
-
 ## 참고 자료
 
 - [금융감독원 금융소비자정보포털](https://fine.fss.or.kr)
@@ -192,6 +180,17 @@ ChatGPT 또는 Claude에 아래와 같이 요청하면 내 상황에 맞는 분�
 
 ##{topic} #{cat_label} #2026 #AI활용
 """
+
+# ── TODO 검증 ─────────────────────────────────────────────
+def validate_no_todo(content: str, label: str = "content") -> bool:
+    """Check that no unresolved TODO placeholder remains in the output."""
+    lines = content.split("\n")
+    for i, line in enumerate(lines, 1):
+        stripped = line.strip()
+        if "TODO" in stripped and not stripped.startswith("#"):
+            print(f"  [WARN] {label}:{i}: unresolved TODO — '{stripped[:60]}'")
+            return False
+    return True
 
 # ── 파일 저장 ─────────────────────────────────────────────
 def save_post(category, topic, slug=None):
@@ -206,6 +205,8 @@ def save_post(category, topic, slug=None):
         return
 
     content = make_frontmatter(category, topic) + "\n" + make_body(category, topic)
+    if not validate_no_todo(content, str(out_path)):
+        print(f"  [WARN] {out_path} contains unresolved TODO placeholders — writing anyway")
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(content)
     print(f"[생성] {out_path}")

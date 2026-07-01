@@ -16,10 +16,9 @@ sys.path.insert(0, SCRIPT_DIR)
 sys.path.insert(0, os.path.join(SCRIPT_DIR, ".."))
 from load_env import env  # noqa: F401
 
-BLOG_DIR = "/Users/twinssn/projects/money-aikorea24/src/content/blog"
+from paths import BLOG_DIR
 
 import watcher
-import filter as finance_filter
 import classifier
 import transformer
 import thumbnail

@@ -21,6 +21,10 @@ pnpm-debug.log*
 *.bak
 *.bak.*
 
+# backup / generated artifacts
+.ssr-backup/
+__pycache__/
+
 # macOS-specific files
 .DS_Store
 

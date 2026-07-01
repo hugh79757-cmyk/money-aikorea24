@@ -276,12 +276,12 @@ def run(dry_run=False):
     # 12. 빌드 + 배포
     if published_count > 0:
         logger.info(f"{published_count}건 발행 → 빌드/배포 시작")
-        success = deploy(published_count)
-        if success:
+        ok, detail = deploy(published_count)
+        if ok:
             logger.info(f"배포 완료 ({published_count}건)")
         else:
-            logger.error(f"빌드/배포 실패 ({published_count}건 저장됨)")
-            notify(f"빌드/배포 실패 ❌ ({published_count}건 저장됨)", "ERROR")
+            logger.error(f"빌드/배포 실패 ({published_count}건 저장됨)\n{detail}")
+            notify(f"빌드/배포 실패 ❌ ({published_count}건 저장됨)\n\n```\n{detail[:800]}\n```", "ERROR")
     else:
         logger.info("발행 없음")
 

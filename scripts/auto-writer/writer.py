@@ -1,10 +1,14 @@
 # scripts/auto-writer/writer.py
 import os, json, re, time, yaml
+from pathlib import Path
 from openai import OpenAI
 from dotenv import load_dotenv
 
-load_dotenv("/Users/twinssn/Projects/money-aikorea24/.env")
-load_dotenv(os.path.expanduser("~/.env.common"))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import paths
+
+load_dotenv(paths.DOTENV_PATH)
+load_dotenv(paths.COMMON_ENV_PATH)
 
 # ── NVIDIA NIM 폴백 체인 ─────────────────────────────────────
 NIM_API_KEY  = os.getenv("NVIDIA_API_KEY")

@@ -1,12 +1,15 @@
 import os, random, textwrap, boto3
+from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance
 from dotenv import load_dotenv
 
-load_dotenv("/Users/twinssn/Projects/money-aikorea24/.env")
-load_dotenv(os.path.expanduser("~/.env.common"))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+import paths
 
-BG_DIR   = os.getenv("BG_IMG_DIR",
-           "/Users/twinssn/Projects/money-aikorea24/public/bg_img")
+load_dotenv(paths.DOTENV_PATH)
+load_dotenv(paths.COMMON_ENV_PATH)
+
+BG_DIR   = os.getenv("BG_IMG_DIR", paths.BG_IMG_DIR)
 FONT_PATH = os.getenv("THUMB_FONT",
            "/System/Library/Fonts/Supplemental/AppleGothic.ttf")
 R2_BUCKET   = os.getenv("R2_BUCKET_NAME")

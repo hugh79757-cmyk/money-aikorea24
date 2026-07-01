@@ -6,9 +6,13 @@ Telegram 알림 정책:
 """
 import os, requests, logging
 from dotenv import load_dotenv
+from pathlib import Path
 
-load_dotenv("/Users/twinssn/Projects/money-aikorea24/.env")
-load_dotenv(os.path.expanduser("~/.env.common"))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+import paths
+
+load_dotenv(paths.DOTENV_PATH)
+load_dotenv(paths.COMMON_ENV_PATH)
 
 TOKEN   = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")

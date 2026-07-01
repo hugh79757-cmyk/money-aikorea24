@@ -13,9 +13,13 @@ import os, sys, logging
 from datetime import datetime
 from logging.handlers import RotatingFileHandler
 from dotenv import load_dotenv
+from pathlib import Path
 
-load_dotenv("/Users/twinssn/Projects/money-aikorea24/.env")
-load_dotenv(os.path.expanduser("~/.env.common"))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import paths
+
+load_dotenv(paths.DOTENV_PATH)
+load_dotenv(paths.COMMON_ENV_PATH)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 LOG_DIR  = os.path.join(BASE_DIR, "logs")

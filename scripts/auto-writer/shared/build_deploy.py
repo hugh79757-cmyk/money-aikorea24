@@ -1,10 +1,14 @@
 import os, subprocess
 from dotenv import load_dotenv
+from pathlib import Path
 
-load_dotenv("/Users/twinssn/Projects/money-aikorea24/.env")
-load_dotenv(os.path.expanduser("~/.env.common"))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+import paths
 
-PROJECT_DIR = "/Users/twinssn/Projects/money-aikorea24"
+load_dotenv(paths.DOTENV_PATH)
+load_dotenv(paths.COMMON_ENV_PATH)
+
+PROJECT_DIR = paths.PROJECT_ROOT
 
 def run(count: int = 0) -> bool:
     env = os.environ.copy()

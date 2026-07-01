@@ -1,8 +1,12 @@
 import os, re, json, requests
 from dotenv import load_dotenv
+from pathlib import Path
 
-load_dotenv("/Users/twinssn/Projects/money-aikorea24/.env")
-load_dotenv(os.path.expanduser("~/.env.common"))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+import paths
+
+load_dotenv(paths.DOTENV_PATH)
+load_dotenv(paths.COMMON_ENV_PATH)
 
 MIMO_API_KEY = os.getenv("MIMO_API_KEY")
 MIMO_URL = "https://api.mimo.kr/v2_5/complete"

@@ -1,10 +1,14 @@
 import os, requests, yaml
 from datetime import datetime
 from dotenv import load_dotenv
+from pathlib import Path
 from shared.db_utils import get_conn
 
-load_dotenv("/Users/twinssn/Projects/money-aikorea24/.env")
-load_dotenv(os.path.expanduser("~/.env.common"))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import paths
+
+load_dotenv(paths.DOTENV_PATH)
+load_dotenv(paths.COMMON_ENV_PATH)
 
 API_KEY = os.getenv("DATA_GO_KR_API_KEY")
 BASE_URL = "http://apis.data.go.kr/1160100/service/GetMarketIndexInfoService"

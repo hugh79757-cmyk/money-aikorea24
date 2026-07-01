@@ -13,9 +13,10 @@ from load_env import env
 import boto3
 from botocore.config import Config
 
-R2_ACCOUNT_ID = env("R2_ACCOUNT_ID", "fac9808c757df31d797190c529aaa71a")
-R2_ACCESS_KEY_ID = env("R2_ACCESS_KEY_ID", "f283c44d6346fe3577067aeda789fd56")
-R2_SECRET_ACCESS_KEY = env("R2_SECRET_ACCESS_KEY", "03b9bc340fee3b087cdf9fb2fd9c69782d515ad1a22073cbbc5cc5550da42a8e")
+# ⚠️ .secrets — R2 credentials MUST be set in .env or .env.common
+R2_ACCOUNT_ID = env("R2_ACCOUNT_ID")
+R2_ACCESS_KEY_ID = env("R2_ACCESS_KEY_ID")
+R2_SECRET_ACCESS_KEY = env("R2_SECRET_ACCESS_KEY")
 R2_BUCKET = env("R2_BUCKET_NAME", "hotissue-images")
 R2_PUBLIC_URL = env("R2_PUBLIC_URL", "https://pub-2f5c7af1c303419a933069212bc25874.r2.dev")
 R2_ENDPOINT = env("R2_ENDPOINT", f"https://{R2_ACCOUNT_ID}.r2.cloudflarestorage.com")

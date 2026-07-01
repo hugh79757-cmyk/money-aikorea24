@@ -1,12 +1,16 @@
 import os
 import random
 import textwrap
+from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance
 
 import r2_upload
 
-THUMBNAIL_DIR = "/Users/twinssn/projects/money-aikorea24/public/blog-thumbnails"
-BG_DIR = "/Users/twinssn/Projects/money-aikorea24/public/bg_img"
+_SCRIPTS_DIR = str(Path(__file__).resolve().parent.parent)
+if _SCRIPTS_DIR not in os.sys.path:
+    import sys as _sys
+    _sys.path.insert(0, _SCRIPTS_DIR)
+from paths import THUMBNAIL_DIR, BG_IMG_DIR as BG_DIR
 
 CATEGORY_BG_POOL = {
     "insurance": ["bg_seoul_30.jpeg", "bg_single_50.jpeg"],

@@ -1,7 +1,12 @@
 import os
 import re
+from pathlib import Path
 
-BLOG_DIR = "/Users/twinssn/projects/money-aikorea24/src/content/blog"
+_SCRIPTS_DIR = str(Path(__file__).resolve().parent.parent)
+if _SCRIPTS_DIR not in os.sys.path:
+    import sys as _sys
+    _sys.path.insert(0, _SCRIPTS_DIR)
+from paths import BLOG_DIR
 
 
 def get_posts_by_category() -> dict:

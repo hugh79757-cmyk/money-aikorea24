@@ -1,8 +1,13 @@
 import os
 import json
 from datetime import datetime
+from pathlib import Path
 
-BLOGSMITH_OUTPUT = "/Users/twinssn/projects/money-aikorea24/inbox"
+_SCRIPTS_DIR = str(Path(__file__).resolve().parent.parent)
+if _SCRIPTS_DIR not in os.sys.path:
+    import sys as _sys
+    _sys.path.insert(0, _SCRIPTS_DIR)
+from paths import INBOX_DIR as BLOGSMITH_OUTPUT
 DONE_JSON = os.path.join(os.path.dirname(__file__), "done.json")
 
 def load_done():

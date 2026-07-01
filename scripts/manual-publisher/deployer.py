@@ -6,8 +6,12 @@ import os
 import re
 import subprocess
 import sys
+from pathlib import Path
 
-PROJECT_DIR = "/Users/twinssn/projects/money-aikorea24"
+_SCRIPTS_DIR = str(Path(__file__).resolve().parent.parent)
+if _SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, _SCRIPTS_DIR)
+from paths import PROJECT_ROOT as PROJECT_DIR
 
 # .env 의 TELEGRAM_BOT_TOKEN 사용 (deployer.py는 publisher.py를 통해 호출되므로)
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")

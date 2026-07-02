@@ -1,4 +1,4 @@
-import os, random, textwrap, boto3
+import os, sys, random, textwrap, boto3
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance
 from dotenv import load_dotenv

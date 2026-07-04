@@ -387,9 +387,47 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
 
           <slot />
 
-          {showInArticle && <Fragment set:html={'<!--AD1-->'} />}
-          {showInArticle && <Fragment set:html={'<!--AD2-->'} />}
-          {showAd3 && <Fragment set:html={'<!--AD3-->'} />}
+          {showInArticle && (
+            <Fragment set:html={`
+              <div class="ad-inarticle">
+                <ins class="adsbygoogle lazyad"
+                  style="display:block; text-align:center;"
+                  data-ad-client="ca-pub-5938862195544185"
+                  data-ad-slot="8107272066"
+                  data-ad-layout="in-article"
+                  data-ad-format="fluid"
+                  data-full-width-responsive="true"></ins>
+              </div>
+            `} />
+          )}
+
+          {showAd3 && (
+            <Fragment set:html={`
+              <div class="ad-inarticle">
+                <ins class="adsbygoogle lazyad"
+                  style="display:block; text-align:center;"
+                  data-ad-client="ca-pub-5938862195544185"
+                  data-ad-slot="8107272066"
+                  data-ad-layout="in-article"
+                  data-ad-format="fluid"
+                  data-full-width-responsive="true"></ins>
+              </div>
+            `} />
+          )}
+
+          {showInArticle && (
+            <Fragment set:html={`
+              <div class="ad-inarticle">
+                <ins class="adsbygoogle lazyad"
+                  style="display:block; text-align:center;"
+                  data-ad-client="ca-pub-5938862195544185"
+                  data-ad-slot="8107272066"
+                  data-ad-layout="in-article"
+                  data-ad-format="fluid"
+                  data-full-width-responsive="true"></ins>
+              </div>
+            `} />
+          )}
 
           {relatedPosts.length > 0 && (
             <div class="related-section">

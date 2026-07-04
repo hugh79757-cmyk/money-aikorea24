@@ -2,37 +2,36 @@
 
 ## Project
 money-aikorea24 (`persona.aikorea24.kr`)
-Last resumed: 2026-07-02
+Last resumed: 2026-07-04
 
-## Phase: 01-security-portability (43% complete)
+## Phase: Content Quality & Revenue (COMPLETE)
 
 ### Plans
 | # | Plan | Status | Summary |
 |---|------|--------|---------|
-| 01 | Security-Critical & Git Hygiene | ✅ COMPLETE | R2 creds removal, git rm .ssr-backup/__pycache__, dead code cleanup |
-| 02 | Absolute Path Portability | ✅ COMPLETE | scripts/paths.py + 19 files migrated |
-| 03 | Configuration Extraction | ⏳ PENDING | AdSense → consts.ts, Kakao key → env, OAuth redirect → dynamic |
-| 04 | Font + API Hardening | ⏳ PENDING | Noto Sans font, D1 error handling, rate limiting |
-| 05 | XSS Mitigation | ⏳ PENDING | innerHTML → escapeHtml sanitization |
+| 02 | Content Freshness & Data Validation | ✅ COMPLETE | year_validator, url_checker, naver_validator, status_reason column |
+| 03 | AdSense Revenue Optimization | ✅ COMPLETE | marker-based ads, IntersectionObserver, conditional placement |
 
-### Blocking Prerequisites for Wave 2
-- **P-2**: Add `localhost` + `*.pages.dev` redirect URIs to Kakao Dev Console
-- **P-3**: Download `NotoSansCJK-Regular.otf` → `fonts/`
+### Deployed
+| Commit | Date | Description |
+|--------|------|-------------|
+| `eb06813` | 2026-07-04 | Phase 02 + Phase 03: content freshness + AdSense optimization |
+| `84b34c7` | 2026-07-04 | auto-writer build_deploy.py import fix |
+| `f174eab` | 2026-07-01 | deploy.sh persona-stats.json removal |
 
-### Recent Commits (top of main)
-| Hash | Description |
-|------|-------------|
-| `17f3c11` | fix: deploy fail → Telegram details |
-| `c266cc5` | docs: PLAN.md + manual-publisher log |
-| `51671c3` | docs: Plan 01 summary |
-| `d8a5565` | docs: Plan 02 summary |
-| `b2c13e0` | refactor: manual-publisher paths |
-| `2b09480` | chore: dead code + TODOs |
-| `8796c15` | refactor: auto-writer paths |
-| `e0221ae` | feat: scripts/paths.py |
-| `1f2f93b` | feat: R2 public URL env var |
-| `a97ef0a` | feat: remove R2 credential fallbacks |
+### Auto-Writer Pipeline Status
+- DB: ~5,266 services (pending), 158 published, 53 error
+- Last deploy: Phase 02+03 content deployed (2,438 files)
+- Auto-writer runs daily via launchd
 
-## Site Health
+### AdSense Configuration
+- Client: `ca-pub-5938862195544185`
+- Slot: `8107272066` (all in-article + leaderboard + mobile-sticky)
+- Conditional: <800 chars = 0 ads; >=800 + high-rpm + h2>=3 = 3 ads; else = 2
+- Lazy-loaded via IntersectionObserver (400px rootMargin)
+
+### Site Health
 - persona.aikorea24.kr: ✅ 200 OK
-- Working tree: clean (only log files modified)
+- Deploy: Cloudflare Pages (wrangler pages deploy)
+- Build: `npm run build` → `dist/`
+- Deploy command: `rm -f dist/persona-stats.json && wrangler pages deploy dist --project-name money-aikorea24 --branch main --commit-dirty=true`

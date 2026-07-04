@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS services (
     persona_hint    TEXT,
     source          TEXT DEFAULT 'gov24',
     status          TEXT DEFAULT 'pending',
+    status_reason   TEXT,
     collected_at    TEXT,
     published_at    TEXT,
     modified_at     TEXT
@@ -50,6 +51,11 @@ def get_conn():
     conn.row_factory = sqlite3.Row
     conn.executescript(SCHEMA)
     conn.commit()
+    # 마이그레이션: status_reason 컬럼 추가
+    cols = {row[1] for row in conn.execute("PRAGMA table_info(services)").fetchall()}
+    if "status_reason" not in cols:
+        conn.execute("ALTER TABLE services ADD COLUMN status_reason TEXT")
+        conn.commit()
     return conn
 
 def get_last_fetched():
@@ -160,8 +166,8 @@ def mark_published(service_id, slug, title, category, persona, model_used=""):
 def mark_error(service_id, reason=""):
     conn = get_conn()
     conn.execute(
-        "UPDATE services SET status='error' WHERE service_id=?",
-        (service_id,)
+        "UPDATE services SET status='error', status_reason=? WHERE service_id=?",
+        (reason, service_id)
     )
     conn.commit()
     conn.close()

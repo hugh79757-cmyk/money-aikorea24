@@ -68,7 +68,7 @@ def generate_seeds(dry_run=False):
             continue
 
         inc = stat.get("income", {}).get("income_estimate", 0)
-        title = f"[2026] {prefix} 평균 월급 {inc}만원… 나는 어디쯤?"
+        title = f"[{datetime.now().year}] {prefix} 평균 월급 {inc}만원… 나는 어디쯤?"
         summary_text = _build_stat_summary({
             "income_est": inc,
             "income_nat": stat.get("income", {}).get("income_national_avg", 0),
@@ -83,7 +83,7 @@ def generate_seeds(dry_run=False):
             f"월평균소득: {inc}만원\n"
             f"전국평균: {stat.get('income', {}).get('income_national_avg', 0)}만원\n"
             f"상위백분위: {stat.get('income', {}).get('top_percentile', 0)}%\n"
-            f"출처: {stat.get('income', {}).get('income_source', '통계청')} {stat.get('income', {}).get('income_year', '2024')}\n"
+            f"출처: {stat.get('income', {}).get('income_source', '통계청')} {stat.get('income', {}).get('income_year', str(datetime.now().year - 1))}\n"
             f"표본: {stat.get('total', 0)}명\n"
         )
 

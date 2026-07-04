@@ -4,7 +4,7 @@ Telegram 알림 정책:
   - WARN  : 즉시 발송 (GPT 재시도 초과, 검수 실패, R2 업로드 실패)
   - INFO  : 발송 안 함 (성공, 발행 완료 등 — 로컬 로그만 기록)
 """
-import os, requests, logging
+import os, sys, requests, logging
 from dotenv import load_dotenv
 from pathlib import Path
 

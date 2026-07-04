@@ -84,6 +84,9 @@ def validate_and_fix_content(content: str) -> tuple[str, list[str]]:
     반환: (수정된 content, fix 목록)
     """
     from transformer import extract_frontmatter, build_frontmatter
+    import sys, os
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "auto-writer", "shared"))
+    from year_validator import check_year_freshness, replace_stale_years
 
     fm, body = extract_frontmatter(content)
     if not fm:
@@ -91,6 +94,24 @@ def validate_and_fix_content(content: str) -> tuple[str, list[str]]:
         return content, []
 
     fm, fixes = validate_frontmatter(fm)
+
+    # 연도 신선도 검증 + 치환 (body, title, description 전부)
+    pub_date = fm.get("pubDate", fm.get("date", "2026-01-01"))
+    title = fm.get("title", "")
+    desc = fm.get("description", "")
+    is_fresh, stale_years = check_year_freshness(str(pub_date), body + " " + title + " " + desc)
+    if not is_fresh:
+        body, replaced = replace_stale_years(body)
+        all_replaced = list(replaced)
+        if title:
+            title, tr = replace_stale_years(title)
+            fm["title"] = title
+            all_replaced.extend(tr)
+        if desc:
+            desc, dr = replace_stale_years(desc)
+            fm["description"] = desc
+            all_replaced.extend(dr)
+        fixes.append(f"YEAR_REPLACED:{','.join(map(str, sorted(set(all_replaced))))}")
 
     # updatedDate 갱신 (수정이 있었으므로)
     if fixes:

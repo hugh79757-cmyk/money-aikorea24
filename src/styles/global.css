@@ -411,3 +411,46 @@ article.legal .effective-date {
   font-size: var(--text-sm);
   color: var(--color-placeholder);
 }
+
+/* =============================================
+   광고 (AdSense)
+   ============================================= */
+
+.ad-inarticle {
+  margin: var(--space-6) 0;
+}
+
+/* PC 리더보드 — 모바일에서 숨김 */
+.ad-leaderboard { margin: var(--space-8) 0; }
+.desktop-only { display: none; }
+@media (min-width: 728px) {
+  .desktop-only { display: block !important; }
+}
+
+/* 모바일 스티키 */
+.ad-mobile-sticky {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--color-surface, #fff);
+  border-top: 1px solid var(--color-border-light, #e5e7eb);
+  z-index: 999;
+  text-align: center;
+  padding: 4px 0;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+}
+.ad-mobile-sticky .close-btn {
+  position: absolute;
+  top: 4px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--color-placeholder, #9ca3af);
+  z-index: 1000;
+}
+@media (min-width: 768px) {
+  .ad-mobile-sticky { display: none !important; }
+}

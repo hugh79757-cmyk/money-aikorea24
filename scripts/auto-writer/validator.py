@@ -1,4 +1,5 @@
 import re, unicodedata
+from shared.year_validator import check_year_freshness, replace_stale_years, get_current_year
 
 REQUIRED_HEADINGS = [
     "이란?",
@@ -89,6 +90,12 @@ def validate_and_fix(body: str, cta_url: str = None, cta_block: str = None) -> t
     # 3. 본문 길이 검증
     if len(body.strip()) < 800:
         issues.append("BODY_TOO_SHORT")
+
+    # 4. 연도 신선도 검증 + 치환
+    is_fresh, stale_years = check_year_freshness(f"{get_current_year()}-01-01", body)
+    if not is_fresh:
+        body, replaced = replace_stale_years(body)
+        issues.append(f"YEAR_REPLACED:{','.join(map(str, replaced))}")
 
     return body, issues
 

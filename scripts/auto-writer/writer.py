@@ -1,8 +1,9 @@
 # scripts/auto-writer/writer.py
-import os, json, re, time, yaml
+import os, sys, json, re, time, yaml
 from pathlib import Path
 from openai import OpenAI
 from dotenv import load_dotenv
+from datetime import datetime
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import paths
@@ -80,7 +81,7 @@ User 메시지로 제공된 데이터를 기준으로 글을 작성하세요.
 
 1. **제공된 데이터에서 날짜가 명시된 정보만** 사용합니다. 날짜 불명 정보는 사용하지 않습니다.
 2. 모든 수치에는 반드시 기준 시점(YYYY년 MM월 기준)과 출처를 명시합니다.
-3. 제공된 데이터의 기준 시점이 현재(2026년 6월)와 1년 이상 차이날 경우, 도입부 직후 ⚠️ 블록으로 독자에게 알립니다.
+3. 제공된 데이터의 기준 시점이 현재({datetime.now().year}년 {datetime.now().month}월)와 1년 이상 차이날 경우, 도입부 직후 ⚠️ 블록으로 독자에게 알립니다.
 4. User 메시지 외부의 정보를 임의로 생성하거나 추측하지 마세요.
 
 ---
@@ -145,7 +146,7 @@ User 메시지로 제공된 데이터를 기준으로 글을 작성하세요.
 ## ⑤ 조건 및 자격 요건
 - 신청 자격, 소득 기준, 나이 조건, 한도를 표로 정리합니다.
 - "조건 불충족 시 대안"도 함께 제시합니다.
-- 출처와 기준 시점을 반드시 명시합니다. (예: "2026년 6월 기준, 국세청")
+- 출처와 기준 시점을 반드시 명시합니다. (예: "{datetime.now().year}년 {datetime.now().month}월 기준, 국세청")
 
 ## ⑥ 소득 구간별 또는 상황별 선택 가이드
 아래 형식을 참고하여 독자 유형을 2~3가지로 분류하고 각각에게 맞는 전략을 제시합니다.

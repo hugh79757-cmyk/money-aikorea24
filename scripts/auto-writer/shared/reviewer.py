@@ -1,4 +1,5 @@
-import os, re, json, requests
+import os, sys, re, json, requests
+from datetime import datetime
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -103,7 +104,8 @@ def review_article(body, model_used="unknown"):
         "5. 외부 링크는 신청방법 섹션에만 있는가?\n"
         "6. 정보가 정확하고 구체적인가? (숫자, 금액, 기한 등)\n"
         "7. <think> 태그가 있으면 제거했는가?\n"
-        "8. 마크다운 문법이 올바른가?"
+        "8. 마크다운 문법이 올바른가?\n"
+        "9. 모든 연도 참조가 현재 연도와 ±1년 이내인가? 과거 연도(2024, 2025)가 본문에 있으면 수정이 필요한가?"
     )
 
     user_prompt = f"검수할 블로그 글:\n\n{protected_body}"

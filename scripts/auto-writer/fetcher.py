@@ -1,4 +1,4 @@
-import os, requests, yaml, json
+import os, sys, requests, yaml, json
 from datetime import datetime
 from dotenv import load_dotenv
 from pathlib import Path

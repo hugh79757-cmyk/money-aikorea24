@@ -1,4 +1,5 @@
 import os, json, re
+from datetime import datetime
 from functools import lru_cache
 
 STATS_PATH = os.path.join(os.path.dirname(__file__), "../../../public/persona-stats.json")
@@ -151,7 +152,8 @@ def make_fomo_hook(stats: dict[str, dict]) -> str:
             parts.append(f"**{pct}%**는 {name}에 거주")
 
     tot = d.get("total", 0)
-    suffix = f" (표본 {tot}명 • 통계청 2024)" if tot else ""
+    income_year = d.get("income_year", str(datetime.now().year - 1))
+    suffix = f" (표본 {tot}명 • 통계청 {income_year})" if tot else ""
 
     if parts:
         return f"📊 {label}의 " + ", ".join(parts) + f"입니다.{suffix}"

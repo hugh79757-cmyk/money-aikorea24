@@ -36,6 +36,8 @@ from shared.thumbnail_gen import generate as gen_thumbnail
 from shared.build_deploy   import run as deploy
 from shared.notifier       import send as notify
 from shared.reviewer       import review_article
+from shared.url_checker    import check_gov24_alive
+from shared.naver_validator import check_topic_relevance
 from writer     import generate_article, proofread
 from validator  import (validate_and_fix, fill_related_posts,
                         make_slug, make_frontmatter,
@@ -183,6 +185,24 @@ def run(dry_run=False):
             logger.info(f"[SKIP] 부적합 키워드: {title[:40]}")
             mark_error(service["service_id"], "부적합 키워드")
             continue
+
+        # 3c. URL Alive 검증 (Gov24만)
+        source = service.get("source", "")
+        if source == "gov24" and service.get("detail_url"):
+            if not check_gov24_alive(service["service_id"], service["detail_url"]):
+                logger.info(f"[SKIP] URL 비활성: {service['title'][:40]}")
+                continue
+
+        # 3d. 관심도 검증 (Finlife, datagokr, income_series)
+        if source in ("finlife", "datagokr", "income_series"):
+            relevance = check_topic_relevance(service.get("title", ""), service.get("summary", ""))
+            if relevance["relevance"] == "none":
+                mark_error(service["service_id"], "no_search_results")
+                logger.info(f"[SKIP] 검색 결과 없음: {service['title'][:40]}")
+                continue
+            elif relevance["relevance"] == "stale":
+                needs_review = True
+                logger.info(f"[WARN] 관심도 낮음 (stale): {service['title'][:40]}")
 
         # 4. GPT 글쓰기
         if dry_run:

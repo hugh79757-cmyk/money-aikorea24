@@ -86,10 +86,10 @@ ALTER TABLE services ADD COLUMN status_reason TEXT;
 | `shared/reviewer.py` | 프롬프트에 연도 체크 |
 
 ## Success Criteria
-- [ ] Gov24 URL alive 검증 — 404/410 서비스 자동 제외
-- [ ] 검증 실패 서비스 `status_reason`에 원인 기록, 재선택 방지
-- [ ] Finlife/datagokr는 네이버 검색으로 관심도 확인
-- [ ] 하드코딩 연도 전부 동적 교체
-- [ ] 본문 연도 검증 (`needs_review=True`)
-- [ ] 리뷰어 연도 체크
-- [ ] Regression 없음
+- [x] Gov24 URL alive 검증 — 404/410 서비스 자동 제외 (`shared/url_checker.py` → `check_gov24_alive`, pipeline.py:48 import)
+- [x] 검증 실패 서비스 status_reason에 원인 기록, 재선택 방지 (`db_utils.py` status_reason 컬럼 + mark_error)
+- [x] Finlife/datagokr는 네이버 검색으로 관심도 확인 (`shared/naver_validator.py` search_naver_blog/check_topic_relevance)
+- [x] 하드코딩 연도 전부 동적 교체 (writer.py / seeder_income.py / persona_stats.py → datetime.now().year)
+- [x] 본문 연도 검증 (needs_review=True) (auto-writer + manual-publisher validator year_validator 호출)
+- [x] 리뷰어 연도 체크 (reviewer.py 프롬프트 L108)
+- [x] Regression 없음 (빌드 통과, 모듈 존재 확인)

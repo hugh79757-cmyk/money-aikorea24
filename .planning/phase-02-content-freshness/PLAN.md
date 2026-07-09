@@ -1,4 +1,5 @@
 # PLAN.md — Phase 02: Content Freshness & Data Validation
+**Status:** Complete ✅ — all 11 tasks verified against code (2026-07-09). See SUMMARY.md.
 
 ## Goal
 1. 데이터 소스에서 받아온 서비스/상품이 실제 alive인지 URL 확인

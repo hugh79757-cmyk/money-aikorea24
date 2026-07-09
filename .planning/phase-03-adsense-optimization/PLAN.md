@@ -1,4 +1,5 @@
 # PLAN.md — Phase 03: AdSense Revenue Optimization
+**Status:** Complete ✅ — with divergences (verified against code 2026-07-09). See SUMMARY.md.
 
 ## Goal
 RPM 최적화를 위해 본문 중간 in-article 광고, PC 리더보드, 모바일 스티키를 추가하고 IntersectionObserver 기반 레이지로드 적용.

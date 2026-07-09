@@ -44,6 +44,19 @@
 Plans:
 - [x] 04-01: 커뮤니티 상하단 고정 슬롯 추가 + tax 삭제 + GSD 문서 동기화 (빌드 2459p 0에러 확인)
 
+#### Phase 5: Auto-Publishing Rules Audit & Revision
+**Goal**: 전반적인 자동 발행 콘텐츠 파이프라인 규칙 점검·정비 + 월급 글 신규 생성 중단
+**Depends on**: Phase 4
+**Requirements**: AUTO-01..AUTO-07 (see phase-05/CONTEXT.md)
+**Success Criteria**:
+  1. manual-publisher가 삭제된 `tax` 카테고리를 참조하지 않음
+  2. 월급/소득 시리즈 신규 발행 중단 (seeder 가드 + 펜딩 행 차단, 익일 run 이후 신규 invest 월급 0건)
+  3. category_quota 합계 = 1.0 (또는 의도 문서화)
+  4. filter.py 등 데드코드 정리
+  5. 자동 발행 파이프라인 인벤토리 + 규칙 문서 단일화
+  6. 빌드 0에러
+**Plans**: 7 tasks (T1-T7, see phase-05/PLAN.md)
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -52,3 +65,4 @@ Plans:
 | 2. Content | v1.0 | 11/11 | Complete | 2026-07-09 |
 | 3. AdSense | v1.0 | 7/7 | Complete | 2026-07-09 |
 | 4. Community | v1.1 | 1/1 | In progress | 2026-07-09 |
+| 5. Auto-Pub | v1.1 | 0/7 | Planned     | -          |

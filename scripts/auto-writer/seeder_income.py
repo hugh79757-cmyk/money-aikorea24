@@ -46,6 +46,11 @@ def _build_stat_summary(stat: dict) -> str:
 
 
 def generate_seeds(dry_run=False):
+    # ── 월급/소득 시리즈 신규 생성 차단 (Phase 5, 2026-07-09) ──
+    # 기본 비활성. AUTO_WRITER_INCOME_SEEDS=on 일 때만 시드 생성.
+    if os.environ.get("AUTO_WRITER_INCOME_SEEDS", "off").lower() != "on":
+        print("⏸  income_series 시드 생성 중단 (AUTO_WRITER_INCOME_SEEDS != on)")
+        return 0
     conn = get_conn()
     all_stats = load_stats()
     now = datetime.now().isoformat()

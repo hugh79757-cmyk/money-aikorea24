@@ -3,7 +3,7 @@
 ## Milestones
 
 - ✅ **v1.0 Foundation & Monetization** - Phases 1-3 (shipped 2026-07-09)
-- 🚧 **v1.1 Community & Cleanup** - Phase 4 (in progress, 2026-07-09 session)
+- ✅ **v1.1 Community & Cleanup** - Phases 4-5 (shipped 2026-07-09)
 
 ## Phases
 
@@ -27,7 +27,7 @@
 
 </details>
 
-### 🚧 v1.1 Community & Cleanup (In Progress)
+### ✅ v1.1 Community & Cleanup (Complete)
 
 **Milestone Goal:** 커뮤니티 게시판 수익화 + tax 카테고리 정리 + GSD 문서 실태 정합
 
@@ -48,6 +48,7 @@ Plans:
 **Goal**: 전반적인 자동 발행 콘텐츠 파이프라인 규칙 점검·정비 + 월급 글 신규 생성 중단
 **Depends on**: Phase 4
 **Requirements**: AUTO-01..AUTO-07 (see phase-05/CONTEXT.md)
+**Status**: Complete (2026-07-09, T1-T7 all verified)
 **Success Criteria**:
   1. manual-publisher가 삭제된 `tax` 카테고리를 참조하지 않음
   2. 월급/소득 시리즈 신규 발행 중단 (seeder 가드 + 펜딩 행 차단, 익일 run 이후 신규 invest 월급 0건)
@@ -64,5 +65,5 @@ Plans:
 | 1. Security | v1.0 | 5/5 | Complete | 2026-07-01 |
 | 2. Content | v1.0 | 11/11 | Complete | 2026-07-09 |
 | 3. AdSense | v1.0 | 7/7 | Complete | 2026-07-09 |
-| 4. Community | v1.1 | 1/1 | In progress | 2026-07-09 |
-| 5. Auto-Pub | v1.1 | 0/7 | Planned     | -          |
+| 4. Community | v1.1 | 1/1 | Complete | 2026-07-09 |
+| 5. Auto-Pub | v1.1 | 7/7 | Complete | 2026-07-09 |

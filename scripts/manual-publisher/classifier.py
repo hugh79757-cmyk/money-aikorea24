@@ -2,7 +2,7 @@ import json
 import os
 
 CONFIG = os.path.join(os.path.dirname(__file__), "config", "category-keywords.json")
-CATEGORIES = ["insurance", "invest", "loan", "tax"]
+CATEGORIES = ["insurance", "invest", "loan"]
 
 def load_config() -> dict:
     with open(CONFIG, "r", encoding="utf-8") as f:

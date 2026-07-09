@@ -179,8 +179,8 @@ npx wrangler pages deploy dist --project-name money-aikorea24
 
 ## 콘텐츠 시스템
 
-- **컬렉션**: `blog` (보험/투자/대출/세금/일반), `nomad`
-- **카테고리**: `insurance` | `invest` | `loan` | `tax` | `general` (consts.ts)
+- **컬렉션**: `blog` (보험/투자/대출/일반), `nomad`
+- **카테고리**: `insurance` | `invest` | `loan` | `general` (consts.ts) — `tax`는 삭제됨 (Phase 5, 2026-07-09)
 - **스키마**: `title`, `description`, `draft` (기본 true), `pubDate`, `updatedDate`, `heroImage`, `tags`, `category`, `needs_review`
 
 ---
@@ -298,9 +298,8 @@ scripts/
 category_quota:
   loan:      0.40
   insurance: 0.25
-  tax:       0.20
-  invest:    0.10
-  general:   0.05
+  invest:    0.20
+  general:   0.15   # 합계 1.00 (반드시 1.0)
 ```
 
 **Gov24 분야 → 카테고리 매핑**:
@@ -400,7 +399,7 @@ category_quota:
 "YYYYMMDD-HHMMSS-...slug.md": {
   "status": "published" | "duplicate_skip" | "error",
   "recorded_at": "ISO-8601",
-  "category": "insurance" | "invest" | "loan" | "tax" | "general",
+  "category": "insurance" | "invest" | "loan" | "general",
   "slug": "...",
   "published_at": "ISO-8601",
   "reason": "error message"

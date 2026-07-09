@@ -632,6 +632,15 @@ const jsonLd = JSON.stringify({
       />
     )}
     <!-- 광고 1 -->
+    <div class="ad-inarticle">
+      <ins class="adsbygoogle"
+           style="display:block; text-align:center;"
+           data-ad-format="auto"
+           data-ad-client="ca-pub-5938862195544185"
+           data-ad-slot="9981825008"
+           data-slot-label="result_top"
+           data-full-width-responsive="true"></ins>
+    </div>
 
 
 
@@ -684,6 +693,15 @@ const jsonLd = JSON.stringify({
     </div>
 
     <!-- 광고 2 -->
+    <div class="ad-inarticle">
+      <ins class="adsbygoogle"
+           style="display:block; text-align:center;"
+           data-ad-format="auto"
+           data-ad-client="ca-pub-5938862195544185"
+           data-ad-slot="7355661667"
+           data-slot-label="result_mid"
+           data-full-width-responsive="true"></ins>
+    </div>
 
 
     <!-- 직업 TOP5 -->
@@ -756,6 +774,15 @@ const jsonLd = JSON.stringify({
     )}
 
     <!-- 광고 3 -->
+    <div class="ad-inarticle">
+      <ins class="adsbygoogle"
+           style="display:block; text-align:center;"
+           data-ad-format="auto"
+           data-ad-client="ca-pub-5938862195544185"
+           data-ad-slot="1032549059"
+           data-slot-label="result_explore"
+           data-full-width-responsive="true"></ins>
+    </div>
 
     <!-- 더 알아보기 -->
     <div class="stat-card">
@@ -880,16 +907,57 @@ const jsonLd = JSON.stringify({
     <div class="stat-card" style="border-color:#D97706">
       <h2>📚 내 상황에 맞는 글 더 보기</h2>
       <p style="font-size:.9rem;color:#8B7355;margin:.5rem 0 1rem">분석 결과와 관련된 블로그 가이드를 읽어보세요.</p>
+      <div class="ad-inarticle">
+        <ins class="adsbygoogle"
+             style="display:block; text-align:center;"
+             data-ad-format="auto"
+             data-ad-client="ca-pub-5938862195544185"
+             data-ad-slot="5768046585"
+             data-slot-label="result_loop"
+             data-full-width-responsive="true"></ins>
+      </div>
       <a class="cta-btn loop-cta" id="loop-cta" href={loopHref} style="background:#D97706;color:#fff">관련 글 읽어보기 →</a>
     </div>
 
     <script>
       import { track } from '../../lib/funnel';
+      window.funnelTrack = track;
       const loopCtaEl = document.getElementById('loop-cta');
       if (loopCtaEl) {
         loopCtaEl.addEventListener('click', () => {
           track('persona_step', { step: 'loop_cta' });
         });
+      }
+    </script>
+
+    <script>
+      import { track } from '../../lib/funnel';
+      function pushAds() {
+        document.querySelectorAll('ins.adsbygoogle').forEach((el) => {
+          if (el.dataset.pushed) return;
+          el.dataset.pushed = '1';
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        });
+      }
+      function observeAds() {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const el = entry.target as HTMLElement;
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+              if (el.dataset.impressed) return;
+              el.dataset.impressed = '1';
+              track('ad_impression', { slot: el.dataset.slotLabel || 'unknown' });
+              io.unobserve(el);
+            }
+          });
+        }, { threshold: [0.5] });
+        document.querySelectorAll('ins.adsbygoogle').forEach((el) => io.observe(el));
+      }
+      function initAds() { pushAds(); observeAds(); }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAds);
+      } else {
+        initAds();
       }
     </script>
 

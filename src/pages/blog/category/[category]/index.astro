@@ -6,7 +6,7 @@ import Footer from '../../../../components/Footer.astro';
 import FormattedDate from '../../../../components/FormattedDate.astro';
 
 export async function getStaticPaths() {
-  const categories = ["insurance", "invest", "loan", "tax", "general"];
+  const categories = ["insurance", "invest", "loan", "general"];
   return categories.map((cat) => ({ params: { category: cat } }));
 }
 
@@ -24,7 +24,6 @@ const categoryLabel: Record<string, string> = {
   insurance: '🛡️ 보험',
   invest:    '📈 투자·절세',
   loan:      '🏠 대출·부동산',
-  tax:       '🧾 세금·절약',
   general:   '📝 일반',
 };
 
@@ -33,7 +32,6 @@ const categoryVars: Record<string, { badge: string; title: string }> = {
   insurance: { badge: '#1E3A5F', title: 'var(--color-primary)' },
   invest:    { badge: '#065F46', title: '#065F46' },
   loan:      { badge: '#92400E', title: '#92400E' },
-  tax:       { badge: '#4C1D95', title: '#4C1D95' },
   general:   { badge: 'var(--color-primary)', title: 'var(--color-primary)' },
 };
 

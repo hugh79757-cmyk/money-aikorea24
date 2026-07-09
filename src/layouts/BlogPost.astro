@@ -48,10 +48,10 @@ const {
   noindex = false,
 } = Astro.props;
 
-const FINANCE_COLLECTIONS = ['insurance', 'invest', 'loan', 'tax'];
+const FINANCE_COLLECTIONS = ['insurance', 'invest', 'loan'];
 const isFinance = FINANCE_COLLECTIONS.includes(collection) || FINANCE_COLLECTIONS.includes(categoryProp);
 
-const HIGH_RPM_CATEGORIES = ['insurance', 'invest', 'loan', 'tax'];
+const HIGH_RPM_CATEGORIES = ['insurance', 'invest', 'loan'];
 const isHighRpm = HIGH_RPM_CATEGORIES.includes(collection) || HIGH_RPM_CATEGORIES.includes(categoryProp);
 
 const datePublished = pubDate ? pubDate.toISOString() : new Date().toISOString();
@@ -60,7 +60,6 @@ const categoryLabel: Record<string, string> = {
   insurance: '보험',
   invest:    '투자·절세',
   loan:      '대출·부동산',
-  tax:       '세금·절약',
   nomad:     '디지털노마드',
   blog:      '블로그',
 };

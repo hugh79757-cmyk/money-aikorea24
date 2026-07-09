@@ -28,6 +28,8 @@ interface Props {
     targetUrl: string;
     focusSection?: string;
   };
+  canonical?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -42,6 +44,8 @@ const {
   relatedPosts = [],
   tocHeadings = [],
   personaCardTarget,
+  canonical = '',
+  noindex = false,
 } = Astro.props;
 
 const FINANCE_COLLECTIONS = ['insurance', 'invest', 'loan', 'tax'];
@@ -77,7 +81,7 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
 
 <html lang="ko">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} canonical={canonical} noindex={noindex} />
     <JsonLd
       title={title}
       description={description}
@@ -290,6 +294,13 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
         display: grid;
         grid-template-columns: 1fr;
         gap: .75rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .related-grid li {
+        display: block;
+        list-style: none;
       }
       .related-card {
         display: block;
@@ -299,6 +310,7 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
         border-radius: 12px;
         text-decoration: none;
         color: inherit;
+        cursor: pointer;
         transition: transform .15s, box-shadow .15s;
         box-shadow: 0 1px 4px rgba(0,0,0,.05);
       }
@@ -432,16 +444,18 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
           {relatedPosts.length > 0 && (
             <div class="related-section">
               <h3>📌 관련 글 더 보기</h3>
-              <div class="related-grid">
+              <ol class="related-grid">
                 {relatedPosts.map((p) => (
-                  <a class="related-card" href={`/blog/${p.id}/`}>
-                    <div class="related-card-title">{p.data.title}</div>
-                    {p.data.description && (
-                      <div class="related-card-desc">{p.data.description}</div>
-                    )}
-                  </a>
+                  <li>
+                    <a class="related-card" href={`/blog/${encodeURIComponent(p.id)}/`}>
+                      <div class="related-card-title">{p.data.title}</div>
+                      {p.data.description && (
+                        <div class="related-card-desc">{p.data.description}</div>
+                      )}
+                    </a>
+                  </li>
                 ))}
-              </div>
+              </ol>
             </div>
           )}
 
@@ -485,10 +499,17 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
         data-full-width-responsive="true"></ins>
     </div>
 
+    {/* ── Funnel telemetry (Wave 2, T5) ── */}
+    <script>
+      import { track } from '../lib/funnel';
+      window.funnelTrack = track;
+    </script>
+
     {/* ── 글로벌 광고 레이지로드 ── */}
     <script is:inline>
     (function() {
       // 이미 초기화된 ins 건너뛰기
+      var ads = Array.prototype.slice.call(document.querySelectorAll('ins.adsbygoogle.lazyad'));
       var io = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           if (!entry.isIntersecting) return;
@@ -497,12 +518,19 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
           try {
             (adsbygoogle = window.adsbygoogle || []).push({});
             el.dataset.adsbygoogleStatus = 'done';
+            // 광고 노출 측정 (observation-only — 광고 코드/속성 변경 없음)
+            if (typeof window.funnelTrack === 'function') {
+              window.funnelTrack('ad_impression', {
+                slot_position: (ads.indexOf(el) + 1),
+                ad_unit: el.getAttribute('data-ad-slot') || null
+              });
+            }
           } catch(e) {}
           io.unobserve(el);
         });
       }, { rootMargin: '400px 0px', threshold: 0 });
 
-      document.querySelectorAll('ins.adsbygoogle.lazyad').forEach(function(ins) {
+      ads.forEach(function(ins) {
         if (!ins.dataset.adsbygoogleStatus) io.observe(ins);
       });
 
@@ -518,6 +546,28 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
           }
         }, { passive: true });
       }
+
+      // ── Blog → persona CTA 클릭 캡처 (Wave 2, T5) ──
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest && e.target.closest(
+          'a[href*="/my-persona"], a[href*="persona.aikorea24.kr/my-persona"]'
+        );
+        if (!a) return;
+        try {
+          var url = new URL(a.href, location.href);
+          var src = url.searchParams.get('src') || '';
+          var parts = src.split('-');
+          var cat = parts[0] || null;
+          var persona = parts.slice(1).join('-') || null;
+          if (typeof window.funnelTrack === 'function') {
+            window.funnelTrack('blog_cta_click', {
+              src: src || null,
+              cat: cat,
+              persona: persona
+            });
+          }
+        } catch (err) {}
+      });
     })();
     </script>
   </body>

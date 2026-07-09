@@ -8,29 +8,20 @@ from datetime import datetime
 from shared.db_utils import get_conn
 from shared.persona_stats import _load as load_stats, PERSONA_AGE_MAP
 
-# ── 발행할 주제 ───────────────────────────────────────────────
+# ── 발행할 주제 (캐노니컬 허브 세트) ──────────────────────────
+# T17: 근본 원인 수정 (옵션 a).
+#  - 지역 스팸 제거: 7개 지역 × 30대 worker ≒ 20개 near-duplicate 토픽 →
+#    지역 슬라이싱은 정적 블로그가 아닌 /my-persona 툴이 동적으로 처리.
+#    따라서 정적 블로그는 서울 기준 3개 distinct demographic 허브만 발행.
+#  - 중복 방지 무력화 수정: 기존 service_id에 날짜(now[:8])가 들어가
+#    매일 새 ID가 생성되어 SKIP 가드가 작동하지 않고 일별 near-duplicate가
+#    누적됨. 아래 service_id 생성에서 날짜를 제거해 실제 중복 방지.
+# 허브 포스트는 T16(fix-income-canonical.py)으로 캐노니컬/노인덱스 정리 가능.
 TOPICS = [
     # (region, title_prefix, gender, age_key, persona)
+    ("서울", "서울 35세 직장인",  "남자", "35", "worker"),   # 캐노니컬 허브
     ("서울", "서울 20대 직장인",  "남자", "25", "youth"),
-    ("서울", "서울 20대 여성",   "여자", "25", "youth"),
-    ("서울", "서울 30대 직장인",  "남자", "35", "worker"),
-    ("서울", "서울 30대 여성",   "여자", "35", "worker"),
-    ("서울", "서울 40대 가장",   "남자", "45", "midlife"),
-    ("서울", "서울 40대 직장인",  "여자", "45", "midlife"),
-    ("부산", "부산 30대 직장인",  "남자", "35", "worker"),
-    ("부산", "부산 30대 여성",   "여자", "35", "worker"),
-    ("경기", "경기 30대 직장인",  "남자", "35", "worker"),
-    ("경기", "경기 30대 여성",   "여자", "35", "worker"),
-    ("인천", "인천 30대 직장인",  "남자", "35", "worker"),
-    ("대구", "대구 30대 직장인",  "남자", "35", "worker"),
-    ("대전", "대전 30대 직장인",  "남자", "35", "worker"),
-    ("광주", "광주 30대 직장인",  "남자", "35", "worker"),
     ("서울", "서울 신혼부부",     "남자", "33", "newlywed"),
-    ("서울", "서울 20대 후반",   "남자", "29", "youth"),
-    ("경기", "경기 20대 직장인",  "남자", "25", "youth"),
-    ("부산", "부산 20대 여성",   "여자", "25", "youth"),
-    ("인천", "인천 30대 여성",   "여자", "35", "worker"),
-    ("대구", "대구 30대 여성",   "여자", "35", "worker"),
 ]
 
 
@@ -92,7 +83,8 @@ def generate_seeds(dry_run=False):
         elif gender == "여자": gender_kr = "여성"
         target = f"{region} 거주 {age}세 {gender_kr} 연봉·소득이 궁금한 직장인"
 
-        service_id = f"INCOME_{region}_{gender}_{age}_{now[:8]}"
+        # 날짜 미포함 → 동일 토픽은 SKIP 가드로 1회만 시드됨 (T17 중복 방지)
+        service_id = f"INCOME_{region}_{gender}_{age}"
 
         if dry_run:
             print(f"  [DRY] {service_id} | {title[:50]}")

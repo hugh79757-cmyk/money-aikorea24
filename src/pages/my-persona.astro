@@ -48,6 +48,7 @@ import BaseHead from '../components/BaseHead.astro';
     .step-progress { display: flex; gap: .4rem; margin-bottom: 1.5rem; }
     .step-dot { flex: 1; height: 4px; border-radius: 2px; background: #E5E0D8; transition: background .3s; }
     .step-dot.done { background: #D97706; }
+    .step-badge { display:inline-block; font-size:.75rem; font-weight:700; color:#D97706; background:rgba(217,119,6,.1); padding:.2rem .7rem; border-radius:99px; margin-bottom:1rem; }
     .step-title { font-size: 1.4rem; font-weight: 800; color: #1E3A5F; margin-bottom: .4rem; }
     .step-sub { font-size: .95rem; color: #4B5563; margin-bottom: 1.5rem; }
     .step-num-input { width: 100%; font-size: 2rem; font-weight: 800; text-align: center; border: 2px solid #D97706; border-radius: 16px; padding: 1rem; color: #1E3A5F; background: #FFFFFF; outline: none; }
@@ -150,7 +151,7 @@ import BaseHead from '../components/BaseHead.astro';
         <p class="hero-copy" id="hero-copy"></p>
       </div>
       <p class="hero-sub">나이·성별·지역만 입력하면<br>주거·직업·가족구성·돈 고민을 통계로 보여드려요</p>
-      <button class="hero-cta" onclick="startStep()">1분 만에 내 페르소나 분석하기 →</button>
+      <button class="hero-cta" onclick="startStep()">무료로 내 페르소나 1분 만에 분석하기 →</button>
       <div class="hero-trust">
         <span>🔒 개인정보 미수집</span>
         <span>📊 700만 데이터</span>
@@ -176,6 +177,7 @@ import BaseHead from '../components/BaseHead.astro';
       <div class="step-dot done"></div>
       <div class="step-dot"></div>
     </div>
+    <span class="step-badge">STEP 1 / 2 · 나이·성별</span>
     <p class="step-title">몇 살이세요?</p>
     <p class="step-sub">만 나이로 입력해주세요 (20~90)</p>
     <input class="step-num-input" type="number" id="age" min="20" max="90" placeholder="예: 35"
@@ -193,6 +195,7 @@ import BaseHead from '../components/BaseHead.astro';
       <div class="step-dot done"></div>
       <div class="step-dot done"></div>
     </div>
+    <span class="step-badge">STEP 2 / 2 · 지역</span>
     <p class="step-title">거주 지역은?</p>
     <p class="step-sub">지역을 선택하면 바로 결과를 보여드립니다</p>
     <div class="step-grid" id="province-grid" style="grid-template-columns:1fr 1fr 1fr;">
@@ -322,7 +325,7 @@ import BaseHead from '../components/BaseHead.astro';
 
   </div><!-- /result -->
 
-<script is:inline>
+<script is:inline define:vars={{kakaoJsKey: import.meta.env.PUBLIC_KAKAO_JS_KEY}}>
 /* ══ 전역 상태 ══ */
 let statsData = null;
 let charts = {};
@@ -814,7 +817,9 @@ async function runAnalyze() {
     /* slug: 서울_남자_34 → 서울-남자-34 (persona 상세 페이지, OG 이미지 포함) */
     const slug     = (province + '_' + sex + '_' + age).replace(/_/g, '-');
     const focusParam = new URLSearchParams(location.search).get('focus') || '';
-    const shareUrl = location.origin + '/persona/' + encodeURIComponent(slug) + '/?marital=' + encodeURIComponent(marital) + (focusParam ? '&focus=' + encodeURIComponent(focusParam) : '');
+    const srcParam   = new URLSearchParams(location.search).get('src') || '';
+    const pidParam   = (function () { try { var m = document.cookie.match(/(?:^|;\s*)pid=([^;]*)/); return m ? decodeURIComponent(m[1]) : ''; } catch (e) { return ''; } })();
+    const shareUrl = location.origin + '/persona/' + encodeURIComponent(slug) + '/?marital=' + encodeURIComponent(marital) + (focusParam ? '&focus=' + encodeURIComponent(focusParam) : '') + (srcParam ? '&src=' + encodeURIComponent(srcParam) : '') + (pidParam ? '&pid=' + encodeURIComponent(pidParam) : '');
     const shareEl  = document.getElementById('share-url');
     if (shareEl) shareEl.value = shareUrl;
     /* 전역 보관 */
@@ -1000,7 +1005,14 @@ function initFromUrl() {
 document.addEventListener('DOMContentLoaded', () => {
   /* 카카오 SDK 초기화 */
   if (window.Kakao && !window.Kakao.isInitialized()) {
-    window.Kakao.init('8ee60344ebc6252b953d28de31bf5dac');
+    window.Kakao.init(kakaoJsKey);
+  }
+  /* T18: URL ?age= 파라미터가 있으면 1단계 나이 입력 미리 채우기 (부분 파라미터 랜딩 대응) */
+  const _ageParam = new URLSearchParams(location.search).get('age');
+  if (_ageParam) {
+    const _ageEl = document.getElementById('age');
+    const _a = parseInt(_ageParam);
+    if (_ageEl && !isNaN(_a) && _a >= 20 && _a <= 90) _ageEl.value = _a;
   }
   /* 히어로 배경: CSS에서 직접 처리 */
   /* 히어로 카피 로테이션 시작 */
@@ -1012,7 +1024,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initFromUrl();
   }
 });
-</script>
+  </script>
+
+    {/* ── Funnel: persona_open + attribution capture (Wave 3, T8) ── */}
+    <script>
+      import { track } from '../lib/funnel';
+      window.funnelTrack = track;
+      const srcParam = new URLSearchParams(location.search).get('src') || null;
+      try { if (srcParam) sessionStorage.setItem('funnel_src', srcParam); } catch (e) {}
+      track('persona_open', { src: srcParam });
+    </script>
+
   <Footer />
 </body>
 </html>

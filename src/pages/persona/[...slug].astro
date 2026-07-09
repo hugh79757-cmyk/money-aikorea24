@@ -264,6 +264,8 @@ const relLinks = (() => {
   const extra = fallback.filter(f => !matched.find(m => m.url === f.url));
   return [...matched, ...extra].slice(0, 4);
 })();
+/* T19: 결과 → 블로그 측정 루프 CTA 타깃 (가장 관련성 높은 블로그 포스트) */
+const loopHref = relLinks.length > 0 ? relLinks[0].url : '/blog/';
 /* 인사이트 */
 const insight = ageNum < 30 || ageRaw === '20대'
   ? `${dr} ${ageGroup} ${sex}는 사회 진입 시기입니다. 청년도약계좌·ISA로 종잣돈을 만들고, 무직 비율이 ${unePct}%로 취업 준비가 중요한 시점입니다.`
@@ -874,6 +876,23 @@ const jsonLd = JSON.stringify({
       <a class="cta-btn" href="/my-persona">나도 분석해보기 →</a>
     </div>
 
+    <!-- T19: 결과 → 블로그 측정 루프 CTA -->
+    <div class="stat-card" style="border-color:#D97706">
+      <h2>📚 내 상황에 맞는 글 더 보기</h2>
+      <p style="font-size:.9rem;color:#8B7355;margin:.5rem 0 1rem">분석 결과와 관련된 블로그 가이드를 읽어보세요.</p>
+      <a class="cta-btn loop-cta" id="loop-cta" href={loopHref} style="background:#D97706;color:#fff">관련 글 읽어보기 →</a>
+    </div>
+
+    <script>
+      import { track } from '../../lib/funnel';
+      const loopCtaEl = document.getElementById('loop-cta');
+      if (loopCtaEl) {
+        loopCtaEl.addEventListener('click', () => {
+          track('persona_step', { step: 'loop_cta' });
+        });
+      }
+    </script>
+
     <!-- 뒤로 -->
     <div class="back-link">
       <a href="/my-persona">← 다시 분석하기</a>
@@ -881,7 +900,7 @@ const jsonLd = JSON.stringify({
 
   </div>
 <Footer />
-<script is:inline>
+<script is:inline define:vars={{kakaoJsKey: import.meta.env.PUBLIC_KAKAO_JS_KEY}}>
 const _shareUrl = window.location.href;
 
 /* 혼인상태 파라미터로 페르소나 타입 보정 */
@@ -905,7 +924,7 @@ const _shareUrl = window.location.href;
     if (_pDescEl) _pDescEl.textContent = '자유롭게 혼자만의 삶을 즐기는 사람';
   }
 })();
-if (window.Kakao && !window.Kakao.isInitialized()) { window.Kakao.init('8ee60344ebc6252b953d28de31bf5dac'); }
+if (window.Kakao && !window.Kakao.isInitialized()) { window.Kakao.init(kakaoJsKey); }
 
 function shareKakao() {
   if (window.Kakao && window.Kakao.isInitialized()) {
@@ -1014,5 +1033,18 @@ function copyUrl() {
     localStorage.setItem(VIEW_KEY, JSON.stringify(viewedCards));
   })();
   </script>
+
+    {/* ── Funnel: persona_result (Wave 3, T10) — closes the loop ── */}
+    <script>
+      import { track } from '../../lib/funnel';
+      const q = new URLSearchParams(location.search);
+      const srcParam = q.get('src') || null;
+      const slugSegs = (location.pathname.split('/').filter(Boolean).pop() || '').split('-');
+      const age = slugSegs[slugSegs.length - 1] || '';
+      const ageNum = parseInt(age, 10);
+      const age_band = (!isNaN(ageNum)) ? (Math.floor(ageNum / 10) * 10) + 's' : '';
+      track('persona_result', { src: srcParam, age_band: age_band });
+    </script>
+
 </body>
 </html>

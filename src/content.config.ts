@@ -28,6 +28,8 @@ const sharedSchema = z.object({
         heroImage: z.string().optional(),
         category: z.enum(["insurance", "invest", "loan", "tax", "general"]).optional(),
         needs_review: z.boolean().optional().default(false),
+        canonical: z.string().optional(),
+        noindex: z.boolean().optional().default(false),
         personaCardTarget: personaCardTargetSchema,
         targetPersona: targetPersonaSchema,
 });

@@ -13,6 +13,15 @@ load_dotenv(paths.COMMON_ENV_PATH)
 BLOG_DIR     = paths.BLOG_DIR
 DAILY_QUOTA  = int(os.getenv("DAILY_QUOTA", "5"))
 
+# ── 마크다운 렌더링 버그 수정 ──────────────────────────────────
+# remark-gfm에서 **숫자.숫자%** 패턴(예: **56.1%**)이 bold로 렌더링 안 되고
+# 리터럴 "**56.1%**"로 보이는 버그가 있음. 이 패턴을 찾아 수정.
+_BOLD_DECIMAL_PERCENT = re.compile(r'\*\*(\d+\.\d+)%\*\*')
+
+def fix_bold_decimal_percent(text: str) -> str:
+    """**42.1%** → **42.1**% 로 변환 (remark-gfm 버그 회피)"""
+    return _BOLD_DECIMAL_PERCENT.sub(r'**\1**%', text)
+
 # ── 로컬 로그 설정 ──────────────────────────────────────────
 LOG_DIR  = os.path.join(os.path.dirname(__file__), "logs")
 LOG_FILE = os.path.join(LOG_DIR, "pipeline.log")
@@ -53,6 +62,7 @@ with open(os.path.join(os.path.dirname(__file__), "config/category_map.yaml"),
 CATEGORY_QUOTA  = CONFIG["category_quota"]
 PERSONA_CTA     = CONFIG["persona_cta"]
 PERSONA_LABELS  = CONFIG.get("persona_labels", {})
+CTA_VARIANTS    = CONFIG.get("cta_variants", {})
 
 # ── 뱅크샐러드 스타일 헬퍼 ───────────────────────────────────
 def extract_title_from_draft(body: str) -> str | None:
@@ -96,24 +106,39 @@ def _inline_cta_label(service: dict) -> str:
         return lbl.get(persona, lbl.get("default", "30대 직장인"))
     return "30대 직장인"
 
+def _ab_index(service_id) -> int:
+    """service_id 기반 결정적 A/B 인덱스 (0/1). 재빌드 간 일관성 보장."""
+    import hashlib
+    sid = str(service_id)
+    return int(hashlib.md5(sid.encode("utf-8")).hexdigest(), 16) % 2
+
 def insert_inline_ctas(body: str, service: dict) -> str:
-    """조건 섹션 뒤 + 금리 섹션 뒤에 /my-persona CTA 삽입"""
+    """조건 섹션 뒤 + 금리 섹션 뒤에 /my-persona CTA 삽입 (variant-driven, A/B)
+
+    미드(in-body, H2#2/H2#3 뒤) = 약함/호기심(mid) 복사.
+    END CTA는 validator.make_persona_cta_block에서 end(강함) 변인 사용.
+    src 토큰(inline-peer-/inline-stats-)은 그대로 유지 → T5 귀속 파싱 호환.
+    """
     h2_starts = [m.start() for m in re.finditer(r'^##\s+', body, re.MULTILINE)]
     if len(h2_starts) < 3:
         return body
 
-    label = _inline_cta_label(service)
     cat = service.get("category", "general")
     persona = service.get("persona", "general")
+    key = f"{cat}-{persona}"
+    variants = CTA_VARIANTS.get(key, CTA_VARIANTS.get("default", {}))
+    mid = variants.get("mid", ["내 또래 평균이 궁금하다면 확인해보세요", "비슷한 조건 사람들은 어떻게 살까요?"])
+    idx = _ab_index(service.get("service_id", ""))
+    mid_text = mid[idx % len(mid)]
 
     cta2 = (
-        f"\n\n> **나와 같은 조건의 사람들은 어떻게 살고 있을까?**\n"
-        f"> 나이·성별·지역만 입력하면 또래 소득·주거·직업 통계를 확인할 수 있습니다.\n"
+        f"\n\n> **{mid_text}**\n"
+        f"> 나이·성별·지역만 입력하면 또래 소득·주거·직업 통계를 바로 확인할 수 있습니다.\n"
         f">\n"
         f"> [내 페르소나 통계 보기 →](/my-persona?src=inline-stats-{cat}-{persona})\n"
     )
     cta1 = (
-        f"\n\n> **{label}이라면? 지금 확인하세요**\n"
+        f"\n\n> **{mid_text}**\n"
         f"> 나와 비슷한 사람들의 평균 소득과 생활 패턴이 궁금하다면?\n"
         f">\n"
         f"> [또래 정보 확인하기 →](/my-persona?src=inline-peer-{cat}-{persona})\n"
@@ -243,14 +268,23 @@ def run(dry_run=False):
 
         # 5b. validator (CTA 강제 삽입 + 헤딩 검증)
         persona = service.get("persona", "default")
+        cat = service.get("category", "general")
         cta_url = PERSONA_CTA.get(persona, PERSONA_CTA.get("default", "https://persona.aikorea24.kr/my-persona"))
-        cta_block = make_persona_cta_block(cta_url, persona=persona)
+        _vkey = f"{cat}-{persona}"
+        _v = CTA_VARIANTS.get(_vkey, CTA_VARIANTS.get("default", {}))
+        _end = _v.get("end", ["내 또래는 어떤 혜택을 받고 있을까?"] * 2)
+        _idx = _ab_index(service.get("service_id", ""))
+        _end_text = _end[_idx % len(_end)]
+        cta_block = make_persona_cta_block(cta_url, persona=persona, end_text=_end_text)
         body, issues = validate_and_fix(body, cta_url, cta_block=cta_block)
         if "BODY_TOO_SHORT" in issues:
             mark_error(service["service_id"], "본문 너무 짧음")
             continue
         if issues:
             logger.info(f"[validator] 수정됨: {issues}")
+
+        # 5c. 마크다운 bold+소수점+% 버그 수정 (**42.1%** → **42.1**%)
+        body = fix_bold_decimal_percent(body)
 
         # 6. slug 생성
         slug = make_slug(final_title, service["service_id"])

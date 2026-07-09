@@ -6,10 +6,16 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  canonical?: string;
+  noindex?: boolean;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalOverride = Astro.props.canonical;
+const canonicalURL = canonicalOverride
+  ? new URL(canonicalOverride, Astro.site)
+  : new URL(Astro.url.pathname, Astro.site);
 const { title, description, image = '/og-default.png' } = Astro.props;
+const noindex = Astro.props.noindex ?? false;
 const ogImage = new URL(image, Astro.site).href;
 ---
 
@@ -40,6 +46,7 @@ const ogImage = new URL(image, Astro.site).href;
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+{noindex && <meta name="robots" content="noindex" />}
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -71,5 +78,41 @@ const ogImage = new URL(image, Astro.site).href;
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-NG7D2EHJBV');
+
+  // ── Funnel telemetry helper (Wave 1) ──
+  // Dispatches a GA4 custom event for the blog→persona funnel.
+  // Event catalog (do NOT auto-fire on load):
+  //   gtag('event', 'blog_cta_click', { src, cat, persona });
+  //   gtag('event', 'persona_open',    { src, visitor_id });
+  //   gtag('event', 'persona_step',    { step, visitor_id });
+  //   gtag('event', 'persona_result',  { src, visitor_id, age_band });
+  //   gtag('event', 'ad_impression',   { slot_position, ad_unit });
+  // NOTE: a per-ad-click event is intentionally absent — AdSense renders in a
+  // cross-origin iframe, so per-click events cannot be captured on the host
+  // page and intercepting ad clicks violates AdSense policy.
+  function trackFunnel(event, params) {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', event, params || {});
+  }
+  window.trackFunnel = trackFunnel;
+
+  // ── Stable first-party visitor_id (Wave 2, T6) ──
+  // Scoped to .aikorea24.kr so both the blog host and persona.aikorea24.kr
+  // can read it for cross-domain journey stitching. Client-readable (NOT httpOnly)
+  // because track() (src/lib/funnel.ts) reads it from JS.
+  (function ensureVisitorId() {
+    try {
+      if (document.cookie.match(/(^|;\s*)pid=/)) return;
+      var id = (crypto.randomUUID ? crypto.randomUUID()
+        : 'v-' + Date.now().toString(36) + Math.random().toString(36).slice(2));
+      document.cookie =
+        'pid=' + id +
+        '; Max-Age=31536000' +
+        '; Domain=.aikorea24.kr' +
+        '; Path=/' +
+        '; SameSite=Lax' +
+        '; Secure';
+    } catch (e) {}
+  })();
 </script>
   <meta name="google-site-verification" content="kpr0gRmGKIFUW5dNLsfxba1aKpbV7wolSFk6cSOJZXA" />

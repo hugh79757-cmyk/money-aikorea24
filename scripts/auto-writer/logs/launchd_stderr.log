@@ -1221,3 +1221,383 @@
 2026-07-01 09:24:50,978 [ERROR] [ERROR] 빌드/배포 실패 ❌ (5건 저장됨)
 2026-07-01 09:24:51,972 [INFO] 파이프라인 종료 2026-07-01 09:24:51
 2026-07-01 09:24:51,972 [INFO] 스케줄러 정상 종료
+2026-07-02 09:00:04,653 [INFO] 스케줄러 시작
+2026-07-02 09:00:05,001 [ERROR] 스케줄러 오류: name 'sys' is not defined
+Traceback (most recent call last):
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/scheduler.py", line 100, in run
+    from pipeline import run as pipeline_run
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/pipeline.py", line 35, in <module>
+    from shared.thumbnail_gen import generate as gen_thumbnail
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/shared/thumbnail_gen.py", line 6, in <module>
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+    ^^^
+NameError: name 'sys' is not defined. Did you forget to import 'sys'?
+Traceback (most recent call last):
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/scheduler.py", line 100, in run
+    from pipeline import run as pipeline_run
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/pipeline.py", line 35, in <module>
+    from shared.thumbnail_gen import generate as gen_thumbnail
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/shared/thumbnail_gen.py", line 6, in <module>
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+    ^^^
+NameError: name 'sys' is not defined. Did you forget to import 'sys'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/scheduler.py", line 119, in <module>
+    run(dry_run=False)
+    ~~~^^^^^^^^^^^^^^^
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/scheduler.py", line 107, in run
+    from shared.notifier import send
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/shared/notifier.py", line 11, in <module>
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+    ^^^
+NameError: name 'sys' is not defined. Did you forget to import 'sys'?
+2026-07-03 09:00:04,453 [INFO] 스케줄러 시작
+2026-07-03 09:00:07,664 [ERROR] 스케줄러 오류: name 'sys' is not defined
+Traceback (most recent call last):
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/scheduler.py", line 100, in run
+    from pipeline import run as pipeline_run
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/pipeline.py", line 36, in <module>
+    from shared.build_deploy   import run as deploy
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/shared/build_deploy.py", line 5, in <module>
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+    ^^^
+NameError: name 'sys' is not defined. Did you forget to import 'sys'?
+Traceback (most recent call last):
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/scheduler.py", line 100, in run
+    from pipeline import run as pipeline_run
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/pipeline.py", line 36, in <module>
+    from shared.build_deploy   import run as deploy
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/shared/build_deploy.py", line 5, in <module>
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+    ^^^
+NameError: name 'sys' is not defined. Did you forget to import 'sys'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/scheduler.py", line 119, in <module>
+    run(dry_run=False)
+    ~~~^^^^^^^^^^^^^^^
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/scheduler.py", line 107, in run
+    from shared.notifier import send
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/shared/notifier.py", line 11, in <module>
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+    ^^^
+NameError: name 'sys' is not defined. Did you forget to import 'sys'?
+2026-07-04 09:00:08,610 [INFO] 스케줄러 시작
+2026-07-04 09:00:20,414 [ERROR] 스케줄러 오류: name 'sys' is not defined
+Traceback (most recent call last):
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/scheduler.py", line 100, in run
+    from pipeline import run as pipeline_run
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/pipeline.py", line 36, in <module>
+    from shared.build_deploy   import run as deploy
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/shared/build_deploy.py", line 5, in <module>
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+    ^^^
+NameError: name 'sys' is not defined. Did you forget to import 'sys'?
+Traceback (most recent call last):
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/scheduler.py", line 100, in run
+    from pipeline import run as pipeline_run
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/pipeline.py", line 36, in <module>
+    from shared.build_deploy   import run as deploy
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/shared/build_deploy.py", line 5, in <module>
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+    ^^^
+NameError: name 'sys' is not defined. Did you forget to import 'sys'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/scheduler.py", line 119, in <module>
+    run(dry_run=False)
+    ~~~^^^^^^^^^^^^^^^
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/scheduler.py", line 107, in run
+    from shared.notifier import send
+  File "/Users/twinssn/Projects/money-aikorea24/scripts/auto-writer/shared/notifier.py", line 11, in <module>
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+    ^^^
+NameError: name 'sys' is not defined. Did you forget to import 'sys'?
+2026-07-05 09:00:03,563 [INFO] 스케줄러 시작
+2026-07-05 09:00:04,215 [INFO] 파이프라인 시작 2026-07-05 09:00:04
+2026-07-05 09:00:04,217 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-07-05 09:00:04,236 [INFO] 처리 중: 시흥형 주거비(아동 주거비) 지원
+2026-07-05 09:00:06,215 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-05 09:01:44,262 [INFO] Retrying request to /chat/completions in 0.402663 seconds
+2026-07-05 09:03:15,007 [INFO] Retrying request to /chat/completions in 0.966846 seconds
+2026-07-05 09:04:16,053 [INFO] Retrying request to /chat/completions in 0.449705 seconds
+2026-07-05 09:04:38,044 [INFO] Retrying request to /chat/completions in 0.962916 seconds
+2026-07-05 09:04:39,054 [INFO] 제목 추출: 시흥시 무주택 직장인을 위한 시흥형 주거비 지원 혜택 완벽정리
+2026-07-05 09:04:39,062 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-05 09:04:39,062 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-05 09:04:46,931 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/시흥시-무주택-직장인을-위한-시흥형-주거비-지원-혜택-완벽정리-000104.md
+2026-07-05 09:04:46,936 [INFO] 발행 성공: 시흥시 무주택 직장인을 위한 시흥형 주거비 지원 혜택 완벽정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-05 09:04:46,965 [INFO] 처리 중: 신혼부부 전세대출금 이자 지원
+2026-07-05 09:04:48,223 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-05 09:04:53,479 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-05 09:06:26,812 [INFO] Retrying request to /chat/completions in 0.485563 seconds
+2026-07-05 09:07:57,652 [INFO] Retrying request to /chat/completions in 0.969066 seconds
+2026-07-05 09:09:29,181 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-05 09:09:37,572 [INFO] 제목 추출: 무주택 직장인 신혼부부, 전세대출 이자 최대 100만 원 지원받는 법 총
+2026-07-05 09:09:37,791 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-05 09:09:37,792 [INFO] [validator] 수정됨: ['HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-07-05 09:09:38,250 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-신혼부부-전세대출-이자-최대-100만-원-지원받는-법-총정리-000109.md
+2026-07-05 09:09:38,253 [INFO] 발행 성공: 무주택 직장인 신혼부부, 전세대출 이자 최대 100만 원 지원받는 법 총 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-05 09:09:38,283 [INFO] 처리 중: 고립·은둔 청소년 원스톱 패키지 지원
+2026-07-05 09:09:39,329 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-05 09:11:13,396 [INFO] Retrying request to /chat/completions in 0.430897 seconds
+2026-07-05 09:12:44,159 [INFO] Retrying request to /chat/completions in 0.853645 seconds
+2026-07-05 09:14:15,534 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-05 09:14:25,590 [INFO] 제목 추출: 맞벌이 신혼부부 우리 아이가 방에만 있다면? 고립·은둔 청소년 원스톱 지
+2026-07-05 09:14:25,733 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-05 09:14:25,734 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-07-05 09:14:26,413 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-우리-아이가-방에만-있다면-고립은둔-청소년-원스톱-지원-총정리-000054.md
+2026-07-05 09:14:26,416 [INFO] 발행 성공: 맞벌이 신혼부부 우리 아이가 방에만 있다면? 고립·은둔 청소년 원스톱 지 | insurance | google/diffusiongemma-26b-a4b-it
+2026-07-05 09:14:26,447 [INFO] 처리 중: [2026] 인천 30대 직장인 평균 월급 358만원… 나는 어디쯤?
+2026-07-05 09:14:27,994 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-05 09:16:04,192 [INFO] Retrying request to /chat/completions in 0.458383 seconds
+2026-07-05 09:17:34,948 [INFO] Retrying request to /chat/completions in 0.755533 seconds
+2026-07-05 09:19:06,168 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-05 09:19:15,526 [INFO] 제목 추출: 인천 35세 직장인, 내 월급은 평균 이상일까? 소득 통계 완벽정리
+2026-07-05 09:19:15,751 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-05 09:19:15,752 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-05 09:19:16,307 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/인천-35세-직장인-내-월급은-평균-이상일까-소득-통계-완벽정리-26-06-.md
+2026-07-05 09:19:16,310 [INFO] 발행 성공: 인천 35세 직장인, 내 월급은 평균 이상일까? 소득 통계 완벽정리 | invest | google/diffusiongemma-26b-a4b-it
+2026-07-05 09:19:16,337 [INFO] 처리 중: 동네관리소 간단 집수리 지원
+2026-07-05 09:19:17,451 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-05 09:20:57,272 [INFO] Retrying request to /chat/completions in 0.466737 seconds
+2026-07-05 09:22:28,036 [INFO] Retrying request to /chat/completions in 0.768110 seconds
+2026-07-05 09:23:59,355 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-05 09:24:09,623 [INFO] 제목 추출: 40대 무주택 직장인, 시흥시 동네관리소 간단 집수리 지원으로 주거비 아
+2026-07-05 09:24:09,742 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-05 09:24:09,743 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-05 09:24:10,273 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/40대-무주택-직장인-시흥시-동네관리소-간단-집수리-지원으로-주거비-아끼는-법-총정리-000498.md
+2026-07-05 09:24:10,277 [INFO] 발행 성공: 40대 무주택 직장인, 시흥시 동네관리소 간단 집수리 지원으로 주거비 아 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-05 09:24:10,277 [INFO] 5건 발행 → 빌드/배포 시작
+2026-07-05 09:25:41,575 [INFO] 배포 완료 (5건)
+2026-07-05 09:25:41,576 [INFO] 파이프라인 종료 2026-07-05 09:25:41
+2026-07-05 09:25:41,576 [INFO] 스케줄러 정상 종료
+2026-07-06 09:00:04,951 [INFO] 스케줄러 시작
+2026-07-06 09:00:05,585 [INFO] 파이프라인 시작 2026-07-06 09:00:05
+2026-07-06 09:00:05,587 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-07-06 09:00:05,606 [INFO] 처리 중: 이전비 지원
+2026-07-06 09:00:10,592 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-06 09:01:50,208 [INFO] Retrying request to /chat/completions in 0.458121 seconds
+2026-07-06 09:03:20,970 [INFO] Retrying request to /chat/completions in 0.948685 seconds
+2026-07-06 09:04:52,542 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-06 09:05:01,496 [INFO] 제목 추출: 30대 직장인, 보복 두려운 이사 고민? 피해자 이전비 지원 총정리
+2026-07-06 09:05:01,885 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-06 09:05:01,886 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-07-06 09:05:02,881 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-보복-두려운-이사-고민-피해자-이전비-지원-총정리-000002.md
+2026-07-06 09:05:02,884 [INFO] 발행 성공: 30대 직장인, 보복 두려운 이사 고민? 피해자 이전비 지원 총정리 | general | google/diffusiongemma-26b-a4b-it
+2026-07-06 09:05:02,918 [INFO] 처리 중: 양육비 이행 지원 서비스
+2026-07-06 09:05:04,451 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-06 09:06:40,538 [INFO] Retrying request to /chat/completions in 0.388943 seconds
+2026-07-06 09:08:11,244 [INFO] Retrying request to /chat/completions in 0.778823 seconds
+2026-07-06 09:09:42,687 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-06 09:09:51,842 [INFO] 제목 추출: 맞벌이 신혼부, 양육비 미지급 고민 해결해 줄 정부지원금 혜택 총정리
+2026-07-06 09:09:52,211 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-06 09:09:52,212 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-06 09:09:52,736 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부-양육비-미지급-고민-해결해-줄-정부지원금-혜택-총정리-000066.md
+2026-07-06 09:09:52,739 [INFO] 발행 성공: 맞벌이 신혼부, 양육비 미지급 고민 해결해 줄 정부지원금 혜택 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-07-06 09:09:52,765 [INFO] 처리 중: 장애인 자립생활 정착금 지원
+2026-07-06 09:09:54,146 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-06 09:11:29,851 [INFO] Retrying request to /chat/completions in 0.472570 seconds
+2026-07-06 09:13:00,634 [INFO] Retrying request to /chat/completions in 0.938434 seconds
+2026-07-06 09:14:32,146 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-06 09:14:42,178 [INFO] 제목 추출: 무주택 직장인을 위한 장애인 자립생활 정착금 2,000만원 지원 완벽정리
+2026-07-06 09:14:42,515 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-06 09:14:42,516 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-07-06 09:14:43,005 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인을-위한-장애인-자립생활-정착금-2000만원-지원-완벽정리-000103.md
+2026-07-06 09:14:43,009 [INFO] 발행 성공: 무주택 직장인을 위한 장애인 자립생활 정착금 2,000만원 지원 완벽정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-06 09:14:43,036 [INFO] 처리 중: 군포시 신혼부부 전월세 보증금 대출이자 지원
+2026-07-06 09:14:44,373 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-06 09:16:21,023 [INFO] Retrying request to /chat/completions in 0.498595 seconds
+2026-07-06 09:17:51,821 [INFO] Retrying request to /chat/completions in 0.919868 seconds
+2026-07-06 09:19:23,826 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-06 09:19:35,726 [INFO] 제목 추출: 33세 무주택 직장인, 군포시 신혼부부 대출이자 지원 혜택 총정리
+2026-07-06 09:19:36,071 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-06 09:19:36,072 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-06 09:19:36,568 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/33세-무주택-직장인-군포시-신혼부부-대출이자-지원-혜택-총정리-000115.md
+2026-07-06 09:19:36,571 [INFO] 발행 성공: 33세 무주택 직장인, 군포시 신혼부부 대출이자 지원 혜택 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-06 09:19:36,601 [INFO] 처리 중: 의약품부작용피해구제
+2026-07-06 09:19:37,848 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-06 09:21:15,973 [INFO] Retrying request to /chat/completions in 0.409031 seconds
+2026-07-06 09:22:46,713 [INFO] Retrying request to /chat/completions in 0.784268 seconds
+2026-07-06 09:24:18,121 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-06 09:24:27,871 [INFO] 제목 추출: 맞벌이 신혼부부 주목, 약 부작용 피해 발생 시 치료비 지원받는 법 총정
+2026-07-06 09:24:28,230 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-06 09:24:28,231 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-06 09:24:28,730 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-주목-약-부작용-피해-발생-시-치료비-지원받는-법-총정리-000002.md
+2026-07-06 09:24:28,733 [INFO] 발행 성공: 맞벌이 신혼부부 주목, 약 부작용 피해 발생 시 치료비 지원받는 법 총정 | insurance | google/diffusiongemma-26b-a4b-it
+2026-07-06 09:24:28,733 [INFO] 5건 발행 → 빌드/배포 시작
+2026-07-06 09:26:04,245 [INFO] 배포 완료 (5건)
+2026-07-06 09:26:04,247 [INFO] 파이프라인 종료 2026-07-06 09:26:04
+2026-07-06 09:26:04,247 [INFO] 스케줄러 정상 종료
+2026-07-07 09:00:02,262 [INFO] 스케줄러 시작
+2026-07-07 09:00:03,094 [INFO] 파이프라인 시작 2026-07-07 09:00:03
+2026-07-07 09:00:03,096 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-07-07 09:00:03,114 [INFO] 처리 중: [2026] 대구 30대 직장인 평균 월급 340만원… 나는 어디쯤?
+2026-07-07 09:00:05,030 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-07 09:01:39,478 [INFO] Retrying request to /chat/completions in 0.463204 seconds
+2026-07-07 09:02:10,017 [INFO] Retrying request to /chat/completions in 0.964527 seconds
+2026-07-07 09:03:11,066 [INFO] Retrying request to /chat/completions in 0.486017 seconds
+2026-07-07 09:03:41,630 [INFO] Retrying request to /chat/completions in 0.883153 seconds
+2026-07-07 09:04:12,587 [INFO] 제목 추출: 대구 35세 남성 월 소득 360만원, 내 또래 연봉 비교 총정리
+2026-07-07 09:04:42,599 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-07 09:04:42,601 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-07 09:05:20,706 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/대구-35세-남성-월-소득-360만원-내-또래-연봉-비교-총정리-26-06-.md
+2026-07-07 09:05:20,710 [INFO] 발행 성공: 대구 35세 남성 월 소득 360만원, 내 또래 연봉 비교 총정리 | invest | google/diffusiongemma-26b-a4b-it
+2026-07-07 09:05:20,743 [INFO] 처리 중: 군포시 청년 전월세 보증금 대출이자 지원
+2026-07-07 09:05:23,020 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-07 09:06:59,676 [INFO] Retrying request to /chat/completions in 0.472339 seconds
+2026-07-07 09:08:33,281 [INFO] Retrying request to /chat/completions in 0.831500 seconds
+2026-07-07 09:10:05,256 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-07 09:10:15,137 [INFO] 제목 추출: 2040 무주택 직장인, 군포시 청년 전월세 대출이자 지원 혜택 완벽정리
+2026-07-07 09:10:15,384 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-07 09:10:15,385 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-07 09:10:16,070 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/2040-무주택-직장인-군포시-청년-전월세-대출이자-지원-혜택-완벽정리-000126.md
+2026-07-07 09:10:16,073 [INFO] 발행 성공: 2040 무주택 직장인, 군포시 청년 전월세 대출이자 지원 혜택 완벽정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-07 09:10:16,099 [INFO] 처리 중: 수입요건확인면제의 범위 및 추천
+2026-07-07 09:10:17,190 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-07 09:11:50,274 [INFO] Retrying request to /chat/completions in 0.380321 seconds
+2026-07-07 09:13:20,994 [INFO] Retrying request to /chat/completions in 0.953411 seconds
+2026-07-07 09:14:52,542 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-07 09:15:01,812 [INFO] 제목 추출: 맞벌이 신혼부부를 위한 해외 의약품 직구 및 수입요건 면제 혜택 총정리
+2026-07-07 09:15:01,945 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-07 09:15:01,946 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-07 09:15:02,465 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부를-위한-해외-의약품-직구-및-수입요건-면제-혜택-총정리-000003.md
+2026-07-07 09:15:02,469 [INFO] 발행 성공: 맞벌이 신혼부부를 위한 해외 의약품 직구 및 수입요건 면제 혜택 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-07-07 09:15:02,496 [INFO] 처리 중: 북한이탈주민 자격증 취득 지원
+2026-07-07 09:15:02,496 [INFO] [SKIP] 부적합 키워드: 북한이탈주민 자격증 취득 지원
+2026-07-07 09:15:02,510 [INFO] 처리 중: 청년 학자금대출 장기연체자 신용회복 지원
+2026-07-07 09:15:03,637 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-07 09:16:36,908 [INFO] Retrying request to /chat/completions in 0.454028 seconds
+2026-07-07 09:18:07,652 [INFO] Retrying request to /chat/completions in 0.952055 seconds
+2026-07-07 09:19:39,398 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-07 09:19:48,126 [INFO] 제목 추출: 2040 직장인, 학자금 대출 연체 신용회복 혜택받는 법 총정리
+2026-07-07 09:19:48,424 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-07 09:19:48,425 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-07 09:19:48,944 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/2040-직장인-학자금-대출-연체-신용회복-혜택받는-법-총정리-000147.md
+2026-07-07 09:19:48,947 [INFO] 발행 성공: 2040 직장인, 학자금 대출 연체 신용회복 혜택받는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-07 09:19:48,947 [INFO] 4건 발행 → 빌드/배포 시작
+2026-07-07 09:21:53,160 [INFO] 배포 완료 (4건)
+2026-07-07 09:21:53,161 [INFO] 파이프라인 종료 2026-07-07 09:21:53
+2026-07-07 09:21:53,161 [INFO] 스케줄러 정상 종료
+2026-07-08 09:00:05,477 [INFO] 스케줄러 시작
+2026-07-08 09:00:06,099 [INFO] 파이프라인 시작 2026-07-08 09:00:06
+2026-07-08 09:00:06,101 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-07-08 09:00:06,119 [INFO] 처리 중: 범죄피해자에 대한 경제적 지원
+2026-07-08 09:00:08,037 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-08 09:01:41,150 [INFO] Retrying request to /chat/completions in 0.426027 seconds
+2026-07-08 09:03:11,877 [INFO] Retrying request to /chat/completions in 0.772355 seconds
+2026-07-08 09:04:43,221 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-08 09:04:54,735 [INFO] 제목 추출: 30대 직장인, 범죄피해자 지원금 놓치지 말고 신청하는 법 총정리
+2026-07-08 09:04:55,084 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-08 09:04:55,086 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-08 09:04:55,851 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-범죄피해자-지원금-놓치지-말고-신청하는-법-총정리-000003.md
+2026-07-08 09:04:55,854 [INFO] 발행 성공: 30대 직장인, 범죄피해자 지원금 놓치지 말고 신청하는 법 총정리 | general | google/diffusiongemma-26b-a4b-it
+2026-07-08 09:04:55,884 [INFO] 처리 중: 신혼부부 주택임차보증금 대출이자 지원
+2026-07-08 09:04:56,991 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-08 09:06:30,108 [INFO] Retrying request to /chat/completions in 0.434018 seconds
+2026-07-08 09:08:00,981 [INFO] Retrying request to /chat/completions in 0.898983 seconds
+2026-07-08 09:09:32,653 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-08 09:09:41,462 [INFO] 제목 추출: 2024 무주택 직장인, 의왕시 신혼부부 전세자금 이자지원혜택 챙기는 법
+2026-07-08 09:09:41,781 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-08 09:09:41,782 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-08 09:09:42,220 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/2024-무주택-직장인-의왕시-신혼부부-전세자금-이자지원혜택-챙기는-법-총정리-000132.md
+2026-07-08 09:09:42,223 [INFO] 발행 성공: 2024 무주택 직장인, 의왕시 신혼부부 전세자금 이자지원혜택 챙기는 법 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-08 09:09:42,248 [INFO] 처리 중: 사회복지시설 급식관리 지원
+2026-07-08 09:09:43,329 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-08 09:11:16,544 [INFO] Retrying request to /chat/completions in 0.485504 seconds
+2026-07-08 09:12:47,411 [INFO] Retrying request to /chat/completions in 0.995772 seconds
+2026-07-08 09:14:19,088 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-08 09:14:28,071 [INFO] 제목 추출: 맞벌이 직장인 부모님, 우리 아이 식단 걱정 덜어주는 사회복지급식지원 총
+2026-07-08 09:14:28,397 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-08 09:14:28,398 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-08 09:14:29,004 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-직장인-부모님-우리-아이-식단-걱정-덜어주는-사회복지급식지원-총정리-000004.md
+2026-07-08 09:14:29,008 [INFO] 발행 성공: 맞벌이 직장인 부모님, 우리 아이 식단 걱정 덜어주는 사회복지급식지원 총 | insurance | google/diffusiongemma-26b-a4b-it
+2026-07-08 09:14:29,038 [INFO] 처리 중: [2026] 대전 30대 직장인 평균 월급 344만원… 나는 어디쯤?
+2026-07-08 09:14:30,160 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-08 09:14:35,530 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-08 09:16:08,751 [INFO] Retrying request to /chat/completions in 0.439377 seconds
+2026-07-08 09:17:39,498 [INFO] Retrying request to /chat/completions in 0.925866 seconds
+2026-07-08 09:19:10,974 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-08 09:19:19,772 [INFO] 제목 추출: 대전 35세 직장인, 내 월급은 평균보다 높을까? 완벽정리
+2026-07-08 09:19:20,212 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-08 09:19:20,213 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법', 'YEAR_REPLACED:2023,2024']
+2026-07-08 09:19:20,888 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/대전-35세-직장인-내-월급은-평균보다-높을까-완벽정리-26-06-.md
+2026-07-08 09:19:20,891 [INFO] 발행 성공: 대전 35세 직장인, 내 월급은 평균보다 높을까? 완벽정리 | invest | google/diffusiongemma-26b-a4b-it
+2026-07-08 09:19:20,918 [INFO] 처리 중: 청년 이사비 지원
+2026-07-08 09:19:22,255 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-08 09:20:55,616 [INFO] Retrying request to /chat/completions in 0.484453 seconds
+2026-07-08 09:22:26,392 [INFO] Retrying request to /chat/completions in 0.909969 seconds
+2026-07-08 09:23:57,831 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-08 09:24:05,445 [INFO] 제목 추출: 2040 직장인, 의왕시 이사비 40만 원 지원받는 막차 타는 법 총정리
+2026-07-08 09:24:05,773 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-08 09:24:05,773 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-08 09:24:06,240 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/2040-직장인-의왕시-이사비-40만-원-지원받는-막차-타는-법-총정리-000154.md
+2026-07-08 09:24:06,243 [INFO] 발행 성공: 2040 직장인, 의왕시 이사비 40만 원 지원받는 막차 타는 법 총정리 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-08 09:24:06,243 [INFO] 5건 발행 → 빌드/배포 시작
+2026-07-08 09:25:51,051 [INFO] 배포 완료 (5건)
+2026-07-08 09:25:51,052 [INFO] 파이프라인 종료 2026-07-08 09:25:51
+2026-07-08 09:25:51,052 [INFO] 스케줄러 정상 종료
+2026-07-09 09:00:05,868 [INFO] 스케줄러 시작
+2026-07-09 09:00:06,602 [INFO] 파이프라인 시작 2026-07-09 09:00:06
+2026-07-09 09:00:06,605 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-07-09 09:00:06,624 [INFO] 처리 중: 진폐위로금지급
+2026-07-09 09:00:08,214 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-09 09:01:41,556 [INFO] Retrying request to /chat/completions in 0.422227 seconds
+2026-07-09 09:03:12,277 [INFO] Retrying request to /chat/completions in 0.787190 seconds
+2026-07-09 09:04:43,676 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-09 09:04:53,744 [INFO] 제목 추출: 맞벌이 신혼부 직장인, 진폐재해위로금 혜택 챙기는 법 총정리
+2026-07-09 09:04:53,968 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-09 09:04:53,968 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-09 09:04:54,672 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부-직장인-진폐재해위로금-혜택-챙기는-법-총정리-000017.md
+2026-07-09 09:04:54,675 [INFO] 발행 성공: 맞벌이 신혼부 직장인, 진폐재해위로금 혜택 챙기는 법 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-07-09 09:04:54,700 [INFO] 처리 중: 장애인 운전면허 취득 지원
+2026-07-09 09:04:55,867 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-09 09:06:28,959 [INFO] Retrying request to /chat/completions in 0.430453 seconds
+2026-07-09 09:07:59,706 [INFO] Retrying request to /chat/completions in 0.807323 seconds
+2026-07-09 09:09:31,123 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-09 09:09:40,041 [INFO] 제목 추출: 무주택 직장인, 장애인 운전면허 취득 지원 최대 70만 원 받는 법 총정
+2026-07-09 09:09:40,267 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-09 09:09:40,267 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-09 09:09:40,689 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-장애인-운전면허-취득-지원-최대-70만-원-받는-법-총정리-000106.md
+2026-07-09 09:09:40,692 [INFO] 발행 성공: 무주택 직장인, 장애인 운전면허 취득 지원 최대 70만 원 받는 법 총정 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-09 09:09:40,729 [INFO] 처리 중: 한부모가족 복지시설 퇴소자 자립지원금 지원
+2026-07-09 09:09:41,771 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-09 09:11:14,574 [INFO] Retrying request to /chat/completions in 0.498139 seconds
+2026-07-09 09:12:45,333 [INFO] Retrying request to /chat/completions in 0.880619 seconds
+2026-07-09 09:14:16,764 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-09 09:14:25,247 [INFO] 제목 추출: 2024 무주택 직장인, 한부모가족 자립지원금 1,500만 원 받는 법 
+2026-07-09 09:14:25,467 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-09 09:14:25,468 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-09 09:14:26,012 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/2024-무주택-직장인-한부모가족-자립지원금-1500만-원-받는-법-총정리-000629.md
+2026-07-09 09:14:26,016 [INFO] 발행 성공: 2024 무주택 직장인, 한부모가족 자립지원금 1,500만 원 받는 법  | loan | google/diffusiongemma-26b-a4b-it
+2026-07-09 09:14:26,050 [INFO] 처리 중: 산재근로자합병증 등 예방관리
+2026-07-09 09:14:27,120 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-09 09:15:59,834 [INFO] Retrying request to /chat/completions in 0.437397 seconds
+2026-07-09 09:17:30,508 [INFO] Retrying request to /chat/completions in 0.919233 seconds
+2026-07-09 09:19:01,971 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-09 09:19:11,135 [INFO] 제목 추출: 3040 직장인 산재 후 합병증 예방관리 진료지원 혜택 챙기는 법 총정리
+2026-07-09 09:19:11,251 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-09 09:19:11,252 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-09 09:19:11,943 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/3040-직장인-산재-후-합병증-예방관리-진료지원-혜택-챙기는-법-총정리-000019.md
+2026-07-09 09:19:11,947 [INFO] 발행 성공: 3040 직장인 산재 후 합병증 예방관리 진료지원 혜택 챙기는 법 총정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-07-09 09:19:11,974 [INFO] 처리 중: [2026] 광주 30대 직장인 평균 월급 333만원… 나는 어디쯤?
+2026-07-09 09:19:13,156 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-09 09:20:46,468 [INFO] Retrying request to /chat/completions in 0.430373 seconds
+2026-07-09 09:22:17,205 [INFO] Retrying request to /chat/completions in 0.793033 seconds
+2026-07-09 09:23:48,485 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-09 09:23:57,549 [INFO] 제목 추출: 광주 35세 직장인, 내 월급은 평균보다 높을까? 소득 현황 총정리
+2026-07-09 09:23:57,672 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-09 09:23:57,673 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-07-09 09:23:58,278 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/광주-35세-직장인-내-월급은-평균보다-높을까-소득-현황-총정리-26-06-.md
+2026-07-09 09:23:58,281 [INFO] 발행 성공: 광주 35세 직장인, 내 월급은 평균보다 높을까? 소득 현황 총정리 | invest | google/diffusiongemma-26b-a4b-it
+2026-07-09 09:23:58,281 [INFO] 5건 발행 → 빌드/배포 시작
+2026-07-09 09:25:50,223 [INFO] 배포 완료 (5건)
+2026-07-09 09:25:50,225 [INFO] 파이프라인 종료 2026-07-09 09:25:50
+2026-07-09 09:25:50,225 [INFO] 스케줄러 정상 종료

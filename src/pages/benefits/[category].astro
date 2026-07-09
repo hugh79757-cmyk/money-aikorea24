@@ -1,0 +1,470 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import fs from 'node:fs';
+
+export async function getStaticPaths() {
+  const CATEGORIES = ['youth','child','senior','general','welfare','business'];
+  return CATEGORIES.map(cat => ({ params: { category: cat } }));
+}
+
+const CATEGORY_META: Record<string, { label: string; emoji: string; desc: string }> = {
+  youth:    { label: '청년',      emoji: '🧑', desc: '만 15~39세 청년을 위한 정부 지원금·혜택을 모았습니다.' },
+  child:    { label: '아동·가족',  emoji: '👨‍👩‍👧‍👧', desc: '아동·청소년·가족 단위 지원금과 복지 혜택 정보입니다.' },
+  senior:   { label: '시니어',     emoji: '🧓', desc: '만 50세 이상 시니어 및 은퇴자를 위한 맞춤 지원금입니다.' },
+  general:  { label: '일반',      emoji: '📋', desc: '연령·가구 제한 없이 누구나 신청할 수 있는 혜택입니다.' },
+  welfare:  { label: '복지',      emoji: '🏥', desc: '의료·돌봄·생활안정 등 사회복지서비스 지원금입니다.' },
+  business: { label: '사업·창업',  emoji: '💼', desc: '창업·사업 운영·고용을 위한 정부 지원 및 융자 정보입니다.' },
+};
+
+const { category } = Astro.params;
+const meta = CATEGORY_META[category!] || { label: category, emoji: '📌', desc: '' };
+
+/* ── 데이터 로딩 ── */
+const json = fs.readFileSync('public/benefits-clean.json', 'utf-8');
+const all: any[] = JSON.parse(json);
+
+const catLabel = CATEGORY_META[category!]?.label || category;
+const filtered = all.filter(b => b.category === category);
+
+/* ── 상태별 그룹 ── */
+function statusSort(b: any) {
+  const map: Record<string,number> = { urgent: 0, soon: 1, upcoming: 2, always: 3, unknown: 4 };
+  return map[b._status ?? 'unknown'] ?? 99;
+}
+
+const sorted = [...filtered].sort((a, b) => statusSort(a) - statusSort(b));
+
+const TABS = {
+  all:      sorted,
+  urgent:   sorted.filter(b => b._status === 'urgent'  || b._status === 'soon'),
+  upcoming: sorted.filter(b => b._status === 'upcoming'),
+  always:   sorted.filter(b => b._status === 'always'),
+  unknown:  sorted.filter(b => b._status === 'unknown'),
+};
+
+const CAT_LABELS: Record<string, string> = {
+  youth:    '청년',
+  child:    '아동·가족',
+  senior:   '시니어',
+  general:  '일반',
+  welfare:  '복지',
+  business: '사업·창업',
+};
+
+function statusBadgeFor(b: any) {
+  const def = { label: '상태확인', cls: 'badge-unknown' };
+  if (b._status === 'always')   return { label: '상시신청', cls: 'badge-always' };
+  if (b._status === 'urgent')   return { label: '마감임박', cls: 'badge-urgent' };
+  if (b._status === 'soon')     return { label: `D-${b._dleft}`, cls: 'badge-soon' };
+  if (b._status === 'upcoming') return { label: '예정',    cls: 'badge-upcoming' };
+  return def;
+}
+
+function getSummary(b: any): string {
+  const c = String(b.content || '').trim();
+  const p = String(b.purpose || '').trim();
+  return c || p;
+}
+---
+
+<html lang="ko">
+<head>
+  <BaseHead
+    title={`${meta.emoji} ${meta.label} 지원금·혜택 | 한국인 페르소나`}
+    description={meta.desc}
+  />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    .page-wrap {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+    }
+
+    /* ── 카테고리 헤더 ── */
+    .cat-header {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 2px solid var(--color-border);
+    }
+    .cat-header .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: .82rem;
+      color: var(--color-muted);
+      text-decoration: none;
+      margin-bottom: .5rem;
+    }
+    .cat-header .back-link:hover { color: var(--color-text); }
+    .cat-header h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800;
+      margin: 0 0 .4rem;
+      color: var(--color-benefit);
+    }
+    .cat-header p { color: var(--color-muted); font-size: .95rem; margin: 0; }
+
+    .search-wrap {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+    .search-wrap .icon {
+      position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+      color: var(--color-placeholder); font-size: 1.05rem;
+    }
+    .search-wrap input {
+      width: 100%; padding: .9rem 1rem .9rem 2.6rem;
+      border: 1.5px solid var(--color-border); border-radius: 12px;
+      background: var(--color-surface); color: var(--color-text);
+      font-size: .95rem; font-family: inherit;
+      outline: none; transition: border-color .12s;
+    }
+    .search-wrap input::placeholder { color: var(--color-placeholder); }
+    .search-wrap input:focus { border-color: var(--color-benefit); }
+
+    .tabs {
+      display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem;
+    }
+    .tab {
+      padding: .55rem 1rem; border-radius: 999px;
+      border: 1.5px solid var(--color-border);
+      background: var(--color-surface);
+      font-size: .85rem; font-weight: 600;
+      color: var(--color-muted);
+      cursor: pointer; transition: all .12s;
+      font-family: inherit;
+    }
+    .tab:hover { background: var(--color-bg); }
+    .tab.active { background: var(--color-benefit); color: #fff; border-color: var(--color-benefit); }
+
+    .count-info { font-size: .82rem; color: var(--color-muted); margin: 0 0 1rem; }
+
+    .card-grid {
+      display: grid; grid-template-columns: 1fr; gap: 1.1rem;
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 1.4rem 1.6rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform .15s, box-shadow .15s;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,.10);
+    }
+    .card-top {
+      display: flex; align-items: center; gap: .5rem;
+      margin-bottom: .6rem; flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      font-size: .72rem; font-weight: 700;
+      padding: .25rem .75rem; border-radius: 999px;
+      letter-spacing: .03em; color: #fff; flex-shrink: 0;
+    }
+    .badge-urgent   { background: #c00; }
+    .badge-soon     { background: #E85D04; }
+    .badge-upcoming { background: #F48C06; }
+    .badge-always   { background: #2D6A4F; }
+    .badge-unknown  { background: #9E9E9E; }
+    .badge-cat {
+      display: inline-block;
+      font-size: .7rem; font-weight: 600;
+      padding: .2rem .65rem; border-radius: 999px;
+      background: var(--color-bg);
+      color: var(--color-muted);
+      border: 1px solid var(--color-border);
+      flex-shrink: 0;
+    }
+    .card h2 {
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--color-primary);
+      margin: 0 0 .45rem; line-height: 1.45;
+      word-break: keep-all;
+    }
+    .card .summary {
+      font-size: .85rem;
+      color: var(--color-muted);
+      margin: 0 0 .5rem;
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-break: keep-all;
+    }
+    .card .org {
+      font-size: .82rem; color: var(--color-placeholder);
+      margin: 0; line-height: 1.4; word-break: keep-all;
+    }
+    .card .deadline {
+      font-size: .78rem; color: var(--color-placeholder);
+      margin-top: .4rem;
+    }
+
+    .empty-state {
+      text-align: center; padding: 4rem 1rem; color: var(--color-placeholder);
+    }
+    .empty-state .ico { font-size: 3rem; margin-bottom: 1rem; }
+
+    .pagination {
+      display: flex; justify-content: center; align-items: center;
+      gap: .35rem; margin: 2rem 0 .5rem; flex-wrap: wrap;
+    }
+    .pagination button {
+      min-width: 40px; height: 40px; padding: 0 .7rem;
+      background: var(--color-surface);
+      border: 1.5px solid var(--color-border);
+      border-radius: 10px;
+      font-size: .88rem; font-weight: 600;
+      color: var(--color-text);
+      cursor: pointer; transition: all .12s; font-family: inherit;
+    }
+    .pagination button:hover:not(:disabled):not(.active) {
+      background: var(--color-bg);
+      border-color: var(--color-border-dark);
+    }
+    .pagination button.active {
+      background: var(--color-benefit); color: #fff; border-color: var(--color-benefit);
+    }
+    .pagination button:disabled { opacity: .4; cursor: not-allowed; }
+    .pagination .ellipsis {
+      padding: 0 .25rem; color: var(--color-placeholder); font-weight: 600;
+    }
+
+    .inline-ad {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--color-surface);
+      border: 1px dashed var(--color-border);
+      min-height: 100px;
+    }
+    .inline-ad::before {
+      content: '광고';
+      position: absolute;
+      top: 6px; right: 10px;
+      font-size: .65rem;
+      color: var(--color-placeholder);
+      letter-spacing: .04em;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .inline-ad ins {
+      display: block !important;
+      width: 100% !important;
+      text-align: center !important;
+    }
+
+    @media (max-width: 600px) {
+      .card { padding: 1.15rem 1.25rem; }
+      .card h2 { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <Header />
+  <main>
+    <div class="page-wrap">
+      <div class="cat-header">
+        <a href="/benefits" class="back-link">← 전체 지원금 목록</a>
+        <h1>{meta.emoji} {meta.label} 지원금·혜택</h1>
+        <p>{meta.desc} (총 {TABS.all.length.toLocaleString()}건)</p>
+      </div>
+
+      <div class="search-wrap">
+        <span class="icon">🔍</span>
+        <input type="text" id="search-input" placeholder="지원금 이름·기관 검색..." autocomplete="off" />
+      </div>
+
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-tab="all">📋 전체 ({TABS.all.length})</button>
+        <button class="tab" data-tab="urgent">⏰ 마감임박 ({TABS.urgent.length})</button>
+        <button class="tab" data-tab="upcoming">📅 예정 ({TABS.upcoming.length})</button>
+        <button class="tab" data-tab="always">✅ 상시신청 ({TABS.always.length})</button>
+        <button class="tab" data-tab="unknown">📌 별도공고 ({TABS.unknown.length})</button>
+      </div>
+
+      <div class="count-info" id="count-info">총 {TABS.all.length.toLocaleString()}건</div>
+
+      <div class="card-grid" id="card-grid">
+        {TABS.all.map((b: any) => {
+          const sb      = statusBadgeFor(b);
+          const summary = getSummary(b);
+          const href    = b.url || 'https://www.bokjiro.go.kr';
+          return (
+            <a
+              class="card"
+              href={href}
+              target="_blank"
+              rel="noopener"
+              data-status={b._status}
+              data-name={(b.name   || '').toLowerCase()}
+              data-org= {(b.org    || '').toLowerCase()}
+            >
+              <div class="card-top">
+                <span class={`badge ${sb.cls}`}>{sb.label}</span>
+                <span class="badge-cat">{meta.label}</span>
+              </div>
+              <h2>{b.name}</h2>
+              {summary && <p class="summary">{summary}</p>}
+              {b.org && <p class="org">{b.org}</p>}
+              {b._deadline && b._status !== 'always' && (
+                <div class="deadline">마감: {b._deadline}</div>
+              )}
+            </a>
+          );
+        })}
+      </div>
+
+      <div class="empty-state" id="empty-state" style="display:none">
+        <div class="ico">📭</div>
+        <p>해당하는 지원금이 없습니다</p>
+      </div>
+
+      <nav class="pagination" id="pagination" aria-label="페이지 네비게이션"></nav>
+    </div>
+  </main>
+  <Footer />
+
+  <script is:inline>
+    (function() {
+      const PER_PAGE = 10;
+      const tabsEl   = document.getElementById('tabs');
+      const inputEl  = document.getElementById('search-input');
+      const gridEl   = document.getElementById('card-grid');
+      const countEl  = document.getElementById('count-info');
+      const emptyEl  = document.getElementById('empty-state');
+      const pagerEl  = document.getElementById('pagination');
+      const allCards = Array.from(gridEl.querySelectorAll('.card'));
+
+      let currentTab = 'all';
+      let currentQ   = '';
+      let page       = 1;
+
+      function insertAdAfter(card) {
+        var wrap = document.createElement('div');
+        wrap.className = 'inline-ad';
+        var ins = document.createElement('ins');
+        ins.className                         = 'adsbygoogle';
+        ins.style.display                     = 'block';
+        ins.style.width                       = '100%';
+        ins.style.textAlign                   = 'center';
+        ins.dataset.adClient                  = 'ca-pub-5938862195544185';
+        ins.dataset.adSlot                    = '';
+        ins.dataset.adFormat                  = 'auto';
+        ins.dataset.fullWidthResponsive       = 'true';
+        wrap.appendChild(ins);
+        card.insertAdjacentElement('afterend', wrap);
+        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+      }
+
+      function removeInlineAds() {
+        gridEl.querySelectorAll('.inline-ad').forEach(function(el) { el.remove(); });
+      }
+
+      function getMatching() {
+        return allCards.filter(function(card) {
+          var s = card.dataset.status;
+          if (currentTab === 'urgent'   && !(s === 'urgent' || s === 'soon')) return false;
+          if (currentTab === 'upcoming' && s !== 'upcoming') return false;
+          if (currentTab === 'always'   && s !== 'always')   return false;
+          if (currentTab === 'unknown'  && s !== 'unknown')   return false;
+          if (currentQ) {
+            var name = card.dataset.name || '';
+            var org  = card.dataset.org  || '';
+            if (!name.includes(currentQ) && !org.includes(currentQ)) return false;
+          }
+          return true;
+        });
+      }
+
+      function render() {
+        var matches    = getMatching();
+        var total      = matches.length;
+        var totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
+        if (page > totalPages) page = totalPages;
+        if (page < 1) page = 1;
+
+        removeInlineAds();
+        allCards.forEach(function(c) { c.style.display = 'none'; });
+
+        var start   = (page - 1) * PER_PAGE;
+        var end     = start + PER_PAGE;
+        var visible = matches.slice(start, end);
+        visible.forEach(function(c) { c.style.display = ''; });
+
+        if (visible.length > 3)  insertAdAfter(visible[2]);
+        if (visible.length > 7)  insertAdAfter(visible[6]);
+
+        if (total === 0) {
+          countEl.textContent     = '0건';
+          emptyEl.style.display   = '';
+          gridEl.style.display    = 'none';
+        } else {
+          countEl.textContent   = total.toLocaleString() + '건 중 ' + (start + 1) + '-' + Math.min(end, total);
+          emptyEl.style.display = 'none';
+          gridEl.style.display  = '';
+        }
+        renderPager(totalPages);
+      }
+
+      function renderPager(tp) {
+        if (tp <= 1) { pagerEl.innerHTML = ''; return; }
+        var cur = page;
+        var set = {};
+        [1, tp, cur - 2, cur - 1, cur, cur + 1, cur + 2].forEach(function(p) {
+          if (p >= 1 && p <= tp) set[p] = true;
+        });
+        var arr = Object.keys(set).map(Number).sort(function(a, b) { return a - b; });
+        var html = '<button data-pg="' + (cur - 1) + '"' + (cur === 1 ? ' disabled' : '') + '>‹</button>';
+        var prev = 0;
+        arr.forEach(function(p) {
+          if (prev && p - prev > 1) html += '<span class="ellipsis">…</span>';
+          html += '<button data-pg="' + p + '"' + (p === cur ? ' class="active"' : '') + '>' + p + '</button>';
+          prev = p;
+        });
+        html += '<button data-pg="' + (cur + 1) + '"' + (cur === tp ? ' disabled' : '') + '>›</button>';
+        pagerEl.innerHTML = html;
+        pagerEl.querySelectorAll('button[data-pg]').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var np = parseInt(btn.getAttribute('data-pg'), 10);
+            if (!np || btn.disabled || np === cur) return;
+            page = np;
+            render();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        });
+      }
+
+      tabsEl.addEventListener('click', function(e) {
+        var t = e.target.closest('.tab');
+        if (!t) return;
+        tabsEl.querySelectorAll('.tab').forEach(function(x) { x.classList.remove('active'); });
+        t.classList.add('active');
+        currentTab = t.dataset.tab;
+        page = 1;
+        render();
+      });
+
+      inputEl.addEventListener('input', function(e) {
+        currentQ = e.target.value.trim().toLowerCase();
+        page = 1;
+        render();
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

@@ -1033,7 +1033,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const srcParam = new URLSearchParams(location.search).get('src') || null;
       try { if (srcParam) sessionStorage.setItem('funnel_src', srcParam); } catch (e) {}
       track('persona_open', { src: srcParam });
-    </script>
+  /* onclick="xxx()" handlers need globals — expose IIFE-scoped functions */
+  window.startStep=startStep; window.goStep=goStep; window.selectOption=selectOption;
+  window.selectProvince=selectProvince; window.resetForm=resetForm;
+  window.shareKakao=shareKakao; window.shareTwitter=shareTwitter; window.copyUrl=copyUrl;
+  window.downloadCard=downloadCard; window.toggleDetail=toggleDetail; window.toggleStory=toggleStory;
+  </script>
 
   <Footer />
 </body>

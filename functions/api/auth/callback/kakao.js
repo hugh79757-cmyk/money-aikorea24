@@ -40,7 +40,7 @@ export async function onRequestGet({ request, env }) {
   const KAKAO_SECRET   = env.KAKAO_CLIENT_SECRET || '';
   if (!env.SESSION_SECRET) throw new Error('SESSION_SECRET env var is required');
   const SESSION_SECRET = env.SESSION_SECRET;
-  const REDIRECT_URI   = 'https://persona.aikorea24.kr/api/auth/callback/kakao';
+  const REDIRECT_URI = new URL('/api/auth/callback/kakao', url.origin).toString();
 
   /* ── 카카오 토큰 교환 ───────────────────────────────────── */
   const tokenBody = new URLSearchParams({
@@ -73,32 +73,37 @@ export async function onRequestGet({ request, env }) {
 
   /* ── DB 사용자 조회 / 생성 ──────────────────────────────── */
   const db = env.DB;
-  let dbUser = await db.prepare(
-    'SELECT id, name, nickname, email, avatar FROM users WHERE kakao_id = ?'
-  ).bind(kakaoId).first();
-
-  if (!dbUser) {
-    let nickname = generateNickname();
-    for (let i = 0; i < 5; i++) {
-      const dup = await db.prepare('SELECT id FROM users WHERE nickname = ?').bind(nickname).first();
-      if (!dup) break;
-      nickname = generateNickname();
-    }
-    await db.prepare(
-      'INSERT INTO users (kakao_id, email, name, nickname, avatar, provider, marketing_consent, agreed_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
-    ).bind(kakaoId, email, realName, nickname, avatar, 'kakao', marketingConsent, new Date().toISOString()).run();
+  let dbUser;
+  try {
     dbUser = await db.prepare(
       'SELECT id, name, nickname, email, avatar FROM users WHERE kakao_id = ?'
     ).bind(kakaoId).first();
-  } else if (!dbUser.nickname) {
-    let nickname = generateNickname();
-    for (let i = 0; i < 5; i++) {
-      const dup = await db.prepare('SELECT id FROM users WHERE nickname = ?').bind(nickname).first();
-      if (!dup) break;
-      nickname = generateNickname();
+
+    if (!dbUser) {
+      let nickname = generateNickname();
+      for (let i = 0; i < 5; i++) {
+        const dup = await db.prepare('SELECT id FROM users WHERE nickname = ?').bind(nickname).first();
+        if (!dup) break;
+        nickname = generateNickname();
+      }
+      await db.prepare(
+        'INSERT INTO users (kakao_id, email, name, nickname, avatar, provider, marketing_consent, agreed_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+      ).bind(kakaoId, email, realName, nickname, avatar, 'kakao', marketingConsent, new Date().toISOString()).run();
+      dbUser = await db.prepare(
+        'SELECT id, name, nickname, email, avatar FROM users WHERE kakao_id = ?'
+      ).bind(kakaoId).first();
+    } else if (!dbUser.nickname) {
+      let nickname = generateNickname();
+      for (let i = 0; i < 5; i++) {
+        const dup = await db.prepare('SELECT id FROM users WHERE nickname = ?').bind(nickname).first();
+        if (!dup) break;
+        nickname = generateNickname();
+      }
+      await db.prepare('UPDATE users SET nickname = ? WHERE id = ?').bind(nickname, dbUser.id).run();
+      dbUser.nickname = nickname;
     }
-    await db.prepare('UPDATE users SET nickname = ? WHERE id = ?').bind(nickname, dbUser.id).run();
-    dbUser.nickname = nickname;
+  } catch (e) {
+    return Response.redirect(new URL('/?error=db_error', url.origin), 302);
   }
 
   /* ── HMAC-SHA256 서명 세션 토큰 생성 ───────────────────── */
@@ -127,9 +132,6 @@ export async function onRequestGet({ request, env }) {
   headers.append('Set-Cookie', 'oauth_state=; Path=/; Max-Age=0; Secure; SameSite=Lax');
   headers.append('Set-Cookie', 'oauth_next=; Path=/; Max-Age=0; Secure; SameSite=Lax');
   headers.append('Set-Cookie', 'pending_marketing=; Path=/; Max-Age=0; Secure; SameSite=Lax');
-  // 구식 Domain=.aikorea24.kr 쿠키 무력화 (마이그레이션)
-  headers.append('Set-Cookie', 'session=; Path=/; Domain=.aikorea24.kr; Max-Age=0; Secure; SameSite=Lax');
-  headers.append('Set-Cookie', 'session_ui=; Path=/; Domain=.aikorea24.kr; Max-Age=0; Secure; SameSite=Lax');
   headers.append('Set-Cookie', `session=${sessionToken}; Path=/; Secure; HttpOnly; SameSite=Strict; Max-Age=${cookieMaxAge}`);
   headers.append('Set-Cookie', `session_ui=${uiPayload}; Path=/; Secure; SameSite=Strict; Max-Age=${cookieMaxAge}`);
   return new Response(null, { status: 302, headers });

@@ -12,6 +12,10 @@ if _SCRIPTS_DIR not in os.sys.path:
     _sys.path.insert(0, _SCRIPTS_DIR)
 from paths import THUMBNAIL_DIR, BG_IMG_DIR as BG_DIR
 
+# Noto Sans CJK 폰트 (크로스플랫폼) — paths.py의 PROJECT_ROOT 기준
+PROJECT_ROOT = str(Path(__file__).resolve().parent.parent.parent)
+NOTO_FONT_PATH = os.getenv("NOTO_FONT_PATH", str(Path(PROJECT_ROOT) / "fonts" / "NotoSansCJK-Regular.otf"))
+
 CATEGORY_BG_POOL = {
     "insurance": ["bg_seoul_30.jpeg", "bg_single_50.jpeg"],
     "invest":    ["bg_gyeonggi_40.jpeg", "bg_general_01.jpeg", "bg_general_02.jpeg"],
@@ -41,7 +45,8 @@ SIZE = 1024
 
 def get_font(size: int):
     candidates = [
-        "/System/Library/Fonts/Supplemental/AppleGothic.ttf",
+        NOTO_FONT_PATH,  # Noto Sans CJK (크로스플랫폼)
+        "/System/Library/Fonts/Supplemental/AppleGothic.ttf",  # macOS 폴백
         "/System/Library/Fonts/Helvetica.ttc",
         "/System/Library/Fonts/Arial.ttf",
     ]

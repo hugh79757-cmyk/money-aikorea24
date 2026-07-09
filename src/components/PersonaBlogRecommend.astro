@@ -87,7 +87,6 @@ function calculateScore(item: SearchItem): number {
 
   // 카테고리 보너스
   if (item.category === 'insurance') score += 1;
-  if (item.category === 'tax') score += 1;
 
   return score;
 }
@@ -97,7 +96,6 @@ const categoryLabel: Record<string, string> = {
   insurance: '🛡️ 보험',
   invest:    '📈 투자·절세',
   loan:      '🏠 대출·부동산',
-  tax:       '💰 세금·절약',
   general:   '📋 금융',
 };
 
@@ -231,11 +229,6 @@ const displayAge = Math.floor(age / 10) * 10;
   .rec-badge-loan {
     background: rgba(146, 64, 14, 0.1);
     color: #92400E;
-  }
-
-  .rec-badge-tax {
-    background: rgba(76, 29, 149, 0.1);
-    color: #4C1D95;
   }
 
   .rec-badge-general {

@@ -2,7 +2,10 @@
 // Kakao REST Key는 공개 클라이언트 ID (front-channel에 노출 허용)
 const KAKAO_REST_KEY = import.meta.env.PUBLIC_KAKAO_REST_KEY;
 if (!KAKAO_REST_KEY) throw new Error('PUBLIC_KAKAO_REST_KEY env var is required');
-const REDIRECT_URI   = 'https://persona.aikorea24.kr/api/auth/callback/kakao';
+// Dynamic redirect URI: production uses custom domain, dev uses current origin
+const REDIRECT_URI = import.meta.env.PROD
+  ? 'https://persona.aikorea24.kr/api/auth/callback/kakao'
+  : new URL('/api/auth/callback/kakao', Astro.url.origin).toString();
 // state는 클라이언트에서 생성 (crypto.getRandomValues) — 아래 <script> 참조
 const kakaoAuthBase  = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_KEY}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=profile_nickname,profile_image,account_email`;
 ---

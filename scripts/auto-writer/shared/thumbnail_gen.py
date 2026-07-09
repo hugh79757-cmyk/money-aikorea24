@@ -10,8 +10,9 @@ load_dotenv(paths.DOTENV_PATH)
 load_dotenv(paths.COMMON_ENV_PATH)
 
 BG_DIR   = os.getenv("BG_IMG_DIR", paths.BG_IMG_DIR)
-FONT_PATH = os.getenv("THUMB_FONT",
-           "/System/Library/Fonts/Supplemental/AppleGothic.ttf")
+# Noto Sans CJK 폰트 (크로스플랫폼) → macOS AppleGothic 폴백
+NOTO_FONT_PATH = os.getenv("NOTO_FONT_PATH", str(Path(__file__).resolve().parent.parent.parent / "fonts" / "NotoSansCJK-Regular.otf"))
+FONT_PATH = os.getenv("THUMB_FONT", NOTO_FONT_PATH)
 R2_BUCKET   = os.getenv("R2_BUCKET_NAME")
 R2_ENDPOINT = os.getenv("R2_ENDPOINT")
 R2_ACCESS   = os.getenv("R2_ACCESS_KEY_ID")
@@ -46,8 +47,8 @@ CATEGORY_ACCENT = {
 
 def get_font(size: int):
     candidates = [
-        FONT_PATH,
-        "/System/Library/Fonts/Supplemental/AppleGothic.ttf",
+        FONT_PATH,  # Noto Sans CJK (크로스플랫폼) 또는 환경변수 THUMB_FONT
+        "/System/Library/Fonts/Supplemental/AppleGothic.ttf",  # macOS 폴백
         "/System/Library/Fonts/Helvetica.ttc",
         "/System/Library/Fonts/Arial.ttf",
     ]

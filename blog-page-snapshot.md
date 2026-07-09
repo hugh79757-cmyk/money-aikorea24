@@ -1,0 +1,264 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "🇰🇷 한국인 페르소나" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: 🇰🇷
+        - generic [ref=e6]: 한국인 페르소나
+      - generic [ref=e7]:
+        - link "🔍 내 페르소나" [ref=e8] [cursor=pointer]:
+          - /url: /my-persona
+        - button "📝 블로그 ▾" [ref=e10] [cursor=pointer]:
+          - text: 📝 블로그
+          - generic [ref=e11]: ▾
+        - link "⏰ 지원금" [ref=e12] [cursor=pointer]:
+          - /url: /benefits
+        - link "💬 커뮤니티" [ref=e13] [cursor=pointer]:
+          - /url: /community
+        - button "검색 열기" [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+          - generic [ref=e18]: 검색
+          - generic [ref=e19]: ⌘K
+        - dialog "사이트 검색":
+          - generic:
+            - generic
+            - generic
+            - listbox
+            - generic
+        - link "카카오 로그인" [ref=e20] [cursor=pointer]:
+          - /url: /auth/login
+          - img [ref=e21]
+          - generic [ref=e23]: 카카오 로그인
+        - button "테마 전환" [ref=e24] [cursor=pointer]:
+          - img
+          - img [ref=e25]
+  - main [ref=e27]:
+    - article [ref=e28]:
+      - img "2040 직장인, 의왕시 이사비 40만 원 지원받는 막차 타는 법 총정리" [ref=e30]
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - generic [ref=e33]: 대출·부동산
+          - generic [ref=e34]:
+            - time [ref=e35]: Jul 8, 2026
+            - generic [ref=e36]
+          - heading "2040 직장인, 의왕시 이사비 40만 원 지원받는 막차 타는 법 총정리" [level=1] [ref=e38]
+          - generic [ref=e39]:
+            - generic [ref=e40]: "#loan"
+            - generic [ref=e41]: "#youth"
+            - generic [ref=e42]: "#지원금"
+            - generic [ref=e43]: "#혜택"
+          - separator [ref=e44]
+        - insertion
+        - group [ref=e45]:
+          - generic "📋 목차 보기" [ref=e46] [cursor=pointer]
+          - list [ref=e47]:
+            - listitem [ref=e48]
+            - listitem [ref=e50]
+            - listitem [ref=e52]
+            - listitem [ref=e54]
+            - listitem [ref=e56]
+        - complementary [ref=e58]:
+          - generic [ref=e59]:
+            - paragraph [ref=e60]
+            - link "1분 만에 확인하기 →" [ref=e62] [cursor=pointer]:
+              - /url: /my-persona?focus=loan
+        - paragraph [ref=e63]:
+          - strong [ref=e64]: 목차
+        - list [ref=e65]:
+          - listitem [ref=e66]:
+            - link "의왕시 청년 이사비 지원이란 무엇인가요?" [ref=e67] [cursor=pointer]:
+              - /url: "#%EC%9D%98%EC%99%95%EC%8B%9C-%EC%B2%AD%EB%85%84-%EC%9D%B4%EC%82%AC%EB%B9%84-%EC%A7%80%EC%9B%90%EC%9D%B4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94"
+          - listitem [ref=e68]:
+            - link "신청 자격 및 조건 (한눈에 보기)" [ref=e69] [cursor=pointer]:
+              - /url: "#%EC%8B%A0%EC%B2%AD-%EC%9E%90%EA%B2%A9-%EB%B0%8F-%EC%A1%B0%EA%B1%B4-%ED%95%9C%EB%88%88%EC%97%90-%EB%B3%B4%EA%B8%B0"
+          - listitem [ref=e70]:
+            - link "소득 및 상황별 선택 가이드" [ref=e71] [cursor=pointer]:
+              - /url: "#%EC%86%8C%EB%93%9D-%EB%B0%8F-%EC%83%81%ED%99%A9%EB%B3%84-%EC%84%A0%ED%83%9D-%EA%B0%80%EC%9D%B4%EB%93%9C"
+          - listitem [ref=e72]:
+            - link "주의사항 및 리스크" [ref=e73] [cursor=pointer]:
+              - /url: "#%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD-%EB%B0%8F-%EB%A6%AC%EC%8A%A4%ED%81%AC"
+          - listitem [ref=e74]:
+            - link "자주 묻는 질문 (Q&A)" [ref=e75] [cursor=pointer]:
+              - /url: "#%EC%9E%90%EC%A3%BC-%EB%AC%BB%EB%8A%94-%EC%A7%88%EB%AC%B8-qa"
+        - separator [ref=e76]
+        - paragraph [ref=e77]: 2040 직장인, 의왕시 이사비 40만 원 지원받는 막차 타는 법 총정리
+        - paragraph [ref=e78]: 새로운 동네로 이사하며 복사비와 중개수수료가 부담스러운 2040 직장인분들을 위해 이 글을 씁니다. 의왕시에서 제공하는 청년 이사비 지원 사업의 자격 조건부터 최대 40만 원 혜택을 놓치지 않는 신청 방법까지 한 번에 정리해 드립니다.
+        - paragraph [ref=e79]: ⚠️ 본 정보는 2026년 5월 기준 의왕시 공고안을 바탕으로 작성되었습니다.
+        - heading "의왕시 청년 이사비 지원이란 무엇인가요?" [level=2] [ref=e80]
+        - paragraph [ref=e81]:
+          - text: 이 사업은 의왕시로 새롭게 전입하는 청년들의 초기 정착 부담을 덜어주기 위해 시행됩니다. 단순히 현금을 주는 것이 아니라, 실제 지출한 이사 비용과 부동산 중개보수를
+          - strong [ref=e82]: 최대 40만 원
+          - text: 까지 환급해 주는 실질적인 혜택입니다.
+        - paragraph [ref=e83]: 특히 소득 기준이 충족된다면 1인 가구 기준 한 달 월세의 일부를 아낄 수 있는 금액이므로, 이사를 계획 중인 직장인이라면 반드시 체크해야 합니다.
+        - heading "신청 자격 및 조건 (한눈에 보기)" [level=2] [ref=e84]
+        - paragraph [ref=e85]: 혜택을 받기 위해서는 나이, 소득, 주택 형태라는 세 가지 조건을 모두 충족해야 합니다.
+        - table [ref=e86]:
+          - rowgroup [ref=e87]:
+            - row "구분 상세 조건 비고" [ref=e88]
+          - rowgroup [ref=e92]:
+            - row "연령 만 19세 이상 ~ 39세 이하 주민등록신고 기준" [ref=e93]
+            - row "거주 의왕시로 전입한 무주택 청년 세대주 전입신고 필수" [ref=e98]
+            - row "소득 가구당 기준 중위소득 150% 이하 건강보험료 납부액 기준" [ref=e103]
+            - row "주택 보증금 5천만 이하 & 월세 40만 이하 아래 상세 조건 중 1개 선택" [ref=e108]
+            - row "대안 (보증금 * 5.5% / 12) + 월세 ≤ 61만원 위 조건 초과 시 불가" [ref=e113]
+        - list [ref=e118]:
+          - listitem [ref=e119]: 2026년 5월 기준, 의왕시 공고문
+        - blockquote [ref=e120]:
+          - paragraph [ref=e121]:
+            - strong [ref=e122]: 무주택 직장인이라면? 지금 확인하세요
+            - text: 나와 비슷한 사람들의 평균 소득과 생활 패턴이 궁금하다면?
+          - paragraph [ref=e123]:
+            - link "또래 정보 확인하기 →" [ref=e124] [cursor=pointer]:
+              - /url: /my-persona?src=inline-peer-loan-youth
+        - heading "소득 및 상황별 선택 가이드" [level=2] [ref=e125]
+        - paragraph [ref=e126]: 본인의 상황에 따라 지원 가능 여부가 달라지니 아래 확인해 보세요.
+        - list [ref=e127]:
+          - listitem [ref=e128]:
+            - strong [ref=e129]: 연 소득 3,300만 원 이하 1인 가구 청년
+            - text: → 우선 신청 대상. 중위소득 150% 이내에 안정적으로 들어오므로 40만 원 전액 수령 가능성이 매우 높습니다.
+          - listitem [ref=e130]:
+            - strong [ref=e131]: 보증금은 높지만 월세가 낮은 경우
+            - text: → 2번 조건(보증금 환산) 확인 필요. 보증금이 높더라도 월세와 합산하여 61만 원 이하라면 혜택을 받을 수 있습니다.
+          - listitem [ref=e132]:
+            - strong [ref=e133]: 이미 주택을 소유한 경우
+            - text: → 지원 대상에서 제외. 본 사업은 무주택 청년만을 대상으로 하므로 본인 명의 집이 있는지 확인해야 합니다.
+        - blockquote [ref=e134]:
+          - paragraph [ref=e135]:
+            - strong [ref=e136]: 나와 같은 조건의 사람들은 어떻게 살고 있을까?
+            - text: 나이·성별·지역만 입력하면 또래 소득·주거·직업 통계를 확인할 수 있습니다.
+          - paragraph [ref=e137]:
+            - link "내 페르소나 통계 보기 →" [ref=e138] [cursor=pointer]:
+              - /url: /my-persona?src=inline-stats-loan-youth
+        - heading "주의사항 및 리스크" [level=2] [ref=e139]
+        - list [ref=e140]:
+          - listitem [ref=e141]:
+            - strong [ref=e142]: 증빙 서류 미비 시 지급 불가
+            - text: ": 이사 비용 영수증이나 중개수수료 영수증이 없으면 지원이 불가능합니다. 이사 당일 반드시 카드 전제 영수증을 챙겨두세요."
+          - listitem [ref=e143]:
+            - strong [ref=e144]: 중복 지원 불가
+            - text: ": 타 지자체에서 유사한 이사 지원금을 받았다면 중복 혜택을 받을 수 없습니다."
+          - listitem [ref=e145]:
+            - strong [ref=e146]: ⚠️ 예산 소진 시 조기 종료
+            - text: ": 사업 예산에 따라 조기에 마감될 수 있으므로 이사 후 즉시 신청하는 것이 가장 안전합니다."
+        - heading "자주 묻는 질문 (Q&A)" [level=2] [ref=e147]
+        - paragraph [ref=e148]:
+          - strong [ref=e149]: Q1. 직장 다니면서 서류 준비하면 바로 신청 가능한가요?
+          - text: A1. 네, 가능합니다. 다만 신청 시점에 의왕시로 전입신고가 완료되어 있어야 하며, 세대주여야 합니다. 서류는 미리 준비하여 관할 행정복지센터를 방문하거나 온라인을 통해 편리하게 신청하실 수 있습니다.
+        - paragraph [ref=e150]:
+          - strong [ref=e151]: Q2. 이사 비용 영수증은 어떤 것들이 인정되나요?
+          - text: A2. 이사업체에서 발행받은 카드 영수증이나 현금영수증이 인정됩니다. 개인 간 계좌이체 내역만으로는 증빙이 어려울 수 있으니 반드시 업체 사업자 명의로 된 정식 증빙 서류를 발급받으시기 바랍니다.
+        - paragraph [ref=e152]:
+          - strong [ref=e153]: Q3. 이사한 지 몇 달 지났는데 신청할 수 있나요?
+          - text: "A3. 보통 전입신고 후 일정 기간(예: 6개월 이내) 내에 신청해야 하는 조건이 붙습니다. 정확한 기한은 연도별에 따라 다를 수 있으므로 이사 직후 의왕시청 기업일자리과에 확인하시는 것이 좋습니다."
+        - paragraph [ref=e154]:
+          - strong [ref=e155]: Q4. 월세도 지원 대상에 포함되나요?
+          - text: A4. 아니요, 이 사업은 ‘이사 비용’과 ‘중개수수료’를 지원하는 사업입니다. 매달 내는 월세 자체를 지원하는 방식은 아니니 이사 시점에 발생한 비용 위주로 확인해 주세요.
+        - blockquote [ref=e156]:
+          - paragraph [ref=e157]:
+            - strong [ref=e158]: 내 또래 20대는 어떤 혜택을 받고 있을까?
+            - text: 나이·성별·지역만 입력하면 주거·직업·소득 통계를 바로 확인할 수 있습니다.
+          - paragraph [ref=e159]:
+            - link "내 페르소나 분석하기 →" [ref=e160] [cursor=pointer]:
+              - /url: https://persona.aikorea24.kr/my-persona?src=cta-youth
+        - heading "비슷한 상황의 사람들이 함께 찾아본 글" [level=4] [ref=e161]
+        - list [ref=e162]:
+          - listitem [ref=e163]:
+            - link "2024 무주택 직장인, 의왕시 신혼부부 전세자금 이자지원혜택 챙기는 법 총정리" [ref=e164] [cursor=pointer]:
+              - /url: /blog/2024-%EB%AC%B4%EC%A3%BC%ED%83%9D-%EC%A7%81%EC%9E%A5%EC%9D%B8-%EC%9D%98%EC%99%95%EC%8B%9C-%EC%8B%A0%ED%98%BC%EB%B6%80%EB%B6%80-%EC%A0%84%EC%84%B8%EC%9E%90%EA%B8%88-%EC%9D%B4%EC%9E%90%EC%A7%80%EC%9B%90%ED%98%9C%ED%83%9D-%EC%B1%99%EA%B8%B0%EB%8A%94-%EB%B2%95-%EC%B4%9D%EC%A0%95%EB%A6%AC-000132/
+          - listitem [ref=e165]:
+            - link "2040 직장인, 학자금 대출 연체 신용회복 혜택받는 법 총정리" [ref=e166] [cursor=pointer]:
+              - /url: /blog/2040-%EC%A7%81%EC%9E%A5%EC%9D%B8-%ED%95%99%EC%9E%90%EA%B8%88-%EB%8C%80%EC%B6%9C-%EC%97%B0%EC%B2%B4-%EC%8B%A0%EC%9A%A9%ED%9A%8C%EB%B3%B5-%ED%98%9C%ED%83%9D%EB%B0%9B%EB%8A%94-%EB%B2%95-%EC%B4%9D%EC%A0%95%EB%A6%AC-000147/
+          - listitem [ref=e167]:
+            - link "2040 무주택 직장인, 군포시 청년 전월세 대출이자 지원 혜택 완벽정리" [ref=e168] [cursor=pointer]:
+              - /url: /blog/2040-%EB%AC%B4%EC%A3%BC%ED%83%9D-%EC%A7%81%EC%9E%A5%EC%9D%B8-%EA%B5%B0%ED%8F%AC%EC%8B%9C-%EC%B2%AD%EB%85%84-%EC%A0%84%EC%9B%94%EC%84%B8-%EB%8C%80%EC%B6%9C%EC%9D%B4%EC%9E%90-%EC%A7%80%EC%9B%90-%ED%98%9C%ED%83%9D-%EC%99%84%EB%B2%BD%EC%A0%95%EB%A6%AC-000126/
+        - paragraph [ref=e169]: 의왕시 청년 이사비 지원은 무주택 직장인에게 40만 원이라는 큰 실질적 도움이 됩니다. 소득 기준과 주택 요건을 다시 한번 확인하여 이사 전후 혜택을 꼭 챙기시길 바랍니다. 이 글은 향후 정책 변경 시 내용을 계속해서 보완할 예정입니다.
+        - generic:
+          - insertion
+        - generic:
+          - insertion
+        - generic:
+          - insertion
+        - generic [ref=e170]:
+          - heading "📌 관련 글 더 보기" [level=3] [ref=e171]
+          - generic [ref=e172]:
+            - link "2024 무주택 직장인, 의왕시 신혼부부 전세자금 이자지원혜택 챙기는 법 총정리 주택임차보증금 대출이자 일부 지원" [ref=e173] [cursor=pointer]:
+              - /url: /blog/2024-무주택-직장인-의왕시-신혼부부-전세자금-이자지원혜택-챙기는-법-총정리-000132/
+            - link "2040 직장인, 학자금 대출 연체 신용회복 혜택받는 법 총정리 청년 학자금대출 장기연체자 신용회복을 지원합니다." [ref=e176] [cursor=pointer]:
+              - /url: /blog/2040-직장인-학자금-대출-연체-신용회복-혜택받는-법-총정리-000147/
+            - link "2040 무주택 직장인, 군포시 청년 전월세 대출이자 지원 혜택 완벽정리 ○ 청년 소득 기준 중위소득 180% 이하 무주택 청년에게 전월세보증금대출이자 지원" [ref=e179] [cursor=pointer]:
+              - /url: /blog/2040-무주택-직장인-군포시-청년-전월세-대출이자-지원-혜택-완벽정리-000126/
+        - generic:
+          - insertion
+        - link "📊 700만 한국인 데이터 분석 나와 같은 조건 한국인 평균 대출 한도는? 내 페르소나로 확인하기 →" [ref=e182] [cursor=pointer]:
+          - /url: /my-persona?focus=loan
+          - generic [ref=e183]: 📊 700만 한국인 데이터 분석
+          - generic [ref=e184]: 나와 같은 조건 한국인 평균 대출 한도는?
+          - generic [ref=e185]: 내 페르소나로 확인하기 →
+        - generic [ref=e186]:
+          - strong [ref=e187]: AI 활용 팁
+          - paragraph [ref=e188]:
+            - text: 2040 직장인, 의왕시 이사비 40만 원 지원받는 막차 타는 법 총정리을 ChatGPT 또는 Claude에 붙여넣고 "내 상황에 맞게 분석해줘"라고 요청해보세요.
+            - link "AI 도구 추천 보기 →" [ref=e189] [cursor=pointer]:
+              - /url: https://aikorea24.kr/tools/
+        - paragraph [ref=e191]:
+          - text: 이 글은 정보 제공을 목적으로 작성되었으며 특정 금융 상품의 가입을 권유하지 않습니다. 실제 금융 결정은 전문가 상담 또는
+          - link "금융감독원 공시" [ref=e192] [cursor=pointer]:
+            - /url: https://fine.fss.or.kr
+          - text: 확인 후 진행하시기 바랍니다.
+  - contentinfo [ref=e193]:
+    - generic [ref=e194]:
+      - generic [ref=e195]:
+        - generic [ref=e196]: 🇰🇷 AI코리아24 머니
+        - paragraph [ref=e197]: AI 시대, 돈을 더 잘 다루는 방법. 보험·투자·대출·세금·부업을 한국어로 안내합니다.
+      - generic [ref=e198]:
+        - generic [ref=e199]:
+          - heading "바로가기" [level=3] [ref=e200]
+          - list [ref=e201]:
+            - listitem [ref=e202]
+            - listitem [ref=e204]
+            - listitem [ref=e206]
+            - listitem [ref=e208]
+            - listitem [ref=e210]
+            - listitem [ref=e212]
+        - generic [ref=e214]:
+          - heading "법적 고지" [level=3] [ref=e215]
+          - list [ref=e216]:
+            - listitem [ref=e217]
+            - listitem [ref=e219]
+            - listitem [ref=e221]
+          - heading "관련 사이트" [level=3] [ref=e223]
+          - list [ref=e224]:
+            - listitem [ref=e225]
+          - heading "기타 서비스" [level=3] [ref=e227]
+          - list [ref=e228]:
+            - listitem [ref=e229]
+      - generic [ref=e231]:
+        - link "인스타그램" [ref=e232] [cursor=pointer]:
+          - /url: https://www.instagram.com/aikorea24.kr/
+          - img [ref=e233]
+          - generic [ref=e235]: 인스타그램
+        - link "스레드" [ref=e236] [cursor=pointer]:
+          - /url: https://www.threads.com/@aikorea24
+          - img [ref=e237]
+          - generic [ref=e239]: 스레드
+        - button "카카오톡 공유" [ref=e240] [cursor=pointer]:
+          - img [ref=e241]
+          - generic [ref=e243]: 카카오 공유
+      - generic [ref=e244]:
+        - paragraph [ref=e245]: 본 사이트의 금융 정보는 참고용이며, 정확한 내용은 해당 금융기관 또는 감독기관에서 확인하시기 바랍니다.
+        - paragraph [ref=e246]: © 2026 AI코리아24 머니. All rights reserved.
+  - generic [ref=e249]:
+    - button "Menu" [ref=e250]:
+      - img [ref=e252]
+      - generic: Menu
+    - button "Inspect" [ref=e256]:
+      - img [ref=e258]
+      - generic: Inspect
+    - button "Audit" [ref=e260]:
+      - generic [ref=e261]:
+        - img [ref=e262]
+        - img [ref=e273]
+      - generic: Audit
+    - button "Settings" [ref=e268]:
+      - img [ref=e270]
+      - generic: Settings

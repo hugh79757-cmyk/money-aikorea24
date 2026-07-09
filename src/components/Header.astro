@@ -21,7 +21,6 @@ import { SITE_TITLE } from '../consts';
           <a href="/blog/category/insurance">🛡️ 보험</a>
           <a href="/blog/category/invest">📈 투자·절세</a>
           <a href="/blog/category/loan">🏠 대출·부동산</a>
-          <a href="/blog/category/tax">💰 세금·절약</a>
         </div>
       </div>
       <a href="/benefits" class="nav-benefits">⏰ 지원금</a>
@@ -38,6 +37,40 @@ import { SITE_TITLE } from '../consts';
         <a href="/api/auth/logout" class="nav-logout">로그아웃</a>
       </span>
       <ThemeToggle />
+      <button class="hamburger" id="hamburger-btn" type="button" aria-label="메뉴 열기" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+
+    <!-- ── 모바일 햄버거 메뉴 ── -->
+    <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="모바일 네비게이션">
+      <a href="/my-persona" class="mobile-link">🔍 내 페르소나</a>
+
+      <div class="mobile-blog-wrap">
+        <button class="mobile-blog-btn" type="button" aria-expanded="false">📝 블로그 <span class="blog-arrow">▾</span></button>
+        <div class="mobile-blog-sub">
+          <a href="/blog" class="mobile-link">📋 전체 글 보기</a>
+          <a href="/blog/category/insurance" class="mobile-link">🛡️ 보험</a>
+          <a href="/blog/category/invest" class="mobile-link">📈 투자·절세</a>
+          <a href="/blog/category/loan" class="mobile-link">🏠 대출·부동산</a>
+        </div>
+      </div>
+
+      <a href="/benefits" class="mobile-link">⏰ 지원금</a>
+      <a href="/community" class="mobile-link">💬 커뮤니티</a>
+      <hr class="mobile-divider" />
+      <a href="/auth/login" class="mobile-link mobile-login" id="mobile-btn-login">
+        <svg width="16" height="16" viewBox="0 0 40 40" fill="none" style="flex-shrink:0;vertical-align:middle;margin-right:6px;">
+          <path d="M20 4C11.163 4 4 9.82 4 17c0 4.747 3.027 8.91 7.627 11.367L9.8 35.08a.5.5 0 0 0 .717.543L17.64 31.2c.778.1 1.573.153 2.36.153 8.837 0 16-5.82 16-13S28.837 4 20 4z" fill="#3D3D3D"/>
+        </svg>
+        카카오 로그인
+      </a>
+      <span class="mobile-user" id="mobile-btn-user" style="display:none;">
+        <span id="mobile-user-name"></span>
+        <a href="/api/auth/logout" class="mobile-link" style="opacity:.7;font-size:.8rem;">로그아웃</a>
+      </span>
     </div>
   </nav>
 </header>
@@ -61,23 +94,67 @@ import { SITE_TITLE } from '../consts';
     if (btnUser) btnUser.style.display = 'none';
   }
 
-  // 블로그 드롭다운 토글 (모바일 클릭)
+  // 블로그 드롭다운 토글 (데스크탑)
   const blogWrap = document.getElementById('nav-blog-wrap');
   const blogBtn  = document.getElementById('nav-blog-btn');
   if (blogWrap && blogBtn) {
     blogBtn.addEventListener('click', (e) => {
-      // 데스크탑·모바일 모두 클릭 토글 허용
       e.stopPropagation();
       const isOpen = blogWrap.classList.toggle('open');
       blogBtn.setAttribute('aria-expanded', String(isOpen));
     });
-    // 외부 클릭 시 닫기
     document.addEventListener('click', (e) => {
       if (!blogWrap.contains(e.target as Node)) {
         blogWrap.classList.remove('open');
         blogBtn.setAttribute('aria-expanded', 'false');
       }
     });
+  }
+
+  // ── 햄버거 메뉴 토글 ──
+  const hamburger  = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      hamburger.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
+    });
+    // 메뉴 링크 클릭 시 자동 닫기 (블로그 버튼 제외)
+    mobileMenu.querySelectorAll('.mobile-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', '메뉴 열기');
+      });
+    });
+  }
+
+  // ── 모바일 블로그 서브메뉴 토글 ──
+  const mobileBlogBtn = document.querySelector('.mobile-blog-btn');
+  const mobileBlogSub = document.querySelector('.mobile-blog-sub');
+  if (mobileBlogBtn && mobileBlogSub) {
+    mobileBlogBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isOpen = mobileBlogSub.classList.toggle('open');
+      mobileBlogBtn.classList.toggle('open');
+      mobileBlogBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+
+  // ── 세션 쿠키 동기화 to 모바일 ──
+  if (raw) {
+    var mobileLogin  = document.getElementById('mobile-btn-login');
+    var mobileUser   = document.getElementById('mobile-btn-user');
+    var mobileName   = document.getElementById('mobile-user-name');
+    if (mobileLogin) mobileLogin.style.display = 'none';
+    if (mobileUser)  mobileUser.style.display  = 'flex';
+    if (mobileName && user && user.name) mobileName.textContent = `👤 ${user.name}`;
+  } else {
+    var mobileUser = document.getElementById('mobile-btn-user');
+    if (mobileUser) mobileUser.style.display = 'none';
   }
 })();
 </script>
@@ -263,6 +340,96 @@ import { SITE_TITLE } from '../consts';
     font-weight: 700 !important;
   }
 
+  /* ── 햄버거 버튼 ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 6px;
+    transition: background var(--transition-fast);
+    flex-shrink: 0;
+  }
+  .hamburger:hover { background: rgba(255,255,255,0.2); }
+  .hamburger-line {
+    display: block;
+    width: 20px;
+    height: 2.5px;
+    background: var(--color-surface);
+    border-radius: 2px;
+    transition: transform .2s, opacity .2s;
+  }
+  .hamburger.open .hamburger-line:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  .hamburger.open .hamburger-line:nth-child(2) { opacity: 0; }
+  .hamburger.open .hamburger-line:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+  /* ── 모바일 메뉴 ── */
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 8px 28px rgba(0,0,0,.12);
+    padding: .75rem 1rem;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 999;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-link {
+    display: block;
+    padding: .7rem .8rem;
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--color-text) !important;
+    text-decoration: none !important;
+    border-radius: 10px;
+    transition: background var(--transition-fast);
+  }
+  .mobile-link:hover { background: var(--color-bg); }
+  .mobile-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: .4rem 0;
+  }
+  .mobile-blog-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: .7rem .8rem;
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    border-radius: 10px;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: background var(--transition-fast);
+  }
+  .mobile-blog-btn:hover { background: var(--color-bg); }
+  .mobile-blog-btn .blog-arrow { font-size: .65rem; opacity: .75; transition: transform .2s; }
+  .mobile-blog-btn.open .blog-arrow { transform: rotate(180deg); }
+  .mobile-blog-sub {
+    display: none;
+    padding: 0 0 .25rem .8rem;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .mobile-blog-sub.open { display: flex; }
+  .mobile-blog-sub .mobile-link { font-size: .85rem; font-weight: 500; }
+
   /* ── 태블릿 (900px 이하): 블로그 버튼 유지, 개별 카테고리 hover 드롭다운으로 접근 ── */
   @media (max-width: 900px) {
     .nav-blog-btn { font-size: var(--text-xs); }
@@ -276,29 +443,14 @@ import { SITE_TITLE } from '../consts';
       gap: var(--space-1);
       width: 100%;
     }
+    .nav-persona { display: none; }
+    .nav-blog-wrap { display: none; }
     .nav-benefits, .nav-community { display: none; }
+    .nav-kakao { display: none; }
+    #btn-user { display: none !important; }
+    .hamburger { display: flex; }
     .site-title { font-size: 0.88rem; gap: 4px; }
-    .nav-persona {
-      font-size: var(--text-xs);
-      padding: var(--space-1) var(--space-2);
-    }
-    .nav-blog-btn {
-      font-size: var(--text-xs);
-      padding: var(--space-1) var(--space-2);
-    }
-    .nav-kakao {
-      font-size: var(--text-xs);
-      padding: var(--space-2) var(--space-3);
-    }
-    .nav-kakao svg { display: none; }
-    /* 모바일: open 클래스로만 열기 */
-    .nav-blog-wrap.open .blog-submenu { display: flex; }
-    /* 모바일 드롭다운 위치: 뷰포트 넘치지 않도록 */
-    .blog-submenu {
-      left: auto;
-      right: 0;
-      transform: none;
-    }
+    /* 로그인/로그아웃은 햄버거 메뉴에만 표시 */
   }
 
   /* ── 초소형 480px: 카카오 아이콘 원형 + 사이트명 축약 + ThemeToggle 숨김 ── */

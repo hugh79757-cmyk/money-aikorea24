@@ -9,7 +9,6 @@ import AiTip from '../components/AiTip.astro';
 import Disclaimer from '../components/Disclaimer.astro';
 import FloatingFab from '../components/FloatingFab.astro';
 import InlinePersonaCTA from '../components/InlinePersonaCTA.astro';
-import { CATEGORY_PERSONA_MAP } from '../lib/personaMatcher';
 
 interface Props {
   title: string;
@@ -22,12 +21,6 @@ interface Props {
   category?: string;
   relatedPosts?: CollectionEntry<'blog'>[];
   tocHeadings?: { depth: number; slug: string; text: string }[];
-  personaCardTarget?: {
-    ctaText: string;
-    ctaSubtext?: string;
-    targetUrl: string;
-    focusSection?: string;
-  };
   canonical?: string;
   noindex?: boolean;
 }
@@ -43,7 +36,6 @@ const {
   category: categoryProp = '',
   relatedPosts = [],
   tocHeadings = [],
-  personaCardTarget,
   canonical = '',
   noindex = false,
 } = Astro.props;
@@ -66,8 +58,47 @@ const categoryLabel: Record<string, string> = {
 const resolvedCategory = categoryProp || collection;
 const category = categoryLabel[resolvedCategory] ?? resolvedCategory;
 
-const targetMap = CATEGORY_PERSONA_MAP[resolvedCategory] || CATEGORY_PERSONA_MAP.general;
-const personaTarget = personaCardTarget || targetMap;
+// ── 카테고리별 지원금 배너 매핑 ──
+// 모든 배너는 /benefits 허브 페이지로 연결 (6개 카테고리 버튼에서 선택)
+const CATEGORY_BENEFIT_MAP: Record<string, { ctaText: string; targetUrl: string; emoji: string; color: string }> = {
+  insurance: {
+    ctaText: '건강·의료비 지원금',
+    targetUrl: '/benefits',
+    emoji: '🏥',
+    color: 'linear-gradient(135deg,#0EA5E9,#38BDF8)',
+  },
+  invest: {
+    ctaText: '청년·창업 지원금',
+    targetUrl: '/benefits',
+    emoji: '📈',
+    color: 'linear-gradient(135deg,#8B5CF6,#A78BFA)',
+  },
+  loan: {
+    ctaText: '주거·전세 지원금',
+    targetUrl: '/benefits',
+    emoji: '🏠',
+    color: 'linear-gradient(135deg,#F59E0B,#FBBF24)',
+  },
+  tax: {
+    ctaText: '세금·연말정산 혜택',
+    targetUrl: '/benefits',
+    emoji: '💰',
+    color: 'linear-gradient(135deg,#10B981,#34D399)',
+  },
+  nomad: {
+    ctaText: '부업·교육 지원금',
+    targetUrl: '/benefits',
+    emoji: '🌍',
+    color: 'linear-gradient(135deg,#EC4899,#F472B6)',
+  },
+  general: {
+    ctaText: '맞춤 지원금 찾기',
+    targetUrl: '/benefits',
+    emoji: '🎁',
+    color: 'linear-gradient(135deg,#6B7280,#9CA3AF)',
+  },
+};
+const benefitTarget = CATEGORY_BENEFIT_MAP[resolvedCategory] || CATEGORY_BENEFIT_MAP.general;
 
 // ── 광고 조건부 분기 ──
 const content = await Astro.slots.render('default');
@@ -204,6 +235,25 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
         .prose :global(h2) { font-size: 1.5rem; }
         .prose :global(h3) { font-size: 1.25rem; }
         .prose :global(p)  { font-size: 1.08rem; }
+      }
+
+      /* ── 히어로 이미지(썸네일) 가운데 정렬 ── */
+      .hero-image {
+        text-align: center !important;
+        margin: 0 auto !important;
+        max-width: 1020px;
+        padding: 0 1rem;
+        box-sizing: border-box;
+        display: flex !important;
+        justify-content: center !important;
+      }
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        display: block !important;
+        margin: 0 auto !important;
+        object-fit: contain;
       }
 
       /* ── 엔티티 카드 ── */
@@ -373,11 +423,11 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
             <hr />
           </div>
 
-          {/* ── 상단 광고 (목차 위) ── */}
-          <ins class="adsbygoogle"
+          {/* ── 상단 광고 (목차 위) — Slot A ── */}
+          <ins class="adsbygoogle lazyad"
             style="display:block; width:100%; text-align:center; margin: 0.5rem 0 1.25rem;"
             data-ad-client="ca-pub-5938862195544185"
-            data-ad-slot="8107272066"
+            data-ad-slot="5768046585"
             data-ad-format="auto"
             data-full-width-responsive="true"></ins>
 
@@ -404,7 +454,7 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
                 <ins class="adsbygoogle lazyad"
                   style="display:block; text-align:center;"
                   data-ad-client="ca-pub-5938862195544185"
-                  data-ad-slot="8107272066"
+                  data-ad-slot="1032549059"
                   data-ad-layout="in-article"
                   data-ad-format="fluid"
                   data-full-width-responsive="true"></ins>
@@ -418,7 +468,7 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
                 <ins class="adsbygoogle lazyad"
                   style="display:block; text-align:center;"
                   data-ad-client="ca-pub-5938862195544185"
-                  data-ad-slot="8107272066"
+                  data-ad-slot="7355661667"
                   data-ad-layout="in-article"
                   data-ad-format="fluid"
                   data-full-width-responsive="true"></ins>
@@ -432,7 +482,7 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
                 <ins class="adsbygoogle lazyad"
                   style="display:block; text-align:center;"
                   data-ad-client="ca-pub-5938862195544185"
-                  data-ad-slot="8107272066"
+                  data-ad-slot="7355661667"
                   data-ad-layout="in-article"
                   data-ad-format="fluid"
                   data-full-width-responsive="true"></ins>
@@ -458,22 +508,34 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
             </div>
           )}
 
-          {/* ── 리더보드 광고 (PC 본문 끝) ── */}
+          {/* ── 리더보드 광고 (PC 본문 끝) — Slot D ── */}
           <div class="ad-leaderboard desktop-only">
             <ins class="adsbygoogle lazyad desktop-only"
               style="display:block; text-align:center;"
               data-ad-client="ca-pub-5938862195544185"
-              data-ad-slot="8107272066"
+              data-ad-slot="9981825008"
               data-ad-format="horizontal"
               data-full-width-responsive="true"></ins>
           </div>
 
-          <a class="entity-card" href={personaTarget.targetUrl} style="display:block;background:linear-gradient(135deg,#6B4226,#E8A87C);border-radius:16px;padding:1.25rem 1.5rem;margin:1.5rem 0;text-decoration:none;color:#fff;">
-            <div style="font-size:.85rem;font-weight:700;opacity:.85;margin-bottom:.4rem;">📊 700만 한국인 데이터 분석</div>
-            <div style="font-size:1.1rem;font-weight:800;line-height:1.4;margin-bottom:.6rem;">
-              {personaTarget.ctaText}
+          {/* ── 지원금 배너 (Entity Card 대체) ── */}
+          <a class="benefit-banner" href={benefitTarget.targetUrl}
+            style={`display:block;background:${benefitTarget.color};border-radius:16px;padding:1.25rem 1.5rem;margin:1.5rem 0;text-decoration:none;color:#fff;transition:transform .15s,box-shadow .15s;`}
+            onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(0,0,0,.12)'"
+            onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+              <span style="font-size:1.4rem;">{benefitTarget.emoji}</span>
+              <span style="font-size:.82rem;font-weight:700;opacity:.85;letter-spacing:.04em;">지원금 혜택</span>
             </div>
-            <div style="font-size:.95rem;font-weight:700;background:rgba(255,255,255,0.2);border-radius:8px;padding:.4rem .9rem;display:inline-block;">{personaTarget.ctaSubtext || "내 페르소나 확인하기"} →</div>
+            <div style="font-size:1.1rem;font-weight:800;line-height:1.4;margin-bottom:.6rem;word-break:keep-all;">
+              {benefitTarget.ctaText} 놓치지 마세요
+            </div>
+            <div style="display:flex;align-items:center;gap:.4rem;">
+              <span style="font-size:.88rem;font-weight:700;background:rgba(255,255,255,0.2);border-radius:8px;padding:.35rem .85rem;">
+                지금 확인하기 →
+              </span>
+              <span style="font-size:.75rem;opacity:.7;">실시간 매칹 결과 보기</span>
+            </div>
           </a>
 
           <AiTip topic={title} />
@@ -487,13 +549,13 @@ const showAd3 = showInArticle && isHighRpm && h2Count >= 3;
     </main>
     <Footer />
 
-    {/* ── 모바일 스티키 광고 ── */}
+    {/* ── 모바일 스티키 광고 — Slot D ── */}
     <div id="mobile-sticky-ad" class="ad-mobile-sticky" style="display:none;">
       <button class="close-btn" aria-label="광고 닫기" onclick="this.parentElement.style.display='none'">✕</button>
       <ins class="adsbygoogle lazyad"
         style="display:block; text-align:center;"
         data-ad-client="ca-pub-5938862195544185"
-        data-ad-slot="8107272066"
+        data-ad-slot="9981825008"
         data-ad-format="horizontal"
         data-full-width-responsive="true"></ins>
     </div>

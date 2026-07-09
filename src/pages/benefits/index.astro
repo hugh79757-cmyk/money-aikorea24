@@ -292,9 +292,53 @@ function getSummary(b: any): string {
       text-align: center !important;
     }
 
+    /* ── 카테고리 허브 버튼 ── */
+    .hub-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: .75rem;
+      margin-bottom: 1.5rem;
+    }
+    .hub-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .35rem;
+      padding: 1rem .6rem;
+      border-radius: 16px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+      font-size: .88rem;
+      text-align: center;
+      transition: transform .12s, box-shadow .12s;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      min-height: 80px;
+    }
+    .hub-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,.15);
+    }
+    .hub-btn .emoji { font-size: 1.6rem; }
+    .hub-btn .count {
+      font-size: .72rem;
+      font-weight: 600;
+      opacity: .85;
+    }
+    .hub-youth    { background: linear-gradient(135deg,#6366F1,#818CF8); }
+    .hub-child    { background: linear-gradient(135deg,#EC4899,#F472B6); }
+    .hub-senior   { background: linear-gradient(135deg,#F59E0B,#FBBF24); }
+    .hub-general  { background: linear-gradient(135deg,#6B7280,#9CA3AF); }
+    .hub-welfare  { background: linear-gradient(135deg,#10B981,#34D399); }
+    .hub-business { background: linear-gradient(135deg,#0EA5E9,#38BDF8); }
+
     @media (max-width: 600px) {
       .card { padding: 1.15rem 1.25rem; }
       .card h2 { font-size: 1rem; }
+      .hub-row { grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+      .hub-btn { min-height: 70px; padding: .7rem .4rem; font-size: .8rem; }
+      .hub-btn .emoji { font-size: 1.3rem; }
     }
   </style>
 </head>
@@ -306,6 +350,16 @@ function getSummary(b: any): string {
         <h1>💰 정부 지원금·혜택 찾기</h1>
         <p>총 {active.length.toLocaleString()}건의 지원금·복지 혜택 (만료 제외)</p>
       </div>
+
+      <!-- ── 카테고리 허브 ── -->
+      <nav class="hub-row" aria-label="카테고리">
+        <a href="/benefits/youth"    class="hub-btn hub-youth">   <span class="emoji">🧑</span> 청년 <span class="count">{tabs.all.filter(b=>b.category==='youth').length}건</span></a>
+        <a href="/benefits/child"    class="hub-btn hub-child">   <span class="emoji">👨‍👩‍👧‍👧</span> 아동·가족 <span class="count">{tabs.all.filter(b=>b.category==='child').length}건</span></a>
+        <a href="/benefits/senior"   class="hub-btn hub-senior">  <span class="emoji">🧓</span> 시니어 <span class="count">{tabs.all.filter(b=>b.category==='senior').length}건</span></a>
+        <a href="/benefits/general"  class="hub-btn hub-general"> <span class="emoji">📋</span> 일반 <span class="count">{tabs.all.filter(b=>b.category==='general').length}건</span></a>
+        <a href="/benefits/welfare"  class="hub-btn hub-welfare"> <span class="emoji">🏥</span> 복지 <span class="count">{tabs.all.filter(b=>b.category==='welfare').length}건</span></a>
+        <a href="/benefits/business" class="hub-btn hub-business"><span class="emoji">💼</span> 사업·창업 <span class="count">{tabs.all.filter(b=>b.category==='business').length}건</span></a>
+      </nav>
 
       <div class="search-wrap">
         <span class="icon">🔍</span>

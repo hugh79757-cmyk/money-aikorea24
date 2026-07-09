@@ -264,8 +264,17 @@ const relLinks = (() => {
   const extra = fallback.filter(f => !matched.find(m => m.url === f.url));
   return [...matched, ...extra].slice(0, 4);
 })();
-/* T19: 결과 → 블로그 측정 루프 CTA 타깃 (가장 관련성 높은 블로그 포스트) */
-const loopHref = relLinks.length > 0 ? relLinks[0].url : '/blog/';
+/* C(개선안 C): 루프 CTA 타깃 선택
+   동일 페르소나 유형 내에서도 key(지역·성별·연령) 해시로 후보 중 결정론적 인덱스 선택.
+   → 개별 페르소나마다 다른 관련 글 노출(다양성·관련성 분산), 사이클 신선도↑ → 광고 노출 기회↑
+   (정확한 출처 글 자기회피는 CTA에 from=블로그슬러그 전달이 필요 — 별도 후속 작업) */
+function loopHashIndex(seed: string, mod: number): number {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (Math.imul(h, 31) + seed.charCodeAt(i)) | 0;
+  return Math.abs(h) % mod;
+}
+const loopIndex = relLinks.length > 0 ? loopHashIndex(key, relLinks.length) : -1;
+const loopHref = loopIndex >= 0 ? relLinks[loopIndex].url : '/blog/';
 /* 인사이트 */
 const insight = ageNum < 30 || ageRaw === '20대'
   ? `${dr} ${ageGroup} ${sex}는 사회 진입 시기입니다. 청년도약계좌·ISA로 종잣돈을 만들고, 무직 비율이 ${unePct}%로 취업 준비가 중요한 시점입니다.`

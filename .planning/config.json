@@ -29,7 +29,8 @@
     "sub_repos": []
   },
   "git": {
-    "create_tag": true
+    "create_tag": true,
+    "auto_commit_on_complete": true
   },
   "parallelization": {
     "enabled": true,

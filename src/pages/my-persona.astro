@@ -522,11 +522,9 @@ function determineType(s, age, marital) {
   }
   return COPIES[COPIES.length - 1];
 }
-/* onclick="xxx()" handlers need globals — expose IIFE-scoped functions */
+/* onclick handlers need globals — expose IIFE-scoped functions (Block #5) */
 window.startStep=startStep; window.goStep=goStep; window.selectOption=selectOption;
-window.selectProvince=selectProvince; window.resetForm=resetForm;
-window.shareKakao=shareKakao; window.shareTwitter=shareTwitter; window.copyUrl=copyUrl;
-window.downloadCard=downloadCard; window.toggleDetail=toggleDetail; window.toggleStory=toggleStory;
+window.selectProvince=selectProvince;
 </script>
 <script is:inline>
 /* ══ 나 vs 평균 ══ */
@@ -1028,6 +1026,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (p.get('age')) {
     initFromUrl();
   }
+  /* onclick handlers need globals — expose Block #7 functions */
+  window.resetForm=resetForm; window.shareKakao=shareKakao; window.shareTwitter=shareTwitter;
+  window.copyUrl=copyUrl; window.downloadCard=downloadCard;
+  window.toggleDetail=toggleDetail; window.toggleStory=toggleStory;
   </script>
 
     {/* ── Funnel: persona_open + attribution capture (Wave 3, T8) ── */}

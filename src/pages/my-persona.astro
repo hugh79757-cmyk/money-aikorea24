@@ -527,6 +527,10 @@ window.startStep=startStep; window.goStep=goStep; window.selectOption=selectOpti
 window.selectProvince=selectProvince;
 /** Bridge: shared state for Block #7 functions */
 window.INPUTS=INPUTS; window.statsData=statsData;
+/** Bridge: IIFE-scoped helpers for runAnalyze in Block #7 */
+window.loadStats=loadStats; window.getStats=getStats;
+window.determineType=determineType; window.toDecadeKey=toDecadeKey;
+window.destroyCharts=destroyCharts;
 </script>
 <script is:inline>
 /* ══ 나 vs 평균 ══ */
@@ -715,6 +719,11 @@ window.compareWithData = compareWithData;
 var INPUTS = window.INPUTS;
 var goStep = window.goStep;
 var compareWithData = window.compareWithData;
+var loadStats = window.loadStats;
+var getStats = window.getStats;
+var determineType = window.determineType;
+var toDecadeKey = window.toDecadeKey;
+var destroyCharts = window.destroyCharts;
 /* ══ runAnalyze ══ */
 async function runAnalyze() {
   const age      = parseInt(INPUTS.age);

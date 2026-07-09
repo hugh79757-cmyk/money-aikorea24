@@ -525,6 +525,8 @@ function determineType(s, age, marital) {
 /* onclick handlers need globals — expose IIFE-scoped functions (Block #5) */
 window.startStep=startStep; window.goStep=goStep; window.selectOption=selectOption;
 window.selectProvince=selectProvince;
+/** Bridge: shared state for Block #7 functions */
+window.INPUTS=INPUTS; window.statsData=statsData;
 </script>
 <script is:inline>
 /* ══ 나 vs 평균 ══ */
@@ -705,8 +707,14 @@ function renderRecs(age) {
     + '</a>'
   ).join('');
 }
+/** Bridge: expose compareWithData for Block #7 */
+window.compareWithData = compareWithData;
 </script>
 <script is:inline>
+/** Bridge: functions/vars from IIFE (Block #5) and Block #6 */
+var INPUTS = window.INPUTS;
+var goStep = window.goStep;
+var compareWithData = window.compareWithData;
 /* ══ runAnalyze ══ */
 async function runAnalyze() {
   const age      = parseInt(INPUTS.age);

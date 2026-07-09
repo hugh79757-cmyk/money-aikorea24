@@ -4,6 +4,8 @@ from logging.handlers import RotatingFileHandler
 from dotenv import load_dotenv
 from pathlib import Path
 
+from title_generator import refinish_title
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import paths
 
@@ -252,6 +254,9 @@ def run(dry_run=False):
             body = re.sub(r'^#\s+.*?\n?', '', body, count=1).strip()
             logger.info(f"제목 추출: {extracted_title[:40]}")
         final_title = extracted_title or service["title"]
+        # 타이틀 생성기로 마무리 어미 다양화 (신규 글만 해당)
+        final_title = refinish_title(final_title)
+        logger.info(f"refinish_title 적용: {final_title[:50]}")
 
         # 4c. H2 기반 SUMMARY_BOX 생성 (Q2)
         summary_box = build_summary_box(body)

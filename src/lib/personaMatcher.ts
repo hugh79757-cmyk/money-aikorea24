@@ -7,37 +7,37 @@ export const CATEGORY_PERSONA_MAP: Record<string, {
   insurance: {
     ctaText: '나와 같은 조건 사람들의 보험 가입 현황은?',
     ctaSubtext: '내 페르소나로 확인하기',
-    targetUrl: '/my-persona?focus=insurance',
+    targetUrl: '/my-persona?focus=insurance&src=entity-card-insurance',
     focusSection: 'insurance',
   },
   invest: {
     ctaText: '내 소득 수준에서 가능한 투자 한도는?',
     ctaSubtext: '내 페르소나로 확인하기',
-    targetUrl: '/my-persona?focus=investment',
+    targetUrl: '/my-persona?focus=investment&src=entity-card-invest',
     focusSection: 'investment',
   },
   loan: {
     ctaText: '나와 같은 조건 한국인 평균 대출 한도는?',
     ctaSubtext: '내 페르소나로 확인하기',
-    targetUrl: '/my-persona?focus=loan',
+    targetUrl: '/my-persona?focus=loan&src=entity-card-loan',
     focusSection: 'loan',
   },
   tax: {
     ctaText: '비슷한 소득의 한국인들은 세금을 얼마나 낼까?',
     ctaSubtext: '내 페르소나로 확인하기',
-    targetUrl: '/my-persona?focus=tax',
+    targetUrl: '/my-persona?focus=tax&src=entity-card-tax',
     focusSection: 'tax',
   },
   nomad: {
     ctaText: '나와 비슷한 사람들의 부업 수익은?',
     ctaSubtext: '디지털 노마드 페르소나 확인하기',
-    targetUrl: '/my-persona?focus=side_income',
+    targetUrl: '/my-persona?focus=side_income&src=entity-card-nomad',
     focusSection: 'side_income',
   },
   general: {
     ctaText: '나와 비슷한 한국인은 어떻게 살까?',
     ctaSubtext: '내 페르소나로 확인하기',
-    targetUrl: '/my-persona',
+    targetUrl: '/my-persona?src=entity-card-general',
     focusSection: null,
   },
 };

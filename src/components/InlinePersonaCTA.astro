@@ -3,6 +3,10 @@ import { CATEGORY_PERSONA_MAP } from '../lib/personaMatcher';
 
 const category = Astro.props.category || 'general';
 const target = CATEGORY_PERSONA_MAP[category] || CATEGORY_PERSONA_MAP.general;
+// Inline component gets its own attribution token (distinct from the entity card).
+const inlineHref = target.focusSection
+  ? `/my-persona?focus=${target.focusSection}&src=inline-component-${category}`
+  : `/my-persona?src=inline-component-${category}`;
 ---
 
 <aside class="inline-persona-cta">
@@ -11,7 +15,7 @@ const target = CATEGORY_PERSONA_MAP[category] || CATEGORY_PERSONA_MAP.general;
       <strong>내 페르소나와 비교해보세요</strong><br />
       {target.ctaText}
     </p>
-    <a href={target.targetUrl} class="inline-cta-btn">
+    <a href={inlineHref} class="inline-cta-btn">
       1분 만에 확인하기 →
     </a>
   </div>

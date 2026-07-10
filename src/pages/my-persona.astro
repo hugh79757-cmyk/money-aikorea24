@@ -524,13 +524,17 @@ function determineType(s, age, marital) {
 }
 /* onclick handlers need globals — expose IIFE-scoped functions (Block #5) */
 window.startStep=startStep; window.goStep=goStep; window.selectOption=selectOption;
-window.selectProvince=selectProvince;
-/** Bridge: shared state for Block #7 functions */
-window.INPUTS=INPUTS; window.statsData=statsData;
+window.selectProvince=selectProvince; window.rotateHero=rotateHero;
+/** Bridge: shared state for Block #6 and Block #7 functions */
+window.INPUTS=INPUTS; window.statsData=statsData; window.charts=charts;
 /** Bridge: IIFE-scoped helpers for runAnalyze in Block #7 */
 window.loadStats=loadStats; window.getStats=getStats;
 window.determineType=determineType; window.toDecadeKey=toDecadeKey;
 window.destroyCharts=destroyCharts;
+/** Bridge: IIFE-scoped helpers for Block #6 (compareWithData) */
+window.pct=pct;
+/** Bridge: define:vars for Block #7 */
+window.kakaoJsKey=kakaoJsKey;
 </script>
 <script is:inline>
 /* ══ 나 vs 평균 ══ */
@@ -1047,7 +1051,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.resetForm=resetForm; window.shareKakao=shareKakao; window.shareTwitter=shareTwitter;
   window.copyUrl=copyUrl; window.downloadCard=downloadCard;
   window.toggleDetail=toggleDetail; window.toggleStory=toggleStory;
-  </script>
+});</script>
 
     {/* ── Funnel: persona_open + attribution capture (Wave 3, T8) ── */}
     <script>

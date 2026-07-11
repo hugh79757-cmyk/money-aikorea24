@@ -436,6 +436,22 @@ import { SITE_TITLE } from '../consts';
   }
 
   /* ── 모바일 640px ── */
+  /* ── 다크모드: 헤더는 항상 네이비 배경이므로 텍스트는 하얀색 유지 ── */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .site-title,
+    :root:not([data-theme="light"]) .nav-persona,
+    :root:not([data-theme="light"]) .nav-blog-btn,
+    :root:not([data-theme="light"]) .nav-benefits,
+    :root:not([data-theme="light"]) .nav-community { color: #fff !important; }
+    :root:not([data-theme="light"]) .hamburger-line { background: #fff; }
+  }
+  :root[data-theme="dark"] .site-title,
+  :root[data-theme="dark"] .nav-persona,
+  :root[data-theme="dark"] .nav-blog-btn,
+  :root[data-theme="dark"] .nav-benefits,
+  :root[data-theme="dark"] .nav-community { color: #fff !important; }
+  :root[data-theme="dark"] .hamburger-line { background: #fff; }
+
   @media (max-width: 640px) {
     header { width: 100%; }
     nav {

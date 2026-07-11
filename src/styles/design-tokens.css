@@ -215,7 +215,6 @@
     --color-info-bg: #1e3a8a;
 
     /* Brand - 다크모드용 */
-    --color-kakao-text: #f3f4f6;         /* 밝은 텍스트 (다크 배경 위) */
     --color-benefit: #e8a87c;            /* 밝은 웜톤 */
     --color-benefit-light: #f0c4a0;      /* 더 밝은 웜톤 */
 
@@ -270,7 +269,6 @@
   --color-info-bg: #1e3a8a;
 
   /* Brand - 다크모드용 */
-  --color-kakao-text: #f3f4f6;           /* 밝은 텍스트 (다크 배경 위) */
   --color-benefit: #e8a87c;              /* 밝은 웜톤 */
   --color-benefit-light: #f0c4a0;        /* 더 밝은 웜톤 */
 

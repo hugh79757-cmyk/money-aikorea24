@@ -9,17 +9,17 @@ export async function getStaticPaths() {
   return CATEGORIES.map(cat => ({ params: { category: cat } }));
 }
 
-const CATEGORY_META: Record<string, { label: string; emoji: string; desc: string }> = {
-  youth:    { label: '청년',      emoji: '🧑', desc: '만 15~39세 청년을 위한 정부 지원금·혜택을 모았습니다.' },
-  child:    { label: '아동·가족',  emoji: '👨‍👩‍👧‍👧', desc: '아동·청소년·가족 단위 지원금과 복지 혜택 정보입니다.' },
-  senior:   { label: '시니어',     emoji: '🧓', desc: '만 50세 이상 시니어 및 은퇴자를 위한 맞춤 지원금입니다.' },
-  general:  { label: '일반',      emoji: '📋', desc: '연령·가구 제한 없이 누구나 신청할 수 있는 혜택입니다.' },
-  welfare:  { label: '복지',      emoji: '🏥', desc: '의료·돌봄·생활안정 등 사회복지서비스 지원금입니다.' },
-  business: { label: '사업·창업',  emoji: '💼', desc: '창업·사업 운영·고용을 위한 정부 지원 및 융자 정보입니다.' },
+const CATEGORY_META: Record<string, { label: string; desc: string }> = {
+  youth:    { label: '청년',      desc: '만 15~39세 청년을 위한 정부 지원금·혜택을 모았습니다.' },
+  child:    { label: '아동·가족',  desc: '아동·청소년·가족 단위 지원금과 복지 혜택 정보입니다.' },
+  senior:   { label: '시니어',     desc: '만 50세 이상 시니어 및 은퇴자를 위한 맞춤 지원금입니다.' },
+  general:  { label: '일반',      desc: '연령·가구 제한 없이 누구나 신청할 수 있는 혜택입니다.' },
+  welfare:  { label: '복지',      desc: '의료·돌봄·생활안정 등 사회복지서비스 지원금입니다.' },
+  business: { label: '사업·창업',  desc: '창업·사업 운영·고용을 위한 정부 지원 및 융자 정보입니다.' },
 };
 
 const { category } = Astro.params;
-const meta = CATEGORY_META[category!] || { label: category, emoji: '📌', desc: '' };
+const meta = CATEGORY_META[category!] || { label: category, desc: '' };
 
 /* ── 데이터 로딩 ── */
 const json = fs.readFileSync('public/benefits-clean.json', 'utf-8');
@@ -72,7 +72,7 @@ function getSummary(b: any): string {
 <html lang="ko">
 <head>
   <BaseHead
-    title={`${meta.emoji} ${meta.label} 지원금·혜택 | 한국인 페르소나`}
+    title={`${meta.label} 지원금·혜택 | 한국인 페르소나`}
     description={meta.desc}
   />
   <style>
@@ -139,7 +139,7 @@ function getSummary(b: any): string {
       font-family: inherit;
     }
     .tab:hover { background: var(--color-bg); }
-    .tab.active { background: var(--color-benefit); color: #fff; border-color: var(--color-benefit); }
+    .tab.active { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
 
     .count-info { font-size: .82rem; color: var(--color-muted); margin: 0 0 1rem; }
 
@@ -278,7 +278,7 @@ function getSummary(b: any): string {
     <div class="page-wrap">
       <div class="cat-header">
         <a href="/benefits" class="back-link">← 전체 지원금 목록</a>
-        <h1>{meta.emoji} {meta.label} 지원금·혜택</h1>
+        <h1>{meta.label} 지원금·혜택</h1>
         <p>{meta.desc} (총 {TABS.all.length.toLocaleString()}건)</p>
       </div>
 
@@ -288,11 +288,11 @@ function getSummary(b: any): string {
       </div>
 
       <div class="tabs" id="tabs">
-        <button class="tab active" data-tab="all">📋 전체 ({TABS.all.length})</button>
-        <button class="tab" data-tab="urgent">⏰ 마감임박 ({TABS.urgent.length})</button>
-        <button class="tab" data-tab="upcoming">📅 예정 ({TABS.upcoming.length})</button>
-        <button class="tab" data-tab="always">✅ 상시신청 ({TABS.always.length})</button>
-        <button class="tab" data-tab="unknown">📌 별도공고 ({TABS.unknown.length})</button>
+        <button class="tab active" data-tab="all">전체 ({TABS.all.length})</button>
+        <button class="tab" data-tab="urgent">마감임박 ({TABS.urgent.length})</button>
+        <button class="tab" data-tab="upcoming">예정 ({TABS.upcoming.length})</button>
+        <button class="tab" data-tab="always">상시신청 ({TABS.always.length})</button>
+        <button class="tab" data-tab="unknown">별도공고 ({TABS.unknown.length})</button>
       </div>
 
       <div class="count-info" id="count-info">총 {TABS.all.length.toLocaleString()}건</div>

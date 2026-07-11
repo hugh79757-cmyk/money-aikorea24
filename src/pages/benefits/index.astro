@@ -151,7 +151,7 @@ function getSummary(b: any): string {
       font-family: inherit;
     }
     .tab:hover { background: var(--color-bg); }
-    .tab.active { background: var(--color-benefit); color: #fff; border-color: var(--color-benefit); }
+    .tab.active { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
 
     /* ── 카운트 ── */
     .count-info { font-size: .82rem; color: var(--color-muted); margin: 0 0 1rem; }
@@ -292,10 +292,10 @@ function getSummary(b: any): string {
       text-align: center !important;
     }
 
-    /* ── 카테고리 허브 버튼 ── */
+    /* ── 카테고리 허브 카드 ── */
     .hub-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
       gap: .75rem;
       margin-bottom: 1.5rem;
     }
@@ -304,41 +304,44 @@ function getSummary(b: any): string {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: .35rem;
-      padding: 1rem .6rem;
-      border-radius: 16px;
+      gap: .25rem;
+      padding: 1.25rem .75rem;
+      border-radius: var(--radius-xl);
       text-decoration: none;
-      color: #fff;
-      font-weight: 700;
-      font-size: .88rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-top: 3px solid var(--color-primary);
+      color: var(--color-primary);
+      font-weight: var(--font-bold);
+      font-size: .9rem;
       text-align: center;
-      transition: transform .12s, box-shadow .12s;
-      box-shadow: 0 2px 8px rgba(0,0,0,.08);
-      min-height: 80px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+      min-height: 88px;
     }
     .hub-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0,0,0,.15);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
     }
-    .hub-btn .emoji { font-size: 1.6rem; }
     .hub-btn .count {
-      font-size: .72rem;
-      font-weight: 600;
-      opacity: .85;
+      font-size: .78rem;
+      font-weight: var(--font-normal);
+      color: var(--color-muted);
+      margin-top: .1rem;
     }
-    .hub-youth    { background: linear-gradient(135deg,#6366F1,#818CF8); }
-    .hub-child    { background: linear-gradient(135deg,#EC4899,#F472B6); }
-    .hub-senior   { background: linear-gradient(135deg,#F59E0B,#FBBF24); }
-    .hub-general  { background: linear-gradient(135deg,#6B7280,#9CA3AF); }
-    .hub-welfare  { background: linear-gradient(135deg,#10B981,#34D399); }
-    .hub-business { background: linear-gradient(135deg,#0EA5E9,#38BDF8); }
+
+    .hub-youth    { border-top-color: var(--color-primary); }
+    .hub-child    { border-top-color: var(--color-primary-light); }
+    .hub-senior   { border-top-color: var(--color-accent); }
+    .hub-general  { border-top-color: var(--color-muted); }
+    .hub-welfare  { border-top-color: var(--color-benefit); }
+    .hub-business { border-top-color: var(--color-accent-dark); }
 
     @media (max-width: 600px) {
       .card { padding: 1.15rem 1.25rem; }
       .card h2 { font-size: 1rem; }
       .hub-row { grid-template-columns: repeat(3, 1fr); gap: .5rem; }
-      .hub-btn { min-height: 70px; padding: .7rem .4rem; font-size: .8rem; }
-      .hub-btn .emoji { font-size: 1.3rem; }
+      .hub-btn { min-height: 74px; padding: .85rem .5rem; font-size: .82rem; }
     }
   </style>
 </head>
@@ -351,14 +354,14 @@ function getSummary(b: any): string {
         <p>총 {active.length.toLocaleString()}건의 지원금·복지 혜택 (만료 제외)</p>
       </div>
 
-      <!-- ── 카테고리 허브 ── -->
+<!-- ── 카테고리 허브 ── -->
       <nav class="hub-row" aria-label="카테고리">
-        <a href="/benefits/youth"    class="hub-btn hub-youth">   <span class="emoji">🧑</span> 청년 <span class="count">{tabs.all.filter(b=>b.category==='youth').length}건</span></a>
-        <a href="/benefits/child"    class="hub-btn hub-child">   <span class="emoji">👨‍👩‍👧‍👧</span> 아동·가족 <span class="count">{tabs.all.filter(b=>b.category==='child').length}건</span></a>
-        <a href="/benefits/senior"   class="hub-btn hub-senior">  <span class="emoji">🧓</span> 시니어 <span class="count">{tabs.all.filter(b=>b.category==='senior').length}건</span></a>
-        <a href="/benefits/general"  class="hub-btn hub-general"> <span class="emoji">📋</span> 일반 <span class="count">{tabs.all.filter(b=>b.category==='general').length}건</span></a>
-        <a href="/benefits/welfare"  class="hub-btn hub-welfare"> <span class="emoji">🏥</span> 복지 <span class="count">{tabs.all.filter(b=>b.category==='welfare').length}건</span></a>
-        <a href="/benefits/business" class="hub-btn hub-business"><span class="emoji">💼</span> 사업·창업 <span class="count">{tabs.all.filter(b=>b.category==='business').length}건</span></a>
+        <a href="/benefits/youth"    class="hub-btn hub-youth">   청년 <span class="count">{tabs.all.filter(b=>b.category==='youth').length}건</span></a>
+        <a href="/benefits/child"    class="hub-btn hub-child">   아동·가족 <span class="count">{tabs.all.filter(b=>b.category==='child').length}건</span></a>
+        <a href="/benefits/senior"   class="hub-btn hub-senior">  시니어 <span class="count">{tabs.all.filter(b=>b.category==='senior').length}건</span></a>
+        <a href="/benefits/general"  class="hub-btn hub-general"> 일반 <span class="count">{tabs.all.filter(b=>b.category==='general').length}건</span></a>
+        <a href="/benefits/welfare"  class="hub-btn hub-welfare"> 복지 <span class="count">{tabs.all.filter(b=>b.category==='welfare').length}건</span></a>
+        <a href="/benefits/business" class="hub-btn hub-business">사업·창업 <span class="count">{tabs.all.filter(b=>b.category==='business').length}건</span></a>
       </nav>
 
       <div class="search-wrap">
@@ -366,12 +369,12 @@ function getSummary(b: any): string {
         <input type="text" id="search-input" placeholder="지원금 이름·기관 검색..." autocomplete="off" />
       </div>
 
-      <div class="tabs" id="tabs">
-        <button class="tab active" data-tab="all">📋 전체 ({tabs.all.length})</button>
-        <button class="tab" data-tab="urgent">⏰ 마감임박 ({tabs.urgent.length})</button>
-        <button class="tab" data-tab="upcoming">📅 예정 ({tabs.upcoming.length})</button>
-        <button class="tab" data-tab="always">✅ 상시신청 ({tabs.always.length})</button>
-        <button class="tab" data-tab="unknown">📌 별도공고 ({tabs.unknown.length})</button>
+<div class="tabs" id="tabs">
+        <button class="tab active" data-tab="all">전체 ({tabs.all.length})</button>
+        <button class="tab" data-tab="urgent">마감임박 ({tabs.urgent.length})</button>
+        <button class="tab" data-tab="upcoming">예정 ({tabs.upcoming.length})</button>
+        <button class="tab" data-tab="always">상시신청 ({tabs.always.length})</button>
+        <button class="tab" data-tab="unknown">별도공고 ({tabs.unknown.length})</button>
       </div>
 
       <div class="count-info" id="count-info">총 {active.length.toLocaleString()}건</div>

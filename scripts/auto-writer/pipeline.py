@@ -258,10 +258,10 @@ def run(dry_run=False):
         final_title = refinish_title(final_title)
         logger.info(f"refinish_title 적용: {final_title[:50]}")
 
-        # 4c. H2 기반 SUMMARY_BOX 생성 (Q2)
-        summary_box = build_summary_box(body)
-        if summary_box:
-            body = summary_box + '\n' + body
+        # 4c. (비활성화) H2 기반 SUMMARY_BOX — BlogPost.astro 자체 TOC로 대체
+        # summary_box = build_summary_box(body)
+        # if summary_box:
+        #     body = summary_box + '\n' + body
 
         # 4d. 인라인 CTA 삽입 (조건 섹션 뒤 + 금리 섹션 뒤)
         body = insert_inline_ctas(body, service)

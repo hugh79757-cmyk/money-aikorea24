@@ -1,0 +1,703 @@
+- generic [active] [ref=f127e1]:
+  - banner [ref=f127e2]:
+    - navigation [ref=f127e3]:
+      - link "🇰🇷 한국인 페르소나" [ref=f127e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f127e5]: 🇰🇷
+        - generic [ref=f127e6]: 한국인 페르소나
+      - generic [ref=f127e7]:
+        - link "🔍 내 페르소나" [ref=f127e8] [cursor=pointer]:
+          - /url: /my-persona
+        - button "블로그 ▾" [ref=f127e10] [cursor=pointer]:
+          - text: 블로그
+          - generic [ref=f127e11]: ▾
+        - link "지원금" [ref=f127e12] [cursor=pointer]:
+          - /url: /benefits
+        - link "커뮤니티" [ref=f127e13] [cursor=pointer]:
+          - /url: /community
+        - button "검색 열기" [ref=f127e14] [cursor=pointer]:
+          - generic [ref=f127e18]: 검색
+          - generic [ref=f127e19]: ⌘K
+        - dialog "사이트 검색":
+          - generic:
+            - generic:
+              - searchbox "보험, 청년, 절세, 대출 등 검색…"
+              - button "검색 닫기"
+            - generic:
+              - generic: 빠른 검색
+              - generic:
+                - button "🛡️ 보험"
+                - button "🧑 청년"
+                - button "💰 절세"
+                - button "🏠 대출"
+                - button "📋 연말정산"
+                - button "🎁 지원금"
+            - listbox
+            - generic:
+              - generic: ↑↓ 이동
+              - generic: ↵ 선택
+              - generic: ESC 닫기
+        - link "카카오 로그인" [ref=f127e20] [cursor=pointer]:
+          - /url: /auth/login
+        - button "테마 전환" [ref=f127e24] [cursor=pointer]
+  - main [ref=f127e27]:
+    - generic [ref=f127e28]:
+      - generic [ref=f127e30]:
+        - link "🟢 Nvidia 700만 한국인 데이터 엔비디아 Nemotron-Personas-Korea 데이터셋이란? →" [ref=f127e31] [cursor=pointer]:
+          - /url: /data/nemotron-korea
+          - generic [ref=f127e32]: 🟢 Nvidia 700만 한국인 데이터
+          - generic [ref=f127e33]: 엔비디아 Nemotron-Personas-Korea 데이터셋이란? →
+        - heading "나와 비슷한 한국인은 어떻게 살고 있을까?" [level=2] [ref=f127e34]: 나와 비슷한 한국인은어떻게 살고 있을까?
+        - paragraph [ref=f127e35]:
+          - text: 나이·성별·지역·혼인상태만 입력하면주거·직업·가족구성·돈 고민을 통계로 보여드려요
+          - link "통화 및 환율" [ref=f127e36] [cursor=pointer]
+        - generic [ref=f127e40]:
+          - generic [ref=f127e41]: 🔒 개인정보 미수집
+          - generic [ref=f127e42]: ⚡ 즉시 결과
+          - generic [ref=f127e43]: 🆓 무료
+        - link "1분 만에 내 페르소나 분석하기 →" [ref=f127e44] [cursor=pointer]:
+          - /url: /my-persona
+      - img "한국인 페르소나 분석 카드 예시" [ref=f127e46]
+    - generic [ref=f127e48]:
+      - heading "⏰ 마감 임박 지원금" [level=2] [ref=f127e49]
+      - link "전체보기 →" [ref=f127e50] [cursor=pointer]:
+        - /url: /benefits
+    - generic [ref=f127e51]:
+      - heading "AI 시대, 돈을 더 잘 다루는 방법" [level=1] [ref=f127e52]
+      - paragraph [ref=f127e53]:
+        - link "보험" [ref=f127e54] [cursor=pointer]:
+          - /url: "#"
+        - text: ","
+        - link "투자" [ref=f127e57] [cursor=pointer]:
+          - /url: "#"
+        - text: ", 대출, 세금, 디지털노마드 부업까지실전 가이드를 무료로 제공합니다."
+    - insertion [ref=f127e61]:
+      - generic [ref=f127e64]:
+        - heading "도움말과 관련된 주제 중 관심이 있을 만한 항목입니다." [level=2] [ref=f127e66]: 자세히 알아보기
+        - link "도시 및 지역 안내" [ref=f127e67] [cursor=pointer]
+        - link "여행 가이드 및 여행기" [ref=f127e72] [cursor=pointer]
+        - link "남성복" [ref=f127e77] [cursor=pointer]
+    - generic [ref=f127e82]:
+      - link "보험 실손보험, 자동차보험, 생명보험 완벽 가이드" [ref=f127e83] [cursor=pointer]:
+        - /url: /blog/category/insurance/
+        - strong [ref=f127e84]: 보험
+        - generic [ref=f127e85]: 실손보험, 자동차보험, 생명보험 완벽 가이드
+      - link "투자·절세 IRP, ISA, ETF, 연말정산 절세 전략" [ref=f127e86] [cursor=pointer]:
+        - /url: /blog/category/invest/
+        - strong [ref=f127e87]: 투자·절세
+        - generic [ref=f127e88]: IRP, ISA, ETF, 연말정산 절세 전략
+      - link "대출·부동산 주담대, 전세대출, 청약, 부동산 시세 분석" [ref=f127e89] [cursor=pointer]:
+        - /url: /blog/category/loan/
+        - strong [ref=f127e90]: 대출·부동산
+        - generic [ref=f127e91]: 주담대, 전세대출, 청약, 부동산 시세 분석
+    - generic [ref=f127e92]:
+      - generic [ref=f127e93]:
+        - heading "📝 최신 금융 가이드" [level=2] [ref=f127e94]
+        - paragraph [ref=f127e95]: 페르소나 분석 결과와 연결되는 실전 가이드
+      - list [ref=f127e96]:
+        - listitem [ref=f127e97]:
+          - link "투자·절세 Jul 9, 2026 광주 35세 직장인, 내 월급은 평균보다 높을까? 소득 현황 총정리 월평균소득 333만원 · (전국평균 351만원) · 기혼율 53.7% · 주거1순위 아파트 167% · 표본 203명 읽기 →" [ref=f127e98] [cursor=pointer]:
+            - /url: /blog/광주-35세-직장인-내-월급은-평균보다-높을까-소득-현황-총정리-26-06-/
+            - generic [ref=f127e99]:
+              - generic [ref=f127e100]: 투자·절세
+              - time [ref=f127e101]:
+                - time [ref=f127e102]: Jul 9, 2026
+            - heading "광주 35세 직장인, 내 월급은 평균보다 높을까? 소득 현황 총정리" [level=3] [ref=f127e103]
+            - paragraph [ref=f127e104]: 월평균소득 333만원 · (전국평균 351만원) · 기혼율 53.7% · 주거1순위 아파트 167% · 표본 203명
+            - generic [ref=f127e105]: 읽기 →
+        - listitem [ref=f127e106]:
+          - link "보험 Jul 9, 2026 3040 직장인 산재 후 합병증 예방관리 진료지원 혜택 챙기는 법 총정리 산재근로자를 위해 10종 44개 합병증 등 예방관리 진료지원 읽기 →" [ref=f127e107] [cursor=pointer]:
+            - /url: /blog/3040-직장인-산재-후-합병증-예방관리-진료지원-혜택-챙기는-법-총정리-000019/
+            - generic [ref=f127e108]:
+              - generic [ref=f127e109]: 보험
+              - time [ref=f127e110]:
+                - time [ref=f127e111]: Jul 9, 2026
+            - heading "3040 직장인 산재 후 합병증 예방관리 진료지원 혜택 챙기는 법 총정리" [level=3] [ref=f127e112]
+            - paragraph [ref=f127e113]: 산재근로자를 위해 10종 44개 합병증 등 예방관리 진료지원
+            - generic [ref=f127e114]: 읽기 →
+        - listitem [ref=f127e115]:
+          - link "대출·부동산 Jul 9, 2026 2024 무주택 직장인, 한부모가족 자립지원금 1,500만 원 받는 법 총정리 한부모가족 복지시설 퇴소자에게 자립지원금 지원 읽기 →" [ref=f127e116] [cursor=pointer]:
+            - /url: /blog/2024-무주택-직장인-한부모가족-자립지원금-1500만-원-받는-법-총정리-000629/
+            - generic [ref=f127e117]:
+              - generic [ref=f127e118]: 대출·부동산
+              - time [ref=f127e119]:
+                - time [ref=f127e120]: Jul 9, 2026
+            - heading "2024 무주택 직장인, 한부모가족 자립지원금 1,500만 원 받는 법 총정리" [level=3] [ref=f127e121]
+            - paragraph [ref=f127e122]: 한부모가족 복지시설 퇴소자에게 자립지원금 지원
+            - generic [ref=f127e123]: 읽기 →
+        - listitem [ref=f127e124]:
+          - link "대출·부동산 Jul 9, 2026 무주택 직장인, 장애인 운전면허 취득 지원 최대 70만 원 받는 법 총정리 장애인에게 운전면허 취득비 지원 읽기 →" [ref=f127e125] [cursor=pointer]:
+            - /url: /blog/무주택-직장인-장애인-운전면허-취득-지원-최대-70만-원-받는-법-총정리-000106/
+            - generic [ref=f127e126]:
+              - generic [ref=f127e127]: 대출·부동산
+              - time [ref=f127e128]:
+                - time [ref=f127e129]: Jul 9, 2026
+            - heading "무주택 직장인, 장애인 운전면허 취득 지원 최대 70만 원 받는 법 총정리" [level=3] [ref=f127e130]
+            - paragraph [ref=f127e131]: 장애인에게 운전면허 취득비 지원
+            - generic [ref=f127e132]: 읽기 →
+        - listitem [ref=f127e133]:
+          - link "보험 Jul 9, 2026 맞벌이 신혼부 직장인, 진폐재해위로금 혜택 챙기는 법 총정리 진폐근로자 및 유족들에게 장해등급별에 따라 진폐재해위로금 지급 읽기 →" [ref=f127e134] [cursor=pointer]:
+            - /url: /blog/맞벌이-신혼부-직장인-진폐재해위로금-혜택-챙기는-법-총정리-000017/
+            - generic [ref=f127e135]:
+              - generic [ref=f127e136]: 보험
+              - time [ref=f127e137]:
+                - time [ref=f127e138]: Jul 9, 2026
+            - heading "맞벌이 신혼부 직장인, 진폐재해위로금 혜택 챙기는 법 총정리" [level=3] [ref=f127e139]
+            - paragraph [ref=f127e140]: 진폐근로자 및 유족들에게 장해등급별에 따라 진폐재해위로금 지급
+            - generic [ref=f127e141]: 읽기 →
+        - listitem [ref=f127e142]:
+          - link "대출·부동산 Jul 8, 2026 2040 직장인, 의왕시 이사비 40만 원 지원받는 막차 타는 법 총정리 이사비 실비 지원 (최대 40만원, 생애 1회) 읽기 →" [ref=f127e143] [cursor=pointer]:
+            - /url: /blog/2040-직장인-의왕시-이사비-40만-원-지원받는-막차-타는-법-총정리-000154/
+            - generic [ref=f127e144]:
+              - generic [ref=f127e145]: 대출·부동산
+              - time [ref=f127e146]:
+                - time [ref=f127e147]: Jul 8, 2026
+            - heading "2040 직장인, 의왕시 이사비 40만 원 지원받는 막차 타는 법 총정리" [level=3] [ref=f127e148]
+            - paragraph [ref=f127e149]: 이사비 실비 지원 (최대 40만원, 생애 1회)
+            - generic [ref=f127e150]: 읽기 →
+  - region "지역별 페르소나 인덱스" [ref=f127e151]:
+    - generic [ref=f127e152]:
+      - generic [ref=f127e153]:
+        - heading "지역별 한국인 페르소나 둘러보기" [level=2] [ref=f127e154]
+        - insertion [ref=f127e156]:
+          - generic [ref=f127e159]:
+            - heading "도움말과 관련된 주제 중 관심이 있을 만한 항목입니다." [level=2] [ref=f127e161]: 자세히 알아보기
+            - link "재정학" [ref=f127e162] [cursor=pointer]
+            - link "경제학" [ref=f127e167] [cursor=pointer]
+            - link "세무" [ref=f127e172] [cursor=pointer]
+        - paragraph [ref=f127e177]:
+          - text: 17개 광역지자체 × 성별 × 연령대 — 204개 페르소나 분석
+          - link "보험" [ref=f127e178] [cursor=pointer]
+      - article [ref=f127e182]:
+        - heading "서울" [level=3] [ref=f127e183]
+        - generic [ref=f127e184]:
+          - link "서울 남자 20대" [ref=f127e185] [cursor=pointer]:
+            - /url: /persona/서울-남자-20대/
+          - link "서울 남자 30대" [ref=f127e186] [cursor=pointer]:
+            - /url: /persona/서울-남자-30대/
+          - link "서울 남자 40대" [ref=f127e187] [cursor=pointer]:
+            - /url: /persona/서울-남자-40대/
+          - link "서울 남자 50대" [ref=f127e188] [cursor=pointer]:
+            - /url: /persona/서울-남자-50대/
+          - link "서울 남자 60대" [ref=f127e189] [cursor=pointer]:
+            - /url: /persona/서울-남자-60대/
+          - link "서울 남자 70대 이상" [ref=f127e190] [cursor=pointer]:
+            - /url: /persona/서울-남자-70대이상/
+          - link "서울 여자 20대" [ref=f127e191] [cursor=pointer]:
+            - /url: /persona/서울-여자-20대/
+          - link "서울 여자 30대" [ref=f127e192] [cursor=pointer]:
+            - /url: /persona/서울-여자-30대/
+          - link "서울 여자 40대" [ref=f127e193] [cursor=pointer]:
+            - /url: /persona/서울-여자-40대/
+          - link "서울 여자 50대" [ref=f127e194] [cursor=pointer]:
+            - /url: /persona/서울-여자-50대/
+          - link "서울 여자 60대" [ref=f127e195] [cursor=pointer]:
+            - /url: /persona/서울-여자-60대/
+          - link "서울 여자 70대 이상" [ref=f127e196] [cursor=pointer]:
+            - /url: /persona/서울-여자-70대이상/
+      - article [ref=f127e197]:
+        - heading "경기" [level=3] [ref=f127e198]
+        - generic [ref=f127e199]:
+          - link "경기 남자 20대" [ref=f127e200] [cursor=pointer]:
+            - /url: /persona/경기-남자-20대/
+          - link "경기 남자 30대" [ref=f127e201] [cursor=pointer]:
+            - /url: /persona/경기-남자-30대/
+          - link "경기 남자 40대" [ref=f127e202] [cursor=pointer]:
+            - /url: /persona/경기-남자-40대/
+          - link "경기 남자 50대" [ref=f127e203] [cursor=pointer]:
+            - /url: /persona/경기-남자-50대/
+          - link "경기 남자 60대" [ref=f127e204] [cursor=pointer]:
+            - /url: /persona/경기-남자-60대/
+          - link "경기 남자 70대 이상" [ref=f127e205] [cursor=pointer]:
+            - /url: /persona/경기-남자-70대이상/
+          - link "경기 여자 20대" [ref=f127e206] [cursor=pointer]:
+            - /url: /persona/경기-여자-20대/
+          - link "경기 여자 30대" [ref=f127e207] [cursor=pointer]:
+            - /url: /persona/경기-여자-30대/
+          - link "경기 여자 40대" [ref=f127e208] [cursor=pointer]:
+            - /url: /persona/경기-여자-40대/
+          - link "경기 여자 50대" [ref=f127e209] [cursor=pointer]:
+            - /url: /persona/경기-여자-50대/
+          - link "경기 여자 60대" [ref=f127e210] [cursor=pointer]:
+            - /url: /persona/경기-여자-60대/
+          - link "경기 여자 70대 이상" [ref=f127e211] [cursor=pointer]:
+            - /url: /persona/경기-여자-70대이상/
+      - article [ref=f127e212]:
+        - heading "인천" [level=3] [ref=f127e213]
+        - generic [ref=f127e214]:
+          - link "인천 남자 20대" [ref=f127e215] [cursor=pointer]:
+            - /url: /persona/인천-남자-20대/
+          - link "인천 남자 30대" [ref=f127e216] [cursor=pointer]:
+            - /url: /persona/인천-남자-30대/
+          - link "인천 남자 40대" [ref=f127e217] [cursor=pointer]:
+            - /url: /persona/인천-남자-40대/
+          - link "인천 남자 50대" [ref=f127e218] [cursor=pointer]:
+            - /url: /persona/인천-남자-50대/
+          - link "인천 남자 60대" [ref=f127e219] [cursor=pointer]:
+            - /url: /persona/인천-남자-60대/
+          - link "인천 남자 70대 이상" [ref=f127e220] [cursor=pointer]:
+            - /url: /persona/인천-남자-70대이상/
+          - link "인천 여자 20대" [ref=f127e221] [cursor=pointer]:
+            - /url: /persona/인천-여자-20대/
+          - link "인천 여자 30대" [ref=f127e222] [cursor=pointer]:
+            - /url: /persona/인천-여자-30대/
+          - link "인천 여자 40대" [ref=f127e223] [cursor=pointer]:
+            - /url: /persona/인천-여자-40대/
+          - link "인천 여자 50대" [ref=f127e224] [cursor=pointer]:
+            - /url: /persona/인천-여자-50대/
+          - link "인천 여자 60대" [ref=f127e225] [cursor=pointer]:
+            - /url: /persona/인천-여자-60대/
+          - link "인천 여자 70대 이상" [ref=f127e226] [cursor=pointer]:
+            - /url: /persona/인천-여자-70대이상/
+      - insertion [ref=f127e228]:
+        - generic [ref=f127e230]:
+          - generic "도움말과 관련된 주제 중 관심이 있을 만한 항목입니다." [ref=f127e231]: 자세히 알아보기
+          - link "지역별 정보" [ref=f127e232] [cursor=pointer]
+          - link "관광지 정보" [ref=f127e236] [cursor=pointer]
+          - link "폭력적 콘텐츠" [ref=f127e240] [cursor=pointer]
+          - link "지도" [ref=f127e244] [cursor=pointer]
+          - link "남성복" [ref=f127e248] [cursor=pointer]
+          - link "도시 및 지역 안내" [ref=f127e252] [cursor=pointer]
+          - link "투자" [ref=f127e256] [cursor=pointer]
+          - link "세무" [ref=f127e260] [cursor=pointer]
+          - link "여행 가이드 및 여행기" [ref=f127e264] [cursor=pointer]
+          - link "경제학" [ref=f127e268] [cursor=pointer]
+      - article [ref=f127e272]:
+        - heading "부산" [level=3] [ref=f127e273]
+        - generic [ref=f127e274]:
+          - link "부산 남자 20대" [ref=f127e275] [cursor=pointer]:
+            - /url: /persona/부산-남자-20대/
+          - link "부산 남자 30대" [ref=f127e276] [cursor=pointer]:
+            - /url: /persona/부산-남자-30대/
+          - link "부산 남자 40대" [ref=f127e277] [cursor=pointer]:
+            - /url: /persona/부산-남자-40대/
+          - link "부산 남자 50대" [ref=f127e278] [cursor=pointer]:
+            - /url: /persona/부산-남자-50대/
+          - link "부산 남자 60대" [ref=f127e279] [cursor=pointer]:
+            - /url: /persona/부산-남자-60대/
+          - link "부산 남자 70대 이상" [ref=f127e280] [cursor=pointer]:
+            - /url: /persona/부산-남자-70대이상/
+          - link "부산 여자 20대" [ref=f127e281] [cursor=pointer]:
+            - /url: /persona/부산-여자-20대/
+          - link "부산 여자 30대" [ref=f127e282] [cursor=pointer]:
+            - /url: /persona/부산-여자-30대/
+          - link "부산 여자 40대" [ref=f127e283] [cursor=pointer]:
+            - /url: /persona/부산-여자-40대/
+          - link "부산 여자 50대" [ref=f127e284] [cursor=pointer]:
+            - /url: /persona/부산-여자-50대/
+          - link "부산 여자 60대" [ref=f127e285] [cursor=pointer]:
+            - /url: /persona/부산-여자-60대/
+          - link "부산 여자 70대 이상" [ref=f127e286] [cursor=pointer]:
+            - /url: /persona/부산-여자-70대이상/
+      - article [ref=f127e287]:
+        - heading "대구" [level=3] [ref=f127e288]
+        - generic [ref=f127e289]:
+          - link "대구 남자 20대" [ref=f127e290] [cursor=pointer]:
+            - /url: /persona/대구-남자-20대/
+          - link "대구 남자 30대" [ref=f127e291] [cursor=pointer]:
+            - /url: /persona/대구-남자-30대/
+          - link "대구 남자 40대" [ref=f127e292] [cursor=pointer]:
+            - /url: /persona/대구-남자-40대/
+          - link "대구 남자 50대" [ref=f127e293] [cursor=pointer]:
+            - /url: /persona/대구-남자-50대/
+          - link "대구 남자 60대" [ref=f127e294] [cursor=pointer]:
+            - /url: /persona/대구-남자-60대/
+          - link "대구 남자 70대 이상" [ref=f127e295] [cursor=pointer]:
+            - /url: /persona/대구-남자-70대이상/
+          - link "대구 여자 20대" [ref=f127e296] [cursor=pointer]:
+            - /url: /persona/대구-여자-20대/
+          - link "대구 여자 30대" [ref=f127e297] [cursor=pointer]:
+            - /url: /persona/대구-여자-30대/
+          - link "대구 여자 40대" [ref=f127e298] [cursor=pointer]:
+            - /url: /persona/대구-여자-40대/
+          - link "대구 여자 50대" [ref=f127e299] [cursor=pointer]:
+            - /url: /persona/대구-여자-50대/
+          - link "대구 여자 60대" [ref=f127e300] [cursor=pointer]:
+            - /url: /persona/대구-여자-60대/
+          - link "대구 여자 70대 이상" [ref=f127e301] [cursor=pointer]:
+            - /url: /persona/대구-여자-70대이상/
+      - article [ref=f127e302]:
+        - heading "대전" [level=3] [ref=f127e303]
+        - generic [ref=f127e304]:
+          - link "대전 남자 20대" [ref=f127e305] [cursor=pointer]:
+            - /url: /persona/대전-남자-20대/
+          - link "대전 남자 30대" [ref=f127e306] [cursor=pointer]:
+            - /url: /persona/대전-남자-30대/
+          - link "대전 남자 40대" [ref=f127e307] [cursor=pointer]:
+            - /url: /persona/대전-남자-40대/
+          - link "대전 남자 50대" [ref=f127e308] [cursor=pointer]:
+            - /url: /persona/대전-남자-50대/
+          - link "대전 남자 60대" [ref=f127e309] [cursor=pointer]:
+            - /url: /persona/대전-남자-60대/
+          - link "대전 남자 70대 이상" [ref=f127e310] [cursor=pointer]:
+            - /url: /persona/대전-남자-70대이상/
+          - link "대전 여자 20대" [ref=f127e311] [cursor=pointer]:
+            - /url: /persona/대전-여자-20대/
+          - link "대전 여자 30대" [ref=f127e312] [cursor=pointer]:
+            - /url: /persona/대전-여자-30대/
+          - link "대전 여자 40대" [ref=f127e313] [cursor=pointer]:
+            - /url: /persona/대전-여자-40대/
+          - link "대전 여자 50대" [ref=f127e314] [cursor=pointer]:
+            - /url: /persona/대전-여자-50대/
+          - link "대전 여자 60대" [ref=f127e315] [cursor=pointer]:
+            - /url: /persona/대전-여자-60대/
+          - link "대전 여자 70대 이상" [ref=f127e316] [cursor=pointer]:
+            - /url: /persona/대전-여자-70대이상/
+      - insertion [ref=f127e318]
+      - article [ref=f127e320]:
+        - heading "광주" [level=3] [ref=f127e321]
+        - generic [ref=f127e322]:
+          - link "광주 남자 20대" [ref=f127e323] [cursor=pointer]:
+            - /url: /persona/광주-남자-20대/
+          - link "광주 남자 30대" [ref=f127e324] [cursor=pointer]:
+            - /url: /persona/광주-남자-30대/
+          - link "광주 남자 40대" [ref=f127e325] [cursor=pointer]:
+            - /url: /persona/광주-남자-40대/
+          - link "광주 남자 50대" [ref=f127e326] [cursor=pointer]:
+            - /url: /persona/광주-남자-50대/
+          - link "광주 남자 60대" [ref=f127e327] [cursor=pointer]:
+            - /url: /persona/광주-남자-60대/
+          - link "광주 남자 70대 이상" [ref=f127e328] [cursor=pointer]:
+            - /url: /persona/광주-남자-70대이상/
+          - link "광주 여자 20대" [ref=f127e329] [cursor=pointer]:
+            - /url: /persona/광주-여자-20대/
+          - link "광주 여자 30대" [ref=f127e330] [cursor=pointer]:
+            - /url: /persona/광주-여자-30대/
+          - link "광주 여자 40대" [ref=f127e331] [cursor=pointer]:
+            - /url: /persona/광주-여자-40대/
+          - link "광주 여자 50대" [ref=f127e332] [cursor=pointer]:
+            - /url: /persona/광주-여자-50대/
+          - link "광주 여자 60대" [ref=f127e333] [cursor=pointer]:
+            - /url: /persona/광주-여자-60대/
+          - link "광주 여자 70대 이상" [ref=f127e334] [cursor=pointer]:
+            - /url: /persona/광주-여자-70대이상/
+      - article [ref=f127e335]:
+        - heading "울산" [level=3] [ref=f127e336]
+        - generic [ref=f127e337]:
+          - link "울산 남자 20대" [ref=f127e338] [cursor=pointer]:
+            - /url: /persona/울산-남자-20대/
+          - link "울산 남자 30대" [ref=f127e339] [cursor=pointer]:
+            - /url: /persona/울산-남자-30대/
+          - link "울산 남자 40대" [ref=f127e340] [cursor=pointer]:
+            - /url: /persona/울산-남자-40대/
+          - link "울산 남자 50대" [ref=f127e341] [cursor=pointer]:
+            - /url: /persona/울산-남자-50대/
+          - link "울산 남자 60대" [ref=f127e342] [cursor=pointer]:
+            - /url: /persona/울산-남자-60대/
+          - link "울산 남자 70대 이상" [ref=f127e343] [cursor=pointer]:
+            - /url: /persona/울산-남자-70대이상/
+          - link "울산 여자 20대" [ref=f127e344] [cursor=pointer]:
+            - /url: /persona/울산-여자-20대/
+          - link "울산 여자 30대" [ref=f127e345] [cursor=pointer]:
+            - /url: /persona/울산-여자-30대/
+          - link "울산 여자 40대" [ref=f127e346] [cursor=pointer]:
+            - /url: /persona/울산-여자-40대/
+          - link "울산 여자 50대" [ref=f127e347] [cursor=pointer]:
+            - /url: /persona/울산-여자-50대/
+          - link "울산 여자 60대" [ref=f127e348] [cursor=pointer]:
+            - /url: /persona/울산-여자-60대/
+          - link "울산 여자 70대 이상" [ref=f127e349] [cursor=pointer]:
+            - /url: /persona/울산-여자-70대이상/
+      - article [ref=f127e350]:
+        - heading "세종" [level=3] [ref=f127e351]
+        - generic [ref=f127e352]:
+          - link "세종 남자 20대" [ref=f127e353] [cursor=pointer]:
+            - /url: /persona/세종-남자-20대/
+          - link "세종 남자 30대" [ref=f127e354] [cursor=pointer]:
+            - /url: /persona/세종-남자-30대/
+          - link "세종 남자 40대" [ref=f127e355] [cursor=pointer]:
+            - /url: /persona/세종-남자-40대/
+          - link "세종 남자 50대" [ref=f127e356] [cursor=pointer]:
+            - /url: /persona/세종-남자-50대/
+          - link "세종 남자 60대" [ref=f127e357] [cursor=pointer]:
+            - /url: /persona/세종-남자-60대/
+          - link "세종 남자 70대 이상" [ref=f127e358] [cursor=pointer]:
+            - /url: /persona/세종-남자-70대이상/
+          - link "세종 여자 20대" [ref=f127e359] [cursor=pointer]:
+            - /url: /persona/세종-여자-20대/
+          - link "세종 여자 30대" [ref=f127e360] [cursor=pointer]:
+            - /url: /persona/세종-여자-30대/
+          - link "세종 여자 40대" [ref=f127e361] [cursor=pointer]:
+            - /url: /persona/세종-여자-40대/
+          - link "세종 여자 50대" [ref=f127e362] [cursor=pointer]:
+            - /url: /persona/세종-여자-50대/
+          - link "세종 여자 60대" [ref=f127e363] [cursor=pointer]:
+            - /url: /persona/세종-여자-60대/
+          - link "세종 여자 70대 이상" [ref=f127e364] [cursor=pointer]:
+            - /url: /persona/세종-여자-70대이상/
+      - insertion [ref=f127e366]
+      - article [ref=f127e368]:
+        - heading "강원" [level=3] [ref=f127e369]
+        - generic [ref=f127e370]:
+          - link "강원 남자 20대" [ref=f127e371] [cursor=pointer]:
+            - /url: /persona/강원-남자-20대/
+          - link "강원 남자 30대" [ref=f127e372] [cursor=pointer]:
+            - /url: /persona/강원-남자-30대/
+          - link "강원 남자 40대" [ref=f127e373] [cursor=pointer]:
+            - /url: /persona/강원-남자-40대/
+          - link "강원 남자 50대" [ref=f127e374] [cursor=pointer]:
+            - /url: /persona/강원-남자-50대/
+          - link "강원 남자 60대" [ref=f127e375] [cursor=pointer]:
+            - /url: /persona/강원-남자-60대/
+          - link "강원 남자 70대 이상" [ref=f127e376] [cursor=pointer]:
+            - /url: /persona/강원-남자-70대이상/
+          - link "강원 여자 20대" [ref=f127e377] [cursor=pointer]:
+            - /url: /persona/강원-여자-20대/
+          - link "강원 여자 30대" [ref=f127e378] [cursor=pointer]:
+            - /url: /persona/강원-여자-30대/
+          - link "강원 여자 40대" [ref=f127e379] [cursor=pointer]:
+            - /url: /persona/강원-여자-40대/
+          - link "강원 여자 50대" [ref=f127e380] [cursor=pointer]:
+            - /url: /persona/강원-여자-50대/
+          - link "강원 여자 60대" [ref=f127e381] [cursor=pointer]:
+            - /url: /persona/강원-여자-60대/
+          - link "강원 여자 70대 이상" [ref=f127e382] [cursor=pointer]:
+            - /url: /persona/강원-여자-70대이상/
+      - article [ref=f127e383]:
+        - heading "충북" [level=3] [ref=f127e384]
+        - generic [ref=f127e385]:
+          - link "충북 남자 20대" [ref=f127e386] [cursor=pointer]:
+            - /url: /persona/충북-남자-20대/
+          - link "충북 남자 30대" [ref=f127e387] [cursor=pointer]:
+            - /url: /persona/충북-남자-30대/
+          - link "충북 남자 40대" [ref=f127e388] [cursor=pointer]:
+            - /url: /persona/충북-남자-40대/
+          - link "충북 남자 50대" [ref=f127e389] [cursor=pointer]:
+            - /url: /persona/충북-남자-50대/
+          - link "충북 남자 60대" [ref=f127e390] [cursor=pointer]:
+            - /url: /persona/충북-남자-60대/
+          - link "충북 남자 70대 이상" [ref=f127e391] [cursor=pointer]:
+            - /url: /persona/충북-남자-70대이상/
+          - link "충북 여자 20대" [ref=f127e392] [cursor=pointer]:
+            - /url: /persona/충북-여자-20대/
+          - link "충북 여자 30대" [ref=f127e393] [cursor=pointer]:
+            - /url: /persona/충북-여자-30대/
+          - link "충북 여자 40대" [ref=f127e394] [cursor=pointer]:
+            - /url: /persona/충북-여자-40대/
+          - link "충북 여자 50대" [ref=f127e395] [cursor=pointer]:
+            - /url: /persona/충북-여자-50대/
+          - link "충북 여자 60대" [ref=f127e396] [cursor=pointer]:
+            - /url: /persona/충북-여자-60대/
+          - link "충북 여자 70대 이상" [ref=f127e397] [cursor=pointer]:
+            - /url: /persona/충북-여자-70대이상/
+      - article [ref=f127e398]:
+        - heading "충남" [level=3] [ref=f127e399]
+        - generic [ref=f127e400]:
+          - link "충남 남자 20대" [ref=f127e401] [cursor=pointer]:
+            - /url: /persona/충남-남자-20대/
+          - link "충남 남자 30대" [ref=f127e402] [cursor=pointer]:
+            - /url: /persona/충남-남자-30대/
+          - link "충남 남자 40대" [ref=f127e403] [cursor=pointer]:
+            - /url: /persona/충남-남자-40대/
+          - link "충남 남자 50대" [ref=f127e404] [cursor=pointer]:
+            - /url: /persona/충남-남자-50대/
+          - link "충남 남자 60대" [ref=f127e405] [cursor=pointer]:
+            - /url: /persona/충남-남자-60대/
+          - link "충남 남자 70대 이상" [ref=f127e406] [cursor=pointer]:
+            - /url: /persona/충남-남자-70대이상/
+          - link "충남 여자 20대" [ref=f127e407] [cursor=pointer]:
+            - /url: /persona/충남-여자-20대/
+          - link "충남 여자 30대" [ref=f127e408] [cursor=pointer]:
+            - /url: /persona/충남-여자-30대/
+          - link "충남 여자 40대" [ref=f127e409] [cursor=pointer]:
+            - /url: /persona/충남-여자-40대/
+          - link "충남 여자 50대" [ref=f127e410] [cursor=pointer]:
+            - /url: /persona/충남-여자-50대/
+          - link "충남 여자 60대" [ref=f127e411] [cursor=pointer]:
+            - /url: /persona/충남-여자-60대/
+          - link "충남 여자 70대 이상" [ref=f127e412] [cursor=pointer]:
+            - /url: /persona/충남-여자-70대이상/
+      - insertion [ref=f127e414]
+      - article [ref=f127e416]:
+        - heading "전북" [level=3] [ref=f127e417]
+        - generic [ref=f127e418]:
+          - link "전북 남자 20대" [ref=f127e419] [cursor=pointer]:
+            - /url: /persona/전북-남자-20대/
+          - link "전북 남자 30대" [ref=f127e420] [cursor=pointer]:
+            - /url: /persona/전북-남자-30대/
+          - link "전북 남자 40대" [ref=f127e421] [cursor=pointer]:
+            - /url: /persona/전북-남자-40대/
+          - link "전북 남자 50대" [ref=f127e422] [cursor=pointer]:
+            - /url: /persona/전북-남자-50대/
+          - link "전북 남자 60대" [ref=f127e423] [cursor=pointer]:
+            - /url: /persona/전북-남자-60대/
+          - link "전북 남자 70대 이상" [ref=f127e424] [cursor=pointer]:
+            - /url: /persona/전북-남자-70대이상/
+          - link "전북 여자 20대" [ref=f127e425] [cursor=pointer]:
+            - /url: /persona/전북-여자-20대/
+          - link "전북 여자 30대" [ref=f127e426] [cursor=pointer]:
+            - /url: /persona/전북-여자-30대/
+          - link "전북 여자 40대" [ref=f127e427] [cursor=pointer]:
+            - /url: /persona/전북-여자-40대/
+          - link "전북 여자 50대" [ref=f127e428] [cursor=pointer]:
+            - /url: /persona/전북-여자-50대/
+          - link "전북 여자 60대" [ref=f127e429] [cursor=pointer]:
+            - /url: /persona/전북-여자-60대/
+          - link "전북 여자 70대 이상" [ref=f127e430] [cursor=pointer]:
+            - /url: /persona/전북-여자-70대이상/
+      - article [ref=f127e431]:
+        - heading "전남" [level=3] [ref=f127e432]
+        - generic [ref=f127e433]:
+          - link "전남 남자 20대" [ref=f127e434] [cursor=pointer]:
+            - /url: /persona/전남-남자-20대/
+          - link "전남 남자 30대" [ref=f127e435] [cursor=pointer]:
+            - /url: /persona/전남-남자-30대/
+          - link "전남 남자 40대" [ref=f127e436] [cursor=pointer]:
+            - /url: /persona/전남-남자-40대/
+          - link "전남 남자 50대" [ref=f127e437] [cursor=pointer]:
+            - /url: /persona/전남-남자-50대/
+          - link "전남 남자 60대" [ref=f127e438] [cursor=pointer]:
+            - /url: /persona/전남-남자-60대/
+          - link "전남 남자 70대 이상" [ref=f127e439] [cursor=pointer]:
+            - /url: /persona/전남-남자-70대이상/
+          - link "전남 여자 20대" [ref=f127e440] [cursor=pointer]:
+            - /url: /persona/전남-여자-20대/
+          - link "전남 여자 30대" [ref=f127e441] [cursor=pointer]:
+            - /url: /persona/전남-여자-30대/
+          - link "전남 여자 40대" [ref=f127e442] [cursor=pointer]:
+            - /url: /persona/전남-여자-40대/
+          - link "전남 여자 50대" [ref=f127e443] [cursor=pointer]:
+            - /url: /persona/전남-여자-50대/
+          - link "전남 여자 60대" [ref=f127e444] [cursor=pointer]:
+            - /url: /persona/전남-여자-60대/
+          - link "전남 여자 70대 이상" [ref=f127e445] [cursor=pointer]:
+            - /url: /persona/전남-여자-70대이상/
+      - article [ref=f127e446]:
+        - heading "경북" [level=3] [ref=f127e447]
+        - generic [ref=f127e448]:
+          - link "경북 남자 20대" [ref=f127e449] [cursor=pointer]:
+            - /url: /persona/경북-남자-20대/
+          - link "경북 남자 30대" [ref=f127e450] [cursor=pointer]:
+            - /url: /persona/경북-남자-30대/
+          - link "경북 남자 40대" [ref=f127e451] [cursor=pointer]:
+            - /url: /persona/경북-남자-40대/
+          - link "경북 남자 50대" [ref=f127e452] [cursor=pointer]:
+            - /url: /persona/경북-남자-50대/
+          - link "경북 남자 60대" [ref=f127e453] [cursor=pointer]:
+            - /url: /persona/경북-남자-60대/
+          - link "경북 남자 70대 이상" [ref=f127e454] [cursor=pointer]:
+            - /url: /persona/경북-남자-70대이상/
+          - link "경북 여자 20대" [ref=f127e455] [cursor=pointer]:
+            - /url: /persona/경북-여자-20대/
+          - link "경북 여자 30대" [ref=f127e456] [cursor=pointer]:
+            - /url: /persona/경북-여자-30대/
+          - link "경북 여자 40대" [ref=f127e457] [cursor=pointer]:
+            - /url: /persona/경북-여자-40대/
+          - link "경북 여자 50대" [ref=f127e458] [cursor=pointer]:
+            - /url: /persona/경북-여자-50대/
+          - link "경북 여자 60대" [ref=f127e459] [cursor=pointer]:
+            - /url: /persona/경북-여자-60대/
+          - link "경북 여자 70대 이상" [ref=f127e460] [cursor=pointer]:
+            - /url: /persona/경북-여자-70대이상/
+      - insertion [ref=f127e462]
+      - article [ref=f127e464]:
+        - heading "경남" [level=3] [ref=f127e465]
+        - generic [ref=f127e466]:
+          - link "경남 남자 20대" [ref=f127e467] [cursor=pointer]:
+            - /url: /persona/경남-남자-20대/
+          - link "경남 남자 30대" [ref=f127e468] [cursor=pointer]:
+            - /url: /persona/경남-남자-30대/
+          - link "경남 남자 40대" [ref=f127e469] [cursor=pointer]:
+            - /url: /persona/경남-남자-40대/
+          - link "경남 남자 50대" [ref=f127e470] [cursor=pointer]:
+            - /url: /persona/경남-남자-50대/
+          - link "경남 남자 60대" [ref=f127e471] [cursor=pointer]:
+            - /url: /persona/경남-남자-60대/
+          - link "경남 남자 70대 이상" [ref=f127e472] [cursor=pointer]:
+            - /url: /persona/경남-남자-70대이상/
+          - link "경남 여자 20대" [ref=f127e473] [cursor=pointer]:
+            - /url: /persona/경남-여자-20대/
+          - link "경남 여자 30대" [ref=f127e474] [cursor=pointer]:
+            - /url: /persona/경남-여자-30대/
+          - link "경남 여자 40대" [ref=f127e475] [cursor=pointer]:
+            - /url: /persona/경남-여자-40대/
+          - link "경남 여자 50대" [ref=f127e476] [cursor=pointer]:
+            - /url: /persona/경남-여자-50대/
+          - link "경남 여자 60대" [ref=f127e477] [cursor=pointer]:
+            - /url: /persona/경남-여자-60대/
+          - link "경남 여자 70대 이상" [ref=f127e478] [cursor=pointer]:
+            - /url: /persona/경남-여자-70대이상/
+      - article [ref=f127e479]:
+        - heading "제주" [level=3] [ref=f127e480]
+        - generic [ref=f127e481]:
+          - link "제주 남자 20대" [ref=f127e482] [cursor=pointer]:
+            - /url: /persona/제주-남자-20대/
+          - link "제주 남자 30대" [ref=f127e483] [cursor=pointer]:
+            - /url: /persona/제주-남자-30대/
+          - link "제주 남자 40대" [ref=f127e484] [cursor=pointer]:
+            - /url: /persona/제주-남자-40대/
+          - link "제주 남자 50대" [ref=f127e485] [cursor=pointer]:
+            - /url: /persona/제주-남자-50대/
+          - link "제주 남자 60대" [ref=f127e486] [cursor=pointer]:
+            - /url: /persona/제주-남자-60대/
+          - link "제주 남자 70대 이상" [ref=f127e487] [cursor=pointer]:
+            - /url: /persona/제주-남자-70대이상/
+          - link "제주 여자 20대" [ref=f127e488] [cursor=pointer]:
+            - /url: /persona/제주-여자-20대/
+          - link "제주 여자 30대" [ref=f127e489] [cursor=pointer]:
+            - /url: /persona/제주-여자-30대/
+          - link "제주 여자 40대" [ref=f127e490] [cursor=pointer]:
+            - /url: /persona/제주-여자-40대/
+          - link "제주 여자 50대" [ref=f127e491] [cursor=pointer]:
+            - /url: /persona/제주-여자-50대/
+          - link "제주 여자 60대" [ref=f127e492] [cursor=pointer]:
+            - /url: /persona/제주-여자-60대/
+          - link "제주 여자 70대 이상" [ref=f127e493] [cursor=pointer]:
+            - /url: /persona/제주-여자-70대이상/
+  - contentinfo [ref=f127e494]:
+    - generic [ref=f127e495]:
+      - generic [ref=f127e496]:
+        - generic [ref=f127e497]: 🇰🇷 AI코리아24 머니
+        - paragraph [ref=f127e498]: AI 시대, 돈을 더 잘 다루는 방법. 보험·투자·대출·세금·부업을 한국어로 안내합니다.
+      - insertion [ref=f127e500]
+      - generic [ref=f127e502]:
+        - generic [ref=f127e503]:
+          - heading "바로가기" [level=3] [ref=f127e504]
+          - list [ref=f127e505]:
+            - listitem [ref=f127e506]:
+              - link "🛡️ 보험" [ref=f127e507] [cursor=pointer]:
+                - /url: /blog/category/insurance
+            - listitem [ref=f127e508]:
+              - link "📈 투자·절세" [ref=f127e509] [cursor=pointer]:
+                - /url: /blog/category/invest
+            - listitem [ref=f127e510]:
+              - link "🏠 대출·부동산" [ref=f127e511] [cursor=pointer]:
+                - /url: /blog/category/loan
+            - listitem [ref=f127e512]:
+              - link "💬 커뮤니티" [ref=f127e513] [cursor=pointer]:
+                - /url: /community
+            - listitem [ref=f127e514]:
+              - link "✉️ 문의" [ref=f127e515] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=f127e516]:
+          - heading "법적 고지" [level=3] [ref=f127e517]
+          - list [ref=f127e518]:
+            - listitem [ref=f127e519]:
+              - link "개인정보처리방침" [ref=f127e520] [cursor=pointer]:
+                - /url: /privacy
+            - listitem [ref=f127e521]:
+              - link "이용약관" [ref=f127e522] [cursor=pointer]:
+                - /url: /terms
+            - listitem [ref=f127e523]:
+              - link "금융정보 면책고지" [ref=f127e524] [cursor=pointer]:
+                - /url: /disclaimer
+          - heading "관련 사이트" [level=3] [ref=f127e525]
+          - list [ref=f127e526]:
+            - listitem [ref=f127e527]:
+              - link "AI코리아24 본사이트 →" [ref=f127e528] [cursor=pointer]:
+                - /url: https://aikorea24.kr
+          - heading "기타 서비스" [level=3] [ref=f127e529]
+          - list [ref=f127e530]:
+            - listitem [ref=f127e531]:
+              - link "오늘의 운세 · 타로 카드" [ref=f127e532] [cursor=pointer]:
+                - /url: https://zodiac.techpawz.com/daily/
+      - generic [ref=f127e533]:
+        - link "인스타그램" [ref=f127e534] [cursor=pointer]:
+          - /url: https://www.instagram.com/aikorea24.kr/
+        - link "스레드" [ref=f127e538] [cursor=pointer]:
+          - /url: https://www.threads.net/@aikorea24
+        - button "카카오톡 공유" [ref=f127e542] [cursor=pointer]:
+          - generic [ref=f127e545]: 카카오 공유
+      - generic [ref=f127e546]:
+        - paragraph [ref=f127e547]: 본 사이트의 금융 정보는 참고용이며, 정확한 내용은 해당 금융기관 또는 감독기관에서 확인하시기 바랍니다.
+        - paragraph [ref=f127e548]: © 2026 AI코리아24 머니. All rights reserved.

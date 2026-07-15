@@ -5375,3 +5375,372 @@ NameError: name 'sys' is not defined. Did you forget to import 'sys'?
 2026-07-09 22:50:29,014 [INFO] 파이프라인 시작 2026-07-09 22:50:29
 2026-07-09 22:50:29,015 [INFO] 오늘 quota 초과 (5/5), 종료
 2026-07-09 22:50:29,015 [INFO] 스케줄러 정상 종료
+2026-07-10 09:00:02,826 [INFO] 스케줄러 시작
+2026-07-10 09:00:03,574 [INFO] 파이프라인 시작 2026-07-10 09:00:03
+2026-07-10 09:00:03,576 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-07-10 09:00:03,595 [INFO] 처리 중: 범죄수익환수 포상금 지급
+2026-07-10 09:00:05,338 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-10 09:01:39,589 [INFO] Retrying request to /chat/completions in 0.392882 seconds
+2026-07-10 09:03:10,210 [INFO] Retrying request to /chat/completions in 0.998802 seconds
+2026-07-10 09:04:42,001 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-10 09:04:51,265 [INFO] 제목 추출: 30대 직장인, 범죄수익 신고로 최대 1억 원 포상금 받는 법
+2026-07-10 09:04:51,266 [INFO] refinish_title 적용: 30대 직장인, 범죄수익 신고로 최대 1억 원 포상금 놓치면 아까운
+2026-07-10 09:04:51,488 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-10 09:04:51,489 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-10 09:04:52,296 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-범죄수익-신고로-최대-1억-원-포상금-놓치면-아까운-000004.md
+2026-07-10 09:04:52,298 [INFO] 발행 성공: 30대 직장인, 범죄수익 신고로 최대 1억 원 포상금 놓치면 아까운 | general | google/diffusiongemma-26b-a4b-it
+2026-07-10 09:04:52,311 [INFO] 처리 중: 군인 재해보상 유족급여 지급
+2026-07-10 09:04:53,574 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-10 09:06:29,326 [INFO] Retrying request to /chat/completions in 0.460076 seconds
+2026-07-10 09:08:00,208 [INFO] Retrying request to /chat/completions in 0.822118 seconds
+2026-07-10 09:09:31,604 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-10 09:09:39,995 [INFO] 제목 추출: 30대 직장인 가족을 위한 군인 재해보상 유족급여 신청 및 혜택 가이드
+2026-07-10 09:09:39,996 [INFO] refinish_title 적용: 30대 직장인 가족을 위한 군인 재해보상 유족급여 신청 및 혜택 요점만 쏙쏙
+2026-07-10 09:09:40,125 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-10 09:09:40,126 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-07-10 09:09:40,566 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-가족을-위한-군인-재해보상-유족급여-신청-및-혜택-요점만-쏙쏙-000007.md
+2026-07-10 09:09:40,569 [INFO] 발행 성공: 30대 직장인 가족을 위한 군인 재해보상 유족급여 신청 및 혜택 요점만  | general | google/diffusiongemma-26b-a4b-it
+2026-07-10 09:09:40,600 [INFO] 처리 중: 특수임무수행자와 그 유족에 대한 보상
+2026-07-10 09:09:41,773 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-10 09:11:16,450 [INFO] Retrying request to /chat/completions in 0.473322 seconds
+2026-07-10 09:12:47,209 [INFO] Retrying request to /chat/completions in 0.983046 seconds
+2026-07-10 09:14:18,890 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-10 09:14:29,304 [INFO] 제목 추출: 30대 직장인 부모님이 확인해야 할 특수임행자 보상금 신청 자격과 방법
+2026-07-10 09:14:29,305 [INFO] refinish_title 적용: 30대 직장인 부모님이 확인해야 할 특수임행자 보상금 신청 자격과 방법 받을 수 있습니다
+2026-07-10 09:14:29,521 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-10 09:14:29,522 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-10 09:14:30,776 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-부모님이-확인해야-할-특수임행자-보상금-신청-자격과-방법-받을-수-있습니다-000008.md
+2026-07-10 09:14:30,779 [INFO] 발행 성공: 30대 직장인 부모님이 확인해야 할 특수임행자 보상금 신청 자격과 방법  | general | google/diffusiongemma-26b-a4b-it
+2026-07-10 09:14:30,807 [INFO] 처리 중: 장병 인권상담 지원
+2026-07-10 09:14:32,037 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-10 09:16:05,460 [INFO] Retrying request to /chat/completions in 0.479644 seconds
+2026-07-10 09:17:36,245 [INFO] Retrying request to /chat/completions in 0.947395 seconds
+2026-07-10 09:19:07,778 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-10 09:19:19,455 [INFO] 제목 추출: 30대 직장인, 군 인권 상담부터 병역명문가 혜택 챙기는 법
+2026-07-10 09:19:19,456 [INFO] refinish_title 적용: 30대 직장인, 군 인권 상담부터 병역명문가 혜택 이번 달 바뀐 점
+2026-07-10 09:19:19,573 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-10 09:19:19,573 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-10 09:19:20,210 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-군-인권-상담부터-병역명문가-혜택-이번-달-바뀐-점-000009.md
+2026-07-10 09:19:20,213 [INFO] 발행 성공: 30대 직장인, 군 인권 상담부터 병역명문가 혜택 이번 달 바뀐 점 | general | google/diffusiongemma-26b-a4b-it
+2026-07-10 09:19:20,249 [INFO] 처리 중: 전역예정군인 재취업 지원
+2026-07-10 09:19:21,328 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-10 09:20:55,313 [INFO] Retrying request to /chat/completions in 0.436911 seconds
+2026-07-10 09:22:26,038 [INFO] Retrying request to /chat/completions in 0.753455 seconds
+2026-07-10 09:23:57,318 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-10 09:24:07,597 [INFO] refinish_title 적용: 전역예정군인 재취업 지원 서둘러 신청하세요
+2026-07-10 09:24:07,817 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-10 09:24:07,818 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-07-10 09:24:08,761 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/전역예정군인-재취업-지원-서둘러-신청하세요-000013.md
+2026-07-10 09:24:08,764 [INFO] 발행 성공: 전역예정군인 재취업 지원 서둘러 신청하세요 | general | google/diffusiongemma-26b-a4b-it
+2026-07-10 09:24:08,764 [INFO] 5건 발행 → 빌드/배포 시작
+2026-07-10 09:25:24,046 [INFO] 배포 완료 (5건)
+2026-07-10 09:25:24,046 [INFO] 파이프라인 종료 2026-07-10 09:25:24
+2026-07-10 09:25:24,047 [INFO] 스케줄러 정상 종료
+2026-07-11 09:00:01,978 [INFO] 스케줄러 시작
+2026-07-11 09:00:02,562 [INFO] 파이프라인 시작 2026-07-11 09:00:02
+2026-07-11 09:00:02,564 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-07-11 09:00:02,583 [INFO] 처리 중: 6·25 비정규군 공로자 보상 안내
+2026-07-11 09:00:04,206 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-11 09:01:45,935 [INFO] Retrying request to /chat/completions in 0.462538 seconds
+2026-07-11 09:03:17,004 [INFO] Retrying request to /chat/completions in 0.753397 seconds
+2026-07-11 09:04:48,414 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-11 09:04:56,605 [INFO] 제목 추출: 3040 직장인 부모님이 챙겨야 할 비정규군 공로금 신청 대상 확인법
+2026-07-11 09:04:56,605 [INFO] refinish_title 적용: 3040 직장인 부모님이 챙겨야 할 비정규군 공로금 신청 대상 확인법 한눈에 정리
+2026-07-11 09:04:56,822 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-11 09:04:56,823 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:조건', 'YEAR_REPLACED:2024']
+2026-07-11 09:04:57,521 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/3040-직장인-부모님이-챙겨야-할-비정규군-공로금-신청-대상-확인법-한눈에-정리-000014.md
+2026-07-11 09:04:57,524 [INFO] 발행 성공: 3040 직장인 부모님이 챙겨야 할 비정규군 공로금 신청 대상 확인법 한 | general | google/diffusiongemma-26b-a4b-it
+2026-07-11 09:04:57,545 [INFO] 처리 중: 전역예정장병 취업활동지원
+2026-07-11 09:04:58,687 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-11 09:06:36,134 [INFO] Retrying request to /chat/completions in 0.382069 seconds
+2026-07-11 09:08:06,924 [INFO] Retrying request to /chat/completions in 0.811600 seconds
+2026-07-11 09:09:38,539 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-11 09:09:46,589 [INFO] 제목 추출: 30대 전역 예정 직장인, 군 복 후 취업지원금으로 사회 복귀 완벽하게 
+2026-07-11 09:09:46,589 [INFO] refinish_title 적용: 30대 전역 예정 직장인, 군 복 후 취업지원금으로 사회 복귀 완벽하게 하는 법 딱 3가지
+2026-07-11 09:09:46,809 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-11 09:09:46,810 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-07-11 09:09:47,473 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-전역-예정-직장인-군-복-후-취업지원금으로-사회-복귀-완벽하게-하는-법-딱-3가지만-기억하세요-000015.md
+2026-07-11 09:09:47,477 [INFO] 발행 성공: 30대 전역 예정 직장인, 군 복 후 취업지원금으로 사회 복귀 완벽하게  | general | google/diffusiongemma-26b-a4b-it
+2026-07-11 09:09:47,506 [INFO] 처리 중: 군무원 채용시험 응시수수료 면제
+2026-07-11 09:09:48,612 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-11 09:11:21,893 [INFO] Retrying request to /chat/completions in 0.396277 seconds
+2026-07-11 09:12:52,595 [INFO] Retrying request to /chat/completions in 0.843272 seconds
+2026-07-11 09:14:23,948 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-11 09:14:32,943 [INFO] 제목 추출: 30대 직장인, 군무원 시험 응시료 부담 0원으로 혜택받는 법
+2026-07-11 09:14:32,943 [INFO] refinish_title 적용: 30대 직장인, 군무원 시험 응시료 부담 0원으로 혜택 미리 챙겨두면 좋은
+2026-07-11 09:14:33,062 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-11 09:14:33,063 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-11 09:14:33,767 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-군무원-시험-응시료-부담-0원으로-혜택-미리-챙겨두면-좋은-000032.md
+2026-07-11 09:14:33,770 [INFO] 발행 성공: 30대 직장인, 군무원 시험 응시료 부담 0원으로 혜택 미리 챙겨두면 좋 | general | google/diffusiongemma-26b-a4b-it
+2026-07-11 09:14:33,797 [INFO] 처리 중: 맞춤형 e북 지원
+2026-07-11 09:14:34,971 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-11 09:16:08,052 [INFO] Retrying request to /chat/completions in 0.375921 seconds
+2026-07-11 09:17:38,696 [INFO] Retrying request to /chat/completions in 0.836022 seconds
+2026-07-11 09:19:10,090 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-11 09:19:18,251 [INFO] 제목 추출: 30대 직장인, 군 복무 중 자기계발 도서비 최대 12만 원 지원받는 법
+2026-07-11 09:19:18,251 [INFO] refinish_title 적용: 30대 직장인, 군 복무 중 자기계발 도서비 최대 12만 원 지원 돌려받는 법
+2026-07-11 09:19:18,464 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-11 09:19:18,465 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-11 09:19:19,015 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-군-복무-중-자기계발-도서비-최대-12만-원-지원-돌려받는-법-000081.md
+2026-07-11 09:19:19,019 [INFO] 발행 성공: 30대 직장인, 군 복무 중 자기계발 도서비 최대 12만 원 지원 돌려받 | general | google/diffusiongemma-26b-a4b-it
+2026-07-11 09:19:19,051 [INFO] 처리 중: 6ㆍ25전사자(미수습) 유가족 유전자 채취 포상금 및 전사자 유해 소재 
+2026-07-11 09:19:20,262 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-11 09:20:55,185 [INFO] Retrying request to /chat/completions in 0.457714 seconds
+2026-07-11 09:22:26,273 [INFO] Retrying request to /chat/completions in 0.863240 seconds
+2026-07-11 09:22:27,551 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 502 Bad Gateway"
+2026-07-11 09:22:27,791 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-11 09:22:38,306 [INFO] 제목 추출: 30대 직장인, 6·25 전사자 유해 찾고 최대 1천만 원 포상금 받는 
+2026-07-11 09:22:38,306 [INFO] refinish_title 적용: 30대 직장인, 6·25 전사자 유해 찾고 최대 1천만 원 포상금 실제 사례
+2026-07-11 09:22:38,313 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-11 09:22:38,314 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-11 09:22:38,884 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-625-전사자-유해-찾고-최대-1천만-원-포상금-실제-사례-000082.md
+2026-07-11 09:22:38,887 [INFO] 발행 성공: 30대 직장인, 6·25 전사자 유해 찾고 최대 1천만 원 포상금 실제  | general | google/diffusiongemma-26b-a4b-it
+2026-07-11 09:22:38,888 [INFO] 5건 발행 → 빌드/배포 시작
+2026-07-11 09:25:26,388 [INFO] 배포 완료 (5건)
+2026-07-11 09:25:26,389 [INFO] 파이프라인 종료 2026-07-11 09:25:26
+2026-07-11 09:25:26,389 [INFO] 스케줄러 정상 종료
+2026-07-12 09:00:03,209 [INFO] 스케줄러 시작
+2026-07-12 09:00:03,920 [INFO] 파이프라인 시작 2026-07-12 09:00:03
+2026-07-12 09:00:03,922 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-07-12 09:00:03,942 [INFO] 처리 중: 지방공무원 신규 임용시험 응시 수수료 면제
+2026-07-12 09:00:05,610 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-12 09:01:39,040 [INFO] Retrying request to /chat/completions in 0.457754 seconds
+2026-07-12 09:03:09,773 [INFO] Retrying request to /chat/completions in 0.833615 seconds
+2026-07-12 09:04:41,258 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-12 09:04:50,148 [INFO] 제목 추출: 30대 직장인, 지방공무원 시험 응시료 0원으로 만드는 혜택 확인법
+2026-07-12 09:04:50,149 [INFO] refinish_title 적용: 30대 직장인, 지방공무원 시험 응시료 0원으로 만드는 혜택 확인법 총정리
+2026-07-12 09:04:50,366 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-12 09:04:50,368 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-12 09:04:51,206 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-지방공무원-시험-응시료-0원으로-만드는-혜택-확인법-총정리-000002.md
+2026-07-12 09:04:51,209 [INFO] 발행 성공: 30대 직장인, 지방공무원 시험 응시료 0원으로 만드는 혜택 확인법 총정 | general | google/diffusiongemma-26b-a4b-it
+2026-07-12 09:04:51,241 [INFO] 처리 중: 장애인차량취득세및자동차세감면
+2026-07-12 09:04:52,371 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-12 09:06:25,520 [INFO] Retrying request to /chat/completions in 0.423639 seconds
+2026-07-12 09:07:56,251 [INFO] Retrying request to /chat/completions in 0.958564 seconds
+2026-07-12 09:09:27,702 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-12 09:09:37,333 [INFO] 제목 추출: 30대 직장인, 장애인 차량 취득세 및 자동차세 면제 혜택 받는 법
+2026-07-12 09:09:37,333 [INFO] refinish_title 적용: 30대 직장인, 장애인 차량 취득세 및 자동차세 면제 혜택 미리 알아두세요
+2026-07-12 09:09:37,541 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-12 09:09:37,541 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-12 09:09:38,030 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-장애인-차량-취득세-및-자동차세-면제-혜택-미리-알아두세요-000004.md
+2026-07-12 09:09:38,032 [INFO] 발행 성공: 30대 직장인, 장애인 차량 취득세 및 자동차세 면제 혜택 미리 알아두세 | general | google/diffusiongemma-26b-a4b-it
+2026-07-12 09:09:38,060 [INFO] 처리 중: 노인복지시설 지방세 감면
+2026-07-12 09:09:39,121 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-12 09:11:13,192 [INFO] Retrying request to /chat/completions in 0.440030 seconds
+2026-07-12 09:12:43,893 [INFO] Retrying request to /chat/completions in 0.858478 seconds
+2026-07-12 09:14:15,291 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-12 09:14:26,296 [INFO] 제목 추출: 30대 직장인 노인복지시설 운영 준비 시 지방세 감면 혜택받는 법
+2026-07-12 09:14:26,298 [INFO] refinish_title 적용: 30대 직장인 노인복지시설 운영 준비 시 지방세 감면 혜택 지원받는 방법
+2026-07-12 09:14:26,437 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-12 09:14:26,438 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-12 09:14:27,211 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-노인복지시설-운영-준비-시-지방세-감면-혜택-지원받는-방법-000005.md
+2026-07-12 09:14:27,214 [INFO] 발행 성공: 30대 직장인 노인복지시설 운영 준비 시 지방세 감면 혜택 지원받는 방법 | general | google/diffusiongemma-26b-a4b-it
+2026-07-12 09:14:27,245 [INFO] 처리 중: 국가유공자 등이 대부금으로 취득하는 부동산 취득세 감면
+2026-07-12 09:14:28,334 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-12 09:16:01,541 [INFO] Retrying request to /chat/completions in 0.417600 seconds
+2026-07-12 09:17:32,253 [INFO] Retrying request to /chat/completions in 0.840926 seconds
+2026-07-12 09:19:03,637 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-12 09:19:12,406 [INFO] 제목 추출: 30대 직장인, 국가유공자 대부금 활용해 취득세 감면 혜택 받는 법
+2026-07-12 09:19:12,408 [INFO] refinish_title 적용: 30대 직장인, 국가유공자 대부금 활용해 취득세 감면 혜택 딱 3가지만 기억하세요
+2026-07-12 09:19:12,541 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-12 09:19:12,541 [INFO] [validator] 수정됨: ['HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-07-12 09:19:13,050 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-국가유공자-대부금-활용해-취득세-감면-혜택-딱-3가지만-기억하세요-000006.md
+2026-07-12 09:19:13,053 [INFO] 발행 성공: 30대 직장인, 국가유공자 대부금 활용해 취득세 감면 혜택 딱 3가지만  | general | google/diffusiongemma-26b-a4b-it
+2026-07-12 09:19:13,079 [INFO] 처리 중: 다자녀가구 자동차취득세 감면
+2026-07-12 09:19:14,145 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-12 09:20:49,134 [INFO] Retrying request to /chat/completions in 0.470135 seconds
+2026-07-12 09:22:19,906 [INFO] Retrying request to /chat/completions in 0.756078 seconds
+2026-07-12 09:23:51,153 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-12 09:24:03,170 [INFO] 제목 추출: 30대 직장인 자녀 2명이라면 자동차 취득세 최대 140만 원 아끼는 법
+2026-07-12 09:24:03,171 [INFO] refinish_title 적용: 30대 직장인 자녀 2명이라면 자동차 취득세 최대 140만 원 아끼는 법 미리 챙겨두면 좋
+2026-07-12 09:24:03,410 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-12 09:24:03,411 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-12 09:24:03,928 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-자녀-2명이라면-자동차-취득세-최대-140만-원-아끼는-법-미리-챙겨두면-좋은-000008.md
+2026-07-12 09:24:03,930 [INFO] 발행 성공: 30대 직장인 자녀 2명이라면 자동차 취득세 최대 140만 원 아끼는 법 | general | google/diffusiongemma-26b-a4b-it
+2026-07-12 09:24:03,930 [INFO] 5건 발행 → 빌드/배포 시작
+2026-07-12 09:25:18,489 [INFO] 배포 완료 (5건)
+2026-07-12 09:25:18,490 [INFO] 파이프라인 종료 2026-07-12 09:25:18
+2026-07-12 09:25:18,490 [INFO] 스케줄러 정상 종료
+2026-07-13 06:00:01,494 [INFO] 데이터 수집 시작 (--fetch)
+2026-07-13 06:00:55,967 [INFO] 데이터 수집 완료
+2026-07-13 09:00:03,884 [INFO] 스케줄러 시작
+2026-07-13 09:00:04,534 [INFO] 파이프라인 시작 2026-07-13 09:00:04
+2026-07-13 09:00:04,537 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-07-13 09:00:04,556 [INFO] 처리 중: 신혼부부 전세자금 대출이자 지원
+2026-07-13 09:00:06,274 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-13 09:01:39,557 [INFO] Retrying request to /chat/completions in 0.439805 seconds
+2026-07-13 09:03:10,212 [INFO] Retrying request to /chat/completions in 0.755797 seconds
+2026-07-13 09:04:41,495 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-13 09:04:52,482 [INFO] 제목 추출: 3040 신혼부부, 용인시 전세자금 이자 연 100만원 지원받는 법
+2026-07-13 09:04:52,483 [INFO] refinish_title 적용: 3040 신혼부부, 용인시 전세자금 이자 연 100만원 지원 누가 받을 수 있을까?
+2026-07-13 09:04:52,702 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-13 09:04:52,704 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-13 09:04:53,524 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/3040-신혼부부-용인시-전세자금-이자-연-100만원-지원-누가-받을-수-있을까-000631.md
+2026-07-13 09:04:53,528 [INFO] 발행 성공: 3040 신혼부부, 용인시 전세자금 이자 연 100만원 지원 누가 받을  | loan | google/diffusiongemma-26b-a4b-it
+2026-07-13 09:04:53,554 [INFO] 처리 중: 영유아 보육시설 지방세 감면
+2026-07-13 09:04:55,072 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-13 09:06:28,136 [INFO] Retrying request to /chat/completions in 0.430399 seconds
+2026-07-13 09:07:58,863 [INFO] Retrying request to /chat/completions in 0.979268 seconds
+2026-07-13 09:09:30,408 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-13 09:09:41,166 [INFO] 제목 추출: 30대 직장인, 어린이집 설립할 때 취득세 면제 혜택 챙기는 법
+2026-07-13 09:09:41,167 [INFO] refinish_title 적용: 30대 직장인, 어린이집 설립할 때 취득세 면제 혜택 받을 수 있습니다
+2026-07-13 09:09:41,406 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-13 09:09:41,406 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-07-13 09:09:41,971 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-어린이집-설립할-때-취득세-면제-혜택-받을-수-있습니다-000010.md
+2026-07-13 09:09:41,975 [INFO] 발행 성공: 30대 직장인, 어린이집 설립할 때 취득세 면제 혜택 받을 수 있습니다 | general | google/diffusiongemma-26b-a4b-it
+2026-07-13 09:09:42,013 [INFO] 처리 중: 장애인 주택개조 지원
+2026-07-13 09:09:43,204 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-13 09:11:16,939 [INFO] Retrying request to /chat/completions in 0.376589 seconds
+2026-07-13 09:12:47,606 [INFO] Retrying request to /chat/completions in 0.962676 seconds
+2026-07-13 09:14:19,088 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-13 09:14:28,457 [INFO] 제목 추출: 무주택 직장인, 용인시 장애인 주택개조 지원으로 집안 안전 지키는 법
+2026-07-13 09:14:28,460 [INFO] refinish_title 적용: 무주택 직장인, 용인시 장애인 주택개조 지원으로 집안 안전 지키는 법 미리 알아두세요
+2026-07-13 09:14:28,582 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-13 09:14:28,584 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2023,2024']
+2026-07-13 09:14:28,941 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-용인시-장애인-주택개조-지원으로-집안-안전-지키는-법-미리-알아두세요-000635.md
+2026-07-13 09:14:28,946 [INFO] 발행 성공: 무주택 직장인, 용인시 장애인 주택개조 지원으로 집안 안전 지키는 법 미 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-13 09:14:28,978 [INFO] 처리 중: 신규 정착 북한이탈주민 지원
+2026-07-13 09:14:28,978 [INFO] [SKIP] 부적합 키워드: 신규 정착 북한이탈주민 지원
+2026-07-13 09:14:28,991 [INFO] 처리 중: 장애인 자립생활 정착금 지원
+2026-07-13 09:14:30,232 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-13 09:16:03,391 [INFO] Retrying request to /chat/completions in 0.376687 seconds
+2026-07-13 09:17:34,063 [INFO] Retrying request to /chat/completions in 0.970242 seconds
+2026-07-13 09:19:05,607 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-13 09:19:13,357 [INFO] 제목 추출: 무주택 직장인, 장애인 자립정착금 200만원 받고 초기 비용 아끼는 법
+2026-07-13 09:19:13,360 [INFO] refinish_title 적용: 무주택 직장인, 장애인 자립정착금 200만원 받고 초기 비용 아끼는 법 한 번에 정리
+2026-07-13 09:19:13,483 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-13 09:19:13,484 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-13 09:19:13,911 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-장애인-자립정착금-200만원-받고-초기-비용-아끼는-법-한-번에-정리-000657.md
+2026-07-13 09:19:13,914 [INFO] 발행 성공: 무주택 직장인, 장애인 자립정착금 200만원 받고 초기 비용 아끼는 법  | loan | google/diffusiongemma-26b-a4b-it
+2026-07-13 09:19:13,914 [INFO] 4건 발행 → 빌드/배포 시작
+2026-07-13 09:20:12,503 [ERROR] 빌드/배포 실패 (4건 저장됨)
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mA request to the Cloudflare API (/accounts/fac9808c757df31d797190c529aaa71a/pages/projects/money-aikorea24) failed.[0m
+
+  Authentication error [code: 10000]
+
+
+🪵  Logs were written to "/Users/twinssn/.wrangler/logs/wrangler-2026-07-13_02-20-07_496.log"
+2026-07-13 09:20:12,504 [ERROR] [ERROR] 빌드/배포 실패 ❌ (4건 저장됨)
+
+```
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mA request to the Cloudflare API (/accounts/fac9808c757df31d797190c529aaa71a/pages/projects/money-aikorea24) failed.[0m
+
+  Authentication error [code: 10000]
+
+
+🪵  Logs were written to "/Users/twinssn/.wrangler/logs/wrangler-2026-07-13_02-20-07_496.log"
+```
+2026-07-13 09:20:13,147 [INFO] 파이프라인 종료 2026-07-13 09:20:13
+2026-07-13 09:20:13,147 [INFO] 스케줄러 정상 종료
+2026-07-14 09:00:00,244 [INFO] 스케줄러 시작
+2026-07-14 09:00:00,846 [INFO] 파이프라인 시작 2026-07-14 09:00:00
+2026-07-14 09:00:00,848 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-07-14 09:00:00,868 [INFO] 처리 중: 국가유공자 단체 등에 대한 지방세 감면
+2026-07-14 09:00:02,755 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-14 09:01:37,953 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-14 09:01:37,976 [INFO] 제목 추출: 국가유공자 단체 부동산 지방세 면제 혜택과 신청 자격 확인하기
+2026-07-14 09:01:37,976 [INFO] refinish_title 적용: 국가유공자 단체 부동산 지방세 면제 혜택과 신청 자격 확인하기 지원받는 방법
+2026-07-14 09:01:38,206 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-14 09:01:38,207 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-14 09:01:39,441 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/국가유공자-단체-부동산-지방세-면제-혜택과-신청-자격-확인하기-지원받는-방법-000011.md
+2026-07-14 09:01:39,443 [INFO] 발행 성공: 국가유공자 단체 부동산 지방세 면제 혜택과 신청 자격 확인하기 지원받는  | general | google/diffusiongemma-26b-a4b-it
+2026-07-14 09:01:39,470 [INFO] 처리 중: 용인시 청년 학자금대출 신용회복 지원
+2026-07-14 09:01:40,343 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-14 09:03:14,458 [INFO] Retrying request to /chat/completions in 0.479175 seconds
+2026-07-14 09:04:45,238 [INFO] Retrying request to /chat/completions in 0.915743 seconds
+2026-07-14 09:06:16,824 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-14 09:06:27,250 [INFO] 제목 추출: 용인시 무주택 직장인, 학자금 대출 연체 해결하고 최대 100만원 지원받
+2026-07-14 09:06:27,251 [INFO] refinish_title 적용: 용인시 무주택 직장인, 학자금 대출 연체 해결하고 최대 100만원 지원 총정리
+2026-07-14 09:06:27,507 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-14 09:06:27,507 [INFO] [validator] 수정됨: ['HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-07-14 09:06:28,210 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/용인시-무주택-직장인-학자금-대출-연체-해결하고-최대-100만원-지원-총정리-000661.md
+2026-07-14 09:06:28,213 [INFO] 발행 성공: 용인시 무주택 직장인, 학자금 대출 연체 해결하고 최대 100만원 지원  | loan | google/diffusiongemma-26b-a4b-it
+2026-07-14 09:06:28,241 [INFO] 처리 중: 산재근로자사회심리재활지원
+2026-07-14 09:06:29,287 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-14 09:08:03,325 [INFO] Retrying request to /chat/completions in 0.410755 seconds
+2026-07-14 09:09:34,054 [INFO] Retrying request to /chat/completions in 0.837323 seconds
+2026-07-14 09:11:05,516 [INFO] HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-14 09:11:16,138 [INFO] 제목 추출: 맞벌이 신혼부부를 위한 산재로자 사회심리 재활 지원 혜택 및 신청 방법
+2026-07-14 09:11:16,143 [INFO] refinish_title 적용: 맞벌이 신혼부부를 위한 산재로자 사회심리 재활 지원 혜택 및 마지막 기회
+2026-07-14 09:11:16,466 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-14 09:11:16,467 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-14 09:11:17,194 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부를-위한-산재로자-사회심리-재활-지원-혜택-및-마지막-기회-000020.md
+2026-07-14 09:11:17,196 [INFO] 발행 성공: 맞벌이 신혼부부를 위한 산재로자 사회심리 재활 지원 혜택 및 마지막 기회 | insurance | google/diffusiongemma-26b-a4b-it
+2026-07-14 09:11:17,224 [INFO] 처리 중: 파주시 북한이탈주민 정착 지원
+2026-07-14 09:11:17,224 [INFO] [SKIP] 부적합 키워드: 파주시 북한이탈주민 정착 지원
+2026-07-14 09:11:17,240 [INFO] 처리 중: 파주시 청년월세 지원
+2026-07-14 09:11:18,715 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-14 09:12:35,983 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-14 09:12:35,990 [INFO] 제목 추출: 2024년 파주 직장인, 월 10만 원 아끼는 청년월세 지원 받는 법
+2026-07-14 09:12:35,991 [INFO] refinish_title 적용: 2024년 파주 직장인, 월 10만 원 아끼는 청년월세 지원 놓친 적 있으신가요?
+2026-07-14 09:12:35,999 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-14 09:12:36,000 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-14 09:12:36,559 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/2024년-파주-직장인-월-10만-원-아끼는-청년월세-지원-놓친-적-있으신가요-000515.md
+2026-07-14 09:12:36,562 [INFO] 발행 성공: 2024년 파주 직장인, 월 10만 원 아끼는 청년월세 지원 놓친 적 있 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-14 09:12:36,563 [INFO] 4건 발행 → 빌드/배포 시작
+2026-07-14 09:13:36,789 [ERROR] 빌드/배포 실패 (4건 저장됨)
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mA request to the Cloudflare API (/accounts/fac9808c757df31d797190c529aaa71a/pages/projects/money-aikorea24) failed.[0m
+
+  Authentication error [code: 10000]
+
+
+🪵  Logs were written to "/Users/twinssn/.wrangler/logs/wrangler-2026-07-14_02-13-31_146.log"
+2026-07-14 09:13:36,790 [ERROR] [ERROR] 빌드/배포 실패 ❌ (4건 저장됨)
+
+```
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mA request to the Cloudflare API (/accounts/fac9808c757df31d797190c529aaa71a/pages/projects/money-aikorea24) failed.[0m
+
+  Authentication error [code: 10000]
+
+
+🪵  Logs were written to "/Users/twinssn/.wrangler/logs/wrangler-2026-07-14_02-13-31_146.log"
+```
+2026-07-14 09:13:38,562 [INFO] 파이프라인 종료 2026-07-14 09:13:38
+2026-07-14 09:13:38,562 [INFO] 스케줄러 정상 종료
+2026-07-15 09:00:01,541 [INFO] 스케줄러 시작
+2026-07-15 09:00:02,289 [INFO] 파이프라인 시작 2026-07-15 09:00:02
+2026-07-15 09:00:02,295 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-07-15 09:00:02,321 [INFO] 처리 중: 사회복지법인 지방세 감면
+2026-07-15 09:00:02,321 [INFO] [SKIP] 부적합 키워드: 사회복지법인 지방세 감면
+2026-07-15 09:00:02,324 [INFO] 처리 중: 사회적기업 지방세 감면
+2026-07-15 09:00:03,996 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-15 09:01:37,809 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-15 09:01:37,838 [INFO] 제목 추출: 30대 직장인, 중소기업 사회적기업이라면 취득세·재산세 혜택 받는 법
+2026-07-15 09:01:37,839 [INFO] refinish_title 적용: 30대 직장인, 중소기업 사회적기업이라면 취득세·재산세 혜택 챙기는 법
+2026-07-15 09:01:38,071 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-15 09:01:38,073 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-15 09:01:38,781 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/30대-직장인-중소기업-사회적기업이라면-취득세재산세-혜택-챙기는-법-000013.md
+2026-07-15 09:01:38,785 [INFO] 발행 성공: 30대 직장인, 중소기업 사회적기업이라면 취득세·재산세 혜택 챙기는 법 | general | google/diffusiongemma-26b-a4b-it
+2026-07-15 09:01:38,818 [INFO] 처리 중: 퇴소 및 보호종결아동 자립정착금 지원
+2026-07-15 09:01:39,755 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-15 09:03:19,594 [INFO] Retrying request to /chat/completions in 0.463386 seconds
+2026-07-15 09:04:50,332 [INFO] Retrying request to /chat/completions in 0.901749 seconds
+2026-07-15 09:06:20,497 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-15 09:06:20,510 [INFO] 제목 추출: 무주택 직장인이 된 보호종결아동, 자립정착금 1,500만 원 받는 법
+2026-07-15 09:06:20,512 [INFO] refinish_title 적용: 무주택 직장인이 된 보호종결아동, 자립정착금 1,500만 원 받을 수 있습니다
+2026-07-15 09:06:20,733 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-15 09:06:20,734 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-07-15 09:06:21,431 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인이-된-보호종결아동-자립정착금-1500만-원-받을-수-있습니다-000115.md
+2026-07-15 09:06:21,435 [INFO] 발행 성공: 무주택 직장인이 된 보호종결아동, 자립정착금 1,500만 원 받을 수 있 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-15 09:06:21,476 [INFO] 처리 중: 진폐근로자복지지원
+2026-07-15 09:06:22,470 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-15 09:07:35,666 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-15 09:07:35,675 [INFO] 제목 추출: 맞벌이 신혼부부, 진폐근로자 자녀 중학교 학자금 혜택 받는 법
+2026-07-15 09:07:35,676 [INFO] refinish_title 적용: 맞벌이 신혼부부, 진폐근로자 자녀 중학교 학자금 혜택 클리어하게 정리
+2026-07-15 09:07:35,687 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-15 09:07:35,688 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-15 09:07:36,430 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/맞벌이-신혼부부-진폐근로자-자녀-중학교-학자금-혜택-클리어하게-정리-000028.md
+2026-07-15 09:07:36,433 [INFO] 발행 성공: 맞벌이 신혼부부, 진폐근로자 자녀 중학교 학자금 혜택 클리어하게 정리 | insurance | google/diffusiongemma-26b-a4b-it
+2026-07-15 09:07:36,463 [INFO] 처리 중: 저소득층 이사비용 지원
+2026-07-15 09:07:38,187 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-15 09:08:47,974 [INFO] HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-07-15 09:08:47,978 [INFO] 제목 추출: 무주택 직장인, 이사비 부담 덜어주는 30만원 지원받는 법 (김포시 기준
+2026-07-15 09:08:47,979 [INFO] refinish_title 적용: 무주택 직장인, 이사비 부담 덜어주는 30만원 지원받는 법 (김포시 기준) 지금 아니면 놓
+2026-07-15 09:08:47,985 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno 8] nodename nor servname provided, or not known)"))']
+2026-07-15 09:08:47,986 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-07-15 09:08:48,477 [INFO] 저장: /Users/twinssn/Projects/money-aikorea24/src/content/blog/무주택-직장인-이사비-부담-덜어주는-30만원-지원받는-법-김포시-기준-지금-아니면-놓칩니다-000103.md
+2026-07-15 09:08:48,481 [INFO] 발행 성공: 무주택 직장인, 이사비 부담 덜어주는 30만원 지원받는 법 (김포시 기준 | loan | google/diffusiongemma-26b-a4b-it
+2026-07-15 09:08:48,481 [INFO] 4건 발행 → 빌드/배포 시작
+2026-07-15 09:10:30,682 [INFO] 배포 완료 (4건)
+2026-07-15 09:10:30,684 [INFO] 파이프라인 종료 2026-07-15 09:10:30
+2026-07-15 09:10:30,685 [INFO] 스케줄러 정상 종료

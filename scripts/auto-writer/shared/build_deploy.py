@@ -13,8 +13,20 @@ PROJECT_DIR = paths.PROJECT_ROOT
 def run(count: int = 0) -> tuple[bool, str]:
     """Returns (success: bool, detail: str) where detail explains the failure."""
     env = os.environ.copy()
+    # wrangler 4.x: CLOUDFLARE_API_TOKEN env var overrides OAuth auth profile.
+    # Remove it so wrangler uses the bound profile (hugh79757).
+    env.pop("CLOUDFLARE_API_TOKEN", None)
     try:
-        print("[deploy] Astro 빌드 시작...")
+        print("[deploy] 블로그 글 사전 검증...")
+        check_result = subprocess.run(
+            [sys.executable, "scripts/check-blog-issues.py", "--ci"],
+            cwd=PROJECT_DIR, capture_output=True, text=True, timeout=60
+        )
+        if check_result.returncode != 0:
+            detail = check_result.stdout or check_result.stderr
+            print(f"[deploy] 블로그 글 검증 실패:\n{detail}")
+            return (False, f"CHECK_FAILED:{detail[:300]}")
+        print("[deploy] 모든 블로그 글 정상. Astro 빌드 시작...")
         result = subprocess.run(
             ["npm", "run", "build"],
             cwd=PROJECT_DIR, env=env,
@@ -28,9 +40,11 @@ def run(count: int = 0) -> tuple[bool, str]:
         print("[deploy] dist/persona-stats.json 제거 (25MiB 파일 제한)")
         os.remove(os.path.join(PROJECT_DIR, "dist", "persona-stats.json"))
 
+        # Use /opt/homebrew/bin/wrangler (not npx/cached 4.92.0) for auth profile support
+        WRANGLER = "/opt/homebrew/bin/wrangler"
         print("[deploy] Wrangler 배포 시작...")
         result = subprocess.run(
-            ["npx", "wrangler", "pages", "deploy", "dist/",
+            [WRANGLER, "pages", "deploy", "dist/",
              "--project-name", "money-aikorea24",
              "--commit-dirty=true"],
             cwd=PROJECT_DIR, env=env,

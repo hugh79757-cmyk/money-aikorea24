@@ -1,0 +1,48 @@
+[     107ms] Unexpected end of input
+[     104ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/my-persona/:802
+[     121ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[     121ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[     121ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[     192ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://persona.aikorea24.kr/api/funnel-log:0
+[    6912ms] ReferenceError: runAnalyze is not defined
+    at https://persona.aikorea24.kr/my-persona/:142:20
+[    7928ms] ReferenceError: runAnalyze is not defined
+    at https://persona.aikorea24.kr/my-persona/:142:20
+[   22462ms] ReferenceError: runAnalyze is not defined
+    at https://persona.aikorea24.kr/my-persona/:142:20
+[   23412ms] ReferenceError: runAnalyze is not defined
+    at https://persona.aikorea24.kr/my-persona/:142:20
+[   24390ms] ReferenceError: runAnalyze is not defined
+    at https://persona.aikorea24.kr/my-persona/:142:20
+[   37775ms] ReferenceError: runAnalyze is not defined
+    at https://persona.aikorea24.kr/my-persona/:142:20

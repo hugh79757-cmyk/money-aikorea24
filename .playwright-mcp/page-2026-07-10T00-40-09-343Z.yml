@@ -1,0 +1,132 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - navigation [ref=f1e3]:
+      - link "🇰🇷 한국인 페르소나" [ref=f1e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f1e5]: 🇰🇷
+        - generic [ref=f1e6]: 한국인 페르소나
+      - generic [ref=f1e7]:
+        - link "🔍 내 페르소나" [ref=f1e8] [cursor=pointer]:
+          - /url: /my-persona
+        - button "📝 블로그 ▾" [ref=f1e10] [cursor=pointer]:
+          - text: 📝 블로그
+          - generic [ref=f1e11]: ▾
+        - link "⏰ 지원금" [ref=f1e12] [cursor=pointer]:
+          - /url: /benefits
+        - link "💬 커뮤니티" [ref=f1e13] [cursor=pointer]:
+          - /url: /community
+        - button "검색 열기" [ref=f1e14] [cursor=pointer]:
+          - generic [ref=f1e18]: 검색
+          - generic [ref=f1e19]: ⌘K
+        - dialog "사이트 검색":
+          - generic:
+            - generic:
+              - searchbox "보험, 청년, 절세, 대출 등 검색…"
+              - button "검색 닫기"
+            - generic:
+              - generic: 빠른 검색
+              - generic:
+                - button "🛡️ 보험"
+                - button "🧑 청년"
+                - button "💰 절세"
+                - button "🏠 대출"
+                - button "📋 연말정산"
+                - button "🎁 지원금"
+            - listbox
+            - generic:
+              - generic: ↑↓ 이동
+              - generic: ↵ 선택
+              - generic: ESC 닫기
+        - link "카카오 로그인" [ref=f1e20] [cursor=pointer]:
+          - /url: /auth/login
+        - button "테마 전환" [ref=f1e24] [cursor=pointer]
+  - generic [ref=f1e31]:
+    - generic [ref=f1e32]: 📊 700만 한국인 데이터 기반 분석
+    - generic [ref=f1e33]:
+      - paragraph
+    - paragraph [ref=f1e34]: 나이·성별·지역만 입력하면주거·직업·가족구성·돈 고민을 통계로 보여드려요
+    - button "무료로 내 페르소나 1분 만에 분석하기 →" [ref=f1e35] [cursor=pointer]
+    - generic [ref=f1e36]:
+      - generic [ref=f1e37]: 🔒 개인정보 미수집
+      - generic [ref=f1e38]: 📊 700만 데이터
+      - generic [ref=f1e39]: ⚡ 즉시 결과
+  - generic [ref=f1e40]:
+    - paragraph [ref=f1e41]: 분석하면 이런 걸 알 수 있어요
+    - generic [ref=f1e42]:
+      - generic [ref=f1e43]:
+        - text: 🏠
+        - generic [ref=f1e44]: 주거형태
+        - generic [ref=f1e45]: 아파트·전세·월세 비율
+      - generic [ref=f1e46]:
+        - text: 💼
+        - generic [ref=f1e47]: 직업군
+        - generic [ref=f1e48]: TOP 5 직업 분포
+      - generic [ref=f1e49]:
+        - text: 👨‍👩‍👧
+        - generic [ref=f1e50]: 가족구성
+        - generic [ref=f1e51]: 1인·부부·자녀 현황
+      - generic [ref=f1e52]:
+        - text: 💰
+        - generic [ref=f1e53]: 돈 고민
+        - generic [ref=f1e54]: 나에게 맞는 금융 가이드
+  - contentinfo [ref=f1e55]:
+    - generic [ref=f1e56]:
+      - generic [ref=f1e57]:
+        - generic [ref=f1e58]: 🇰🇷 AI코리아24 머니
+        - paragraph [ref=f1e59]: AI 시대, 돈을 더 잘 다루는 방법. 보험·투자·대출·세금·부업을 한국어로 안내합니다.
+      - generic [ref=f1e60]:
+        - generic [ref=f1e61]:
+          - heading "바로가기" [level=3] [ref=f1e62]
+          - list [ref=f1e63]:
+            - listitem [ref=f1e64]:
+              - link "🛡️ 보험" [ref=f1e65] [cursor=pointer]:
+                - /url: /blog/category/insurance
+            - listitem [ref=f1e66]:
+              - link "📈 투자·절세" [ref=f1e67] [cursor=pointer]:
+                - /url: /blog/category/invest
+            - listitem [ref=f1e68]:
+              - link "🏠 대출·부동산" [ref=f1e69] [cursor=pointer]:
+                - /url: /blog/category/loan
+            - listitem [ref=f1e70]:
+              - link "💬 커뮤니티" [ref=f1e71] [cursor=pointer]:
+                - /url: /community
+            - listitem [ref=f1e72]:
+              - link "✉️ 문의" [ref=f1e73] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=f1e74]:
+          - heading "법적 고지" [level=3] [ref=f1e75]
+          - list [ref=f1e76]:
+            - listitem [ref=f1e77]:
+              - link "개인정보처리방침" [ref=f1e78] [cursor=pointer]:
+                - /url: /privacy
+            - listitem [ref=f1e79]:
+              - link "이용약관" [ref=f1e80] [cursor=pointer]:
+                - /url: /terms
+            - listitem [ref=f1e81]:
+              - link "금융정보 면책고지" [ref=f1e82] [cursor=pointer]:
+                - /url: /disclaimer
+          - heading "관련 사이트" [level=3] [ref=f1e83]
+          - list [ref=f1e84]:
+            - listitem [ref=f1e85]:
+              - link "AI코리아24 본사이트 →" [ref=f1e86] [cursor=pointer]:
+                - /url: https://aikorea24.kr
+          - heading "기타 서비스" [level=3] [ref=f1e87]
+          - list [ref=f1e88]:
+            - listitem [ref=f1e89]:
+              - link "오늘의 운세 · 타로 카드" [ref=f1e90] [cursor=pointer]:
+                - /url: https://zodiac.techpawz.com/daily/
+      - generic [ref=f1e91]:
+        - link "인스타그램" [ref=f1e92] [cursor=pointer]:
+          - /url: https://www.instagram.com/aikorea24.kr/
+        - link "스레드" [ref=f1e96] [cursor=pointer]:
+          - /url: https://www.threads.com/@aikorea24
+        - button "카카오톡 공유" [ref=f1e100] [cursor=pointer]:
+          - generic [ref=f1e103]: 카카오 공유
+      - generic [ref=f1e104]:
+        - paragraph [ref=f1e105]: 본 사이트의 금융 정보는 참고용이며, 정확한 내용은 해당 금융기관 또는 감독기관에서 확인하시기 바랍니다.
+        - paragraph [ref=f1e106]: © 2026 AI코리아24 머니. All rights reserved.
+  - generic [ref=f1e109]:
+    - button [ref=f1e110]
+    - button [ref=f1e116]
+    - button [ref=f1e120]
+    - button [ref=f1e128]

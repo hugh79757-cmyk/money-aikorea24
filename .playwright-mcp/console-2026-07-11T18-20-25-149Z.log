@@ -1,0 +1,6 @@
+[      84ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/:80
+[    1514ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[    1514ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[    1762ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[    6053ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/persona/%EC%84%9C%EC%9A%B8-%EC%97%AC%EC%9E%90-20%EB%8C%80/:133
+[    6145ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://persona.aikorea24.kr/api/funnel-log:0

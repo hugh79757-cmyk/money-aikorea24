@@ -325,7 +325,7 @@ import BaseHead from '../components/BaseHead.astro';
 
   </div><!-- /result -->
 
-<script is:inline define:vars={{kakaoJsKey: import.meta.env.PUBLIC_KAKAO_JS_KEY}}>
+ <script is:inline>
 /* ══ 전역 상태 ══ */
 let statsData = null;
 let charts = {};
@@ -531,8 +531,7 @@ window.INPUTS=INPUTS; window.statsData=statsData;
 window.loadStats=loadStats; window.getStats=getStats;
 window.determineType=determineType; window.toDecadeKey=toDecadeKey;
 window.destroyCharts=destroyCharts;
-</script>
-<script is:inline>
+
 /* ══ 나 vs 평균 ══ */
 function compareWithData(s, age, marital) {
   const results = [];
@@ -713,17 +712,7 @@ function renderRecs(age) {
 }
 /** Bridge: expose compareWithData for Block #7 */
 window.compareWithData = compareWithData;
-</script>
-<script is:inline>
-/** Bridge: functions/vars from IIFE (Block #5) and Block #6 */
-var INPUTS = window.INPUTS;
-var goStep = window.goStep;
-var compareWithData = window.compareWithData;
-var loadStats = window.loadStats;
-var getStats = window.getStats;
-var determineType = window.determineType;
-var toDecadeKey = window.toDecadeKey;
-var destroyCharts = window.destroyCharts;
+
 /* ══ runAnalyze ══ */
 async function runAnalyze() {
   const age      = parseInt(INPUTS.age);
@@ -1025,7 +1014,7 @@ function initFromUrl() {
 document.addEventListener('DOMContentLoaded', () => {
   /* 카카오 SDK 초기화 */
   if (window.Kakao && !window.Kakao.isInitialized()) {
-    window.Kakao.init(kakaoJsKey);
+    window.Kakao.init('8ee60344ebc6252b953d28de31bf5dac');
   }
   /* T18: URL ?age= 파라미터가 있으면 1단계 나이 입력 미리 채우기 (부분 파라미터 랜딩 대응) */
   const _ageParam = new URLSearchParams(location.search).get('age');
@@ -1047,7 +1036,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.resetForm=resetForm; window.shareKakao=shareKakao; window.shareTwitter=shareTwitter;
   window.copyUrl=copyUrl; window.downloadCard=downloadCard;
   window.toggleDetail=toggleDetail; window.toggleStory=toggleStory;
-  </script>
+});</script>
 
     {/* ── Funnel: persona_open + attribution capture (Wave 3, T8) ── */}
     <script>

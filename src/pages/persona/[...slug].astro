@@ -977,7 +977,7 @@ const jsonLd = JSON.stringify({
 
   </div>
 <Footer />
-<script is:inline define:vars={{kakaoJsKey: import.meta.env.PUBLIC_KAKAO_JS_KEY}}>
+<script is:inline>
 const _shareUrl = window.location.href;
 
 /* 혼인상태 파라미터로 페르소나 타입 보정 */
@@ -1001,7 +1001,7 @@ const _shareUrl = window.location.href;
     if (_pDescEl) _pDescEl.textContent = '자유롭게 혼자만의 삶을 즐기는 사람';
   }
 })();
-if (window.Kakao && !window.Kakao.isInitialized()) { window.Kakao.init(kakaoJsKey); }
+if (window.Kakao && !window.Kakao.isInitialized()) { window.Kakao.init('8ee60344ebc6252b953d28de31bf5dac'); }
 
 function shareKakao() {
   if (window.Kakao && window.Kakao.isInitialized()) {

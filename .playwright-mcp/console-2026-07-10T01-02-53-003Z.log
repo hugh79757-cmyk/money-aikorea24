@@ -1,0 +1,93 @@
+[     525ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-5938862195544185&output=html&adk=1812271804&adf=3025194257&abgtt=6&lmt=1783645373&plat=9%3A32776%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1048576%2C32%3A32%2C41%3A32%2C42%3A32%2C43%3A32%2C44%3A32&format=0x0&url=https%3A%2F%2Fdab355da.money-aikorea24.pages.dev%2Fmy-persona%2F&pra=5&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=WyJtYWNPUyIsIjI2LjUuMSIsImFybSIsIiIsIjE1MC4wLjc4NzEuMTE1IixudWxsLDAsbnVsbCwiNjQiLFtbIk5vdDtBPUJyYW5kIiwiOC4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxNTAuMC43ODcxLjExNSJdLFsiR29vZ2xlIENocm9tZSIsIjE1MC4wLjc4NzEuMTE1Il1dLDBd&dt=1783645373352&bpp=3&bdt=33&idt=7&shv=r20260709&mjsv=m202607070101&ptt=9&saldr=aa&abxe=1&cookie_enabled=1&eoidce=1&nras=1&correlator=7979981211061&frm=20&pv=2&u_tz=420&u_his=2&u_h=1107&u_w=1710&u_ah=997&u_aw=1710&u_cd=30&u_sd=2&dmc=16&adx=-12245933&ady=-12245933&biw=1200&bih=810&scr_x=0&scr_y=0&eid=31099618&oid=2&pvsid=8094965774783690&tmod=1929118141&uas=0&nvt=1&fsapi=1&fc=1920&brdim=22%2C57%2C22%2C57%2C1710%2C35%2C1200%2C953%2C1200%2C810&vis=1&rsz=%7C%7Cs%7C&abl=NS&fu=32768&bc=31&plas=380x546_l%7C380x546_r&bz=1&pgls=CAA.&ifi=1&uci=a!1&fsb=1&dtd=45:0
+[     616ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[     616ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[     616ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[     617ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://dab355da.money-aikorea24.pages.dev/my-persona/:806
+[    1937ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://dab355da.money-aikorea24.pages.dev/api/funnel-log:0
+[   14397ms] [ERROR] ReferenceError: charts is not defined
+    at makeDonut (https://dab355da.money-aikorea24.pages.dev/my-persona/:387:3)
+    at runAnalyze (https://dab355da.money-aikorea24.pages.dev/my-persona/:566:7) @ https://dab355da.money-aikorea24.pages.dev/my-persona/:619
+[  155430ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[  155430ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[  155430ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[  155426ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://cfe02053.money-aikorea24.pages.dev/my-persona/:806
+[  155503ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-5938862195544185&output=html&adk=1812271804&adf=3025194257&abgtt=6&lmt=1783645528&plat=9%3A32776%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1048576%2C32%3A32%2C41%3A32%2C42%3A32%2C43%3A32%2C44%3A32&format=0x0&url=https%3A%2F%2Fcfe02053.money-aikorea24.pages.dev%2Fmy-persona%2F&pra=5&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=WyJtYWNPUyIsIjI2LjUuMSIsImFybSIsIiIsIjE1MC4wLjc4NzEuMTE1IixudWxsLDAsbnVsbCwiNjQiLFtbIk5vdDtBPUJyYW5kIiwiOC4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxNTAuMC43ODcxLjExNSJdLFsiR29vZ2xlIENocm9tZSIsIjE1MC4wLjc4NzEuMTE1Il1dLDBd&dt=1783645528396&bpp=1&bdt=10&idt=6&shv=r20260709&mjsv=m202607070101&ptt=9&saldr=aa&abxe=1&cookie_enabled=1&eoidce=1&nras=1&correlator=4088675833896&frm=20&pv=2&u_tz=420&u_his=3&u_h=1107&u_w=1710&u_ah=997&u_aw=1710&u_cd=30&u_sd=2&dmc=16&adx=-12245933&ady=-12245933&biw=1200&bih=810&scr_x=0&scr_y=0&eid=31099618%2C95390277%2C95395499&oid=2&pvsid=513791190951410&tmod=1929118141&uas=0&nvt=1&fsapi=1&fc=1920&brdim=22%2C57%2C22%2C57%2C1710%2C35%2C1200%2C953%2C1200%2C810&vis=1&rsz=%7C%7Cs%7C&abl=NS&fu=32768&bc=31&plas=380x546_l%7C380x546_r&bz=1&pgls=CAA.&ifi=1&uci=a!1&fsb=1&dtd=12:0
+[  155884ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cfe02053.money-aikorea24.pages.dev/api/funnel-log:0
+[  158670ms] [ERROR] Access to image at 'https://cards.persona.aikorea24.kr/%EC%84%9C%EC%9A%B8_%EB%82%A8%EC%9E%90_35.jpg' from origin 'https://cfe02053.money-aikorea24.pages.dev' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://cfe02053.money-aikorea24.pages.dev/my-persona/:0
+[  158670ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://cards.persona.aikorea24.kr/%EC%84%9C%EC%9A%B8_%EB%82%A8%EC%9E%90_35.jpg:0
+[  159006ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-5938862195544185&output=html&adk=1812271804&adf=3025194257&abgtt=6&lmt=1783645531&plat=9%3A32776%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1048576%2C32%3A32%2C41%3A32%2C42%3A32%2C43%3A32%2C44%3A32&format=0x0&url=https%3A%2F%2Fcfe02053.money-aikorea24.pages.dev%2Fpersona%2F%25EC%2584%259C%25EC%259A%25B8-%25EB%2582%25A8%25EC%259E%2590-35%2F%3Fmarital%3D&pra=5&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=WyJtYWNPUyIsIjI2LjUuMSIsImFybSIsIiIsIjE1MC4wLjc4NzEuMTE1IixudWxsLDAsbnVsbCwiNjQiLFtbIk5vdDtBPUJyYW5kIiwiOC4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxNTAuMC43ODcxLjExNSJdLFsiR29vZ2xlIENocm9tZSIsIjE1MC4wLjc4NzEuMTE1Il1dLDBd&dt=1783645531909&bpp=1&bdt=7&idt=2&shv=r20260709&mjsv=m202607070101&ptt=9&saldr=aa&abxe=1&cookie_enabled=1&eoidce=1&nras=1&correlator=8063019471723&frm=20&pv=2&u_tz=420&u_his=4&u_h=1107&u_w=1710&u_ah=997&u_aw=1710&u_cd=30&u_sd=2&dmc=16&adx=-12245933&ady=-12245933&biw=1200&bih=810&scr_x=0&scr_y=0&eid=31099618%2C42533294&oid=2&pvsid=3350557917759521&tmod=1929118141&uas=1&nvt=1&fsapi=1&ref=https%3A%2F%2Fcfe02053.money-aikorea24.pages.dev%2Fmy-persona%2F&fc=1920&brdim=22%2C57%2C22%2C57%2C1710%2C35%2C1200%2C953%2C1200%2C810&vis=1&rsz=%7C%7Cs%7C&abl=NS&fu=32768&bc=31&plas=380x546_l%7C380x546_r&bz=1&ifi=1&uci=a!1&fsb=1&dtd=7:0
+[  159156ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://cfe02053.money-aikorea24.pages.dev/persona/%EC%84%9C%EC%9A%B8-%EB%82%A8%EC%9E%90-35/?marital=:93
+[  159193ms] TagError: adsbygoogle.push() error: All 'ins' elements in the DOM with class=adsbygoogle already have ads in them.
+    at Vr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:237:255)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:232:494)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+    at Object.push (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:245:132)
+    at https://cfe02053.money-aikorea24.pages.dev/_astro/_...slug_.astro_astro_type_script_index_1_lang.C-kreFaQ.js:1:196
+    at NodeList.forEach (<anonymous>)
+    at a (https://cfe02053.money-aikorea24.pages.dev/_astro/_...slug_.astro_astro_type_script_index_1_lang.C-kreFaQ.js:1:100)
+[  159236ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://cfe02053.money-aikorea24.pages.dev/api/funnel-log:0
+[  159006ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-5938862195544185&output=html&adk=1812271804&adf=3025194257&abgtt=6&lmt=1783645531&plat=9%3A32776%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1048576%2C32%3A32%2C41%3A32%2C42%3A32%2C43%3A32%2C44%3A32&format=0x0&url=https%3A%2F%2Fcfe02053.money-aikorea24.pages.dev%2Fpersona%2F%25EC%2584%259C%25EC%259A%25B8-%25EB%2582%25A8%25EC%259E%2590-35%2F%3Fmarital%3D&pra=5&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=WyJtYWNPUyIsIjI2LjUuMSIsImFybSIsIiIsIjE1MC4wLjc4NzEuMTE1IixudWxsLDAsbnVsbCwiNjQiLFtbIk5vdDtBPUJyYW5kIiwiOC4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxNTAuMC43ODcxLjExNSJdLFsiR29vZ2xlIENocm9tZSIsIjE1MC4wLjc4NzEuMTE1Il1dLDBd&dt=1783645531909&bpp=1&bdt=7&idt=2&shv=r20260709&mjsv=m202607070101&ptt=9&saldr=aa&abxe=1&cookie_enabled=1&eoidce=1&nras=1&correlator=8063019471723&frm=20&pv=2&u_tz=420&u_his=4&u_h=1107&u_w=1710&u_ah=997&u_aw=1710&u_cd=30&u_sd=2&dmc=16&adx=-12245933&ady=-12245933&biw=1200&bih=810&scr_x=0&scr_y=0&eid=31099618%2C42533294&oid=2&pvsid=3350557917759521&tmod=1929118141&uas=1&nvt=1&fsapi=1&ref=https%3A%2F%2Fcfe02053.money-aikorea24.pages.dev%2Fmy-persona%2F&fc=1920&brdim=22%2C57%2C22%2C57%2C1710%2C35%2C1200%2C953%2C1200%2C810&vis=1&rsz=%7C%7Cs%7C&abl=NS&fu=32768&bc=31&plas=380x546_l%7C380x546_r&bz=1&ifi=1&uci=a!1&fsb=1&dtd=7:0
+[  159274ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-5938862195544185&output=html&h=280&slotname=9981825008&adk=1205277607&adf=1071414349&pi=t.ma~as.9981825008&abgtt=6&w=688&fwrn=4&fwrnh=100&lmt=1783645532&rafmt=1&format=688x280&url=https%3A%2F%2Fcfe02053.money-aikorea24.pages.dev%2Fpersona%2F%25EC%2584%259C%25EC%259A%25B8-%25EB%2582%25A8%25EC%259E%2590-35%2F%3Fmarital%3D&fwr=0&fwrattr=true&rpe=1&resp_fmts=3&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=WyJtYWNPUyIsIjI2LjUuMSIsImFybSIsIiIsIjE1MC4wLjc4NzEuMTE1IixudWxsLDAsbnVsbCwiNjQiLFtbIk5vdDtBPUJyYW5kIiwiOC4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxNTAuMC43ODcxLjExNSJdLFsiR29vZ2xlIENocm9tZSIsIjE1MC4wLjc4NzEuMTE1Il1dLDBd&dt=1783645532193&bpp=1&bdt=291&idt=1&shv=r20260709&mjsv=m202607070101&ptt=9&saldr=aa&abxe=1&cookie_enabled=1&eoidce=1&prev_fmts=0x0&nras=1&correlator=8063019471723&frm=20&pv=1&u_tz=420&u_his=4&u_h=1107&u_w=1710&u_ah=997&u_aw=1710&u_cd=30&u_sd=2&dmc=16&adx=256&ady=2633&biw=1200&bih=810&scr_x=0&scr_y=0&eid=31099618%2C42533294&oid=2&pvsid=3350557917759521&tmod=1929118141&uas=1&nvt=1&ref=https%3A%2F%2Fcfe02053.money-aikorea24.pages.dev%2Fmy-persona%2F&fc=1920&brdim=22%2C57%2C22%2C57%2C1710%2C35%2C1200%2C953%2C1200%2C810&vis=1&rsz=%7C%7CeEbr%7C&abl=CS&pfx=0&fu=128&bc=31&plas=380x546_l%7C380x546_r&bz=1&ifi=2&uci=a!2&btvi=1&fsb=1&dtd=5:0

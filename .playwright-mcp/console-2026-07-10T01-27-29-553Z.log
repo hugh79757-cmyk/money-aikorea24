@@ -1,0 +1,117 @@
+[     426ms] SyntaxError: Identifier 'INPUTS' has already been declared
+    at https://persona.aikorea24.kr/my-persona/:469:19
+[     426ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/my-persona/:801
+[     508ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[     508ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[     508ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[     816ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://persona.aikorea24.kr/api/funnel-log:0
+[    5089ms] ReferenceError: runAnalyze is not defined
+    at https://persona.aikorea24.kr/my-persona/:141:20
+[   12612ms] ReferenceError: runAnalyze is not defined
+    at https://persona.aikorea24.kr/my-persona/:141:20
+[   13729ms] ReferenceError: runAnalyze is not defined
+    at https://persona.aikorea24.kr/my-persona/:141:20
+[   14528ms] ReferenceError: runAnalyze is not defined
+    at https://persona.aikorea24.kr/my-persona/:141:20
+[   15145ms] ReferenceError: runAnalyze is not defined
+    at https://persona.aikorea24.kr/my-persona/:141:20
+[   18359ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[   18361ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[   18362ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[   18362ms] SyntaxError: Identifier 'INPUTS' has already been declared
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:469:19
+[   18362ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://13b93bb5.money-aikorea24.pages.dev/my-persona/:801
+[   18476ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://13b93bb5.money-aikorea24.pages.dev/api/funnel-log:0
+[   18490ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-5938862195544185&output=html&adk=1812271804&adf=3025194257&abgtt=6&lmt=1783646867&plat=9%3A32776%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1048576%2C32%3A32%2C41%3A32%2C42%3A32%2C43%3A32%2C44%3A32&format=0x0&url=https%3A%2F%2F13b93bb5.money-aikorea24.pages.dev%2Fmy-persona%2F&pra=5&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=WyJtYWNPUyIsIjI2LjUuMSIsImFybSIsIiIsIjE1MC4wLjc4NzEuMTE1IixudWxsLDAsbnVsbCwiNjQiLFtbIk5vdDtBPUJyYW5kIiwiOC4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxNTAuMC43ODcxLjExNSJdLFsiR29vZ2xlIENocm9tZSIsIjE1MC4wLjc4NzEuMTE1Il1dLDBd&dt=1783646867840&bpp=54&bdt=12&idt=82&shv=r20260709&mjsv=m202607070101&ptt=9&saldr=aa&abxe=1&cookie_enabled=1&eoidce=1&nras=1&correlator=769348799755&frm=20&pv=2&u_tz=420&u_his=3&u_h=1107&u_w=1710&u_ah=997&u_aw=1710&u_cd=30&u_sd=2&dmc=16&adx=-12245933&ady=-12245933&biw=1200&bih=810&scr_x=0&scr_y=0&eid=31099618&oid=2&pvsid=4123964727011730&tmod=1929118141&uas=0&nvt=1&fsapi=1&fc=1920&brdim=22%2C57%2C22%2C57%2C1710%2C35%2C1200%2C953%2C1200%2C810&vis=1&rsz=%7C%7Cs%7C&abl=NS&fu=32768&bc=31&plas=272x637_l%7C272x637_r&bz=1&pgls=CAA.&ifi=1&uci=a!1&fsb=1&dtd=90:0
+[   22355ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   23928ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   24745ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   25379ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   26078ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   26378ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   26994ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   27195ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   27845ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   28011ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   28611ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   28778ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   29362ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   29527ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   30378ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20
+[   30579ms] ReferenceError: runAnalyze is not defined
+    at https://13b93bb5.money-aikorea24.pages.dev/my-persona/:141:20

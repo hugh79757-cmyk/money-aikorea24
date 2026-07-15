@@ -1,0 +1,25 @@
+[fetcher] 마지막 수집 시각: 20260101000000
+[fetcher] 총 서비스 수: 0건
+
+[fetcher 완료] 신규:0 수정:0 스킵:0 제외:0
+
+[finlife] 정기예금 수집 시작...
+  정기예금/은행: 59개 상품
+  정기예금/저축은행: 데이터 없음
+
+[finlife] 적금 수집 시작...
+  적금/은행: 59개 상품
+  적금/저축은행: 데이터 없음
+
+[finlife] 주택담보대출 수집 시작...
+  주택담보대출/은행: 34개 상품
+  주택담보대출/저축은행: 데이터 없음
+
+[finlife] 전세자금대출 수집 시작...
+  전세자금대출/은행: 41개 상품
+  전세자금대출/저축은행: 데이터 없음
+
+[finlife fetcher 완료]
+
+[invest] 지수 시세 수집 시작...
+  [ERROR] API 호출 실패: 401 Client Error: Unauthorized for url: http://apis.data.go.kr/1160100/service/GetMarketIndexInfoService/getStockMarketIndex?numOfRows=1000&pageNo=1&resultType=json

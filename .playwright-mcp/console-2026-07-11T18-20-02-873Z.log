@@ -1,0 +1,32 @@
+[     695ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/:80
+[    2302ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[    2302ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[    3612ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[    7018ms] [ERROR] Blocked aria-hidden on a <body> element because it would hide the entire accessibility tree from assistive technology users. For more details, see the aria-hidden section of the WAI-ARIA specification at https://w3c.github.io/aria/#aria-hidden. @ https://persona.aikorea24.kr/#google_vignette:0
+[    9259ms] [ERROR] Blocked aria-hidden on a <body> element because it would hide the entire accessibility tree from assistive technology users. For more details, see the aria-hidden section of the WAI-ARIA specification at https://w3c.github.io/aria/#aria-hidden. @ https://googleads.g.doubleclick.net/pagead/html/r20260709/r20190131/zrt_lookup_fy2021.html#RS-0-&adk=1812271808&client=ca-pub-5938862195544185&fa=8&ifi=10&uci=a!a:0
+[    9373ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/persona/%EC%84%9C%EC%9A%B8-%EB%82%A8%EC%9E%90-50%EB%8C%80/:130
+[    9478ms] TagError: adsbygoogle.push() error: All 'ins' elements in the DOM with class=adsbygoogle already have ads in them.
+    at Zr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:238:255)
+    at Or (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:233:494)
+    at Jr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:225:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Jr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:225:33)
+    at Object.push (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:246:132)
+    at https://persona.aikorea24.kr/_astro/_...slug_.astro_astro_type_script_index_1_lang.C-kreFaQ.js:1:196
+    at NodeList.forEach (<anonymous>)
+    at a (https://persona.aikorea24.kr/_astro/_...slug_.astro_astro_type_script_index_1_lang.C-kreFaQ.js:1:100)
+[    9848ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://persona.aikorea24.kr/api/funnel-log:0
+[   13045ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/#google_vignette:80
+[   13930ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[   13930ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[   13955ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[   13980ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[   13930ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[   13955ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[   13980ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[   14012ms] [ERROR] Attestation check for Shared Storage on https://www.googleadservices.com failed. @ https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html:0
+[   14616ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/persona/%EB%B6%80%EC%82%B0-%EC%97%AC%EC%9E%90-40%EB%8C%80/:133
+[   14708ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://persona.aikorea24.kr/api/funnel-log:0
+[   18099ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://persona.aikorea24.kr/api/funnel-log:0
+[   20706ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://persona.aikorea24.kr/api/funnel-log:0

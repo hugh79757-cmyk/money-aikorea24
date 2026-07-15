@@ -40,10 +40,31 @@ _PROMPT_LEAK_PATTERNS = [
     (r'–\s*표\(Table\)\s*필수[^,]*', ''),  # "– 표(Table) 필수. 조건 불충분" → 제거
 ]
 
+_AI_ARTIFACT_PATTERNS = [
+    # <|...> AI 채널·시스템·어시스턴트 태그
+    (r'<\|[^>]*>', ''),
+    # raw **목차** (BlogPost 자체 TOC로 대체됨)
+    (r'\*\*목차\*\*\s*\n+(?:-\s*\[.*?\]\(#[^\)]*\)\s*\n)*\n*', ''),
+    # 연속된 --- 분리선 (3개 이상)
+    (r'\n---\n---\n', '\n---\n'),
+]
+
 def remove_fake_links(body: str) -> str:
     for pattern in FAKE_LINK_PATTERNS:
         body = re.sub(pattern, lambda m: re.search(r'\[([^\]]+)\]', m.group()).group(1), body)
     return body
+
+def remove_ai_artifacts(body: str) -> str:
+    """LLM 출력에서 잔여 AI 아티팩트 제거 (채널 태그, 목차, 중복 구분선)"""
+    for pattern, repl in _AI_ARTIFACT_PATTERNS:
+        body = re.sub(pattern, repl, body, flags=re.MULTILINE)
+    # 선행 공백 제거 (본문 첫 줄에 공백이 있으면 제거)
+    lines = body.split('\n')
+    for i, line in enumerate(lines):
+        if line.strip() and line != line.lstrip():
+            lines[i] = line.lstrip()
+            break
+    return '\n'.join(lines)
 
 def clean_prompt_leaks(body: str) -> str:
     """SYSTEM_PROMPT 지시문이 H2 제목에 누출된 경우 제거"""
@@ -62,9 +83,10 @@ def clean_prompt_leaks(body: str) -> str:
 def validate_and_fix(body: str, cta_url: str = None, cta_block: str = None) -> tuple[str, list]:
     issues = []
 
-    # 0. 가짜 링크 제거 + 프롬프트 누출 제거
+    # 0. 가짜 링크 제거 + 프롬프트 누출 제거 + AI 아티팩트 제거
     body = remove_fake_links(body)
     body = clean_prompt_leaks(body)
+    body = remove_ai_artifacts(body)
 
     # 1. CTA 블록 강제 삽입 (없으면 ## 마무리 직전에 삽입)
     default_block = cta_block or make_persona_cta_block(cta_url or "https://persona.aikorea24.kr/my-persona")

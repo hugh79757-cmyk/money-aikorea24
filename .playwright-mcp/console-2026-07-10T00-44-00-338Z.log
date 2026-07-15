@@ -1,0 +1,39 @@
+[      88ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[      88ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[      89ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[      84ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://1ff576d9.money-aikorea24.pages.dev/my-persona/:804
+[     177ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-5938862195544185&output=html&adk=1812271804&adf=3025194257&abgtt=6&lmt=1783644240&plat=9%3A32776%2C16%3A8388608%2C17%3A32%2C24%3A32%2C25%3A32%2C30%3A1048576%2C32%3A32%2C41%3A32%2C42%3A32%2C43%3A32%2C44%3A32&format=0x0&url=https%3A%2F%2F1ff576d9.money-aikorea24.pages.dev%2Fmy-persona%2F&pra=5&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=WyJtYWNPUyIsIjI2LjUuMSIsImFybSIsIiIsIjE1MC4wLjc4NzEuMTE1IixudWxsLDAsbnVsbCwiNjQiLFtbIk5vdDtBPUJyYW5kIiwiOC4wLjAuMCJdLFsiQ2hyb21pdW0iLCIxNTAuMC43ODcxLjExNSJdLFsiR29vZ2xlIENocm9tZSIsIjE1MC4wLjc4NzEuMTE1Il1dLDBd&dt=1783644240393&bpp=1&bdt=5&idt=4&shv=r20260709&mjsv=m202607070101&ptt=9&saldr=aa&abxe=1&cookie_enabled=1&eoidce=1&nras=1&correlator=6818377646109&frm=20&pv=2&u_tz=420&u_his=5&u_h=1107&u_w=1710&u_ah=997&u_aw=1710&u_cd=30&u_sd=2&dmc=16&adx=-12245933&ady=-12245933&biw=1200&bih=810&scr_x=0&scr_y=0&eid=42532523%2C31099618&oid=2&pvsid=3742612668481031&tmod=1929118141&uas=0&nvt=1&fsapi=1&fc=1920&brdim=22%2C57%2C22%2C57%2C1710%2C35%2C1200%2C953%2C1200%2C810&vis=1&rsz=%7C%7Cs%7C&abl=NS&fu=32768&bc=31&plas=380x546_l%7C380x546_r&bz=1&pgls=CAA.&ifi=1&uci=a!1&fsb=1&dtd=8:0
+[     506ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://1ff576d9.money-aikorea24.pages.dev/api/funnel-log:0
+[   32421ms] [ERROR] ReferenceError: pct is not defined
+    at compareWithData (https://1ff576d9.money-aikorea24.pages.dev/my-persona/:301:19)
+    at runAnalyze (https://1ff576d9.money-aikorea24.pages.dev/my-persona/:550:23) @ https://1ff576d9.money-aikorea24.pages.dev/my-persona/:617

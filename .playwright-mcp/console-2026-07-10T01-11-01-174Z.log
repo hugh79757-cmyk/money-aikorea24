@@ -1,0 +1,104 @@
+[     524ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[     537ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[     537ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[     538ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/my-persona/:806
+[     906ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://persona.aikorea24.kr/api/funnel-log:0
+[    6530ms] [ERROR] Access to image at 'https://cards.persona.aikorea24.kr/%EC%84%9C%EC%9A%B8_%EB%82%A8%EC%9E%90_35.jpg' from origin 'https://persona.aikorea24.kr' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://persona.aikorea24.kr/my-persona/:0
+[    6530ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://cards.persona.aikorea24.kr/%EC%84%9C%EC%9A%B8_%EB%82%A8%EC%9E%90_35.jpg:0
+[    7067ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/persona/%EC%84%9C%EC%9A%B8-%EB%82%A8%EC%9E%90-35/?marital=&pid=4d08bf4f-3520-4dbc-8bc9-56dfe83450f0:93
+[    7091ms] TagError: adsbygoogle.push() error: All 'ins' elements in the DOM with class=adsbygoogle already have ads in them.
+    at Vr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:237:255)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:232:494)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+    at Object.push (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:245:132)
+    at https://persona.aikorea24.kr/_astro/_...slug_.astro_astro_type_script_index_1_lang.C-kreFaQ.js:1:196
+    at NodeList.forEach (<anonymous>)
+    at a (https://persona.aikorea24.kr/_astro/_...slug_.astro_astro_type_script_index_1_lang.C-kreFaQ.js:1:100)
+[    7193ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://persona.aikorea24.kr/api/funnel-log:0
+[   17149ms] ReferenceError: copyUrl is not defined
+    at HTMLButtonElement.onclick (https://persona.aikorea24.kr/persona/%EC%84%9C%EC%9A%B8-%EB%82%A8%EC%9E%90-35/?marital=&pid=4d08bf4f-3520-4dbc-8bc9-56dfe83450f0:178:253)
+[   18835ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/my-persona/:806
+[   18848ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[   18848ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[   18848ms] TagError: adsbygoogle.push() error: No slot size for availableWidth=0
+    at gp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:164:314)
+    at fp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:163:133)
+    at np (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:167:172)
+    at vp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:184:15)
+    at xp (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:185:321)
+    at Kr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:234:141)
+    at Fr.g.client (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:45)
+    at nk.g (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:82:545)
+    at uk (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:83:706)
+    at Fr (https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5938862195544185:224:33)
+[   18924ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://persona.aikorea24.kr/api/funnel-log:0
+[   23764ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/persona/%EB%B6%80%EC%82%B0-%EC%97%AC%EC%9E%90-28/?marital=&pid=4d08bf4f-3520-4dbc-8bc9-56dfe83450f0:94
+[   23852ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://persona.aikorea24.kr/api/funnel-log:0
+[   28032ms] ReferenceError: copyUrl is not defined
+    at HTMLButtonElement.onclick (https://persona.aikorea24.kr/persona/%EB%B6%80%EC%82%B0-%EC%97%AC%EC%9E%90-28/?marital=&pid=4d08bf4f-3520-4dbc-8bc9-56dfe83450f0:179:253)
+[   29115ms] ReferenceError: shareKakao is not defined
+    at HTMLButtonElement.onclick (https://persona.aikorea24.kr/persona/%EB%B6%80%EC%82%B0-%EC%97%AC%EC%9E%90-28/?marital=&pid=4d08bf4f-3520-4dbc-8bc9-56dfe83450f0:179:164)
+[   29915ms] ReferenceError: copyUrl is not defined
+    at HTMLButtonElement.onclick (https://persona.aikorea24.kr/persona/%EB%B6%80%EC%82%B0-%EC%97%AC%EC%9E%90-28/?marital=&pid=4d08bf4f-3520-4dbc-8bc9-56dfe83450f0:179:253)
+[   46978ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/persona/%EB%B6%80%EC%82%B0-%EC%97%AC%EC%9E%90-28/?marital=&pid=4d08bf4f-3520-4dbc-8bc9-56dfe83450f0:94
+[   47117ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://persona.aikorea24.kr/api/funnel-log:0
+[   48565ms] ReferenceError: copyUrl is not defined
+    at HTMLButtonElement.onclick (https://persona.aikorea24.kr/persona/%EB%B6%80%EC%82%B0-%EC%97%AC%EC%9E%90-28/?marital=&pid=4d08bf4f-3520-4dbc-8bc9-56dfe83450f0:179:253)
+[   49381ms] ReferenceError: shareKakao is not defined
+    at HTMLButtonElement.onclick (https://persona.aikorea24.kr/persona/%EB%B6%80%EC%82%B0-%EC%97%AC%EC%9E%90-28/?marital=&pid=4d08bf4f-3520-4dbc-8bc9-56dfe83450f0:179:164)
+[   69789ms] [ERROR] Error: <path> attribute d: Expected number, "…3.567-1.794 4.78C17.137 23.287 1…". @ https://persona.aikorea24.kr/persona/%EC%84%9C%EC%9A%B8-%EB%82%A8%EC%9E%90-35/:93
+[   69880ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://persona.aikorea24.kr/api/funnel-log:0
+[  352865ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://pagead2.googlesyndication.com/pagead/ping?e=1:0

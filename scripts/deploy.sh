@@ -9,7 +9,7 @@ else
   exit 1
 fi
 
-echo "=== [0/4] 환경변수 사전 체크 ==="
+echo "=== [0/5] 환경변수 사전 체크 ==="
 MISSING_LOCAL=0
 for var in PUBLIC_KAKAO_REST_KEY; do
   if ! grep -q "^${var}=" /Users/twinssn/Projects/money-aikorea24/.env 2>/dev/null; then
@@ -40,15 +40,19 @@ if [ $MISSING_LOCAL -eq 1 ] || [ $MISSING_CF -eq 1 ]; then
 fi
 
 echo ""
-echo "=== [1/4] 빌드 ==="
+echo "=== [1/5] 사전 검증 ==="
+python3 scripts/check-blog-issues.py --ci
+echo "  [OK] 모든 블로그 글 정상"
+
+echo "=== [2/5] 빌드 ==="
 npm run build
 
-echo "=== [2/4] git push ==="
+echo "=== [3/5] git push ==="
 git add -A
 git diff --cached --quiet || git commit -m "content: update $(date '+%Y-%m-%d')"
 git push origin main
 
-echo "=== [3/4] Cloudflare Pages 배포 ==="
+echo "=== [4/5] Cloudflare Pages 배포 ==="
 rm -f dist/persona-stats.json
 npx wrangler pages deploy dist \
   --project-name money-aikorea24 \
@@ -56,5 +60,5 @@ npx wrangler pages deploy dist \
   --commit-dirty=true
 
 echo ""
-echo "=== [4/4] 배포 완료: https://money.aikorea24.kr ==="
+echo "=== [5/5] 배포 완료: https://money.aikorea24.kr ==="
 echo "팁: 새 deployment 로그 확인 → npx wrangler pages deployment tail --project-name money-aikorea24 --environment production"

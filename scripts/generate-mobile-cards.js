@@ -5,8 +5,8 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const CARDS_DIR  = path.join(__dirname, '../public/cards');
 const MOBILE_DIR = path.join(__dirname, '../public/cards-mobile');
+const BG_DIR     = path.join(__dirname, '../public/bg_img');
 const STATS_JSON = path.join(__dirname, '../public/persona-stats.json');
 
 const W = 400, H = 800;
@@ -24,6 +24,21 @@ function regionLabel(key) {
 }
 function sexLabel(key) { return key.includes('여자') ? '여자' : '남자'; }
 function ageLabel(key) { const m = key.match(/(\d+대이상|\d+대|\d+)/); return m ? m[0] : ''; }
+function getBg(region, age) {
+  if (region === '서울' || region === '경기' || region === '인천') {
+    if (age < 30) return 'bg_seoul_20.jpeg';
+    if (age < 40) return 'bg_seoul_30.jpeg';
+    if (age < 50) return 'bg_gyeonggi_40.jpeg';
+    if (age < 70) return 'bg_seoul_60.jpeg';
+    return 'bg_seoul_60.jpeg';
+  }
+  if (region === '부산' || region === '대구' || region === '울산' ||
+      region === '경상남' || region === '경상북') return 'bg_busan_all.jpeg';
+  if (region === '강원') return 'bg_gangwon_all.jpeg';
+  if (region === '제주') return 'bg_jeju_all.jpeg';
+  if (age >= 50) return 'bg_rural_50.jpeg';
+  return 'bg_rural_50.jpeg';
+}
 
 function makeSvg(key, data) {
   const total = data.total || 1;
@@ -36,18 +51,15 @@ function makeSvg(key, data) {
 
   // 바차트: x=24 시작, 너비=W-48=352, 퍼센트는 바 위에 표시
   const bars = [
-    { label:'🏠 아파트 거주', value:aptP, color:'#4f8ef7' },
-    { label:'🎓 대졸 이상',   value:eduP, color:'#10b981' },
-    { label:'💍 배우자 거주', value:marP, color:'#f59e0b' },
-    { label:'📋 무직',        value:uneP, color:'#ef4444' },
+    { label:'아파트 거주', value:aptP, color:'#4f8ef7' },
+    { label:'대졸 이상',   value:eduP, color:'#10b981' },
+    { label:'배우자 거주', value:marP, color:'#f59e0b' },
+    { label:'무직',        value:uneP, color:'#ef4444' },
   ];
 
   const incomeData = data.income || null;
   const incomeVal = incomeData && incomeData.income_employed > 0 ? incomeData.income_employed : null;
   const topPct = incomeData && incomeData.top_percentile > 0 ? incomeData.top_percentile : null;
-  if (incomeVal && topPct) {
-    bars.push({ label:'💰 월 소득', value:topPct, color:'#D97706', suffix:incomeVal.toLocaleString() + '만원' });
-  }
 
   const bX     = 24;
   const bW     = W - 48;
@@ -60,10 +72,20 @@ function makeSvg(key, data) {
     const fw = Math.round((b.value / 100) * bW);
     return `
       <text x="${bX}" y="${y}" fill="#fff" font-size="19" font-weight="700" font-family="sans-serif">${b.label}</text>
-      <text x="${W - bX}" y="${y}" text-anchor="end" fill="${b.color}" font-size="19" font-weight="900" font-family="sans-serif">${b.suffix || b.value + '%'}</text>
+      <text x="${W - bX}" y="${y}" text-anchor="end" fill="${b.color}" font-size="19" font-weight="900" font-family="sans-serif">${b.value + '%'}</text>
       <rect x="${bX}" y="${y+6}" width="${bW}" height="${bH}" rx="10" fill="rgba(255,255,255,0.15)"/>
       <rect x="${bX}" y="${y+6}" width="${fw}" height="${bH}" rx="10" fill="${b.color}"/>`;
   }).join('');
+
+  // Income highlight — standalone, visually distinct from ratio bars
+  let incomeSvg = '';
+  if (incomeVal && topPct) {
+    const secY = startY + bars.length * gap + 8; // = 465 + 232 + 8 = 705
+    incomeSvg = `
+    <line x1="${bX}" y1="${secY - 25}" x2="${W-bX}" y2="${secY - 25}" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <text x="${W/2}" y="${secY + 8}" text-anchor="middle" fill="#D97706" font-size="24" font-weight="900" font-family="sans-serif">상위 ${topPct}%</text>
+    <text x="${W/2}" y="${secY + 36}" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="13" font-family="sans-serif">월소득 약 ${incomeVal.toLocaleString()}만원 · 전체 취업자 기준</text>`;
+  }
 
   return `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -82,7 +104,7 @@ function makeSvg(key, data) {
     <!-- 배지 -->
     <rect x="20" y="20" width="${W-40}" height="36" rx="18" fill="#2563eb" opacity="0.92"/>
     <text x="${W/2}" y="44" text-anchor="middle" fill="#fff"
-      font-size="15" font-weight="700" font-family="sans-serif">🇰🇷 엔비디아 700만 한국인 데이터</text>
+      font-size="15" font-weight="700" font-family="sans-serif">엔비디아 700만 한국인 데이터</text>
 
     <!-- 제목 -->
     <text x="${W/2}" y="126" text-anchor="middle" fill="#fff"
@@ -95,23 +117,9 @@ function makeSvg(key, data) {
     <!-- 구분선 -->
     <line x1="24" y1="244" x2="${W-24}" y2="244" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
 
-    <!-- 핵심 수치 2×2 -->
-    <rect x="16"        y="256" width="178" height="100" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="${W/2+6}"  y="256" width="178" height="100" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="16"        y="364" width="178" height="100" rx="14" fill="rgba(255,255,255,0.10)"/>
-    <rect x="${W/2+6}"  y="364" width="178" height="100" rx="14" fill="rgba(255,255,255,0.10)"/>
-
-    <text x="105"       y="296" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="14" font-family="sans-serif">🏠 아파트</text>
-    <text x="105"       y="338" text-anchor="middle" fill="#fff" font-size="34" font-weight="900" font-family="sans-serif">${aptP}%</text>
-    <text x="${W/2+95}" y="296" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="14" font-family="sans-serif">🎓 대졸이상</text>
-    <text x="${W/2+95}" y="338" text-anchor="middle" fill="#fff" font-size="34" font-weight="900" font-family="sans-serif">${eduP}%</text>
-    <text x="105"       y="404" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="14" font-family="sans-serif">💍 배우자</text>
-    <text x="105"       y="446" text-anchor="middle" fill="#fff" font-size="34" font-weight="900" font-family="sans-serif">${marP}%</text>
-    <text x="${W/2+95}" y="404" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="14" font-family="sans-serif">📋 무직</text>
-    <text x="${W/2+95}" y="446" text-anchor="middle" fill="#fff" font-size="34" font-weight="900" font-family="sans-serif">${uneP}%</text>
-
-    <!-- 바차트 -->
+    <!-- 가로 바차트 (4개 비율 지표) -->
     ${barsSvg}
+    ${incomeSvg}
 
     <!-- 워터마크 -->
     <text x="${W/2}" y="${H-14}" text-anchor="middle" fill="rgba(255,255,255,0.45)"
@@ -120,13 +128,16 @@ function makeSvg(key, data) {
 }
 
 async function generateCard(key, data) {
-  const src = path.join(CARDS_DIR, `${key}.jpg`);
   const out = path.join(MOBILE_DIR, `${key}.jpg`);
-  if (!fs.existsSync(src)) return false;
+  const parts = key.split('_');
+  const region = parts[0];
+  const age = parseInt(parts[2]) || 30;
+  const bgFile = getBg(region, age);
+  const bgPath = path.join(BG_DIR, bgFile);
 
   const svgBuf = Buffer.from(makeSvg(key, data));
 
-  await sharp(src)
+  await sharp(bgPath)
     .resize(W, H, { fit:'cover', position:'centre' })
     .composite([{ input: svgBuf, top:0, left:0 }])
     .jpeg({ quality:90 })

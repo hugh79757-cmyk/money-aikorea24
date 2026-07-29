@@ -103,22 +103,28 @@ function makeSvgOverlay(key, data) {
     { label:'무직',        value:uneP, color:'#ef4444' },
   ];
 
-  if (incomeVal && topPct) {
-    bars.push({ label:'월 소득', value:topPct, color:'#D97706', suffix:incomeVal.toLocaleString() + '만원' });
-  }
-
   const bX = 28, bW = W - 56, bH = 16;
-  const startY = 380, gap = 44;
+  const startY = 370, gap = 36;
 
   const barsSvg = bars.map((b, i) => {
     const y = startY + i * gap;
     const fw = Math.round((b.value / 100) * bW);
     return `
       <text x="${bX}" y="${y}" fill="#fff" font-size="18" font-weight="700" font-family="sans-serif">${b.label}</text>
-      <text x="${W-bX}" y="${y}" text-anchor="end" fill="${b.color}" font-size="18" font-weight="900" font-family="sans-serif">${b.suffix || b.value + '%'}</text>
+      <text x="${W-bX}" y="${y}" text-anchor="end" fill="${b.color}" font-size="18" font-weight="900" font-family="sans-serif">${b.value + '%'}</text>
       <rect x="${bX}" y="${y+6}" width="${bW}" height="${bH}" rx="8" fill="rgba(255,255,255,0.18)"/>
       <rect x="${bX}" y="${y+6}" width="${fw}" height="${bH}" rx="8" fill="${b.color}"/>`;
   }).join('');
+
+  // Income highlight — standalone, visually distinct from ratio bars
+  let incomeSvg = '';
+  if (incomeVal && topPct) {
+    const secY = startY + bars.length * gap + 12; // = 370 + 144 + 12 = 526
+    incomeSvg = `
+    <line x1="${bX}" y1="${secY - 8}" x2="${W-bX}" y2="${secY - 8}" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+    <text x="${W/2}" y="${secY + 22}" text-anchor="middle" fill="#D97706" font-size="28" font-weight="900" font-family="sans-serif">상위 ${topPct}%</text>
+    <text x="${W/2}" y="${secY + 44}" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="13" font-family="sans-serif">월소득 약 ${incomeVal.toLocaleString()}만원 · 전체 취업자 기준</text>`;
+  }
 
   return `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -140,6 +146,7 @@ function makeSvgOverlay(key, data) {
     <rect x="${bX-4}" y="328" width="${typeLabel.length * 18 + 24}" height="32" rx="16" fill="rgba(255,255,255,0.18)"/>
     <text x="${bX + 8}" y="350" fill="#fff" font-size="17" font-weight="700" font-family="sans-serif">${typeLabel}</text>
     ${barsSvg}
+    ${incomeSvg}
     <text x="${W/2}" y="${H-12}" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="12" font-family="sans-serif">persona.aikorea24.kr/my-persona</text>
   </svg>`;
 }

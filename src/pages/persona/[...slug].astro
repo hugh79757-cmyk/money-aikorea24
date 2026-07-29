@@ -247,7 +247,7 @@ const _decadeAgeStr = isDecade ? ageRaw :
 const decadeSlug = `${region}-${sex}-${_decadeAgeStr}`;
 const canonicalUrl = isDecade ? pageUrl : `${SITE_URL}/persona/${decadeSlug}/`;
 const robotsContent = isDecade ? 'index,follow' : 'noindex,follow';
-const ogImg    = `${SITE_URL}${cardUrl}`;
+const ogImg    = `https://cards.persona.aikorea24.kr/${encodeURIComponent(key)}.jpg?v=2`;
 const ogImgDynamic = `https://cards.persona.aikorea24.kr/${encodeURIComponent(key)}.jpg?v=2`;
 const title    = `${dr} ${ageGroup} ${sex} · ${pType.name} | 한국인 페르소나`;
 const dcDesc = decisionCardData

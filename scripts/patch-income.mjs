@@ -24,31 +24,13 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { calcTopPct } from '../src/lib/income-percentile.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATS_PATH = resolve(__dirname, '../public/persona-stats.json');
 const WAGE_PATH  = resolve(__dirname, '../src/data/wage-table.json');
 
 const wageTable = JSON.parse(readFileSync(WAGE_PATH, 'utf8'));
-
-// ── 로그정규 누적분포함수(CDF) 근사 ──────────────────────────────
-function erf(x) {
-  const t = 1 / (1 + 0.3275911 * Math.abs(x));
-  const poly = t * (0.254829592 + t * (-0.284496736 + t * (1.421413741 + t * (-1.453152027 + t * 1.061405429))));
-  const result = 1 - poly * Math.exp(-x * x);
-  return x >= 0 ? result : -result;
-}
-function normCDF(z) { return 0.5 * (1 + erf(z / Math.SQRT2)); }
-
-const SIG         = 0.72;
-const GLOBAL_MED  = 288;
-
-function calcTopPct(income) {
-  if (!income || income <= 0) return null;
-  const z      = (Math.log(income) - Math.log(GLOBAL_MED)) / SIG;
-  const topPct = (1 - normCDF(z)) * 100;
-  return Math.round(topPct * 10) / 10;
-}
 
 // ── wage-table.json에서 regionFactor 읽기 ────────────────────────
 const REGION_MULT = wageTable.regionFactor;

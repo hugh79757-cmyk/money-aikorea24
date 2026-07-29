@@ -395,6 +395,7 @@ function getSummary(b: any): string {
               data-name={(b.name   || '').toLowerCase()}
               data-org= {(b.org   || '').toLowerCase()}
               data-age-range={(b.age_range ? b.age_range.join(',') : '')}
+              data-age-source={(b.age_source || '')}
               data-regions={(b.regions ? b.regions.join(',') : '')}
               data-target={(b.target || '').toLowerCase()}
             >
@@ -441,15 +442,11 @@ function getSummary(b: any): string {
       /* ── URL 파라미터 기반 필터링 ── */
       let urlAge = null;
       let urlRegion = null;
-      let urlSex = null;
-      let urlIncome = null;
 
       function initFromUrl() {
         var params = new URLSearchParams(location.search);
         urlAge = params.get('age');
         urlRegion = params.get('region');
-        urlSex = params.get('sex');
-        urlIncome = params.get('income');
 
         if (urlAge || urlRegion) {
           document.querySelectorAll('.tab').forEach(function(x) { x.classList.remove('active'); });

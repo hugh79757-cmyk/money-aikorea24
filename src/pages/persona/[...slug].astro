@@ -214,7 +214,6 @@ const pType = detectType();
 /* 혜택 매칭 */
 const matchedBenefits = getBenefitMatches(
   { age: ageNum || (ageRaw === '20대' ? 25 : ageRaw === '30대' ? 35 : ageRaw === '40대' ? 45 : ageRaw === '50대' ? 55 : ageRaw === '60대' ? 65 : 75),
-    sex: sex === '남자' ? 'male' : 'female',
     region: dr,
     category: pType.name },
   benefits,
@@ -638,7 +637,7 @@ const jsonLd = JSON.stringify({
     )}
     {incomeVal !== null && (
       <div class="income-benefit-link-wrap">
-        <a href={`/benefits?income=${incomeVal}&age=${ageNum}&region=${encodeURIComponent(dr)}&sex=${sex}`} class="income-benefit-link">
+        <a href={`/benefits?age=${ageNum}&region=${encodeURIComponent(dr)}`} class="income-benefit-link">
           내 소득에 맞는 지원금 찾기 →
         </a>
       </div>
@@ -871,7 +870,7 @@ const jsonLd = JSON.stringify({
 
     <!-- 혜택 매칭 섹션 -->
     {matchedBenefits.length > 0 && (
-      <BenefitCards benefits={matchedBenefits} region={dr} ageGroup={ageGroup} sex={sex} total={s.total} />
+      <BenefitCards benefits={matchedBenefits} region={dr} ageGroup={ageGroup} total={s.total} />
     )}
 
     {matchedWelfares.length > 0 && (

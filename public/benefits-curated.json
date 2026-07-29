@@ -29,7 +29,8 @@
     "amount_notes": "월 70만원 한도 납입 시 정부기여금 월 최대 6만원 + 비과세 혜택. 만기 시 기여금+운용수익 수령",
     "amount_source_url": "https://www.kinfa.or.kr",
     "amount_verified_date": "2025-01-01",
-    "amount_year": 2025
+    "amount_year": 2025,
+    "age_source": "original"
   },
   {
     "id": "curated_youth_savings",
@@ -52,7 +53,8 @@
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "original"
   },
   {
     "id": "curated_youth_monthly_rent",
@@ -84,7 +86,8 @@
     "amount_notes": "월세 60만원 이하, 월 최대 20만원, 최대 12개월 지원. 소득·재산 기준 있음",
     "amount_source_url": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00005590",
     "amount_verified_date": "2025-01-01",
-    "amount_year": 2025
+    "amount_year": 2025,
+    "age_source": "original"
   },
   {
     "id": "curated_kpass",
@@ -116,7 +119,8 @@
     "amount_notes": "월 15회 이상 대중교통 이용 시 지출액의 20~53% 환급. 청년(19~34세) 30% 추가 할인",
     "amount_source_url": "https://www.kpass.go.kr",
     "amount_verified_date": "2025-01-01",
-    "amount_year": 2025
+    "amount_year": 2025,
+    "age_source": "original"
   },
   {
     "id": "curated_tomorrow_learning",
@@ -133,7 +137,7 @@
     "category": "general",
     "age_range": [
       15,
-      75
+      99
     ],
     "regions": [
       "전국"
@@ -148,7 +152,8 @@
     "amount_notes": "5년간 최대 500만원(직업능력개발훈련). 일부 과정은 최대 300만원",
     "amount_source_url": "https://www.hrd.go.kr",
     "amount_verified_date": "2025-01-01",
-    "amount_year": 2025
+    "amount_year": 2025,
+    "age_source": "original"
   },
   {
     "id": "curated_youth_employment",
@@ -171,7 +176,8 @@
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "original"
   },
   {
     "id": "curated_eitc",
@@ -203,7 +209,8 @@
     "amount_notes": "단독가구 최대 165만원, 홑벌이 285만원, 맞벌이 330만원",
     "amount_source_url": "https://www.hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index.xml",
     "amount_verified_date": "2025-03-01",
-    "amount_year": 2025
+    "amount_year": 2025,
+    "age_source": "original"
   },
   {
     "id": "curated_child_tax_credit",
@@ -220,7 +227,7 @@
     "category": "child",
     "age_range": [
       18,
-      60
+      99
     ],
     "regions": [
       "전국"
@@ -235,7 +242,8 @@
     "amount_notes": "부양자녀(만 18세 미만) 1인당 최대 100만원. 소득·재산 기준 충족 시",
     "amount_source_url": "https://www.hometax.go.kr/websquare/websquare.html?w2xPath=/ui/pp/index.xml",
     "amount_verified_date": "2025-03-01",
-    "amount_year": 2025
+    "amount_year": 2025,
+    "age_source": "original"
   },
   {
     "id": "curated_irp",
@@ -252,13 +260,14 @@
     "category": "general",
     "age_range": [
       19,
-      65
+      99
     ],
     "regions": [
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "original"
   },
   {
     "id": "curated_isa",
@@ -281,7 +290,8 @@
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "original"
   },
   {
     "id": "curated_nolan_umbrella",
@@ -298,13 +308,14 @@
     "category": "business",
     "age_range": [
       19,
-      75
+      99
     ],
     "regions": [
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "original"
   },
   {
     "id": "curated_parenting_pay",
@@ -336,7 +347,8 @@
     "amount_notes": "만 0세 월 100만원, 만 1세 월 50만원 지급",
     "amount_source_url": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00007654",
     "amount_verified_date": "2025-01-01",
-    "amount_year": 2025
+    "amount_year": 2025,
+    "age_source": "estimated"
   },
   {
     "id": "curated_child_allowance",
@@ -368,7 +380,8 @@
     "amount_notes": "아동 1인당 월 10만원. 만 8세 미만 아동 대상. 소득·재산 무관",
     "amount_source_url": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00007570",
     "amount_verified_date": "2025-01-01",
-    "amount_year": 2025
+    "amount_year": 2025,
+    "age_source": "estimated"
   },
   {
     "id": "curated_first_meeting",
@@ -391,7 +404,8 @@
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "estimated"
   },
   {
     "id": "curated_maternity_medical",
@@ -414,7 +428,8 @@
       "전국"
     ],
     "sex": "female",
-    "_curated": true
+    "_curated": true,
+    "age_source": "estimated"
   },
   {
     "id": "curated_basic_pension",
@@ -446,7 +461,8 @@
     "amount_notes": "만 65세 이상, 소득인정액 하위 70% 이하. 단독가구 최대 월 334,810원(2026년 기준). 소득·재산에 따라 차등",
     "amount_source_url": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00005593",
     "amount_verified_date": "2026-01-01",
-    "amount_year": 2026
+    "amount_year": 2026,
+    "age_source": "original"
   },
   {
     "id": "curated_elderly_job",
@@ -469,7 +485,8 @@
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "original"
   },
   {
     "id": "curated_ltci",
@@ -492,7 +509,8 @@
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "original"
   },
   {
     "id": "curated_energy_voucher",
@@ -515,7 +533,8 @@
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "original"
   },
   {
     "id": "curated_culture_nuri",
@@ -538,7 +557,8 @@
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "original"
   },
   {
     "id": "curated_dental_senior",
@@ -561,7 +581,8 @@
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "original"
   },
   {
     "id": "curated_single_parent",
@@ -578,13 +599,14 @@
     "category": "welfare",
     "age_range": [
       18,
-      55
+      65
     ],
     "regions": [
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "original"
   },
   {
     "id": "curated_emergency_welfare",
@@ -607,7 +629,8 @@
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "original"
   },
   {
     "id": "curated_lifelong_edu",
@@ -630,7 +653,8 @@
       "전국"
     ],
     "sex": "any",
-    "_curated": true
+    "_curated": true,
+    "age_source": "original"
   },
   {
     "id": "curated_housing_support",
@@ -646,7 +670,8 @@
     "updated": "2025-01-01",
     "category": "housing",
     "age_range": [
-      "전연령"
+      0,
+      99
     ],
     "regions": [
       "전국"
@@ -659,6 +684,7 @@
     "amount_notes": "서울 1인가구 기준임대료 월 391,000원. 지역·가구원수·소득에 따라 차등 지급",
     "amount_source_url": "https://www.bokjiro.go.kr/ssis-tbu/twataa/wlfareInfo/moveTWAT52011M.do?wlfareInfoId=WLF00003201",
     "amount_verified_date": "2025-01-01",
-    "amount_year": 2025
+    "amount_year": 2025,
+    "age_source": "original"
   }
 ]

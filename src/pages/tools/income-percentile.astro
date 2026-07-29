@@ -1,0 +1,394 @@
+---
+// src/pages/tools/income-percentile.astro
+// 소득 백분위 계산기 — calcTopPct() 재사용
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_URL } from '../../consts';
+
+const title       = '내 소득 백분위 계산기 | 한국인 페르소나';
+const description = '내 연봉 또는 월소득을 입력하면 전국 취업자 기준 상위 몇 %인지 알려드립니다. 700만 한국인 데이터 기반 통계적 추정.';
+const canonical   = `${SITE_URL}/tools/income-percentile/`;
+const ogImage     = `${SITE_URL}/og-default.png`;
+---
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <BaseHead {title} {description} canonical={canonical} image={ogImage} />
+  <style>
+    /* ── 페이지 레이아웃 ── */
+    .calc-page {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 3rem 1rem 4rem;
+    }
+    .calc-page h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      text-align: center;
+      line-height: 1.4;
+      margin-bottom: .5rem;
+    }
+    .calc-page .sub {
+      text-align: center;
+      color: var(--color-muted);
+      font-size: .95rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    /* ── 계산기 카드 ── */
+    .calc-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-2xl);
+      padding: 2rem 1.5rem;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── 입력 영역 ── */
+    .input-group { margin-bottom: 1.25rem; }
+    .input-group label {
+      display: block;
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: .4rem;
+    }
+    .toggle-row {
+      display: flex;
+      gap: .5rem;
+      margin-bottom: 1rem;
+    }
+    .toggle-btn {
+      flex: 1;
+      padding: .75rem 1rem;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-surface);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--color-muted);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-align: center;
+    }
+    .toggle-btn:hover { border-color: var(--color-accent-light); }
+    .toggle-btn.active {
+      border-color: var(--color-accent);
+      background: rgba(217,119,6,.08);
+      color: var(--color-accent);
+    }
+    .amount-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .amount-input {
+      flex: 1;
+      padding: .85rem 1rem;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--color-text);
+      background: var(--color-surface);
+      outline: none;
+      transition: border-color var(--transition-fast);
+      -moz-appearance: textfield;
+    }
+    .amount-input::-webkit-outer-spin-button,
+    .amount-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .amount-input:focus { border-color: var(--color-accent); box-shadow: var(--focus-ring-accent); }
+    .amount-input.error { border-color: var(--color-error); }
+    .amount-unit {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-muted);
+      white-space: nowrap;
+    }
+    .calc-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #2E7D32, #43A047);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-lg);
+      font-size: 1.1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
+      box-shadow: 0 4px 12px rgba(46,125,50,.3);
+    }
+    .calc-btn:hover:not(:disabled) { transform: translateY(-1px); }
+    .calc-btn:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* ── 에러 / 경고 ── */
+    .input-error {
+      font-size: .82rem;
+      color: var(--color-error);
+      margin-top: .35rem;
+      font-weight: 600;
+      display: none;
+    }
+    .input-error.visible { display: block; }
+    .input-warn {
+      font-size: .82rem;
+      color: var(--color-warning);
+      margin-top: .35rem;
+      font-weight: 600;
+      display: none;
+    }
+    .input-warn.visible { display: block; }
+
+    /* ── 결과 영역 (초기 hidden) ── */
+    .result-section {
+      display: none;
+      margin-top: 1.5rem;
+    }
+    .result-section.visible { display: block; }
+
+    /* ── 소득 백분위 게이지 (기존 CSS 재사용) ── */
+    .income-rank-card { margin-bottom: 1.5rem; }
+    .income-rank-wrap { padding: .5rem 0; }
+    .income-rank-numbers { text-align: center; margin-bottom: 1.25rem; }
+    .income-big { font-size: 2.5rem; font-weight: 900; color: #2E7D32; line-height: 1; }
+    .income-unit { font-size: 1.1rem; font-weight: 500; color: #4CAF50; margin-left: 2px; }
+    .income-sub { font-size: .8rem; color: var(--color-muted); margin-top: .3rem; }
+    .rank-gauge-wrap { margin: 0 .5rem 1rem; }
+    .rank-gauge-bar {
+      position: relative;
+      height: 12px;
+      background: var(--color-border);
+      border-radius: 6px;
+      overflow: visible;
+      margin-bottom: 6px;
+    }
+    .rank-gauge-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #81C784, #2E7D32);
+      border-radius: 6px;
+      transition: width .6s ease;
+    }
+    .rank-gauge-marker {
+      position: absolute;
+      top: -4px;
+      transform: translateX(-50%);
+      transition: left .6s ease;
+    }
+    .rank-marker-dot {
+      width: 20px;
+      height: 20px;
+      background: #D97706;
+      border: 3px solid var(--color-surface);
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,.2);
+    }
+    .rank-marker-label {
+      font-size: .7rem;
+      font-weight: 700;
+      color: #D97706;
+      text-align: center;
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+    .rank-gauge-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: .75rem;
+      color: var(--color-muted);
+    }
+    .rank-result { text-align: center; margin: .75rem 0 .5rem; font-size: 1.05rem; }
+    .rank-highlight { font-size: 1.4rem; font-weight: 900; color: #D97706; }
+    .rank-desc { color: var(--color-text-secondary); font-size: .95rem; }
+    .rank-note { font-size: .72rem; color: var(--color-muted); text-align: center; line-height: 1.5; margin-top: .5rem; }
+
+    /* ── 정직성 문구 (눈에 띄게) ── */
+    .disclaimer-box {
+      background: var(--color-warning-bg);
+      border: 1px solid #fde68a;
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      font-size: .82rem;
+      color: var(--color-warning);
+      line-height: 1.7;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* ── 공유 버튼 ── */
+    .share-row {
+      display: flex;
+      gap: .5rem;
+      margin-top: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .share-btn {
+      padding: .6rem 1.2rem;
+      border-radius: var(--radius-full);
+      font-size: .85rem;
+      font-weight: 700;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-text);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+    }
+    .share-btn:hover { border-color: var(--color-accent); background: rgba(217,119,6,.06); }
+    .share-toast {
+      display: none;
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-primary);
+      color: #fff;
+      padding: .75rem 1.5rem;
+      border-radius: var(--radius-full);
+      font-size: .88rem;
+      font-weight: 600;
+      z-index: var(--z-tooltip);
+      box-shadow: var(--shadow-lg);
+    }
+    .share-toast.visible { display: block; }
+
+    /* ── 다크모드 게이지 보정 ── */
+    [data-theme="dark"] .rank-gauge-bar { background: #374151; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) .rank-gauge-bar { background: #374151; }
+      :root:not([data-theme="light"]) .disclaimer-box {
+        background: rgba(251,191,36,.1);
+        border-color: rgba(251,191,36,.2);
+      }
+    }
+  </style>
+</head>
+<body>
+  <Header />
+
+  <main class="calc-page">
+    <h1>💰 내 소득 백분위 계산기</h1>
+    <p class="sub">
+      내 연봉 또는 월소득이 전체 취업자 중<br />어느 위치에 있는지 확인해보세요.
+    </p>
+
+    <div class="calc-card">
+      <!-- 소득 유형 토글 -->
+      <div class="input-group">
+        <label>소득 유형</label>
+        <div class="toggle-row" id="mode-toggle">
+          <button class="toggle-btn" data-mode="monthly" type="button">월소득</button>
+          <button class="toggle-btn active" data-mode="annual" type="button">연봉</button>
+        </div>
+      </div>
+
+      <!-- 금액 입력 -->
+      <div class="input-group">
+        <label for="income-input">금액</label>
+        <div class="amount-input-wrap">
+          <input
+            id="income-input"
+            class="amount-input"
+            type="number"
+            inputmode="numeric"
+            placeholder="5000"
+            autofocus
+          />
+          <span class="amount-unit" id="amount-unit">만원</span>
+        </div>
+        <div class="input-error" id="input-error">올바른 금액을 입력해주세요</div>
+        <div class="input-warn" id="input-warn">매우 높은 소득입니다. 통계적 추정의 정확도가 낮아질 수 있습니다.</div>
+      </div>
+
+      <!-- 계산 버튼 -->
+      <button class="calc-btn" id="calc-btn" disabled>계산하기</button>
+
+      <!-- 결과 -->
+      <div class="result-section" id="result-section">
+        <div class="income-rank-card">
+          <div class="income-rank-wrap">
+            <div class="income-rank-numbers">
+              <div class="income-big" id="result-income">390<span class="income-unit">만원</span></div>
+              <div class="income-sub">추정 월소득 (취업자 기준)</div>
+            </div>
+            <div class="rank-gauge-wrap">
+              <div class="rank-gauge-bar">
+                <div class="rank-gauge-fill" id="gauge-fill" style="width:0%"></div>
+                <div class="rank-gauge-marker" id="gauge-marker" style="left:0%">
+                  <div class="rank-marker-dot"></div>
+                  <div class="rank-marker-label">여기</div>
+                </div>
+              </div>
+              <div class="rank-gauge-labels">
+                <span>하위</span>
+                <span>상위</span>
+              </div>
+            </div>
+            <div class="rank-result">
+              <span class="rank-highlight" id="result-percentile">상위 33.7%</span>
+              <span class="rank-desc"> — 전국 취업자 중</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 정직성 문구 (눈에 띄게) -->
+        <div class="disclaimer-box">
+          ⚠️ 전국 취업자 기준 <strong>통계적 추정치</strong>입니다.<br/>
+          개인의 정확한 소득 순위가 아닌, 로그정규 분포 모델 기반 추정값입니다.<br/>
+          (2025 KOSIS · 통계청 근로소득 분포 기반)
+        </div>
+
+        <!-- 공유 -->
+        <div class="share-row">
+          <button class="share-btn" id="share-url-btn">🔗 링크 복사</button>
+          <button class="share-btn" id="share-kakao-btn">💬 카카오톡</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 안내 문구 -->
+    <p style="font-size:.78rem;color:var(--color-muted);text-align:center;line-height:1.7;">
+      이 계산기는 한국인 페르소나(<a href="/my-persona" style="color:var(--color-accent);font-weight:600;">persona.aikorea24.kr</a>)의<br/>
+      소득 백분위 추정 로직(<code style="font-size:.7rem;background:var(--color-border);padding:1px 5px;border-radius:3px;">calcTopPct</code>)을 그대로 재사용합니다.
+    </p>
+  </main>
+
+  <Footer />
+
+  <div class="share-toast" id="share-toast">링크가 복사되었습니다</div>
+
+  <script src="../../scripts/income-page.js"></script>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "소득 백분위 계산기",
+    "operatingSystem": "Web",
+    "applicationCategory": "FinanceApplication",
+    "description": "내 연봉 또는 월소득을 입력하면 전국 취업자 기준 상위 몇 %인지 알려드립니다.",
+    "url": "https://persona.aikorea24.kr/tools/income-percentile/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "AI코리아24 머니",
+      "url": "https://persona.aikorea24.kr"
+    },
+    "inLanguage": "ko-KR"
+  }
+  </script>
+</body>
+</html>

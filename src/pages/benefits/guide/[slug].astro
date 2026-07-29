@@ -1,0 +1,376 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import { SITE_URL } from '../../../consts';
+import curatedData from '../../../../public/benefits-curated.json';
+
+export async function getStaticPaths() {
+  const slugToId: Record<string, string> = {
+    'youth-monthly-rent':      'curated_youth_monthly_rent',
+    'k-pass':                  'curated_kpass',
+    'tomorrow-learning-card':  'curated_tomorrow_learning',
+    'earned-income-tax-credit':'curated_eitc',
+    'child-tax-credit':        'curated_child_tax_credit',
+    'parenting-allowance':     'curated_parenting_pay',
+    'child-allowance':         'curated_child_allowance',
+    'basic-pension':           'curated_basic_pension',
+    'housing-benefit':         'curated_housing_support',
+  };
+  const names: Record<string, string> = {
+    'curated_youth_monthly_rent': '청년월세-한시-특별지원',
+    'curated_kpass': 'K-패스',
+    'curated_tomorrow_learning': '국민내일배움카드',
+    'curated_eitc': '근로장려금',
+    'curated_child_tax_credit': '자녀장려금',
+    'curated_parenting_pay': '부모급여',
+    'curated_child_allowance': '아동수당',
+    'curated_basic_pension': '기초연금',
+    'curated_housing_support': '주거급여',
+  };
+  return Object.entries(slugToId).map(([slug, id]) => ({
+    params: { slug },
+    props: { record: curatedData.find((r: any) => r.id === id)!, nameSlug: names[id], slugSlug: slug },
+  }));
+}
+
+const { record, nameSlug, slugSlug } = Astro.props as { record: any; nameSlug: string; slugSlug: string };
+const id = record.id;
+const slug = slugSlug;
+const canonical = `${SITE_URL}/benefits/guide/${slug}/`;
+
+/* ── 안내 문장 생성 헬퍼 ── */
+function eligibilityBullets(target: string): string[] {
+  if (!target) return ['별도 기준 없음'];
+  return target.split(/[•·◦○\n\r]+/).map((s: string) => s.trim()).filter(Boolean);
+}
+
+const hasAmount = record.amount_monthly != null || record.amount_annual != null;
+
+function amountSection(): string[] {
+  const lines: string[] = [];
+  if (!hasAmount) return [];
+  let display = record.amount_display || '';
+  // 연도 정보: amount_year가 있고 display에 이미 년도가 없으면 추가
+  const year = record.amount_year;
+  if (year && !/\b\d{4}\s*년/.test(display)) {
+    display = `${display} (${year}년 기준)`;
+  }
+  lines.push(display);
+
+  const parts: string[] = [];
+  if (record.amount_monthly != null) parts.push(`월 ${record.amount_monthly.toLocaleString()}원`);
+  if (record.amount_annual != null) parts.push(`연 ${record.amount_annual.toLocaleString()}원`);
+  if (parts.length) lines.push(`(확정 금액: ${parts.join(' · ')})`);
+
+  if (record.amount_min_monthly != null || record.amount_max_monthly != null ||
+      record.amount_min_annual != null || record.amount_max_annual != null) {
+    const range: string[] = [];
+    if (record.amount_min_monthly != null && record.amount_max_monthly != null)
+      range.push(`월 ${record.amount_min_monthly.toLocaleString()}~${record.amount_max_monthly.toLocaleString()}원`);
+    if (record.amount_min_annual != null && record.amount_max_annual != null)
+      range.push(`연 ${record.amount_min_annual.toLocaleString()}~${record.amount_max_annual.toLocaleString()}원`);
+    if (range.length) lines.push(`※ 조건별 차등 지급: ${range.join(', ')}`);
+  }
+  if (record.amount_notes) lines.push(record.amount_notes);
+  return lines;
+}
+
+function methodSteps(method: string): string[] {
+  if (!method) return ['주관 기관 공지사항 확인'];
+  // 줄바꿈 분리 (공식 multi-step 지침)
+  if (method.includes('\n')) {
+    return method.split('\n').map((s: string) => s.trim()).filter(Boolean);
+  }
+  // 불릿 문자 분리
+  if (/[•·◦○]/.test(method)) {
+    return method.split(/[•·◦○]+/).map((s: string) => s.trim()).filter(Boolean);
+  }
+  // 단일 문장 (URL 내 .을 문장 분리자로 오인하지 않도록 방지)
+  return [method.trim()];
+}
+
+/* ── FAQ ── */
+function buildFAQ(): { q: string; a: string }[] {
+  const faqs: { q: string; a: string }[] = [];
+  const name = record.name;
+  const org = record.org || '주관 기관';
+
+  // Q1: 지원 대상 관련
+  faqs.push({
+    q: `${name}의 신청 자격은 어떻게 되나요?`,
+    a: `${record.target || '지원 대상은 주관 기관의 공고를 확인해 주세요.'} 자세한 조건은 공식 홈페이지에서 확인하실 수 있습니다.`,
+  });
+
+  // Q2: 금액/지원 내용 관련
+  if (hasAmount) {
+    const amt = record.amount_display || (record.amount_monthly ? `월 ${record.amount_monthly.toLocaleString()}원` : '');
+    faqs.push({
+      q: `${name}는 얼마나 지원받을 수 있나요?`,
+      a: amt ? `${amt} 수준으로 지원됩니다.` : `지원 금액은 개인별 조건에 따라 산정됩니다.` +
+        (record.amount_notes ? ` ${record.amount_notes}` : '') +
+        ` 정확한 금액은 ${org} 공식 채널에서 확인하세요.`,
+    });
+  } else {
+    faqs.push({
+      q: `${name}의 지원 내용은 무엇인가요?`,
+      a: record.content || `해당 사업의 지원 내용은 ${org} 공고를 참고해 주세요.`,
+    });
+  }
+
+  // Q3: 신청 관련
+  if (record.deadline) {
+    faqs.push({
+      q: `${name} 신청 기한이 언제까지인가요?`,
+      a: `${record.deadline}입니다.` +
+        (record.url ? ` 신청은 ${org} 홈페이지(${record.url})에서 가능합니다.` : ''),
+    });
+  }
+
+  return faqs;
+}
+
+const faqs = buildFAQ();
+
+/* ── JSON-LD ── */
+const jsonLd: any[] = [];
+
+// GovernmentService or FinancialProduct
+const serviceSchema: any = {
+  '@context': 'https://schema.org',
+  '@type': 'GovernmentService',
+  name: `${record.name} 2026년 지원금 안내`,
+  description: `${record.purpose || record.content?.slice(0, 160) || ''} — 지원 대상, 예상 수령액, 신청 방법 종합 안내`,
+  provider: { '@type': 'GovernmentOrganization', name: record.org || '정부 기관' },
+  url: canonical,
+  areaServed: { '@type': 'Country', name: '대한민국' },
+};
+if (record.category === 'senior' && record.age_range?.[0] >= 60) {
+  serviceSchema.audience = { '@type': 'Audience', suggestedMaxAge: 99, suggestedMinAge: record.age_range[0] };
+}
+jsonLd.push(serviceSchema);
+
+// FAQPage
+if (faqs.length > 0) {
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  });
+}
+
+// BreadcrumbList
+jsonLd.push({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '지원금 혜택', item: `${SITE_URL}/benefits/` },
+    { '@type': 'ListItem', position: 2, name: record.name, item: canonical },
+  ],
+});
+
+const categoryLabels: Record<string, string> = {
+  youth: '청년', senior: '시니어', child: '아동·가족', welfare: '복지',
+  general: '일반', business: '사업·창업', housing: '주거',
+};
+
+const metaDesc = `${record.name} 2026년 지원 요건 · 예상 수령액 · 신청 방법 안내. ` +
+  `${record.purpose || ''} 대상 조건과 ${hasAmount ? '정확한 지원 금액' : '지원 내용'}을 확인하세요.`;
+const pageTitle = `${record.name} — 2026년 신청조건, 방법, 예상 수령액 | 한국인 페르소나`;
+---
+
+<html lang="ko">
+<head>
+  <BaseHead title={pageTitle} description={metaDesc} canonical={canonical} />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    .page-wrap { max-width: 780px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+    .breadcrumb { font-size: .82rem; color: var(--color-muted); margin-bottom: 1rem; display: flex; gap: .4rem; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--color-benefit); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { color: var(--color-placeholder); }
+
+    .page-header { margin-bottom: 1.5rem; }
+    .page-header h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; color: var(--color-primary); margin: 0 0 .4rem; line-height: 1.35; }
+    .page-header .cat-badge { display: inline-block; font-size: .78rem; font-weight: 700; padding: .2rem .7rem; border-radius: 99px; background: var(--color-bg); color: var(--color-muted); border: 1px solid var(--color-border); }
+    .page-header p { font-size: .95rem; color: var(--color-muted); margin: .5rem 0 0; line-height: 1.6; }
+
+    section { margin: 2.2rem 0; }
+    section h2 { font-size: 1.25rem; font-weight: 700; color: var(--color-primary); margin: 0 0 .8rem; padding-bottom: .4rem; border-bottom: 2px solid var(--color-border); }
+
+    .amount-box { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 1px solid #bbf7d0; border-radius: 14px; padding: 1.25rem 1.5rem; }
+    .amount-box p { margin: .3rem 0; font-size: .95rem; line-height: 1.6; }
+    .amount-box .amt-main { font-size: 1.3rem; font-weight: 800; color: #166534; }
+    .amount-box .amt-note { font-size: .82rem; color: #6b7280; }
+
+    .target-list { list-style: none; padding: 0; margin: 0; }
+    .target-list li { padding: .45rem 0 .45rem 1.2rem; position: relative; font-size: .92rem; line-height: 1.55; color: var(--color-text); }
+    .target-list li::before { content: '✓'; position: absolute; left: 0; color: var(--color-benefit); font-weight: 700; }
+
+    .method-list { list-style: none; padding: 0; margin: 0; counter-reset: step; }
+    .method-list li { counter-increment: step; padding: .5rem 0 .5rem 2.2rem; position: relative; font-size: .92rem; line-height: 1.55; color: var(--color-text); }
+    .method-list li::before { content: counter(step); position: absolute; left: 0; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--color-benefit); color: #fff; font-size: .78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    @media(max-width: 600px) { .info-grid { grid-template-columns: 1fr; } }
+    .info-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; padding: 1rem; }
+    .info-card .lbl { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--color-placeholder); margin-bottom: .3rem; }
+    .info-card .val { font-size: .92rem; color: var(--color-text); line-height: 1.5; }
+    .info-card .val a { color: var(--color-benefit); text-decoration: none; font-weight: 600; }
+    .info-card .val a:hover { text-decoration: underline; }
+
+    .faq-item { border: 1px solid var(--color-border); border-radius: 12px; margin-bottom: .6rem; overflow: hidden; }
+    .faq-q { width: 100%; padding: 1rem 1.2rem; background: var(--color-surface); border: none; cursor: pointer; font-size: .95rem; font-weight: 600; color: var(--color-text); text-align: left; font-family: inherit; display: flex; justify-content: space-between; align-items: center; transition: background .12s; }
+    .faq-q:hover { background: var(--color-surface-hover); }
+    .faq-q .icon { font-size: .8rem; transition: transform .2s; }
+    .faq-q[aria-expanded="true"] .icon { transform: rotate(180deg); }
+    .faq-a { padding: 0 1.2rem 1rem; font-size: .9rem; line-height: 1.6; color: var(--color-muted); display: none; }
+    .faq-a.open { display: block; }
+
+    .cta-box { text-align: center; background: linear-gradient(135deg, #6B4226, #9B6B46); border-radius: 16px; padding: 1.5rem; margin: 2rem 0; color: #fff; }
+    .cta-box h2 { font-size: 1.1rem; border: none; color: #fff; margin: 0 0 .5rem; }
+    .cta-box p { font-size: .88rem; opacity: .9; margin: 0 0 1rem; }
+    .cta-btn { display: inline-block; background: #FEE500; color: #3D3D3D; border-radius: 99px; padding: .65rem 1.8rem; font-size: .92rem; font-weight: 800; text-decoration: none; transition: opacity .12s; }
+    .cta-btn:hover { opacity: .85; }
+
+    /* dark mode */
+    [data-theme="dark"] .amount-box { background: rgba(74,222,128,.08); border-color: rgba(74,222,128,.2); }
+    [data-theme="dark"] .amount-box .amt-main { color: #4ade80; }
+    @media(prefers-color-scheme:dark) {
+      :root:not([data-theme="light"]) .amount-box { background: rgba(74,222,128,.08); border-color: rgba(74,222,128,.2); }
+      :root:not([data-theme="light"]) .amount-box .amt-main { color: #4ade80; }
+    }
+  </style>
+</head>
+<body>
+  <Header />
+  <main>
+    <div class="page-wrap">
+
+      <!-- breadcrumb -->
+      <nav class="breadcrumb" aria-label="현재 위치">
+        <a href="/benefits/">💰 지원금 혜택</a>
+        <span>›</span>
+        <span>{record.name}</span>
+      </nav>
+
+      <!-- header -->
+      <div class="page-header">
+        <h1>{record.name} — 2026년 신청조건, 방법, 예상 수령액</h1>
+        <span class="cat-badge">{categoryLabels[record.category] || record.category}</span>
+        <p>{record.purpose || record.content?.slice(0, 160) || ''}</p>
+      </div>
+
+      <!-- 지원 대상 -->
+      <section>
+        <h2>📋 지원 대상</h2>
+        <ul class="target-list">
+          {eligibilityBullets(record.target).map(b => <li>{b}</li>)}
+        </ul>
+      </section>
+
+      <!-- 예상 수령액 -->
+      {hasAmount && (
+        <section>
+          <h2>💰 예상 수령액</h2>
+          <div class="amount-box">
+            {amountSection().map(line => (
+              line.includes('확정 금액') || line.startsWith('※') || line.includes('월 ') || line.includes('연 ')
+                ? <p class="amt-note">{line}</p>
+                : <p class="amt-main">{line}</p>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- 신청 방법 -->
+      {record.method && (
+        <section>
+          <h2>📝 신청 방법</h2>
+          <ol class="method-list">
+            {methodSteps(record.method).map(s => <li>{s}</li>)}
+          </ol>
+        </section>
+      )}
+
+      <!-- 필요 서류 안내 -->
+      <section>
+        <h2>📎 필요 서류</h2>
+        <p style="font-size:.92rem;line-height:1.6;color:var(--color-muted)">
+          지원금 유형과 개인 조건에 따라 필요한 서류가 다릅니다. 일반적으로 신분증, 소득 증빙 서류, 재산 증빙 서류 등이 필요할 수 있습니다.
+          정확한 서류 목록은 <strong>{record.org || '주관 기관'}</strong> 공식 홈페이지 또는 관할 주민센터에서 확인해 주세요.
+        </p>
+      </section>
+
+      <!-- 기본 정보 -->
+      <section>
+        <h2>📌 기본 정보</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="lbl">주관 기관</div>
+            <div class="val">{record.org || '—'}</div>
+          </div>
+          <div class="info-card">
+            <div class="lbl">신청 기한</div>
+            <div class="val">{record.deadline || '별도 공고'}</div>
+          </div>
+          <div class="info-card">
+            <div class="lbl">지원 유형</div>
+            <div class="val">{record.type || '—'}</div>
+          </div>
+          <div class="info-card">
+            <div class="lbl">공식 사이트</div>
+            <div class="val">
+              {record.url
+                ? <a href={record.url} target="_blank" rel="nofollow noopener">{record.org || '바로가기'} →</a>
+                : <span>—</span>
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      {faqs.length > 0 && (
+        <section>
+          <h2>❓ 자주 묻는 질문</h2>
+          {faqs.map((faq, i) => (
+            <div class="faq-item">
+              <button class="faq-q" onclick="toggleFAQ(this)" aria-expanded="false">
+                <span>{faq.q}</span>
+                <span class="icon">▼</span>
+              </button>
+              <div class="faq-a" id={`faq-a-${i}`}>
+                <p>{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </section>
+      )}
+
+      <!-- 맞춤 혜택 찾기 CTA -->
+      <div class="cta-box">
+        <h2>🎯 나에게 맞는 지원금 찾기</h2>
+        <p>나이·지역 조건으로 나에게 맞는 정부 지원금과 혜택을 확인해 보세요.</p>
+        <a href="/benefits/" class="cta-btn">내 혜택 보기 →</a>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+
+  <script>
+    function toggleFAQ(btn) {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      const answer = btn.nextElementSibling;
+      answer.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

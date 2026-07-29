@@ -1,6 +1,5 @@
 export type PersonaInput = {
   age: number;
-  sex?: string;       // 'male' | 'female'
   region?: string;
   category?: string;
 };
@@ -20,13 +19,14 @@ export type Benefit = {
   category: string;
   age_range: number[];
   regions: string[];
-  sex?: string;       // 'male' | 'female' | 'any'
+  age_source?: string;   // 'original' | 'parsed_c1' | 'parsed_senior' | '' (empty = no age info)
   _curated?: boolean;
   _score?: number;
 };
 
 export type BenefitMatch = Benefit & {
   matchStatus: 'eligible_likely' | 'needs_check' | 'not_eligible';
+  agePrecision: 'exact' | 'fallback' | 'none';
   score: number;
   reasons: string[];
   warnings: string[];
@@ -58,28 +58,31 @@ export function matchBenefit(persona: PersonaInput, benefit: Benefit): BenefitMa
   const warnings: string[] = [];
 
   // ── 1. 나이 하드 필터 ──────────────────────────────
+  let agePrecision: 'exact' | 'fallback' | 'none' = 'none';
   if (benefit.age_range && benefit.age_range.length === 2) {
     const [min, max] = benefit.age_range;
     if (persona.age < min || persona.age > max) {
-      return { ...benefit, matchStatus: 'not_eligible', score: 0,
+      return { ...benefit, matchStatus: 'not_eligible', agePrecision: 'none', score: 0,
         reasons: [`연령 조건 불일치 (만 ${min}~${max}세)`], warnings: [] };
     }
-    score += 20;
-    reasons.push(`연령 조건 해당 (만 ${min}~${max}세)`);
-  }
-
-  // ── 2. 성별 하드 필터 ──────────────────────────────
-  const bSex = benefit.sex || 'any';
-  if (bSex !== 'any' && persona.sex && persona.sex !== 'any') {
-    if (bSex !== persona.sex) {
-      return { ...benefit, matchStatus: 'not_eligible', score: 0,
-        reasons: ['성별 조건 불일치'], warnings: [] };
+    // Determine precision from age_source
+    if (benefit.age_source && ['original', 'parsed_c1', 'parsed_senior'].includes(benefit.age_source)) {
+      agePrecision = 'exact';
+      reasons.push(`연령 조건 해당 (만 ${min}~${max}세)`);
+    } else {
+      // age_range exists but source is unknown — treat as fallback
+      agePrecision = 'fallback';
+      warnings.push('연령 조건은 상세 페이지에서 확인하세요');
+      reasons.push(`연령 조건 추정 (만 ${min}~${max}세)`);
     }
-    score += 10;
-    reasons.push('성별 조건 해당');
+    score += 20;
+  } else {
+    // No age_range at all — pure fallback
+    agePrecision = 'none';
+    warnings.push('연령 조건은 상세 페이지에서 확인하세요');
   }
 
-  // ── 3. 지역 필터 ──────────────────────────────────
+  // ── 2. 지역 필터 ──────────────────────────────────
   if (persona.region) {
     if (regionMatch(persona.region, benefit.regions)) {
       if (!benefit.regions.includes('전국')) {
@@ -87,18 +90,18 @@ export function matchBenefit(persona: PersonaInput, benefit: Benefit): BenefitMa
         reasons.push(`${persona.region} 지역 대상`);
       }
     } else {
-      return { ...benefit, matchStatus: 'not_eligible', score: 0,
+      return { ...benefit, matchStatus: 'not_eligible', agePrecision: 'none', score: 0,
         reasons: ['지역 조건 불일치'], warnings: [] };
     }
   }
 
-  // ── 4. 큐레이션 우선 가점 ─────────────────────────
+  // ── 3. 큐레이션 우선 가점 ─────────────────────────
   if (benefit._curated) {
     score += 25;
     reasons.push('검증된 주요 혜택');
   }
 
-  // ── 5. 카테고리 보너스 ────────────────────────────
+  // ── 4. 카테고리 보너스 ────────────────────────────
   const catBonus: Record<string, string[]> = {
     youth:    ['20대','30대','청년','대학','취업','창업'],
     senior:   ['60대','70대','시니어','노인','은퇴','어르신'],
@@ -112,25 +115,14 @@ export function matchBenefit(persona: PersonaInput, benefit: Benefit): BenefitMa
     score += 10;
   }
 
-  // ── 6. 소득/재산 경고 ─────────────────────────────
-  const checkText = (benefit.target || '') + (benefit.content || '');
-  if (checkText.includes('소득') || checkText.includes('중위')) {
-    warnings.push('소득 기준 확인 필요');
-    score -= 3;
-  }
-  if (checkText.includes('재산') || checkText.includes('자산')) {
-    warnings.push('재산 기준 확인 필요');
-    score -= 3;
-  }
-
-  // ── 7. url 없으면 경고 ────────────────────────────
+  // ── 5. url 없으면 경고 ────────────────────────────
   if (!benefit.url) {
     warnings.push('신청처 직접 확인 필요');
     score -= 5;
   }
 
   const matchStatus = warnings.length > 0 ? 'needs_check' : 'eligible_likely';
-  return { ...benefit, matchStatus, score, reasons, warnings };
+  return { ...benefit, matchStatus, agePrecision, score, reasons, warnings };
 }
 
 export function getBenefitMatches(

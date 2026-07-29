@@ -431,6 +431,11 @@ const jsonLd = JSON.stringify({
   .rank-note{font-size:.72rem;color:var(--color-muted);text-align:center;line-height:1.5;margin-top:.5rem}
   .job-wage-badge{font-size:.72rem;font-weight:600;color:#2E7D32;background:#E8F5E9;border-radius:6px;padding:2px 6px;white-space:nowrap}
 
+  /* ── 소득 백분위 다시 계산 링크 ── */
+  .income-recalc-wrap{text-align:center;margin:0 0 1.5rem 0}
+  .income-recalc-link{display:inline-flex;align-items:center;gap:.35rem;color:#2E7D32;font-weight:600;font-size:.9rem;text-decoration:none;border:1px solid #c8e6c9;border-radius:10px;padding:.5rem 1.2rem;transition:all .2s}
+  .income-recalc-link:hover{background:#e8f5e9;border-color:#a5d6a7}
+
   /* ── 소득 맞춤 지원금 링크 ── */
   .income-benefit-link-wrap{text-align:center;margin-bottom:1.5rem}
   .income-benefit-link{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,#2E7D32,#43A047);color:#fff;border-radius:14px;padding:.85rem 2rem;font-size:1rem;font-weight:700;text-decoration:none;transition:all .2s;box-shadow:0 4px 12px rgba(46,125,50,.3)}
@@ -633,6 +638,10 @@ const jsonLd = JSON.stringify({
             <div class="rank-note" style="color:#D97706;margin-top:.3rem">⚠️ 이 조건의 페르소나 데이터가 {s.total}명으로 적습니다. 직업·주거 분포는 참고용으로만 활용하세요. 소득 추정은 KOSIS 통계청 자료 기반입니다.</div>
           )}
         </div>
+      </div>
+      <!-- 소득 백분위 다시 계산 CTA -->
+      <div class="income-recalc-wrap">
+        <a href={`/tools/income-percentile/?monthly=${incomeVal}`} class="income-recalc-link">내 실제 연봉으로 다시 계산해보기 →</a>
       </div>
     )}
     {incomeVal !== null && (

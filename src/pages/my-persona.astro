@@ -137,6 +137,9 @@ import BaseHead from '../components/BaseHead.astro';
       .rec-grid { grid-template-columns: 1fr; }
       .share-secondary { grid-template-columns: 1fr 1fr 1fr; }
     }
+    .income-recalc-wrap{text-align:center;margin:0 0 1.5rem 0}
+    .income-recalc-link{display:inline-flex;align-items:center;gap:.35rem;color:#2E7D32;font-weight:600;font-size:.9rem;text-decoration:none;border:1px solid #c8e6c9;border-radius:10px;padding:.5rem 1.2rem;transition:all .2s}
+    .income-recalc-link:hover{background:#e8f5e9;border-color:#a5d6a7}
   </style>
 </head>
 <body>
@@ -279,6 +282,11 @@ import BaseHead from '../components/BaseHead.astro';
     <div class="vs-card" id="vs-card">
       <h3>⚖️ 나 vs 같은 조건 한국인 평균</h3>
       <div id="vs-items"></div>
+    </div>
+
+    <!-- 소득 백분위 다시 계산 CTA -->
+    <div class="income-recalc-wrap">
+      <a href="/tools/income-percentile/" class="income-recalc-link">내 실제 연봉으로 다시 계산해보기 →</a>
     </div>
 
     <!-- 광고2 -->

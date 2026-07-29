@@ -1,12 +1,12 @@
 ---
 gsd_state_version: '1.0'
-status: planning
+status: completed
 progress:
   total_phases: 6
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 35
-  completed_plans: 31
-  percent: 89
+  completed_plans: 35
+  percent: 100
 ---
 
 # Project State
@@ -16,16 +16,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-07-09)
 
 **Core value:** 사용자가 내 또래 기준으로 금융/지원금 정보를 비교하고 비슷한 처지의 사용자와 경험을 나눈다. 소득(income) 데이터의 ROI를 카드/공유/지원금 전체로 완결한다.
-**Current focus:** Phase 6 계획 수립 완료 — Income Gauge Deep Link & Card Income Integration (4개 work items)
+**Current focus:** Phase 6 완료 — Income Gauge Deep Link & Card Income Integration (4개 work items 모두 실행 완료)
 
 ## Current Position
 
-Phase: 6 of 6 (Income Gauge Deep Link & Card Income Integration)
-Plan: 0 of 4 (planning phase, not yet executed)
-Status: Planning complete — ready for execution
-Last activity: 2026-07-29 — Phase 6 계획 수립 완료. 4개 work items(A/B/C/D) 정의, CONTEXT.md + PLAN.md 작성.
+Phase: 6 of 6 (Income Gauge Deep Link & Card Income Integration) — ✓ COMPLETED
+Plan: 4 of 4 (executed)
+Status: **Complete** — 배포 완료 (2026-07-29)
+Last activity: 2026-07-29 — Phase 6 전 항목 실행 완료. 빌드(2551pages) + 배포 성공.
 
-Progress: [█████████░] 89% (5/6 phases complete)
+Progress: [██████████] 100% (6/6 phases complete)
 
 ## Performance Metrics
 
@@ -70,13 +70,13 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-- [ ] Execute Phase 6 work items A-D (see PLAN.md)
-  - [ ] A-1: benefits URL param filter (benefits/index.astro)
-  - [ ] A-2: SSG deep link button ([...slug].astro)
-  - [ ] B-1: Server JPG income bar (generate-missing-cards.mjs) + full regen
-  - [ ] B-2: Mobile card income bar (generate-mobile-cards.js)
-  - [ ] B-3 + C: my-persona canvas overlay + compareWithData
-  - [ ] D: og:image URL v=2
+- [x] Phase 6 work items A-D (all executed 2026-07-29)
+  - [x] A-1: benefits URL param filter (benefits/index.astro)
+  - [x] A-2: SSG deep link button ([...slug].astro)
+  - [x] B-1: Server JPG income bar (generate-missing-cards.mjs)
+  - [x] B-2: Mobile card income bar (generate-mobile-cards.js)
+  - [x] B-3 + C: my-persona canvas overlay + compareWithData
+  - [x] D: og:image URL v=2
 
 ### Blockers/Concerns
 
@@ -97,5 +97,6 @@ Items acknowledged and carried forward from previous milestone close:
 ## Session Continuity
 
 Last session: 2026-07-29
-Stopped at: Phase 6 계획 수립 완료. CONTEXT.md + PLAN.md 작성. 실행 전 상태.
-Resume file: .planning/phase-06-income-calculator/PLAN.md
+Stopped at: **Phase 6 완료**. 전 항목(4개 work items) 실행 + 빌드(2551pages 0에러) + 배포 완료.
+Milestone v2.0 Income Insights — 모든 phase 완료.
+Resume file: N/A (project complete)

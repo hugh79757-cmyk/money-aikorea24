@@ -24,6 +24,7 @@ import { SITE_TITLE } from '../consts';
         </div>
       </div>
       <a href="/benefits" class="nav-benefits">지원금</a>
+      <a href="/tools/income-percentile" class="nav-income">📊 소득 계산</a>
       <a href="/community" class="nav-community">커뮤니티</a>
       <SearchBar />
       <a href="/auth/login" class="nav-kakao" id="btn-login">
@@ -59,6 +60,7 @@ import { SITE_TITLE } from '../consts';
       </div>
 
       <a href="/benefits" class="mobile-link">지원금</a>
+      <a href="/tools/income-percentile" class="mobile-link">📊 소득 계산</a>
       <a href="/community" class="mobile-link">커뮤니티</a>
       <hr class="mobile-divider" />
       <a href="/auth/login" class="mobile-link mobile-login" id="mobile-btn-login">
@@ -217,7 +219,7 @@ import { SITE_TITLE } from '../consts';
     box-sizing: border-box;
   }
   .nav-persona:hover { background: var(--color-accent-dark); }
-  .nav-benefits, .nav-community {
+  .nav-benefits, .nav-income, .nav-community {
     background: rgba(255,255,255,0.1);
     color: var(--color-surface) !important;
     font-size: var(--text-sm);
@@ -233,7 +235,7 @@ import { SITE_TITLE } from '../consts';
     justify-content: center;
     box-sizing: border-box;
   }
-  .nav-benefits:hover, .nav-community:hover { background: rgba(255,255,255,0.2); }
+  .nav-benefits:hover, .nav-income:hover, .nav-community:hover { background: rgba(255,255,255,0.2); }
   .nav-kakao {
     background: var(--color-kakao);
     color: var(--color-kakao-text) !important;
@@ -442,6 +444,7 @@ import { SITE_TITLE } from '../consts';
     :root:not([data-theme="light"]) .nav-persona,
     :root:not([data-theme="light"]) .nav-blog-btn,
     :root:not([data-theme="light"]) .nav-benefits,
+    :root:not([data-theme="light"]) .nav-income,
     :root:not([data-theme="light"]) .nav-community { color: #fff !important; }
     :root:not([data-theme="light"]) .hamburger-line { background: #fff; }
   }
@@ -449,6 +452,7 @@ import { SITE_TITLE } from '../consts';
   :root[data-theme="dark"] .nav-persona,
   :root[data-theme="dark"] .nav-blog-btn,
   :root[data-theme="dark"] .nav-benefits,
+  :root[data-theme="dark"] .nav-income,
   :root[data-theme="dark"] .nav-community { color: #fff !important; }
   :root[data-theme="dark"] .hamburger-line { background: #fff; }
 
@@ -461,7 +465,7 @@ import { SITE_TITLE } from '../consts';
     }
     .nav-persona { display: none; }
     .nav-blog-wrap { display: none; }
-    .nav-benefits, .nav-community { display: none; }
+    .nav-benefits, .nav-income, .nav-community { display: none; }
     .nav-kakao { display: none; }
     #btn-user { display: none !important; }
     .hamburger { display: flex; }

@@ -39,3 +39,4 @@ public/persona-bg/
 # 대용량 raw 데이터 (정제본만 커밋)
 public/benefits.json
 .vercel
+.wrangler/

@@ -9,7 +9,7 @@ export async function onRequest(context) {
   const age    = params.get('age')    || '35';
 
   const key = `${region}_${sex}_${age}`;
-  const cardUrl = `https://cards.persona.aikorea24.kr/${encodeURIComponent(key)}.jpg`;
+  const cardUrl = `https://cards.persona.aikorea24.kr/${encodeURIComponent(key)}.jpg?v=2`;
 
   return Response.redirect(cardUrl, 302);
 }

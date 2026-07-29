@@ -42,18 +42,25 @@ function makeSvg(key, data) {
     { label:'📋 무직',        value:uneP, color:'#ef4444' },
   ];
 
+  const incomeData = data.income || null;
+  const incomeVal = incomeData && incomeData.income_employed > 0 ? incomeData.income_employed : null;
+  const topPct = incomeData && incomeData.top_percentile > 0 ? incomeData.top_percentile : null;
+  if (incomeVal && topPct) {
+    bars.push({ label:'💰 월 소득', value:topPct, color:'#D97706', suffix:incomeVal.toLocaleString() + '만원' });
+  }
+
   const bX     = 24;
   const bW     = W - 48;
   const bH     = 20;
-  const startY = 500;
-  const gap    = 68;
+  const startY = 465;
+  const gap    = 58;
 
   const barsSvg = bars.map((b, i) => {
     const y  = startY + i * gap;
     const fw = Math.round((b.value / 100) * bW);
     return `
       <text x="${bX}" y="${y}" fill="#fff" font-size="19" font-weight="700" font-family="sans-serif">${b.label}</text>
-      <text x="${W - bX}" y="${y}" text-anchor="end" fill="${b.color}" font-size="19" font-weight="900" font-family="sans-serif">${b.value}%</text>
+      <text x="${W - bX}" y="${y}" text-anchor="end" fill="${b.color}" font-size="19" font-weight="900" font-family="sans-serif">${b.suffix || b.value + '%'}</text>
       <rect x="${bX}" y="${y+6}" width="${bW}" height="${bH}" rx="10" fill="rgba(255,255,255,0.15)"/>
       <rect x="${bX}" y="${y+6}" width="${fw}" height="${bH}" rx="10" fill="${b.color}"/>`;
   }).join('');

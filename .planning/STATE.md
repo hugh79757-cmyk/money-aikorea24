@@ -1,12 +1,12 @@
 ---
 gsd_state_version: '1.0'
-status: complete
+status: planning
 progress:
-  total_phases: 5
+  total_phases: 6
   completed_phases: 5
-  total_plans: 31
+  total_plans: 35
   completed_plans: 31
-  percent: 100
+  percent: 89
 ---
 
 # Project State
@@ -15,17 +15,17 @@ progress:
 
 See: .planning/PROJECT.md (updated 2026-07-09)
 
-**Core value:** 사용자가 내 또래 기준으로 금융/지원금 정보를 비교하고 비슷한 처지의 사용자와 경험을 나눈다
-**Current focus:** Phase 5 완료 — Auto-Publishing Rules 정비 + 월급 신규 생성 중단
+**Core value:** 사용자가 내 또래 기준으로 금융/지원금 정보를 비교하고 비슷한 처지의 사용자와 경험을 나눈다. 소득(income) 데이터의 ROI를 카드/공유/지원금 전체로 완결한다.
+**Current focus:** Phase 6 계획 수립 완료 — Income Gauge Deep Link & Card Income Integration (4개 work items)
 
 ## Current Position
 
-Phase: 5 of 5 (Auto-Publishing Rules Audit & Revision)
-Plan: 7 of 7 (T1-T7 all complete)
-Status: All phases complete — verified (build 2459p 0 errors)
-Last activity: 2026-07-09 — Phase 5 완료: 자동 발행 규칙 정비(tax 잔존 제거, quota 합계 1.0, filter.py 데드코드 삭제), 월급/소득 시리즈 신규 생성 중단(seeder 가드 + DB 펜딩 6건 blocked). 빌드 2459p 0에러 확인.
+Phase: 6 of 6 (Income Gauge Deep Link & Card Income Integration)
+Plan: 0 of 4 (planning phase, not yet executed)
+Status: Planning complete — ready for execution
+Last activity: 2026-07-29 — Phase 6 계획 수립 완료. 4개 work items(A/B/C/D) 정의, CONTEXT.md + PLAN.md 작성.
 
-Progress: [██████████] 100%
+Progress: [█████████░] 89% (5/6 phases complete)
 
 ## Performance Metrics
 
@@ -62,16 +62,28 @@ Recent decisions affecting current work:
 - [Phase 5]: manual-publisher tax 카테고리 잔존 제거 (classifier.py + category-keywords.json)
 - [Phase 5]: category_quota 합계 1.0 정규화 (loan .40/insurance .25/invest .20/general .15)
 - [Phase 5]: filter.py 데드코드 삭제, 자동 발행 규칙 RULES.md 단일화
+- [Phase 6 Design]: SSG income 게이지 — pure CSS, 데이터: `s.income.income_employed` + `s.income.top_percentile`
+- [Phase 6 Design]: Card 이미지 income gap — `generate-missing-cards.mjs` 4개 bar(aptP/eduP/marP/uneP)만, incomeP 없음
+- [Phase 6 Design]: my-persona URL 파라미터 `?age=&sex=&province=&marital=` 지원 (initFromUrl)
+- [Phase 6 Design]: my-persona `compareWithData()` — income 3줄 누락 (확인 완료)
+- [Phase 6 Design]: benefits page — 현재 URL param 미지원 (추가 필요)
 
 ### Pending Todos
 
-None yet.
+- [ ] Execute Phase 6 work items A-D (see PLAN.md)
+  - [ ] A-1: benefits URL param filter (benefits/index.astro)
+  - [ ] A-2: SSG deep link button ([...slug].astro)
+  - [ ] B-1: Server JPG income bar (generate-missing-cards.mjs) + full regen
+  - [ ] B-2: Mobile card income bar (generate-mobile-cards.js)
+  - [ ] B-3 + C: my-persona canvas overlay + compareWithData
+  - [ ] D: og:image URL v=2
 
 ### Blockers/Concerns
 
 - COMM-02: 커뮤니티 인라인 목록 광고 슬롯 빈값 — 의도적 미노출 (광고 밀도 제어, Phase 4 결정)
 - COMM-03: 자동광고 OFF — 의도적 (Phase 4 결정)
 - ADS-05: AdSense 게시자 ID 12곳 하드코딩 잔존 (consts.ts 중앙화 미완) — Deferred
+- **INC-RISK**: 카드 재생성(2,244장)은 별도 스크립트라 빌드에 포함되지 않음. 카드만 재생성하고 dist/에 복사하는 deploy.sh 수정 필요할 수 있음.
 
 ## Deferred Items
 
@@ -79,10 +91,11 @@ Items acknowledged and carried forward from previous milestone close:
 
 | Category | Item | Status | Deferred At |
 |----------|------|--------|-------------|
-| *(none)* | | | |
+| INC-06 | benefits URL param filter | Planning | 2026-07-29 |
+| ADS-05 | AdSense 중앙화 | Deferred | 2026-07-09 |
 
 ## Session Continuity
 
-Last session: 2026-07-09
-Stopped at: Phase 5 완료 (자동 발행 규칙 정비 + 월급 신규 생성 중단). 다음 작업: 커밋.
-Resume file: .planning/.continue-here.md (exists)
+Last session: 2026-07-29
+Stopped at: Phase 6 계획 수립 완료. CONTEXT.md + PLAN.md 작성. 실행 전 상태.
+Resume file: .planning/phase-06-income-calculator/PLAN.md

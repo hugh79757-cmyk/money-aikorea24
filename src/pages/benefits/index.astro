@@ -394,6 +394,9 @@ function getSummary(b: any): string {
               data-status={b._status}
               data-name={(b.name   || '').toLowerCase()}
               data-org= {(b.org   || '').toLowerCase()}
+              data-age-range={(b.age_range ? b.age_range.join(',') : '')}
+              data-regions={(b.regions ? b.regions.join(',') : '')}
+              data-target={(b.target || '').toLowerCase()}
             >
               <div class="card-top">
                 <span class={`badge ${sb.cls}`}>{sb.label}</span>
@@ -435,6 +438,28 @@ function getSummary(b: any): string {
       let currentQ   = '';
       let page       = 1;
 
+      /* ── URL 파라미터 기반 필터링 ── */
+      let urlAge = null;
+      let urlRegion = null;
+      let urlSex = null;
+      let urlIncome = null;
+
+      function initFromUrl() {
+        var params = new URLSearchParams(location.search);
+        urlAge = params.get('age');
+        urlRegion = params.get('region');
+        urlSex = params.get('sex');
+        urlIncome = params.get('income');
+
+        if (urlAge || urlRegion) {
+          document.querySelectorAll('.tab').forEach(function(x) { x.classList.remove('active'); });
+          var allTab = document.querySelector('[data-tab="all"]');
+          if (allTab) allTab.classList.add('active');
+          currentTab = 'all';
+          page = 1;
+        }
+      }
+
       /* ── 인라인 광고 삽입 헬퍼 ──────────────────────────────
          카드 el 바로 뒤에 AdSense <ins>를 생성하고 push() 호출.
          페이지 전환마다 이전 광고를 제거 후 새로 삽입한다.
@@ -472,6 +497,30 @@ function getSummary(b: any): string {
             var name = card.dataset.name || '';
             var org  = card.dataset.org  || '';
             if (!name.includes(currentQ) && !org.includes(currentQ)) return false;
+          }
+          /* URL 파라미터 필터 */
+          if (urlAge) {
+            var ageNum = parseInt(urlAge, 10);
+            if (!isNaN(ageNum)) {
+              var ar = card.dataset.ageRange;
+              if (ar) {
+                var parts = ar.split(',');
+                if (parts.length === 2) {
+                  var min = parseInt(parts[0], 10);
+                  var max = parseInt(parts[1], 10);
+                  if (!isNaN(min) && !isNaN(max)) {
+                    if (ageNum < min || ageNum > max) return false;
+                  }
+                }
+              }
+            }
+          }
+          if (urlRegion) {
+            var regs = card.dataset.regions;
+            if (regs) {
+              var regList = regs.split(',');
+              if (!regList.some(function(r) { return r.trim() === urlRegion || r.trim() === '전국'; })) return false;
+            }
           }
           return true;
         });
@@ -566,6 +615,7 @@ function getSummary(b: any): string {
         render();
       });
 
+      initFromUrl();
       render();
     })();
   </script>

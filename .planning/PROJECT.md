@@ -27,9 +27,21 @@
 - ✓ AdSense 수동 슬롯(블로그/페르소나/마이페르소나/혜택) + 자동광고 로더 — Phase 3
 - ✓ 콘텐츠 신선도 파이프라인 (URL alive·관심도·연도 검증) — Phase 2
 - ✓ 보안/이식성 정리 (크리덴셜 노출 제거, git 위생) — Phase 1
+- ✓ SSG 소득 게이지 CSS 렌더링 ([...slug].astro:602-633) — Phase 6 기반
+- ✓ my-persona URL 파라미터(`?age=&sex=&province=&marital=`) 수신 + SSG 리다이렉트 — Phase 6 기반
+- ✓ my-persona Kakao/Twitter/copyUrl/downloadCard 공유 기능 — Phase 6 기반
 
 ### Active
 
+- [ ] **INC-01**: 서버 JPG 카드에 income bar 추가 (generate-missing-cards.mjs)
+- [ ] **INC-02**: 모바일 카드에 income bar 추가 (generate-mobile-cards.js)
+- [ ] **INC-03**: my-persona 캔버스 다운로드에 income overlay 추가 (generateCanvas)
+- [ ] **INC-04**: my-persona compareWithData()에 income 비교 로직 추가 (3줄)
+- [ ] **INC-05**: SSG persona 페이지에 benefit deep link 버튼 추가 ([...slug].astro)
+- [ ] **INC-06**: benefits 페이지 URL 파라미터(`?income=&age=&region=&sex=`) 필터링
+- [ ] **INC-07**: og:image URL v=2 마이그레이션 (CDN 캐시 무효화)
+- [ ] **INC-08**: 카드 재생성 (2,244장) — income bar 포함
+- [ ] **INC-09**: 빌드 0에러 + 배포 성공
 - [ ] 커뮤니티 게시판 상하단 수동 광고 슬롯 안정화 (슬롯 9747654190)
 - [ ] tax 카테고리 삭제 후 잔여 참조/데이터소스 정리
 - [ ] AdSense 게시자 ID 중앙화 (consts.ts ADSENSE_CLIENT로 12곳 하드코딩 수렴) — Phase 3 잔여

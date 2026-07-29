@@ -4,6 +4,7 @@
 
 - ✅ **v1.0 Foundation & Monetization** - Phases 1-3 (shipped 2026-07-09)
 - ✅ **v1.1 Community & Cleanup** - Phases 4-5 (shipped 2026-07-09)
+- 🔄 **v2.0 Income Insights** - Phase 6 (planning 2026-07-29)
 
 ## Phases
 
@@ -58,6 +59,22 @@ Plans:
   6. 빌드 0에러
 **Plans**: 7 tasks (T1-T7, see phase-05/PLAN.md)
 
+### ✅ v2.0 Income Insights (Planning)
+
+#### Phase 6: Income Gauge Deep Link & Card Income Integration
+**Goal**: persona SSG / my-persona / card images 전반에 income 데이터 연동 완료 + SSG benefit deep link + og:image v2
+**Depends on**: Phase 5 (infrastructure)
+**Requirements**: INC-01..INC-09 (see phase-06/CONTEXT.md)
+**Plans**: 4 work items (A-D, A-1/A-2, B-1/B-2/B-3/C, D)
+**Status**: Planning (2026-07-29), see CONTEXT.md + PLAN.md in phase-06/
+
+**Work Items**:
+- [ ] A: SSG benefit deep link (`[...slug].astro` + `benefits/index.astro` URL param filter)
+- [ ] B-1: Server JPG card income bar (`generate-missing-cards.mjs`)
+- [ ] B-2: Mobile card income bar (`generate-mobile-cards.js`)
+- [ ] B-3 + C: my-persona canvas overlay + compareWithData income
+- [ ] D: og:image URL v2 migration
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -67,3 +84,4 @@ Plans:
 | 3. AdSense | v1.0 | 7/7 | Complete | 2026-07-09 |
 | 4. Community | v1.1 | 1/1 | Complete | 2026-07-09 |
 | 5. Auto-Pub | v1.1 | 7/7 | Complete | 2026-07-09 |
+| 6. Income Calc | v2.0 | 0/4 | Planning | — |

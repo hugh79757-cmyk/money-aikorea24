@@ -92,6 +92,10 @@ function makeSvgOverlay(key, data) {
   const typeObj = determineType(data, age);
   const typeLabel = typeObj.emoji + " " + typeObj.name;
 
+  const incomeData = data.income || null;
+  const incomeVal = incomeData && incomeData.income_employed > 0 ? incomeData.income_employed : null;
+  const topPct = incomeData && incomeData.top_percentile > 0 ? incomeData.top_percentile : null;
+
   const bars = [
     { label:'아파트 거주', value:aptP, color:'#4f8ef7' },
     { label:'대졸 이상',   value:eduP, color:'#10b981' },
@@ -99,15 +103,19 @@ function makeSvgOverlay(key, data) {
     { label:'무직',        value:uneP, color:'#ef4444' },
   ];
 
+  if (incomeVal && topPct) {
+    bars.push({ label:'월 소득', value:topPct, color:'#D97706', suffix:incomeVal.toLocaleString() + '만원' });
+  }
+
   const bX = 28, bW = W - 56, bH = 16;
-  const startY = 410, gap = 52;
+  const startY = 380, gap = 44;
 
   const barsSvg = bars.map((b, i) => {
     const y = startY + i * gap;
     const fw = Math.round((b.value / 100) * bW);
     return `
       <text x="${bX}" y="${y}" fill="#fff" font-size="18" font-weight="700" font-family="sans-serif">${b.label}</text>
-      <text x="${W-bX}" y="${y}" text-anchor="end" fill="${b.color}" font-size="18" font-weight="900" font-family="sans-serif">${b.value}%</text>
+      <text x="${W-bX}" y="${y}" text-anchor="end" fill="${b.color}" font-size="18" font-weight="900" font-family="sans-serif">${b.suffix || b.value + '%'}</text>
       <rect x="${bX}" y="${y+6}" width="${bW}" height="${bH}" rx="8" fill="rgba(255,255,255,0.18)"/>
       <rect x="${bX}" y="${y+6}" width="${fw}" height="${bH}" rx="8" fill="${b.color}"/>`;
   }).join('');

@@ -557,6 +557,17 @@ function compareWithData(s, age, marital) {
     msg: unePct>=30 ? '⚠️ 같은 조건 '+unePct+'%가 무직·비경활 상태예요' : '같은 조건 '+unePct+'%가 무직·비경활이에요' });
   results.push({ label:'1인 가구', val:sngPct,
     msg: sngPct>=40 ? '같은 조건 '+sngPct+'%가 혼자 살아요' : '1인 가구 비율은 '+sngPct+'%예요' });
+  /* Income comparison */
+  const incomeData = (s && s.income) || null;
+  const incomeEmployed = incomeData && incomeData.income_employed > 0 ? incomeData.income_employed : null;
+  const topPct = incomeData && incomeData.top_percentile > 0 ? incomeData.top_percentile : null;
+  if (incomeEmployed !== null && topPct !== null) {
+    results.push({
+      label: '월 소득',
+      val: Math.round(topPct),
+      msg: '추정 월소득 ' + incomeEmployed.toLocaleString() + '만원, 전체 취업자 상위 ' + topPct + '%'
+    });
+  }
   return results;
 }
 
@@ -820,7 +831,7 @@ async function runAnalyze() {
     }
 
     /* Canvas 생성 */
-    generateCanvas(cardKey, copy.emoji + ' ' + copy.name);
+    generateCanvas(cardKey, copy.emoji + ' ' + copy.name, s);
 
     /* 공유 URL */
     /* slug: 서울_남자_34 → 서울-남자-34 (persona 상세 페이지, OG 이미지 포함) */
@@ -858,7 +869,7 @@ async function runAnalyze() {
 }
 
 /* ══ generateCanvas ══ */
-function generateCanvas(key, copyText) {
+function generateCanvas(key, copyText, stats) {
   const canvas = document.createElement('canvas');
   canvas.width = 1080; canvas.height = 1080;
   const ctx = canvas.getContext('2d');
@@ -890,6 +901,14 @@ function generateCanvas(key, copyText) {
     ctx.font = '36px sans-serif';
     ctx.fillStyle = 'rgba(255,255,255,0.7)';
     ctx.fillText('한국인 페르소나 · persona.aikorea24.kr', 540, 980);
+    /* Income overlay */
+    if (stats && stats.income && stats.income.income_employed > 0) {
+      ctx.font = 'bold 48px sans-serif';
+      ctx.fillStyle = 'rgba(255,255,255,0.9)';
+      ctx.textAlign = 'center';
+      const incomeText = '소득 상위 ' + stats.income.top_percentile + '% (' + stats.income.income_employed.toLocaleString() + '만원)';
+      ctx.fillText(incomeText, 540, 1060);
+    }
     window._personaCanvas = canvas;
   };
   img.onerror = () => {
@@ -903,6 +922,14 @@ function generateCanvas(key, copyText) {
     ctx.font = '36px sans-serif';
     ctx.fillStyle = 'rgba(255,255,255,0.7)';
     ctx.fillText('한국인 페르소나 · persona.aikorea24.kr', 540, 980);
+    /* Income overlay */
+    if (stats && stats.income && stats.income.income_employed > 0) {
+      ctx.font = 'bold 48px sans-serif';
+      ctx.fillStyle = 'rgba(255,255,255,0.9)';
+      ctx.textAlign = 'center';
+      const incomeText = '소득 상위 ' + stats.income.top_percentile + '% (' + stats.income.income_employed.toLocaleString() + '만원)';
+      ctx.fillText(incomeText, 540, 1060);
+    }
     window._personaCanvas = canvas;
   };
   img.src = 'https://cards.persona.aikorea24.kr/' + encodeURIComponent(key) + '.jpg';

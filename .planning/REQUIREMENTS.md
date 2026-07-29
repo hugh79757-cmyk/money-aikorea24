@@ -34,6 +34,22 @@
 - [ ] **CONT-05**: tax 카테고리 삭제 잔여 참조 정리 (personaMatcher/benefits 라벨 등 의도 보존)
 - [ ] **ADS-05**: AdSense 게시자 ID 12곳 하드코딩 → ADSENSE_CLIENT 중앙화 (파셜 예외 허용)
 
+## v3 / Income Insights (Phase 6)
+
+### Phase 6 Requirements
+
+| ID | Description | File(s) | Effort |
+|----|-------------|---------|--------|
+| INC-01 | 서버 JPG 카드에 income bar 추가 (기존 4개 bar 유지, additive) | `generate-missing-cards.mjs` | 30min |
+| INC-02 | 모바일 카드에 income bar 추가 (465x797 해상도) | `generate-mobile-cards.js` | 15min |
+| INC-03 | my-persona 캔버스 다운로드에 income overlay 추가 | `my-persona.astro` | 20min |
+| INC-04 | my-persona compareWithData()에 income 비교 로직 추가 (3줄) | `my-persona.astro` | 5min |
+| INC-05 | SSG persona 페이지 하단에 benefit deep link 버튼 추가 | `[...slug].astro` | 10min |
+| INC-06 | benefits 페이지 URL 파라미터(?income=&age=&region=&sex=) 필터링 | `benefits/index.astro` | 20min |
+| INC-07 | og:image URL v=2 마이그레이션 (CDN 캐시 무효화) | `[...slug].astro`, `functions/og/index.js` | 5min |
+| INC-08 | 카드 재생성 (2,244장, income bar 포함) | CLI run | 30min |
+| INC-09 | 빌드 0에러 + 배포 성공 | — | 10min |
+
 ## Out of Scope
 
 | Feature | Reason |
@@ -43,6 +59,9 @@
 | 모바일 앱 | 웹 우선, 반응형 커버 |
 | tax 카테고리 부활 | 0포스트·데이터소스 없음 (삭제 확정) |
 | salary 별도 카테고리 | invest에 발행 중, killer 콘텐츠화 불가 (유지 확정) |
+| benefits-clean.json 스키마 개선 | 데이터 구조 건드리지 않음 |
+| 소득 게이지 UI 리디자인 | 기존 CSS 유지 |
+| income 차트/시각화 신규 개발 | 현 Phase에서는 text overlay만 |
 
 ## Traceability
 
@@ -65,12 +84,22 @@
 | COMM-03 | 4 | Pending |
 | CONT-05 | 4 | Pending |
 | ADS-05 | 4 | Pending |
+| INC-01 | 6 | Planning |
+| INC-02 | 6 | Planning |
+| INC-03 | 6 | Planning |
+| INC-04 | 6 | Planning |
+| INC-05 | 6 | Planning |
+| INC-06 | 6 | Planning |
+| INC-07 | 6 | Planning |
+| INC-08 | 6 | Planning |
+| INC-09 | 6 | Planning |
 
 **Coverage:**
 - v1 requirements: 12 total (11 Complete, 1 Partial)
-- Mapped to phases: 12
+- v3 (Phase 6) requirements: 9 total (0 Complete, 9 Planning)
+- Mapped to phases: 24
 - Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-07-09*
-*Last updated: 2026-07-09 after community ad placement + tax deletion*
+*Last updated: 2026-07-29 — Phase 6 requirements added (INC-01 ~ INC-09)*

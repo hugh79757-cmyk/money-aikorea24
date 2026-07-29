@@ -237,8 +237,8 @@ const _ageForCard = isNaN(parseInt(ageRaw))
    : ageRaw === '50대' ? 55 : ageRaw === '60대' ? 65 : 75)
   : parseInt(ageRaw);
 const _cardKey = `${region}_${sex}_${_ageForCard}`;
-const cardUrl  = `https://cards.persona.aikorea24.kr/${encodeURIComponent(_cardKey)}.jpg`;
-const mobCard  = `https://cards.persona.aikorea24.kr/cards-mobile/${encodeURIComponent(_cardKey)}.jpg`;
+const cardUrl  = `https://cards.persona.aikorea24.kr/${encodeURIComponent(_cardKey)}.jpg?v=2`;
+const mobCard  = `https://cards.persona.aikorea24.kr/cards-mobile/${encodeURIComponent(_cardKey)}.jpg?v=2`;
 const pageUrl  = `${SITE_URL}/persona/${slug}/`;
 /* SEO: 1년 페이지는 noindex + 10년 페이지로 canonical 통합 */
 const _decadeAgeStr = isDecade ? ageRaw :

@@ -143,7 +143,7 @@ import BaseHead from '../components/BaseHead.astro';
   <Header />
   <!-- HERO -->
   <section class="hero" id="hero">
-    <div class="hero-bg"><img src="https://cards.persona.aikorea24.kr/서울_남자_35.jpg" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;opacity:.18;display:block;position:relative;z-index:0;" /></div>
+    <div class="hero-bg"><img src="https://cards.persona.aikorea24.kr/서울_남자_35.jpg?v=2" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;opacity:.18;display:block;position:relative;z-index:0;" /></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="hero-badge">📊 700만 한국인 데이터 기반 분석</span>
@@ -763,7 +763,7 @@ async function runAnalyze() {
     /* 카드 배경 */
     const cardKey = province + '_' + sex + '_' + age;   /* 이미지용: 숫자 나이 */
     const bgEl = document.getElementById('copy-card-bg');
-    if (bgEl) bgEl.style.backgroundImage = "url('https://cards.persona.aikorea24.kr/" + cardKey + ".jpg')";
+    if (bgEl) bgEl.style.backgroundImage = "url('https://cards.persona.aikorea24.kr/" + cardKey + ".jpg?v=2')";
 
     /* 태그 */
     const tagEl = document.getElementById('copy-tag');
@@ -825,7 +825,7 @@ async function runAnalyze() {
     const cardImg  = document.getElementById('card-img');
     const previewWrap = document.getElementById('card-preview-wrap');
     if (cardImg && previewWrap) {
-      cardImg.src = 'https://cards.persona.aikorea24.kr/' + encodeURIComponent(cardKey) + '.jpg';
+      cardImg.src = 'https://cards.persona.aikorea24.kr/' + encodeURIComponent(cardKey) + '.jpg?v=2';
       cardImg.onload = () => { previewWrap.style.display = 'flex'; };
       cardImg.onerror = () => { previewWrap.style.display = 'none'; };
     }
@@ -932,7 +932,7 @@ function generateCanvas(key, copyText, stats) {
     }
     window._personaCanvas = canvas;
   };
-  img.src = 'https://cards.persona.aikorea24.kr/' + encodeURIComponent(key) + '.jpg';
+  img.src = 'https://cards.persona.aikorea24.kr/' + encodeURIComponent(key) + '.jpg?v=2';
 }
 
 /* ══ 공유 함수 ══ */

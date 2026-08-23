@@ -5,6 +5,7 @@
 - ✅ **v1.0 Foundation & Monetization** - Phases 1-3 (shipped 2026-07-09)
 - ✅ **v1.1 Community & Cleanup** - Phases 4-5 (shipped 2026-07-09)
 - 🔄 **v2.0 Income Insights** - Phase 6 (planning 2026-07-29)
+- 🔄 **v2.1 Marketing Personas** - Phase 7 (planning 2026-08-23)
 
 ## Phases
 
@@ -75,6 +76,14 @@ Plans:
 - [ ] B-3 + C: my-persona canvas overlay + compareWithData income
 - [ ] D: og:image URL v2 migration
 
+### 🔄 v2.1 Marketing Personas (Planning)
+
+#### Phase 7: Marketing Persona Studio
+**Goal**: 마케팅용 가상 페르소나 생성 — 제품 입력→타깃 페르소나 매칭 시나리오 + 페르소나 선택→소비 프로파일·다음 장면 스토리 (양방향), 공개 페이지 + 가벼운 게이트(카카오 로그인), LLM 실시간 생성
+**Depends on**: Phase 6 (benefits URL param filter 등 인프라 재사용)
+**Requirements**: MKT-01..MKT-03 + 가정 (see phase-07-marketing-personas/CONTEXT.md)
+**Status**: Planning (2026-08-23)
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -85,3 +94,4 @@ Plans:
 | 4. Community | v1.1 | 1/1 | Complete | 2026-07-09 |
 | 5. Auto-Pub | v1.1 | 7/7 | Complete | 2026-07-09 |
 | 6. Income Calc | v2.0 | 0/4 | Planning | — |
+| 7. Marketing Personas | v2.1 | 0/? | Planning | — |

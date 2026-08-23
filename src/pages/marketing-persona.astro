@@ -97,6 +97,12 @@ const DECADES = ['10대', '20대', '30대', '40대', '50대', '60대', '70대', 
     <!-- RESULT (Task D에서 시트 렌더러로 교체) -->
     <section id="result-container" class="hidden mt-6"></section>
 
+    <!-- 광고 (A-5) — 로더는 BaseHead.astro가 전역 로드. 계열: aikorea24 ca-pub-5938862195544185 전용 -->
+    <div class="no-print mt-6">
+      <ins class="adsbygoogle" style="display:block; width:100%; text-align:center" data-ad-client="ca-pub-5938862195544185" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
     <!-- DISCLAIMER -->
     <p class="text-[11px] text-gray-400 mt-8 leading-relaxed text-center">
       본 페르소나는 공공 통계 기반의 가상 인물이며 실존 인물이 아닙니다.
@@ -244,13 +250,153 @@ const DECADES = ['10대', '20대', '30대', '40대', '50대', '60대', '70대', 
       }
     };
 
-    // ── 결과 표시 (Task B 병합 전 임시: raw JSON 계약 검증용) ──
-    function renderResult(data: { ok: boolean; scenario?: unknown; model_used?: string }) {
+    // ── 드림 고객 시트 렌더러 (MKT-05, Task D) ──
+    // f1은 "이름(나이), ..." 자유 문자열 — 선두 이름 휴리스틱 추출, 실패 시 첫 문장 크게.
+    function renderDreamCustomerSheet(scenario: Record<string, any>, modelUsed?: string) {
       const c = $('result-container')!;
-      c.innerHTML = `<pre class="bg-white border-2 border-[#E5E0D8] rounded-xl p-4 text-xs overflow-auto whitespace-pre-wrap">${escapeHtml(JSON.stringify(data.scenario, null, 2))}</pre>`;
+      const esc = escapeHtml;
+
+      const nameMatch = String(scenario.f1 || '').match(/^([가-힣]{2,4})\s*[（(]\s*(\d{2,3})\s*세?\s*[)）]/);
+      const heroName = nameMatch ? `${nameMatch[1]} (${nameMatch[2]}세)` : '';
+      const heroRest = nameMatch ? String(scenario.f1).slice(nameMatch[0].length).replace(/^[,\s]+/, '') : String(scenario.f1);
+
+      const searchBars = (scenario.f3 as string[]).map((q, i) => `
+        <div class="flex items-center gap-3 bg-white border border-gray-300 rounded-full pl-4 pr-1.5 py-1.5 shadow-sm">
+          <svg class="w-4 h-4 text-gray-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+          <span class="flex-1 text-sm text-gray-500 truncate">${esc(q)}</span>
+          <span class="bg-blue-500 text-white text-xs font-bold rounded-full px-3 py-1.5 shrink-0">검색</span>
+        </div>`).join('');
+
+      const timeline = [
+        { n: 1, label: '현재 장면', body: scenario.f8.current, hot: false },
+        { n: 2, label: '원하는 변화', body: scenario.f8.change, hot: false },
+        { n: 3, label: '우리의 역할', body: scenario.f8.role, hot: true },
+        { n: 4, label: '다음 행동', body: scenario.f8.next, hot: false },
+      ].map(s => `
+        <li class="relative pl-12 pb-5 last:pb-0">
+          <span class="absolute left-0 top-0 w-9 h-9 rounded-full flex items-center justify-center font-extrabold text-sm z-10
+            ${s.hot ? 'bg-amber-600 text-white ring-4 ring-amber-200' : 'bg-white border-2 border-[#D97706] text-[#D97706]'}">${s.n}</span>
+          ${s.hot ? '<span class="absolute left-11 top-1 bg-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">🔥 변화 포인트</span>' : ''}
+          <div class="${s.hot ? 'bg-amber-50 border border-amber-300 pt-7' : 'bg-[#F7F3EA] border border-[#E5E0D8] pt-3'} rounded-xl p-3.5">
+            <p class="text-xs font-bold ${s.hot ? 'text-amber-700' : 'text-[#1E3A5F]'} mb-1">${s.label}</p>
+            <p class="text-sm text-gray-700 leading-relaxed">${esc(String(s.body))}</p>
+          </div>
+        </li>`).join('');
+
+      const triple = [
+        { icon: '😨', title: '결제 직전 두려움', body: scenario.f5 },
+        { icon: '⏳', title: '미해결 손해', body: scenario.f6 },
+        { icon: '💸', title: '이미 쓴 돈', body: scenario.f7 },
+      ].map(t => `
+        <div class="bg-white border border-[#E5E0D8] rounded-xl p-4">
+          <p class="text-xl mb-1">${t.icon}</p>
+          <p class="text-xs font-extrabold text-[#1E3A5F] mb-1.5">${t.title}</p>
+          <p class="text-sm text-gray-700 leading-relaxed">${esc(String(t.body))}</p>
+        </div>`).join('');
+
+      const actions = (scenario.f9 as string[]).map((a, i) => `
+        <span class="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-[#1E3A5F] text-sm font-semibold rounded-full px-4 py-2">
+          <b class="text-blue-600">${i + 1}</b>${esc(a)}
+        </span>`).join('');
+
+      const plainText = buildPlainText(scenario);
+
+      c.innerHTML = `
+      <article id="dream-sheet" class="sheet space-y-4">
+        <!-- F1 프로필 카드 -->
+        <div class="bg-gradient-to-br from-[#1E3A5F] to-[#2E5077] text-white rounded-2xl p-6 shadow-lg">
+          <p class="text-[10px] font-bold tracking-widest opacity-70 mb-2">DREAM CUSTOMER · 드림 고객 프로필</p>
+          <h3 class="text-2xl md:text-3xl font-extrabold mb-2">${esc(heroName || '드림 고객')}</h3>
+          <p class="text-sm leading-relaxed opacity-90">${esc(heroName ? heroRest : heroRest)}</p>
+        </div>
+
+        <!-- F4 오퍼 한 줄 -->
+        <div class="bg-amber-600 text-white rounded-2xl p-6 text-center">
+          <p class="text-[10px] font-bold tracking-widest opacity-80 mb-2">OFFER · 오퍼 한 줄</p>
+          <p class="text-lg md:text-xl font-extrabold leading-snug">${esc(String(scenario.f4))}</p>
+        </div>
+
+        <!-- F2 현재 장면 -->
+        <blockquote class="border-l-4 border-[#1E3A5F] bg-white rounded-r-xl p-4">
+          <p class="text-[10px] font-bold tracking-widest text-gray-400 mb-1.5">CURRENT SCENE · 현재 장면</p>
+          <p class="text-sm italic text-gray-700 leading-relaxed">${esc(String(scenario.f2))}</p>
+        </blockquote>
+
+        <!-- F3 검색창 목업 ×3 -->
+        <div>
+          <p class="text-[10px] font-bold tracking-widest text-gray-400 mb-2">SEARCH QUERIES · 검색창 문장 ×3</p>
+          <div class="space-y-2">${searchBars}</div>
+        </div>
+
+        <!-- F5/F6/F7 3열 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">${triple}</div>
+
+        <!-- F8 세로 타임라인 -->
+        <div>
+          <p class="text-[10px] font-bold tracking-widest text-gray-400 mb-3">STORY FRAME · 스토리 4단 프레임</p>
+          <ol class="timeline relative ml-1">${timeline}</ol>
+        </div>
+
+        <!-- F9 다음 행동 -->
+        <div>
+          <p class="text-[10px] font-bold tracking-widest text-gray-400 mb-2">NEXT ACTIONS · 다음 행동 선택지</p>
+          <div class="flex flex-wrap gap-2">${actions}</div>
+        </div>
+
+        <p class="sheet-meta text-[10px] text-gray-400 text-center pt-2">본 페르소나는 공공 통계 기반 가상 인물입니다${modelUsed ? ` · 생성 모델: ${esc(modelUsed)}` : ''}</p>
+
+        <!-- 복사/인쇄 -->
+        <div class="no-print flex gap-2 pb-2">
+          <button onclick="copySheet()" class="flex-1 bg-[#1E3A5F] hover:bg-[#2E5077] text-white font-bold py-3 rounded-xl text-sm">📋 시트 복사</button>
+          <button onclick="window.print()" class="flex-1 bg-white border-2 border-[#1E3A5F] text-[#1E3A5F] hover:bg-gray-50 font-bold py-3 rounded-xl text-sm">🖨️ 인쇄</button>
+        </div>
+      </article>`;
       c.classList.remove('hidden');
+    }
+
+    window.copySheet = async () => {
+      if (!lastScenario) return;
+      const text = buildPlainText(lastScenario);
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        // 폴백: 비포커스·구형 웹뷰 — 숨은 textarea + execCommand
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+      }
+      showStatus('info', '시트가 클립보드에 복사되었습니다. ✅');
+      setTimeout(hideStatus, 2500);
+    };
+
+    let lastScenario: Record<string, any> | null = null;
+    function buildPlainText(s: Record<string, any>): string {
+      return [
+        `【드림 고객 프로필】\n${s.f1}`,
+        `【현재 장면】\n${s.f2}`,
+        `【검색창 문장】\n${(s.f3 as string[]).map((q, i) => `${i + 1}. ${q}`).join('\n')}`,
+        `【오퍼 한 줄】\n${s.f4}`,
+        `【결제 직전 두려움】\n${s.f5}`,
+        `【미해결 손해】\n${s.f6}`,
+        `【이미 쓴 돈】\n${s.f7}`,
+        `【스토리 4단 프레임】\n1. 현재 장면: ${s.f8.current}\n2. 원하는 변화: ${s.f8.change}\n3. 우리의 역할: ${s.f8.role}\n4. 다음 행동: ${s.f8.next}`,
+        `【다음 행동 선택지】\n${(s.f9 as string[]).map((a, i) => `${i + 1}. ${a}`).join('\n')}`,
+        '\n※ 공공 통계 기반 가상 인물이며 실존 인물이 아닙니다.',
+      ].join('\n\n');
+    }
+
+    // ── 결과 표시 ──
+    function renderResult(data: { ok: boolean; scenario?: Record<string, any>; model_used?: string }) {
+      lastScenario = data.scenario ?? null;
+      renderDreamCustomerSheet(data.scenario ?? {}, data.model_used);
       hideStatus();
     }
+    window.renderDreamCustomerSheet = (s: Record<string, any>) => { lastScenario = s; renderDreamCustomerSheet(s); };
 
     // ── product 글자수 카운터 ──
     $('product-input')?.addEventListener('input', (e) => {
@@ -262,6 +408,18 @@ const DECADES = ['10대', '20대', '30대', '40대', '50대', '60대', '70대', 
     .opt-btn { background:#fff; border:2px solid #E5E0D8; border-radius:10px; padding:.45rem .85rem; font-size:.85rem; font-weight:600; color:#3D3D3D; cursor:pointer; transition:all .12s; min-height:38px; }
     .opt-btn:hover { border-color:#D97706; }
     .opt-btn.selected { border-color:#D97706; background:#EEF2FF; color:#1E3A5F; }
+    /* F8 세로 타임라인 수직 연결선 */
+    .timeline::before { content:''; position:absolute; left:1.05rem; top:.5rem; bottom:.5rem; width:2px; background:#F3D9B1; }
+
+    /* 인쇄 레이아웃 — 시트만 단일 컬럼 (MKT-05) */
+    @media print {
+      header, footer, #login-gate, #status-area, .no-print, ins.adsbygoogle,
+      section#panel-product, section#panel-persona, [role="tablist"], main > section:first-of-type { display:none !important; }
+      body { background:#fff !important; }
+      #result-container { display:block !important; }
+      .sheet { max-width:100%; margin:0; padding:0; }
+      .sheet * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    }
   </style>
 </body>
 </html>

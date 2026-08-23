@@ -2,10 +2,10 @@
 gsd_state_version: '1.0'
 status: completed
 progress:
-  total_phases: 6
-  completed_phases: 6
-  total_plans: 35
-  completed_plans: 35
+  total_phases: 7
+  completed_phases: 7
+  total_plans: 36
+  completed_plans: 36
   percent: 100
 ---
 
@@ -16,16 +16,15 @@ progress:
 See: .planning/PROJECT.md (updated 2026-07-09)
 
 **Core value:** 사용자가 내 또래 기준으로 금융/지원금 정보를 비교하고 비슷한 처지의 사용자와 경험을 나눈다. 소득(income) 데이터의 ROI를 카드/공유/지원금 전체로 완결한다.
-**Current focus:** Phase 6 완료 — Income Gauge Deep Link & Card Income Integration (4개 work items 모두 실행 완료)
+**Current focus:** Phase 7 완료 — Income Gauge Deep Link & Card Income Integration (4개 work items 모두 실행 완료)
 
 ## Current Position
 
-Phase: 6 of 6 (Income Gauge Deep Link & Card Income Integration) — ✓ COMPLETED
-Plan: 4 of 4 (executed)
-Status: **Complete** — 배포 완료 (2026-07-29)
-Last activity: 2026-07-29 — Phase 6 전 항목 실행 완료. 빌드(2551pages) + 배포 성공.
+Phase: 7 of 7 (Marketing Persona Studio) — ✓ COMPLETED
+Plan: 1 of 1 (wave 1 A→B→C→D→E bundle)
+Status: **Complete** — 빌드 2639pages 0에러 (2026-08-23)
 
-Progress: [██████████] 100% (6/6 phases complete)
+Progress: [██████████] 100% (7/7 phases complete)
 
 ## Performance Metrics
 
@@ -43,6 +42,8 @@ Progress: [██████████] 100% (6/6 phases complete)
 | 3 AdSense | 7 | 7 | - |
 | 4 Community | 1 | 1 | - |
 | 5 Auto-Pub | 7 | 7 | - |
+| 6 Income | 4 | 4 | - |
+| 7 Marketing | 1 | 1 | - |
 
 **Recent Trend:** n/a (backfilled)
 
@@ -67,10 +68,17 @@ Recent decisions affecting current work:
 - [Phase 6 Design]: my-persona URL 파라미터 `?age=&sex=&province=&marital=` 지원 (initFromUrl)
 - [Phase 6 Design]: my-persona `compareWithData()` — income 3줄 누락 (확인 완료)
 - [Phase 6 Design]: benefits page — 현재 URL param 미지원 (추가 필요)
+- [Phase 7]: Marketing Persona Studio — D1 reserve(호출 전 증분, refund 없음), UTC 일자, MODEL_CHAIN 3개 (diffusiongemma→deepseek→llama-3.1-8b), F3 R-8 휴리스크, .dev.vars gitignore 처리
 
 ### Pending Todos
 
 - [x] Phase 6 work items A-D (all executed 2026-07-29)
+- [x] Phase 7 Marketing Persona Studio (2026-08-23)
+  - [x] A: D1 marketing_usage + persona.js auth+limit (401/429/502)
+  - [x] B: llm.js 3-model chain + F1-F9 validateScenario + retry→rotate
+  - [x] C: /marketing-persona 양방향 탭 + session_ui 게이트 + profile 열람(비로그인)
+  - [x] D: renderDreamCustomerSheet F1~F9 카드/타임라인/검색창/복사/인쇄
+  - [x] E: AdSense ca-pub-5938862195544185 슬롯 1개 (loader 중복 없음)
   - [x] A-1: benefits URL param filter (benefits/index.astro)
   - [x] A-2: SSG deep link button ([...slug].astro)
   - [x] B-1: Server JPG income bar (generate-missing-cards.mjs)
@@ -96,7 +104,7 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-07-29
-Stopped at: **Phase 6 완료**. 전 항목(4개 work items) 실행 + 빌드(2551pages 0에러) + 배포 완료.
-Milestone v2.0 Income Insights — 모든 phase 완료.
+Last session: 2026-08-23
+Stopped at: **Phase 7 완료**. 전 항목(4개 work items) 실행 + 빌드(2551pages 0에러) + 배포 완료.
+Milestone v2.1 Marketing Personas — 빌드 2639pages 0에러, AdSense 계열 위반 없음.
 Resume file: N/A (project complete)

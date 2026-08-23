@@ -5,7 +5,7 @@
 - ✅ **v1.0 Foundation & Monetization** - Phases 1-3 (shipped 2026-07-09)
 - ✅ **v1.1 Community & Cleanup** - Phases 4-5 (shipped 2026-07-09)
 - 🔄 **v2.0 Income Insights** - Phase 6 (planning 2026-07-29)
-- 🔄 **v2.1 Marketing Personas** - Phase 7 (planning 2026-08-23)
+- ✅ **v2.1 Marketing Personas** - Phase 7 (shipped 2026-08-23)
 
 ## Phases
 
@@ -81,8 +81,8 @@ Plans:
 #### Phase 7: Marketing Persona Studio
 **Goal**: 마케팅용 가상 페르소나 생성 — 제품 입력→타깃 페르소나 매칭 시나리오 + 페르소나 선택→소비 프로파일·다음 장면 스토리 (양방향), 공개 페이지 + 가벼운 게이트(카카오 로그인), LLM 실시간 생성
 **Depends on**: Phase 6 (benefits URL param filter 등 인프라 재사용)
-**Requirements**: MKT-01..MKT-03 + 가정 (see phase-07-marketing-personas/CONTEXT.md)
-**Status**: Planning (2026-08-23)
+**Requirements**: MKT-01..MKT-05 (see phase-07-marketing-personas/CONTEXT.md)
+**Status**: Complete (2026-08-23) — 1 plan A→E, build 2639pages 0에러
 
 ## Progress
 

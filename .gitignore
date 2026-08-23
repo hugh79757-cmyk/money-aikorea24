@@ -40,3 +40,7 @@ public/persona-bg/
 public/benefits.json
 .vercel
 .wrangler/
+
+# runtime logs — leak risk (GitHub Push Protection blocked once)
+logs/*.log
+scripts/auto-writer/logs/

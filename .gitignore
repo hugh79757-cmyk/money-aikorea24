@@ -44,3 +44,4 @@ public/benefits.json
 # runtime logs — leak risk (GitHub Push Protection blocked once)
 logs/*.log
 scripts/auto-writer/logs/
+.dev.vars

@@ -1,7 +1,7 @@
 # scripts/auto-writer/writer.py
 import os, sys, json, re, time, yaml
 from pathlib import Path
-from openai import OpenAI
+from openai import OpenAI, APITimeoutError
 from dotenv import load_dotenv
 from datetime import datetime
 
@@ -617,38 +617,108 @@ def _proofread_chain(text: str, timeout: int = 90):
 
 
 def _classify_error(e: Exception) -> str:
-    """실패 원인 분류 — 재시도 정책 차등화용
-    - quota(429) / server(5xx) / network → 재시도
-    - auth(401/403) → 즉시 다음 모델 (키/권한 문제 — 재시도 무의미)
+    """실패 원인 분류 — 재시도 정책 차등화 (스킬 failure policy 기준)
+    - server(5xx) / network → 동일 티어 1회 재시도 허용
+    - quota(429) → 티어 전용 5분 쿨다운, 즉시 다음 티어
+    - auth(401/403) / notfound(404) → structural 쿨다운, 즉시 다음 티어
+    - timeout / invalid_content(빈 응답·마커 누락) → 재시도 없이 다음 티어
     """
+    if isinstance(e, APITimeoutError) or "timeout" in type(e).__name__.lower():
+        return "timeout"
     status = getattr(getattr(e, "response", None), "status_code", None)
     if status == 429:
         return "quota"
     if status in (401, 403):
         return "auth"
+    if status == 404:
+        return "notfound"
     if status and status >= 500:
         return "server"
+    if isinstance(e, _ValidationError):
+        return "invalid_content"
     return "network"
 
 
+class _ValidationError(ValueError):
+    """응답 검증 실패 (빈 응답, 마커 누락, 분량 미달) — invalid_content로 분류"""
+
+
+# ── 폴백 상태 (스킬: persistent rotation contract) ────────────
+FALLBACK_STATE_PATH = Path(__file__).resolve().parent / "db" / "fallback_state.json"
+QUOTA_COOLDOWN_SEC = 300        # 429 → 5분, 해당 티어만
+STRUCTURAL_COOLDOWN_SEC = 3600  # 401/403/404 → 1시간
+
+def _tier_id(cfg: dict) -> str:
+    return f"{cfg['provider']}/{cfg['model']}"
+
+def _load_state() -> dict:
+    """상태 로드 + 만료된 쿨다운 제거. 파일 없음/손상 = 빈 상태."""
+    st = {}
+    try:
+        st = json.loads(FALLBACK_STATE_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        pass
+    now = time.time()
+    for k in ("quota_until", "structural_until"):
+        st[k] = {t: v for t, v in (st.get(k) or {}).items() if v > now}
+    st.setdefault("last_success_tier", None)
+    return st
+
+def _save_state(st: dict):
+    """임시 파일 쓰기 후 원자적 교체."""
+    FALLBACK_STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    tmp = FALLBACK_STATE_PATH.with_suffix(".tmp")
+    tmp.write_text(json.dumps(st, ensure_ascii=False), encoding="utf-8")
+    os.replace(tmp, FALLBACK_STATE_PATH)
+
+def _usable_tiers(st: dict) -> list:
+    """쿨다운 중이 아닌 사용 가능 티어. last_success_tier 최우선 정렬."""
+    now = time.time()
+    usable = [c for c in FALLBACK_MODELS
+              if _clients.get(c["provider"])
+              and st["quota_until"].get(_tier_id(c), 0) <= now
+              and st["structural_until"].get(_tier_id(c), 0) <= now]
+    usable.sort(key=lambda c: 0 if _tier_id(c) == st["last_success_tier"] else 1)
+    return usable
+
+
 def generate_article(service: dict) -> dict | None:
-    if not _clients.get("nvidia") and not _clients.get("deepseek"):
-        print("  [writer] ❌ 모든 API 키 없음 (NVIDIA + DeepSeek)")
+    if not any(_clients.values()):
+        print("  [writer] ❌ 사용 가능한 API 키 없음")
         return None
 
-    for cfg in FALLBACK_MODELS:
-        provider   = cfg["provider"]
-        model      = cfg["model"]
-        timeout    = cfg["timeout"]
-        max_retries = cfg["max_retries"]
-        note       = cfg["note"]
+    st = _load_state()
+    usable = _usable_tiers(st)
+    if not usable:
+        # 스킬: 전체 쿨다운 중이면 가장 먼저 만료되는 티어 1회만 시도
+        now = time.time()
+        cooled = [c for c in FALLBACK_MODELS
+                  if _clients.get(c["provider"])
+                  and (st["quota_until"].get(_tier_id(c), 0) > now
+                       or st["structural_until"].get(_tier_id(c), 0) > now)]
+        if not cooled:
+            print("  [writer] ❌ 사용 가능한 API 키 없음")
+            return None
+        usable = [min(cooled, key=lambda c: min(
+            st["quota_until"].get(_tier_id(c), 9e18),
+            st["structural_until"].get(_tier_id(c), 9e18)))]
+        print("  [writer] ⚠️  모든 티어 쿨다운 중 — 최조 만료 티어 1회만 시도")
 
-        selected_client = _clients.get(provider)
-        if selected_client is None:
-            print(f"  [writer] ⚠️  {note} | {model} — {provider} API 키 없음, 스킵")
-            continue
+    # 재시도 허용 클래스 (server/network만). timeout·quota·auth·invalid_content는 즉시 다음 티어.
+    RETRYABLE = {"server", "network"}
+
+    for ci, cfg in enumerate(usable):
+        provider    = cfg["provider"]
+        model       = cfg["model"]
+        timeout     = cfg["timeout"]
+        max_retries = cfg["max_retries"]
+        note        = cfg["note"]
+        tid         = _tier_id(cfg)
+        selected_client = _clients[provider]
+        next_tid = _tier_id(usable[ci + 1]) if ci + 1 < len(usable) else "-"
 
         for attempt in range(max_retries):
+            t0 = time.time()
             try:
                 print(f"  [writer] {note} | {model} (시도 {attempt+1}/{max_retries})")
                 stream = selected_client.chat.completions.create(
@@ -680,22 +750,28 @@ def generate_article(service: dict) -> dict | None:
                 body = _strip_thinking(body)
                 print()
 
+                # 검증 실패 = invalid_content → 동일 티어 재시도 없이 다음 티어
                 if not body:
-                    raise ValueError("빈 응답 (thinking 전용 모델?)")
-
-                # 필수 요소 검증
+                    raise _ValidationError("빈 응답 (thinking 전용 모델?)")
                 if "[PERSONA_CTA]" not in body:
-                    raise ValueError("PERSONA_CTA 누락")
+                    raise _ValidationError("PERSONA_CTA 누락")
                 if "[RELATED_POSTS]" not in body:
-                    raise ValueError("RELATED_POSTS 누락")
+                    raise _ValidationError("RELATED_POSTS 누락")
                 if len(body) < 800:
-                    raise ValueError(f"본문 너무 짧음: {len(body)}자")
+                    raise _ValidationError(f"본문 너무 짧음: {len(body)}자")
 
                 # diffusiongemma 품질 경고
                 if "diffusiongemma" in model:
                     print(f"  [writer] ⚠️  실험모델 사용됨 — 품질 검수 권장")
 
+                # 성공: last_success_tier 갱신 + 해당 티어 쿨다운 해제
+                st["last_success_tier"] = tid
+                st["quota_until"].pop(tid, None)
+                st["structural_until"].pop(tid, None)
+                _save_state(st)
+
                 print(f"  [writer] ✅ 성공: {model} ({len(body)}자)")
+                print(f"  [trace] stage=draft tier={tid} duration_ms={int((time.time()-t0)*1000)} result=ok next=-")
                 return {
                     "body":   body,
                     "tokens": 0,
@@ -704,17 +780,39 @@ def generate_article(service: dict) -> dict | None:
 
             except Exception as e:
                 kind = _classify_error(e)
-                wait = 2 ** attempt
+                dur_ms = int((time.time() - t0) * 1000)
+                will_retry = kind in RETRYABLE and attempt < max_retries - 1
+
+                # 스킬 정책별 상태 갱신
+                if kind == "quota":
+                    st["quota_until"][tid] = time.time() + QUOTA_COOLDOWN_SEC
+                    st.pop("last_success_tier", None)
+                    st["last_success_tier"] = None if st.get("last_success_tier") == tid else st.get("last_success_tier")
+                    _save_state(st)
+                elif kind in ("auth", "notfound"):
+                    st["structural_until"][tid] = time.time() + STRUCTURAL_COOLDOWN_SEC
+                    if st.get("last_success_tier") == tid:
+                        st["last_success_tier"] = None
+                    _save_state(st)
+                elif kind == "invalid_content":
+                    # 마지막 성공 티어가 무효 콘텐츠 반환 → 우선순위 즉시 상실
+                    if st.get("last_success_tier") == tid:
+                        st["last_success_tier"] = None
+                    _save_state(st)
+
+                nxt = tid if will_retry else next_tid
                 print(f"  [writer] ❌ 시도 {attempt+1} 실패 [{kind}]: {e}")
-                # auth(401/403)는 재시도 무의미 → 즉시 다음 모델
-                if kind == "auth":
+                print(f"  [trace] stage=draft tier={tid} duration_ms={dur_ms} result={kind} next={nxt}")
+
+                if not will_retry:
                     break
-                if attempt < max_retries - 1:
-                    print(f"  [writer] {wait}초 후 재시도...")
-                    time.sleep(wait)
+                wait = 2 ** attempt
+                print(f"  [writer] {wait}초 후 재시도...")
+                time.sleep(wait)
 
-        print(f"  [writer] ⚠️  {model} 모두 실패 → 다음 모델 전환")
+        print(f"  [writer] ⚠️  {model} 종료 → 다음 모델 전환")
 
+    print("  [trace] stage=draft tier=ALL duration_ms=- result=chain_exhausted next=-")
     print("  [writer] ❌ 모든 폴백 모델 실패")
     return None
 

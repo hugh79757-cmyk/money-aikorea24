@@ -11,55 +11,132 @@ import paths
 load_dotenv(paths.DOTENV_PATH)
 load_dotenv(paths.COMMON_ENV_PATH)
 
-# ── NVIDIA NIM 폴백 체인 ─────────────────────────────────────
-NIM_API_KEY  = os.getenv("NVIDIA_API_KEY")
-NIM_BASE_URL = "https://integrate.api.nvidia.com/v1"
+# ── LLM 폴백 체인 (프로바이더별) ─────────────────────────────
+# 무료 모델 우선, 유료(DeepSeek) 최후 예약.
+# 모델명은 2026-08-11 실제 API 목록 검증 기준 (스킬 문서와 다를 수 있음).
 
-# ── DeepSeek V4 Flash (OpenAI 호환 API) ────────────────────
+PROVIDERS = {
+    "nvidia": {
+        "api_key_env": "NVIDIA_API_KEY",
+        "base_url":    "https://integrate.api.nvidia.com/v1",
+    },
+    "deepseek": {
+        "api_key_env": "DEEPSEEK_API_TOKEN",
+        "base_url":    "https://api.deepseek.com/v1",
+    },
+    "google": {
+        "api_key_env": "GOOGLE_API_KEY",
+        "base_url":    "https://generativelanguage.googleapis.com/v1beta/openai",
+    },
+    "groq": {
+        "api_key_env": "GROQ_API_KEY",
+        "base_url":    "https://api.groq.com/openai/v1",
+    },
+    "cerebras": {
+        "api_key_env": "CEREBRAS_API_KEY",
+        "base_url":    "https://api.cerebras.ai/v1",
+    },
+}
+
+def _make_client(provider: str):
+    key = os.getenv(PROVIDERS[provider]["api_key_env"])
+    if not key:
+        return None
+    return OpenAI(
+        api_key=key,
+        base_url=PROVIDERS[provider]["base_url"],
+    )
+
+# 프로바이더별 클라이언트 (키 없으면 None → 해당 모델 스킵)
+_clients = {p: _make_client(p) for p in PROVIDERS}
+NIM_API_KEY       = os.getenv("NVIDIA_API_KEY")
 DEEPSEEK_API_KEY  = os.getenv("DEEPSEEK_API_TOKEN") or os.getenv("DEEPSEEK_API_KEY")
-DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1"
-DEEPSEEK_MODEL    = "deepseek-chat"
+DEEPSEEK_MODEL    = "deepseek-chat"  # legacy reference (proofread 등에서 사용)
 
-# diffusiongemma 메인, gemma-4-31b-it 폴백, deepseek-chat 최후 폴백
+# diffusiongemma 메인 + 무료 폴백 체인, deepseek-v4-flash 최후 폴백
 FALLBACK_MODELS = [
     {
+        "provider":    "nvidia",
         "model":       "google/diffusiongemma-26b-a4b-it",
         "timeout":     120,
         "max_retries": 2,
-        "note":        "메인 (실험모델)"
+        "note":        "메인 (실험모델)",
     },
     {
+        "provider":    "nvidia",
         "model":       "google/gemma-4-31b-it",
         "timeout":     120,
         "max_retries": 1,
-        "note":        "gemma-4 폴백"
+        "note":        "gemma-4 폴백",
     },
     {
+        "provider":    "nvidia",
         "model":       "google/gemma-3n-e4b-it",
         "timeout":     90,
         "max_retries": 1,
-        "note":        "gemma-3n 폴백"
+        "note":        "gemma-3n 폴백",
     },
     {
-        "model":       "deepseek-chat",
+        "provider":    "google",
+        "model":       "gemini-3.1-flash-lite",
+        "timeout":     90,
+        "max_retries": 1,
+        "note":        "Gemini 무료 (품질 우수)",
+    },
+    {
+        "provider":    "google",
+        "model":       "gemini-2.5-flash",
+        "timeout":     90,
+        "max_retries": 1,
+        "note":        "Gemini 무료 (균형)",
+    },
+    {
+        "provider":    "cerebras",
+        "model":       "gemma-4-31b",
+        "timeout":     90,
+        "max_retries": 1,
+        "note":        "Cerebras 무료 (빠른 추론)",
+    },
+    {
+        "provider":    "groq",
+        "model":       "llama-3.3-70b-versatile",
+        "timeout":     60,
+        "max_retries": 1,
+        "note":        "Groq 무료 (대형 컨텍스트)",
+    },
+    {
+        "provider":    "groq",
+        "model":       "qwen/qwen3.6-27b",
+        "timeout":     60,
+        "max_retries": 1,
+        "note":        "Groq 무료 (thinking 태그 제거 필요)",
+        "strip_thinking": True,
+    },
+    {
+        "provider":    "groq",
+        "model":       "openai/gpt-oss-120b",
+        "timeout":     90,
+        "max_retries": 1,
+        "note":        "Groq 무료 (오픈 가중치)",
+    },
+    {
+        "provider":    "groq",
+        "model":       "openai/gpt-oss-20b",
+        "timeout":     60,
+        "max_retries": 1,
+        "note":        "Groq 무료 (소형·고속)",
+    },
+    {
+        "provider":    "deepseek",
+        "model":       "deepseek-v4-flash",
         "timeout":     180,
         "max_retries": 2,
-        "note":        "deepseek v4 flash 최후 폴백",
-        "deepseek":    True,
+        "note":        "deepseek v4 flash 최후 폴백 (유료)",
     },
 ]
 
-client = OpenAI(
-    api_key=NIM_API_KEY,
-    base_url=NIM_BASE_URL,
-)
-
-deepseek_client = None
-if DEEPSEEK_API_KEY:
-    deepseek_client = OpenAI(
-        api_key=DEEPSEEK_API_KEY,
-        base_url=DEEPSEEK_BASE_URL,
-    )
+client = _clients["nvidia"]
+deepseek_client = _clients["deepseek"]
 
 # ── 페르소나 통계 로더 ─────────────────────────────────────
 from shared.persona_stats import resolve_keys as _resolve_stat_keys, get_stats as _get_stats, format_for_prompt as _fmt_stats, make_fomo_hook as _make_hook
@@ -539,23 +616,37 @@ def _proofread_chain(text: str, timeout: int = 90):
     yield None
 
 
+def _classify_error(e: Exception) -> str:
+    """실패 원인 분류 — 재시도 정책 차등화용
+    - quota(429) / server(5xx) / network → 재시도
+    - auth(401/403) → 즉시 다음 모델 (키/권한 문제 — 재시도 무의미)
+    """
+    status = getattr(getattr(e, "response", None), "status_code", None)
+    if status == 429:
+        return "quota"
+    if status in (401, 403):
+        return "auth"
+    if status and status >= 500:
+        return "server"
+    return "network"
+
+
 def generate_article(service: dict) -> dict | None:
-    if not NIM_API_KEY and not DEEPSEEK_API_KEY:
+    if not _clients.get("nvidia") and not _clients.get("deepseek"):
         print("  [writer] ❌ 모든 API 키 없음 (NVIDIA + DeepSeek)")
         return None
 
     for cfg in FALLBACK_MODELS:
+        provider   = cfg["provider"]
         model      = cfg["model"]
         timeout    = cfg["timeout"]
         max_retries = cfg["max_retries"]
         note       = cfg["note"]
-        is_deepseek = cfg.get("deepseek", False)
 
-        if is_deepseek and not DEEPSEEK_API_KEY:
-            print(f"  [writer] ⚠️  {note} | DEEPSEEK_API_KEY 없음, 스킵")
+        selected_client = _clients.get(provider)
+        if selected_client is None:
+            print(f"  [writer] ⚠️  {note} | {model} — {provider} API 키 없음, 스킵")
             continue
-
-        selected_client = deepseek_client if is_deepseek else client
 
         for attempt in range(max_retries):
             try:
@@ -585,8 +676,12 @@ def generate_article(service: dict) -> dict | None:
                         print("\n  ⚠️  [max_tokens 초과]")
 
                 body = ''.join(chunks).strip()
+                # 모든 모델에 thinking 태그 스트립 적용 (qwen/DeepSeek R1 계열 대비)
                 body = _strip_thinking(body)
                 print()
+
+                if not body:
+                    raise ValueError("빈 응답 (thinking 전용 모델?)")
 
                 # 필수 요소 검증
                 if "[PERSONA_CTA]" not in body:
@@ -608,8 +703,12 @@ def generate_article(service: dict) -> dict | None:
                 }
 
             except Exception as e:
+                kind = _classify_error(e)
                 wait = 2 ** attempt
-                print(f"  [writer] ❌ 시도 {attempt+1} 실패: {e}")
+                print(f"  [writer] ❌ 시도 {attempt+1} 실패 [{kind}]: {e}")
+                # auth(401/403)는 재시도 무의미 → 즉시 다음 모델
+                if kind == "auth":
+                    break
                 if attempt < max_retries - 1:
                     print(f"  [writer] {wait}초 후 재시도...")
                     time.sleep(wait)
@@ -637,11 +736,12 @@ if __name__ == "__main__":
         "detail_url":   "https://www.bokjiro.go.kr",
     }
 
-    print("=== NVIDIA NIM 폴백 체인 테스트 ===")
-    print(f"사용 가능한 모델: {len(FALLBACK_MODELS)}개")
+    print("=== LLM 폴백 체인 테스트 ===")
+    print(f"등록 모델: {len(FALLBACK_MODELS)}개")
     for i, cfg in enumerate(FALLBACK_MODELS, 1):
-        print(f"  {i}. {cfg['model']} ({cfg['note']})")
-    print(f"API 키: {'설정됨' if NIM_API_KEY else '❌ 없음'}\n")
+        key_state = "✅" if _clients.get(cfg["provider"]) else "❌"
+        print(f"  {i}. {key_state} [{cfg['provider']}] {cfg['model']} ({cfg['note']})")
+    print(f"NVIDIA 키: {'설정됨' if NIM_API_KEY else '❌ 없음'}\n")
 
     result = generate_article(test_service)
     if result:

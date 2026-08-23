@@ -53,6 +53,21 @@ def print_status():
            ORDER BY published_at DESC""",
         (f"{today}%",)
     ).fetchall()
+
+    # 모델별 사용 통계 (전체 기간 + 최근 7일)
+    model_stats_all = conn.execute(
+        """SELECT model_used, COUNT(*) as cnt
+           FROM publish_ledger
+           GROUP BY model_used
+           ORDER BY cnt DESC"""
+    ).fetchall()
+    model_stats_7d = conn.execute(
+        """SELECT model_used, COUNT(*) as cnt
+           FROM publish_ledger
+           WHERE published_at >= datetime('now', '-7 days')
+           GROUP BY model_used
+           ORDER BY cnt DESC"""
+    ).fetchall()
     conn.close()
 
     print(f"\n{'='*55}")
@@ -68,6 +83,25 @@ def print_status():
             print(f"           모델: {model_short} | {r['published_at'][11:16]}")
     else:
         print(" 오늘 발행된 글 없음")
+
+    # 모델별 통계 (스킬 Step 1: 유료 모델 사용률 모니터링)
+    print(f"{'─'*55}")
+    print(" 모델별 사용 (전체 / 최근 7일):")
+    if model_stats_all:
+        all_models = {r["model_used"]: r["cnt"] for r in model_stats_all}
+        recent_models = {r["model_used"]: r["cnt"] for r in model_stats_7d}
+        total_all = sum(all_models.values())
+        for model, cnt in all_models.items():
+            short = (model or "unknown").split("/")[-1][:25]
+            pct = (cnt / total_all * 100) if total_all else 0
+            recent = recent_models.get(model, 0)
+            mark = "🔴" if model and "deepseek" in model else "  "
+            print(f"  {mark} {short:<25} {cnt:>4}건 ({pct:>4.1f}%) | 최근7일 {recent}건")
+        paid = sum(v for k, v in all_models.items() if k and "deepseek" in k)
+        print(f" {'─'*45}")
+        print(f" 유료(DeepSeek) 사용률: {paid}/{total_all} = {paid/total_all*100:.1f}% (목표 <5%)")
+    else:
+        print(" 발행 기록 없음")
     print(f"{'='*55}\n")
 
 def run_fetch():

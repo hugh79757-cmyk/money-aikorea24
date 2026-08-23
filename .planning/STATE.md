@@ -16,7 +16,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-07-09)
 
 **Core value:** 사용자가 내 또래 기준으로 금융/지원금 정보를 비교하고 비슷한 처지의 사용자와 경험을 나눈다. 소득(income) 데이터의 ROI를 카드/공유/지원금 전체로 완결한다.
-**Current focus:** Phase 7 완료 — Income Gauge Deep Link & Card Income Integration (4개 work items 모두 실행 완료)
+**Current focus:** Phase 7 완료 — Marketing Persona Studio (A→E complete, 2639pages)
 
 ## Current Position
 

@@ -27,7 +27,7 @@ import { fileURLToPath } from 'url';
 import { calcTopPct } from '../src/lib/income-percentile.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const STATS_PATH = resolve(__dirname, '../public/persona-stats.json');
+const STATS_PATH = resolve(__dirname, '../data/persona-stats.json');
 const WAGE_PATH  = resolve(__dirname, '../src/data/wage-table.json');
 
 const wageTable = JSON.parse(readFileSync(WAGE_PATH, 'utf8'));

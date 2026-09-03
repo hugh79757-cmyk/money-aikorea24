@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
 
-const raw = readFileSync(join(root, 'public', 'persona-stats.json'), 'utf-8');
+const raw = readFileSync(join(root, 'data', 'persona-stats.json'), 'utf-8');
 const fullData = JSON.parse(raw);
 const decadeData = {};
 

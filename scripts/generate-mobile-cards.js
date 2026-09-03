@@ -7,7 +7,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const MOBILE_DIR = path.join(__dirname, '../public/cards-mobile');
 const BG_DIR     = path.join(__dirname, '../public/bg_img');
-const STATS_JSON = path.join(__dirname, '../public/persona-stats.json');
+const STATS_JSON = path.join(__dirname, '../data/persona-stats.json');
 
 const W = 400, H = 800;
 

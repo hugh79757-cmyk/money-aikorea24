@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const data = JSON.parse(fs.readFileSync('public/persona-stats.json', 'utf-8'));
+const data = JSON.parse(fs.readFileSync('data/persona-stats.json', 'utf-8'));
 
 // 여기만 수정해서 다양한 비교 실행
 const KEY_A = '서울_남자_30대';

@@ -11,7 +11,7 @@ const OUT_SQL = args.find(a => a.startsWith('--out='))?.split('=')[1] || `/tmp/s
 
 console.log(`\n시드 글 생성 시작: ${COUNT}개 목표\n`);
 
-const personaStats = JSON.parse(fs.readFileSync(path.join(ROOT, 'public/persona-stats.json'), 'utf8'));
+const personaStats = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/persona-stats.json'), 'utf8'));
 const benefits     = JSON.parse(fs.readFileSync(path.join(ROOT, 'public/benefits-clean.json'), 'utf8'));
 const personaKeys  = Object.keys(personaStats);
 console.log(`페르소나 키: ${personaKeys.length}개 / 지원금: ${benefits.length}건`);

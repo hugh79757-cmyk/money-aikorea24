@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = '/Users/twinssn/Projects/money-aikorea24';
 const BG_DIR = path.join(ROOT, 'public/bg_img');
-const STATS = JSON.parse(fs.readFileSync(path.join(ROOT, 'public/persona-stats.json'), 'utf-8'));
+const STATS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/persona-stats.json'), 'utf-8'));
 
 const W = 600, H = 600;
 

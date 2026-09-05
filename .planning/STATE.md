@@ -108,3 +108,9 @@ Last session: 2026-08-23
 Stopped at: **Phase 7 완료**. 전 항목(4개 work items) 실행 + 빌드(2551pages 0에러) + 배포 완료.
 Milestone v2.1 Marketing Personas — 빌드 2639pages 0에러, AdSense 계열 위반 없음.
 Resume file: N/A (project complete)
+
+## Quick Tasks Completed
+
+| Slug | Title | Completed | Summary |
+|------|-------|-----------|---------|
+| dawn-google-auth | 새벽 구글 인증 시도 제거 | 2026-09-05 | 월요일 06:00 중복 fetch 제거 (com.aikorea24.auto-writer-fetch), interactive google auth 0건 확인, 빌드 2684p 유지 |

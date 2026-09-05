@@ -593,6 +593,9 @@ def _proofread_chain(text: str, timeout: int = 90):
     # 2차: DeepSeek 폴백
     if DEEPSEEK_API_KEY:
         print("  [proofread] 시도 2/2 | deepseek-chat")
+        if not _allow_paid():
+            print("  [proofread] ⏭️  유료 proofread 스킵 (ALLOW_PAID 미승인) → 원문 유지")
+            return
         try:
             resp = deepseek_client.chat.completions.create(
                 model=DEEPSEEK_MODEL,
@@ -653,6 +656,12 @@ FALLBACK_STATE_PATH = Path(os.getenv("FALLBACK_STATE_PATH", str(Path(__file__).r
 QUOTA_COOLDOWN_SEC = 300        # 429 → 5분, 해당 티어만
 STRUCTURAL_COOLDOWN_SEC = 3600  # 401/403/404 → 1시간
 
+# 스킬: 유료 티어 최소화 — paid 항상 last, 명시적 승인 없으면 제외
+PAID_TIER_IDS = {"deepseek/deepseek-v4-flash", "deepseek/deepseek-chat"}  # writer+proofread 유료
+def _allow_paid() -> bool:
+    v = (os.getenv("ALLOW_PAID") or "").strip().lower()
+    return v in ("1", "true", "yes", "y")
+
 def _tier_id(cfg: dict) -> str:
     return f"{cfg['provider']}/{cfg['model']}"
 
@@ -677,14 +686,19 @@ def _save_state(st: dict):
     os.replace(tmp, FALLBACK_STATE_PATH)
 
 def _usable_tiers(st: dict) -> list:
-    """쿨다운 중이 아닌 사용 가능 티어. last_success_tier 최우선 정렬."""
+    """쿨다운 중이 아닌 사용 가능 티어. last_success_tier 최우선 정렬, 유료는 항상 last."""
     now = time.time()
-    usable = [c for c in FALLBACK_MODELS
+    allow_paid = _allow_paid()
+    candidates = [c for c in FALLBACK_MODELS
               if _clients.get(c["provider"])
               and st["quota_until"].get(_tier_id(c), 0) <= now
-              and st["structural_until"].get(_tier_id(c), 0) <= now]
-    usable.sort(key=lambda c: 0 if _tier_id(c) == st["last_success_tier"] else 1)
-    return usable
+              and st["structural_until"].get(_tier_id(c), 0) <= now
+              and (allow_paid or _tier_id(c) not in PAID_TIER_IDS)]
+    free = [c for c in candidates if _tier_id(c) not in PAID_TIER_IDS]
+    paid = [c for c in candidates if _tier_id(c) in PAID_TIER_IDS]
+    # free만 last_success 우선, paid는 항상 뒤
+    free.sort(key=lambda c: 0 if _tier_id(c) == st["last_success_tier"] else 1)
+    return free + paid
 
 
 def generate_article(service: dict) -> dict | None:
@@ -695,16 +709,25 @@ def generate_article(service: dict) -> dict | None:
     st = _load_state()
     usable = _usable_tiers(st)
     if not usable:
-        # 스킬: 전체 쿨다운 중이면 가장 먼저 만료되는 티어 1회만 시도
+        # 스킬: 전체 쿨다운 중이면 가장 먼저 만료되는 티어 1회만 시도 (유료 제외, 승인 시만 유료 포함)
         now = time.time()
+        allow_paid = _allow_paid()
         cooled = [c for c in FALLBACK_MODELS
                   if _clients.get(c["provider"])
                   and (st["quota_until"].get(_tier_id(c), 0) > now
-                       or st["structural_until"].get(_tier_id(c), 0) > now)]
+                       or st["structural_until"].get(_tier_id(c), 0) > now)
+                  and (allow_paid or _tier_id(c) not in PAID_TIER_IDS)]
         if not cooled:
-            print("  [writer] ❌ 사용 가능한 API 키 없음")
+            # 유료 없이 모두 쿨다운 → generation_blocked (유료 호출 방지)
+            if not allow_paid and any(_tier_id(c) in PAID_TIER_IDS for c in FALLBACK_MODELS):
+                print("  [writer] ⏸️  무료 티어 전체 쿨다운 + 유료 미승인 → generation_blocked (ALLOW_PAID=1 필요)")
+            else:
+                print("  [writer] ❌ 사용 가능한 API 키 없음")
             return None
-        usable = [min(cooled, key=lambda c: min(
+        # 무료 중 최조 만료 우선
+        free_cooled = [c for c in cooled if _tier_id(c) not in PAID_TIER_IDS]
+        pool = free_cooled if free_cooled else cooled
+        usable = [min(pool, key=lambda c: min(
             st["quota_until"].get(_tier_id(c), 9e18),
             st["structural_until"].get(_tier_id(c), 9e18)))]
         print("  [writer] ⚠️  모든 티어 쿨다운 중 — 최조 만료 티어 1회만 시도")

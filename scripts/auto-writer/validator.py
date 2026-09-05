@@ -47,6 +47,8 @@ _AI_ARTIFACT_PATTERNS = [
     (r'\*\*목차\*\*\s*\n+(?:-\s*\[.*?\]\(#[^\)]*\)\s*\n)*\n*', ''),
     # 연속된 --- 분리선 (3개 이상)
     (r'\n---\n---\n', '\n---\n'),
+    # 한자 누출 (LLM 템플릿 잔재)
+    (r'末尾', '아래'),
 ]
 
 def remove_fake_links(body: str) -> str:

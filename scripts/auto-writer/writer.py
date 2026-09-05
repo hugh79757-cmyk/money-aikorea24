@@ -1,7 +1,7 @@
 # scripts/auto-writer/writer.py
 import os, sys, json, re, time, yaml
 from pathlib import Path
-from openai import OpenAI, APITimeoutError
+from openai import OpenAI, APITimeoutError, APIConnectionError
 from dotenv import load_dotenv
 from datetime import datetime
 
@@ -53,29 +53,8 @@ NIM_API_KEY       = os.getenv("NVIDIA_API_KEY")
 DEEPSEEK_API_KEY  = os.getenv("DEEPSEEK_API_TOKEN") or os.getenv("DEEPSEEK_API_KEY")
 DEEPSEEK_MODEL    = "deepseek-chat"  # legacy reference (proofread 등에서 사용)
 
-# diffusiongemma 메인 + 무료 폴백 체인, deepseek-v4-flash 최후 폴백
+# 무료 폴백 체인 (2026-09-05: NVIDIA 모델 3개 410 Gone → 제거, Gemini 1순위)
 FALLBACK_MODELS = [
-    {
-        "provider":    "nvidia",
-        "model":       "google/diffusiongemma-26b-a4b-it",
-        "timeout":     120,
-        "max_retries": 2,
-        "note":        "메인 (실험모델)",
-    },
-    {
-        "provider":    "nvidia",
-        "model":       "google/gemma-4-31b-it",
-        "timeout":     120,
-        "max_retries": 1,
-        "note":        "gemma-4 폴백",
-    },
-    {
-        "provider":    "nvidia",
-        "model":       "google/gemma-3n-e4b-it",
-        "timeout":     90,
-        "max_retries": 1,
-        "note":        "gemma-3n 폴백",
-    },
     {
         "provider":    "google",
         "model":       "gemini-3.1-flash-lite",
@@ -135,7 +114,7 @@ FALLBACK_MODELS = [
     },
 ]
 
-client = _clients["nvidia"]
+client = _clients.get("google", _clients.get("nvidia"))
 deepseek_client = _clients["deepseek"]
 
 # ── 페르소나 통계 로더 ─────────────────────────────────────
@@ -259,7 +238,7 @@ User 메시지로 제공된 데이터를 기준으로 글을 작성하세요.
 
 글 본문에 아래 2개의 플레이스홀더를 반드시 포함하세요. 이 마커들은 사이트에서 자동으로 실제 링크로 교체됩니다.
 
-- `[PERSONA_CTA]` — 글末尾(FAQ와 마무리 사이)에 단독 줄로 삽입. "내 페르소나 통계 보기" CTA 블록으로 자동 교체됨.
+- `[PERSONA_CTA]` — 글 아래(FAQ와 마무리 사이)에 단독 줄로 삽입. "내 페르소나 통계 보기" CTA 블록으로 자동 교체됨.
 - `[RELATED_POSTS]` — 마무리 직전에 단독 줄로 삽입. 관련 블로그 글 링크로 자동 교체됨.
 
 **규칙**:
@@ -269,7 +248,7 @@ User 메시지로 제공된 데이터를 기준으로 글을 작성하세요.
 
 **CTA 사다리 (variant-driven)**: 본문 중간(H2#2·H2#3 뒤)에는 파이프라인이 자동으로 '약함/호기심' 복사의 인라인 CTA를 주입합니다(config/category_map.yaml의 `cta_variants` 참조 — 카테고리×페르소나 키별로 mid(약함)/end(강함) 2개 A/B 변인). 글말의 `[PERSONA_CTA]`는 '강함/행동' 복사로 자동 교체됩니다. 작성자는 복사문을 직접 쓰지 않고 **마커만 유지**하세요.
 
-**전진 참조 티저 (forward-reference teaser)**: H2#2와 H2#3 바로 뒤에 독자를 글 끝(인라인 CTA와 본문 내 광고 슬롯이 있는 곳)으로 유도하는 한 줄 티저를 넣으세요. 예: "아래에서 소득 구간별 전략을 정리합니다 →", "글末尾에서 내 또래 평균과 비교해보세요 →". 이 티저는 중간 이탈을 줄이고 광고 노출 도달을 높입니다(광고 코드는 건드리지 않음).
+**전진 참조 티저 (forward-reference teaser)**: H2#2와 H2#3 바로 뒤에 독자를 글 끝(인라인 CTA와 본문 내 광고 슬롯이 있는 곳)으로 유도하는 한 줄 티저를 넣으세요. 예: "아래에서 소득 구간별 전략을 정리합니다 →", "글 아래에서 내 또래 평균과 비교해보세요 →". 이 티저는 중간 이탈을 줄이고 광고 노출 도달을 높입니다(광고 코드는 건드리지 않음).
 
 ---
 
@@ -568,11 +547,11 @@ def proofread(text: str, timeout: int = 90) -> str:
 
 def _proofread_chain(text: str, timeout: int = 90):
     """proofread 폴백 제너레이터 — 각 시도 결과를 yield"""
-    # 1차: NVIDIA gemma-3n
-    print("  [proofread] 시도 1/2 | google/gemma-3n-e4b-it")
+    # 1차: Gemini flash-lite (무료, gemma-3n 410 대체)
+    print("  [proofread] 시도 1/2 | google/gemini-3.1-flash-lite")
     try:
-        resp = client.chat.completions.create(
-            model="google/gemma-3n-e4b-it",
+        resp = _clients.get("google", client).chat.completions.create(
+            model="gemini-3.1-flash-lite",
             messages=[
                 {"role": "system", "content": PROOFREADER_PROMPT},
                 {"role": "user",   "content": text}
@@ -633,12 +612,14 @@ def _classify_error(e: Exception) -> str:
         return "invalid_content"
     if isinstance(e, APITimeoutError) or "timeout" in type(e).__name__.lower():
         return "timeout"
+    if isinstance(e, APIConnectionError):
+        return "server"
     status = getattr(getattr(e, "response", None), "status_code", None)
     if status == 429:
         return "quota"
     if status in (401, 403):
         return "auth"
-    if status == 404:
+    if status in (404, 410):
         return "notfound"
     if status and status >= 500:
         return "server"
@@ -676,6 +657,7 @@ def _load_state() -> dict:
     for k in ("quota_until", "structural_until"):
         st[k] = {t: v for t, v in (st.get(k) or {}).items() if v > now}
     st.setdefault("last_success_tier", None)
+    st.setdefault("last_used_tier", None)
     return st
 
 def _save_state(st: dict):
@@ -686,7 +668,7 @@ def _save_state(st: dict):
     os.replace(tmp, FALLBACK_STATE_PATH)
 
 def _usable_tiers(st: dict) -> list:
-    """쿨다운 중이 아닌 사용 가능 티어. last_success_tier 최우선 정렬, 유료는 항상 last."""
+    """쿨다운 중이 아닌 사용 가능 티어. 성공 티어 최우선, 실패 티어 후순위, 유료는 항상 last."""
     now = time.time()
     allow_paid = _allow_paid()
     candidates = [c for c in FALLBACK_MODELS
@@ -696,8 +678,15 @@ def _usable_tiers(st: dict) -> list:
               and (allow_paid or _tier_id(c) not in PAID_TIER_IDS)]
     free = [c for c in candidates if _tier_id(c) not in PAID_TIER_IDS]
     paid = [c for c in candidates if _tier_id(c) in PAID_TIER_IDS]
-    # free만 last_success 우선, paid는 항상 뒤
-    free.sort(key=lambda c: 0 if _tier_id(c) == st["last_success_tier"] else 1)
+    # 스킬 rotation: last_success → front, last_used(실패) → back, 나머지 → 설정 순서
+    def _sort_key(c):
+        tid = _tier_id(c)
+        if tid == st.get("last_success_tier"):
+            return 0   # 성공 티어 → 맨 앞
+        if tid == st.get("last_used_tier"):
+            return 2   # 직전 실패 티어 → 맨 뒤
+        return 1       # 나머지 → 설정 순서 유지
+    free.sort(key=_sort_key)
     return free + paid
 
 
@@ -802,8 +791,9 @@ def generate_article(service: dict) -> dict | None:
                 if "diffusiongemma" in model:
                     print(f"  [writer] ⚠️  실험모델 사용됨 — 품질 검수 권장")
 
-                # 성공: last_success_tier 갱신 + 해당 티어 쿨다운 해제
+                # 성공: last_success_tier 갱신 + 쿨다운 해제 + last_used 초기화
                 st["last_success_tier"] = tid
+                st["last_used_tier"] = None
                 st["quota_until"].pop(tid, None)
                 st["structural_until"].pop(tid, None)
                 _save_state(st)
@@ -824,8 +814,8 @@ def generate_article(service: dict) -> dict | None:
                 # 스킬 정책별 상태 갱신
                 if kind == "quota":
                     st["quota_until"][tid] = time.time() + QUOTA_COOLDOWN_SEC
-                    st.pop("last_success_tier", None)
-                    st["last_success_tier"] = None if st.get("last_success_tier") == tid else st.get("last_success_tier")
+                    if st.get("last_success_tier") == tid:
+                        st["last_success_tier"] = None
                     _save_state(st)
                 elif kind in ("auth", "notfound"):
                     st["structural_until"][tid] = time.time() + STRUCTURAL_COOLDOWN_SEC
@@ -843,6 +833,9 @@ def generate_article(service: dict) -> dict | None:
                 print(f"  [trace] stage=draft tier={tid} duration_ms={dur_ms} result={kind} error_class={kind} next_tier={nxt}")
 
                 if not will_retry:
+                    # 스킬 rotation: 실패한 티어를 last_used로 기록 → 다음 _usable_tiers에서 후순위
+                    st["last_used_tier"] = tid
+                    _save_state(st)
                     break
                 wait = 2 ** attempt
                 print(f"  [writer] {wait}초 후 재시도...")

@@ -78,7 +78,7 @@ const POSTS_PER_PAGE = 10;
         margin: 0;
       }
 
-      .post-grid { display: grid; grid-template-columns: 1fr; gap: 1.1rem; }
+      .post-grid { display: grid; grid-template-columns: 1fr; gap: 1.1rem; scroll-margin-top: 4rem; }
 
       .post-card {
         background: var(--color-surface);
@@ -245,7 +245,9 @@ const POSTS_PER_PAGE = 10;
         }
 
         renderPagination();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        var grid = document.getElementById('post-grid');
+        if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
       function renderPagination() {

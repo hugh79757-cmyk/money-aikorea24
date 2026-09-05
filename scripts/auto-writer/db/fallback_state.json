@@ -1,1 +1,1 @@
-{"quota_until": {}, "structural_until": {}, "last_success_tier": "nvidia/google/diffusiongemma-26b-a4b-it"}
+{"quota_until": {}, "structural_until": {"nvidia/google/diffusiongemma-26b-a4b-it": 9999999999.0, "nvidia/google/gemma-4-31b-it": 9999999999.0, "nvidia/google/gemma-3n-e4b-it": 9999999999.0, "groq/llama-3.3-70b-versatile": 1788605502.6858308}, "last_success_tier": "google/gemini-3.1-flash-lite"}

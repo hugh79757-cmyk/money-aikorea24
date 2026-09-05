@@ -68,10 +68,15 @@ CTA_VARIANTS    = CONFIG.get("cta_variants", {})
 
 # ── 뱅크샐러드 스타일 헬퍼 ───────────────────────────────────
 def extract_title_from_draft(body: str) -> str | None:
-    """LLM output 첫 줄 # 제목 → 제목 문자열 추출"""
+    """LLM output 첫 줄 # 제목 → 제목 문자열 추출 + 마커 태그 제거"""
     first_line = body.split('\n')[0].strip()
     m = re.match(r'^#\s+(.+)$', first_line)
-    return m.group(1).strip() if m else None
+    if not m:
+        return None
+    title = m.group(1).strip()
+    # 마커 태그 제거: [PERSONA_CTA], [RELATED_POSTS], [__MARKER_*]
+    title = re.sub(r'\s*\[(?:PERSONA_CTA|RELATED_POSTS|__MARKER_[^\]]*)\]', '', title)
+    return title.strip()
 
 _MARKER_IN_H2 = re.compile(r'\[(RELATED_POSTS|PERSONA_CTA|__MARKER_[^\]]+)\]')
 

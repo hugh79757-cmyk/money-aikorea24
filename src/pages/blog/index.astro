@@ -56,6 +56,7 @@ const POSTS_PER_PAGE = 10;
         display: grid;
         grid-template-columns: 1fr;
         gap: 1.1rem;
+        scroll-margin-top: 4rem;
       }
 
       .post-card {
@@ -236,8 +237,10 @@ const POSTS_PER_PAGE = 10;
 
         renderPagination();
 
-        // 페이지 이동 시 스크롤 상단 이동
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // 페이지 이동 시 그리드 상단으로 스크롤
+        var grid = document.getElementById('post-grid');
+        if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
       function renderPagination() {

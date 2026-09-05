@@ -398,6 +398,7 @@ function getSummary(b: any): string {
               data-age-source={(b.age_source || '')}
               data-regions={(b.regions ? b.regions.join(',') : '')}
               data-target={(b.target || '').toLowerCase()}
+              data-income-criteria={(b.income_criteria ? JSON.stringify(b.income_criteria) : '')}
             >
               <div class="card-top">
                 <span class={`badge ${sb.cls}`}>{sb.label}</span>
@@ -440,15 +441,22 @@ function getSummary(b: any): string {
       let page       = 1;
 
       /* ── URL 파라미터 기반 필터링 ── */
-      let urlAge = null;
-      let urlRegion = null;
+      var urlAge = null;
+      var urlRegion = null;
+      var urlIncome = null; // 월 소득 (만원)
+      var NATIONAL_MEDIAN = 350; // 전국 중위월소득 (만원)
 
       function initFromUrl() {
         var params = new URLSearchParams(location.search);
         urlAge = params.get('age');
         urlRegion = params.get('region');
+        var inc = params.get('income');
+        if (inc) {
+          var n = parseInt(inc, 10);
+          if (!isNaN(n) && n > 0) urlIncome = n;
+        }
 
-        if (urlAge || urlRegion) {
+        if (urlAge || urlRegion || urlIncome !== null) {
           document.querySelectorAll('.tab').forEach(function(x) { x.classList.remove('active'); });
           var allTab = document.querySelector('[data-tab="all"]');
           if (allTab) allTab.classList.add('active');
@@ -517,6 +525,26 @@ function getSummary(b: any): string {
             if (regs) {
               var regList = regs.split(',');
               if (!regList.some(function(r) { return r.trim() === urlRegion || r.trim() === '전국'; })) return false;
+            }
+          }
+          /* 소득 필터: income_criteria가 있으면 하나 이상 만족해야 통과 */
+          if (urlIncome !== null) {
+            var icRaw = card.dataset.incomeCriteria;
+            if (icRaw) {
+              try {
+                var criteria = JSON.parse(icRaw);
+                if (criteria.length > 0) {
+                  var matched = false;
+                  for (var ci = 0; ci < criteria.length; ci++) {
+                    var c = criteria[ci];
+                    if (c.type === 'median_pct_max' && urlIncome <= NATIONAL_MEDIAN * c.value / 100) { matched = true; break; }
+                    if (c.type === 'median_pct_min' && urlIncome >= NATIONAL_MEDIAN * c.value / 100) { matched = true; break; }
+                    if (c.type === 'monthly_min' && urlIncome >= c.value) { matched = true; break; }
+                    if (c.type === 'annual_min' && urlIncome * 12 >= c.value) { matched = true; break; }
+                  }
+                  if (!matched) return false;
+                }
+              } catch(e) {}
             }
           }
           return true;

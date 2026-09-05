@@ -2,7 +2,13 @@ import os, json, re
 from datetime import datetime
 from functools import lru_cache
 
-STATS_PATH = os.path.join(os.path.dirname(__file__), "../../../public/persona-stats.json")
+# 2026-09-03: persona-stats.json moved data/ (25MiB Pages limit) — fallback chain
+_CANDIDATES = [
+    os.path.join(os.path.dirname(__file__), "../../../data/persona-stats.json"),
+    os.path.join(os.path.dirname(__file__), "../../../public/persona-stats.json"),
+    os.path.join(os.path.dirname(__file__), "../../../public/persona-stats-decade.json"),
+]
+STATS_PATH = next((x for x in _CANDIDATES if os.path.exists(x)), _CANDIDATES[0])
 
 # 페르소나 → 대표 연령 (통계청 exact-age 키, income 데이터 포함)
 PERSONA_AGE_MAP = {
@@ -25,8 +31,12 @@ REGIONS = ["서울", "부산", "대구", "인천", "광주", "대전",
 
 @lru_cache(maxsize=1)
 def _load() -> dict:
-    with open(STATS_PATH, encoding="utf-8") as f:
-        return json.load(f)
+    for cand in _CANDIDATES:
+        if os.path.exists(cand):
+            with open(cand, encoding="utf-8") as f:
+                return json.load(f)
+    # ponytail: no stats file — return empty so build_user_prompt still works without stats
+    return {}
 
 # ── 키 리졸버 ─────────────────────────────────────────────────
 

@@ -621,8 +621,13 @@ def _classify_error(e: Exception) -> str:
     - server(5xx) / network → 동일 티어 1회 재시도 허용
     - quota(429) → 티어 전용 5분 쿨다운, 즉시 다음 티어
     - auth(401/403) / notfound(404) → structural 쿨다운, 즉시 다음 티어
-    - timeout / invalid_content(빈 응답·마커 누락) → 재시도 없이 다음 티어
+    - timeout / invalid_content(빈 응답·마커 누락·로컬 파일 누락) → 재시도 없이 다음 티어
     """
+    # 로컬 파일 누락 (persona-stats 등) — LLM 체인과 무관, invalid_content로 즉시 다음 티어, 쿨다운 없음
+    if isinstance(e, FileNotFoundError) or isinstance(e, OSError) and getattr(e, "errno", None) == 2:
+        return "invalid_content"
+    if "No such file or directory" in str(e) or "persona-stats" in str(e):
+        return "invalid_content"
     if isinstance(e, APITimeoutError) or "timeout" in type(e).__name__.lower():
         return "timeout"
     status = getattr(getattr(e, "response", None), "status_code", None)
@@ -644,7 +649,7 @@ class _ValidationError(ValueError):
 
 
 # ── 폴백 상태 (스킬: persistent rotation contract) ────────────
-FALLBACK_STATE_PATH = Path(__file__).resolve().parent / "db" / "fallback_state.json"
+FALLBACK_STATE_PATH = Path(os.getenv("FALLBACK_STATE_PATH", str(Path(__file__).resolve().parent / "db" / "fallback_state.json")))
 QUOTA_COOLDOWN_SEC = 300        # 429 → 5분, 해당 티어만
 STRUCTURAL_COOLDOWN_SEC = 3600  # 401/403/404 → 1시간
 
@@ -721,7 +726,8 @@ def generate_article(service: dict) -> dict | None:
             t0 = time.time()
             try:
                 print(f"  [writer] {note} | {model} (시도 {attempt+1}/{max_retries})")
-                stream = selected_client.chat.completions.create(
+                # provider param isolation — google/gemini는 presence/frequency 미지원 시 제거
+                _payload = dict(
                     model=model,
                     messages=[
                         {"role": "system", "content": SYSTEM_PROMPT},
@@ -730,11 +736,13 @@ def generate_article(service: dict) -> dict | None:
                     temperature=0.6,
                     max_tokens=8192,
                     top_p=0.9,
-                    frequency_penalty=0.3,
-                    presence_penalty=0.3,
                     timeout=timeout,
                     stream=True,
                 )
+                if provider not in ("google",):
+                    _payload["frequency_penalty"] = 0.3
+                    _payload["presence_penalty"] = 0.3
+                stream = selected_client.chat.completions.create(**_payload)
 
                 chunks = []
                 for chunk in stream:
@@ -759,6 +767,13 @@ def generate_article(service: dict) -> dict | None:
                     raise _ValidationError("RELATED_POSTS 누락")
                 if len(body) < 800:
                     raise _ValidationError(f"본문 너무 짧음: {len(body)}자")
+                # 스킬 quality gate 보강: prompt/reasoning leak, 중복 단락
+                if "<think>" in body or "SYSTEM PROMPT" in body or "당신은 persona.aikorea24" in body.split("[PERSONA_CTA]")[0][-500:]:
+                    raise _ValidationError("prompt/reasoning leak")
+                # 중복 단락 체크 (동일 H2 3회 이상 반복)
+                _paras = [l.strip() for l in body.split("\n") if l.strip().startswith("##")]
+                if len(_paras) != len(set(_paras)) and len(_paras) >= 3:
+                    raise _ValidationError("중복 H2")
 
                 # diffusiongemma 품질 경고
                 if "diffusiongemma" in model:
@@ -771,7 +786,7 @@ def generate_article(service: dict) -> dict | None:
                 _save_state(st)
 
                 print(f"  [writer] ✅ 성공: {model} ({len(body)}자)")
-                print(f"  [trace] stage=draft tier={tid} duration_ms={int((time.time()-t0)*1000)} result=ok next=-")
+                print(f"  [trace] stage=draft tier={tid} duration_ms={int((time.time()-t0)*1000)} result=ok error_class=- next_tier=-")
                 return {
                     "body":   body,
                     "tokens": 0,
@@ -802,7 +817,7 @@ def generate_article(service: dict) -> dict | None:
 
                 nxt = tid if will_retry else next_tid
                 print(f"  [writer] ❌ 시도 {attempt+1} 실패 [{kind}]: {e}")
-                print(f"  [trace] stage=draft tier={tid} duration_ms={dur_ms} result={kind} next={nxt}")
+                print(f"  [trace] stage=draft tier={tid} duration_ms={dur_ms} result={kind} error_class={kind} next_tier={nxt}")
 
                 if not will_retry:
                     break
@@ -812,7 +827,7 @@ def generate_article(service: dict) -> dict | None:
 
         print(f"  [writer] ⚠️  {model} 종료 → 다음 모델 전환")
 
-    print("  [trace] stage=draft tier=ALL duration_ms=- result=chain_exhausted next=-")
+    print("  [trace] stage=draft tier=ALL duration_ms=- result=chain_exhausted error_class=chain_exhausted next_tier=-")
     print("  [writer] ❌ 모든 폴백 모델 실패")
     return None
 

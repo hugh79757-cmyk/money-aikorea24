@@ -21,7 +21,9 @@ for var in PUBLIC_KAKAO_REST_KEY; do
 done
 
 MISSING_CF=0
-SECRETS=$(npx wrangler pages secret list --project-name money-aikorea24 2>/dev/null)
+# NOTE: CLOUDFLARE_API_TOKEN(위에서 export됨)이 wrangler OAuth 인증보다 우선 적용되어
+# Authentication error 10000 발생 → 반드시 해제 후 호출 (AGENTS.md 섹션3)
+SECRETS=$(env -u CLOUDFLARE_API_TOKEN npx wrangler pages secret list --project-name money-aikorea24 2>/dev/null)
 for var in KAKAO_REST_KEY KAKAO_CLIENT_SECRET SESSION_SECRET; do
   if echo "$SECRETS" | grep -q "^  - ${var}:"; then
     echo "  [OK]   Cloudflare secret: ${var}"
@@ -54,7 +56,7 @@ git push origin main
 
 echo "=== [4/5] Cloudflare Pages 배포 ==="
 rm -f dist/persona-stats.json
-npx wrangler pages deploy dist \
+env -u CLOUDFLARE_API_TOKEN npx wrangler pages deploy dist \
   --project-name money-aikorea24 \
   --branch main \
   --commit-dirty=true

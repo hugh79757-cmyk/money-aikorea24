@@ -1,5 +1,7 @@
 # Triage Index
 
+- 2026-09-10 | fix | auto-writer-recovery-deploy | auto-writer 장애 복구 + 재배포 (회전큐 전환, Production 1f525434)
+
 - 2026-09-05 | fix | dawn-google-auth-fetch-removal | Dawn 불필요 fetch 제거 (구글 인증 오인) — 월요일 06:00 중복 fetch 제거, interactive google auth 0건 확인
 - 2026-07-11 | fix | benefits-page-button-redesign | Benefits 페이지 버튼 디자인 개선 — 허브 버튼 6개 흰색 카드+컬러바, 탭 버튼 이모티콘 제거+navy active
 - 2026-07-10 | chore | blog-content-quality-enforcement | 블로그 200개 전수조사 + **목차** 제거 + 중복 H1 수정 + 재발방지 3단계 체계

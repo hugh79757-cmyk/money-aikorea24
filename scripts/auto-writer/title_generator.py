@@ -16,7 +16,15 @@
 """
 import random
 from collections import deque
+from datetime import datetime
 from typing import Optional
+
+from shared.year_validator import replace_stale_years
+
+
+def _current_year_suffix() -> str:
+    """'2025년 버전' 같은 하드코딩 대신 항상 현재 연도 사용."""
+    return f"{datetime.now().year}년 버전"
 
 
 # ── 카테고리별 마무리 어미 사전 ──────────────────────────────
@@ -40,8 +48,8 @@ ENDINGS: dict[str, list[str]] = {
               "손해 보지 않으려면", "놓치면 아까운"],
     "후기형": ["신청 후기", "받아본 후기", "실제 사례", "적용 후기",
               "체험해 본 결과", "신청해 보니"],
-    "시의성형": ["2025년 버전", "올해 바뀐 점", "새로운 기준", "변경된 조건",
-                "최신 기준 정리", "이번 달 바뀐 점"],
+    "시의성형": ["올해 바뀐 점", "새로운 기준", "변경된 조건",
+                "최신 기준 정리", "이번 달 바뀐 점", _current_year_suffix()],
 }
 
 # 추천 가중치 (총합 100%)
@@ -102,11 +110,19 @@ def pick_ending_capped() -> tuple[str, str]:
 
 
 def refinish_title(raw_title: str) -> str:
-    """기존 제목의 마무리 어미를 다양화된 어미로 교체 (발행글 정비용)."""
+    """기존 제목의 마무리 어미를 다양화된 어미로 교체 (발행글 정비용).
+
+    2026-09-10: 제목에 과거 연도(2024년 등, 현재±1년 벗어남)가 있으면
+    현재 연도로 치환. pipeline.py와 regen_keep_slug.py가 모두 이 함수를
+    거치므로 제목 연도 수정의 단일 choke point가 된다.
+    """
     base = _strip_ending(raw_title)
     if not base:
-        return raw_title
+        # 베이스가 없으면 어미 교체 불가 — 연도 치환이라도 적용
+        fixed, _replaced = replace_stale_years(raw_title)
+        return fixed
     ending, _ = pick_ending_capped()
+    base, _replaced = replace_stale_years(base)
     return f"{base} {ending}"
 
 

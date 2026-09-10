@@ -53,41 +53,25 @@ NIM_API_KEY       = os.getenv("NVIDIA_API_KEY")
 DEEPSEEK_API_KEY  = os.getenv("DEEPSEEK_API_TOKEN") or os.getenv("DEEPSEEK_API_KEY")
 DEEPSEEK_MODEL    = "deepseek-chat"  # legacy reference (proofread 등에서 사용)
 
-# 무료 폴백 체인 (2026-09-05: NVIDIA 모델 3개 410 Gone → 제거, Gemini 1순위)
+# 무료 폴백 체인 (2026-09-10: 순수 회전 큐. 쿨다운 없음 — 실패=맨뒤 회전, 즉시 다음 티어.
+#  cerebras/gemma-4-31b·groq/llama-3.3-70b-versatile는 2026-09-10 404 확인으로 설정에서 제거)
 FALLBACK_MODELS = [
     {
         "provider":    "google",
         "model":       "gemini-3.1-flash-lite",
         "timeout":     90,
-        "max_retries": 1,
         "note":        "Gemini 무료 (품질 우수)",
     },
     {
         "provider":    "google",
         "model":       "gemini-2.5-flash",
         "timeout":     90,
-        "max_retries": 1,
         "note":        "Gemini 무료 (균형)",
-    },
-    {
-        "provider":    "cerebras",
-        "model":       "gemma-4-31b",
-        "timeout":     90,
-        "max_retries": 1,
-        "note":        "Cerebras 무료 (빠른 추론)",
-    },
-    {
-        "provider":    "groq",
-        "model":       "llama-3.3-70b-versatile",
-        "timeout":     60,
-        "max_retries": 1,
-        "note":        "Groq 무료 (대형 컨텍스트)",
     },
     {
         "provider":    "groq",
         "model":       "qwen/qwen3.6-27b",
         "timeout":     60,
-        "max_retries": 1,
         "note":        "Groq 무료 (thinking 태그 제거 필요)",
         "strip_thinking": True,
     },
@@ -95,21 +79,18 @@ FALLBACK_MODELS = [
         "provider":    "groq",
         "model":       "openai/gpt-oss-120b",
         "timeout":     90,
-        "max_retries": 1,
         "note":        "Groq 무료 (오픈 가중치)",
     },
     {
         "provider":    "groq",
         "model":       "openai/gpt-oss-20b",
         "timeout":     60,
-        "max_retries": 1,
         "note":        "Groq 무료 (소형·고속)",
     },
     {
         "provider":    "deepseek",
         "model":       "deepseek-v4-flash",
         "timeout":     180,
-        "max_retries": 2,
         "note":        "deepseek v4 flash 최후 폴백 (유료)",
     },
 ]
@@ -632,10 +613,10 @@ class _ValidationError(ValueError):
     """응답 검증 실패 (빈 응답, 마커 누락, 분량 미달) — invalid_content로 분류"""
 
 
-# ── 폴백 상태 (스킬: persistent rotation contract) ────────────
+# ── 폴백 상태: 순수 회전 큐 (스킬 llm-fallback-chain-management) ──
+# 쿨다운·서킷브레이커·제외 없음. 실패 = 맨뒤로 회전, 즉시 다음 티어. 상태는 front 1개.
 FALLBACK_STATE_PATH = Path(os.getenv("FALLBACK_STATE_PATH", str(Path(__file__).resolve().parent / "db" / "fallback_state.json")))
-QUOTA_COOLDOWN_SEC = 300        # 429 → 5분, 해당 티어만
-STRUCTURAL_COOLDOWN_SEC = 3600  # 401/403/404 → 1시간
+CHAIN_BUDGET_SEC = 600  # 한 패스 wall-clock 상한 (개별 티어 게이트 아님)
 
 # 스킬: 유료 티어 최소화 — paid 항상 last, 명시적 승인 없으면 제외
 PAID_TIER_IDS = {"deepseek/deepseek-v4-flash", "deepseek/deepseek-chat"}  # writer+proofread 유료
@@ -646,19 +627,28 @@ def _allow_paid() -> bool:
 def _tier_id(cfg: dict) -> str:
     return f"{cfg['provider']}/{cfg['model']}"
 
+def _default_queue() -> list:
+    """설정 순서 기준 큐. paid 항상 last."""
+    free = [_tier_id(c) for c in FALLBACK_MODELS if _tier_id(c) not in PAID_TIER_IDS]
+    paid = [_tier_id(c) for c in FALLBACK_MODELS if _tier_id(c) in PAID_TIER_IDS]
+    return free + paid
+
 def _load_state() -> dict:
-    """상태 로드 + 만료된 쿨다운 제거. 파일 없음/손상 = 빈 상태."""
+    """front/queue만 사용. 구 스키마(quota_until 등)는 last_success만 승계 후 버림."""
     st = {}
     try:
         st = json.loads(FALLBACK_STATE_PATH.read_text(encoding="utf-8"))
     except Exception:
         pass
-    now = time.time()
-    for k in ("quota_until", "structural_until"):
-        st[k] = {t: v for t, v in (st.get(k) or {}).items() if v > now}
-    st.setdefault("last_success_tier", None)
-    st.setdefault("last_used_tier", None)
-    return st
+    configured = {_tier_id(c) for c in FALLBACK_MODELS}
+    front = st.get("front", st.get("last_success_tier"))
+    queue = [t for t in (st.get("queue") or _default_queue()) if t in configured]
+    for tid in _default_queue():
+        if tid not in queue:
+            queue.append(tid)
+    if front not in configured:
+        front = None
+    return {"front": front, "queue": queue}
 
 def _save_state(st: dict):
     """임시 파일 쓰기 후 원자적 교체."""
@@ -667,27 +657,27 @@ def _save_state(st: dict):
     tmp.write_text(json.dumps(st, ensure_ascii=False), encoding="utf-8")
     os.replace(tmp, FALLBACK_STATE_PATH)
 
-def _usable_tiers(st: dict) -> list:
-    """쿨다운 중이 아닌 사용 가능 티어. 성공 티어 최우선, 실패 티어 후순위, 유료는 항상 last."""
-    now = time.time()
-    allow_paid = _allow_paid()
-    candidates = [c for c in FALLBACK_MODELS
-              if _clients.get(c["provider"])
-              and st["quota_until"].get(_tier_id(c), 0) <= now
-              and st["structural_until"].get(_tier_id(c), 0) <= now
-              and (allow_paid or _tier_id(c) not in PAID_TIER_IDS)]
-    free = [c for c in candidates if _tier_id(c) not in PAID_TIER_IDS]
-    paid = [c for c in candidates if _tier_id(c) in PAID_TIER_IDS]
-    # 스킬 rotation: last_success → front, last_used(실패) → back, 나머지 → 설정 순서
-    def _sort_key(c):
-        tid = _tier_id(c)
-        if tid == st.get("last_success_tier"):
-            return 0   # 성공 티어 → 맨 앞
-        if tid == st.get("last_used_tier"):
-            return 2   # 직전 실패 티어 → 맨 뒤
-        return 1       # 나머지 → 설정 순서 유지
-    free.sort(key=_sort_key)
-    return free + paid
+def _ordered_tiers(st: dict) -> list:
+    """회전 순서: front 맨앞, paid 항상 맨뒤. 키 없는 티어 제외."""
+    by_id = {_tier_id(c): c for c in FALLBACK_MODELS}
+    q = [t for t in st.get("queue", []) if t in by_id]
+    for tid in _default_queue():
+        if tid not in q:
+            q.append(tid)
+    front = st.get("front")
+    if front in q:
+        q.remove(front)
+        q.insert(0, front)
+    free = [t for t in q if t not in PAID_TIER_IDS]
+    paid = [t for t in q if t in PAID_TIER_IDS]
+    return [by_id[t] for t in free + paid if _clients.get(by_id[t]["provider"])]
+
+def _rotate_back(st: dict, tid: str):
+    """실패 티어 → 맨뒤. 제거·플래그·쿨다운 없음."""
+    q = [t for t in st.get("queue", []) if t != tid]
+    q.append(tid)
+    st["queue"] = q
+    _save_state(st)
 
 
 def generate_article(service: dict) -> dict | None:
@@ -696,48 +686,37 @@ def generate_article(service: dict) -> dict | None:
         return None
 
     st = _load_state()
-    usable = _usable_tiers(st)
-    if not usable:
-        # 스킬: 전체 쿨다운 중이면 가장 먼저 만료되는 티어 1회만 시도 (유료 제외, 승인 시만 유료 포함)
-        now = time.time()
-        allow_paid = _allow_paid()
-        cooled = [c for c in FALLBACK_MODELS
-                  if _clients.get(c["provider"])
-                  and (st["quota_until"].get(_tier_id(c), 0) > now
-                       or st["structural_until"].get(_tier_id(c), 0) > now)
-                  and (allow_paid or _tier_id(c) not in PAID_TIER_IDS)]
-        if not cooled:
-            # 유료 없이 모두 쿨다운 → generation_blocked (유료 호출 방지)
-            if not allow_paid and any(_tier_id(c) in PAID_TIER_IDS for c in FALLBACK_MODELS):
-                print("  [writer] ⏸️  무료 티어 전체 쿨다운 + 유료 미승인 → generation_blocked (ALLOW_PAID=1 필요)")
-            else:
-                print("  [writer] ❌ 사용 가능한 API 키 없음")
+    allow_paid = _allow_paid()
+    ordered = [c for c in _ordered_tiers(st)
+               if allow_paid or _tier_id(c) not in PAID_TIER_IDS]
+    if not ordered:
+        if not allow_paid and any(_tier_id(c) in PAID_TIER_IDS for c in FALLBACK_MODELS):
+            print("  [writer] ⏸️  무료 티어 전멸(키 없음) + 유료 미승인 → generation_blocked (ALLOW_PAID=1 필요)")
+        else:
+            print("  [writer] ❌ 사용 가능한 API 키 없음")
+        print("  [trace] stage=draft tier=ALL duration_ms=- result=generation_blocked error_class=generation_blocked next_tier=-")
+        return None
+
+    t_start = time.time()
+
+    for ci, cfg in enumerate(ordered):
+        if time.time() - t_start > CHAIN_BUDGET_SEC:
+            print(f"  [writer] ⏸️  체인 예산 초과({CHAIN_BUDGET_SEC}s) → generation_blocked")
+            print("  [trace] stage=draft tier=ALL duration_ms=- result=generation_blocked error_class=budget next_tier=-")
             return None
-        # 무료 중 최조 만료 우선
-        free_cooled = [c for c in cooled if _tier_id(c) not in PAID_TIER_IDS]
-        pool = free_cooled if free_cooled else cooled
-        usable = [min(pool, key=lambda c: min(
-            st["quota_until"].get(_tier_id(c), 9e18),
-            st["structural_until"].get(_tier_id(c), 9e18)))]
-        print("  [writer] ⚠️  모든 티어 쿨다운 중 — 최조 만료 티어 1회만 시도")
-
-    # 재시도 허용 클래스 (server/network만). timeout·quota·auth·invalid_content는 즉시 다음 티어.
-    RETRYABLE = {"server", "network"}
-
-    for ci, cfg in enumerate(usable):
         provider    = cfg["provider"]
         model       = cfg["model"]
         timeout     = cfg["timeout"]
-        max_retries = cfg["max_retries"]
         note        = cfg["note"]
         tid         = _tier_id(cfg)
         selected_client = _clients[provider]
-        next_tid = _tier_id(usable[ci + 1]) if ci + 1 < len(usable) else "-"
+        next_tid = _tier_id(ordered[ci + 1]) if ci + 1 < len(ordered) else "-"
 
-        for attempt in range(max_retries):
+        retried_5xx = False  # 스킬: 5xx/연결리셋만 동일 티어 1회(5s) 재시도
+        while True:
             t0 = time.time()
             try:
-                print(f"  [writer] {note} | {model} (시도 {attempt+1}/{max_retries})")
+                print(f"  [writer] {note} | {model}")
                 # provider param isolation — google/gemini는 presence/frequency 미지원 시 제거
                 _payload = dict(
                     model=model,
@@ -791,11 +770,11 @@ def generate_article(service: dict) -> dict | None:
                 if "diffusiongemma" in model:
                     print(f"  [writer] ⚠️  실험모델 사용됨 — 품질 검수 권장")
 
-                # 성공: last_success_tier 갱신 + 쿨다운 해제 + last_used 초기화
-                st["last_success_tier"] = tid
-                st["last_used_tier"] = None
-                st["quota_until"].pop(tid, None)
-                st["structural_until"].pop(tid, None)
+                # 성공: 티어 → front, 큐 순서 유지
+                st["front"] = tid
+                q = [t for t in st.get("queue", []) if t != tid]
+                q.insert(0, tid)
+                st["queue"] = q
                 _save_state(st)
 
                 print(f"  [writer] ✅ 성공: {model} ({len(body)}자)")
@@ -809,37 +788,17 @@ def generate_article(service: dict) -> dict | None:
             except Exception as e:
                 kind = _classify_error(e)
                 dur_ms = int((time.time() - t0) * 1000)
-                will_retry = kind in RETRYABLE and attempt < max_retries - 1
-
-                # 스킬 정책별 상태 갱신
-                if kind == "quota":
-                    st["quota_until"][tid] = time.time() + QUOTA_COOLDOWN_SEC
-                    if st.get("last_success_tier") == tid:
-                        st["last_success_tier"] = None
-                    _save_state(st)
-                elif kind in ("auth", "notfound"):
-                    st["structural_until"][tid] = time.time() + STRUCTURAL_COOLDOWN_SEC
-                    if st.get("last_success_tier") == tid:
-                        st["last_success_tier"] = None
-                    _save_state(st)
-                elif kind == "invalid_content":
-                    # 마지막 성공 티어가 무효 콘텐츠 반환 → 우선순위 즉시 상실
-                    if st.get("last_success_tier") == tid:
-                        st["last_success_tier"] = None
-                    _save_state(st)
-
-                nxt = tid if will_retry else next_tid
-                print(f"  [writer] ❌ 시도 {attempt+1} 실패 [{kind}]: {e}")
-                print(f"  [trace] stage=draft tier={tid} duration_ms={dur_ms} result={kind} error_class={kind} next_tier={nxt}")
-
-                if not will_retry:
-                    # 스킬 rotation: 실패한 티어를 last_used로 기록 → 다음 _usable_tiers에서 후순위
-                    st["last_used_tier"] = tid
-                    _save_state(st)
-                    break
-                wait = 2 ** attempt
-                print(f"  [writer] {wait}초 후 재시도...")
-                time.sleep(wait)
+                if kind == "server" and not retried_5xx:
+                    retried_5xx = True
+                    print(f"  [writer] ❌ 실패 [{kind}]: {e}")
+                    print(f"  [trace] stage=draft tier={tid} duration_ms={dur_ms} result={kind} error_class={kind} next_tier={tid}")
+                    print("  [writer] 5초 후 동일 티어 1회 재시도...")
+                    time.sleep(5)
+                    continue
+                print(f"  [writer] ❌ 실패 [{kind}]: {e}")
+                print(f"  [trace] stage=draft tier={tid} duration_ms={dur_ms} result={kind} error_class={kind} next_tier={next_tid}")
+                _rotate_back(st, tid)
+                break
 
         print(f"  [writer] ⚠️  {model} 종료 → 다음 모델 전환")
 

@@ -1,124 +1,187 @@
-"""Deterministic tests for LLM fallback chain — no live calls. 스킬 deterministic verification."""
-import os, json, time, tempfile
+"""Deterministic tests for LLM fallback chain — no live calls. 순수 회전 큐 계약 검증."""
+import os, json, tempfile
 from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-# mock providers before import
 os.environ["FALLBACK_STATE_PATH"] = tempfile.mktemp(prefix="fallback_test_")
-# ensure import uses temp path
-import importlib
 import writer as w
-import pathlib
 
-# reload with env set if needed
-# force state path to temp
 w.FALLBACK_STATE_PATH = Path(os.getenv("FALLBACK_STATE_PATH"))
 
-def _fake_cfg(provider, model):
-    return {"provider": provider, "model": model, "timeout": 10, "max_retries": 1, "note": "test"}
 
-def test_success_becomes_first():
-    # success tier becomes first on next request
-    st = {"last_success_tier": None, "quota_until": {}, "structural_until": {}}
-    # simulate success on second tier
-    tid = "nvidia/google/gemma-4-31b-it"
-    st["last_success_tier"] = tid
-    w._save_state(st)
-    st2 = w._load_state()
-    assert st2["last_success_tier"] == tid
-    # usable sorting should put tid first if present
-    # mock _clients to have 2 providers
-    orig_clients = w._clients.copy()
-    w._clients["nvidia"] = object()
-    w._clients["google"] = object()
-    orig_models = w.FALLBACK_MODELS[:]
-    w.FALLBACK_MODELS = [
-        {"provider": "nvidia", "model": "google/diffusiongemma-26b-a4b-it", "timeout": 10, "max_retries": 1, "note": "a"},
-        {"provider": "nvidia", "model": "google/gemma-4-31b-it", "timeout": 10, "max_retries": 1, "note": "b"},
-    ]
-    usable = w._usable_tiers(st2)
-    assert usable[0]["model"] == "google/gemma-4-31b-it", f"got {usable[0]['model']}"
-    w.FALLBACK_MODELS = orig_models
-    w._clients.update(orig_clients)
-    print("✓ success_becomes_first")
+class _Delta:
+    def __init__(self, content=None):
+        self.content = content
 
-def test_empty_and_timeout_move_next():
-    e1 = w._ValidationError("빈 응답")
-    assert w._classify_error(e1) == "invalid_content"
-    # timeout should be immediate next, not retry
+class _Choice:
+    def __init__(self, delta, finish=None):
+        self.delta = delta
+        self.finish_reason = finish
+
+class _Chunk:
+    def __init__(self, delta, finish=None):
+        self.choices = [_Choice(delta, finish)]
+
+class FakeClient:
+    def __init__(self, behavior):
+        self.behavior = behavior
+        self.calls = []
+
+    def _create(self, **kw):
+        self.calls.append(kw["model"])
+        b = self.behavior() if callable(self.behavior) else self.behavior
+        if isinstance(b, Exception):
+            raise b
+        return iter([_Chunk(_Delta(b), "stop")])
+
+    @property
+    def chat(self):
+        outer = self
+        class _Chat:
+            completions = type("C", (), {"create": staticmethod(lambda **kw: outer._create(**kw))})()
+        return _Chat()
+
+
+def valid_body():
+    return ("# 유효 본문입니다. " * 40 + "\n[PERSONA_CTA]\n[RELATED_POSTS]\n").ljust(850, "x")
+
+
+def setup(models_behavior):
+    models = [{"provider": f"p{i}", "model": f"m{i}", "timeout": 5, "note": f"t{i}"}
+              for i in range(len(models_behavior))]
+    clients = {f"p{i}": b if isinstance(b, FakeClient) else FakeClient(b)
+               for i, b in enumerate(models_behavior)}
+    orig = (w.FALLBACK_MODELS, w._clients, w.FALLBACK_STATE_PATH)
+    w.FALLBACK_MODELS = models
+    w._clients = clients
+    w.FALLBACK_STATE_PATH = Path(tempfile.mktemp(prefix="fallback_test_"))
+    return orig
+
+
+def restore(orig):
+    w.FALLBACK_MODELS, w._clients, w.FALLBACK_STATE_PATH = orig
+
+
+def svc():
+    return {"service_id": "T", "title": "테스트", "category": "general",
+            "persona": "", "persona_hint": "{}"}
+
+
+def test_success_becomes_front():
+    orig = setup([valid_body(), valid_body()])
+    r = w.generate_article(svc())
+    assert r and r["model"] == "m0"
+    st = w._load_state()
+    assert st["front"] == "p0/m0", st
+    assert st["queue"][0] == "p0/m0", st
+    # 새 프로세스 흉내: 재로드해도 m0 최우선
+    assert w._tier_id(w._ordered_tiers(st)[0]) == "p0/m0"
+    restore(orig)
+    print("✓ success_becomes_front")
+
+
+def test_any_failure_rotates_to_back():
+    class QuotaErr(Exception):
+        def __init__(self):
+            self.response = type("R", (), {"status_code": 429})()
+    orig = setup([QuotaErr(), valid_body()])
+    r = w.generate_article(svc())
+    assert r and r["model"] == "m1", r
+    st = w._load_state()
+    # 실패 티어는 맨뒤로, 제외 아님. 성공 티어가 front.
+    assert st["queue"][-1] == "p0/m0", st
+    assert st["front"] == "p1/m1", st
+    assert "quota_until" not in st and "structural_until" not in st, st
+    restore(orig)
+    print("✓ any_failure_rotates_to_back")
+
+
+def test_uniform_rotation_each_tier_once():
+    class FailErr(Exception):
+        pass
+    c0, c1 = FakeClient(FailErr()), FakeClient(valid_body())
+    orig = setup([c0, c1])
+    # setup wraps non-Fake into FakeClient; reach in via w._clients
+    r = w.generate_article(svc())
+    assert r and r["model"] == "m1"
+    assert w._clients["p0"].calls == ["m0"], w._clients["p0"].calls
+    assert w._clients["p1"].calls == ["m1"], w._clients["p1"].calls
+    restore(orig)
+    print("✓ uniform_rotation_each_tier_once")
+
+
+def test_paid_pinned_last():
+    orig = setup([valid_body(), valid_body()])
+    # 두 번째 모델을 유료로 위장
+    w.PAID_TIER_IDS.add("p1/m1")
+    try:
+        st = w._load_state()
+        ordered = w._ordered_tiers(st)
+        assert w._tier_id(ordered[-1]) == "p1/m1", [w._tier_id(c) for c in ordered]
+        # front가 유료여도 맨뒤 유지
+        st["front"] = "p1/m1"
+        ordered = w._ordered_tiers(st)
+        assert w._tier_id(ordered[-1]) == "p1/m1", [w._tier_id(c) for c in ordered]
+    finally:
+        w.PAID_TIER_IDS.discard("p1/m1")
+        restore(orig)
+    print("✓ paid_pinned_last")
+
+
+def test_timeout_and_404_rotate_immediately():
     from unittest.mock import Mock
     import openai
-    e_timeout = openai.APITimeoutError(request=Mock())
-    assert w._classify_error(e_timeout) == "timeout"
-    print("✓ empty_and_timeout")
+    assert w._classify_error(openai.APITimeoutError(request=Mock())) == "timeout"
+    e404 = Exception("nf")
+    e404.response = type("R", (), {"status_code": 404})()
+    assert w._classify_error(e404) == "notfound"
+    orig = setup([openai.APITimeoutError(request=Mock()), valid_body()])
+    r = w.generate_article(svc())
+    assert r and r["model"] == "m1"
+    assert w._clients["p0"].calls == ["m0"], "타임아웃 동일티어 재시도 금지"
+    restore(orig)
+    print("✓ timeout_and_404_rotate_immediately")
 
-def test_429_cools_only_failing():
-    st = {"last_success_tier": "nvidia/google/diffusiongemma-26b-a4b-it", "quota_until": {}, "structural_until": {}}
-    # simulate 429 on diffusiongemma
-    class FakeResp:
-        status_code = 429
-    e = Exception("quota")
-    e.response = FakeResp()
-    assert w._classify_error(e) == "quota"
-    # only that tier cools, other usable remains
-    st["quota_until"]["nvidia/google/diffusiongemma-26b-a4b-it"] = time.time() + 300
-    # ensure _usable_tiers excludes only that one
-    w._clients["nvidia"] = object()
-    orig = w.FALLBACK_MODELS[:]
-    w.FALLBACK_MODELS = [
-        {"provider": "nvidia", "model": "google/diffusiongemma-26b-a4b-it", "timeout": 10, "max_retries": 1, "note": "a"},
-        {"provider": "nvidia", "model": "google/gemma-4-31b-it", "timeout": 10, "max_retries": 1, "note": "b"},
-    ]
-    usable = w._usable_tiers(st)
-    assert len(usable)==1 and usable[0]["model"]=="google/gemma-4-31b-it"
-    w.FALLBACK_MODELS = orig
-    print("✓ 429_cools_only_failing")
-
-def test_all_cooled_selects_earliest():
-    now=time.time()
-    st={"last_success_tier": None, "quota_until": {"nvidia/google/diffusiongemma-26b-a4b-it": now+100, "nvidia/google/gemma-4-31b-it": now+10}, "structural_until": {}}
-    w._clients["nvidia"]=object()
-    orig=w.FALLBACK_MODELS[:]
-    w.FALLBACK_MODELS=[
-        {"provider":"nvidia","model":"google/diffusiongemma-26b-a4b-it","timeout":10,"max_retries":1,"note":"a"},
-        {"provider":"nvidia","model":"google/gemma-4-31b-it","timeout":10,"max_retries":1,"note":"b"},
-    ]
-    # all cooled -> usable empty -> code should pick earliest expiry via min logic in generate_article
-    usable=w._usable_tiers(st)
-    assert usable==[], f"usable should be empty but {usable}"
-    # simulate the all-cooled branch
-    cooled = [c for c in w.FALLBACK_MODELS if st["quota_until"].get(w._tier_id(c),0) > now]
-    earliest = min(cooled, key=lambda c: st["quota_until"].get(w._tier_id(c),9e18))
-    assert earliest["model"]=="google/gemma-4-31b-it"
-    w.FALLBACK_MODELS=orig
-    print("✓ all_cooled_earliest")
 
 def test_state_survives_new_process():
-    st={"last_success_tier":"google/gemini-2.5-flash","quota_until":{},"structural_until":{}}
-    w._save_state(st)
-    # new process load
-    st2=w._load_state()
-    assert st2["last_success_tier"]=="google/gemini-2.5-flash"
+    orig = setup([valid_body()])
+    w._save_state({"front": "p0/m0", "queue": ["p0/m0"]})
+    st2 = w._load_state()
+    assert st2["front"] == "p0/m0" and st2["queue"] == ["p0/m0"]
+    restore(orig)
     print("✓ state_survives")
 
+
 def test_file_notfound_is_invalid_content():
-    e=FileNotFoundError("persona-stats.json missing")
-    assert w._classify_error(e)=="invalid_content"
-    e2=OSError(2, "No such file or directory")
-    assert w._classify_error(e2)=="invalid_content"
-    print("✓ file_notfound_invalid_content")
+    e = FileNotFoundError("persona-stats.json missing")
+    assert w._classify_error(e) == "invalid_content"
+    e2 = OSError(2, "No such file or directory")
+    assert w._classify_error(e2) == "invalid_content"
+    assert w._classify_error(w._ValidationError("PERSONA_CTA 누락")) == "invalid_content"
+    print("✓ invalid_content_gate")
 
-def test_invalid_content_not_reach_publish():
-    e=w._ValidationError("PERSONA_CTA 누락")
-    assert w._classify_error(e)=="invalid_content"
-    print("✓ invalid_content_block")
 
-if __name__=="__main__":
-    for fn in [test_success_becomes_first, test_empty_and_timeout_move_next, test_429_cools_only_failing, test_all_cooled_selects_earliest, test_state_survives_new_process, test_file_notfound_is_invalid_content, test_invalid_content_not_reach_publish]:
+def test_full_pass_failure_touches_every_tier():
+    class FailErr(Exception):
+        pass
+    orig = setup([FailErr(), FailErr()])
+    r = w.generate_article(svc())
+    assert r is None, "전부 실패 시 None"
+    assert w._clients["p0"].calls == ["m0"], "제외 없이 전 티어 시도"
+    assert w._clients["p1"].calls == ["m1"], "제외 없이 전 티어 시도"
+    restore(orig)
+    print("✓ full_pass_failure_touches_every_tier")
+
+
+if __name__ == "__main__":
+    for fn in [test_success_becomes_front, test_any_failure_rotates_to_back,
+               test_uniform_rotation_each_tier_once, test_paid_pinned_last,
+               test_timeout_and_404_rotate_immediately, test_state_survives_new_process,
+               test_file_notfound_is_invalid_content, test_full_pass_failure_touches_every_tier]:
         fn()
-    print("all 7 deterministic tests pass")
-    # cleanup
+    print("all 8 deterministic tests pass")
     try:
         os.remove(os.getenv("FALLBACK_STATE_PATH"))
-    except: pass
+    except Exception:
+        pass

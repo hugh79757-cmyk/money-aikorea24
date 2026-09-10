@@ -38,7 +38,11 @@ def run(count: int = 0) -> tuple[bool, str]:
             return (False, detail)
 
         print("[deploy] dist/persona-stats.json 제거 (25MiB 파일 제한)")
-        os.remove(os.path.join(PROJECT_DIR, "dist", "persona-stats.json"))
+        _stats_path = os.path.join(PROJECT_DIR, "dist", "persona-stats.json")
+        if os.path.exists(_stats_path):
+            os.remove(_stats_path)
+        else:
+            print("[deploy] dist/persona-stats.json 없음 → 스킵 (public 원본 미존재 시 정상)")
 
         # Use /opt/homebrew/bin/wrangler (not npx/cached 4.92.0) for auth profile support
         WRANGLER = "/opt/homebrew/bin/wrangler"

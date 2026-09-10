@@ -1,12 +1,12 @@
 # scripts/auto-writer/test_fallback_chain.py
 """폴백 체인 결정론적 테스트 — 라이브 API 호출 없음.
-스킬(llm-fallback-chain-management) 검증 항목:
-  1. 성공 티어가 다음 요청에서 최우선 정렬
+스킬(llm-fallback-chain-management, 순수 회전 큐) 검증 항목:
+  1. 성공 티어가 다음 요청에서 front
   2. 타임아웃 → 동일 티어 재시도 없이 즉시 다음 티어
-  3. 429 → 실패 티어만 쿨다운 (글로벌 서킷브레이커 없음)
-  4. 성공 시 해당 티어 쿨다운 해제
+  3. 429 → 실패 티어 맨뒤 회전 (쿨다운·제외 없음), 다음 실행도 전 티어 시도
+  4. 성공 시 front 갱신 + 큐 순서 유지
   5. 상태가 파일로 지속 (새 프로세스에서 생존)
-  6. 전체 쿨다운 시 최조 만료 티어만 1회 시도
+  6. 전부 실패 → chain_exhausted, 어느 티어도 제외되지 않음
   7. 무효 콘텐츠(마커 누락)는 반환되지 않음
 
 실행: python3 test_fallback_chain.py
@@ -95,7 +95,7 @@ def main():
     results = []
     tmpdir = tempfile.mkdtemp()
 
-    # ── 1+5. 성공 → last_success_tier 저장, 다음 체인에서 최우선 ──
+    # ── 1+5. 성공 → front 저장, 다음 체인에서 최우선 ──
     _, clients, spath, orig = setup_chain(tempfile.mkdtemp(), [
         {"client": FakeClient(valid_body())},
         {"client": FakeClient(valid_body())},
@@ -103,12 +103,12 @@ def main():
     r = writer.generate_article(service())
     assert r and r["model"] == "m0", "test1: m0 성공해야 함"
     st = json.loads(spath.read_text())
-    assert st["last_success_tier"] == "p0/m0", "test1: last_success_tier 기록"
+    assert st["front"] == "p0/m0", "test1: front 기록"
     # 새 "프로세스" 흉내: 상태를 디스크에서 다시 로드해 정렬 확인
     st2 = writer._load_state()
-    usable = writer._usable_tiers(st2)
-    assert writer._tier_id(usable[0]) == "p0/m0", "test5: 재시작 후에도 m0 최우선"
-    restore(orig); results.append("1,5 ✅ 성공티어 우선+상태 지속")
+    ordered = writer._ordered_tiers(st2)
+    assert writer._tier_id(ordered[0]) == "p0/m0", "test5: 재시작 후에도 m0 최우선"
+    restore(orig); results.append("1,5 ✅ 성공티어 front+상태 지속")
 
     # ── 2. 타임아웃 → 동일 티어 재시도 없이 즉시 다음 티어 ──
     _, clients, _, orig = setup_chain(tempfile.mkdtemp(), [
@@ -121,7 +121,7 @@ def main():
         f"test2: m0 재시도 없어야 함(1회), 실제={clients['p0'].calls}"
     restore(orig); results.append("2 ✅ 타임아웃 즉시 로테이션")
 
-    # ── 3. 429 → 실패 티어만 쿨다운, 다음 실행에서 스킵 ──
+    # ── 3. 429 → 실패 티어 맨뒤 회전, 제외·쿨다운 없음 ──
     class QuotaErr(Exception):
         def __init__(self):
             self.response = type("R", (), {"status_code": 429})()
@@ -133,31 +133,27 @@ def main():
     assert r and r["model"] == "m1", "test3: 429 후 m1 성공"
     assert clients["p0"].calls.count("m0") == 1, "test3: 429 동일티어 재시도 금지"
     st = json.loads(spath.read_text())
-    assert "p0/m0" in st["quota_until"], "test3: quota_until 기록"
-    assert len(st["quota_until"]) == 1, "test3: 실패 티어만 쿨다운"
-    # 다음 실행: p0 쿨다운 중 → 바로 m1 사용
+    assert st["queue"][-1] == "p0/m0", "test3: 실패 티어 맨뒤 회전"
+    assert "quota_until" not in st and "structural_until" not in st, "test3: 쿨다운 상태 금지"
+    # 다음 실행: front(m1) 우선. m1까지 실패하면 m0도 재시도됨 (제외 없음)
+    clients["p1"].behavior = QuotaErr()
     r2 = writer.generate_article(service())
-    assert r2["model"] == "m1" and clients["p0"].calls.count("m0") == 1, \
-        "test3: 쿨다운 티어 스킵 확인"
-    restore(orig); results.append("3 ✅ 429 티어전용 쿨다운")
+    assert r2 is None
+    assert clients["p0"].calls.count("m0") == 2, \
+        "test3: 실패 티어도 다음 패스에 재시도됨"
+    restore(orig); results.append("3 ✅ 429 회전+재시도(제외 없음)")
 
-    # ── 4+6. 전체 쿨다운 → 최조 만료 티어 1회, 성공 시 쿨다운 해제 ──
+    # ── 4+6. 전부 실패 → chain_exhausted, 어느 티어도 제외 안 됨 ──
     _, clients, spath, orig = setup_chain(tempfile.mkdtemp(), [
-        {"client": valid_body()}, {"client": valid_body()},
+        {"client": QuotaErr()}, {"client": QuotaErr()},
     ])
-    now = time.time()
-    spath.write_text(json.dumps({
-        "last_success_tier": None,
-        "quota_until":      {"p0/m0": now + 100},
-        "structural_until": {"p1/m1": now + 50},   # p1이 더 먼저 만료
-    }))
     r = writer.generate_article(service())
-    assert r and r["model"] == "m1", "test6: 최조 만료(p1)만 선택"
-    assert clients["p1"].calls == ["m1"] and not clients["p0"].calls, "test6: p0 미시도"
+    assert r is None, "test6: 전부 실패 시 None"
+    assert clients["p0"].calls == ["m0"] and clients["p1"].calls == ["m1"], \
+        "test6: 전 티어 1회씩 시도 (제외 없음)"
     st = json.loads(spath.read_text())
-    assert "p1/m1" not in st.get("structural_until", {}), "test4: 성공 시 쿨다운 해제"
-    assert st["last_success_tier"] == "p1/m1", "test4: last_success 갱신"
-    restore(orig); results.append("4,6 ✅ 쿨다운 해제+최조만료 선택")
+    assert st["front"] is None, "test4: 성공 없으면 front 유지(None)"
+    restore(orig); results.append("4,6 ✅ 전멸 시 전티어 시도+front 유지")
 
     # ── 7. 마커 누락(무효 콘텐츠)은 절대 반환 안 됨 ──
     bad = "짧은 마커없는 본문"

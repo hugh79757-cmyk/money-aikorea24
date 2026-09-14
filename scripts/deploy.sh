@@ -1,11 +1,14 @@
 #!/bin/bash
 set -e
 
-# .env 로드
-if [ -f /Users/twinssn/Projects/5000/.env ]; then
-  export $(grep -E '^(CLOUDFLARE_API_TOKEN|CLOUDFLARE_ACCOUNT_ID)' /Users/twinssn/Projects/5000/.env | xargs)
+# .env 로드 (독립 실행, 우선순위: 로컬 .env > ~/.env.common)
+if [ -f ~/.env.common ]; then
+  set -a; source ~/.env.common; set +a
+fi
+if [ -f /Users/twinssn/Projects/money-aikorea24/.env ]; then
+  set -a; source /Users/twinssn/Projects/money-aikorea24/.env; set +a
 else
-  echo "[ERROR] .env 파일 없음: /Users/twinssn/Projects/5000/.env"
+  echo "[ERROR] .env 파일 없음: /Users/twinssn/Projects/money-aikorea24/.env"
   exit 1
 fi
 

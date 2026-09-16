@@ -1,5 +1,6 @@
 # Triage Index
 
+- 2026-09-14 | config | deploy-5000-independence | deploy.sh 5000 의존성 제거 + 재배포 (로컬 단독, b5cb545f)
 - 2026-09-10 | fix | auto-writer-recovery-deploy | auto-writer 장애 복구 + 재배포 (회전큐 전환, Production 1f525434)
 
 - 2026-09-05 | fix | dawn-google-auth-fetch-removal | Dawn 불필요 fetch 제거 (구글 인증 오인) — 월요일 06:00 중복 fetch 제거, interactive google auth 0건 확인

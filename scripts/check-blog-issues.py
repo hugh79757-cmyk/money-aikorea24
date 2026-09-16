@@ -69,12 +69,14 @@ def scan_file(fpath: str) -> list[tuple[IssueType, str]]:
         if s and not s.startswith('#'):
             break
 
-    # 4. Leading whitespace on first non-empty content line
+    # 4. Leading/trailing whitespace on first non-empty content line
     for line in body_lines:
         s = line.strip()
         if s and not s.startswith('#') and not s.startswith('>') and not s.startswith('-') and not s.startswith('*'):
-            if line != s:
+            if line != line.lstrip():
                 issues.append(("LEADING_SPACE", f'"{s[:50]}"'))
+            if line != line.rstrip():
+                issues.append(("TRAILING_SPACE", f'"{s[:50]}"'))
             break
 
     # 5. Multiple consecutive ---
@@ -158,15 +160,13 @@ def fix_issues(fpath: str) -> list[tuple[IssueType, str]]:
 
     body_text = '\n'.join(body_parts)
 
-    # --- Fix 4: Fix leading whitespace ---
+    # --- Fix 4: Fix leading + trailing whitespace ---
     body_parts = body_text.split('\n')
     for j, line in enumerate(body_parts):
         stripped = line.strip()
-        if stripped and line != stripped:
-            body_parts[j] = line.lstrip()
-            break
         if stripped:
-            break  # already clean
+            body_parts[j] = stripped  # remove both leading and trailing whitespace
+            break
     body_text = '\n'.join(body_parts)
 
     # Reconstruct
@@ -181,7 +181,7 @@ def fix_issues(fpath: str) -> list[tuple[IssueType, str]]:
         # Check what's left
         remaining = []
         for issue, detail in scan_file(fpath):
-            if issue not in ("RAW_TOC", "AI_ARTIFACT", "DOUBLE_H1", "LEADING_SPACE"):
+            if issue not in ("RAW_TOC", "AI_ARTIFACT", "DOUBLE_H1", "LEADING_SPACE", "TRAILING_SPACE"):
                 remaining.append((issue, detail))
         return remaining
 

@@ -84,6 +84,18 @@ Plans:
 **Requirements**: MKT-01..MKT-05 (see phase-07-marketing-personas/CONTEXT.md)
 **Status**: Complete (2026-08-23) — 1 plan A→E, build 2639pages 0에러
 
+### ✅ v2.2 Cloud Independence (Planning)
+
+#### Phase 8: Auto-writer GitHub Actions Migration
+**Goal**: MacBook 꺼져도 auto-writer가 자동 발행되도록 GitHub Actions로 마이그레이션. 최소 트리거 패턴: Actions가 콘텐츠 생성+commit만 하고, Cloudflare Pages가 자동 build+deploy 담당.
+**Depends on**: Phase 5 (auto-writer 파이프라인)
+**Requirements**: CI-01..CI-03
+**Success Criteria**:
+  1. MacBook 꺼져도 매일 09:00 KST 자동 발행
+  2. GitHub Actions 워크플로우 실행 시간 5분 이내 (트리거만)
+  3. check-blog-issues.py LEADING_SPACE 버그 수정
+  4. persona-stats.json git 제외로 clone 속도 확보
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -93,5 +105,6 @@ Plans:
 | 3. AdSense | v1.0 | 7/7 | Complete | 2026-07-09 |
 | 4. Community | v1.1 | 1/1 | Complete | 2026-07-09 |
 | 5. Auto-Pub | v1.1 | 7/7 | Complete | 2026-07-09 |
-| 6. Income Calc | v2.0 | 0/4 | Planning | — |
-| 7. Marketing Personas | v2.1 | 0/? | Planning | — |
+| 6. Income Calc | v2.0 | 4/4 | Complete | 2026-07-29 |
+| 7. Marketing Personas | v2.1 | 1/1 | Complete | 2026-08-23 |
+| 8. Cloud Independence | v2.2 | 0/1 | Planning | — |

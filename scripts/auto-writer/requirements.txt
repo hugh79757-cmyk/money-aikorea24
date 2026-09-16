@@ -1,0 +1,8 @@
+# Auto-writer pipeline dependencies
+# Used by GitHub Actions and local runs
+boto3>=1.35.0
+openai>=1.50.0
+pillow>=10.0.0
+python-dotenv>=1.0.0
+PyYAML>=6.0
+requests>=2.31.0

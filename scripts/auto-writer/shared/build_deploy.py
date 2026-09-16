@@ -1,4 +1,4 @@
-import os, sys, subprocess
+import os, sys, subprocess, shutil
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -44,11 +44,12 @@ def run(count: int = 0) -> tuple[bool, str]:
         else:
             print("[deploy] dist/persona-stats.json 없음 → 스킵 (public 원본 미존재 시 정상)")
 
-        # Use /opt/homebrew/bin/wrangler (not npx/cached 4.92.0) for auth profile support
-        WRANGLER = "/opt/homebrew/bin/wrangler"
+        # Find wrangler: PATH > npx > macOS Homebrew fallback
+        WRANGLER = shutil.which("wrangler") or "npx"
+        WRANGLER_ARGS = ["wrangler"] if shutil.which("wrangler") else ["npx", "wrangler"]
         print("[deploy] Wrangler 배포 시작...")
         result = subprocess.run(
-            [WRANGLER, "pages", "deploy", "dist/",
+            [*WRANGLER_ARGS, "pages", "deploy", "dist/",
              "--project-name", "money-aikorea24",
              "--commit-dirty=true"],
             cwd=PROJECT_DIR, env=env,

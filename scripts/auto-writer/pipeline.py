@@ -156,7 +156,7 @@ def insert_inline_ctas(body: str, service: dict) -> str:
     body = body[:h2_starts[2]] + cta1 + body[h2_starts[2]:]
     return body
 
-def run(dry_run=False):
+def run(dry_run=False, deploy_enabled=True):
     logger.info(f"파이프라인 시작 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
     # 1. 오늘 quota 확인
@@ -338,7 +338,7 @@ def run(dry_run=False):
         logger.info(f"발행 성공: {final_title[:40]} | {service['category']} | {model_used}")
 
     # 12. 빌드 + 배포
-    if published_count > 0:
+    if published_count > 0 and deploy_enabled:
         logger.info(f"{published_count}건 발행 → 빌드/배포 시작")
         ok, detail = deploy(published_count)
         if ok:
@@ -346,6 +346,8 @@ def run(dry_run=False):
         else:
             logger.error(f"빌드/배포 실패 ({published_count}건 저장됨)\n{detail}")
             notify(f"빌드/배포 실패 ❌ ({published_count}건 저장됨)\n\n```\n{detail[:800]}\n```", "ERROR")
+    elif published_count > 0:
+        logger.info(f"{published_count}건 발행 완료 (배포 스킵 — CI 모드)")
     else:
         logger.info("발행 없음")
 

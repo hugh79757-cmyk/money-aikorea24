@@ -1342,3 +1342,71 @@ SCAN MODE: 1 files with 1 issues
 2026-09-27 14:40:53,793 [INFO] [SKIP] 부적합 키워드: 귀어자 정착 지원
 2026-09-27 14:40:53,794 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-09-27 14:40:53,794 [INFO] 파이프라인 종료 2026-09-27 14:40:53
+2026-09-28 17:32:02,263 [INFO] 파이프라인 시작 2026-09-28 17:32:02
+2026-09-28 17:32:02,264 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-09-28 17:32:02,273 [INFO] 처리 중: 전입장려금 지원
+2026-09-28 17:32:04,159 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-09-28 17:32:04,160 [INFO] Retrying request in 0.460282 seconds (retry 1 of 2)
+2026-09-28 17:32:04,772 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:32:04,772 [INFO] Retrying request in 0.805977 seconds (retry 2 of 2)
+2026-09-28 17:32:16,040 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-09-28 17:32:28,836 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-09-28 17:32:28,847 [INFO] 제목 추출: 강진군으로 이사했다면? 10만원 전입장려금 놓치지 않는 법
+2026-09-28 17:32:28,847 [INFO] refinish_title 적용: 강진군으로 이사했다면? 10만원 전입장려금 놓치지 않는 법 비교해 봤습니다
+2026-09-28 17:32:30,027 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-09-28 17:32:30,028 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-09-28 17:32:31,248 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/강진군으로-이사했다면-10만원-전입장려금-놓치지-않는-법-비교해-봤습니다-000128.md
+2026-09-28 17:32:31,252 [INFO] 발행 성공: 강진군으로 이사했다면? 10만원 전입장려금 놓치지 않는 법 비교해 봤습니 | loan | gemini-3.1-flash-lite
+2026-09-28 17:32:31,257 [INFO] 처리 중: 청소년 상담 서비스 제공
+2026-09-28 17:32:32,355 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:32:32,355 [INFO] Retrying request in 0.439107 seconds (retry 1 of 2)
+2026-09-28 17:32:32,976 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:32:32,976 [INFO] Retrying request in 0.849665 seconds (retry 2 of 2)
+2026-09-28 17:32:33,970 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:32:34,120 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-28 17:32:34,257 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-09-28 17:32:34,449 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-28 17:32:39,947 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:32:39,947 [INFO] Retrying request in 0.498045 seconds (retry 1 of 2)
+2026-09-28 17:32:40,568 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:32:40,569 [INFO] Retrying request in 0.811806 seconds (retry 2 of 2)
+2026-09-28 17:32:41,514 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:32:41,515 [INFO] 제목 추출: 30대 직장인이 알아두면 좋은 위기청소년 상담 지원, 어떻게 활용할까?
+2026-09-28 17:32:41,515 [INFO] refinish_title 적용: 30대 직장인이 알아두면 좋은 위기청소년 상담 지원, 어떻게 활용할까? 놓친 적 있으신가요
+2026-09-28 17:32:42,248 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-09-28 17:32:42,249 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-09-28 17:32:43,548 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인이-알아두면-좋은-위기청소년-상담-지원-어떻게-활용할까-놓친-적-있으신가요-000030.md
+2026-09-28 17:32:43,551 [INFO] 발행 성공: 30대 직장인이 알아두면 좋은 위기청소년 상담 지원, 어떻게 활용할까?  | general | openai/gpt-oss-120b
+2026-09-28 17:32:43,556 [INFO] 처리 중: 해남형 청년 주거비 지원
+2026-09-28 17:32:44,512 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:32:45,483 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-28 17:32:49,676 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:32:49,677 [INFO] Retrying request in 0.440713 seconds (retry 1 of 2)
+2026-09-28 17:32:50,231 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:32:50,232 [INFO] Retrying request in 0.871745 seconds (retry 2 of 2)
+2026-09-28 17:32:51,227 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:32:51,228 [INFO] 제목 추출: 무주택 직장인, 해남형 청년 주거비 지원을 한눈에 받는 방법
+2026-09-28 17:32:51,228 [INFO] refinish_title 적용: 무주택 직장인, 해남형 청년 주거비 지원을 한눈에 받는 방법 3단계로 끝내기
+2026-09-28 17:32:51,640 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-09-28 17:32:51,640 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-09-28 17:32:52,629 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/무주택-직장인-해남형-청년-주거비-지원을-한눈에-받는-방법-3단계로-끝내기-000113.md
+2026-09-28 17:32:52,631 [INFO] 발행 성공: 무주택 직장인, 해남형 청년 주거비 지원을 한눈에 받는 방법 3단계로 끝 | loan | openai/gpt-oss-20b
+2026-09-28 17:32:52,637 [INFO] 처리 중: [성북구]난임부부 약제비 지원(난임시술 이후 원외약제비 청구)
+2026-09-28 17:32:53,899 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:32:53,899 [INFO] Retrying request in 19.000000 seconds (retry 1 of 2)
+2026-09-28 17:33:13,250 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-28 17:33:17,352 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:33:17,353 [INFO] Retrying request in 0.422162 seconds (retry 1 of 2)
+2026-09-28 17:33:17,884 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:33:17,885 [INFO] Retrying request in 0.884912 seconds (retry 2 of 2)
+2026-09-28 17:33:18,870 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-28 17:33:18,871 [INFO] 제목 추출: 맞벌이 신혼부부, 난임 시술 약제비 지원금 알아보기
+2026-09-28 17:33:18,871 [INFO] refinish_title 적용: 맞벌이 신혼부부, 난임 시술 약제비 지원금 알아보기 손해 보지 않으려면
+2026-09-28 17:33:19,965 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-09-28 17:33:19,965 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-09-28 17:33:21,088 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부-난임-시술-약제비-지원금-알아보기-손해-보지-않으려면-000175.md
+2026-09-28 17:33:21,090 [INFO] 발행 성공: 맞벌이 신혼부부, 난임 시술 약제비 지원금 알아보기 손해 보지 않으려면 | insurance | openai/gpt-oss-20b
+2026-09-28 17:33:21,095 [INFO] 처리 중: 결혼 및 전입장려 지원
+2026-09-28 17:33:31,106 [INFO] [SKIP] URL 비활성: 결혼 및 전입장려 지원
+2026-09-28 17:33:31,106 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-09-28 17:33:31,106 [INFO] 파이프라인 종료 2026-09-28 17:33:31

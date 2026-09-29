@@ -1410,3 +1410,37 @@ SCAN MODE: 1 files with 1 issues
 2026-09-28 17:33:31,106 [INFO] [SKIP] URL 비활성: 결혼 및 전입장려 지원
 2026-09-28 17:33:31,106 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-09-28 17:33:31,106 [INFO] 파이프라인 종료 2026-09-28 17:33:31
+2026-09-29 15:36:43,913 [INFO] 파이프라인 시작 2026-09-29 15:36:43
+2026-09-29 15:36:43,914 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-09-29 15:36:43,921 [INFO] 처리 중: 귀농귀촌인 이사비용 지원
+2026-09-29 15:36:45,217 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 15:36:49,832 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-09-29 15:36:49,833 [INFO] Retrying request in 0.409998 seconds (retry 1 of 2)
+2026-09-29 15:36:50,386 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-29 15:36:50,387 [INFO] Retrying request in 0.950563 seconds (retry 2 of 2)
+2026-09-29 15:36:51,467 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-29 15:36:51,468 [INFO] 제목 추출: 무주택 직장인, 귀농·귀촌 이사비용 지원이 실제로 도움이 될까?
+2026-09-29 15:36:51,468 [INFO] refinish_title 적용: 무주택 직장인, 귀농·귀촌 이사비용 지원이 실제로 도움이 될까? 클리어하게 정리
+2026-09-29 15:36:51,735 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-09-29 15:36:51,736 [INFO] [validator] 수정됨: ['HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-09-29 15:36:52,607 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/무주택-직장인-귀농귀촌-이사비용-지원이-실제로-도움이-될까-클리어하게-정리-000156.md
+2026-09-29 15:36:52,613 [INFO] 발행 성공: 무주택 직장인, 귀농·귀촌 이사비용 지원이 실제로 도움이 될까? 클리어하 | loan | openai/gpt-oss-20b
+2026-09-29 15:36:52,618 [INFO] 처리 중: 시각장애인 안마서비스
+2026-09-29 15:37:02,633 [INFO] [SKIP] URL 비활성: 시각장애인 안마서비스
+2026-09-29 15:37:02,638 [INFO] 처리 중: 장애인 보조기기 렌탈서비스
+2026-09-29 15:37:02,638 [INFO] [SKIP] 부적합 키워드: 장애인 보조기기 렌탈서비스
+2026-09-29 15:37:02,644 [INFO] 처리 중: 지방세 불복청구 선정대리인 무료 지원
+2026-09-29 15:37:03,492 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-29 15:37:03,492 [INFO] Retrying request in 12.000000 seconds (retry 1 of 2)
+2026-09-29 15:37:15,771 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 15:37:27,402 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-09-29 15:37:27,411 [INFO] 제목 추출: 맞벌이 신혼부부, 성북구 재산세 이의신청 시 무료 대리인 지원 받는 방법
+2026-09-29 15:37:27,411 [INFO] refinish_title 적용: 맞벌이 신혼부부, 성북구 재산세 이의신청 시 무료 대리인 지원 받는 방법 체험해 본 결과
+2026-09-29 15:37:27,690 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-09-29 15:37:27,690 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-09-29 15:37:28,445 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부-성북구-재산세-이의신청-시-무료-대리인-지원-받는-방법-체험해-본-결과-000190.md
+2026-09-29 15:37:28,540 [INFO] 발행 성공: 맞벌이 신혼부부, 성북구 재산세 이의신청 시 무료 대리인 지원 받는 방법 | insurance | openai/gpt-oss-20b
+2026-09-29 15:37:28,545 [INFO] 처리 중: 영암군 청년 희망 디딤돌 통장
+2026-09-29 15:37:38,560 [INFO] [SKIP] URL 비활성: 영암군 청년 희망 디딤돌 통장
+2026-09-29 15:37:38,560 [INFO] 2건 발행 완료 (배포 스킵 — CI 모드)
+2026-09-29 15:37:38,560 [INFO] 파이프라인 종료 2026-09-29 15:37:38

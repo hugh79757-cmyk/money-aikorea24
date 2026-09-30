@@ -1444,3 +1444,60 @@ SCAN MODE: 1 files with 1 issues
 2026-09-29 15:37:38,560 [INFO] [SKIP] URL 비활성: 영암군 청년 희망 디딤돌 통장
 2026-09-29 15:37:38,560 [INFO] 2건 발행 완료 (배포 스킵 — CI 모드)
 2026-09-29 15:37:38,560 [INFO] 파이프라인 종료 2026-09-29 15:37:38
+2026-09-30 15:47:03,156 [INFO] 파이프라인 시작 2026-09-30 15:47:03
+2026-09-30 15:47:03,157 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-09-30 15:47:03,167 [INFO] 처리 중: 영암군 청년 월세 지원
+2026-09-30 15:47:04,685 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-30 15:47:08,471 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-09-30 15:47:08,472 [INFO] Retrying request in 0.452313 seconds (retry 1 of 2)
+2026-09-30 15:47:11,377 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-09-30 15:47:11,378 [INFO] Retrying request in 0.856813 seconds (retry 2 of 2)
+2026-09-30 15:47:15,827 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-09-30 15:47:15,838 [INFO] 제목 추출: 영암군 청년 월세 지원, 무주택 직장인에게 12개월 월 10만원 지원을 
+2026-09-30 15:47:15,838 [INFO] refinish_title 적용: 영암군 청년 월세 지원, 무주택 직장인에게 12개월 월 10만원 지원을 2026년 버전
+2026-09-30 15:47:16,546 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-09-30 15:47:16,547 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-09-30 15:47:18,647 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/영암군-청년-월세-지원-무주택-직장인에게-12개월-월-10만원-지원을-2026년-버전-000130.md
+2026-09-30 15:47:18,649 [INFO] 발행 성공: 영암군 청년 월세 지원, 무주택 직장인에게 12개월 월 10만원 지원을  | loan | openai/gpt-oss-20b
+2026-09-30 15:47:18,655 [INFO] 처리 중: 한부모무료법률구조
+2026-09-30 15:47:19,629 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-30 15:47:19,629 [INFO] Retrying request in 9.000000 seconds (retry 1 of 2)
+2026-09-30 15:47:28,768 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-30 15:47:38,013 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-09-30 15:47:38,015 [INFO] 제목 추출: 30대 직장인, 한부모 무료법률구조 신청 절차와 혜택 알아보기
+2026-09-30 15:47:38,015 [INFO] refinish_title 적용: 30대 직장인, 한부모 무료법률구조 신청 절차와 혜택 알아보기 완벽 가이드
+2026-09-30 15:47:39,217 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-09-30 15:47:39,217 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-09-30 15:47:40,080 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-한부모-무료법률구조-신청-절차와-혜택-알아보기-완벽-가이드-000040.md
+2026-09-30 15:47:40,082 [INFO] 발행 성공: 30대 직장인, 한부모 무료법률구조 신청 절차와 혜택 알아보기 완벽 가이 | general | openai/gpt-oss-20b
+2026-09-30 15:47:40,088 [INFO] 처리 중: 장애인 활동지원(추가)
+2026-09-30 15:47:40,088 [INFO] [SKIP] 부적합 키워드: 장애인 활동지원(추가)
+2026-09-30 15:47:40,095 [INFO] 처리 중: 치아홈메우기 지원
+2026-09-30 15:47:41,064 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-30 15:47:41,065 [INFO] Retrying request in 45.000000 seconds (retry 1 of 2)
+2026-09-30 15:48:26,271 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-09-30 15:48:38,877 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-09-30 15:48:38,879 [INFO] 제목 추출: 맞벌이 신혼부부, 18세 이하 자녀 치아홈메우기 지원받는 법
+2026-09-30 15:48:38,879 [INFO] refinish_title 적용: 맞벌이 신혼부부, 18세 이하 자녀 치아홈메우기 지원 미리 챙기는 법
+2026-09-30 15:48:40,063 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-09-30 15:48:40,063 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-09-30 15:48:40,845 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부-18세-이하-자녀-치아홈메우기-지원-미리-챙기는-법-000110.md
+2026-09-30 15:48:40,847 [INFO] 발행 성공: 맞벌이 신혼부부, 18세 이하 자녀 치아홈메우기 지원 미리 챙기는 법 | insurance | openai/gpt-oss-20b
+2026-09-30 15:48:40,853 [INFO] 처리 중: 영암군 대학생 전입장려금 지원
+2026-09-30 15:48:41,639 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-30 15:48:41,640 [INFO] Retrying request in 15.000000 seconds (retry 1 of 2)
+2026-09-30 15:48:56,714 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-09-30 15:48:56,715 [INFO] Retrying request in 19.000000 seconds (retry 2 of 2)
+2026-09-30 15:49:15,799 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-09-30 15:49:18,920 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-09-30 15:49:23,926 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-09-30 15:49:23,927 [INFO] Retrying request in 0.395171 seconds (retry 1 of 2)
+2026-09-30 15:49:32,699 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-09-30 15:49:32,704 [INFO] 제목 추출: 영암군 대학생 전입장려금, 최대 200만 원 지원 조건 및 신청 방법
+2026-09-30 15:49:32,704 [INFO] refinish_title 적용: 영암군 대학생 전입장려금, 최대 200만 원 지원 조건 및 아낄 수 있는 법
+2026-09-30 15:49:33,752 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-09-30 15:49:33,752 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-09-30 15:49:34,796 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/영암군-대학생-전입장려금-최대-200만-원-지원-조건-및-아낄-수-있는-법-000138.md
+2026-09-30 15:49:34,797 [INFO] 발행 성공: 영암군 대학생 전입장려금, 최대 200만 원 지원 조건 및 아낄 수 있는 | loan | gemini-3.1-flash-lite
+2026-09-30 15:49:34,798 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-09-30 15:49:34,798 [INFO] 파이프라인 종료 2026-09-30 15:49:34

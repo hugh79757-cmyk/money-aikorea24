@@ -1567,3 +1567,59 @@ SCAN MODE: 1 files with 1 issues
 2026-10-01 16:15:47,660 [INFO] 발행 성공: 신혼부부, 영암군 결혼장려금 최대 500만원 받는 방법 정리해 드립니다 | loan | openai/gpt-oss-20b
 2026-10-01 16:15:47,660 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-01 16:15:47,660 [INFO] 파이프라인 종료 2026-10-01 16:15:47
+2026-10-02 15:38:08,067 [INFO] 파이프라인 시작 2026-10-02 15:38:08
+2026-10-02 15:38:08,068 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-02 15:38:08,079 [INFO] 처리 중: 효도지원금 지원
+2026-10-02 15:38:09,433 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-02 15:38:24,115 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-02 15:38:24,124 [INFO] 제목 추출: 효도지원금, 맞벌이 신혼부부가 알아야 할 절세·보호 팁
+2026-10-02 15:38:24,124 [INFO] refinish_title 적용: 효도지원금, 맞벌이 신혼부부가 알아야 할 절세·보호 팁 총정리
+2026-10-02 15:38:25,164 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-02 15:38:25,165 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-10-02 15:38:26,119 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/효도지원금-맞벌이-신혼부부가-알아야-할-절세보호-팁-총정리-000116.md
+2026-10-02 15:38:26,122 [INFO] 발행 성공: 효도지원금, 맞벌이 신혼부부가 알아야 할 절세·보호 팁 총정리 | insurance | openai/gpt-oss-20b
+2026-10-02 15:38:26,128 [INFO] 처리 중: 영암형 공공주택 입주자 모집
+2026-10-02 15:38:26,981 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-02 15:38:26,981 [INFO] Retrying request in 25.000000 seconds (retry 1 of 2)
+2026-10-02 15:38:52,167 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-02 15:39:17,085 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-02 15:39:17,087 [INFO] 제목 추출: 무주택 직장인, 영암형 공공주택으로 46㎡ 임대주택을 2026년 10월에
+2026-10-02 15:39:17,087 [INFO] refinish_title 적용: 무주택 직장인, 영암형 공공주택으로 46㎡ 임대주택을 2026년 10월에 입주하는 절차와 
+2026-10-02 15:39:17,386 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-02 15:39:17,387 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-10-02 15:39:18,921 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/무주택-직장인-영암형-공공주택으로-46-임대주택을-2026년-10월에-입주하는-절차와-혜택-올해-안에-꼭-000234.md
+2026-10-02 15:39:18,922 [INFO] 발행 성공: 무주택 직장인, 영암형 공공주택으로 46㎡ 임대주택을 2026년 10월에 | loan | openai/gpt-oss-20b
+2026-10-02 15:39:18,928 [INFO] 처리 중: 청소년 미혼 한부모 자립지원 (우리원더패밀리)
+2026-10-02 15:39:19,916 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-02 15:39:19,917 [INFO] Retrying request in 33.000000 seconds (retry 1 of 2)
+2026-10-02 15:39:53,089 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-02 15:39:59,387 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-02 15:39:59,387 [INFO] Retrying request in 0.482839 seconds (retry 1 of 2)
+2026-10-02 15:40:06,125 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-02 15:40:18,401 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-02 15:40:18,404 [INFO] 제목 추출: 24세 이하 미혼 한부모라면 꼭 챙겨야 할 월 50만원 생활비 지원, 우
+2026-10-02 15:40:18,404 [INFO] refinish_title 적용: 24세 이하 미혼 한부모라면 꼭 챙겨야 할 월 50만원 생활비 지원, 우리원더패밀리 한 번
+2026-10-02 15:40:18,998 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-02 15:40:18,998 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-02 15:40:20,457 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/24세-이하-미혼-한부모라면-꼭-챙겨야-할-월-50만원-생활비-지원-우리원더패밀리-한-번에-정리-000052.md
+2026-10-02 15:40:20,459 [INFO] 발행 성공: 24세 이하 미혼 한부모라면 꼭 챙겨야 할 월 50만원 생활비 지원, 우 | general | gemini-3.1-flash-lite
+2026-10-02 15:40:20,465 [INFO] 처리 중: 귀농인 농가주택 수리비 지원
+2026-10-02 15:40:22,325 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-02 15:40:54,803 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-02 15:40:54,805 [INFO] 제목 추출: 무안군 귀농인 농가주택 수리비 지원, 1,000만원 혜택 챙기는 법
+2026-10-02 15:40:54,805 [INFO] refinish_title 적용: 무안군 귀농인 농가주택 수리비 지원, 1,000만원 혜택 돌려받는 법
+2026-10-02 15:40:55,506 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-02 15:40:55,506 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2019']
+2026-10-02 15:40:56,826 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/무안군-귀농인-농가주택-수리비-지원-1000만원-혜택-돌려받는-법-000416.md
+2026-10-02 15:40:56,828 [INFO] 발행 성공: 무안군 귀농인 농가주택 수리비 지원, 1,000만원 혜택 돌려받는 법 | loan | gemini-3.1-flash-lite
+2026-10-02 15:40:56,834 [INFO] 처리 중: 구강검진 및 보건교육
+2026-10-02 15:41:06,293 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-02 15:41:29,162 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-02 15:41:29,163 [INFO] 제목 추출: 맞벌이 신혼부부라면 놓치지 마세요, 강북구 구강검진 및 보건교육 신청법
+2026-10-02 15:41:29,163 [INFO] refinish_title 적용: 맞벌이 신혼부부라면 놓치지 마세요, 강북구 구강검진 및 보건교육 신청법 요점만 쏙쏙
+2026-10-02 15:41:29,769 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-02 15:41:29,769 [INFO] [validator] 수정됨: ['HEADING_MISSING:조건']
+2026-10-02 15:41:32,362 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부라면-놓치지-마세요-강북구-구강검진-및-보건교육-신청법-요점만-쏙쏙-000118.md
+2026-10-02 15:41:32,364 [INFO] 발행 성공: 맞벌이 신혼부부라면 놓치지 마세요, 강북구 구강검진 및 보건교육 신청법  | insurance | gemini-3.1-flash-lite
+2026-10-02 15:41:32,364 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-02 15:41:32,364 [INFO] 파이프라인 종료 2026-10-02 15:41:32

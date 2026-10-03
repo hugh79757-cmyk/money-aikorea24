@@ -1623,3 +1623,52 @@ SCAN MODE: 1 files with 1 issues
 2026-10-02 15:41:32,364 [INFO] 발행 성공: 맞벌이 신혼부부라면 놓치지 마세요, 강북구 구강검진 및 보건교육 신청법  | insurance | gemini-3.1-flash-lite
 2026-10-02 15:41:32,364 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-02 15:41:32,364 [INFO] 파이프라인 종료 2026-10-02 15:41:32
+2026-10-03 14:13:48,821 [INFO] 파이프라인 시작 2026-10-03 14:13:48
+2026-10-03 14:13:48,822 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-03 14:13:48,831 [INFO] 처리 중: 영광군 결혼장려금 지원
+2026-10-03 14:13:54,947 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-03 14:14:04,229 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-03 14:14:04,240 [INFO] 제목 추출: 영광군 결혼장려금 500만원, 신혼부부라면 놓치지 말아야 할 이유
+2026-10-03 14:14:04,241 [INFO] refinish_title 적용: 영광군 결혼장려금 500만원, 신혼부부라면 놓치지 말아야 할 이유 100% 활용법
+2026-10-03 14:14:05,049 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-03 14:14:05,051 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-10-03 14:14:05,969 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/영광군-결혼장려금-500만원-신혼부부라면-놓치지-말아야-할-이유-100-활용법-000111.md
+2026-10-03 14:14:05,972 [INFO] 발행 성공: 영광군 결혼장려금 500만원, 신혼부부라면 놓치지 말아야 할 이유 100 | loan | gemini-3.1-flash-lite
+2026-10-03 14:14:05,977 [INFO] 처리 중: 경력보유여성 등 취업지원
+2026-10-03 14:14:12,210 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-03 14:14:22,474 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-03 14:14:22,475 [INFO] 제목 추출: 30대 직장인, 경력 단절 걱정된다면? 새일센터 취업지원 활용법
+2026-10-03 14:14:22,475 [INFO] refinish_title 적용: 30대 직장인, 경력 단절 걱정된다면? 새일센터 취업지원 활용법 총정리
+2026-10-03 14:14:22,743 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-03 14:14:22,744 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:조건', 'YEAR_REPLACED:2024']
+2026-10-03 14:14:23,529 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-경력-단절-걱정된다면-새일센터-취업지원-활용법-총정리-000055.md
+2026-10-03 14:14:23,531 [INFO] 발행 성공: 30대 직장인, 경력 단절 걱정된다면? 새일센터 취업지원 활용법 총정리 | general | gemini-3.1-flash-lite
+2026-10-03 14:14:23,537 [INFO] 처리 중: 입양축하금 지원
+2026-10-03 14:14:24,817 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-03 14:14:24,818 [INFO] Retrying request in 0.440900 seconds (retry 1 of 2)
+2026-10-03 14:14:27,400 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-03 14:14:27,401 [INFO] Retrying request in 0.800515 seconds (retry 2 of 2)
+2026-10-03 14:14:28,683 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-03 14:14:35,252 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-03 14:14:47,253 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-03 14:14:47,254 [INFO] 제목 추출: 입양을 준비하는 맞벌이 부부를 위한 강북구 입양축하금 지원 제도
+2026-10-03 14:14:47,255 [INFO] refinish_title 적용: 입양을 준비하는 맞벌이 부부를 위한 강북구 입양축하금 지원 제도 비교해 봤습니다
+2026-10-03 14:14:47,527 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-03 14:14:47,527 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:조건']
+2026-10-03 14:14:48,255 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/입양을-준비하는-맞벌이-부부를-위한-강북구-입양축하금-지원-제도-비교해-봤습니다-000119.md
+2026-10-03 14:14:48,257 [INFO] 발행 성공: 입양을 준비하는 맞벌이 부부를 위한 강북구 입양축하금 지원 제도 비교해  | insurance | gemini-3.1-flash-lite
+2026-10-03 14:14:48,263 [INFO] 처리 중: 청년 희망 디딤돌 통장 운영
+2026-10-03 14:14:58,402 [INFO] [SKIP] URL 비활성: 청년 희망 디딤돌 통장 운영
+2026-10-03 14:14:58,407 [INFO] 처리 중: 영광군 전입장려금 지원
+2026-10-03 14:15:03,351 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-03 14:15:08,893 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-03 14:15:08,894 [INFO] Retrying request in 0.437169 seconds (retry 1 of 2)
+2026-10-03 14:15:16,112 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-03 14:15:16,114 [INFO] 제목 추출: 영광군으로 이사 고민 중인 직장인, 전입장려금으로 생활비 아끼는 법
+2026-10-03 14:15:16,114 [INFO] refinish_title 적용: 영광군으로 이사 고민 중인 직장인, 전입장려금으로 생활비 아끼는 법 혜택 보는 법
+2026-10-03 14:15:16,380 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-03 14:15:16,380 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-03 14:15:17,168 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/영광군으로-이사-고민-중인-직장인-전입장려금으로-생활비-아끼는-법-혜택-보는-법-000637.md
+2026-10-03 14:15:17,169 [INFO] 발행 성공: 영광군으로 이사 고민 중인 직장인, 전입장려금으로 생활비 아끼는 법 혜택 | loan | gemini-3.1-flash-lite
+2026-10-03 14:15:17,169 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-03 14:15:17,169 [INFO] 파이프라인 종료 2026-10-03 14:15:17

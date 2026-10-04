@@ -1672,3 +1672,64 @@ SCAN MODE: 1 files with 1 issues
 2026-10-03 14:15:17,169 [INFO] 발행 성공: 영광군으로 이사 고민 중인 직장인, 전입장려금으로 생활비 아끼는 법 혜택 | loan | gemini-3.1-flash-lite
 2026-10-03 14:15:17,169 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-03 14:15:17,169 [INFO] 파이프라인 종료 2026-10-03 14:15:17
+2026-10-04 14:43:51,827 [INFO] 파이프라인 시작 2026-10-04 14:43:51
+2026-10-04 14:43:51,828 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-04 14:43:51,837 [INFO] 처리 중: 청년 전세보증금반환보증 보증료 지원
+2026-10-04 14:43:56,832 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-04 14:44:04,282 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-04 14:44:04,283 [INFO] Retrying request in 0.431605 seconds (retry 1 of 2)
+2026-10-04 14:44:04,863 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:04,864 [INFO] Retrying request in 0.869740 seconds (retry 2 of 2)
+2026-10-04 14:44:05,870 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:05,872 [INFO] 제목 추출: 전세보증금 지키고 보증료도 돌려받는 법, 청년 전세보증금반환보증 지원
+2026-10-04 14:44:05,872 [INFO] refinish_title 적용: 전세보증금 지키고 보증료도 돌려받는 법, 청년 전세보증금반환보증 지원 딱 3가지만 기억하세
+2026-10-04 14:44:06,397 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-04 14:44:06,398 [INFO] [validator] 수정됨: ['HEADING_MISSING:방법']
+2026-10-04 14:44:07,212 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/전세보증금-지키고-보증료도-돌려받는-법-청년-전세보증금반환보증-지원-딱-3가지만-기억하세요-000472.md
+2026-10-04 14:44:07,214 [INFO] 발행 성공: 전세보증금 지키고 보증료도 돌려받는 법, 청년 전세보증금반환보증 지원 딱 | loan | gemini-3.1-flash-lite
+2026-10-04 14:44:07,219 [INFO] 처리 중: 저소득 주민 국민건강보험료 지원
+2026-10-04 14:44:07,219 [INFO] [SKIP] 부적합 키워드: 저소득 주민 국민건강보험료 지원
+2026-10-04 14:44:07,225 [INFO] 처리 중: 한방 방문 진료 지원
+2026-10-04 14:44:07,998 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:07,998 [INFO] Retrying request in 0.390332 seconds (retry 1 of 2)
+2026-10-04 14:44:08,581 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:08,581 [INFO] Retrying request in 0.968665 seconds (retry 2 of 2)
+2026-10-04 14:44:09,943 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-04 14:44:15,150 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:15,150 [INFO] Retrying request in 0.451909 seconds (retry 1 of 2)
+2026-10-04 14:44:21,092 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-04 14:44:26,299 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:26,300 [INFO] Retrying request in 0.422015 seconds (retry 1 of 2)
+2026-10-04 14:44:26,856 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:26,857 [INFO] Retrying request in 0.822204 seconds (retry 2 of 2)
+2026-10-04 14:44:27,815 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:27,816 [INFO] 제목 추출: 맞벌이 신혼부부, 우리 부모님을 위한 '한방 방문 진료' 챙기기
+2026-10-04 14:44:27,816 [INFO] refinish_title 적용: 맞벌이 신혼부부, 우리 부모님을 위한 '한방 방문 진료' 챙기기 실제 혜택 비교
+2026-10-04 14:44:28,091 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-04 14:44:28,091 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-04 14:44:28,852 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부-우리-부모님을-위한-한방-방문-진료-챙기기-실제-혜택-비교-000122.md
+2026-10-04 14:44:28,855 [INFO] 발행 성공: 맞벌이 신혼부부, 우리 부모님을 위한 '한방 방문 진료' 챙기기 실제 혜 | insurance | gemini-3.1-flash-lite
+2026-10-04 14:44:28,861 [INFO] 처리 중: 다문화가족지원센터 이용
+2026-10-04 14:44:28,862 [INFO] [SKIP] 부적합 키워드: 다문화가족지원센터 이용
+2026-10-04 14:44:28,868 [INFO] 처리 중: 저소득 다문화 자녀 교육활동비 지원
+2026-10-04 14:44:29,752 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:29,753 [INFO] Retrying request in 0.465934 seconds (retry 1 of 2)
+2026-10-04 14:44:30,400 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:30,400 [INFO] Retrying request in 0.867164 seconds (retry 2 of 2)
+2026-10-04 14:44:31,435 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:31,637 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-04 14:44:31,738 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-04 14:44:31,990 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-04 14:44:38,002 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:38,003 [INFO] Retrying request in 0.391547 seconds (retry 1 of 2)
+2026-10-04 14:44:38,506 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:38,507 [INFO] Retrying request in 0.754888 seconds (retry 2 of 2)
+2026-10-04 14:44:39,391 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-04 14:44:39,392 [INFO] 제목 추출: 다문화 가정 자녀 교육활동비, 30대 직장인도 알아두면 좋은 지원받는 법
+2026-10-04 14:44:39,392 [INFO] refinish_title 적용: 다문화 가정 자녀 교육활동비, 30대 직장인도 알아두면 좋은 지원 총집합
+2026-10-04 14:44:39,920 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-04 14:44:39,921 [INFO] [validator] 수정됨: ['HEADING_MISSING:조건', 'YEAR_REPLACED:2024']
+2026-10-04 14:44:40,582 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/다문화-가정-자녀-교육활동비-30대-직장인도-알아두면-좋은-지원-총집합-000057.md
+2026-10-04 14:44:40,583 [INFO] 발행 성공: 다문화 가정 자녀 교육활동비, 30대 직장인도 알아두면 좋은 지원 총집합 | general | openai/gpt-oss-120b
+2026-10-04 14:44:40,583 [INFO] 3건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-04 14:44:40,584 [INFO] 파이프라인 종료 2026-10-04 14:44:40

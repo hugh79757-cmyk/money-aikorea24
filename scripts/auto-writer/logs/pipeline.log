@@ -1793,3 +1793,64 @@ SCAN MODE: 1 files with 1 issues
 2026-10-05 18:16:16,129 [INFO] 발행 성공: 30대 직장인도 놓치지 말아야 할 다문화가족 자녀 기초학습 지원 신청법  | general | openai/gpt-oss-120b
 2026-10-05 18:16:16,129 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-05 18:16:16,129 [INFO] 파이프라인 종료 2026-10-05 18:16:16
+2026-10-06 15:48:23,157 [INFO] 파이프라인 시작 2026-10-06 15:48:23
+2026-10-06 15:48:23,158 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-06 15:48:23,165 [INFO] 처리 중: 다문화가족 정착금 지원
+2026-10-06 15:48:24,445 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-06 15:48:31,462 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-06 15:48:31,463 [INFO] Retrying request in 0.379649 seconds (retry 1 of 2)
+2026-10-06 15:48:38,899 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-06 15:48:38,904 [INFO] 제목 추출: 다문화가족 정착금 지원, 1인당 10만원 아리랑상품권 받는 방법
+2026-10-06 15:48:38,904 [INFO] refinish_title 적용: 다문화가족 정착금 지원, 1인당 10만원 아리랑상품권 받는 방법 돌려받는 법
+2026-10-06 15:48:39,869 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-06 15:48:39,870 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-06 15:48:41,254 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/다문화가족-정착금-지원-1인당-10만원-아리랑상품권-받는-방법-돌려받는-법-000107.md
+2026-10-06 15:48:41,256 [INFO] 발행 성공: 다문화가족 정착금 지원, 1인당 10만원 아리랑상품권 받는 방법 돌려받는 | loan | openai/gpt-oss-120b
+2026-10-06 15:48:41,260 [INFO] 처리 중: 여성과 어린이 건강증진 지원
+2026-10-06 15:48:42,393 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-06 15:48:42,394 [INFO] Retrying request in 7.000000 seconds (retry 1 of 2)
+2026-10-06 15:48:49,736 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-06 15:49:21,111 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-06 15:49:21,112 [INFO] 제목 추출: 맞벌이 신혼부부가 받을 수 있는 여성·어린이 건강증진 지원, 신청 방법 
+2026-10-06 15:49:21,112 [INFO] refinish_title 적용: 맞벌이 신혼부부가 받을 수 있는 여성·어린이 건강증진 지원, 신청 방법 완전 정리 5분 만
+2026-10-06 15:49:21,445 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-06 15:49:21,445 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-10-06 15:49:23,182 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부가-받을-수-있는-여성어린이-건강증진-지원-신청-방법-완전-정리-5분-만에-정리-000124.md
+2026-10-06 15:49:23,183 [INFO] 발행 성공: 맞벌이 신혼부부가 받을 수 있는 여성·어린이 건강증진 지원, 신청 방법  | insurance | openai/gpt-oss-120b
+2026-10-06 15:49:23,187 [INFO] 처리 중: 재래식 주거환경정비 지원
+2026-10-06 15:49:24,190 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-06 15:49:24,190 [INFO] Retrying request in 5.000000 seconds (retry 1 of 2)
+2026-10-06 15:49:29,555 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-06 15:49:50,227 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-06 15:49:50,228 [INFO] 제목 추출: 진도군 무주택 직장인을 위한 재래식 주거환경정비 지원 신청 방법
+2026-10-06 15:49:50,228 [INFO] refinish_title 적용: 진도군 무주택 직장인을 위한 재래식 주거환경정비 지원 챙기는 법
+2026-10-06 15:49:50,582 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-06 15:49:50,583 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-06 15:49:51,489 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/진도군-무주택-직장인을-위한-재래식-주거환경정비-지원-챙기는-법-000109.md
+2026-10-06 15:49:51,491 [INFO] 발행 성공: 진도군 무주택 직장인을 위한 재래식 주거환경정비 지원 챙기는 법 | loan | openai/gpt-oss-120b
+2026-10-06 15:49:51,495 [INFO] 처리 중: 저소득층 국민건강보험료 지원
+2026-10-06 15:49:52,464 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-06 15:49:52,465 [INFO] Retrying request in 36.000000 seconds (retry 1 of 2)
+2026-10-06 15:50:28,676 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-06 15:50:28,676 [INFO] Retrying request in 1.000000 seconds (retry 2 of 2)
+2026-10-06 15:50:30,057 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-06 15:50:45,802 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-06 15:50:45,803 [INFO] 제목 추출: 맞벌이 신혼부부도 알아두면 좋은 저소득 어르신 건강보험료 지원, 신청 없
+2026-10-06 15:50:45,803 [INFO] refinish_title 적용: 맞벌이 신혼부부도 알아두면 좋은 저소득 어르신 건강보험료 지원, 신청 없이 바로 놓친 적 
+2026-10-06 15:50:46,623 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-06 15:50:46,623 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-10-06 15:50:48,196 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부도-알아두면-좋은-저소득-어르신-건강보험료-지원-신청-없이-바로-놓친-적-있으신가요-000125.md
+2026-10-06 15:50:48,198 [INFO] 발행 성공: 맞벌이 신혼부부도 알아두면 좋은 저소득 어르신 건강보험료 지원, 신청 없 | insurance | openai/gpt-oss-120b
+2026-10-06 15:50:48,201 [INFO] 처리 중: 귀농어귀촌인 이사비용 지원
+2026-10-06 15:50:49,101 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-06 15:50:49,101 [INFO] Retrying request in 11.000000 seconds (retry 1 of 2)
+2026-10-06 15:51:00,750 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-06 15:51:24,082 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-06 15:51:24,083 [INFO] 제목 추출: 전라남도 진도군 귀농·귀촌 이사비용 지원, 최대 1,000만원 받는 법
+2026-10-06 15:51:24,083 [INFO] refinish_title 적용: 전라남도 진도군 귀농·귀촌 이사비용 지원, 최대 1,000만원 놓치면 아까운
+2026-10-06 15:51:24,391 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-06 15:51:24,392 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-10-06 15:51:25,331 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/전라남도-진도군-귀농귀촌-이사비용-지원-최대-1000만원-놓치면-아까운-000119.md
+2026-10-06 15:51:25,345 [INFO] 발행 성공: 전라남도 진도군 귀농·귀촌 이사비용 지원, 최대 1,000만원 놓치면 아 | loan | openai/gpt-oss-120b
+2026-10-06 15:51:25,345 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-06 15:51:25,345 [INFO] 파이프라인 종료 2026-10-06 15:51:25

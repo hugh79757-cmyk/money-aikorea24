@@ -1854,3 +1854,58 @@ SCAN MODE: 1 files with 1 issues
 2026-10-06 15:51:25,345 [INFO] 발행 성공: 전라남도 진도군 귀농·귀촌 이사비용 지원, 최대 1,000만원 놓치면 아 | loan | openai/gpt-oss-120b
 2026-10-06 15:51:25,345 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-06 15:51:25,345 [INFO] 파이프라인 종료 2026-10-06 15:51:25
+2026-10-07 16:16:38,339 [INFO] 파이프라인 시작 2026-10-07 16:16:38
+2026-10-07 16:16:38,340 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-07 16:16:38,350 [INFO] 처리 중: 진로설계 지원
+2026-10-07 16:16:39,604 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-07 16:16:45,978 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-07 16:16:54,971 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-07 16:16:54,981 [INFO] 제목 추출: 30대 직장인, 다문화가족 자녀를 위한 진로설계 지원 프로그램 활용법
+2026-10-07 16:16:54,982 [INFO] refinish_title 적용: 30대 직장인, 다문화가족 자녀를 위한 진로설계 지원 프로그램 활용법 총정리
+2026-10-07 16:16:55,264 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-07 16:16:55,266 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-07 16:16:56,072 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-다문화가족-자녀를-위한-진로설계-지원-프로그램-활용법-총정리-000059.md
+2026-10-07 16:16:56,075 [INFO] 발행 성공: 30대 직장인, 다문화가족 자녀를 위한 진로설계 지원 프로그램 활용법 총 | general | openai/gpt-oss-20b
+2026-10-07 16:16:56,080 [INFO] 처리 중: 귀어 정착 지원
+2026-10-07 16:16:56,080 [INFO] [SKIP] 부적합 키워드: 귀어 정착 지원
+2026-10-07 16:16:56,086 [INFO] 처리 중: 행복한 보금자리만들기
+2026-10-07 16:16:56,875 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-07 16:16:56,875 [INFO] Retrying request in 25.000000 seconds (retry 1 of 2)
+2026-10-07 16:17:22,137 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-07 16:17:37,448 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-07 16:17:37,451 [INFO] 제목 추출: 2026년 경북 무주택 직장인, 집수리 지원 신청 가이드
+2026-10-07 16:17:37,451 [INFO] refinish_title 적용: 2026년 경북 무주택 직장인, 집수리 지원 신청 딱 3가지만 기억하세요
+2026-10-07 16:17:37,709 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-07 16:17:37,709 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-07 16:17:38,532 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/2026년-경북-무주택-직장인-집수리-지원-신청-딱-3가지만-기억하세요-000108.md
+2026-10-07 16:17:38,534 [INFO] 발행 성공: 2026년 경북 무주택 직장인, 집수리 지원 신청 딱 3가지만 기억하세요 | loan | openai/gpt-oss-20b
+2026-10-07 16:17:38,539 [INFO] 처리 중: 한부모가정 명절위문금 지원
+2026-10-07 16:17:39,357 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-07 16:17:39,357 [INFO] Retrying request in 14.000000 seconds (retry 1 of 2)
+2026-10-07 16:17:53,443 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-07 16:17:53,444 [INFO] Retrying request in 13.000000 seconds (retry 2 of 2)
+2026-10-07 16:18:06,705 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-07 16:18:37,196 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-07 16:18:37,198 [INFO] 제목 추출: 맞벌이 신혼부부를 위한 한부모 가정 명절위문금 지원 안내
+2026-10-07 16:18:37,198 [INFO] refinish_title 적용: 맞벌이 신혼부부를 위한 한부모 가정 명절위문금 지원 안내 혜택 보는 법
+2026-10-07 16:18:37,449 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-07 16:18:37,450 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-10-07 16:18:38,213 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부를-위한-한부모-가정-명절위문금-지원-안내-혜택-보는-법-000126.md
+2026-10-07 16:18:38,214 [INFO] 발행 성공: 맞벌이 신혼부부를 위한 한부모 가정 명절위문금 지원 안내 혜택 보는 법 | insurance | openai/gpt-oss-20b
+2026-10-07 16:18:38,220 [INFO] 처리 중: 경주시 청년 주택구입 대출이자 지원
+2026-10-07 16:18:39,041 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-07 16:18:39,041 [INFO] Retrying request in 20.000000 seconds (retry 1 of 2)
+2026-10-07 16:18:59,141 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-07 16:19:03,294 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-07 16:19:03,295 [INFO] Retrying request in 0.435720 seconds (retry 1 of 2)
+2026-10-07 16:19:03,841 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-07 16:19:03,841 [INFO] Retrying request in 0.788274 seconds (retry 2 of 2)
+2026-10-07 16:19:04,736 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-07 16:19:04,737 [INFO] 제목 추출: 경주 청년 주택구입 대출이자 지원, 무주택 직장인도 알아두면 좋은 준비 
+2026-10-07 16:19:04,737 [INFO] refinish_title 적용: 경주 청년 주택구입 대출이자 지원, 무주택 직장인도 알아두면 좋은 준비 마지막 기회
+2026-10-07 16:19:05,615 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-07 16:19:05,615 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-07 16:19:07,075 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/경주-청년-주택구입-대출이자-지원-무주택-직장인도-알아두면-좋은-준비-마지막-기회-000176.md
+2026-10-07 16:19:07,077 [INFO] 발행 성공: 경주 청년 주택구입 대출이자 지원, 무주택 직장인도 알아두면 좋은 준비  | loan | openai/gpt-oss-20b
+2026-10-07 16:19:07,077 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-07 16:19:07,077 [INFO] 파이프라인 종료 2026-10-07 16:19:07

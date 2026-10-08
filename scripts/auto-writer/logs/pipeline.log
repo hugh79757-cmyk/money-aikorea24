@@ -1909,3 +1909,58 @@ SCAN MODE: 1 files with 1 issues
 2026-10-07 16:19:07,077 [INFO] 발행 성공: 경주 청년 주택구입 대출이자 지원, 무주택 직장인도 알아두면 좋은 준비  | loan | openai/gpt-oss-20b
 2026-10-07 16:19:07,077 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-07 16:19:07,077 [INFO] 파이프라인 종료 2026-10-07 16:19:07
+2026-10-08 16:17:54,704 [INFO] 파이프라인 시작 2026-10-08 16:17:54
+2026-10-08 16:17:54,705 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-08 16:17:54,711 [INFO] 처리 중: 결혼이민자 역량강화지원
+2026-10-08 16:17:56,431 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-08 16:18:58,828 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-08 16:18:58,829 [INFO] Retrying request in 0.455115 seconds (retry 1 of 2)
+2026-10-08 16:18:59,387 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-08 16:18:59,387 [INFO] Retrying request in 0.777413 seconds (retry 2 of 2)
+2026-10-08 16:19:00,279 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-08 16:19:00,280 [INFO] 제목 추출: 30대 직장인, 결혼이민자 역량강화지원 프로그램을 알아보자
+2026-10-08 16:19:00,281 [INFO] refinish_title 적용: 30대 직장인, 결혼이민자 역량강화지원 프로그램을 알아보자 진짜일까?
+2026-10-08 16:19:00,566 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-08 16:19:00,566 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-08 16:19:01,682 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-결혼이민자-역량강화지원-프로그램을-알아보자-진짜일까-000060.md
+2026-10-08 16:19:01,684 [INFO] 발행 성공: 30대 직장인, 결혼이민자 역량강화지원 프로그램을 알아보자 진짜일까? | general | openai/gpt-oss-20b
+2026-10-08 16:19:01,688 [INFO] 처리 중: 장애인 활동지원(추가)
+2026-10-08 16:19:02,737 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-08 16:20:11,664 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-08 16:20:11,664 [INFO] Retrying request in 0.461875 seconds (retry 1 of 2)
+2026-10-08 16:20:12,211 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-08 16:20:12,211 [INFO] Retrying request in 0.910663 seconds (retry 2 of 2)
+2026-10-08 16:20:13,208 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-08 16:20:13,208 [INFO] 제목 추출: 맞벌이 신혼부부가 알아야 할 장애인 활동지원(추가) 서비스 안내
+2026-10-08 16:20:13,208 [INFO] refinish_title 적용: 맞벌이 신혼부부가 알아야 할 장애인 활동지원(추가) 서비스 안내 3단계로 끝내기
+2026-10-08 16:20:13,768 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-08 16:20:13,768 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-08 16:20:14,457 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부가-알아야-할-장애인-활동지원추가-서비스-안내-3단계로-끝내기-000128.md
+2026-10-08 16:20:14,458 [INFO] 발행 성공: 맞벌이 신혼부부가 알아야 할 장애인 활동지원(추가) 서비스 안내 3단계로 | insurance | openai/gpt-oss-20b
+2026-10-08 16:20:14,462 [INFO] 처리 중: 귀농인 이사비용 지원
+2026-10-08 16:20:14,462 [INFO] [SKIP] 부적합 키워드: 귀농인 이사비용 지원
+2026-10-08 16:20:14,466 [INFO] 처리 중: 영구임대아파트 공동전기요금 지원
+2026-10-08 16:20:15,378 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-08 16:20:15,461 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-08 16:20:15,462 [INFO] Retrying request in 0.469495 seconds (retry 1 of 2)
+2026-10-08 16:20:16,064 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-08 16:20:16,064 [INFO] Retrying request in 0.988015 seconds (retry 2 of 2)
+2026-10-08 16:20:17,158 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-08 16:20:17,258 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-08 16:20:17,337 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-08 16:20:17,823 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-08 16:20:24,469 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-08 16:20:24,470 [INFO] Retrying request in 0.446667 seconds (retry 1 of 2)
+2026-10-08 16:20:25,014 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-08 16:20:25,014 [INFO] Retrying request in 0.811727 seconds (retry 2 of 2)
+2026-10-08 16:20:25,910 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-08 16:20:25,911 [INFO] 제목 추출: 무주택 직장인, 영구임대아파트 전기요금 지원받는 법
+2026-10-08 16:20:25,911 [INFO] refinish_title 적용: 무주택 직장인, 영구임대아파트 전기요금 지원 총정리
+2026-10-08 16:20:26,193 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-08 16:20:26,193 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-08 16:20:26,969 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/무주택-직장인-영구임대아파트-전기요금-지원-총정리-000753.md
+2026-10-08 16:20:26,970 [INFO] 발행 성공: 무주택 직장인, 영구임대아파트 전기요금 지원 총정리 | loan | openai/gpt-oss-120b
+2026-10-08 16:20:26,974 [INFO] 처리 중: 자립준비청년(보호종료아동) 자립수당 지급
+2026-10-08 16:20:26,974 [INFO] [SKIP] 부적합 키워드: 자립준비청년(보호종료아동) 자립수당 지급
+2026-10-08 16:20:26,975 [INFO] 3건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-08 16:20:26,975 [INFO] 파이프라인 종료 2026-10-08 16:20:26

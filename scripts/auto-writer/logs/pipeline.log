@@ -1964,3 +1964,33 @@ SCAN MODE: 1 files with 1 issues
 2026-10-08 16:20:26,974 [INFO] [SKIP] 부적합 키워드: 자립준비청년(보호종료아동) 자립수당 지급
 2026-10-08 16:20:26,975 [INFO] 3건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-08 16:20:26,975 [INFO] 파이프라인 종료 2026-10-08 16:20:26
+2026-10-09 16:01:55,644 [INFO] 파이프라인 시작 2026-10-09 16:01:55
+2026-10-09 16:01:55,644 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-09 16:01:55,653 [INFO] 처리 중: 북한이탈주민 초기 정착 지원
+2026-10-09 16:01:55,653 [INFO] [SKIP] 부적합 키워드: 북한이탈주민 초기 정착 지원
+2026-10-09 16:01:55,661 [INFO] 처리 중: 귀농인 이사비용 지원
+2026-10-09 16:01:55,661 [INFO] [SKIP] 부적합 키워드: 귀농인 이사비용 지원
+2026-10-09 16:01:55,668 [INFO] 처리 중: 귀농귀촌인 주거임대료 지원사업
+2026-10-09 16:01:55,668 [INFO] [SKIP] 부적합 키워드: 귀농귀촌인 주거임대료 지원사업
+2026-10-09 16:01:55,675 [INFO] 처리 중: 상주장학회 공공기숙사 운영
+2026-10-09 16:01:56,871 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-09 16:02:09,288 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-09 16:02:09,298 [INFO] 제목 추출: 상주 공공기숙사 지원받는 법 – 대학생뿐 아니라 무주택 직장인도 놓치면 
+2026-10-09 16:02:09,299 [INFO] refinish_title 적용: 상주 공공기숙사 지원받는 법 – 대학생뿐 아니라 무주택 직장인도 놓치면 안 될 정보 완벽 
+2026-10-09 16:02:09,922 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-09 16:02:09,924 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-10-09 16:02:10,988 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/상주-공공기숙사-지원받는-법-대학생뿐-아니라-무주택-직장인도-놓치면-안-될-정보-완벽-가이드-000137.md
+2026-10-09 16:02:10,991 [INFO] 발행 성공: 상주 공공기숙사 지원받는 법 – 대학생뿐 아니라 무주택 직장인도 놓치면  | loan | openai/gpt-oss-120b
+2026-10-09 16:02:10,996 [INFO] 처리 중: 무의탁·독거노인 지원
+2026-10-09 16:02:11,847 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-09 16:02:11,848 [INFO] Retrying request in 19.000000 seconds (retry 1 of 2)
+2026-10-09 16:02:31,143 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-09 16:02:40,603 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-09 16:02:40,605 [INFO] 제목 추출: 맞벌이 신혼부부도 알아두면 좋은 무의탁·독거노인 지원 안내
+2026-10-09 16:02:40,605 [INFO] refinish_title 적용: 맞벌이 신혼부부도 알아두면 좋은 무의탁·독거노인 지원 안내 정리해 드립니다
+2026-10-09 16:02:41,106 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-09 16:02:41,107 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-10-09 16:02:42,168 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부도-알아두면-좋은-무의탁독거노인-지원-안내-정리해-드립니다-000130.md
+2026-10-09 16:02:42,170 [INFO] 발행 성공: 맞벌이 신혼부부도 알아두면 좋은 무의탁·독거노인 지원 안내 정리해 드립니 | insurance | openai/gpt-oss-120b
+2026-10-09 16:02:42,170 [INFO] 2건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-09 16:02:42,170 [INFO] 파이프라인 종료 2026-10-09 16:02:42

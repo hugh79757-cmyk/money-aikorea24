@@ -2140,3 +2140,48 @@ SCAN MODE: 1 files with 1 issues
 2026-10-11 15:33:44,104 [INFO] 발행 성공: 도봉구 등록장애인 보장구 수리 지원, 맞벌이 신혼부부도 알아두면 좋은 이 | insurance | openai/gpt-oss-120b
 2026-10-11 15:33:44,104 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-11 15:33:44,104 [INFO] 파이프라인 종료 2026-10-11 15:33:44
+2026-10-12 18:50:45,115 [INFO] 파이프라인 시작 2026-10-12 18:50:45
+2026-10-12 18:50:45,116 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-12 18:50:45,124 [INFO] 처리 중: 산불전문 예방진화대 일자리 제공
+2026-10-12 18:50:46,493 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-12 18:51:30,209 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-12 18:51:30,217 [INFO] 제목 추출: 30대 직장인이 하루 76,960원 받는 산불예방 일자리 신청 방법
+2026-10-12 18:51:30,217 [INFO] refinish_title 적용: 30대 직장인이 하루 76,960원 받는 산불예방 일자리 딱 3가지만 기억하세요
+2026-10-12 18:51:30,542 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-12 18:51:30,544 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-12 18:51:31,726 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인이-하루-76960원-받는-산불예방-일자리-딱-3가지만-기억하세요-000005.md
+2026-10-12 18:51:31,728 [INFO] 발행 성공: 30대 직장인이 하루 76,960원 받는 산불예방 일자리 딱 3가지만 기 | general | openai/gpt-oss-120b
+2026-10-12 18:51:31,733 [INFO] 처리 중: 자활지원(자활기금)
+2026-10-12 18:51:33,137 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-12 18:51:40,096 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-12 18:51:40,096 [INFO] Retrying request in 0.421745 seconds (retry 1 of 2)
+2026-10-12 18:51:40,622 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-12 18:51:40,623 [INFO] Retrying request in 0.883101 seconds (retry 2 of 2)
+2026-10-12 18:51:41,611 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-12 18:51:41,612 [INFO] 제목 추출: 무주택 직장인을 위한 자활기금 지원받는 방법
+2026-10-12 18:51:41,612 [INFO] refinish_title 적용: 무주택 직장인을 위한 자활기금 챙기는 법
+2026-10-12 18:51:41,940 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-12 18:51:41,941 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-12 18:51:42,876 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/무주택-직장인을-위한-자활기금-챙기는-법-000112.md
+2026-10-12 18:51:42,878 [INFO] 발행 성공: 무주택 직장인을 위한 자활기금 챙기는 법 | loan | openai/gpt-oss-120b
+2026-10-12 18:51:42,883 [INFO] 처리 중: 산모·신생아 건강관리 본인부담금 지원
+2026-10-12 18:51:43,924 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-12 18:51:43,925 [INFO] Retrying request in 36.000000 seconds (retry 1 of 2)
+2026-10-12 18:52:20,420 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-12 18:52:26,165 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-12 18:52:26,166 [INFO] Retrying request in 0.447608 seconds (retry 1 of 2)
+2026-10-12 18:52:26,706 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-12 18:52:26,706 [INFO] Retrying request in 0.999062 seconds (retry 2 of 2)
+2026-10-12 18:52:27,816 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-12 18:52:27,817 [INFO] 제목 추출: 도봉구 맞벌이 신혼부부를 위한 산모·신생아 건강관리 본인부담금 지원 받는
+2026-10-12 18:52:27,817 [INFO] refinish_title 적용: 도봉구 맞벌이 신혼부부를 위한 산모·신생아 건강관리 본인부담금 지원 받아본 후기
+2026-10-12 18:52:28,148 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-12 18:52:28,149 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-12 18:52:28,992 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/도봉구-맞벌이-신혼부부를-위한-산모신생아-건강관리-본인부담금-지원-받아본-후기-000138.md
+2026-10-12 18:52:28,994 [INFO] 발행 성공: 도봉구 맞벌이 신혼부부를 위한 산모·신생아 건강관리 본인부담금 지원 받아 | insurance | openai/gpt-oss-120b
+2026-10-12 18:52:28,999 [INFO] 처리 중: 귀농인 빈집수리비 지원
+2026-10-12 18:52:28,999 [INFO] [SKIP] 부적합 키워드: 귀농인 빈집수리비 지원
+2026-10-12 18:52:29,005 [INFO] 처리 중: 귀농인 정착장려금 지원
+2026-10-12 18:52:29,006 [INFO] [SKIP] 부적합 키워드: 귀농인 정착장려금 지원
+2026-10-12 18:52:29,007 [INFO] 3건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-12 18:52:29,007 [INFO] 파이프라인 종료 2026-10-12 18:52:29

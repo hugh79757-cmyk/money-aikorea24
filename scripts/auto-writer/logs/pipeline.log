@@ -2301,3 +2301,64 @@ SCAN MODE: 1 files with 1 issues
 2026-10-14 14:29:51,466 [INFO] 발행 성공: 무주택 직장인, 결혼축하금 100만원 받는 방법 챙기는 법 | loan | openai/gpt-oss-120b
 2026-10-14 14:29:51,466 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-14 14:29:51,466 [INFO] 파이프라인 종료 2026-10-14 14:29:51
+2026-10-15 14:04:16,472 [INFO] 파이프라인 시작 2026-10-15 14:04:16
+2026-10-15 14:04:16,473 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-15 14:04:16,479 [INFO] 처리 중: 출생축하용품 지원
+2026-10-15 14:04:18,155 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 14:04:36,849 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 14:04:36,856 [INFO] 제목 추출: 맞벌이 신혼부부를 위한 출생축하용품 지원받는 방법
+2026-10-15 14:04:36,856 [INFO] refinish_title 적용: 맞벌이 신혼부부를 위한 출생축하용품 알고 계셨나요?
+2026-10-15 14:04:37,225 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-15 14:04:37,226 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-15 14:04:39,620 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부를-위한-출생축하용품-알고-계셨나요-000282.md
+2026-10-15 14:04:39,683 [INFO] 발행 성공: 맞벌이 신혼부부를 위한 출생축하용품 알고 계셨나요? | insurance | openai/gpt-oss-120b
+2026-10-15 14:04:39,688 [INFO] 처리 중: (경상남도 사천시)전세보증금 반환보증 보증료 지원
+2026-10-15 14:04:40,710 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 14:04:40,711 [INFO] Retrying request in 15.000000 seconds (retry 1 of 2)
+2026-10-15 14:04:55,988 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 14:05:02,708 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-15 14:05:02,708 [INFO] Retrying request in 0.469977 seconds (retry 1 of 2)
+2026-10-15 14:05:10,143 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 14:05:10,152 [INFO] 제목 추출: 경상남도 사천시 전세보증금 반환보증료 지원, 무주택 직장인도 바로 받을 
+2026-10-15 14:05:10,152 [INFO] refinish_title 적용: 경상남도 사천시 전세보증금 반환보증료 지원, 무주택 직장인도 바로 받을 수 있는 방법 돌려
+2026-10-15 14:05:10,495 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-15 14:05:10,496 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-10-15 14:05:11,594 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/경상남도-사천시-전세보증금-반환보증료-지원-무주택-직장인도-바로-받을-수-있는-방법-돌려받는-법-000202.md
+2026-10-15 14:05:11,596 [INFO] 발행 성공: 경상남도 사천시 전세보증금 반환보증료 지원, 무주택 직장인도 바로 받을  | loan | openai/gpt-oss-120b
+2026-10-15 14:05:11,601 [INFO] 처리 중: 장수축하금 지원
+2026-10-15 14:05:12,668 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 14:05:12,669 [INFO] Retrying request in 13.000000 seconds (retry 1 of 2)
+2026-10-15 14:05:25,777 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 14:05:25,778 [INFO] Retrying request in 16.000000 seconds (retry 2 of 2)
+2026-10-15 14:05:42,063 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 14:05:53,340 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 14:05:53,341 [INFO] 제목 추출: 맞벌이 신혼부부도 알아두면 좋은 “장수축하금” 지원, 어떻게 받나요?
+2026-10-15 14:05:53,341 [INFO] refinish_title 적용: 맞벌이 신혼부부도 알아두면 좋은 “장수축하금” 지원, 어떻게 받나요? 챙기는 법
+2026-10-15 14:05:53,692 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-15 14:05:53,692 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-10-15 14:05:55,576 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부도-알아두면-좋은-장수축하금-지원-어떻게-받나요-챙기는-법-000103.md
+2026-10-15 14:05:55,578 [INFO] 발행 성공: 맞벌이 신혼부부도 알아두면 좋은 “장수축하금” 지원, 어떻게 받나요? 챙 | insurance | openai/gpt-oss-120b
+2026-10-15 14:05:55,583 [INFO] 처리 중: 신혼부부 전월세자금 대출이자 지원
+2026-10-15 14:05:56,472 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 14:05:56,472 [INFO] Retrying request in 38.000000 seconds (retry 1 of 2)
+2026-10-15 14:06:34,754 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 14:06:50,674 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 14:06:50,675 [INFO] 제목 추출: 신혼부부 무주택 직장인을 위한 전월세자금 대출 이자 지원 받는 법
+2026-10-15 14:06:50,675 [INFO] refinish_title 적용: 신혼부부 무주택 직장인을 위한 전월세자금 대출 이자 지원 핵심 요약
+2026-10-15 14:06:51,656 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-15 14:06:51,656 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-15 14:06:53,408 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/신혼부부-무주택-직장인을-위한-전월세자금-대출-이자-지원-핵심-요약-000158.md
+2026-10-15 14:06:53,410 [INFO] 발행 성공: 신혼부부 무주택 직장인을 위한 전월세자금 대출 이자 지원 핵심 요약 | loan | openai/gpt-oss-120b
+2026-10-15 14:06:53,415 [INFO] 처리 중: 국가유공자 등의 국가정원의 관람료 면제
+2026-10-15 14:06:54,491 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-15 14:06:54,492 [INFO] Retrying request in 41.000000 seconds (retry 1 of 2)
+2026-10-15 14:07:36,014 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 14:07:50,783 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-15 14:07:50,785 [INFO] 제목 추출: 30대 직장인, 국가정원 입장료 면제 받을 수 있는 경우와 신청 방법
+2026-10-15 14:07:50,785 [INFO] refinish_title 적용: 30대 직장인, 국가정원 입장료 면제 받을 수 있는 경우와 꼭 알아두세요
+2026-10-15 14:07:51,219 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-15 14:07:51,220 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-15 14:07:52,634 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-국가정원-입장료-면제-받을-수-있는-경우와-꼭-알아두세요-000171.md
+2026-10-15 14:07:52,636 [INFO] 발행 성공: 30대 직장인, 국가정원 입장료 면제 받을 수 있는 경우와 꼭 알아두세요 | general | openai/gpt-oss-120b
+2026-10-15 14:07:52,636 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-15 14:07:52,636 [INFO] 파이프라인 종료 2026-10-15 14:07:52

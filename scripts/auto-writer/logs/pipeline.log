@@ -2362,3 +2362,78 @@ SCAN MODE: 1 files with 1 issues
 2026-10-15 14:07:52,636 [INFO] 발행 성공: 30대 직장인, 국가정원 입장료 면제 받을 수 있는 경우와 꼭 알아두세요 | general | openai/gpt-oss-120b
 2026-10-15 14:07:52,636 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-15 14:07:52,636 [INFO] 파이프라인 종료 2026-10-15 14:07:52
+2026-10-16 13:52:34,483 [INFO] 파이프라인 시작 2026-10-16 13:52:34
+2026-10-16 13:52:34,484 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-16 13:52:34,493 [INFO] 처리 중: 장애인 명절위문금 지원
+2026-10-16 13:52:35,824 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-16 13:52:49,038 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-16 13:52:49,039 [INFO] Retrying request in 0.435686 seconds (retry 1 of 2)
+2026-10-16 13:52:49,617 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-16 13:52:49,617 [INFO] Retrying request in 0.849324 seconds (retry 2 of 2)
+2026-10-16 13:52:50,606 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-16 13:52:50,607 [INFO] 제목 추출: 맞벌이 신혼부부도 알아두면 좋은 장애인 명절위문금, 받는 방법
+2026-10-16 13:52:50,607 [INFO] refinish_title 적용: 맞벌이 신혼부부도 알아두면 좋은 장애인 명절위문금, 받는 방법 100% 활용법
+2026-10-16 13:52:51,541 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-16 13:52:51,542 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-16 13:52:52,434 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부도-알아두면-좋은-장애인-명절위문금-받는-방법-100-활용법-000109.md
+2026-10-16 13:52:52,503 [INFO] 발행 성공: 맞벌이 신혼부부도 알아두면 좋은 장애인 명절위문금, 받는 방법 100%  | insurance | openai/gpt-oss-120b
+2026-10-16 13:52:52,509 [INFO] 처리 중: 내 집 주차장 만들기
+2026-10-16 13:52:53,317 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-16 13:52:53,318 [INFO] Retrying request in 6.000000 seconds (retry 1 of 2)
+2026-10-16 13:52:59,567 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-16 13:53:06,952 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-16 13:53:06,953 [INFO] Retrying request in 0.458680 seconds (retry 1 of 2)
+2026-10-16 13:53:07,548 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-16 13:53:07,549 [INFO] Retrying request in 0.833245 seconds (retry 2 of 2)
+2026-10-16 13:53:08,515 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-16 13:53:08,517 [INFO] 제목 추출: 무주택 직장인도 알아두면 좋은, “내 집 주차장 만들기” 지원 안내
+2026-10-16 13:53:08,517 [INFO] refinish_title 적용: 무주택 직장인도 알아두면 좋은, “내 집 주차장 만들기” 지원 안내 받을 수 있습니다
+2026-10-16 13:53:09,048 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-16 13:53:09,049 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-16 13:53:09,826 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/무주택-직장인도-알아두면-좋은-내-집-주차장-만들기-지원-안내-받을-수-있습니다-000164.md
+2026-10-16 13:53:09,827 [INFO] 발행 성공: 무주택 직장인도 알아두면 좋은, “내 집 주차장 만들기” 지원 안내 받을 | loan | openai/gpt-oss-120b
+2026-10-16 13:53:09,832 [INFO] 처리 중: 다자녀가구 전세자금 대출이자 지원
+2026-10-16 13:53:10,530 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-16 13:53:10,530 [INFO] Retrying request in 28.000000 seconds (retry 1 of 2)
+2026-10-16 13:53:38,630 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-16 13:53:38,630 [INFO] Retrying request in 19.000000 seconds (retry 2 of 2)
+2026-10-16 13:53:57,877 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-16 13:54:25,194 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-16 13:54:25,203 [INFO] 제목 추출: 무주택 직장인, 다자녀 가구라면 전세자금 대출 이자 지원받는 법
+2026-10-16 13:54:25,203 [INFO] refinish_title 적용: 무주택 직장인, 다자녀 가구라면 전세자금 대출 이자 지원 놓치지 마세요
+2026-10-16 13:54:25,613 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-16 13:54:25,613 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-16 13:54:26,580 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/무주택-직장인-다자녀-가구라면-전세자금-대출-이자-지원-놓치지-마세요-000607.md
+2026-10-16 13:54:26,582 [INFO] 발행 성공: 무주택 직장인, 다자녀 가구라면 전세자금 대출 이자 지원 놓치지 마세요 | loan | openai/gpt-oss-120b
+2026-10-16 13:54:26,587 [INFO] 처리 중: 치유의 숲 조성사업비 융자
+2026-10-16 13:54:27,266 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-16 13:54:27,267 [INFO] Retrying request in 26.000000 seconds (retry 1 of 2)
+2026-10-16 13:54:53,520 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-16 13:55:00,158 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-16 13:55:00,159 [INFO] Retrying request in 0.496228 seconds (retry 1 of 2)
+2026-10-16 13:55:00,816 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-16 13:55:00,816 [INFO] Retrying request in 0.832242 seconds (retry 2 of 2)
+2026-10-16 13:55:01,796 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-16 13:55:01,796 [INFO] 제목 추출: 30대 직장인도 알아두면 좋은 치유의 숲 조성사업비 융자 받는 법
+2026-10-16 13:55:01,797 [INFO] refinish_title 적용: 30대 직장인도 알아두면 좋은 치유의 숲 조성사업비 융자 클리어하게 정리
+2026-10-16 13:55:01,803 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-16 13:55:01,803 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-16 13:55:02,518 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인도-알아두면-좋은-치유의-숲-조성사업비-융자-클리어하게-정리-000173.md
+2026-10-16 13:55:02,520 [INFO] 발행 성공: 30대 직장인도 알아두면 좋은 치유의 숲 조성사업비 융자 클리어하게 정리 | general | openai/gpt-oss-120b
+2026-10-16 13:55:02,526 [INFO] 처리 중: 출산 장려 지원
+2026-10-16 13:55:03,357 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-16 13:55:03,358 [INFO] Retrying request in 45.000000 seconds (retry 1 of 2)
+2026-10-16 13:55:48,461 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-16 13:55:57,709 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-16 13:55:57,710 [INFO] Retrying request in 0.459729 seconds (retry 1 of 2)
+2026-10-16 13:55:59,724 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-16 13:55:59,725 [INFO] Retrying request in 0.821676 seconds (retry 2 of 2)
+2026-10-16 13:56:00,730 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-16 13:56:00,731 [INFO] 제목 추출: 맞벌이 신혼부부가 알아두면 좋은 출산 장려 지원, 받을 수 있는 혜택과 
+2026-10-16 13:56:00,731 [INFO] refinish_title 적용: 맞벌이 신혼부부가 알아두면 좋은 출산 장려 지원, 받을 수 있는 혜택과 서둘러야 하는 이유
+2026-10-16 13:56:01,014 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-16 13:56:01,015 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-16 13:56:01,917 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부가-알아두면-좋은-출산-장려-지원-받을-수-있는-혜택과-서둘러야-하는-이유-000118.md
+2026-10-16 13:56:01,919 [INFO] 발행 성공: 맞벌이 신혼부부가 알아두면 좋은 출산 장려 지원, 받을 수 있는 혜택과  | insurance | openai/gpt-oss-120b
+2026-10-16 13:56:01,919 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-16 13:56:01,919 [INFO] 파이프라인 종료 2026-10-16 13:56:01

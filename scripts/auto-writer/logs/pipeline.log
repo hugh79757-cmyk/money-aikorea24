@@ -2437,3 +2437,54 @@ SCAN MODE: 1 files with 1 issues
 2026-10-16 13:56:01,919 [INFO] 발행 성공: 맞벌이 신혼부부가 알아두면 좋은 출산 장려 지원, 받을 수 있는 혜택과  | insurance | openai/gpt-oss-120b
 2026-10-16 13:56:01,919 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-16 13:56:01,919 [INFO] 파이프라인 종료 2026-10-16 13:56:01
+2026-10-17 12:51:36,068 [INFO] 파이프라인 시작 2026-10-17 12:51:36
+2026-10-17 12:51:36,069 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-17 12:51:36,078 [INFO] 처리 중: 신혼부부 및 다자녀가구 주택 리모델링 지원
+2026-10-17 12:51:37,346 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-17 12:51:49,174 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-17 12:51:49,183 [INFO] 제목 추출: 무주택 직장인도 알아두면 좋은 신혼·다자녀 가구 주택 리모델링 지원받는 
+2026-10-17 12:51:49,183 [INFO] refinish_title 적용: 무주택 직장인도 알아두면 좋은 신혼·다자녀 가구 주택 리모델링 꼭 챙기세요
+2026-10-17 12:51:49,456 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-17 12:51:49,457 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-17 12:51:50,740 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/무주택-직장인도-알아두면-좋은-신혼다자녀-가구-주택-리모델링-꼭-챙기세요-000608.md
+2026-10-17 12:51:50,742 [INFO] 발행 성공: 무주택 직장인도 알아두면 좋은 신혼·다자녀 가구 주택 리모델링 꼭 챙기세 | loan | openai/gpt-oss-120b
+2026-10-17 12:51:50,747 [INFO] 처리 중: 저소득 주민 국민건강보험료 지원
+2026-10-17 12:51:50,747 [INFO] [SKIP] 부적합 키워드: 저소득 주민 국민건강보험료 지원
+2026-10-17 12:51:50,754 [INFO] 처리 중: 임신초기검사 및 기형아검사 지원
+2026-10-17 12:51:51,657 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-17 12:51:51,657 [INFO] Retrying request in 15.000000 seconds (retry 1 of 2)
+2026-10-17 12:52:06,759 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-17 12:52:06,759 [INFO] Retrying request in 25.000000 seconds (retry 2 of 2)
+2026-10-17 12:52:31,977 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-17 12:52:40,672 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-17 12:52:40,674 [INFO] 제목 추출: 맞벌이 신혼부부를 위한 노원구 임신초기·기형아 검사 지원 받는 방법
+2026-10-17 12:52:40,674 [INFO] refinish_title 적용: 맞벌이 신혼부부를 위한 노원구 임신초기·기형아 검사 지원 받는 방법 깔끔하게 정리
+2026-10-17 12:52:40,953 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-17 12:52:40,953 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-17 12:52:41,817 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부를-위한-노원구-임신초기기형아-검사-지원-받는-방법-깔끔하게-정리-000122.md
+2026-10-17 12:52:41,819 [INFO] 발행 성공: 맞벌이 신혼부부를 위한 노원구 임신초기·기형아 검사 지원 받는 방법 깔끔 | insurance | openai/gpt-oss-120b
+2026-10-17 12:52:41,825 [INFO] 처리 중: 전입지원금 지급
+2026-10-17 12:52:42,694 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-17 12:52:42,695 [INFO] Retrying request in 27.000000 seconds (retry 1 of 2)
+2026-10-17 12:53:09,796 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-17 12:53:09,797 [INFO] Retrying request in 10.000000 seconds (retry 2 of 2)
+2026-10-17 12:53:19,931 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-17 12:53:28,266 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-17 12:53:28,268 [INFO] 제목 추출: 경남 무주택 직장인을 위한 전입지원금 신청 방법과 혜택 정리
+2026-10-17 12:53:28,268 [INFO] refinish_title 적용: 경남 무주택 직장인을 위한 전입지원금 신청 방법과 혜택 정리 제대로 챙기려면?
+2026-10-17 12:53:28,547 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-17 12:53:28,547 [INFO] [validator] 수정됨: ['HEADING_MISSING:조건', 'YEAR_REPLACED:2024']
+2026-10-17 12:53:29,204 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/경남-무주택-직장인을-위한-전입지원금-신청-방법과-혜택-정리-제대로-챙기려면-000111.md
+2026-10-17 12:53:29,206 [INFO] 발행 성공: 경남 무주택 직장인을 위한 전입지원금 신청 방법과 혜택 정리 제대로 챙기 | loan | openai/gpt-oss-120b
+2026-10-17 12:53:29,212 [INFO] 처리 중: 사립휴양시설 조성·보완·운영 사업비 융자
+2026-10-17 12:53:30,096 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-17 12:53:30,301 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-17 12:53:38,517 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-17 12:53:38,519 [INFO] 제목 추출: 30대 직장인, 사립휴양시설 융자 지원 프로그램을 알아두면 좋은 이유
+2026-10-17 12:53:38,519 [INFO] refinish_title 적용: 30대 직장인, 사립휴양시설 융자 지원 프로그램을 알아두면 좋은 이유 조건 비교 정리
+2026-10-17 12:53:38,800 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-17 12:53:38,800 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-10-17 12:53:39,577 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-사립휴양시설-융자-지원-프로그램을-알아두면-좋은-이유-조건-비교-정리-000175.md
+2026-10-17 12:53:39,579 [INFO] 발행 성공: 30대 직장인, 사립휴양시설 융자 지원 프로그램을 알아두면 좋은 이유 조 | general | openai/gpt-oss-20b
+2026-10-17 12:53:39,579 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-17 12:53:39,579 [INFO] 파이프라인 종료 2026-10-17 12:53:39

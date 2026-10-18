@@ -2488,3 +2488,49 @@ SCAN MODE: 1 files with 1 issues
 2026-10-17 12:53:39,579 [INFO] 발행 성공: 30대 직장인, 사립휴양시설 융자 지원 프로그램을 알아두면 좋은 이유 조 | general | openai/gpt-oss-20b
 2026-10-17 12:53:39,579 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-17 12:53:39,579 [INFO] 파이프라인 종료 2026-10-17 12:53:39
+2026-10-18 13:08:07,410 [INFO] 파이프라인 시작 2026-10-18 13:08:07
+2026-10-18 13:08:07,411 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-18 13:08:07,419 [INFO] 처리 중: 신혼부부·미혼모부 주택전세자금 대출이자 지원
+2026-10-18 13:08:08,872 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-18 13:08:18,116 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-18 13:08:18,124 [INFO] 제목 추출: 무주택 신혼부부, 전세자금 대출 이자 지원을 어떻게 받나요?
+2026-10-18 13:08:18,124 [INFO] refinish_title 적용: 무주택 신혼부부, 전세자금 대출 이자 지원을 어떻게 받나요? 요점만 쏙쏙
+2026-10-18 13:08:18,961 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-18 13:08:18,962 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-18 13:08:19,788 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/무주택-신혼부부-전세자금-대출-이자-지원을-어떻게-받나요-요점만-쏙쏙-000110.md
+2026-10-18 13:08:19,791 [INFO] 발행 성공: 무주택 신혼부부, 전세자금 대출 이자 지원을 어떻게 받나요? 요점만 쏙쏙 | loan | openai/gpt-oss-20b
+2026-10-18 13:08:19,796 [INFO] 처리 중: 장애인 활동지원(시비추가사업)
+2026-10-18 13:08:19,796 [INFO] [SKIP] 부적합 키워드: 장애인 활동지원(시비추가사업)
+2026-10-18 13:08:19,801 [INFO] 처리 중: 장애인가정 출산지원금 지원
+2026-10-18 13:08:20,724 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-18 13:08:20,724 [INFO] Retrying request in 28.000000 seconds (retry 1 of 2)
+2026-10-18 13:08:49,062 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-18 13:08:55,867 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-18 13:08:55,868 [INFO] 제목 추출: 맞벌이 신혼부부, 장애인 배우자와 함께 출산 지원금을 받는 방법
+2026-10-18 13:08:55,868 [INFO] refinish_title 적용: 맞벌이 신혼부부, 장애인 배우자와 함께 출산 지원금을 받는 방법 서둘러야 하는 이유
+2026-10-18 13:08:56,155 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-18 13:08:56,155 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-18 13:08:57,341 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부-장애인-배우자와-함께-출산-지원금을-받는-방법-서둘러야-하는-이유-000106.md
+2026-10-18 13:08:57,343 [INFO] 발행 성공: 맞벌이 신혼부부, 장애인 배우자와 함께 출산 지원금을 받는 방법 서둘러야 | insurance | openai/gpt-oss-20b
+2026-10-18 13:08:57,348 [INFO] 처리 중: 전입대학생 기숙사비 지원
+2026-10-18 13:08:58,248 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-18 13:08:58,248 [INFO] Retrying request in 29.000000 seconds (retry 1 of 2)
+2026-10-18 13:09:27,487 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-18 13:09:34,568 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-18 13:09:34,570 [INFO] 제목 추출: 거제대학교 기숙사비 지원, 전입 후 3개월 이상 대학생 대상
+2026-10-18 13:09:34,570 [INFO] refinish_title 적용: 거제대학교 기숙사비 지원, 전입 후 3개월 이상 대학생 대상 받는 법
+2026-10-18 13:09:35,457 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-18 13:09:35,458 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-18 13:09:36,160 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/거제대학교-기숙사비-지원-전입-후-3개월-이상-대학생-대상-받는-법-000128.md
+2026-10-18 13:09:36,162 [INFO] 발행 성공: 거제대학교 기숙사비 지원, 전입 후 3개월 이상 대학생 대상 받는 법 | loan | openai/gpt-oss-20b
+2026-10-18 13:09:36,167 [INFO] 처리 중: 산림복지서비스이용권(바우처) 지급
+2026-10-18 13:09:37,234 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-18 13:09:38,055 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-18 13:09:59,778 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-18 13:09:59,779 [INFO] 제목 추출: 30대 직장인, 산림복지서비스이용권 10만원 지원받는 법
+2026-10-18 13:09:59,780 [INFO] refinish_title 적용: 30대 직장인, 산림복지서비스이용권 10만원 지원 총정리
+2026-10-18 13:10:00,072 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-18 13:10:00,830 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-산림복지서비스이용권-10만원-지원-총정리-000176.md
+2026-10-18 13:10:00,832 [INFO] 발행 성공: 30대 직장인, 산림복지서비스이용권 10만원 지원 총정리 | general | gemini-3.1-flash-lite
+2026-10-18 13:10:00,832 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-18 13:10:00,832 [INFO] 파이프라인 종료 2026-10-18 13:10:00

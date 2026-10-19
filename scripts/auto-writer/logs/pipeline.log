@@ -2534,3 +2534,79 @@ SCAN MODE: 1 files with 1 issues
 2026-10-18 13:10:00,832 [INFO] 발행 성공: 30대 직장인, 산림복지서비스이용권 10만원 지원 총정리 | general | gemini-3.1-flash-lite
 2026-10-18 13:10:00,832 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-18 13:10:00,832 [INFO] 파이프라인 종료 2026-10-18 13:10:00
+2026-10-19 16:22:25,345 [INFO] 파이프라인 시작 2026-10-19 16:22:25
+2026-10-19 16:22:25,346 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-19 16:22:25,352 [INFO] 처리 중: 장애인단체 명절 위문 지원
+2026-10-19 16:22:26,776 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:22:26,776 [INFO] Retrying request in 0.419995 seconds (retry 1 of 2)
+2026-10-19 16:22:27,571 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:22:27,571 [INFO] Retrying request in 0.776788 seconds (retry 2 of 2)
+2026-10-19 16:22:29,118 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:22:34,373 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:22:34,373 [INFO] Retrying request in 0.463121 seconds (retry 1 of 2)
+2026-10-19 16:22:35,089 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:22:35,089 [INFO] Retrying request in 0.939854 seconds (retry 2 of 2)
+2026-10-19 16:22:36,297 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:22:36,374 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-19 16:22:36,516 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-19 16:22:36,860 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-19 16:22:42,648 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:22:42,649 [INFO] Retrying request in 0.471584 seconds (retry 1 of 2)
+2026-10-19 16:22:43,604 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:22:43,605 [INFO] Retrying request in 0.947444 seconds (retry 2 of 2)
+2026-10-19 16:22:44,723 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:22:44,724 [INFO] 제목 추출: 맞벌이 신혼부부도 알아두면 좋은 장애인단체 명절 위문 지원 안내
+2026-10-19 16:22:44,724 [INFO] refinish_title 적용: 맞벌이 신혼부부도 알아두면 좋은 장애인단체 명절 위문 지원 안내 꼭 챙기세요
+2026-10-19 16:22:45,054 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-19 16:22:45,055 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-19 16:22:46,175 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부도-알아두면-좋은-장애인단체-명절-위문-지원-안내-꼭-챙기세요-000107.md
+2026-10-19 16:22:46,177 [INFO] 발행 성공: 맞벌이 신혼부부도 알아두면 좋은 장애인단체 명절 위문 지원 안내 꼭 챙기 | insurance | openai/gpt-oss-120b
+2026-10-19 16:22:46,181 [INFO] 처리 중: [정기예금] 우리은행 - 우리SUPER주거래적금
+2026-10-19 16:22:47,450 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-19 16:22:47,451 [INFO] Retrying request in 8.000000 seconds (retry 1 of 2)
+2026-10-19 16:22:55,803 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-19 16:23:03,625 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:23:03,626 [INFO] Retrying request in 0.387844 seconds (retry 1 of 2)
+2026-10-19 16:23:04,678 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:23:04,679 [INFO] Retrying request in 0.789806 seconds (retry 2 of 2)
+2026-10-19 16:23:05,955 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:23:05,956 [INFO] 제목 추출: 우리은행 정기예금 금리·우대 한눈에 정리 – 35세 직장인이 놓치면 안 
+2026-10-19 16:23:05,956 [INFO] refinish_title 적용: 우리은행 정기예금 금리·우대 한눈에 정리 – 35세 직장인이 놓치면 안 되는 포인트 깔끔하
+2026-10-19 16:23:06,608 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-19 16:23:06,608 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-19 16:23:07,513 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/우리은행-정기예금-금리우대-한눈에-정리-35세-직장인이-놓치면-안-되는-포인트-깔끔하게-정리-R0001F.md
+2026-10-19 16:23:07,514 [INFO] 발행 성공: 우리은행 정기예금 금리·우대 한눈에 정리 – 35세 직장인이 놓치면 안  | loan | openai/gpt-oss-120b
+2026-10-19 16:23:07,518 [INFO] 처리 중: [정기예금] 우리은행 - WON적금
+2026-10-19 16:23:08,397 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-19 16:23:08,397 [INFO] Retrying request in 39.000000 seconds (retry 1 of 2)
+2026-10-19 16:23:47,745 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-19 16:23:54,219 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:23:54,220 [INFO] Retrying request in 0.498198 seconds (retry 1 of 2)
+2026-10-19 16:23:54,941 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:23:54,941 [INFO] Retrying request in 0.803156 seconds (retry 2 of 2)
+2026-10-19 16:23:56,717 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:23:56,718 [INFO] 제목 추출: 우리은행 WON 적금·우대 0.2%p로 목돈 굴리는 법, 1년 안에 확인
+2026-10-19 16:23:56,718 [INFO] refinish_title 적용: 우리은행 WON 적금·우대 0.2%p로 목돈 굴리는 법, 1년 안에 확인하세요 지금 아니면
+2026-10-19 16:23:57,055 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-19 16:23:57,056 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-10-19 16:23:58,088 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/우리은행-WON-적금우대-02p로-목돈-굴리는-법-1년-안에-확인하세요-지금-아니면-놓칩니다-R0001L.md
+2026-10-19 16:23:58,090 [INFO] 발행 성공: 우리은행 WON 적금·우대 0.2%p로 목돈 굴리는 법, 1년 안에 확인 | loan | openai/gpt-oss-120b
+2026-10-19 16:23:58,093 [INFO] 처리 중: 저소득 주민 국민건강보험료 지원
+2026-10-19 16:23:58,990 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-19 16:23:58,991 [INFO] Retrying request in 40.000000 seconds (retry 1 of 2)
+2026-10-19 16:24:39,345 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-19 16:24:46,755 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:24:46,756 [INFO] Retrying request in 0.433198 seconds (retry 1 of 2)
+2026-10-19 16:24:47,416 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:24:47,416 [INFO] Retrying request in 0.771149 seconds (retry 2 of 2)
+2026-10-19 16:24:48,380 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-19 16:24:48,380 [INFO] 제목 추출: 맞벌이 신혼부부도 알아두면 좋은 저소득 주민 국민건강보험료 지원 받는 방
+2026-10-19 16:24:48,380 [INFO] refinish_title 적용: 맞벌이 신혼부부도 알아두면 좋은 저소득 주민 국민건강보험료 지원 받는 방법 돌려받는 법
+2026-10-19 16:24:48,725 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-19 16:24:48,726 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-19 16:24:50,477 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부도-알아두면-좋은-저소득-주민-국민건강보험료-지원-받는-방법-돌려받는-법-000108.md
+2026-10-19 16:24:50,479 [INFO] 발행 성공: 맞벌이 신혼부부도 알아두면 좋은 저소득 주민 국민건강보험료 지원 받는 방 | insurance | openai/gpt-oss-120b
+2026-10-19 16:24:50,483 [INFO] 처리 중: 산림복지진흥원이 운영하는 산림복지시설의 산림복지소외자 지원
+2026-10-19 16:24:50,483 [INFO] [SKIP] 부적합 키워드: 산림복지진흥원이 운영하는 산림복지시설의 산림복지소외자 지원
+2026-10-19 16:24:50,484 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-19 16:24:50,484 [INFO] 파이프라인 종료 2026-10-19 16:24:50

@@ -2610,3 +2610,33 @@ SCAN MODE: 1 files with 1 issues
 2026-10-19 16:24:50,483 [INFO] [SKIP] 부적합 키워드: 산림복지진흥원이 운영하는 산림복지시설의 산림복지소외자 지원
 2026-10-19 16:24:50,484 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-19 16:24:50,484 [INFO] 파이프라인 종료 2026-10-19 16:24:50
+2026-10-20 14:13:40,186 [INFO] 파이프라인 시작 2026-10-20 14:13:40
+2026-10-20 14:13:40,187 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-20 14:13:40,193 [INFO] 처리 중: 숲사랑지도원 혜택 지원
+2026-10-20 14:13:40,193 [INFO] [SKIP] 부적합 키워드: 숲사랑지도원 혜택 지원
+2026-10-20 14:13:40,226 [INFO] 처리 중: 임업인 자연재해 피해 복구 지원
+2026-10-20 14:13:40,226 [INFO] [SKIP] 부적합 키워드: 임업인 자연재해 피해 복구 지원
+2026-10-20 14:13:40,231 [INFO] 처리 중: 조림 지원
+2026-10-20 14:13:41,594 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-20 14:14:20,691 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-20 14:14:20,692 [INFO] Retrying request in 0.477365 seconds (retry 1 of 2)
+2026-10-20 14:14:43,975 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-20 14:14:43,980 [INFO] 제목 추출: 30대 직장인도 체크해볼, 산림소유자라면 조림 지원받는 법
+2026-10-20 14:14:43,980 [INFO] refinish_title 적용: 30대 직장인도 체크해볼, 산림소유자라면 조림 지원 챙기는 법
+2026-10-20 14:14:44,309 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-20 14:14:44,310 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-10-20 14:14:45,339 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인도-체크해볼-산림소유자라면-조림-지원-챙기는-법-000192.md
+2026-10-20 14:14:45,341 [INFO] 발행 성공: 30대 직장인도 체크해볼, 산림소유자라면 조림 지원 챙기는 법 | general | openai/gpt-oss-120b
+2026-10-20 14:14:45,344 [INFO] 처리 중: [정기예금] 한국스탠다드차타드은행 - 퍼스트가계적금
+2026-10-20 14:14:46,728 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-20 14:15:19,211 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-20 14:15:19,212 [INFO] 제목 추출: 목돈 굴리는 35세 직장인을 위한 한국스탠다드차타드은행 퍼스트가계적금 활
+2026-10-20 14:15:19,212 [INFO] refinish_title 적용: 목돈 굴리는 35세 직장인을 위한 한국스탠다드차타드은행 퍼스트가계적금 활용법 딱 3가지만 
+2026-10-20 14:15:20,362 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-20 14:15:20,362 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-20 14:15:21,294 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/목돈-굴리는-35세-직장인을-위한-한국스탠다드차타드은행-퍼스트가계적금-활용법-딱-3가지만-기억하세요-266451.md
+2026-10-20 14:15:21,295 [INFO] 발행 성공: 목돈 굴리는 35세 직장인을 위한 한국스탠다드차타드은행 퍼스트가계적금 활 | loan | openai/gpt-oss-120b
+2026-10-20 14:15:21,298 [INFO] 처리 중: 중장년1인가구 음료 배달
+2026-10-20 14:15:31,453 [INFO] [SKIP] URL 비활성: 중장년1인가구 음료 배달
+2026-10-20 14:15:31,453 [INFO] 2건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-20 14:15:31,453 [INFO] 파이프라인 종료 2026-10-20 14:15:31

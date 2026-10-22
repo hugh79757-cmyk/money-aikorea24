@@ -2654,3 +2654,68 @@ SCAN MODE: 1 files with 1 issues
 2026-10-21 14:26:26,180 [INFO] [SKIP] URL 비활성: 다자녀 출산용품 교환권 지원
 2026-10-21 14:26:26,180 [INFO] 발행 없음
 2026-10-21 14:26:26,180 [INFO] 파이프라인 종료 2026-10-21 14:26:26
+2026-10-22 14:27:17,420 [INFO] 파이프라인 시작 2026-10-22 14:27:17
+2026-10-22 14:27:17,421 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-22 14:27:17,430 [INFO] 처리 중: 장애인 활동지원(구비추가사업)
+2026-10-22 14:27:18,954 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 14:27:25,747 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-22 14:27:25,748 [INFO] Retrying request in 0.468439 seconds (retry 1 of 2)
+2026-10-22 14:27:26,850 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-22 14:27:26,851 [INFO] Retrying request in 0.871039 seconds (retry 2 of 2)
+2026-10-22 14:27:27,959 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-22 14:27:27,960 [INFO] 제목 추출: 맞벌이 신혼부부도 알아두면 좋은 “장애인 활동지원(구비추가사업)” 신청 
+2026-10-22 14:27:27,961 [INFO] refinish_title 적용: 맞벌이 신혼부부도 알아두면 좋은 “장애인 활동지원(구비추가사업)” 신청 5분 만에 정리
+2026-10-22 14:27:28,861 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-22 14:27:28,862 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-10-22 14:27:30,032 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부도-알아두면-좋은-장애인-활동지원구비추가사업-신청-5분-만에-정리-000118.md
+2026-10-22 14:27:30,035 [INFO] 발행 성공: 맞벌이 신혼부부도 알아두면 좋은 “장애인 활동지원(구비추가사업)” 신청  | insurance | openai/gpt-oss-120b
+2026-10-22 14:27:30,040 [INFO] 처리 중: [정기예금] 아이엠뱅크 - iM함께적금
+2026-10-22 14:27:31,344 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-22 14:27:31,344 [INFO] Retrying request in 8.000000 seconds (retry 1 of 2)
+2026-10-22 14:27:39,635 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 14:27:59,356 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-22 14:27:59,357 [INFO] Retrying request in 0.471359 seconds (retry 1 of 2)
+2026-10-22 14:28:35,307 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 14:28:35,315 [INFO] 제목 추출: 35세 직장인, 아이엠뱅크 정기예금 금리 최대로 끌어올리는 방법
+2026-10-22 14:28:35,315 [INFO] refinish_title 적용: 35세 직장인, 아이엠뱅크 정기예금 금리 최대로 끌어올리는 방법 챙기는 법
+2026-10-22 14:28:35,835 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-22 14:28:36,891 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/35세-직장인-아이엠뱅크-정기예금-금리-최대로-끌어올리는-방법-챙기는-법-166004.md
+2026-10-22 14:28:36,893 [INFO] 발행 성공: 35세 직장인, 아이엠뱅크 정기예금 금리 최대로 끌어올리는 방법 챙기는  | loan | openai/gpt-oss-120b
+2026-10-22 14:28:36,899 [INFO] 처리 중: 목재이용명예 감시원 일자리 제공
+2026-10-22 14:28:38,047 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 14:28:58,112 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 14:28:58,114 [INFO] 제목 추출: 30대 직장인이 목재이용명예감시원 일자리와 지원금을 받는 방법
+2026-10-22 14:28:58,114 [INFO] refinish_title 적용: 30대 직장인이 목재이용명예감시원 일자리와 지원금을 받는 방법 진짜일까?
+2026-10-22 14:28:58,809 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-22 14:28:58,809 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-22 14:28:59,969 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인이-목재이용명예감시원-일자리와-지원금을-받는-방법-진짜일까-000194.md
+2026-10-22 14:28:59,971 [INFO] 발행 성공: 30대 직장인이 목재이용명예감시원 일자리와 지원금을 받는 방법 진짜일까? | general | openai/gpt-oss-120b
+2026-10-22 14:28:59,976 [INFO] 처리 중: [정기예금] 부산은행 - 펫 적금
+2026-10-22 14:29:00,958 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-22 14:29:00,958 [INFO] Retrying request in 8.000000 seconds (retry 1 of 2)
+2026-10-22 14:29:09,279 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 14:29:17,016 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-22 14:29:17,016 [INFO] Retrying request in 0.381300 seconds (retry 1 of 2)
+2026-10-22 14:29:17,854 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-22 14:29:17,855 [INFO] Retrying request in 0.948315 seconds (retry 2 of 2)
+2026-10-22 14:29:23,887 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 14:29:23,889 [INFO] 제목 추출: 부산은행 정기예금, 6·12개월 우대금리로 목돈 굴리는 방법
+2026-10-22 14:29:23,889 [INFO] refinish_title 적용: 부산은행 정기예금, 6·12개월 우대금리로 목돈 굴리는 방법 요점만 쏙쏙
+2026-10-22 14:29:24,476 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-22 14:29:26,473 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/부산은행-정기예금-612개월-우대금리로-목돈-굴리는-방법-요점만-쏙쏙-490002.md
+2026-10-22 14:29:26,475 [INFO] 발행 성공: 부산은행 정기예금, 6·12개월 우대금리로 목돈 굴리는 방법 요점만 쏙쏙 | loan | openai/gpt-oss-120b
+2026-10-22 14:29:26,481 [INFO] 처리 중: 장난감나라
+2026-10-22 14:29:27,497 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-22 14:29:27,497 [INFO] Retrying request in 48.000000 seconds (retry 1 of 2)
+2026-10-22 14:30:17,226 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 14:30:25,280 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-22 14:30:25,280 [INFO] Retrying request in 0.395418 seconds (retry 1 of 2)
+2026-10-22 14:30:44,168 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-22 14:30:44,170 [INFO] 제목 추출: 맞벌이 신혼부부, 장난감나라 연회비 면제로 아이 놀이비 절감하는 법
+2026-10-22 14:30:44,170 [INFO] refinish_title 적용: 맞벌이 신혼부부, 장난감나라 연회비 면제로 아이 놀이비 절감하는 법 돌려받는 법
+2026-10-22 14:30:44,350 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-22 14:30:44,351 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-22 14:30:45,309 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부-장난감나라-연회비-면제로-아이-놀이비-절감하는-법-돌려받는-법-000132.md
+2026-10-22 14:30:45,310 [INFO] 발행 성공: 맞벌이 신혼부부, 장난감나라 연회비 면제로 아이 놀이비 절감하는 법 돌려 | insurance | openai/gpt-oss-120b
+2026-10-22 14:30:45,311 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-22 14:30:45,311 [INFO] 파이프라인 종료 2026-10-22 14:30:45

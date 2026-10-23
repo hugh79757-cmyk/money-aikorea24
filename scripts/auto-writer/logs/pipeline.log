@@ -2719,3 +2719,60 @@ SCAN MODE: 1 files with 1 issues
 2026-10-22 14:30:45,310 [INFO] 발행 성공: 맞벌이 신혼부부, 장난감나라 연회비 면제로 아이 놀이비 절감하는 법 돌려 | insurance | openai/gpt-oss-120b
 2026-10-22 14:30:45,311 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-22 14:30:45,311 [INFO] 파이프라인 종료 2026-10-22 14:30:45
+2026-10-23 14:10:09,289 [INFO] 파이프라인 시작 2026-10-23 14:10:09
+2026-10-23 14:10:09,290 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-23 14:10:09,299 [INFO] 처리 중: [정기예금] 부산은행 - 저탄소 실천 적금
+2026-10-23 14:10:10,729 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-23 14:10:22,035 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-23 14:10:22,044 [INFO] 제목 추출: 부산은행 저탄소 실천 적금, 35세 직장인이 받을 수 있는 금리와 신청 
+2026-10-23 14:10:22,045 [INFO] refinish_title 적용: 부산은행 저탄소 실천 적금, 35세 직장인이 받을 수 있는 금리와 딱 3가지만 기억하세요
+2026-10-23 14:10:22,302 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-23 14:10:22,303 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-23 14:10:23,182 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/부산은행-저탄소-실천-적금-35세-직장인이-받을-수-있는-금리와-딱-3가지만-기억하세요-510001.md
+2026-10-23 14:10:23,185 [INFO] 발행 성공: 부산은행 저탄소 실천 적금, 35세 직장인이 받을 수 있는 금리와 딱 3 | loan | openai/gpt-oss-120b
+2026-10-23 14:10:23,190 [INFO] 처리 중: 임산부 및 영유아가정 아이맘택시
+2026-10-23 14:10:23,994 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-23 14:10:23,995 [INFO] Retrying request in 31.000000 seconds (retry 1 of 2)
+2026-10-23 14:10:55,228 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-23 14:11:04,467 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-23 14:11:04,469 [INFO] 제목 추출: 맞벌이 신혼부부, 아이맘택시 10회 이용권 받는 법
+2026-10-23 14:11:04,469 [INFO] refinish_title 적용: 맞벌이 신혼부부, 아이맘택시 10회 이용권 얼마나 받을까?
+2026-10-23 14:11:04,726 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-23 14:11:04,727 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-23 14:11:06,104 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부-아이맘택시-10회-이용권-얼마나-받을까-000137.md
+2026-10-23 14:11:06,106 [INFO] 발행 성공: 맞벌이 신혼부부, 아이맘택시 10회 이용권 얼마나 받을까? | insurance | openai/gpt-oss-120b
+2026-10-23 14:11:06,111 [INFO] 처리 중: [정기예금] 부산은행 - BNK내맘대로 
+적금
+2026-10-23 14:11:07,006 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-23 14:11:07,007 [INFO] Retrying request in 16.000000 seconds (retry 1 of 2)
+2026-10-23 14:11:23,234 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-23 14:11:36,578 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-23 14:11:36,581 [INFO] 제목 추출: 부산은행 자유적립식 정기예금, 금리 활용법
+2026-10-23 14:11:36,581 [INFO] refinish_title 적용: 부산은행 자유적립식 정기예금, 금리 활용법 혜택 보는 법
+2026-10-23 14:11:36,839 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-23 14:11:37,560 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/부산은행-자유적립식-정기예금-금리-활용법-혜택-보는-법-530001.md
+2026-10-23 14:11:37,561 [INFO] 발행 성공: 부산은행 자유적립식 정기예금, 금리 활용법 혜택 보는 법 | loan | openai/gpt-oss-120b
+2026-10-23 14:11:37,567 [INFO] 처리 중: 산사태현장예방단 일자리 제공
+2026-10-23 14:11:38,377 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-23 14:11:38,377 [INFO] Retrying request in 16.000000 seconds (retry 1 of 2)
+2026-10-23 14:11:54,553 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-23 14:12:03,398 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-23 14:12:03,400 [INFO] 제목 추출: 30대 직장인도 알아두면 좋은 산사태현장예방단 일자리 안내
+2026-10-23 14:12:03,400 [INFO] refinish_title 적용: 30대 직장인도 알아두면 좋은 산사태현장예방단 일자리 안내 한 번에 비교
+2026-10-23 14:12:04,282 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-23 14:12:04,283 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-23 14:12:06,308 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인도-알아두면-좋은-산사태현장예방단-일자리-안내-한-번에-비교-000204.md
+2026-10-23 14:12:06,309 [INFO] 발행 성공: 30대 직장인도 알아두면 좋은 산사태현장예방단 일자리 안내 한 번에 비교 | general | openai/gpt-oss-120b
+2026-10-23 14:12:06,315 [INFO] 처리 중: [정기예금] 부산은행 - 부산이라 좋다
+Big적금
+2026-10-23 14:12:07,206 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-23 14:12:07,207 [INFO] Retrying request in 48.000000 seconds (retry 1 of 2)
+2026-10-23 14:12:55,890 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-23 14:13:06,772 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-23 14:13:06,773 [INFO] 제목 추출: 부산은행 정기예금, 6개월 이상 2.20% 우대받는 방법
+2026-10-23 14:13:06,773 [INFO] refinish_title 적용: 부산은행 정기예금, 6개월 이상 2.20% 우대받는 방법 서둘러 신청하세요
+2026-10-23 14:13:07,515 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-23 14:13:08,277 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/부산은행-정기예금-6개월-이상-220-우대받는-방법-서둘러-신청하세요-660001.md
+2026-10-23 14:13:08,279 [INFO] 발행 성공: 부산은행 정기예금, 6개월 이상 2.20% 우대받는 방법 서둘러 신청하세 | loan | openai/gpt-oss-120b
+2026-10-23 14:13:08,279 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-23 14:13:08,279 [INFO] 파이프라인 종료 2026-10-23 14:13:08

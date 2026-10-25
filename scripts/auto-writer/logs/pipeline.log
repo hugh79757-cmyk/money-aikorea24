@@ -2827,3 +2827,56 @@ Big적금
 2026-10-24 13:15:42,158 [INFO] 발행 성공: 은평구 임산부·수유부를 위한 유축기 1개월 대여 서비스 얼마나 받을까? | insurance | openai/gpt-oss-20b
 2026-10-24 13:15:42,159 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-24 13:15:42,159 [INFO] 파이프라인 종료 2026-10-24 13:15:42
+2026-10-25 13:39:02,281 [INFO] 파이프라인 시작 2026-10-25 13:39:02
+2026-10-25 13:39:02,282 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-25 13:39:02,291 [INFO] 처리 중: [정기예금] 광주은행 - 해피라이프_여행스케치적금V
+2026-10-25 13:39:03,891 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-25 13:39:17,173 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-25 13:39:17,181 [INFO] 제목 추출: 광주 35세 직장인, 목돈을 정기예금으로 최대 1.20%p까지 받는 방법
+2026-10-25 13:39:17,182 [INFO] refinish_title 적용: 광주 35세 직장인, 목돈을 정기예금으로 최대 1.20%p까지 받는 방법 지원받는 방법
+2026-10-25 13:39:18,085 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-25 13:39:18,087 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-25 13:39:19,015 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/광주-35세-직장인-목돈을-정기예금으로-최대-120p까지-받는-방법-지원받는-방법-029000.md
+2026-10-25 13:39:19,018 [INFO] 발행 성공: 광주 35세 직장인, 목돈을 정기예금으로 최대 1.20%p까지 받는 방법 | loan | openai/gpt-oss-20b
+2026-10-25 13:39:19,023 [INFO] 처리 중: [정기예금] 광주은행 - 여행스케치_남도투어적금
+2026-10-25 13:39:19,914 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-25 13:39:19,914 [INFO] Retrying request in 9.000000 seconds (retry 1 of 2)
+2026-10-25 13:39:28,958 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-25 13:39:28,958 [INFO] Retrying request in 1.000000 seconds (retry 2 of 2)
+2026-10-25 13:39:30,225 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-25 13:39:39,639 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-25 13:39:39,641 [INFO] 제목 추출: 목돈 굴리는 직장인, 광주은행 정기예금 금리 비교 한눈에 보기
+2026-10-25 13:39:39,641 [INFO] refinish_title 적용: 목돈 굴리는 직장인, 광주은행 정기예금 금리 비교 한눈에 보기 조건 비교 정리
+2026-10-25 13:39:40,841 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-25 13:39:41,663 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/목돈-굴리는-직장인-광주은행-정기예금-금리-비교-한눈에-보기-조건-비교-정리-030000.md
+2026-10-25 13:39:41,665 [INFO] 발행 성공: 목돈 굴리는 직장인, 광주은행 정기예금 금리 비교 한눈에 보기 조건 비교 | loan | openai/gpt-oss-20b
+2026-10-25 13:39:41,670 [INFO] 처리 중: 은평자준청 운영
+2026-10-25 13:39:42,595 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-25 13:40:10,076 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-25 13:40:21,269 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-25 13:40:21,271 [INFO] 제목 추출: 은평구 자립준비청년 지원 프로그램, 맞벌이 신혼부부도 알아둬야 할 이유
+2026-10-25 13:40:21,271 [INFO] refinish_title 적용: 은평구 자립준비청년 지원 프로그램, 맞벌이 신혼부부도 알아둬야 할 이유 A to Z
+2026-10-25 13:40:21,954 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-25 13:40:21,954 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:조건']
+2026-10-25 13:40:22,820 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/은평구-자립준비청년-지원-프로그램-맞벌이-신혼부부도-알아둬야-할-이유-A-to-Z-000142.md
+2026-10-25 13:40:22,822 [INFO] 발행 성공: 은평구 자립준비청년 지원 프로그램, 맞벌이 신혼부부도 알아둬야 할 이유  | insurance | gemini-3.1-flash-lite
+2026-10-25 13:40:22,828 [INFO] 처리 중: 중소기업 특성화고 인력양성 지원
+2026-10-25 13:40:24,279 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-25 13:40:33,058 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-25 13:40:33,060 [INFO] 제목 추출: 특성화고 인력양성 지원, 30대 직장인이 알아두면 좋은 이유
+2026-10-25 13:40:33,060 [INFO] refinish_title 적용: 특성화고 인력양성 지원, 30대 직장인이 알아두면 좋은 이유 서둘러 신청하세요
+2026-10-25 13:40:34,092 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-25 13:40:34,092 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-10-25 13:40:35,003 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/특성화고-인력양성-지원-30대-직장인이-알아두면-좋은-이유-서둘러-신청하세요-000007.md
+2026-10-25 13:40:35,005 [INFO] 발행 성공: 특성화고 인력양성 지원, 30대 직장인이 알아두면 좋은 이유 서둘러 신청 | general | gemini-3.1-flash-lite
+2026-10-25 13:40:35,010 [INFO] 처리 중: [정기예금] 광주은행 - VIP플러스적금
+2026-10-25 13:40:36,430 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-25 13:40:43,950 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-25 13:40:43,951 [INFO] 제목 추출: 광주 거주 30대 직장인, 광주은행 정기예금 우대금리 챙기는 법
+2026-10-25 13:40:43,952 [INFO] refinish_title 적용: 광주 거주 30대 직장인, 광주은행 정기예금 우대금리 적용 후기
+2026-10-25 13:40:44,296 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-25 13:40:44,296 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-25 13:40:45,102 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/광주-거주-30대-직장인-광주은행-정기예금-우대금리-적용-후기-031000.md
+2026-10-25 13:40:45,104 [INFO] 발행 성공: 광주 거주 30대 직장인, 광주은행 정기예금 우대금리 적용 후기 | loan | gemini-3.1-flash-lite
+2026-10-25 13:40:45,104 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-25 13:40:45,104 [INFO] 파이프라인 종료 2026-10-25 13:40:45

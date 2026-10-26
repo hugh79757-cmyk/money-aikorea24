@@ -2880,3 +2880,66 @@ Big적금
 2026-10-25 13:40:45,104 [INFO] 발행 성공: 광주 거주 30대 직장인, 광주은행 정기예금 우대금리 적용 후기 | loan | gemini-3.1-flash-lite
 2026-10-25 13:40:45,104 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-25 13:40:45,104 [INFO] 파이프라인 종료 2026-10-25 13:40:45
+2026-10-26 16:01:25,584 [INFO] 파이프라인 시작 2026-10-26 16:01:25
+2026-10-26 16:01:25,585 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-26 16:01:25,595 [INFO] 처리 중: 가정위탁아동 보호지원
+2026-10-26 16:01:32,191 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-26 16:01:55,139 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-26 16:01:55,148 [INFO] 제목 추출: 맞벌이 신혼부부라면 꼭 알아야 할 우리 동네 가정위탁아동 지원 제도
+2026-10-26 16:01:55,148 [INFO] refinish_title 적용: 맞벌이 신혼부부라면 꼭 알아야 할 우리 동네 가정위탁아동 지원 제도 요점만 쏙쏙
+2026-10-26 16:01:55,536 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-26 16:01:55,537 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:조건']
+2026-10-26 16:01:56,778 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부라면-꼭-알아야-할-우리-동네-가정위탁아동-지원-제도-요점만-쏙쏙-000143.md
+2026-10-26 16:01:56,781 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 알아야 할 우리 동네 가정위탁아동 지원 제도 요점 | insurance | gemini-3.1-flash-lite
+2026-10-26 16:01:56,786 [INFO] 처리 중: [정기예금] 제주은행 - jbank 저금통적금
+2026-10-26 16:02:16,930 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-26 16:02:16,930 [INFO] Retrying request in 0.406852 seconds (retry 1 of 2)
+2026-10-26 16:02:17,655 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-26 16:02:17,655 [INFO] Retrying request in 0.803272 seconds (retry 2 of 2)
+2026-10-26 16:02:19,118 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-26 16:02:58,351 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-26 16:03:22,205 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-26 16:03:22,207 [INFO] 제목 추출: 30대 직장인을 위한 제주은행 JBANK 저금통적금 활용 전략 (2026
+2026-10-26 16:03:22,207 [INFO] refinish_title 적용: 30대 직장인을 위한 제주은행 JBANK 저금통적금 활용 전략 (2026년 10월 기준) 
+2026-10-26 16:03:22,579 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-26 16:03:22,580 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-10-26 16:03:23,458 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인을-위한-제주은행-JBANK-저금통적금-활용-전략-2026년-10월-기준-아낄-수-있는-법-002101.md
+2026-10-26 16:03:23,460 [INFO] 발행 성공: 30대 직장인을 위한 제주은행 JBANK 저금통적금 활용 전략 (2026 | loan | gemini-3.1-flash-lite
+2026-10-26 16:03:23,465 [INFO] 처리 중: 중소기업 내일채움공제(핵심인력 성과보상기금) 지원
+2026-10-26 16:04:33,305 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-26 16:06:41,110 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-26 16:06:41,111 [INFO] Retrying request in 0.405958 seconds (retry 1 of 2)
+2026-10-26 16:06:48,520 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-26 16:06:48,522 [INFO] 제목 추출: 30대 직장인, 중소기업 내일채움공제로 3년 뒤 목돈 만드는 법
+2026-10-26 16:06:48,522 [INFO] refinish_title 적용: 30대 직장인, 중소기업 내일채움공제로 3년 뒤 목돈 만드는 법 지금 아니면 놓칩니다
+2026-10-26 16:06:48,909 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-26 16:06:48,910 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-26 16:06:49,834 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-중소기업-내일채움공제로-3년-뒤-목돈-만드는-법-지금-아니면-놓칩니다-000008.md
+2026-10-26 16:06:49,836 [INFO] 발행 성공: 30대 직장인, 중소기업 내일채움공제로 3년 뒤 목돈 만드는 법 지금 아 | general | gemini-3.1-flash-lite
+2026-10-26 16:06:49,841 [INFO] 처리 중: [정기예금] 제주은행 - MZ 플랜적금
+2026-10-26 16:06:51,452 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-26 16:06:51,453 [INFO] Retrying request in 0.490211 seconds (retry 1 of 2)
+2026-10-26 16:06:59,464 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-26 16:07:05,035 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-26 16:07:05,036 [INFO] Retrying request in 0.439882 seconds (retry 1 of 2)
+2026-10-26 16:07:07,468 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-26 16:07:07,468 [INFO] Retrying request in 0.851194 seconds (retry 2 of 2)
+2026-10-26 16:07:10,138 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-26 16:07:10,139 [INFO] 제목 추출: 20대 직장인, 제주은행 MZ 플랜적금으로 목돈 만드는 법
+2026-10-26 16:07:10,139 [INFO] refinish_title 적용: 20대 직장인, 제주은행 MZ 플랜적금으로 목돈 만드는 법 진짜일까?
+2026-10-26 16:07:11,096 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-26 16:07:12,046 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/20대-직장인-제주은행-MZ-플랜적금으로-목돈-만드는-법-진짜일까-002501.md
+2026-10-26 16:07:12,048 [INFO] 발행 성공: 20대 직장인, 제주은행 MZ 플랜적금으로 목돈 만드는 법 진짜일까? | loan | gemini-3.1-flash-lite
+2026-10-26 16:07:12,054 [INFO] 처리 중: 입양아동 입양축하금 지원
+2026-10-26 16:07:29,585 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-26 16:07:42,652 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-26 16:07:42,653 [INFO] Retrying request in 0.380989 seconds (retry 1 of 2)
+2026-10-26 16:08:36,815 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-26 16:08:36,816 [INFO] 제목 추출: 맞벌이 신혼부부라면 꼭 알아야 할 입양축하금 지원 제도
+2026-10-26 16:08:36,817 [INFO] refinish_title 적용: 맞벌이 신혼부부라면 꼭 알아야 할 입양축하금 지원 제도 100% 활용법
+2026-10-26 16:08:37,196 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-26 16:08:37,196 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-26 16:08:39,108 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부라면-꼭-알아야-할-입양축하금-지원-제도-100-활용법-000144.md
+2026-10-26 16:08:39,109 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 알아야 할 입양축하금 지원 제도 100% 활용법 | insurance | gemini-3.1-flash-lite
+2026-10-26 16:08:39,109 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-26 16:08:39,110 [INFO] 파이프라인 종료 2026-10-26 16:08:39

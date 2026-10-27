@@ -2943,3 +2943,73 @@ Big적금
 2026-10-26 16:08:39,109 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 알아야 할 입양축하금 지원 제도 100% 활용법 | insurance | gemini-3.1-flash-lite
 2026-10-26 16:08:39,109 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-26 16:08:39,110 [INFO] 파이프라인 종료 2026-10-26 16:08:39
+2026-10-27 15:15:44,130 [INFO] 파이프라인 시작 2026-10-27 15:15:44
+2026-10-27 15:15:44,131 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-27 15:15:44,140 [INFO] 처리 중: [정기예금] 제주은행 - 사이버우대매일부금
+2026-10-27 15:15:57,677 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-27 15:16:08,609 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-27 15:16:08,610 [INFO] Retrying request in 0.494740 seconds (retry 1 of 2)
+2026-10-27 15:16:09,708 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-27 15:16:09,709 [INFO] Retrying request in 0.971537 seconds (retry 2 of 2)
+2026-10-27 15:16:12,117 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-27 15:16:12,118 [INFO] 제목 추출: 30대 직장인, 제주은행 정기예금으로 목돈 굴리기 전략
+2026-10-27 15:16:12,119 [INFO] refinish_title 적용: 30대 직장인, 제주은행 정기예금으로 목돈 굴리기 전략 미리 알아두세요
+2026-10-27 15:16:12,499 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-27 15:16:12,501 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-27 15:16:14,884 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-제주은행-정기예금으로-목돈-굴리기-전략-미리-알아두세요-002701.md
+2026-10-27 15:16:14,886 [INFO] 발행 성공: 30대 직장인, 제주은행 정기예금으로 목돈 굴리기 전략 미리 알아두세요 | loan | gemini-3.1-flash-lite
+2026-10-27 15:16:14,891 [INFO] 처리 중: 은평구 청소년 상담복지센터
+2026-10-27 15:16:29,974 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-27 15:17:29,838 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-27 15:17:29,847 [INFO] 제목 추출: 은평구 맞벌이 부부라면 꼭 알아야 할 청소년 상담·돌봄 지원 제도
+2026-10-27 15:17:29,847 [INFO] refinish_title 적용: 은평구 맞벌이 부부라면 꼭 알아야 할 청소년 상담·돌봄 지원 제도 꼭 알아두세요
+2026-10-27 15:17:30,225 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-27 15:17:30,225 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:조건']
+2026-10-27 15:17:31,303 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/은평구-맞벌이-부부라면-꼭-알아야-할-청소년-상담돌봄-지원-제도-꼭-알아두세요-000154.md
+2026-10-27 15:17:31,305 [INFO] 발행 성공: 은평구 맞벌이 부부라면 꼭 알아야 할 청소년 상담·돌봄 지원 제도 꼭 알 | insurance | gemini-3.1-flash-lite
+2026-10-27 15:17:31,310 [INFO] 처리 중: 중장년 기술창업센터
+2026-10-27 15:17:38,050 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-27 15:17:43,246 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-27 15:17:43,247 [INFO] Retrying request in 0.382970 seconds (retry 1 of 2)
+2026-10-27 15:18:05,279 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-27 15:18:05,281 [INFO] 제목 추출: 30대 직장인, 지금부터 준비하는 중장년 창업 지원 혜택 총정리
+2026-10-27 15:18:05,281 [INFO] refinish_title 적용: 30대 직장인, 지금부터 준비하는 중장년 창업 지원 혜택 알고 계셨나요?
+2026-10-27 15:18:05,958 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-27 15:18:05,958 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:조건']
+2026-10-27 15:18:07,946 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-지금부터-준비하는-중장년-창업-지원-혜택-알고-계셨나요-000010.md
+2026-10-27 15:18:07,948 [INFO] 발행 성공: 30대 직장인, 지금부터 준비하는 중장년 창업 지원 혜택 알고 계셨나요? | general | gemini-3.1-flash-lite
+2026-10-27 15:18:07,953 [INFO] 처리 중: [정기예금] 전북은행 - JB 다이렉트적금(자유적립식)
+2026-10-27 15:18:10,459 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-27 15:18:10,460 [INFO] Retrying request in 0.487320 seconds (retry 1 of 2)
+2026-10-27 15:18:13,216 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-27 15:18:13,217 [INFO] Retrying request in 0.830859 seconds (retry 2 of 2)
+2026-10-27 15:18:26,753 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-27 15:18:32,982 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-27 15:18:32,983 [INFO] Retrying request in 0.389175 seconds (retry 1 of 2)
+2026-10-27 15:20:03,418 [INFO] Retrying request in 0.850950 seconds (retry 2 of 2)
+2026-10-27 15:20:32,195 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-27 15:20:32,196 [INFO] 제목 추출: 30대 직장인을 위한 전북은행 JB 다이렉트적금 활용법: 금리 혜택과 주
+2026-10-27 15:20:32,196 [INFO] refinish_title 적용: 30대 직장인을 위한 전북은행 JB 다이렉트적금 활용법: 금리 혜택과 주의사항 서둘러야 하
+2026-10-27 15:20:32,582 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-27 15:20:32,582 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-10-27 15:20:34,489 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인을-위한-전북은행-JB-다이렉트적금-활용법-금리-혜택과-주의사항-서둘러야-하는-이유-8-0000.md
+2026-10-27 15:20:34,491 [INFO] 발행 성공: 30대 직장인을 위한 전북은행 JB 다이렉트적금 활용법: 금리 혜택과 주 | loan | gemini-3.1-flash-lite
+2026-10-27 15:20:34,497 [INFO] 처리 중: 저소득 장애인 생일축하 지원
+2026-10-27 15:20:40,129 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-27 15:20:40,129 [INFO] Retrying request in 0.450488 seconds (retry 1 of 2)
+2026-10-27 15:20:41,060 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-27 15:20:41,061 [INFO] Retrying request in 0.838989 seconds (retry 2 of 2)
+2026-10-27 15:20:43,085 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-27 15:20:53,739 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-27 15:21:01,098 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-27 15:21:01,099 [INFO] Retrying request in 0.465759 seconds (retry 1 of 2)
+2026-10-27 15:21:18,293 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-27 15:21:18,294 [INFO] Retrying request in 0.987643 seconds (retry 2 of 2)
+2026-10-27 15:21:42,907 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-27 15:21:42,909 [INFO] 제목 추출: 맞벌이 신혼부부라면 꼭 알아야 할 우리 동네 복지 정보: 저소득 장애인 
+2026-10-27 15:21:42,909 [INFO] refinish_title 적용: 맞벌이 신혼부부라면 꼭 알아야 할 우리 동네 복지 정보: 저소득 장애인 생일축하 지원 올해
+2026-10-27 15:21:43,298 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-27 15:21:44,794 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부라면-꼭-알아야-할-우리-동네-복지-정보-저소득-장애인-생일축하-지원-올해-바뀐-점-000104.md
+2026-10-27 15:21:44,795 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 알아야 할 우리 동네 복지 정보: 저소득 장애인  | insurance | gemini-3.1-flash-lite
+2026-10-27 15:21:44,795 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-27 15:21:44,796 [INFO] 파이프라인 종료 2026-10-27 15:21:44

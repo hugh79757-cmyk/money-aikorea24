@@ -3013,3 +3013,92 @@ Big적금
 2026-10-27 15:21:44,795 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 알아야 할 우리 동네 복지 정보: 저소득 장애인  | insurance | gemini-3.1-flash-lite
 2026-10-27 15:21:44,795 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-27 15:21:44,796 [INFO] 파이프라인 종료 2026-10-27 15:21:44
+2026-10-28 15:51:32,620 [INFO] 파이프라인 시작 2026-10-28 15:51:32
+2026-10-28 15:51:32,620 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-28 15:51:32,630 [INFO] 처리 중: [정기예금] 전북은행 - JB 다이렉트적금(정액적립식)
+2026-10-28 15:51:34,643 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:51:34,643 [INFO] Retrying request in 0.431693 seconds (retry 1 of 2)
+2026-10-28 15:51:35,709 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:51:35,710 [INFO] Retrying request in 0.754628 seconds (retry 2 of 2)
+2026-10-28 15:51:36,836 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:51:42,139 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:51:42,140 [INFO] Retrying request in 0.384951 seconds (retry 1 of 2)
+2026-10-28 15:51:43,780 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:51:43,780 [INFO] Retrying request in 0.904284 seconds (retry 2 of 2)
+2026-10-28 15:51:45,072 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:51:45,244 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-28 15:51:45,358 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-10-28 15:51:45,509 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-28 15:51:55,503 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:51:55,504 [INFO] Retrying request in 0.436830 seconds (retry 1 of 2)
+2026-10-28 15:51:56,269 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:51:56,270 [INFO] Retrying request in 0.967326 seconds (retry 2 of 2)
+2026-10-28 15:51:57,478 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:51:57,479 [INFO] 제목 추출: 전북은행 JB 다이렉트적금, 월 5백만원까지 저축하고 연 0.1% 금리우
+2026-10-28 15:51:57,479 [INFO] refinish_title 적용: 전북은행 JB 다이렉트적금, 월 5백만원까지 저축하고 연 0.1% 금리우대까지 받는 방법 
+2026-10-28 15:51:57,844 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-28 15:51:57,846 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-28 15:51:59,011 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/전북은행-JB-다이렉트적금-월-5백만원까지-저축하고-연-01-금리우대까지-받는-방법-A-to-Z-1-0036.md
+2026-10-28 15:51:59,013 [INFO] 발행 성공: 전북은행 JB 다이렉트적금, 월 5백만원까지 저축하고 연 0.1% 금리우 | loan | openai/gpt-oss-120b
+2026-10-28 15:51:59,019 [INFO] 처리 중: 직업계고-전문대학 연계 기술사관 육성
+2026-10-28 15:52:00,079 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-28 15:52:00,080 [INFO] Retrying request in 9.000000 seconds (retry 1 of 2)
+2026-10-28 15:52:09,313 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-28 15:52:15,804 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:52:15,805 [INFO] Retrying request in 0.438531 seconds (retry 1 of 2)
+2026-10-28 15:52:18,528 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:52:18,529 [INFO] Retrying request in 0.842295 seconds (retry 2 of 2)
+2026-10-28 15:52:19,729 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:52:19,730 [INFO] 제목 추출: 30대 직장인이 알아두면 좋은 ‘직업계고‑전문대 연계 기술사관’ 지원금 
+2026-10-28 15:52:19,730 [INFO] refinish_title 적용: 30대 직장인이 알아두면 좋은 ‘직업계고‑전문대 연계 기술사관’ 지원금 신청법 미리 챙기는
+2026-10-28 15:52:21,004 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-28 15:52:21,005 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-28 15:52:21,955 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인이-알아두면-좋은-직업계고전문대-연계-기술사관-지원금-신청법-미리-챙기는-법-000032.md
+2026-10-28 15:52:21,957 [INFO] 발행 성공: 30대 직장인이 알아두면 좋은 ‘직업계고‑전문대 연계 기술사관’ 지원금  | general | openai/gpt-oss-120b
+2026-10-28 15:52:21,962 [INFO] 처리 중: [정기예금] 경남은행 - 행복 DREAM 적금
+2026-10-28 15:52:22,965 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-28 15:52:22,966 [INFO] Retrying request in 45.000000 seconds (retry 1 of 2)
+2026-10-28 15:53:08,284 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-28 15:53:15,248 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:53:15,249 [INFO] Retrying request in 0.468265 seconds (retry 1 of 2)
+2026-10-28 15:53:16,308 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:53:16,309 [INFO] Retrying request in 0.952646 seconds (retry 2 of 2)
+2026-10-28 15:53:17,498 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:53:17,499 [INFO] 제목 추출: 경남은행 행복 DREAM 적금, 0.2% 우대조건을 모두 챙겨 연 1.4
+2026-10-28 15:53:17,499 [INFO] refinish_title 적용: 경남은행 행복 DREAM 적금, 0.2% 우대조건을 모두 챙겨 연 1.4% 금리 총정리
+2026-10-28 15:53:17,772 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-28 15:53:17,772 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-28 15:53:18,714 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/경남은행-행복-DREAM-적금-02-우대조건을-모두-챙겨-연-14-금리-총정리-000111.md
+2026-10-28 15:53:18,716 [INFO] 발행 성공: 경남은행 행복 DREAM 적금, 0.2% 우대조건을 모두 챙겨 연 1.4 | loan | openai/gpt-oss-120b
+2026-10-28 15:53:18,722 [INFO] 처리 중: 입양가정 입양축하금 지급
+2026-10-28 15:53:19,788 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-28 15:53:19,789 [INFO] Retrying request in 20.000000 seconds (retry 1 of 2)
+2026-10-28 15:53:39,865 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-28 15:53:39,865 [INFO] Retrying request in 21.000000 seconds (retry 2 of 2)
+2026-10-28 15:54:01,119 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-28 15:54:08,268 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:54:08,269 [INFO] Retrying request in 0.383419 seconds (retry 1 of 2)
+2026-10-28 15:54:09,149 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:54:09,150 [INFO] Retrying request in 0.857638 seconds (retry 2 of 2)
+2026-10-28 15:54:49,521 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-28 15:54:49,530 [INFO] 제목 추출: 맞벌이 신혼부부, 입양가정 입양축하금 받는 방법
+2026-10-28 15:54:49,530 [INFO] refinish_title 적용: 맞벌이 신혼부부, 입양가정 입양축하금 받는 방법 지원받는 방법
+2026-10-28 15:54:49,916 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-28 15:54:49,917 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2022,2024']
+2026-10-28 15:54:50,907 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부-입양가정-입양축하금-받는-방법-지원받는-방법-000105.md
+2026-10-28 15:54:50,909 [INFO] 발행 성공: 맞벌이 신혼부부, 입양가정 입양축하금 받는 방법 지원받는 방법 | insurance | openai/gpt-oss-120b
+2026-10-28 15:54:50,914 [INFO] 처리 중: [정기예금] 경남은행 - BNK더조은자유적금
+2026-10-28 15:54:52,197 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-28 15:54:59,142 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:54:59,143 [INFO] Retrying request in 0.397089 seconds (retry 1 of 2)
+2026-10-28 15:55:00,504 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:55:00,505 [INFO] Retrying request in 0.813998 seconds (retry 2 of 2)
+2026-10-28 15:55:01,942 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-10-28 15:55:01,943 [INFO] 제목 추출: 경남은행 BNK더조은자유적금, 목돈 굴리는 35세 직장인이 받을 수 있는
+2026-10-28 15:55:01,943 [INFO] refinish_title 적용: 경남은행 BNK더조은자유적금, 목돈 굴리는 35세 직장인이 받을 수 있는 최다 금리 활용법
+2026-10-28 15:55:02,329 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-28 15:55:02,329 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-28 15:55:03,441 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/경남은행-BNK더조은자유적금-목돈-굴리는-35세-직장인이-받을-수-있는-최다-금리-활용법-변경된-조건-001116.md
+2026-10-28 15:55:03,443 [INFO] 발행 성공: 경남은행 BNK더조은자유적금, 목돈 굴리는 35세 직장인이 받을 수 있는 | loan | openai/gpt-oss-120b
+2026-10-28 15:55:03,444 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-28 15:55:03,444 [INFO] 파이프라인 종료 2026-10-28 15:55:03

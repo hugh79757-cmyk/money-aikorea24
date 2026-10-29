@@ -3102,3 +3102,53 @@ Big적금
 2026-10-28 15:55:03,443 [INFO] 발행 성공: 경남은행 BNK더조은자유적금, 목돈 굴리는 35세 직장인이 받을 수 있는 | loan | openai/gpt-oss-120b
 2026-10-28 15:55:03,444 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-28 15:55:03,444 [INFO] 파이프라인 종료 2026-10-28 15:55:03
+2026-10-29 15:58:38,470 [INFO] 파이프라인 시작 2026-10-29 15:58:38
+2026-10-29 15:58:38,473 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-29 15:58:38,482 [INFO] 처리 중: 판로진출지원
+2026-10-29 15:58:39,863 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-29 15:58:49,216 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-29 15:58:49,222 [INFO] 제목 추출: 30대 직장인이 알아두면 좋은 ‘판로진출지원’ 신청 가이드
+2026-10-29 15:58:49,222 [INFO] refinish_title 적용: 30대 직장인이 알아두면 좋은 ‘판로진출지원’ 신청 혜택 보는 법
+2026-10-29 15:58:49,760 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-29 15:58:49,762 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-10-29 15:58:50,670 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인이-알아두면-좋은-판로진출지원-신청-혜택-보는-법-000034.md
+2026-10-29 15:58:50,675 [INFO] 발행 성공: 30대 직장인이 알아두면 좋은 ‘판로진출지원’ 신청 혜택 보는 법 | general | openai/gpt-oss-120b
+2026-10-29 15:58:50,680 [INFO] 처리 중: [정기예금] 경남은행 - BNK 위더스자유적금
+2026-10-29 15:58:51,978 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-29 15:58:51,979 [INFO] Retrying request in 12.000000 seconds (retry 1 of 2)
+2026-10-29 15:59:04,067 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-29 15:59:04,067 [INFO] Retrying request in 10.000000 seconds (retry 2 of 2)
+2026-10-29 15:59:14,341 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-29 15:59:29,073 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-29 15:59:29,074 [INFO] 제목 추출: 경남은행 위더스 자유적금, 월 1만원부터 100만원까지 목돈 만들기 전략
+2026-10-29 15:59:29,074 [INFO] refinish_title 적용: 경남은행 위더스 자유적금, 월 1만원부터 100만원까지 목돈 만들기 전략 꼭 알아두세요
+2026-10-29 15:59:30,031 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-29 15:59:30,032 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-29 15:59:30,671 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/경남은행-위더스-자유적금-월-1만원부터-100만원까지-목돈-만들기-전략-꼭-알아두세요-001199.md
+2026-10-29 15:59:30,673 [INFO] 발행 성공: 경남은행 위더스 자유적금, 월 1만원부터 100만원까지 목돈 만들기 전략 | loan | openai/gpt-oss-120b
+2026-10-29 15:59:30,677 [INFO] 처리 중: 효행장려금 지급
+2026-10-29 15:59:40,833 [INFO] [SKIP] URL 비활성: 효행장려금 지급
+2026-10-29 15:59:40,838 [INFO] 처리 중: 어르신 생일축하 및 저소득 국민건강보험료 지원
+2026-10-29 15:59:41,674 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-29 15:59:41,675 [INFO] Retrying request in 23.000000 seconds (retry 1 of 2)
+2026-10-29 16:00:04,896 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-29 16:00:19,821 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-29 16:00:19,823 [INFO] 제목 추출: 맞벌이 신혼부부가 알아두면 좋은 어르신 생일축하·건강보험료 지원, 신청 
+2026-10-29 16:00:19,823 [INFO] refinish_title 적용: 맞벌이 신혼부부가 알아두면 좋은 어르신 생일축하·건강보험료 지원, 신청 없이 바로 받는 방
+2026-10-29 16:00:20,380 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-29 16:00:20,380 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-29 16:00:21,163 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부가-알아두면-좋은-어르신-생일축하건강보험료-지원-신청-없이-바로-받는-방법-총정리-000112.md
+2026-10-29 16:00:21,164 [INFO] 발행 성공: 맞벌이 신혼부부가 알아두면 좋은 어르신 생일축하·건강보험료 지원, 신청  | insurance | openai/gpt-oss-120b
+2026-10-29 16:00:21,169 [INFO] 처리 중: [정기예금] 경남은행 - 오면우대! 하면우대!
+정기적금
+2026-10-29 16:00:21,995 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-29 16:00:21,996 [INFO] Retrying request in 31.000000 seconds (retry 1 of 2)
+2026-10-29 16:00:53,387 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-29 16:01:24,325 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-29 16:01:24,327 [INFO] 제목 추출: 경남은행 정기예금, 월 10만원부터 5%까지 금리 차이로 목돈 만들기
+2026-10-29 16:01:24,327 [INFO] refinish_title 적용: 경남은행 정기예금, 월 10만원부터 5%까지 금리 차이로 목돈 만들기 체험해 본 결과
+2026-10-29 16:01:24,334 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-29 16:01:25,548 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/경남은행-정기예금-월-10만원부터-5까지-금리-차이로-목돈-만들기-체험해-본-결과-001236.md
+2026-10-29 16:01:25,550 [INFO] 발행 성공: 경남은행 정기예금, 월 10만원부터 5%까지 금리 차이로 목돈 만들기 체 | loan | openai/gpt-oss-120b
+2026-10-29 16:01:25,550 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-29 16:01:25,550 [INFO] 파이프라인 종료 2026-10-29 16:01:25

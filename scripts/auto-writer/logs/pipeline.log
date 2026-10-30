@@ -3152,3 +3152,41 @@ Big적금
 2026-10-29 16:01:25,550 [INFO] 발행 성공: 경남은행 정기예금, 월 10만원부터 5%까지 금리 차이로 목돈 만들기 체 | loan | openai/gpt-oss-120b
 2026-10-29 16:01:25,550 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-29 16:01:25,550 [INFO] 파이프라인 종료 2026-10-29 16:01:25
+2026-10-30 15:45:12,103 [INFO] 파이프라인 시작 2026-10-30 15:45:12
+2026-10-30 15:45:12,108 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-30 15:45:12,117 [INFO] 처리 중: 장애인활동지원(구비추가)
+2026-10-30 15:45:12,117 [INFO] [SKIP] 부적합 키워드: 장애인활동지원(구비추가)
+2026-10-30 15:45:12,129 [INFO] 처리 중: 장애인 및 가족치료 지원
+2026-10-30 15:45:12,129 [INFO] [SKIP] 부적합 키워드: 장애인 및 가족치료 지원
+2026-10-30 15:45:12,137 [INFO] 처리 중: 한부모가족 명절위문비 지원
+2026-10-30 15:45:13,596 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-30 15:45:32,350 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-30 15:45:32,358 [INFO] 제목 추출: 맞벌이 신혼부부도 꼭 알아두면 좋은 한부모가족 명절위문비 지원, 신청 절
+2026-10-30 15:45:32,358 [INFO] refinish_title 적용: 맞벌이 신혼부부도 꼭 알아두면 좋은 한부모가족 명절위문비 지원, 신청 절차와 혜택 신청 방
+2026-10-30 15:45:32,762 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-30 15:45:32,764 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-30 15:45:33,849 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부도-꼭-알아두면-좋은-한부모가족-명절위문비-지원-신청-절차와-혜택-신청-방법-000120.md
+2026-10-30 15:45:33,852 [INFO] 발행 성공: 맞벌이 신혼부부도 꼭 알아두면 좋은 한부모가족 명절위문비 지원, 신청 절 | insurance | openai/gpt-oss-120b
+2026-10-30 15:45:33,857 [INFO] 처리 중: [정기예금] 경남은행 - 오늘도세이브적금
+2026-10-30 15:45:35,697 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-30 15:45:43,325 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-30 15:45:54,979 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-30 15:45:54,981 [INFO] 제목 추출: 경남 은행 정기예금, 1개월 단위로 목돈을 늘리는 최적 이율 찾기
+2026-10-30 15:45:54,981 [INFO] refinish_title 적용: 경남 은행 정기예금, 1개월 단위로 목돈을 늘리는 최적 이율 찾기 지금 아니면 놓칩니다
+2026-10-30 15:45:55,761 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-30 15:45:55,762 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-10-30 15:45:56,665 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/경남-은행-정기예금-1개월-단위로-목돈을-늘리는-최적-이율-찾기-지금-아니면-놓칩니다-001259.md
+2026-10-30 15:45:56,667 [INFO] 발행 성공: 경남 은행 정기예금, 1개월 단위로 목돈을 늘리는 최적 이율 찾기 지금  | loan | openai/gpt-oss-20b
+2026-10-30 15:45:56,672 [INFO] 처리 중: 혁신 소상공인 창업지원
+2026-10-30 15:45:57,732 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-30 15:45:57,732 [INFO] Retrying request in 11.000000 seconds (retry 1 of 2)
+2026-10-30 15:46:09,043 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-30 15:46:17,143 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-30 15:46:17,145 [INFO] 제목 추출: 30대 직장인, 창업 아이디어를 실현하려면 혁신 소상공인 창업지원 활용법
+2026-10-30 15:46:17,145 [INFO] refinish_title 적용: 30대 직장인, 창업 아이디어를 실현하려면 혁신 소상공인 창업지원 활용법 지원받는 방법
+2026-10-30 15:46:17,536 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-30 15:46:17,536 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-10-30 15:46:18,849 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-창업-아이디어를-실현하려면-혁신-소상공인-창업지원-활용법-지원받는-방법-000038.md
+2026-10-30 15:46:18,851 [INFO] 발행 성공: 30대 직장인, 창업 아이디어를 실현하려면 혁신 소상공인 창업지원 활용법 | general | openai/gpt-oss-20b
+2026-10-30 15:46:18,851 [INFO] 3건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-30 15:46:18,851 [INFO] 파이프라인 종료 2026-10-30 15:46:18

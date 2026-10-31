@@ -3190,3 +3190,58 @@ Big적금
 2026-10-30 15:46:18,851 [INFO] 발행 성공: 30대 직장인, 창업 아이디어를 실현하려면 혁신 소상공인 창업지원 활용법 | general | openai/gpt-oss-20b
 2026-10-30 15:46:18,851 [INFO] 3건 발행 완료 (배포 스킵 — CI 모드)
 2026-10-30 15:46:18,851 [INFO] 파이프라인 종료 2026-10-30 15:46:18
+2026-10-31 15:13:33,118 [INFO] 파이프라인 시작 2026-10-31 15:13:33
+2026-10-31 15:13:33,124 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-10-31 15:13:33,134 [INFO] 처리 중: 이동 목욕·빨래방 서비스
+2026-10-31 15:13:34,711 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-31 15:13:41,449 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-31 15:13:41,457 [INFO] 제목 추출: 맞벌이 신혼부부, 저소득층을 위한 노인 이동목욕·빨래방 지원금 활용법
+2026-10-31 15:13:41,458 [INFO] refinish_title 적용: 맞벌이 신혼부부, 저소득층을 위한 노인 이동목욕·빨래방 지원금 활용법 총정리
+2026-10-31 15:13:42,119 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-31 15:13:42,121 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-10-31 15:13:43,214 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부-저소득층을-위한-노인-이동목욕빨래방-지원금-활용법-총정리-000122.md
+2026-10-31 15:13:43,217 [INFO] 발행 성공: 맞벌이 신혼부부, 저소득층을 위한 노인 이동목욕·빨래방 지원금 활용법 총 | insurance | openai/gpt-oss-20b
+2026-10-31 15:13:43,223 [INFO] 처리 중: [정기예금] 경남은행 - 주거래 프리미엄 적금
+2026-10-31 15:13:44,594 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-31 15:13:44,594 [INFO] Retrying request in 13.000000 seconds (retry 1 of 2)
+2026-10-31 15:13:57,826 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-31 15:14:09,948 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-31 15:14:09,950 [INFO] 제목 추출: 경남 35세 직장인, 목돈을 늘리는 정기예금 금리 비교
+2026-10-31 15:14:09,950 [INFO] refinish_title 적용: 경남 35세 직장인, 목돈을 늘리는 정기예금 금리 비교 받을 수 있습니다
+2026-10-31 15:14:11,648 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-31 15:14:12,580 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/경남-35세-직장인-목돈을-늘리는-정기예금-금리-비교-받을-수-있습니다-001292.md
+2026-10-31 15:14:12,582 [INFO] 발행 성공: 경남 35세 직장인, 목돈을 늘리는 정기예금 금리 비교 받을 수 있습니다 | loan | openai/gpt-oss-20b
+2026-10-31 15:14:12,587 [INFO] 처리 중: [정기예금] 중소기업은행 - IBK D-day적금(자유적립식)
+2026-10-31 15:14:13,587 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-31 15:14:13,588 [INFO] Retrying request in 25.000000 seconds (retry 1 of 2)
+2026-10-31 15:14:38,887 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-31 15:14:45,817 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-31 15:14:45,819 [INFO] 제목 추출: 목돈 굴리는 직장인, 중소기업은행 정기예금으로 연 1.5%p까지 받는 법
+2026-10-31 15:14:45,819 [INFO] refinish_title 적용: 목돈 굴리는 직장인, 중소기업은행 정기예금으로 연 1.5%p까지 알고 계셨나요?
+2026-10-31 15:14:46,115 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-31 15:14:46,116 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-31 15:14:47,111 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/목돈-굴리는-직장인-중소기업은행-정기예금으로-연-15p까지-알고-계셨나요-210113.md
+2026-10-31 15:14:47,113 [INFO] 발행 성공: 목돈 굴리는 직장인, 중소기업은행 정기예금으로 연 1.5%p까지 알고 계 | loan | openai/gpt-oss-20b
+2026-10-31 15:14:47,119 [INFO] 처리 중: 협동화사업 자금 융자
+2026-10-31 15:14:48,219 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-10-31 15:14:48,220 [INFO] Retrying request in 27.000000 seconds (retry 1 of 2)
+2026-10-31 15:15:15,326 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-10-31 15:15:15,934 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-31 15:15:24,120 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-31 15:15:24,122 [INFO] 제목 추출: 30대 직장인, 창업 준비한다면? 협동화사업 자금 융자로 최대 100억 
+2026-10-31 15:15:24,122 [INFO] refinish_title 적용: 30대 직장인, 창업 준비한다면? 협동화사업 자금 융자로 최대 100억 확보하는 법 받는 
+2026-10-31 15:15:24,869 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-31 15:15:24,869 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-31 15:15:26,029 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-창업-준비한다면-협동화사업-자금-융자로-최대-100억-확보하는-법-받는-법-000039.md
+2026-10-31 15:15:26,031 [INFO] 발행 성공: 30대 직장인, 창업 준비한다면? 협동화사업 자금 융자로 최대 100억  | general | gemini-3.1-flash-lite
+2026-10-31 15:15:26,037 [INFO] 처리 중: 장애인 이동기기 수리비 지원사업
+2026-10-31 15:15:27,567 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-31 15:15:35,078 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-10-31 15:15:35,080 [INFO] 제목 추출: 맞벌이 신혼부부라면 꼭 알아야 할 장애인 이동기기 수리비 지원 혜택
+2026-10-31 15:15:35,080 [INFO] refinish_title 적용: 맞벌이 신혼부부라면 꼭 알아야 할 장애인 이동기기 수리비 지원 혜택 올해 바뀐 점
+2026-10-31 15:15:35,098 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-10-31 15:15:35,098 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-10-31 15:15:36,072 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부라면-꼭-알아야-할-장애인-이동기기-수리비-지원-혜택-올해-바뀐-점-000124.md
+2026-10-31 15:15:36,073 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 알아야 할 장애인 이동기기 수리비 지원 혜택 올해 | insurance | gemini-3.1-flash-lite
+2026-10-31 15:15:36,074 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-10-31 15:15:36,074 [INFO] 파이프라인 종료 2026-10-31 15:15:36

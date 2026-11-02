@@ -3296,3 +3296,51 @@ Big적금
 2026-11-01 15:57:57,091 [INFO] 발행 성공: 35세 직장인의 목돈 굴리기, IBK모으기통장 활용 전략 총정리 | loan | gemini-3.1-flash-lite
 2026-11-01 15:57:57,091 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-01 15:57:57,091 [INFO] 파이프라인 종료 2026-11-01 15:57:57
+2026-11-02 19:22:38,143 [INFO] 파이프라인 시작 2026-11-02 19:22:38
+2026-11-02 19:22:38,147 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-02 19:22:38,154 [INFO] 처리 중: (서대문구)난임부부 지원(시술 후 원외약제비 청구)
+2026-11-02 19:22:40,207 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-02 19:22:57,118 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-02 19:22:57,123 [INFO] 제목 추출: 서대문구 거주 맞벌이 부부라면 꼭 챙겨야 할 난임 약제비 지원 혜택
+2026-11-02 19:22:57,123 [INFO] refinish_title 적용: 서대문구 거주 맞벌이 부부라면 꼭 챙겨야 할 난임 약제비 지원 혜택 5분 만에 정리
+2026-11-02 19:22:57,778 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-02 19:22:57,779 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-02 19:22:59,034 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/서대문구-거주-맞벌이-부부라면-꼭-챙겨야-할-난임-약제비-지원-혜택-5분-만에-정리-000318.md
+2026-11-02 19:22:59,037 [INFO] 발행 성공: 서대문구 거주 맞벌이 부부라면 꼭 챙겨야 할 난임 약제비 지원 혜택 5분 | insurance | gemini-3.1-flash-lite
+2026-11-02 19:22:59,040 [INFO] 처리 중: [정기예금] 한국산업은행 - KDB 기업정기적금
+2026-11-02 19:23:01,116 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-02 19:23:19,353 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-02 19:23:19,355 [INFO] 제목 추출: 35세 직장인의 목돈 굴리기, KDB 정기예금 활용 전략
+2026-11-02 19:23:19,355 [INFO] refinish_title 적용: 35세 직장인의 목돈 굴리기, KDB 정기예금 활용 전략 마지막 기회
+2026-11-02 19:23:19,805 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-02 19:23:19,805 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-02 19:23:21,081 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/35세-직장인의-목돈-굴리기-KDB-정기예금-활용-전략-마지막-기회-_03101.md
+2026-11-02 19:23:21,094 [INFO] 발행 성공: 35세 직장인의 목돈 굴리기, KDB 정기예금 활용 전략 마지막 기회 | loan | gemini-3.1-flash-lite
+2026-11-02 19:23:21,098 [INFO] 처리 중: 중소기업 기술유출 방지 시스템 구축 지원
+2026-11-02 19:23:22,625 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-02 19:23:31,849 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-02 19:23:31,850 [INFO] 제목 추출: 30대 직장인이라면 주목, 내 회사의 보안 시스템 구축 비용 정부가 지원
+2026-11-02 19:23:31,851 [INFO] refinish_title 적용: 30대 직장인이라면 주목, 내 회사의 보안 시스템 구축 비용 정부가 지원을 신청하세요 돌려
+2026-11-02 19:23:32,352 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-02 19:23:34,024 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인이라면-주목-내-회사의-보안-시스템-구축-비용-정부가-지원을-신청하세요-돌려받는-법-000061.md
+2026-11-02 19:23:34,026 [INFO] 발행 성공: 30대 직장인이라면 주목, 내 회사의 보안 시스템 구축 비용 정부가 지원 | general | gemini-3.1-flash-lite
+2026-11-02 19:23:34,030 [INFO] 처리 중: 임산부 건강관리 서비스
+2026-11-02 19:23:35,822 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-02 19:23:46,286 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-02 19:23:46,287 [INFO] 제목 추출: 맞벌이 부부라면 꼭 챙겨야 할 임산부 건강관리 지원금과 혜택 정리
+2026-11-02 19:23:46,287 [INFO] refinish_title 적용: 맞벌이 부부라면 꼭 챙겨야 할 임산부 건강관리 지원금과 혜택 정리 미리 알아두세요
+2026-11-02 19:23:47,094 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-02 19:23:47,094 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-11-02 19:23:48,860 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-부부라면-꼭-챙겨야-할-임산부-건강관리-지원금과-혜택-정리-미리-알아두세요-000102.md
+2026-11-02 19:23:48,861 [INFO] 발행 성공: 맞벌이 부부라면 꼭 챙겨야 할 임산부 건강관리 지원금과 혜택 정리 미리  | insurance | gemini-3.1-flash-lite
+2026-11-02 19:23:48,865 [INFO] 처리 중: [정기예금] 한국산업은행 - KDB 자유적금
+2026-11-02 19:23:52,000 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-02 19:24:04,153 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-02 19:24:04,155 [INFO] 제목 추출: 만 35세 직장인, 목돈 굴리기 고민이라면 한국산업은행 KDB 자유적금 
+2026-11-02 19:24:04,155 [INFO] refinish_title 적용: 만 35세 직장인, 목돈 굴리기 고민이라면 한국산업은행 KDB 자유적금 주목하세요 끝판왕 
+2026-11-02 19:24:04,505 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-02 19:24:04,506 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-02 19:24:07,247 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/만-35세-직장인-목돈-굴리기-고민이라면-한국산업은행-KDB-자유적금-주목하세요-끝판왕-가이드-_03700.md
+2026-11-02 19:24:07,249 [INFO] 발행 성공: 만 35세 직장인, 목돈 굴리기 고민이라면 한국산업은행 KDB 자유적금  | loan | gemini-3.1-flash-lite
+2026-11-02 19:24:07,249 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-02 19:24:07,249 [INFO] 파이프라인 종료 2026-11-02 19:24:07

@@ -3344,3 +3344,75 @@ Big적금
 2026-11-02 19:24:07,249 [INFO] 발행 성공: 만 35세 직장인, 목돈 굴리기 고민이라면 한국산업은행 KDB 자유적금  | loan | gemini-3.1-flash-lite
 2026-11-02 19:24:07,249 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-02 19:24:07,249 [INFO] 파이프라인 종료 2026-11-02 19:24:07
+2026-11-03 16:59:01,472 [INFO] 파이프라인 시작 2026-11-03 16:59:01
+2026-11-03 16:59:01,476 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-03 16:59:01,482 [INFO] 처리 중: [정기예금] 국민은행 - KB국민프리미엄적금(정액)
+2026-11-03 17:00:18,293 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-03 17:00:59,291 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:00:59,292 [INFO] Retrying request in 0.400795 seconds (retry 1 of 2)
+2026-11-03 17:00:59,976 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:00:59,977 [INFO] Retrying request in 0.912502 seconds (retry 2 of 2)
+2026-11-03 17:01:17,332 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:01:17,333 [INFO] 제목 추출: 30대 직장인 목돈 굴리기, 국민은행 정기예금 우대금리 챙기는 법
+2026-11-03 17:01:17,333 [INFO] refinish_title 적용: 30대 직장인 목돈 굴리기, 국민은행 정기예금 우대금리 아낄 수 있는 법
+2026-11-03 17:01:17,994 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-03 17:01:17,995 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-03 17:01:19,144 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-목돈-굴리기-국민은행-정기예금-우대금리-아낄-수-있는-법-100051.md
+2026-11-03 17:01:19,152 [INFO] 발행 성공: 30대 직장인 목돈 굴리기, 국민은행 정기예금 우대금리 아낄 수 있는 법 | loan | gemini-3.1-flash-lite
+2026-11-03 17:01:19,156 [INFO] 처리 중: 한부모가족 명절격려금 지원
+2026-11-03 17:01:20,382 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:01:20,383 [INFO] Retrying request in 0.417640 seconds (retry 1 of 2)
+2026-11-03 17:02:03,084 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-03 17:02:35,269 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:02:35,270 [INFO] Retrying request in 0.455016 seconds (retry 1 of 2)
+2026-11-03 17:02:36,567 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:02:36,568 [INFO] Retrying request in 0.752460 seconds (retry 2 of 2)
+2026-11-03 17:02:37,759 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:02:37,759 [INFO] 제목 추출: 맞벌이 신혼부부라면 꼭 알아야 할 한부모가족 명절격려금 지원 제도
+2026-11-03 17:02:37,760 [INFO] refinish_title 적용: 맞벌이 신혼부부라면 꼭 알아야 할 한부모가족 명절격려금 지원 제도 핵심 요약
+2026-11-03 17:02:38,058 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-03 17:02:38,059 [INFO] [validator] 수정됨: ['HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-11-03 17:02:39,990 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부라면-꼭-알아야-할-한부모가족-명절격려금-지원-제도-핵심-요약-000106.md
+2026-11-03 17:02:39,994 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 알아야 할 한부모가족 명절격려금 지원 제도 핵심  | insurance | gemini-3.1-flash-lite
+2026-11-03 17:02:39,998 [INFO] 처리 중: 맞춤형 기술파트너 지원
+2026-11-03 17:02:41,670 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:02:41,671 [INFO] Retrying request in 0.401849 seconds (retry 1 of 2)
+2026-11-03 17:03:35,041 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-03 17:04:16,499 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-03 17:04:16,505 [INFO] 제목 추출: 30대 직장인, 회사를 다니며 내 사업의 기술적 한계를 극복하는 법
+2026-11-03 17:04:16,505 [INFO] refinish_title 적용: 30대 직장인, 회사를 다니며 내 사업의 기술적 한계를 극복하는 법 100% 활용법
+2026-11-03 17:04:16,834 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-03 17:04:16,834 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-03 17:04:19,063 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-회사를-다니며-내-사업의-기술적-한계를-극복하는-법-100-활용법-000062.md
+2026-11-03 17:04:19,066 [INFO] 발행 성공: 30대 직장인, 회사를 다니며 내 사업의 기술적 한계를 극복하는 법 10 | general | gemini-3.1-flash-lite
+2026-11-03 17:04:19,070 [INFO] 처리 중: [정기예금] 국민은행 - KB내맘대로적금
+2026-11-03 17:04:22,322 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:04:22,322 [INFO] Retrying request in 0.464927 seconds (retry 1 of 2)
+2026-11-03 17:04:24,180 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:04:24,181 [INFO] Retrying request in 0.946633 seconds (retry 2 of 2)
+2026-11-03 17:04:25,963 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:05:08,782 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-03 17:05:14,508 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:05:14,508 [INFO] Retrying request in 0.494568 seconds (retry 1 of 2)
+2026-11-03 17:05:41,190 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-03 17:05:41,191 [INFO] 제목 추출: 서울 30대 직장인, KB국민은행 정기예금 우대금리 0.6%p 챙기는 법
+2026-11-03 17:05:41,191 [INFO] refinish_title 적용: 서울 30대 직장인, KB국민은행 정기예금 우대금리 0.6%p 받는 법
+2026-11-03 17:05:41,907 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-03 17:05:41,907 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-11-03 17:05:43,108 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/서울-30대-직장인-KB국민은행-정기예금-우대금리-06p-받는-법-100070.md
+2026-11-03 17:05:43,112 [INFO] 발행 성공: 서울 30대 직장인, KB국민은행 정기예금 우대금리 0.6%p 받는 법 | loan | gemini-3.1-flash-lite
+2026-11-03 17:05:43,116 [INFO] 처리 중: 효행장려금품 지급
+2026-11-03 17:05:44,671 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:05:44,672 [INFO] Retrying request in 0.377341 seconds (retry 1 of 2)
+2026-11-03 17:05:55,620 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-03 17:06:08,638 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-03 17:06:08,638 [INFO] Retrying request in 0.377824 seconds (retry 1 of 2)
+2026-11-03 17:06:12,790 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-03 17:06:12,791 [INFO] 제목 추출: 100세 부모님 모시는 맞벌이 부부라면, 마포구 효행장려금 확인하세요
+2026-11-03 17:06:12,791 [INFO] refinish_title 적용: 100세 부모님 모시는 맞벌이 부부라면, 마포구 효행장려금 확인하세요 이번 달 바뀐 점
+2026-11-03 17:06:13,765 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-03 17:06:13,766 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-11-03 17:06:14,845 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/100세-부모님-모시는-맞벌이-부부라면-마포구-효행장려금-확인하세요-이번-달-바뀐-점-000107.md
+2026-11-03 17:06:14,847 [INFO] 발행 성공: 100세 부모님 모시는 맞벌이 부부라면, 마포구 효행장려금 확인하세요 이 | insurance | gemini-3.1-flash-lite
+2026-11-03 17:06:14,847 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-03 17:06:14,847 [INFO] 파이프라인 종료 2026-11-03 17:06:14

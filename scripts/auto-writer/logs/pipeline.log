@@ -3416,3 +3416,53 @@ Big적금
 2026-11-03 17:06:14,847 [INFO] 발행 성공: 100세 부모님 모시는 맞벌이 부부라면, 마포구 효행장려금 확인하세요 이 | insurance | gemini-3.1-flash-lite
 2026-11-03 17:06:14,847 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-03 17:06:14,847 [INFO] 파이프라인 종료 2026-11-03 17:06:14
+2026-11-04 16:58:46,209 [INFO] 파이프라인 시작 2026-11-04 16:58:46
+2026-11-04 16:58:46,212 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-04 16:58:46,219 [INFO] 처리 중: [정기예금] 국민은행 - KB맑은하늘적금
+2026-11-04 16:58:57,191 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-04 16:59:13,152 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-04 16:59:13,152 [INFO] Retrying request in 0.418944 seconds (retry 1 of 2)
+2026-11-04 16:59:21,742 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-04 16:59:21,747 [INFO] 제목 추출: 30대 직장인, KB맑은하늘적금으로 환경도 지키고 우대금리 챙기는 법
+2026-11-04 16:59:21,747 [INFO] refinish_title 적용: 30대 직장인, KB맑은하늘적금으로 환경도 지키고 우대금리 받을 수 있습니다
+2026-11-04 16:59:22,117 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-04 16:59:22,118 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-04 16:59:24,060 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-KB맑은하늘적금으로-환경도-지키고-우대금리-받을-수-있습니다-100084.md
+2026-11-04 16:59:24,062 [INFO] 발행 성공: 30대 직장인, KB맑은하늘적금으로 환경도 지키고 우대금리 받을 수 있습 | loan | gemini-3.1-flash-lite
+2026-11-04 16:59:24,066 [INFO] 처리 중: 소공인 판로개척 지원
+2026-11-04 16:59:30,616 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-04 16:59:46,377 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-04 16:59:46,379 [INFO] 제목 추출: 30대 직장인, 퇴사 후 제조업 창업 고민한다면? 소공인 판로개척 지원금
+2026-11-04 16:59:46,379 [INFO] refinish_title 적용: 30대 직장인, 퇴사 후 제조업 창업 고민한다면? 소공인 판로개척 지원금 활용법 누가 받을
+2026-11-04 16:59:46,728 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-04 16:59:46,729 [INFO] [validator] 수정됨: ['HEADING_MISSING:방법', 'YEAR_REPLACED:2024']
+2026-11-04 16:59:47,542 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-퇴사-후-제조업-창업-고민한다면-소공인-판로개척-지원금-활용법-누가-받을-수-있을까-000072.md
+2026-11-04 16:59:47,556 [INFO] 발행 성공: 30대 직장인, 퇴사 후 제조업 창업 고민한다면? 소공인 판로개척 지원금 | general | gemini-3.1-flash-lite
+2026-11-04 16:59:47,560 [INFO] 처리 중: [정기예금] 국민은행 - KB 특★한 적금
+2026-11-04 16:59:49,505 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-04 16:59:57,566 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-04 16:59:57,567 [INFO] 제목 추출: 30대 직장인, KB 특★한 적금으로 연 4%대 금리 챙기는 법
+2026-11-04 16:59:57,567 [INFO] refinish_title 적용: 30대 직장인, KB 특★한 적금으로 연 4%대 금리 챙기는 법
+2026-11-04 16:59:58,268 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-04 16:59:58,268 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-04 16:59:59,255 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-KB-특한-적금으로-연-4대-금리-챙기는-법-100104.md
+2026-11-04 16:59:59,257 [INFO] 발행 성공: 30대 직장인, KB 특★한 적금으로 연 4%대 금리 챙기는 법 | loan | gemini-3.1-flash-lite
+2026-11-04 16:59:59,260 [INFO] 처리 중: 장애인가정 출산지원금 지원
+2026-11-04 17:00:00,686 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-04 17:00:07,383 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-04 17:00:07,384 [INFO] 제목 추출: 맞벌이 신혼부부라면 꼭 챙겨야 할 장애인가정 출산지원금 150만원
+2026-11-04 17:00:07,384 [INFO] refinish_title 적용: 맞벌이 신혼부부라면 꼭 챙겨야 할 장애인가정 출산지원금 150만원 A to Z
+2026-11-04 17:00:07,744 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-04 17:00:08,607 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부라면-꼭-챙겨야-할-장애인가정-출산지원금-150만원-A-to-Z-000108.md
+2026-11-04 17:00:08,608 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 챙겨야 할 장애인가정 출산지원금 150만원 A t | insurance | gemini-3.1-flash-lite
+2026-11-04 17:00:08,612 [INFO] 처리 중: [정기예금] 신한은행 - 신한 알.쏠 적금
+2026-11-04 17:00:11,563 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-04 17:00:19,998 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-04 17:00:19,999 [INFO] 제목 추출: 30대 직장인, 신한은행 알.쏠 적금으로 목돈 만들기 전략
+2026-11-04 17:00:19,999 [INFO] refinish_title 적용: 30대 직장인, 신한은행 알.쏠 적금으로 목돈 만들기 전략 돌려받는 법
+2026-11-04 17:00:20,351 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-04 17:00:20,351 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-11-04 17:00:22,371 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-신한은행-알쏠-적금으로-목돈-만들기-전략-돌려받는-법-119-85.md
+2026-11-04 17:00:22,373 [INFO] 발행 성공: 30대 직장인, 신한은행 알.쏠 적금으로 목돈 만들기 전략 돌려받는 법 | loan | gemini-3.1-flash-lite
+2026-11-04 17:00:22,373 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-04 17:00:22,373 [INFO] 파이프라인 종료 2026-11-04 17:00:22

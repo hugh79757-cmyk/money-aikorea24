@@ -3466,3 +3466,38 @@ Big적금
 2026-11-04 17:00:22,373 [INFO] 발행 성공: 30대 직장인, 신한은행 알.쏠 적금으로 목돈 만들기 전략 돌려받는 법 | loan | gemini-3.1-flash-lite
 2026-11-04 17:00:22,373 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-04 17:00:22,373 [INFO] 파이프라인 종료 2026-11-04 17:00:22
+2026-11-05 17:15:44,000 [INFO] 파이프라인 시작 2026-11-05 17:15:44
+2026-11-05 17:15:44,006 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-05 17:15:44,016 [INFO] 처리 중: 장애인활동지원(서울시추가지원)
+2026-11-05 17:15:44,016 [INFO] [SKIP] 부적합 키워드: 장애인활동지원(서울시추가지원)
+2026-11-05 17:15:44,029 [INFO] 처리 중: 장애인활동지원(마포구추가지원)
+2026-11-05 17:15:44,029 [INFO] [SKIP] 부적합 키워드: 장애인활동지원(마포구추가지원)
+2026-11-05 17:15:44,036 [INFO] 처리 중: (마포구)난임부부 시술비 약제비 지원(시술 후 원외약제비 청구)
+2026-11-05 17:15:45,921 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-05 17:15:53,657 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-05 17:15:53,665 [INFO] 제목 추출: 마포구 맞벌이 부부라면 꼭 챙겨야 할 난임 시술 약제비 지원금 신청법
+2026-11-05 17:15:53,665 [INFO] refinish_title 적용: 마포구 맞벌이 부부라면 꼭 챙겨야 할 난임 시술 약제비 지원금 신청법 마지막 기회
+2026-11-05 17:15:53,991 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-05 17:15:53,992 [INFO] [validator] 수정됨: ['HEADING_MISSING:조건']
+2026-11-05 17:15:56,241 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/마포구-맞벌이-부부라면-꼭-챙겨야-할-난임-시술-약제비-지원금-신청법-마지막-기회-000131.md
+2026-11-05 17:15:56,244 [INFO] 발행 성공: 마포구 맞벌이 부부라면 꼭 챙겨야 할 난임 시술 약제비 지원금 신청법 마 | insurance | gemini-3.1-flash-lite
+2026-11-05 17:15:56,249 [INFO] 처리 중: [정기예금] 농협은행주식회사 - NH올원e 미니적금
+2026-11-05 17:15:58,078 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-05 17:16:06,819 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-05 17:16:06,821 [INFO] 제목 추출: 30대 직장인을 위한 NH올원e 미니적금 금리 전략과 활용법
+2026-11-05 17:16:06,821 [INFO] refinish_title 적용: 30대 직장인을 위한 NH올원e 미니적금 금리 전략과 활용법 손해 보지 않으려면
+2026-11-05 17:16:07,143 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-05 17:16:07,143 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-11-05 17:16:09,863 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인을-위한-NH올원e-미니적금-금리-전략과-활용법-손해-보지-않으려면-0-0002.md
+2026-11-05 17:16:09,865 [INFO] 발행 성공: 30대 직장인을 위한 NH올원e 미니적금 금리 전략과 활용법 손해 보지  | loan | gemini-3.1-flash-lite
+2026-11-05 17:16:09,870 [INFO] 처리 중: 재창업기업 사업화 지원
+2026-11-05 17:16:11,079 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-05 17:16:18,387 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-05 17:16:18,389 [INFO] 제목 추출: 다시 도전하는 30대를 위한 재창업기업 사업화 지원금 신청 가이드
+2026-11-05 17:16:18,389 [INFO] refinish_title 적용: 다시 도전하는 30대를 위한 재창업기업 사업화 지원금 신청 끝판왕 가이드
+2026-11-05 17:16:18,713 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-05 17:16:18,714 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-05 17:16:19,800 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/다시-도전하는-30대를-위한-재창업기업-사업화-지원금-신청-끝판왕-가이드-000073.md
+2026-11-05 17:16:19,802 [INFO] 발행 성공: 다시 도전하는 30대를 위한 재창업기업 사업화 지원금 신청 끝판왕 가이드 | general | gemini-3.1-flash-lite
+2026-11-05 17:16:19,802 [INFO] 3건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-05 17:16:19,803 [INFO] 파이프라인 종료 2026-11-05 17:16:19

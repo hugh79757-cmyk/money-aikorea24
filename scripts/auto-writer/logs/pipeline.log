@@ -3550,3 +3550,52 @@ Big적금
 2026-11-06 16:41:20,123 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 알아야 할 한부모가족 지원금, 우리와 상관없을까? | insurance | gemini-3.1-flash-lite
 2026-11-06 16:41:20,123 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-06 16:41:20,124 [INFO] 파이프라인 종료 2026-11-06 16:41:20
+2026-11-07 15:35:01,929 [INFO] 파이프라인 시작 2026-11-07 15:35:01
+2026-11-07 15:35:01,933 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-07 15:35:01,941 [INFO] 처리 중: [정기예금] 농협은행주식회사 - NH고향사랑기부적금
+2026-11-07 15:35:12,437 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-07 15:35:58,617 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-07 15:35:58,623 [INFO] 제목 추출: 30대 직장인, NH고향사랑기부적금으로 우대금리 챙기는 법
+2026-11-07 15:35:58,623 [INFO] refinish_title 적용: 30대 직장인, NH고향사랑기부적금으로 우대금리 끝판왕 가이드
+2026-11-07 15:35:59,230 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-07 15:35:59,231 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-07 15:36:00,448 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-NH고향사랑기부적금으로-우대금리-끝판왕-가이드-7-0001.md
+2026-11-07 15:36:00,450 [INFO] 발행 성공: 30대 직장인, NH고향사랑기부적금으로 우대금리 끝판왕 가이드 | loan | gemini-3.1-flash-lite
+2026-11-07 15:36:00,455 [INFO] 처리 중: [정기예금] 농협은행주식회사 - NH직장인월복리적금
+2026-11-07 15:36:18,565 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-07 15:36:31,592 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-07 15:36:31,593 [INFO] 제목 추출: 30대 직장인, NH직장인월복리적금으로 목돈 만드는 효율적인 전략
+2026-11-07 15:36:31,593 [INFO] refinish_title 적용: 30대 직장인, NH직장인월복리적금으로 목돈 만드는 효율적인 전략 놓치면 아까운
+2026-11-07 15:36:32,213 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-07 15:36:32,214 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-11-07 15:36:34,067 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-NH직장인월복리적금으로-목돈-만드는-효율적인-전략-놓치면-아까운-4-0001.md
+2026-11-07 15:36:34,086 [INFO] 발행 성공: 30대 직장인, NH직장인월복리적금으로 목돈 만드는 효율적인 전략 놓치면 | loan | gemini-3.1-flash-lite
+2026-11-07 15:36:34,090 [INFO] 처리 중: 마포 안심 똑똑! 모바일 안심케어 서비스
+2026-11-07 15:36:35,549 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-07 15:36:43,984 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-07 15:36:43,985 [INFO] 제목 추출: 맞벌이 신혼부부라면 꼭 알아야 할 우리 동네 안심 서비스: 마포 안심 똑
+2026-11-07 15:36:43,986 [INFO] refinish_title 적용: 맞벌이 신혼부부라면 꼭 알아야 할 우리 동네 안심 서비스: 마포 안심 똑똑 신청 방법
+2026-11-07 15:36:44,300 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-07 15:36:44,300 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:조건', 'YEAR_REPLACED:2024']
+2026-11-07 15:36:45,156 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부라면-꼭-알아야-할-우리-동네-안심-서비스-마포-안심-똑똑-신청-방법-000150.md
+2026-11-07 15:36:45,158 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 알아야 할 우리 동네 안심 서비스: 마포 안심 똑 | insurance | gemini-3.1-flash-lite
+2026-11-07 15:36:45,163 [INFO] 처리 중: 인재육성형 중소기업 발굴 및 지원
+2026-11-07 15:36:59,181 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-07 15:37:08,311 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-07 15:37:08,312 [INFO] 제목 추출: 30대 직장인, 다니는 회사가 '인재육성형 중소기업'인지 확인해야 하는 
+2026-11-07 15:37:08,312 [INFO] refinish_title 적용: 30대 직장인, 다니는 회사가 '인재육성형 중소기업'인지 확인해야 하는 이유 비교해 봤습니
+2026-11-07 15:37:09,369 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-07 15:37:09,370 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:조건', 'YEAR_REPLACED:2024']
+2026-11-07 15:37:10,283 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-다니는-회사가-인재육성형-중소기업인지-확인해야-하는-이유-비교해-봤습니다-000084.md
+2026-11-07 15:37:10,285 [INFO] 발행 성공: 30대 직장인, 다니는 회사가 '인재육성형 중소기업'인지 확인해야 하는  | general | gemini-3.1-flash-lite
+2026-11-07 15:37:10,289 [INFO] 처리 중: [정기예금] 주식회사 하나은행 - 주거래하나 월복리적금
+2026-11-07 15:37:11,732 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-07 15:37:22,126 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-07 15:37:22,127 [INFO] 제목 추출: 30대 직장인 월급 관리, 하나은행 월복리적금 선택 전 체크리스트
+2026-11-07 15:37:22,127 [INFO] refinish_title 적용: 30대 직장인 월급 관리, 하나은행 월복리적금 선택 전 체크리스트 총정리
+2026-11-07 15:37:23,025 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-07 15:37:23,025 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-11-07 15:37:24,099 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-월급-관리-하나은행-월복리적금-선택-전-체크리스트-총정리-909_52.md
+2026-11-07 15:37:24,100 [INFO] 발행 성공: 30대 직장인 월급 관리, 하나은행 월복리적금 선택 전 체크리스트 총정리 | loan | gemini-3.1-flash-lite
+2026-11-07 15:37:24,100 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-07 15:37:24,100 [INFO] 파이프라인 종료 2026-11-07 15:37:24

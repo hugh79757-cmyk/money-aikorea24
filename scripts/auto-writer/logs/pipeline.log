@@ -3599,3 +3599,52 @@ Big적금
 2026-11-07 15:37:24,100 [INFO] 발행 성공: 30대 직장인 월급 관리, 하나은행 월복리적금 선택 전 체크리스트 총정리 | loan | gemini-3.1-flash-lite
 2026-11-07 15:37:24,100 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-07 15:37:24,100 [INFO] 파이프라인 종료 2026-11-07 15:37:24
+2026-11-08 15:53:01,202 [INFO] 파이프라인 시작 2026-11-08 15:53:01
+2026-11-08 15:53:01,207 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-08 15:53:01,217 [INFO] 처리 중: 입양축하금 지원
+2026-11-08 15:53:02,929 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-08 15:53:10,189 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-08 15:53:10,196 [INFO] 제목 추출: 입양을 고민하는 신혼부부를 위한 입양축하금 신청 가이드
+2026-11-08 15:53:10,197 [INFO] refinish_title 적용: 입양을 고민하는 신혼부부를 위한 입양축하금 신청 미리 알아두세요
+2026-11-08 15:53:10,489 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-08 15:53:10,490 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-08 15:53:11,941 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/입양을-고민하는-신혼부부를-위한-입양축하금-신청-미리-알아두세요-000161.md
+2026-11-08 15:53:11,944 [INFO] 발행 성공: 입양을 고민하는 신혼부부를 위한 입양축하금 신청 미리 알아두세요 | insurance | gemini-3.1-flash-lite
+2026-11-08 15:53:11,949 [INFO] 처리 중: [정기예금] 주식회사 하나은행 - 내맘적금
+2026-11-08 15:53:13,484 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-08 15:53:21,761 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-08 15:53:21,762 [INFO] 제목 추출: 30대 직장인 목돈 마련, 하나은행 내맘적금 금리 혜택과 실질 수익률 분
+2026-11-08 15:53:21,762 [INFO] refinish_title 적용: 30대 직장인 목돈 마련, 하나은행 내맘적금 금리 혜택과 실질 수익률 분석 총정리
+2026-11-08 15:53:22,053 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-08 15:53:22,053 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-08 15:53:24,231 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-목돈-마련-하나은행-내맘적금-금리-혜택과-실질-수익률-분석-총정리-909_53.md
+2026-11-08 15:53:24,233 [INFO] 발행 성공: 30대 직장인 목돈 마련, 하나은행 내맘적금 금리 혜택과 실질 수익률 분 | loan | gemini-3.1-flash-lite
+2026-11-08 15:53:24,238 [INFO] 처리 중: 중소기업 인식개선 교육 등
+2026-11-08 15:53:25,547 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-08 15:53:33,178 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-08 15:53:33,180 [INFO] 제목 추출: 30대 직장인이라면 주목, 내 동생과 후배를 위한 중소기업 인식개선 교육
+2026-11-08 15:53:33,180 [INFO] refinish_title 적용: 30대 직장인이라면 주목, 내 동생과 후배를 위한 중소기업 인식개선 교육 지원 받을 수 있
+2026-11-08 15:53:33,749 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-08 15:53:33,749 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-11-08 15:53:35,145 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인이라면-주목-내-동생과-후배를-위한-중소기업-인식개선-교육-지원-받을-수-있습니다-000085.md
+2026-11-08 15:53:35,146 [INFO] 발행 성공: 30대 직장인이라면 주목, 내 동생과 후배를 위한 중소기업 인식개선 교육 | general | gemini-3.1-flash-lite
+2026-11-08 15:53:35,152 [INFO] 처리 중: [정기예금] 주식회사 케이뱅크 - 코드K 자유적금
+2026-11-08 15:53:36,579 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-08 15:53:44,151 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-08 15:53:44,152 [INFO] 제목 추출: 30대 직장인, 목돈 굴리기 고민이라면? 케이뱅크 코드K 자유적금 활용법
+2026-11-08 15:53:44,152 [INFO] refinish_title 적용: 30대 직장인, 목돈 굴리기 고민이라면? 케이뱅크 코드K 자유적금 활용법 딱 3가지만 기억
+2026-11-08 15:53:44,477 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-08 15:53:44,477 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-08 15:53:45,953 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-목돈-굴리기-고민이라면-케이뱅크-코드K-자유적금-활용법-딱-3가지만-기억하세요-000003.md
+2026-11-08 15:53:45,955 [INFO] 발행 성공: 30대 직장인, 목돈 굴리기 고민이라면? 케이뱅크 코드K 자유적금 활용법 | loan | gemini-3.1-flash-lite
+2026-11-08 15:53:45,960 [INFO] 처리 중: 효도수당
+2026-11-08 15:53:47,319 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-08 15:53:54,924 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-08 15:53:54,926 [INFO] 제목 추출: 만 100세 이상 부모님 부양 중이라면? 양천구 효도수당 신청하세요
+2026-11-08 15:53:54,926 [INFO] refinish_title 적용: 만 100세 이상 부모님 부양 중이라면? 양천구 효도수당 신청하세요 누가 받을 수 있을까?
+2026-11-08 15:53:55,250 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-08 15:53:55,251 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-08 15:53:56,324 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/만-100세-이상-부모님-부양-중이라면-양천구-효도수당-신청하세요-누가-받을-수-있을까-000101.md
+2026-11-08 15:53:56,326 [INFO] 발행 성공: 만 100세 이상 부모님 부양 중이라면? 양천구 효도수당 신청하세요 누가 | insurance | gemini-3.1-flash-lite
+2026-11-08 15:53:56,326 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-08 15:53:56,326 [INFO] 파이프라인 종료 2026-11-08 15:53:56

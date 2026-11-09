@@ -3648,3 +3648,47 @@ Big적금
 2026-11-08 15:53:56,326 [INFO] 발행 성공: 만 100세 이상 부모님 부양 중이라면? 양천구 효도수당 신청하세요 누가 | insurance | gemini-3.1-flash-lite
 2026-11-08 15:53:56,326 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-08 15:53:56,326 [INFO] 파이프라인 종료 2026-11-08 15:53:56
+2026-11-09 19:41:00,910 [INFO] 파이프라인 시작 2026-11-09 19:41:00
+2026-11-09 19:41:00,915 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-09 19:41:00,924 [INFO] 처리 중: [정기예금] 주식회사 케이뱅크 - 궁금한 적금
+2026-11-09 19:41:08,238 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-09 19:41:34,840 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-09 19:41:34,847 [INFO] 제목 추출: 30대 직장인, 매일 5만원씩 불리는 '궁금한 적금' 전략
+2026-11-09 19:41:34,847 [INFO] refinish_title 적용: 30대 직장인, 매일 5만원씩 불리는 '궁금한 적금' 전략 지원받는 방법
+2026-11-09 19:41:35,954 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-09 19:41:35,956 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-11-09 19:41:36,901 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-매일-5만원씩-불리는-궁금한-적금-전략-지원받는-방법-000004.md
+2026-11-09 19:41:36,906 [INFO] 발행 성공: 30대 직장인, 매일 5만원씩 불리는 '궁금한 적금' 전략 지원받는 방법 | loan | gemini-3.1-flash-lite
+2026-11-09 19:41:36,911 [INFO] 처리 중: 노인 성인용 보행기 지원
+2026-11-09 19:41:36,911 [INFO] [SKIP] 부적합 키워드: 노인 성인용 보행기 지원
+2026-11-09 19:41:36,918 [INFO] 처리 중: 장애인 활동지원(추가1)
+2026-11-09 19:41:39,986 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-09 19:42:08,581 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-09 19:42:08,583 [INFO] 제목 추출: 맞벌이 신혼부부라면 꼭 알아야 할 장애인 활동지원 추가 급여 신청법
+2026-11-09 19:42:08,583 [INFO] refinish_title 적용: 맞벌이 신혼부부라면 꼭 알아야 할 장애인 활동지원 추가 급여 신청법 총정리
+2026-11-09 19:42:09,905 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-09 19:42:09,905 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-09 19:42:10,872 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부라면-꼭-알아야-할-장애인-활동지원-추가-급여-신청법-총정리-000104.md
+2026-11-09 19:42:10,874 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 알아야 할 장애인 활동지원 추가 급여 신청법 총정 | insurance | gemini-3.1-flash-lite
+2026-11-09 19:42:10,880 [INFO] 처리 중: 소상공인 재기지원
+2026-11-09 19:42:26,474 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-09 19:42:32,031 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-09 19:42:32,032 [INFO] Retrying request in 0.405395 seconds (retry 1 of 2)
+2026-11-09 19:42:51,426 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-09 19:42:51,427 [INFO] 제목 추출: 30대 직장인, 혹시 부업이나 창업 고민 중인가요? 소상공인 재기지원 제
+2026-11-09 19:42:51,427 [INFO] refinish_title 적용: 30대 직장인, 혹시 부업이나 창업 고민 중인가요? 소상공인 재기지원 제도 미리 알아두세요
+2026-11-09 19:42:51,983 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-09 19:42:51,983 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-11-09 19:42:52,880 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-혹시-부업이나-창업-고민-중인가요-소상공인-재기지원-제도-미리-알아두세요-000088.md
+2026-11-09 19:42:52,882 [INFO] 발행 성공: 30대 직장인, 혹시 부업이나 창업 고민 중인가요? 소상공인 재기지원 제 | general | gemini-3.1-flash-lite
+2026-11-09 19:42:52,887 [INFO] 처리 중: [정기예금] 주식회사 케이뱅크 - 데굴데굴 농장
+2026-11-09 19:43:20,057 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-09 19:43:54,087 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-09 19:43:54,088 [INFO] 제목 추출: 목돈 굴리기, 케이뱅크 코드K 정기예금으로 연 3.5%대 수익 챙기는 법
+2026-11-09 19:43:54,088 [INFO] refinish_title 적용: 목돈 굴리기, 케이뱅크 코드K 정기예금으로 연 3.5%대 수익 100% 활용법
+2026-11-09 19:43:54,384 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-09 19:43:54,384 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-09 19:43:55,220 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/목돈-굴리기-케이뱅크-코드K-정기예금으로-연-35대-수익-100-활용법-000005.md
+2026-11-09 19:43:55,222 [INFO] 발행 성공: 목돈 굴리기, 케이뱅크 코드K 정기예금으로 연 3.5%대 수익 100%  | loan | gemini-3.1-flash-lite
+2026-11-09 19:43:55,222 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-09 19:43:55,222 [INFO] 파이프라인 종료 2026-11-09 19:43:55

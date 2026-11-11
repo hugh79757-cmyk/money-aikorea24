@@ -3764,3 +3764,64 @@ Big적금
 2026-11-10 17:00:13,465 [INFO] 발행 성공: 맞벌이 신혼부부를 위한 아토피·천식 저소득 가정 의료비 지원 받는 방법  | insurance | openai/gpt-oss-120b
 2026-11-10 17:00:13,465 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-10 17:00:13,465 [INFO] 파이프라인 종료 2026-11-10 17:00:13
+2026-11-11 16:59:50,084 [INFO] 파이프라인 시작 2026-11-11 16:59:50
+2026-11-11 16:59:50,094 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-11 16:59:50,102 [INFO] 처리 중: [정기예금] 수협은행 - Sh해양플라스틱Zero!적금
+(정액적립식)
+2026-11-11 16:59:51,454 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-11 17:00:07,401 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-11 17:00:07,407 [INFO] 제목 추출: 35세 직장인을 위한 수협은행 정기예금 금리 활용법
+2026-11-11 17:00:07,407 [INFO] refinish_title 적용: 35세 직장인을 위한 수협은행 정기예금 금리 활용법 돌려받는 법
+2026-11-11 17:00:07,804 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-11 17:00:07,805 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-11 17:00:08,979 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/35세-직장인을-위한-수협은행-정기예금-금리-활용법-돌려받는-법-300011.md
+2026-11-11 17:00:08,984 [INFO] 발행 성공: 35세 직장인을 위한 수협은행 정기예금 금리 활용법 돌려받는 법 | loan | openai/gpt-oss-120b
+2026-11-11 17:00:08,989 [INFO] 처리 중: 장애인 기업 시제품제작 지원
+2026-11-11 17:00:09,797 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-11 17:00:09,797 [INFO] Retrying request in 31.000000 seconds (retry 1 of 2)
+2026-11-11 17:00:41,045 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-11 17:00:51,623 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-11 17:00:51,625 [INFO] 제목 추출: 장애인 기업 시제품제작 지원, 30대 직장인도 알아두면 좋은 이유
+2026-11-11 17:00:51,625 [INFO] refinish_title 적용: 장애인 기업 시제품제작 지원, 30대 직장인도 알아두면 좋은 이유 3단계로 끝내기
+2026-11-11 17:00:51,881 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-11 17:00:51,881 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-11 17:00:52,800 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/장애인-기업-시제품제작-지원-30대-직장인도-알아두면-좋은-이유-3단계로-끝내기-000090.md
+2026-11-11 17:00:52,801 [INFO] 발행 성공: 장애인 기업 시제품제작 지원, 30대 직장인도 알아두면 좋은 이유 3단계 | general | openai/gpt-oss-120b
+2026-11-11 17:00:52,806 [INFO] 처리 중: [정기예금] 수협은행 - 헤이(Hey)적금
+(정액적립식)
+2026-11-11 17:00:53,602 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-11 17:00:53,602 [INFO] Retrying request in 10.000000 seconds (retry 1 of 2)
+2026-11-11 17:01:03,840 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-11 17:01:11,416 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-11 17:01:11,417 [INFO] Retrying request in 0.436318 seconds (retry 1 of 2)
+2026-11-11 17:01:18,505 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-11 17:01:18,507 [INFO] 제목 추출: 수협은행 헤이 적금, 월 100만원까지 0.9% 우대금리 받는 방법
+2026-11-11 17:01:18,507 [INFO] refinish_title 적용: 수협은행 헤이 적금, 월 100만원까지 0.9% 우대금리 받는 방법 놓치면 아까운
+2026-11-11 17:01:19,009 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-11 17:01:19,010 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-11 17:01:19,696 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/수협은행-헤이-적금-월-100만원까지-09-우대금리-받는-방법-놓치면-아까운-700041.md
+2026-11-11 17:01:19,712 [INFO] 발행 성공: 수협은행 헤이 적금, 월 100만원까지 0.9% 우대금리 받는 방법 놓치 | loan | openai/gpt-oss-120b
+2026-11-11 17:01:19,717 [INFO] 처리 중: 양천구 장애인가정 출산지원금 지원
+2026-11-11 17:01:20,493 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-11 17:01:20,493 [INFO] Retrying request in 44.000000 seconds (retry 1 of 2)
+2026-11-11 17:02:04,678 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-11 17:02:18,088 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-11 17:02:18,091 [INFO] 제목 추출: 맞벌이 신혼부부도 알아두면 좋은 양천구 장애인가정 출산지원금 신청 방법
+2026-11-11 17:02:18,091 [INFO] refinish_title 적용: 맞벌이 신혼부부도 알아두면 좋은 양천구 장애인가정 출산지원금 마지막 기회
+2026-11-11 17:02:18,605 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-11 17:02:18,605 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-11 17:02:19,993 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부도-알아두면-좋은-양천구-장애인가정-출산지원금-마지막-기회-000111.md
+2026-11-11 17:02:20,216 [INFO] 발행 성공: 맞벌이 신혼부부도 알아두면 좋은 양천구 장애인가정 출산지원금 마지막 기회 | insurance | openai/gpt-oss-120b
+2026-11-11 17:02:20,221 [INFO] 처리 중: [정기예금] 수협은행 - Sh월복리자유적금
+2026-11-11 17:02:21,186 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-11 17:02:21,186 [INFO] Retrying request in 35.000000 seconds (retry 1 of 2)
+2026-11-11 17:02:56,260 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-11 17:03:49,650 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-11 17:03:49,654 [INFO] 제목 추출: 수협은행 Sh월복리자유적금, 월 100만원까지 최대 0.7% 우대받는 방
+2026-11-11 17:03:49,654 [INFO] refinish_title 적용: 수협은행 Sh월복리자유적금, 월 100만원까지 최대 0.7% 우대받는 방법 지원받는 방법
+2026-11-11 17:03:49,932 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-11 17:03:49,932 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-11 17:03:50,720 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/수협은행-Sh월복리자유적금-월-100만원까지-최대-07-우대받는-방법-지원받는-방법-800021.md
+2026-11-11 17:03:50,723 [INFO] 발행 성공: 수협은행 Sh월복리자유적금, 월 100만원까지 최대 0.7% 우대받는 방 | loan | openai/gpt-oss-120b
+2026-11-11 17:03:50,723 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-11 17:03:50,723 [INFO] 파이프라인 종료 2026-11-11 17:03:50

@@ -3825,3 +3825,56 @@ Big적금
 2026-11-11 17:03:50,723 [INFO] 발행 성공: 수협은행 Sh월복리자유적금, 월 100만원까지 최대 0.7% 우대받는 방 | loan | openai/gpt-oss-120b
 2026-11-11 17:03:50,723 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-11 17:03:50,723 [INFO] 파이프라인 종료 2026-11-11 17:03:50
+2026-11-12 17:29:42,486 [INFO] 파이프라인 시작 2026-11-12 17:29:42
+2026-11-12 17:29:42,491 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-12 17:29:42,499 [INFO] 처리 중: 저소득층 국민건강보험료 지원
+2026-11-12 17:29:43,862 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-12 17:29:53,825 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-12 17:29:53,831 [INFO] 제목 추출: 저소득층 국민건강보험료 지원, 맞벌이 신혼부부가 알아두면 좋은 이유와 대
+2026-11-12 17:29:53,831 [INFO] refinish_title 적용: 저소득층 국민건강보험료 지원, 맞벌이 신혼부부가 알아두면 좋은 이유와 대안 총정리
+2026-11-12 17:29:54,099 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-12 17:29:54,100 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-12 17:29:55,003 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/저소득층-국민건강보험료-지원-맞벌이-신혼부부가-알아두면-좋은-이유와-대안-총정리-000112.md
+2026-11-12 17:29:55,005 [INFO] 발행 성공: 저소득층 국민건강보험료 지원, 맞벌이 신혼부부가 알아두면 좋은 이유와 대 | insurance | openai/gpt-oss-120b
+2026-11-12 17:29:55,010 [INFO] 처리 중: [정기예금] 수협은행 - Sh해양플라스틱Zero!적금
+(자유적립식)
+2026-11-12 17:29:55,962 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-12 17:29:55,962 [INFO] Retrying request in 12.000000 seconds (retry 1 of 2)
+2026-11-12 17:30:08,377 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-12 17:30:19,509 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-12 17:30:19,510 [INFO] 제목 추출: 월 20만원만 넣어도 연 0.5% 우대받는 수협은행 Sh해양플라스틱Zer
+2026-11-12 17:30:19,510 [INFO] refinish_title 적용: 월 20만원만 넣어도 연 0.5% 우대받는 수협은행 Sh해양플라스틱Zero! 적금 활용법 
+2026-11-12 17:30:19,770 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-12 17:30:19,771 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-12 17:30:20,527 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/월-20만원만-넣어도-연-05-우대받는-수협은행-Sh해양플라스틱Zero-적금-활용법-미리-챙기는-법-300011.md
+2026-11-12 17:30:20,535 [INFO] 발행 성공: 월 20만원만 넣어도 연 0.5% 우대받는 수협은행 Sh해양플라스틱Zer | loan | openai/gpt-oss-120b
+2026-11-12 17:30:20,540 [INFO] 처리 중: 수출 중소기업 융자 지원(신시장진출지원자금)
+2026-11-12 17:30:20,540 [INFO] [SKIP] 부적합 키워드: 수출 중소기업 융자 지원(신시장진출지원자금)
+2026-11-12 17:30:20,546 [INFO] 처리 중: 청년전용창업자금
+2026-11-12 17:30:21,433 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-12 17:30:21,434 [INFO] Retrying request in 28.000000 seconds (retry 1 of 2)
+2026-11-12 17:30:49,485 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-12 17:30:49,485 [INFO] Retrying request in 19.000000 seconds (retry 2 of 2)
+2026-11-12 17:31:08,712 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-12 17:31:24,492 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-12 17:31:24,493 [INFO] 제목 추출: 청년전용창업자금, 사회초년생도 바로 신청하는 방법
+2026-11-12 17:31:24,493 [INFO] refinish_title 적용: 청년전용창업자금, 사회초년생도 바로 신청하는 방법 놓치면 아까운
+2026-11-12 17:31:24,751 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-12 17:31:24,751 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-12 17:31:25,492 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/청년전용창업자금-사회초년생도-바로-신청하는-방법-놓치면-아까운-000099.md
+2026-11-12 17:31:25,580 [INFO] 발행 성공: 청년전용창업자금, 사회초년생도 바로 신청하는 방법 놓치면 아까운 | general | openai/gpt-oss-120b
+2026-11-12 17:31:25,585 [INFO] 처리 중: 저소득 1인가구 안부확인을 위한 건강음료 지원
+2026-11-12 17:31:26,491 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-12 17:31:26,492 [INFO] Retrying request in 43.000000 seconds (retry 1 of 2)
+2026-11-12 17:32:09,540 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-12 17:32:09,540 [INFO] Retrying request in 6.000000 seconds (retry 2 of 2)
+2026-11-12 17:32:15,785 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-12 17:32:30,872 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-12 17:32:30,874 [INFO] 제목 추출: 맞벌이 신혼부부도 체크! 저소득 1인 가구 건강음료 지원, 놓치면 안 되
+2026-11-12 17:32:30,874 [INFO] refinish_title 적용: 맞벌이 신혼부부도 체크! 저소득 1인 가구 건강음료 지원, 놓치면 안 되는 이유 100% 
+2026-11-12 17:32:31,128 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-12 17:32:31,128 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-12 17:32:31,806 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부도-체크-저소득-1인-가구-건강음료-지원-놓치면-안-되는-이유-100-활용법-000118.md
+2026-11-12 17:32:31,829 [INFO] 발행 성공: 맞벌이 신혼부부도 체크! 저소득 1인 가구 건강음료 지원, 놓치면 안 되 | insurance | openai/gpt-oss-120b
+2026-11-12 17:32:31,830 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-12 17:32:31,830 [INFO] 파이프라인 종료 2026-11-12 17:32:31

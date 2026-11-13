@@ -3878,3 +3878,65 @@ Big적금
 2026-11-12 17:32:31,829 [INFO] 발행 성공: 맞벌이 신혼부부도 체크! 저소득 1인 가구 건강음료 지원, 놓치면 안 되 | insurance | openai/gpt-oss-120b
 2026-11-12 17:32:31,830 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-12 17:32:31,830 [INFO] 파이프라인 종료 2026-11-12 17:32:31
+2026-11-13 17:03:56,151 [INFO] 파이프라인 시작 2026-11-13 17:03:56
+2026-11-13 17:03:56,155 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-13 17:03:56,163 [INFO] 처리 중: [정기예금] 수협은행 - 헤이(Hey)적금
+(자유적립식)
+2026-11-13 17:03:57,691 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-13 17:04:11,201 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-13 17:04:11,209 [INFO] 제목 추출: 목돈 굴리는 35세 직장인, 수협은행 헤이 적금으로 최대 0.9% 우대금
+2026-11-13 17:04:11,209 [INFO] refinish_title 적용: 목돈 굴리는 35세 직장인, 수협은행 헤이 적금으로 최대 0.9% 우대금리 받는 방법 덜어
+2026-11-13 17:04:11,750 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-13 17:04:11,751 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-13 17:04:12,794 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/목돈-굴리는-35세-직장인-수협은행-헤이-적금으로-최대-09-우대금리-받는-방법-덜어주는-법-700041.md
+2026-11-13 17:04:12,796 [INFO] 발행 성공: 목돈 굴리는 35세 직장인, 수협은행 헤이 적금으로 최대 0.9% 우대금 | loan | openai/gpt-oss-120b
+2026-11-13 17:04:12,801 [INFO] 처리 중: [정기예금] 주식회사 카카오뱅크 - 카카오뱅크 자유적금
+2026-11-13 17:04:13,641 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-13 17:04:13,642 [INFO] Retrying request in 3.000000 seconds (retry 1 of 2)
+2026-11-13 17:04:16,763 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-13 17:04:28,315 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-13 17:04:28,316 [INFO] 제목 추출: 카카오뱅크 자유적금, 6~36개월 금리 활용법
+2026-11-13 17:04:28,316 [INFO] refinish_title 적용: 카카오뱅크 자유적금, 6~36개월 금리 활용법 정리해 드립니다
+2026-11-13 17:04:28,590 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-13 17:04:28,591 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-13 17:04:29,856 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/카카오뱅크-자유적금-636개월-금리-활용법-정리해-드립니다-5-0002.md
+2026-11-13 17:04:29,858 [INFO] 발행 성공: 카카오뱅크 자유적금, 6~36개월 금리 활용법 정리해 드립니다 | loan | openai/gpt-oss-120b
+2026-11-13 17:04:29,863 [INFO] 처리 중: M&A 활성화 지원
+2026-11-13 17:04:30,936 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-13 17:04:30,936 [INFO] Retrying request in 24.000000 seconds (retry 1 of 2)
+2026-11-13 17:04:55,205 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-13 17:05:09,129 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-13 17:05:09,130 [INFO] 제목 추출: M&A 활성화 지원, 30대 직장인이 알아두면 좋은 이유
+2026-11-13 17:05:09,130 [INFO] refinish_title 적용: M&A 활성화 지원, 30대 직장인이 알아두면 좋은 이유 깔끔하게 정리
+2026-11-13 17:05:09,417 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-13 17:05:09,418 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-13 17:05:10,310 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/MA-활성화-지원-30대-직장인이-알아두면-좋은-이유-깔끔하게-정리-000115.md
+2026-11-13 17:05:10,311 [INFO] 발행 성공: M&A 활성화 지원, 30대 직장인이 알아두면 좋은 이유 깔끔하게 정리 | general | openai/gpt-oss-120b
+2026-11-13 17:05:10,316 [INFO] 처리 중: 저소득구민 명절 위문금품 지원
+2026-11-13 17:05:11,309 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-13 17:05:11,310 [INFO] Retrying request in 24.000000 seconds (retry 1 of 2)
+2026-11-13 17:05:35,655 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-13 17:05:43,168 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-13 17:05:43,169 [INFO] Retrying request in 0.462374 seconds (retry 1 of 2)
+2026-11-13 17:05:49,073 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-13 17:05:49,075 [INFO] 제목 추출: 맞벌이 신혼부부, 명절 위문금 4만원 받을 수 있는지 확인하기
+2026-11-13 17:05:49,075 [INFO] refinish_title 적용: 맞벌이 신혼부부, 명절 위문금 4만원 받을 수 있는지 확인하기 꼭 알아두세요
+2026-11-13 17:05:49,884 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-13 17:05:49,884 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-11-13 17:05:50,724 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부-명절-위문금-4만원-받을-수-있는지-확인하기-꼭-알아두세요-000121.md
+2026-11-13 17:05:50,726 [INFO] 발행 성공: 맞벌이 신혼부부, 명절 위문금 4만원 받을 수 있는지 확인하기 꼭 알아두 | insurance | openai/gpt-oss-120b
+2026-11-13 17:05:50,732 [INFO] 처리 중: [정기예금] 주식회사 카카오뱅크 - 카카오뱅크 26주적금
+2026-11-13 17:05:51,573 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-13 17:05:51,573 [INFO] Retrying request in 41.000000 seconds (retry 1 of 2)
+2026-11-13 17:06:32,698 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-13 17:06:41,089 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-13 17:06:41,089 [INFO] Retrying request in 0.494949 seconds (retry 1 of 2)
+2026-11-13 17:06:49,180 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-13 17:06:49,182 [INFO] 제목 추출: 카카오뱅크 26주 적금, 연 3% 금리까지 받는 방법은?
+2026-11-13 17:06:49,183 [INFO] refinish_title 적용: 카카오뱅크 26주 적금, 연 3% 금리까지 받는 방법은? 100% 활용법
+2026-11-13 17:06:49,463 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-13 17:06:49,464 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-13 17:06:51,090 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/카카오뱅크-26주-적금-연-3-금리까지-받는-방법은-100-활용법-5-0005.md
+2026-11-13 17:06:51,092 [INFO] 발행 성공: 카카오뱅크 26주 적금, 연 3% 금리까지 받는 방법은? 100% 활용법 | loan | openai/gpt-oss-120b
+2026-11-13 17:06:51,092 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-13 17:06:51,092 [INFO] 파이프라인 종료 2026-11-13 17:06:51

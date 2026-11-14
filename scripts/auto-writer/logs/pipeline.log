@@ -3940,3 +3940,63 @@ Big적금
 2026-11-13 17:06:51,092 [INFO] 발행 성공: 카카오뱅크 26주 적금, 연 3% 금리까지 받는 방법은? 100% 활용법 | loan | openai/gpt-oss-120b
 2026-11-13 17:06:51,092 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-13 17:06:51,092 [INFO] 파이프라인 종료 2026-11-13 17:06:51
+2026-11-14 15:41:12,736 [INFO] 파이프라인 시작 2026-11-14 15:41:12
+2026-11-14 15:41:12,739 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-14 15:41:12,748 [INFO] 처리 중: 양천구 공항소음피해지역 주민 청력정밀검사 지원
+2026-11-14 15:41:14,284 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-14 15:41:24,482 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-14 15:41:24,487 [INFO] 제목 추출: 양천구 공항소음피해지역에 사는 맞벌이 신혼부부도 받을 수 있는 청력정밀검
+2026-11-14 15:41:24,487 [INFO] refinish_title 적용: 양천구 공항소음피해지역에 사는 맞벌이 신혼부부도 받을 수 있는 청력정밀검사 지원 미리 챙겨
+2026-11-14 15:41:25,565 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-14 15:41:25,566 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-14 15:41:27,821 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/양천구-공항소음피해지역에-사는-맞벌이-신혼부부도-받을-수-있는-청력정밀검사-지원-미리-챙겨두면-좋은-000261.md
+2026-11-14 15:41:27,826 [INFO] 발행 성공: 양천구 공항소음피해지역에 사는 맞벌이 신혼부부도 받을 수 있는 청력정밀검 | insurance | openai/gpt-oss-120b
+2026-11-14 15:41:27,830 [INFO] 처리 중: [정기예금] 주식회사 카카오뱅크 - 카카오뱅크 한달적금
+2026-11-14 15:41:29,192 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-14 15:41:29,193 [INFO] Retrying request in 9.000000 seconds (retry 1 of 2)
+2026-11-14 15:41:38,303 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-14 15:41:38,303 [INFO] Retrying request in 20.000000 seconds (retry 2 of 2)
+2026-11-14 15:41:58,451 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-14 15:42:05,959 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-14 15:42:34,050 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-14 15:42:34,051 [INFO] 제목 추출: 35세 직장인, 카카오뱅크 31일 정기예금으로 연 5.5% 우대금리 받는
+2026-11-14 15:42:34,051 [INFO] refinish_title 적용: 35세 직장인, 카카오뱅크 31일 정기예금으로 연 5.5% 우대금리 받는 방법 챙기는 법
+2026-11-14 15:42:34,934 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-14 15:42:34,934 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-14 15:42:35,858 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/35세-직장인-카카오뱅크-31일-정기예금으로-연-55-우대금리-받는-방법-챙기는-법-5-0006.md
+2026-11-14 15:42:35,859 [INFO] 발행 성공: 35세 직장인, 카카오뱅크 31일 정기예금으로 연 5.5% 우대금리 받는 | loan | openai/gpt-oss-20b
+2026-11-14 15:42:35,864 [INFO] 처리 중: 대·중소 기업 동반진출 지원
+2026-11-14 15:42:37,052 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-14 15:42:37,053 [INFO] Retrying request in 1.000000 seconds (retry 1 of 2)
+2026-11-14 15:42:38,345 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-14 15:42:44,973 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-14 15:42:44,975 [INFO] 제목 추출: 30대 직장인, 중소기업 해외진출 지원 프로그램이 직장 생활에 미치는 영
+2026-11-14 15:42:44,975 [INFO] refinish_title 적용: 30대 직장인, 중소기업 해외진출 지원 프로그램이 직장 생활에 미치는 영향 총집합
+2026-11-14 15:42:45,351 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-14 15:42:45,352 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-11-14 15:42:46,278 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-중소기업-해외진출-지원-프로그램이-직장-생활에-미치는-영향-총집합-000116.md
+2026-11-14 15:42:46,292 [INFO] 발행 성공: 30대 직장인, 중소기업 해외진출 지원 프로그램이 직장 생활에 미치는 영 | general | openai/gpt-oss-20b
+2026-11-14 15:42:46,297 [INFO] 처리 중: [정기예금] 주식회사 카카오뱅크 - 카카오뱅크 우리아이적금
+2026-11-14 15:42:47,536 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-14 15:42:47,536 [INFO] Retrying request in 28.000000 seconds (retry 1 of 2)
+2026-11-14 15:43:15,833 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-14 15:43:22,370 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-14 15:43:22,371 [INFO] 제목 추출: 35세 직장인, 카카오뱅크 정기예금으로 목돈을 늘리는 3가지 전략
+2026-11-14 15:43:22,371 [INFO] refinish_title 적용: 35세 직장인, 카카오뱅크 정기예금으로 목돈을 늘리는 3가지 전략 얼마나 받을까?
+2026-11-14 15:43:22,916 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-14 15:43:22,916 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-14 15:43:23,898 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/35세-직장인-카카오뱅크-정기예금으로-목돈을-늘리는-3가지-전략-얼마나-받을까-5-0007.md
+2026-11-14 15:43:23,900 [INFO] 발행 성공: 35세 직장인, 카카오뱅크 정기예금으로 목돈을 늘리는 3가지 전략 얼마나 | loan | openai/gpt-oss-20b
+2026-11-14 15:43:23,905 [INFO] 처리 중: 양천구 공항소음피해지역 주민 보청기 구입비 지원
+2026-11-14 15:43:26,078 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-14 15:43:26,078 [INFO] Retrying request in 51.000000 seconds (retry 1 of 2)
+2026-11-14 15:44:17,222 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-14 15:44:28,343 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-14 15:44:28,344 [INFO] 제목 추출: 양천구 공항소음피해지역 거주 중등도난청 신혼부부가 보청기 구입비를 지원받
+2026-11-14 15:44:28,344 [INFO] refinish_title 적용: 양천구 공항소음피해지역 거주 중등도난청 신혼부부가 보청기 구입비를 5분 만에 정리
+2026-11-14 15:44:28,718 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-14 15:44:28,719 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-14 15:44:29,679 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/양천구-공항소음피해지역-거주-중등도난청-신혼부부가-보청기-구입비를-5분-만에-정리-000263.md
+2026-11-14 15:44:29,681 [INFO] 발행 성공: 양천구 공항소음피해지역 거주 중등도난청 신혼부부가 보청기 구입비를 5분  | insurance | openai/gpt-oss-20b
+2026-11-14 15:44:29,681 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-14 15:44:29,681 [INFO] 파이프라인 종료 2026-11-14 15:44:29

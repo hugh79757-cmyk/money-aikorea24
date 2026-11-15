@@ -4000,3 +4000,48 @@ Big적금
 2026-11-14 15:44:29,681 [INFO] 발행 성공: 양천구 공항소음피해지역 거주 중등도난청 신혼부부가 보청기 구입비를 5분  | insurance | openai/gpt-oss-20b
 2026-11-14 15:44:29,681 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-14 15:44:29,681 [INFO] 파이프라인 종료 2026-11-14 15:44:29
+2026-11-15 16:11:52,557 [INFO] 파이프라인 시작 2026-11-15 16:11:52
+2026-11-15 16:11:52,562 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-15 16:11:52,571 [INFO] 처리 중: [정기예금] 토스뱅크 주식회사 - 토스뱅크 키워봐요 적금
+2026-11-15 16:11:54,255 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-15 16:12:09,327 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-15 16:12:20,336 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-15 16:12:20,343 [INFO] 제목 추출: 30대 직장인 목돈 굴리기, 토스뱅크 ‘키워봐요 적금’ 실질 수익률 분석
+2026-11-15 16:12:20,343 [INFO] refinish_title 적용: 30대 직장인 목돈 굴리기, 토스뱅크 ‘키워봐요 적금’ 실질 수익률 분석 챙기는 법
+2026-11-15 16:12:21,101 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-15 16:12:21,102 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-15 16:12:22,354 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-목돈-굴리기-토스뱅크-키워봐요-적금-실질-수익률-분석-챙기는-법-001001.md
+2026-11-15 16:12:22,357 [INFO] 발행 성공: 30대 직장인 목돈 굴리기, 토스뱅크 ‘키워봐요 적금’ 실질 수익률 분석 | loan | gemini-3.1-flash-lite
+2026-11-15 16:12:22,362 [INFO] 처리 중: 수출컨소시엄 지원 (업종별 중소기업 해외전시회 참여)
+2026-11-15 16:12:36,400 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-15 16:12:53,115 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-15 16:12:53,117 [INFO] 제목 추출: 30대 직장인, 회사가 아닌 '나의 사업'을 꿈꾼다면? 수출컨소시엄 지원
+2026-11-15 16:12:53,117 [INFO] refinish_title 적용: 30대 직장인, 회사가 아닌 '나의 사업'을 꿈꾼다면? 수출컨소시엄 지원 활용법 총정리
+2026-11-15 16:12:54,422 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-15 16:12:54,423 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:조건']
+2026-11-15 16:12:55,310 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-회사가-아닌-나의-사업을-꿈꾼다면-수출컨소시엄-지원-활용법-총정리-000121.md
+2026-11-15 16:12:55,312 [INFO] 발행 성공: 30대 직장인, 회사가 아닌 '나의 사업'을 꿈꾼다면? 수출컨소시엄 지원 | general | gemini-3.1-flash-lite
+2026-11-15 16:12:55,317 [INFO] 처리 중: 장기요양기관 요양보호사 처우개선 수당 지원
+2026-11-15 16:12:55,318 [INFO] [SKIP] 부적합 키워드: 장기요양기관 요양보호사 처우개선 수당 지원
+2026-11-15 16:12:55,324 [INFO] 처리 중: 양천구 공항소음피해지역 주민 상담심리 지원(상담서비스 제공)
+2026-11-15 16:13:02,375 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-15 16:13:19,370 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-15 16:13:19,372 [INFO] 제목 추출: 양천구 공항소음 피해지역 신혼부부, 마음 건강 상담비 0원으로 해결하는 
+2026-11-15 16:13:19,372 [INFO] refinish_title 적용: 양천구 공항소음 피해지역 신혼부부, 마음 건강 상담비 0원으로 해결하는 법 지원받는 방법
+2026-11-15 16:13:19,945 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-15 16:13:19,945 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-15 16:13:21,653 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/양천구-공항소음-피해지역-신혼부부-마음-건강-상담비-0원으로-해결하는-법-지원받는-방법-000265.md
+2026-11-15 16:13:21,655 [INFO] 발행 성공: 양천구 공항소음 피해지역 신혼부부, 마음 건강 상담비 0원으로 해결하는  | insurance | gemini-3.1-flash-lite
+2026-11-15 16:13:21,660 [INFO] 처리 중: [정기예금] 토스뱅크 주식회사 - 토스뱅크 굴비 적금
+2026-11-15 16:13:23,301 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-15 16:13:23,301 [INFO] Retrying request in 0.415951 seconds (retry 1 of 2)
+2026-11-15 16:13:44,583 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-15 16:14:05,552 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-15 16:14:05,554 [INFO] 제목 추출: 30대 직장인, 토스뱅크 굴비 적금으로 목돈 굴리기 전략
+2026-11-15 16:14:05,554 [INFO] refinish_title 적용: 30대 직장인, 토스뱅크 굴비 적금으로 목돈 굴리기 전략 5분 만에 정리
+2026-11-15 16:14:05,928 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-15 16:14:05,928 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-15 16:14:06,801 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-토스뱅크-굴비-적금으로-목돈-굴리기-전략-5분-만에-정리-001003.md
+2026-11-15 16:14:06,803 [INFO] 발행 성공: 30대 직장인, 토스뱅크 굴비 적금으로 목돈 굴리기 전략 5분 만에 정리 | loan | gemini-3.1-flash-lite
+2026-11-15 16:14:06,804 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-15 16:14:06,804 [INFO] 파이프라인 종료 2026-11-15 16:14:06

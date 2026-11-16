@@ -4045,3 +4045,44 @@ Big적금
 2026-11-15 16:14:06,803 [INFO] 발행 성공: 30대 직장인, 토스뱅크 굴비 적금으로 목돈 굴리기 전략 5분 만에 정리 | loan | gemini-3.1-flash-lite
 2026-11-15 16:14:06,804 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-15 16:14:06,804 [INFO] 파이프라인 종료 2026-11-15 16:14:06
+2026-11-16 19:27:22,602 [INFO] 파이프라인 시작 2026-11-16 19:27:22
+2026-11-16 19:27:22,609 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-16 19:27:22,618 [INFO] 처리 중: [정기예금] 토스뱅크 주식회사 - 토스뱅크 자유 적금
+2026-11-16 19:27:26,361 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-16 19:27:36,642 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-16 19:27:36,650 [INFO] 제목 추출: 30대 직장인, 300만원 이하 소액 목돈 굴리기: 토스뱅크 자유적금 실
+2026-11-16 19:27:36,650 [INFO] refinish_title 적용: 30대 직장인, 300만원 이하 소액 목돈 굴리기: 토스뱅크 자유적금 실전 3단계로 끝내기
+2026-11-16 19:27:36,950 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-16 19:27:36,951 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-16 19:27:37,955 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-300만원-이하-소액-목돈-굴리기-토스뱅크-자유적금-실전-3단계로-끝내기-001004.md
+2026-11-16 19:27:37,957 [INFO] 발행 성공: 30대 직장인, 300만원 이하 소액 목돈 굴리기: 토스뱅크 자유적금 실 | loan | gemini-3.1-flash-lite
+2026-11-16 19:27:37,963 [INFO] 처리 중: 양천구 미숙아 RSV 예방접종비 지원
+2026-11-16 19:27:37,963 [INFO] [SKIP] 부적합 키워드: 양천구 미숙아 RSV 예방접종비 지원
+2026-11-16 19:27:37,969 [INFO] 처리 중: 저소득 한부모 명절위문금 지원
+2026-11-16 19:27:41,508 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-16 19:27:52,527 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-16 19:27:52,529 [INFO] 제목 추출: 맞벌이 신혼부부라면 꼭 알아야 할 정부 지원금 사각지대와 확인법
+2026-11-16 19:27:52,529 [INFO] refinish_title 적용: 맞벌이 신혼부부라면 꼭 알아야 할 정부 지원금 사각지대와 확인법 알고 계셨나요?
+2026-11-16 19:27:52,838 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-16 19:27:52,839 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-11-16 19:27:53,638 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부라면-꼭-알아야-할-정부-지원금-사각지대와-확인법-알고-계셨나요-000104.md
+2026-11-16 19:27:53,639 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 알아야 할 정부 지원금 사각지대와 확인법 알고 계 | insurance | gemini-3.1-flash-lite
+2026-11-16 19:27:53,645 [INFO] 처리 중: 공공연 연구인력 파견지원사업
+2026-11-16 19:27:57,109 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-16 19:28:11,135 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-16 19:28:11,136 [INFO] 제목 추출: 기술 기반 중소기업이라면 주목, 공공연 연구인력 파견 인건비 지원받는 법
+2026-11-16 19:28:11,136 [INFO] refinish_title 적용: 기술 기반 중소기업이라면 주목, 공공연 연구인력 파견 인건비 지원 아낄 수 있는 법
+2026-11-16 19:28:11,462 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-16 19:28:13,423 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/기술-기반-중소기업이라면-주목-공공연-연구인력-파견-인건비-지원-아낄-수-있는-법-000003.md
+2026-11-16 19:28:13,431 [INFO] 발행 성공: 기술 기반 중소기업이라면 주목, 공공연 연구인력 파견 인건비 지원 아낄  | general | gemini-3.1-flash-lite
+2026-11-16 19:28:13,438 [INFO] 처리 중: [정기예금] 토스뱅크 주식회사 - 토스뱅크 아이 적금
+2026-11-16 19:28:17,047 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-16 19:28:28,313 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-16 19:28:28,315 [INFO] 제목 추출: 30대 직장인 목돈 굴리기, 토스뱅크 정기예금 활용 전략
+2026-11-16 19:28:28,315 [INFO] refinish_title 적용: 30대 직장인 목돈 굴리기, 토스뱅크 정기예금 활용 전략 핵심 요약
+2026-11-16 19:28:28,636 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-16 19:28:28,637 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-16 19:28:29,748 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-목돈-굴리기-토스뱅크-정기예금-활용-전략-핵심-요약-001005.md
+2026-11-16 19:28:29,750 [INFO] 발행 성공: 30대 직장인 목돈 굴리기, 토스뱅크 정기예금 활용 전략 핵심 요약 | loan | gemini-3.1-flash-lite
+2026-11-16 19:28:29,750 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-16 19:28:29,750 [INFO] 파이프라인 종료 2026-11-16 19:28:29

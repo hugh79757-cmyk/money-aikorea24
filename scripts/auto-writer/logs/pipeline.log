@@ -4086,3 +4086,48 @@ Big적금
 2026-11-16 19:28:29,750 [INFO] 발행 성공: 30대 직장인 목돈 굴리기, 토스뱅크 정기예금 활용 전략 핵심 요약 | loan | gemini-3.1-flash-lite
 2026-11-16 19:28:29,750 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-16 19:28:29,750 [INFO] 파이프라인 종료 2026-11-16 19:28:29
+2026-11-17 18:21:48,415 [INFO] 파이프라인 시작 2026-11-17 18:21:48
+2026-11-17 18:21:48,422 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-17 18:21:48,429 [INFO] 처리 중: 장애인 이동보조기기 수리비 지원
+2026-11-17 18:21:48,429 [INFO] [SKIP] 부적합 키워드: 장애인 이동보조기기 수리비 지원
+2026-11-17 18:21:48,438 [INFO] 처리 중: 저소득주민 국민건강보험료 등 지원
+2026-11-17 18:21:54,156 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-17 18:22:43,118 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-17 18:22:43,118 [INFO] Retrying request in 0.403250 seconds (retry 1 of 2)
+2026-11-17 18:23:48,218 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-17 18:23:48,219 [INFO] Retrying request in 0.894515 seconds (retry 2 of 2)
+2026-11-17 18:25:19,204 [INFO] 제목 추출: 맞벌이 신혼부부라면 꼭 알아야 할 우리 동네 건강보험료 지원 제도
+2026-11-17 18:25:19,204 [INFO] refinish_title 적용: 맞벌이 신혼부부라면 꼭 알아야 할 우리 동네 건강보험료 지원 제도 돌려받는 법
+2026-11-17 18:25:19,630 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-17 18:25:19,631 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-17 18:25:20,337 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부라면-꼭-알아야-할-우리-동네-건강보험료-지원-제도-돌려받는-법-000109.md
+2026-11-17 18:25:20,339 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 알아야 할 우리 동네 건강보험료 지원 제도 돌려받 | insurance | gemini-3.1-flash-lite
+2026-11-17 18:25:20,343 [INFO] 처리 중: [적금] 우리은행 - 우리SUPER주거래적금
+2026-11-17 18:25:27,415 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-17 18:25:35,169 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-17 18:25:35,174 [INFO] 제목 추출: 20대 직장인, 우리은행 우리SUPER주거래적금으로 목돈 마련 시작하는 
+2026-11-17 18:25:35,174 [INFO] refinish_title 적용: 20대 직장인, 우리은행 우리SUPER주거래적금으로 목돈 마련 시작하는 법 최신 기준 정리
+2026-11-17 18:25:35,176 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-17 18:25:35,176 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-17 18:25:35,919 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/20대-직장인-우리은행-우리SUPER주거래적금으로-목돈-마련-시작하는-법-최신-기준-정리-R0001F.md
+2026-11-17 18:25:35,920 [INFO] 발행 성공: 20대 직장인, 우리은행 우리SUPER주거래적금으로 목돈 마련 시작하는  | loan | gemini-3.1-flash-lite
+2026-11-17 18:25:35,924 [INFO] 처리 중: 신진연구인력 채용지원
+2026-11-17 18:25:40,870 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-17 18:25:50,229 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-17 18:25:50,230 [INFO] 제목 추출: 이공계 30대 직장인이라면 주목, 연봉의 50%를 정부가 지원하는 법
+2026-11-17 18:25:50,230 [INFO] refinish_title 적용: 이공계 30대 직장인이라면 주목, 연봉의 50%를 정부가 지원하는 법 신청 방법
+2026-11-17 18:25:50,232 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-17 18:25:50,232 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-17 18:25:51,019 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/이공계-30대-직장인이라면-주목-연봉의-50를-정부가-지원하는-법-신청-방법-000004.md
+2026-11-17 18:25:51,020 [INFO] 발행 성공: 이공계 30대 직장인이라면 주목, 연봉의 50%를 정부가 지원하는 법 신 | general | gemini-3.1-flash-lite
+2026-11-17 18:25:51,024 [INFO] 처리 중: [적금] 우리은행 - WON적금
+2026-11-17 18:25:53,065 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-17 18:26:01,281 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-17 18:26:01,282 [INFO] 제목 추출: 20대 직장인 목돈 마련, 우리은행 WON적금 금리 혜택과 우대 조건 분
+2026-11-17 18:26:01,282 [INFO] refinish_title 적용: 20대 직장인 목돈 마련, 우리은행 WON적금 금리 혜택과 우대 조건 분석 총정리
+2026-11-17 18:26:01,285 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-17 18:26:01,285 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'HEADING_MISSING:방법']
+2026-11-17 18:26:02,094 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/20대-직장인-목돈-마련-우리은행-WON적금-금리-혜택과-우대-조건-분석-총정리-R0001L.md
+2026-11-17 18:26:02,095 [INFO] 발행 성공: 20대 직장인 목돈 마련, 우리은행 WON적금 금리 혜택과 우대 조건 분 | loan | gemini-3.1-flash-lite
+2026-11-17 18:26:02,096 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-17 18:26:02,096 [INFO] 파이프라인 종료 2026-11-17 18:26:02

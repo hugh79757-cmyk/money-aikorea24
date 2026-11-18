@@ -4131,3 +4131,57 @@ Big적금
 2026-11-17 18:26:02,095 [INFO] 발행 성공: 20대 직장인 목돈 마련, 우리은행 WON적금 금리 혜택과 우대 조건 분 | loan | gemini-3.1-flash-lite
 2026-11-17 18:26:02,096 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-17 18:26:02,096 [INFO] 파이프라인 종료 2026-11-17 18:26:02
+2026-11-18 17:54:42,111 [INFO] 파이프라인 시작 2026-11-18 17:54:42
+2026-11-18 17:54:42,116 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-18 17:54:42,123 [INFO] 처리 중: 강서구 다자녀가정 의료비 지원
+2026-11-18 17:54:44,128 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-18 17:54:52,106 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-18 17:54:52,112 [INFO] 제목 추출: 강서구 셋째아 의료비 지원, 맞벌이 부부가 놓치기 쉬운 혜택 정리
+2026-11-18 17:54:52,113 [INFO] refinish_title 적용: 강서구 셋째아 의료비 지원, 맞벌이 부부가 놓치기 쉬운 혜택 정리 챙기는 법
+2026-11-18 17:54:53,591 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-18 17:54:54,601 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/강서구-셋째아-의료비-지원-맞벌이-부부가-놓치기-쉬운-혜택-정리-챙기는-법-000111.md
+2026-11-18 17:54:54,604 [INFO] 발행 성공: 강서구 셋째아 의료비 지원, 맞벌이 부부가 놓치기 쉬운 혜택 정리 챙기는 | insurance | gemini-3.1-flash-lite
+2026-11-18 17:54:54,609 [INFO] 처리 중: [적금] 한국스탠다드차타드은행 - 퍼스트가계적금
+2026-11-18 17:54:58,687 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-18 17:55:24,928 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-18 17:55:24,929 [INFO] 제목 추출: 20대 직장인 목돈 마련, SC제일은행 퍼스트가계적금 활용 전략
+2026-11-18 17:55:24,929 [INFO] refinish_title 적용: 20대 직장인 목돈 마련, SC제일은행 퍼스트가계적금 활용 전략 총정리
+2026-11-18 17:55:24,949 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-18 17:55:24,949 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-18 17:55:25,825 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/20대-직장인-목돈-마련-SC제일은행-퍼스트가계적금-활용-전략-총정리-266451.md
+2026-11-18 17:55:25,828 [INFO] 발행 성공: 20대 직장인 목돈 마련, SC제일은행 퍼스트가계적금 활용 전략 총정리 | loan | gemini-3.1-flash-lite
+2026-11-18 17:55:25,833 [INFO] 처리 중: 입양축하금 지원
+2026-11-18 17:55:27,583 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-18 17:55:27,583 [INFO] Retrying request in 0.445016 seconds (retry 1 of 2)
+2026-11-18 17:55:28,475 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-18 17:55:28,475 [INFO] Retrying request in 0.915917 seconds (retry 2 of 2)
+2026-11-18 17:55:30,373 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-18 17:55:38,653 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-18 17:55:38,654 [INFO] 제목 추출: 강서구 거주 신혼부부라면 꼭 알아야 할 입양축하금 지원 제도
+2026-11-18 17:55:38,654 [INFO] refinish_title 적용: 강서구 거주 신혼부부라면 꼭 알아야 할 입양축하금 지원 제도 5분 만에 정리
+2026-11-18 17:55:38,682 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-18 17:55:38,682 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-18 17:55:39,666 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/강서구-거주-신혼부부라면-꼭-알아야-할-입양축하금-지원-제도-5분-만에-정리-000112.md
+2026-11-18 17:55:39,668 [INFO] 발행 성공: 강서구 거주 신혼부부라면 꼭 알아야 할 입양축하금 지원 제도 5분 만에  | insurance | gemini-3.1-flash-lite
+2026-11-18 17:55:39,673 [INFO] 처리 중: [적금] 아이엠뱅크 - iM함께적금
+2026-11-18 17:55:41,096 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-18 17:55:46,394 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-18 17:55:46,394 [INFO] Retrying request in 0.453207 seconds (retry 1 of 2)
+2026-11-18 17:56:02,393 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-18 17:56:02,394 [INFO] 제목 추출: 20대 적금, 아이엠뱅크 iM함께적금 금리 조건과 우대 혜택 총정리
+2026-11-18 17:56:02,395 [INFO] refinish_title 적용: 20대 적금, 아이엠뱅크 iM함께적금 금리 조건과 우대 혜택 꼭 알아두세요
+2026-11-18 17:56:02,751 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-18 17:56:02,751 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-18 17:56:03,818 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/20대-적금-아이엠뱅크-iM함께적금-금리-조건과-우대-혜택-꼭-알아두세요-166004.md
+2026-11-18 17:56:03,821 [INFO] 발행 성공: 20대 적금, 아이엠뱅크 iM함께적금 금리 조건과 우대 혜택 꼭 알아두세 | loan | gemini-3.1-flash-lite
+2026-11-18 17:56:03,826 [INFO] 처리 중: 고경력 연구인력 채용지원
+2026-11-18 17:56:07,058 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-18 17:56:16,787 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-18 17:56:16,789 [INFO] 제목 추출: 30대 경력직 연구원, 내 연봉의 50%를 지원받는 이직 전략
+2026-11-18 17:56:16,789 [INFO] refinish_title 적용: 30대 경력직 연구원, 내 연봉의 50%를 지원받는 이직 전략 미리 알아두세요
+2026-11-18 17:56:17,136 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-18 17:56:17,136 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-18 17:56:18,927 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-경력직-연구원-내-연봉의-50를-지원받는-이직-전략-미리-알아두세요-000005.md
+2026-11-18 17:56:18,929 [INFO] 발행 성공: 30대 경력직 연구원, 내 연봉의 50%를 지원받는 이직 전략 미리 알아 | general | gemini-3.1-flash-lite
+2026-11-18 17:56:18,929 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-18 17:56:18,929 [INFO] 파이프라인 종료 2026-11-18 17:56:18

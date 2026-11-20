@@ -4239,3 +4239,63 @@ Big적금
 2026-11-19 18:11:23,383 [INFO] 발행 성공: 30대 직장인도 알아두면 좋은 ‘기술보증 지원’ 신청 놓치면 손해 | general | openai/gpt-oss-120b
 2026-11-19 18:11:23,383 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-19 18:11:23,383 [INFO] 파이프라인 종료 2026-11-19 18:11:23
+2026-11-20 17:40:38,192 [INFO] 파이프라인 시작 2026-11-20 17:40:38
+2026-11-20 17:40:38,196 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-20 17:40:38,204 [INFO] 처리 중: (강서구)임산부 건강관리 서비스 지원
+2026-11-20 17:40:39,492 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-20 17:40:50,553 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-20 17:40:50,560 [INFO] 제목 추출: 맞벌이 신혼부부도 놓치지 말아야 할 강서구 임산부 건강관리 지원받는 법
+2026-11-20 17:40:50,560 [INFO] refinish_title 적용: 맞벌이 신혼부부도 놓치지 말아야 할 강서구 임산부 건강관리 지원 한눈에 정리
+2026-11-20 17:40:50,836 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-20 17:40:50,837 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-20 17:40:52,271 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부도-놓치지-말아야-할-강서구-임산부-건강관리-지원-한눈에-정리-000285.md
+2026-11-20 17:40:52,284 [INFO] 발행 성공: 맞벌이 신혼부부도 놓치지 말아야 할 강서구 임산부 건강관리 지원 한눈에  | insurance | openai/gpt-oss-120b
+2026-11-20 17:40:52,288 [INFO] 처리 중: [적금] 부산은행 - BNK내맘대로 
+적금
+2026-11-20 17:40:53,179 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-20 17:40:53,180 [INFO] Retrying request in 9.000000 seconds (retry 1 of 2)
+2026-11-20 17:41:02,227 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-20 17:41:02,227 [INFO] Retrying request in 17.000000 seconds (retry 2 of 2)
+2026-11-20 17:41:19,459 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-20 17:41:35,917 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-20 17:41:35,919 [INFO] 제목 추출: 20대 직장인, 부산은행 자유적립식 적금으로 연 0.2% 추가 이자 받는
+2026-11-20 17:41:35,919 [INFO] refinish_title 적용: 20대 직장인, 부산은행 자유적립식 적금으로 연 0.2% 추가 이자 받는 방법 신청 방법
+2026-11-20 17:41:36,196 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-20 17:41:36,196 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-20 17:41:37,515 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/20대-직장인-부산은행-자유적립식-적금으로-연-02-추가-이자-받는-방법-신청-방법-530001.md
+2026-11-20 17:41:37,517 [INFO] 발행 성공: 20대 직장인, 부산은행 자유적립식 적금으로 연 0.2% 추가 이자 받는 | loan | openai/gpt-oss-120b
+2026-11-20 17:41:37,522 [INFO] 처리 중: [적금] 부산은행 - 부산이라 좋다
+Big적금
+2026-11-20 17:41:38,287 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-20 17:41:38,287 [INFO] Retrying request in 30.000000 seconds (retry 1 of 2)
+2026-11-20 17:42:08,484 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-20 17:42:24,162 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-20 17:42:24,164 [INFO] 제목 추출: 20대 직장인을 위한 부산은행 자유적립식 적금, 우대 금리 활용법
+2026-11-20 17:42:24,164 [INFO] refinish_title 적용: 20대 직장인을 위한 부산은행 자유적립식 적금, 우대 금리 활용법 누가 받을 수 있을까?
+2026-11-20 17:42:24,441 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-20 17:42:26,076 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/20대-직장인을-위한-부산은행-자유적립식-적금-우대-금리-활용법-누가-받을-수-있을까-660001.md
+2026-11-20 17:42:26,079 [INFO] 발행 성공: 20대 직장인을 위한 부산은행 자유적립식 적금, 우대 금리 활용법 누가  | loan | openai/gpt-oss-120b
+2026-11-20 17:42:26,084 [INFO] 처리 중: (강서구)난임부부 지원(시술 후 원외약제비 청구)
+2026-11-20 17:42:26,841 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-20 17:42:26,842 [INFO] Retrying request in 31.000000 seconds (retry 1 of 2)
+2026-11-20 17:42:58,093 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-20 17:43:10,490 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-20 17:43:10,492 [INFO] 제목 추출: 맞벌이 신혼부부를 위한 강서구 난임 시술 약제비 지원받는 방법
+2026-11-20 17:43:10,492 [INFO] refinish_title 적용: 맞벌이 신혼부부를 위한 강서구 난임 시술 약제비 실제 혜택 비교
+2026-11-20 17:43:10,764 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-20 17:43:10,764 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-11-20 17:43:11,954 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부를-위한-강서구-난임-시술-약제비-실제-혜택-비교-000288.md
+2026-11-20 17:43:11,956 [INFO] 발행 성공: 맞벌이 신혼부부를 위한 강서구 난임 시술 약제비 실제 혜택 비교 | insurance | openai/gpt-oss-120b
+2026-11-20 17:43:11,961 [INFO] 처리 중: 보증연계투자 지원
+2026-11-20 17:43:12,633 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-20 17:43:12,633 [INFO] Retrying request in 21.000000 seconds (retry 1 of 2)
+2026-11-20 17:43:33,845 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-20 17:43:49,330 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-20 17:43:49,331 [INFO] 제목 추출: 30대 직장인이 알아야 할 보증연계투자 지원, 창업 자금 확보 방법
+2026-11-20 17:43:49,331 [INFO] refinish_title 적용: 30대 직장인이 알아야 할 보증연계투자 지원, 창업 자금 확보 방법 올해 바뀐 점
+2026-11-20 17:43:49,721 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-20 17:43:49,722 [INFO] [validator] 수정됨: ['YEAR_REPLACED:2024']
+2026-11-20 17:43:53,806 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인이-알아야-할-보증연계투자-지원-창업-자금-확보-방법-올해-바뀐-점-000008.md
+2026-11-20 17:43:53,808 [INFO] 발행 성공: 30대 직장인이 알아야 할 보증연계투자 지원, 창업 자금 확보 방법 올해 | general | openai/gpt-oss-120b
+2026-11-20 17:43:53,808 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-20 17:43:53,808 [INFO] 파이프라인 종료 2026-11-20 17:43:53

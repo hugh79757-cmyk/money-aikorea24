@@ -4299,3 +4299,53 @@ Big적금
 2026-11-20 17:43:53,808 [INFO] 발행 성공: 30대 직장인이 알아야 할 보증연계투자 지원, 창업 자금 확보 방법 올해 | general | openai/gpt-oss-120b
 2026-11-20 17:43:53,808 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-20 17:43:53,808 [INFO] 파이프라인 종료 2026-11-20 17:43:53
+2026-11-21 16:42:23,427 [INFO] 파이프라인 시작 2026-11-21 16:42:23
+2026-11-21 16:42:23,433 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-21 16:42:23,442 [INFO] 처리 중: [적금] 부산은행 - Only One 주거래 우대적금
+2026-11-21 16:42:25,549 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-21 16:42:51,684 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-21 16:42:51,691 [INFO] 제목 추출: 부산 35세 직장인, 적금 금리 비교와 목돈 모으는 법
+2026-11-21 16:42:51,692 [INFO] refinish_title 적용: 부산 35세 직장인, 적금 금리 비교와 목돈 모으는 법 신청 방법
+2026-11-21 16:42:52,064 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-21 16:42:52,066 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-21 16:42:53,116 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/부산-35세-직장인-적금-금리-비교와-목돈-모으는-법-신청-방법-700001.md
+2026-11-21 16:42:53,118 [INFO] 발행 성공: 부산 35세 직장인, 적금 금리 비교와 목돈 모으는 법 신청 방법 | loan | openai/gpt-oss-120b
+2026-11-21 16:42:53,124 [INFO] 처리 중: 한의약 치매 건강증진서비스
+2026-11-21 16:42:53,124 [INFO] [SKIP] 부적합 키워드: 한의약 치매 건강증진서비스
+2026-11-21 16:42:53,131 [INFO] 처리 중: 위생해충 방역을 위한 방역소독장비 무료대여 서비스
+2026-11-21 16:42:54,062 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-21 16:42:54,062 [INFO] Retrying request in 11.000000 seconds (retry 1 of 2)
+2026-11-21 16:43:05,268 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-21 16:43:11,589 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-21 16:43:20,181 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-21 16:43:20,183 [INFO] 제목 추출: 맞벌이 신혼부부, 강서구에서 모기 방역 장비를 무료로 빌리는 방법
+2026-11-21 16:43:20,183 [INFO] refinish_title 적용: 맞벌이 신혼부부, 강서구에서 모기 방역 장비를 무료로 빌리는 방법 A to Z
+2026-11-21 16:43:20,744 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-21 16:43:20,745 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-21 16:43:21,740 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부-강서구에서-모기-방역-장비를-무료로-빌리는-방법-A-to-Z-000295.md
+2026-11-21 16:43:21,742 [INFO] 발행 성공: 맞벌이 신혼부부, 강서구에서 모기 방역 장비를 무료로 빌리는 방법 A t | insurance | openai/gpt-oss-20b
+2026-11-21 16:43:21,747 [INFO] 처리 중: [적금] 광주은행 - 해피라이프_여행스케치적금V
+2026-11-21 16:43:22,757 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-21 16:43:22,758 [INFO] Retrying request in 48.000000 seconds (retry 1 of 2)
+2026-11-21 16:44:10,904 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-21 16:44:21,912 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-21 16:44:21,914 [INFO] 제목 추출: 20대 직장인, 광주은행 적금으로 목돈 모으는 방법
+2026-11-21 16:44:21,914 [INFO] refinish_title 적용: 20대 직장인, 광주은행 적금으로 목돈 모으는 방법 얼마나 받을까?
+2026-11-21 16:44:22,286 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-21 16:44:22,286 [INFO] [validator] 수정됨: ['HEADING_MISSING:자주 묻는 질문']
+2026-11-21 16:44:23,152 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/20대-직장인-광주은행-적금으로-목돈-모으는-방법-얼마나-받을까-029000.md
+2026-11-21 16:44:23,154 [INFO] 발행 성공: 20대 직장인, 광주은행 적금으로 목돈 모으는 방법 얼마나 받을까? | loan | openai/gpt-oss-20b
+2026-11-21 16:44:23,160 [INFO] 처리 중: 전자상거래수출시장진출
+2026-11-21 16:44:24,455 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-21 16:44:24,455 [INFO] Retrying request in 29.000000 seconds (retry 1 of 2)
+2026-11-21 16:44:53,615 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 413 Payload Too Large"
+2026-11-21 16:44:54,072 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-21 16:45:07,949 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-21 16:45:07,951 [INFO] 제목 추출: 30대 직장인, 부업으로 글로벌 셀러 도전할 때 알아야 할 수출 지원금
+2026-11-21 16:45:07,951 [INFO] refinish_title 적용: 30대 직장인, 부업으로 글로벌 셀러 도전할 때 알아야 할 수출 지원금 혜택 보는 법
+2026-11-21 16:45:09,247 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-21 16:45:09,247 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-21 16:45:10,227 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-부업으로-글로벌-셀러-도전할-때-알아야-할-수출-지원금-혜택-보는-법-000011.md
+2026-11-21 16:45:10,230 [INFO] 발행 성공: 30대 직장인, 부업으로 글로벌 셀러 도전할 때 알아야 할 수출 지원금  | general | gemini-3.1-flash-lite
+2026-11-21 16:45:10,230 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-21 16:45:10,230 [INFO] 파이프라인 종료 2026-11-21 16:45:10

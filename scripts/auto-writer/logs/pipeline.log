@@ -4349,3 +4349,51 @@ Big적금
 2026-11-21 16:45:10,230 [INFO] 발행 성공: 30대 직장인, 부업으로 글로벌 셀러 도전할 때 알아야 할 수출 지원금  | general | gemini-3.1-flash-lite
 2026-11-21 16:45:10,230 [INFO] 4건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-21 16:45:10,230 [INFO] 파이프라인 종료 2026-11-21 16:45:10
+2026-11-22 17:00:47,158 [INFO] 파이프라인 시작 2026-11-22 17:00:47
+2026-11-22 17:00:47,161 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-22 17:00:47,169 [INFO] 처리 중: [적금] 광주은행 - 여행스케치_남도투어적금
+2026-11-22 17:02:18,612 [INFO] Retrying request in 0.489929 seconds (retry 1 of 2)
+2026-11-22 17:02:20,598 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-22 17:02:28,872 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-22 17:02:28,877 [INFO] 제목 추출: 20대 직장인, 광주은행 남도투어적금으로 여행 자금과 목돈을 동시에 잡는
+2026-11-22 17:02:28,877 [INFO] refinish_title 적용: 20대 직장인, 광주은행 남도투어적금으로 여행 자금과 목돈을 동시에 잡는 법 혜택 보는 법
+2026-11-22 17:02:29,945 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-22 17:02:29,946 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-22 17:02:31,492 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/20대-직장인-광주은행-남도투어적금으로-여행-자금과-목돈을-동시에-잡는-법-혜택-보는-법-030000.md
+2026-11-22 17:02:31,494 [INFO] 발행 성공: 20대 직장인, 광주은행 남도투어적금으로 여행 자금과 목돈을 동시에 잡는 | loan | gemini-3.1-flash-lite
+2026-11-22 17:02:31,498 [INFO] 처리 중: 0세아 의료비 지원
+2026-11-22 17:02:33,618 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-22 17:02:41,731 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-22 17:02:41,732 [INFO] 제목 추출: 0세아 의료비 지원, 맞벌이 신혼부부도 챙겨야 할 필수 체크리스트
+2026-11-22 17:02:41,732 [INFO] refinish_title 적용: 0세아 의료비 지원, 맞벌이 신혼부부도 챙겨야 할 필수 체크리스트 확인해 보세요
+2026-11-22 17:02:42,495 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-22 17:02:43,256 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/0세아-의료비-지원-맞벌이-신혼부부도-챙겨야-할-필수-체크리스트-확인해-보세요-000102.md
+2026-11-22 17:02:43,257 [INFO] 발행 성공: 0세아 의료비 지원, 맞벌이 신혼부부도 챙겨야 할 필수 체크리스트 확인해 | insurance | gemini-3.1-flash-lite
+2026-11-22 17:02:43,261 [INFO] 처리 중: [적금] 광주은행 - VIP플러스적금
+2026-11-22 17:02:44,888 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-22 17:02:54,067 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-22 17:02:54,068 [INFO] 제목 추출: 광주은행 VIP플러스적금, 20대 사회초년생이 실질 수익률 높이는 전략
+2026-11-22 17:02:54,068 [INFO] refinish_title 적용: 광주은행 VIP플러스적금, 20대 사회초년생이 실질 수익률 높이는 전략 총정리
+2026-11-22 17:02:54,672 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-22 17:02:54,672 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-22 17:02:55,418 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/광주은행-VIP플러스적금-20대-사회초년생이-실질-수익률-높이는-전략-총정리-031000.md
+2026-11-22 17:02:55,419 [INFO] 발행 성공: 광주은행 VIP플러스적금, 20대 사회초년생이 실질 수익률 높이는 전략  | loan | gemini-3.1-flash-lite
+2026-11-22 17:02:55,423 [INFO] 처리 중: 기초생활보장수급노인 생신축하금 지원
+2026-11-22 17:02:56,779 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-22 17:03:04,519 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-22 17:03:04,520 [INFO] 제목 추출: 맞벌이 신혼부부라면 꼭 챙겨야 할 부모님 생신축하금 지원 제도
+2026-11-22 17:03:04,520 [INFO] refinish_title 적용: 맞벌이 신혼부부라면 꼭 챙겨야 할 부모님 생신축하금 지원 제도 서둘러야 하는 이유
+2026-11-22 17:03:04,542 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-22 17:03:05,736 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부라면-꼭-챙겨야-할-부모님-생신축하금-지원-제도-서둘러야-하는-이유-000106.md
+2026-11-22 17:03:05,738 [INFO] 발행 성공: 맞벌이 신혼부부라면 꼭 챙겨야 할 부모님 생신축하금 지원 제도 서둘러야  | insurance | gemini-3.1-flash-lite
+2026-11-22 17:03:05,742 [INFO] 처리 중: 장애인기업확인서 발급
+2026-11-22 17:03:07,881 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-22 17:03:18,041 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-22 17:03:18,043 [INFO] 제목 추출: 30대 직장인, 부업이나 창업 준비할 때 '장애인기업 확인서' 챙겨야 하
+2026-11-22 17:03:18,043 [INFO] refinish_title 적용: 30대 직장인, 부업이나 창업 준비할 때 '장애인기업 확인서' 챙겨야 하는 이유 지원받는 
+2026-11-22 17:03:18,320 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-22 17:03:18,321 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-22 17:03:19,351 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인-부업이나-창업-준비할-때-장애인기업-확인서-챙겨야-하는-이유-지원받는-방법-000014.md
+2026-11-22 17:03:19,353 [INFO] 발행 성공: 30대 직장인, 부업이나 창업 준비할 때 '장애인기업 확인서' 챙겨야 하 | general | gemini-3.1-flash-lite
+2026-11-22 17:03:19,353 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-22 17:03:19,353 [INFO] 파이프라인 종료 2026-11-22 17:03:19

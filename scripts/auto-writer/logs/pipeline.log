@@ -4397,3 +4397,84 @@ Big적금
 2026-11-22 17:03:19,353 [INFO] 발행 성공: 30대 직장인, 부업이나 창업 준비할 때 '장애인기업 확인서' 챙겨야 하 | general | gemini-3.1-flash-lite
 2026-11-22 17:03:19,353 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-22 17:03:19,353 [INFO] 파이프라인 종료 2026-11-22 17:03:19
+2026-11-23 21:05:07,954 [INFO] 파이프라인 시작 2026-11-23 21:05:07
+2026-11-23 21:05:07,959 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-23 21:05:07,969 [INFO] 처리 중: [적금] 제주은행 - jbank 저금통적금
+2026-11-23 21:05:10,460 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:05:10,461 [INFO] Retrying request in 0.447349 seconds (retry 1 of 2)
+2026-11-23 21:05:11,588 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:05:11,589 [INFO] Retrying request in 0.825576 seconds (retry 2 of 2)
+2026-11-23 21:05:13,440 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:05:20,785 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:05:20,786 [INFO] Retrying request in 0.464498 seconds (retry 1 of 2)
+2026-11-23 21:05:21,944 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:05:21,945 [INFO] Retrying request in 0.827924 seconds (retry 2 of 2)
+2026-11-23 21:05:33,119 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:05:33,255 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 404 Not Found"
+2026-11-23 21:05:33,427 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-11-23 21:05:33,709 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-23 21:05:43,982 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:05:43,983 [INFO] Retrying request in 0.421717 seconds (retry 1 of 2)
+2026-11-23 21:05:45,392 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:05:45,393 [INFO] Retrying request in 0.778313 seconds (retry 2 of 2)
+2026-11-23 21:05:46,551 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:05:46,552 [INFO] 제목 추출: 20대 직장인, 제주은행 저금통적금으로 받을 수 있는 최고 금리와 적용 
+2026-11-23 21:05:46,552 [INFO] refinish_title 적용: 20대 직장인, 제주은행 저금통적금으로 받을 수 있는 최고 금리와 적용 조건은? 총집합
+2026-11-23 21:05:46,839 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-23 21:05:46,840 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-23 21:05:47,986 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/20대-직장인-제주은행-저금통적금으로-받을-수-있는-최고-금리와-적용-조건은-총집합-002101.md
+2026-11-23 21:05:47,989 [INFO] 발행 성공: 20대 직장인, 제주은행 저금통적금으로 받을 수 있는 최고 금리와 적용  | loan | openai/gpt-oss-120b
+2026-11-23 21:05:47,995 [INFO] 처리 중: 저소득 어르신 무료급식 지원
+2026-11-23 21:05:48,974 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-23 21:05:48,975 [INFO] Retrying request in 9.000000 seconds (retry 1 of 2)
+2026-11-23 21:05:58,187 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-23 21:06:10,901 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:06:10,902 [INFO] Retrying request in 0.432214 seconds (retry 1 of 2)
+2026-11-23 21:06:13,255 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:06:13,256 [INFO] Retrying request in 0.755647 seconds (retry 2 of 2)
+2026-11-23 21:06:15,254 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:06:15,255 [INFO] 제목 추출: 맞벌이 신혼부부가 알아두면 좋은 저소득 어르신 무료급식 지원, 신청 방법
+2026-11-23 21:06:15,255 [INFO] refinish_title 적용: 맞벌이 신혼부부가 알아두면 좋은 저소득 어르신 무료급식 지원, 신청 방법과 혜택 놓치지 마
+2026-11-23 21:06:15,575 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-23 21:06:15,575 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-23 21:06:16,601 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부가-알아두면-좋은-저소득-어르신-무료급식-지원-신청-방법과-혜택-놓치지-마세요-000109.md
+2026-11-23 21:06:16,602 [INFO] 발행 성공: 맞벌이 신혼부부가 알아두면 좋은 저소득 어르신 무료급식 지원, 신청 방법 | insurance | openai/gpt-oss-120b
+2026-11-23 21:06:16,608 [INFO] 처리 중: [적금] 제주은행 - MZ 플랜적금
+2026-11-23 21:06:17,818 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-23 21:06:17,819 [INFO] Retrying request in 38.000000 seconds (retry 1 of 2)
+2026-11-23 21:06:56,154 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-23 21:07:15,685 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-23 21:07:15,692 [INFO] 제목 추출: 제주은행 MZ 플랜적금, 20대 직장인에게 맞는 금리·우대 조건 총정리
+2026-11-23 21:07:15,692 [INFO] refinish_title 적용: 제주은행 MZ 플랜적금, 20대 직장인에게 맞는 금리·우대 조건 혜택 보는 법
+2026-11-23 21:07:16,261 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-23 21:07:16,262 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-23 21:07:17,237 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/제주은행-MZ-플랜적금-20대-직장인에게-맞는-금리우대-조건-혜택-보는-법-002501.md
+2026-11-23 21:07:17,239 [INFO] 발행 성공: 제주은행 MZ 플랜적금, 20대 직장인에게 맞는 금리·우대 조건 혜택 보 | loan | openai/gpt-oss-120b
+2026-11-23 21:07:17,244 [INFO] 처리 중: 장애인 창업점포 지원사업
+2026-11-23 21:07:18,196 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-23 21:07:18,197 [INFO] Retrying request in 23.000000 seconds (retry 1 of 2)
+2026-11-23 21:07:41,478 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-23 21:07:49,556 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:07:49,557 [INFO] Retrying request in 0.490684 seconds (retry 1 of 2)
+2026-11-23 21:08:06,037 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-23 21:08:06,039 [INFO] 제목 추출: 30대 직장인이 알아야 할 장애인 창업점포 지원사업, 신청 방법과 혜택
+2026-11-23 21:08:06,039 [INFO] refinish_title 적용: 30대 직장인이 알아야 할 장애인 창업점포 지원사업, 신청 방법과 혜택 놓치면 손해
+2026-11-23 21:08:06,323 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-23 21:08:06,323 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-23 21:08:07,473 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인이-알아야-할-장애인-창업점포-지원사업-신청-방법과-혜택-놓치면-손해-000015.md
+2026-11-23 21:08:07,475 [INFO] 발행 성공: 30대 직장인이 알아야 할 장애인 창업점포 지원사업, 신청 방법과 혜택  | general | openai/gpt-oss-120b
+2026-11-23 21:08:07,480 [INFO] 처리 중: [적금] 제주은행 - 사이버우대매일부금
+2026-11-23 21:08:08,558 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-23 21:08:08,558 [INFO] Retrying request in 24.000000 seconds (retry 1 of 2)
+2026-11-23 21:08:32,890 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-23 21:08:43,417 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 503 Service Unavailable"
+2026-11-23 21:08:43,418 [INFO] Retrying request in 0.493400 seconds (retry 1 of 2)
+2026-11-23 21:09:01,189 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-23 21:09:01,191 [INFO] 제목 추출: 제주은행 사이버우대매일부금, 20대 적금 금리 비교와 활용법
+2026-11-23 21:09:01,191 [INFO] refinish_title 적용: 제주은행 사이버우대매일부금, 20대 적금 금리 비교와 활용법 총정리
+2026-11-23 21:09:01,896 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-23 21:09:01,897 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-23 21:09:02,816 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/제주은행-사이버우대매일부금-20대-적금-금리-비교와-활용법-총정리-002701.md
+2026-11-23 21:09:02,817 [INFO] 발행 성공: 제주은행 사이버우대매일부금, 20대 적금 금리 비교와 활용법 총정리 | loan | openai/gpt-oss-120b
+2026-11-23 21:09:02,817 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-23 21:09:02,817 [INFO] 파이프라인 종료 2026-11-23 21:09:02

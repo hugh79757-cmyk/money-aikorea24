@@ -4478,3 +4478,42 @@ Big적금
 2026-11-23 21:09:02,817 [INFO] 발행 성공: 제주은행 사이버우대매일부금, 20대 적금 금리 비교와 활용법 총정리 | loan | openai/gpt-oss-120b
 2026-11-23 21:09:02,817 [INFO] 5건 발행 완료 (배포 스킵 — CI 모드)
 2026-11-23 21:09:02,817 [INFO] 파이프라인 종료 2026-11-23 21:09:02
+2026-11-24 20:03:41,222 [INFO] 파이프라인 시작 2026-11-24 20:03:41
+2026-11-24 20:03:41,226 [INFO] 오늘 0건 발행됨, 5건 남음
+2026-11-24 20:03:41,237 [INFO] 처리 중: 홀몸 어르신 사랑의 음료 지원
+2026-11-24 20:03:42,816 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-24 20:03:54,386 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-24 20:03:54,393 [INFO] 제목 추출: 맞벌이 신혼부부가 알아두면 좋은 홀몸 어르신 사랑의 음료 지원 안내
+2026-11-24 20:03:54,393 [INFO] refinish_title 적용: 맞벌이 신혼부부가 알아두면 좋은 홀몸 어르신 사랑의 음료 지원 안내 진짜일까?
+2026-11-24 20:03:54,757 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-24 20:03:54,758 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-24 20:03:55,678 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/맞벌이-신혼부부가-알아두면-좋은-홀몸-어르신-사랑의-음료-지원-안내-진짜일까-000111.md
+2026-11-24 20:03:55,680 [INFO] 발행 성공: 맞벌이 신혼부부가 알아두면 좋은 홀몸 어르신 사랑의 음료 지원 안내 진짜 | insurance | openai/gpt-oss-120b
+2026-11-24 20:03:55,686 [INFO] 처리 중: [적금] 전북은행 - JB 다이렉트적금(자유적립식)
+2026-11-24 20:03:57,003 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-24 20:03:57,003 [INFO] Retrying request in 5.000000 seconds (retry 1 of 2)
+2026-11-24 20:04:02,566 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-24 20:04:14,476 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-24 20:04:14,478 [INFO] 제목 추출: 20대 직장인, 전북은행 자유적립식 적금으로 금리 우대받는 방법
+2026-11-24 20:04:14,478 [INFO] refinish_title 적용: 20대 직장인, 전북은행 자유적립식 적금으로 금리 우대받는 방법 총집합
+2026-11-24 20:04:14,851 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-24 20:04:14,851 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?']
+2026-11-24 20:04:15,669 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/20대-직장인-전북은행-자유적립식-적금으로-금리-우대받는-방법-총집합-8-0000.md
+2026-11-24 20:04:15,671 [INFO] 발행 성공: 20대 직장인, 전북은행 자유적립식 적금으로 금리 우대받는 방법 총집합 | loan | openai/gpt-oss-120b
+2026-11-24 20:04:15,678 [INFO] 처리 중: 발달장애인 가족창업 특화사업장 구축지원 사업
+2026-11-24 20:04:15,678 [INFO] [SKIP] 부적합 키워드: 발달장애인 가족창업 특화사업장 구축지원 사업
+2026-11-24 20:04:15,685 [INFO] 처리 중: 장애인기업 MAS 컨설팅 및 등록 지원
+2026-11-24 20:04:25,887 [INFO] [SKIP] URL 비활성: 장애인기업 MAS 컨설팅 및 등록 지원
+2026-11-24 20:04:25,894 [INFO] 처리 중: 장애인기업 판로지원시스템 운영
+2026-11-24 20:04:26,925 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-11-24 20:04:26,925 [INFO] Retrying request in 12.000000 seconds (retry 1 of 2)
+2026-11-24 20:04:39,159 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2026-11-24 20:04:53,341 [INFO] HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/openai/chat/completions "HTTP/1.1 200 OK"
+2026-11-24 20:04:53,343 [INFO] 제목 추출: 30대 직장인도 알면 좋은 장애인기업 판로지원시스템, 신청 조건과 활용법
+2026-11-24 20:04:53,343 [INFO] refinish_title 적용: 30대 직장인도 알면 좋은 장애인기업 판로지원시스템, 신청 조건과 활용법 딱 3가지만 기억
+2026-11-24 20:04:53,710 [INFO] [reviewer] ['Mimo 검수 실패: HTTPSConnectionPool(host=\'api.mimo.kr\', port=443): Max retries exceeded with url: /v2_5/complete (Caused by NameResolutionError("HTTPSConnection(host=\'api.mimo.kr\', port=443): Failed to resolve \'api.mimo.kr\' ([Errno -2] Name or service not known)"))']
+2026-11-24 20:04:53,711 [INFO] [validator] 수정됨: ['HEADING_MISSING:이란?', 'YEAR_REPLACED:2024']
+2026-11-24 20:04:55,448 [INFO] 저장: /home/runner/work/money-aikorea24/money-aikorea24/src/content/blog/30대-직장인도-알면-좋은-장애인기업-판로지원시스템-신청-조건과-활용법-딱-3가지만-기억하세요-000018.md
+2026-11-24 20:04:55,450 [INFO] 발행 성공: 30대 직장인도 알면 좋은 장애인기업 판로지원시스템, 신청 조건과 활용법 | general | openai/gpt-oss-120b
+2026-11-24 20:04:55,450 [INFO] 3건 발행 완료 (배포 스킵 — CI 모드)
+2026-11-24 20:04:55,450 [INFO] 파이프라인 종료 2026-11-24 20:04:55
